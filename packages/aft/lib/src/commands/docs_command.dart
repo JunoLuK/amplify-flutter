@@ -320,6 +320,17 @@ const _indexTmpl = r'''
             border-bottom: 1px solid #ddd;
         }
 
+        thead th:first-child {
+            background-color: #f2f2f2;
+            position: sticky;
+            left: 0;
+        }
+
+        td:first-child {
+            position: sticky;
+            left: 0;
+        }
+
         th {
             background-color: #f2f2f2;
             font-weight: bold;
@@ -329,16 +340,31 @@ const _indexTmpl = r'''
             background-color: #f9f9f9;
         }
 
-        tr:hover {
-            background-color: #eaeaea;
+        tr:nth-child(even) > td:first-child {
+            background-color: #f9f9f9;
         }
 
+        tr:nth-child(odd) {
+            background-color: white;
+        }
+
+        tr:nth-child(odd) > td:first-child {
+            background-color: white;
+        }
+
+        tr:hover {
+            background-color: #eaeaea
+        }
+
+        tr:nth-child(even):hover > td:first-child, tr:nth-child(odd):hover > td:first-child {
+            background-color: #eaeaea;
+        }
     </style>
 </head>
 
 <body>
+    <h1>Amplify Docs</h1>
     <section id="docs">
-        <h1>Amplify Docs</h1>
         <table>
             <thead>
                 <tr>

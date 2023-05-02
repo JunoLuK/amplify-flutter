@@ -304,6 +304,7 @@ const _indexTmpl = r'''
             display: flex;
             flex-direction: column;
             align-items: stretch;
+            overflow-x: auto;
         }
 
         table {

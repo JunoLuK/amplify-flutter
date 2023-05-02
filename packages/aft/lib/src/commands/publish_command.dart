@@ -256,8 +256,9 @@ Future<void> runBuildRunner(
   PackageInfo package, {
   required AWSLogger logger,
   required bool verbose,
+  bool force = false,
 }) async {
-  if (!package.needsBuildRunner) {
+  if (!package.needsBuildRunner && !force) {
     return;
   }
   logger.info('Running build_runner for ${package.name}...');

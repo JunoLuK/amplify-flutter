@@ -204,4 +204,5 @@ class AWSHttpClientImpl extends AWSHttpClient {
       _openConnections.clear();
     }
   }
+
 }

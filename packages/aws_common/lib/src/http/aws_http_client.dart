@@ -1,12 +1,18 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+// ignore_for_file: public_member_api_docs
+
 import 'dart:async';
+import 'dart:io';
 
 import 'package:aws_common/aws_common.dart';
 import 'package:aws_common/src/http/aws_http_client_io.dart'
     if (dart.library.js) 'package:aws_common/src/http/aws_http_client_js.dart';
 import 'package:meta/meta.dart';
+
+typedef CustomSecurityContext = SecurityContext Function();
+typedef CustomHttpClient = HttpClient Function();
 
 /// {@template aws_common.http.aws_http_client}
 /// An HTTP client with support for HTTP/1.1, HTTP/2, and cancelable requests.
@@ -22,6 +28,17 @@ abstract class AWSHttpClient implements Closeable {
   @protected
   @internal
   AWSHttpClient.protected();
+
+  ///Add custom client to replace create for constructor class.
+  ///Use for add interceptor or certificate.
+
+  Future<SecurityContext> Function() globalSecurityContext = () async {
+    return SecurityContext();
+  };
+
+  Future<HttpClient> Function() customHttpClient = () async {
+    return HttpClient();
+  };
 
   /// Callback for VM clients when an SSL exception occurs due to an untrusted
   /// or unverifiable certificate.

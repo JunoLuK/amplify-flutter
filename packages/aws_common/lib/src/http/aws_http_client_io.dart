@@ -63,7 +63,7 @@ class AWSHttpClientImpl extends AWSHttpClient {
         onCancel = null;
       }),
     );
-    _inner ??= HttpClient();
+    _inner = await customHttpClient();
     _setBadCertificateCallback(_inner!, onBadCertificate);
     if (completer.isCanceled) return;
     final ioRequest = (await _inner!.openUrl(request.method.value, request.uri))
@@ -245,6 +245,7 @@ class AWSHttpClientImpl extends AWSHttpClient {
       final socket = await SecureSocket.connect(
         uri.host,
         uri.port,
+        context: await globalSecurityContext(),
         supportedProtocols: supportedProtocols.alpnValues,
         onBadCertificate: (cert) {
           return onBadCertificate(cert.asInternalCert(), uri.host, uri.port);

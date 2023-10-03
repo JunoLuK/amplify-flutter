@@ -1,40 +1,52 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_analytics_pinpoint_dart.pinpoint.operation.update_endpoints_batch_operation; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'dart:async' as _i5;
+import 'dart:async' as _i18;
 
-import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/common/endpoint_resolver.dart';
-import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/common/serializers.dart';
-import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/bad_request_exception.dart';
-import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/endpoint_batch_request.dart';
-import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/forbidden_exception.dart';
-import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/internal_server_error_exception.dart';
-import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/message_body.dart';
-import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/method_not_allowed_exception.dart';
-import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/not_found_exception.dart';
-import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/payload_too_large_exception.dart';
-import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/too_many_requests_exception.dart';
-import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/update_endpoints_batch_request.dart';
-import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/update_endpoints_batch_response.dart';
-import 'package:aws_common/aws_common.dart' as _i4;
-import 'package:aws_signature_v4/aws_signature_v4.dart' as _i2;
+import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/common/endpoint_resolver.dart'
+    as _i10;
+import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/common/serializers.dart'
+    as _i8;
+import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/bad_request_exception.dart'
+    as _i11;
+import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/endpoint_batch_request.dart'
+    as _i2;
+import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/forbidden_exception.dart'
+    as _i12;
+import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/internal_server_error_exception.dart'
+    as _i13;
+import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/message_body.dart'
+    as _i4;
+import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/method_not_allowed_exception.dart'
+    as _i14;
+import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/not_found_exception.dart'
+    as _i15;
+import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/payload_too_large_exception.dart'
+    as _i16;
+import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/too_many_requests_exception.dart'
+    as _i17;
+import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/update_endpoints_batch_request.dart'
+    as _i3;
+import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/update_endpoints_batch_response.dart'
+    as _i5;
+import 'package:aws_common/aws_common.dart' as _i9;
+import 'package:aws_signature_v4/aws_signature_v4.dart' as _i6;
 import 'package:smithy/smithy.dart' as _i1;
-import 'package:smithy_aws/smithy_aws.dart' as _i3;
+import 'package:smithy_aws/smithy_aws.dart' as _i7;
 
 /// Creates a new batch of endpoints for an application or updates the settings and attributes of a batch of existing endpoints for an application. You can also use this operation to define custom attributes for a batch of endpoints. If an update includes one or more values for a custom attribute, Amazon Pinpoint replaces (overwrites) any existing values with the new values.
 class UpdateEndpointsBatchOperation extends _i1.HttpOperation<
-    EndpointBatchRequest,
-    UpdateEndpointsBatchRequest,
-    MessageBody,
-    UpdateEndpointsBatchResponse> {
+    _i2.EndpointBatchRequest,
+    _i3.UpdateEndpointsBatchRequest,
+    _i4.MessageBody,
+    _i5.UpdateEndpointsBatchResponse> {
   /// Creates a new batch of endpoints for an application or updates the settings and attributes of a batch of existing endpoints for an application. You can also use this operation to define custom attributes for a batch of endpoints. If an update includes one or more values for a custom attribute, Amazon Pinpoint replaces (overwrites) any existing values with the new values.
   UpdateEndpointsBatchOperation({
     required String region,
     Uri? baseUri,
-    _i2.AWSCredentialsProvider credentialsProvider =
-        const _i2.AWSCredentialsProvider.defaultChain(),
+    _i6.AWSCredentialsProvider credentialsProvider =
+        const _i6.AWSCredentialsProvider.environment(),
     List<_i1.HttpRequestInterceptor> requestInterceptors = const [],
     List<_i1.HttpResponseInterceptor> responseInterceptors = const [],
   })  : _region = region,
@@ -45,22 +57,25 @@ class UpdateEndpointsBatchOperation extends _i1.HttpOperation<
 
   @override
   late final List<
-      _i1.HttpProtocol<EndpointBatchRequest, UpdateEndpointsBatchRequest,
-          MessageBody, UpdateEndpointsBatchResponse>> protocols = [
-    _i3.RestJson1Protocol(
-      serializers: serializers,
-      builderFactories: builderFactories,
+      _i1.HttpProtocol<
+          _i2.EndpointBatchRequest,
+          _i3.UpdateEndpointsBatchRequest,
+          _i4.MessageBody,
+          _i5.UpdateEndpointsBatchResponse>> protocols = [
+    _i7.RestJson1Protocol(
+      serializers: _i8.serializers,
+      builderFactories: _i8.builderFactories,
       requestInterceptors: <_i1.HttpRequestInterceptor>[
             const _i1.WithHost(),
             const _i1.WithContentLength(),
-            _i3.WithSigV4(
+            _i7.WithSigV4(
               region: _region,
-              service: _i4.AWSService.pinpoint,
+              service: _i9.AWSService.pinpoint,
               credentialsProvider: _credentialsProvider,
             ),
             const _i1.WithUserAgent('aws-sdk-dart/0.3.1'),
-            const _i3.WithSdkInvocationId(),
-            const _i3.WithSdkRequest(),
+            const _i7.WithSdkInvocationId(),
+            const _i7.WithSdkRequest(),
           ] +
           _requestInterceptors,
       responseInterceptors:
@@ -68,8 +83,8 @@ class UpdateEndpointsBatchOperation extends _i1.HttpOperation<
     )
   ];
 
-  late final _i3.AWSEndpoint _awsEndpoint = endpointResolver.resolve(
-    sdkId,
+  late final _i7.AWSEndpoint _awsEndpoint = _i10.endpointResolver.resolve(
+    _i10.sdkId,
     _region,
   );
 
@@ -77,118 +92,117 @@ class UpdateEndpointsBatchOperation extends _i1.HttpOperation<
 
   final Uri? _baseUri;
 
-  final _i2.AWSCredentialsProvider _credentialsProvider;
+  final _i6.AWSCredentialsProvider _credentialsProvider;
 
   final List<_i1.HttpRequestInterceptor> _requestInterceptors;
 
   final List<_i1.HttpResponseInterceptor> _responseInterceptors;
 
   @override
-  _i1.HttpRequest buildRequest(UpdateEndpointsBatchRequest input) =>
+  _i1.HttpRequest buildRequest(_i3.UpdateEndpointsBatchRequest input) =>
       _i1.HttpRequest((b) {
         b.method = 'PUT';
         b.path = r'/v1/apps/{ApplicationId}/endpoints';
       });
   @override
-  int successCode([UpdateEndpointsBatchResponse? output]) => 202;
+  int successCode([_i5.UpdateEndpointsBatchResponse? output]) => 202;
   @override
-  UpdateEndpointsBatchResponse buildOutput(
-    MessageBody payload,
-    _i4.AWSBaseHttpResponse response,
+  _i5.UpdateEndpointsBatchResponse buildOutput(
+    _i4.MessageBody payload,
+    _i9.AWSBaseHttpResponse response,
   ) =>
-      UpdateEndpointsBatchResponse.fromResponse(
+      _i5.UpdateEndpointsBatchResponse.fromResponse(
         payload,
         response,
       );
   @override
   List<_i1.SmithyError> get errorTypes => const [
-        _i1.SmithyError<BadRequestException, BadRequestException>(
+        _i1.SmithyError(
           _i1.ShapeId(
             namespace: 'com.amazonaws.pinpoint',
             shape: 'BadRequestException',
           ),
           _i1.ErrorKind.client,
-          BadRequestException,
+          _i11.BadRequestException,
           statusCode: 400,
-          builder: BadRequestException.fromResponse,
+          builder: _i11.BadRequestException.fromResponse,
         ),
-        _i1.SmithyError<ForbiddenException, ForbiddenException>(
+        _i1.SmithyError(
           _i1.ShapeId(
             namespace: 'com.amazonaws.pinpoint',
             shape: 'ForbiddenException',
           ),
           _i1.ErrorKind.client,
-          ForbiddenException,
+          _i12.ForbiddenException,
           statusCode: 403,
-          builder: ForbiddenException.fromResponse,
+          builder: _i12.ForbiddenException.fromResponse,
         ),
-        _i1.SmithyError<InternalServerErrorException,
-            InternalServerErrorException>(
+        _i1.SmithyError(
           _i1.ShapeId(
             namespace: 'com.amazonaws.pinpoint',
             shape: 'InternalServerErrorException',
           ),
           _i1.ErrorKind.server,
-          InternalServerErrorException,
+          _i13.InternalServerErrorException,
           statusCode: 500,
-          builder: InternalServerErrorException.fromResponse,
+          builder: _i13.InternalServerErrorException.fromResponse,
         ),
-        _i1.SmithyError<MethodNotAllowedException, MethodNotAllowedException>(
+        _i1.SmithyError(
           _i1.ShapeId(
             namespace: 'com.amazonaws.pinpoint',
             shape: 'MethodNotAllowedException',
           ),
           _i1.ErrorKind.client,
-          MethodNotAllowedException,
+          _i14.MethodNotAllowedException,
           statusCode: 405,
-          builder: MethodNotAllowedException.fromResponse,
+          builder: _i14.MethodNotAllowedException.fromResponse,
         ),
-        _i1.SmithyError<NotFoundException, NotFoundException>(
+        _i1.SmithyError(
           _i1.ShapeId(
             namespace: 'com.amazonaws.pinpoint',
             shape: 'NotFoundException',
           ),
           _i1.ErrorKind.client,
-          NotFoundException,
+          _i15.NotFoundException,
           statusCode: 404,
-          builder: NotFoundException.fromResponse,
+          builder: _i15.NotFoundException.fromResponse,
         ),
-        _i1.SmithyError<PayloadTooLargeException, PayloadTooLargeException>(
+        _i1.SmithyError(
           _i1.ShapeId(
             namespace: 'com.amazonaws.pinpoint',
             shape: 'PayloadTooLargeException',
           ),
           _i1.ErrorKind.client,
-          PayloadTooLargeException,
+          _i16.PayloadTooLargeException,
           statusCode: 413,
-          builder: PayloadTooLargeException.fromResponse,
+          builder: _i16.PayloadTooLargeException.fromResponse,
         ),
-        _i1.SmithyError<TooManyRequestsException, TooManyRequestsException>(
+        _i1.SmithyError(
           _i1.ShapeId(
             namespace: 'com.amazonaws.pinpoint',
             shape: 'TooManyRequestsException',
           ),
           _i1.ErrorKind.client,
-          TooManyRequestsException,
+          _i17.TooManyRequestsException,
           statusCode: 429,
-          builder: TooManyRequestsException.fromResponse,
+          builder: _i17.TooManyRequestsException.fromResponse,
         ),
       ];
   @override
   String get runtimeTypeName => 'UpdateEndpointsBatch';
   @override
-  _i3.AWSRetryer get retryer => _i3.AWSRetryer();
+  _i7.AWSRetryer get retryer => _i7.AWSRetryer();
   @override
   Uri get baseUri => _baseUri ?? endpoint.uri;
   @override
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;
   @override
-  _i1.SmithyOperation<UpdateEndpointsBatchResponse> run(
-    UpdateEndpointsBatchRequest input, {
-    _i4.AWSHttpClient? client,
+  _i1.SmithyOperation<_i5.UpdateEndpointsBatchResponse> run(
+    _i3.UpdateEndpointsBatchRequest input, {
+    _i9.AWSHttpClient? client,
     _i1.ShapeId? useProtocol,
   }) {
-    return _i5.runZoned(
+    return _i18.runZoned(
       () => super.run(
         input,
         client: client,
@@ -196,7 +210,7 @@ class UpdateEndpointsBatchOperation extends _i1.HttpOperation<
       ),
       zoneValues: {
         ...?_awsEndpoint.credentialScope?.zoneValues,
-        ...{_i4.AWSHeaders.sdkInvocationId: _i4.uuid(secure: true)},
+        ...{_i9.AWSHeaders.sdkInvocationId: _i9.uuid(secure: true)}
       },
     );
   }

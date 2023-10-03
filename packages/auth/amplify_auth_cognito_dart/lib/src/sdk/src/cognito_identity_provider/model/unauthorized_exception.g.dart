@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'unauthorized_exception.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.unauthorized_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -54,7 +54,9 @@ class UnauthorizedExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  UnauthorizedExceptionBuilder();
+  UnauthorizedExceptionBuilder() {
+    UnauthorizedException._init(this);
+  }
 
   UnauthorizedExceptionBuilder get _$this {
     final $v = _$v;

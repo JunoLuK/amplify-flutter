@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'query_idempotency_token_auto_fill_input.dart';
+part of rest_json1_v2.rest_json_protocol.model.query_idempotency_token_auto_fill_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -127,7 +127,9 @@ class QueryIdempotencyTokenAutoFillInputPayloadBuilder
             QueryIdempotencyTokenAutoFillInputPayloadBuilder> {
   _$QueryIdempotencyTokenAutoFillInputPayload? _$v;
 
-  QueryIdempotencyTokenAutoFillInputPayloadBuilder();
+  QueryIdempotencyTokenAutoFillInputPayloadBuilder() {
+    QueryIdempotencyTokenAutoFillInputPayload._init(this);
+  }
 
   @override
   void replace(QueryIdempotencyTokenAutoFillInputPayload other) {

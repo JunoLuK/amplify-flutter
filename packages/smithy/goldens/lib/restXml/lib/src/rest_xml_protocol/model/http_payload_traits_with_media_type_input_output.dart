@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v1.rest_xml_protocol.model.http_payload_traits_with_media_type_input_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -21,12 +20,12 @@ abstract class HttpPayloadTraitsWithMediaTypeInputOutput
             HttpPayloadTraitsWithMediaTypeInputOutputBuilder>,
         _i1.HasPayload<_i2.Uint8List> {
   factory HttpPayloadTraitsWithMediaTypeInputOutput({
-    String? foo,
     _i2.Uint8List? blob,
+    String? foo,
   }) {
     return _$HttpPayloadTraitsWithMediaTypeInputOutput._(
-      foo: foo,
       blob: blob,
+      foo: foo,
     );
   }
 
@@ -60,31 +59,33 @@ abstract class HttpPayloadTraitsWithMediaTypeInputOutput
         }
       });
 
-  static const List<_i1.SmithySerializer<_i2.Uint8List?>> serializers = [
+  static const List<_i1.SmithySerializer> serializers = [
     HttpPayloadTraitsWithMediaTypeInputOutputRestXmlSerializer()
   ];
 
-  String? get foo;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HttpPayloadTraitsWithMediaTypeInputOutputBuilder b) {}
   _i2.Uint8List? get blob;
+  String? get foo;
   @override
   _i2.Uint8List? getPayload() => blob;
   @override
   List<Object?> get props => [
-        foo,
         blob,
+        foo,
       ];
   @override
   String toString() {
-    final helper =
-        newBuiltValueToStringHelper('HttpPayloadTraitsWithMediaTypeInputOutput')
-          ..add(
-            'foo',
-            foo,
-          )
-          ..add(
-            'blob',
-            blob,
-          );
+    final helper = newBuiltValueToStringHelper(
+        'HttpPayloadTraitsWithMediaTypeInputOutput');
+    helper.add(
+      'blob',
+      blob,
+    );
+    helper.add(
+      'foo',
+      foo,
+    );
     return helper.toString();
   }
 }
@@ -121,17 +122,22 @@ class HttpPayloadTraitsWithMediaTypeInputOutputRestXmlSerializer
   @override
   Object serialize(
     Serializers serializers,
-    _i2.Uint8List object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final payload = object is HttpPayloadTraitsWithMediaTypeInputOutput
+        ? object.getPayload()
+        : (object as _i2.Uint8List?);
+    final result = <Object?>[
       const _i1.XmlElementName('HttpPayloadTraitsWithMediaTypeInputOutput')
     ];
-
-    result$.add(serializers.serialize(
-      object,
+    if (payload == null) {
+      return result;
+    }
+    result.add(serializers.serialize(
+      payload,
       specifiedType: const FullType(_i2.Uint8List),
     ));
-    return result$;
+    return result;
   }
 }

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'copy_object_output.dart';
+part of custom_v2.s3.model.copy_object_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of 'copy_object_output.dart';
 
 class _$CopyObjectOutput extends CopyObjectOutput {
   @override
-  final CopyObjectResult? copyObjectResult;
+  final _i3.CopyObjectResult? copyObjectResult;
 
   factory _$CopyObjectOutput(
           [void Function(CopyObjectOutputBuilder)? updates]) =>
@@ -44,13 +44,15 @@ class CopyObjectOutputBuilder
     implements Builder<CopyObjectOutput, CopyObjectOutputBuilder> {
   _$CopyObjectOutput? _$v;
 
-  CopyObjectResultBuilder? _copyObjectResult;
-  CopyObjectResultBuilder get copyObjectResult =>
-      _$this._copyObjectResult ??= new CopyObjectResultBuilder();
-  set copyObjectResult(CopyObjectResultBuilder? copyObjectResult) =>
+  _i3.CopyObjectResultBuilder? _copyObjectResult;
+  _i3.CopyObjectResultBuilder get copyObjectResult =>
+      _$this._copyObjectResult ??= new _i3.CopyObjectResultBuilder();
+  set copyObjectResult(_i3.CopyObjectResultBuilder? copyObjectResult) =>
       _$this._copyObjectResult = copyObjectResult;
 
-  CopyObjectOutputBuilder();
+  CopyObjectOutputBuilder() {
+    CopyObjectOutput._init(this);
+  }
 
   CopyObjectOutputBuilder get _$this {
     final $v = _$v;

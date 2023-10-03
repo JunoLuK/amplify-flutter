@@ -1,14 +1,15 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_protocol.model.file_config_settings; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v2/src/rest_json_protocol/model/retry_mode.dart';
-import 'package:rest_json1_v2/src/rest_json_protocol/model/s3_config.dart';
-import 'package:smithy/smithy.dart' as _i2;
+import 'package:rest_json1_v2/src/rest_json_protocol/model/retry_mode.dart'
+    as _i2;
+import 'package:rest_json1_v2/src/rest_json_protocol/model/s3_config.dart'
+    as _i3;
+import 'package:smithy/smithy.dart' as _i4;
 
 part 'file_config_settings.g.dart';
 
@@ -21,19 +22,19 @@ abstract class FileConfigSettings
     String? awsAccessKeyId,
     String? awsSecretAccessKey,
     String? awsSessionToken,
-    String? region,
-    S3Config? s3,
-    RetryMode? retryMode,
     int? maxAttempts,
+    String? region,
+    _i2.RetryMode? retryMode,
+    _i3.S3Config? s3,
   }) {
     return _$FileConfigSettings._(
       awsAccessKeyId: awsAccessKeyId,
       awsSecretAccessKey: awsSecretAccessKey,
       awsSessionToken: awsSessionToken,
-      region: region,
-      s3: s3,
-      retryMode: retryMode,
       maxAttempts: maxAttempts,
+      region: region,
+      retryMode: retryMode,
+      s3: s3,
     );
   }
 
@@ -44,68 +45,70 @@ abstract class FileConfigSettings
 
   const FileConfigSettings._();
 
-  static const List<_i2.SmithySerializer<FileConfigSettings>> serializers = [
+  static const List<_i4.SmithySerializer> serializers = [
     FileConfigSettingsRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(FileConfigSettingsBuilder b) {}
   String? get awsAccessKeyId;
   String? get awsSecretAccessKey;
   String? get awsSessionToken;
+  int? get maxAttempts;
   String? get region;
 
-  /// Configuration specific to S3.
-  S3Config? get s3;
-
   /// Controls the strategy used for retries.
-  RetryMode? get retryMode;
-  int? get maxAttempts;
+  _i2.RetryMode? get retryMode;
+
+  /// Configuration specific to S3.
+  _i3.S3Config? get s3;
   @override
   List<Object?> get props => [
         awsAccessKeyId,
         awsSecretAccessKey,
         awsSessionToken,
-        region,
-        s3,
-        retryMode,
         maxAttempts,
+        region,
+        retryMode,
+        s3,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('FileConfigSettings')
-      ..add(
-        'awsAccessKeyId',
-        awsAccessKeyId,
-      )
-      ..add(
-        'awsSecretAccessKey',
-        awsSecretAccessKey,
-      )
-      ..add(
-        'awsSessionToken',
-        awsSessionToken,
-      )
-      ..add(
-        'region',
-        region,
-      )
-      ..add(
-        's3',
-        s3,
-      )
-      ..add(
-        'retryMode',
-        retryMode,
-      )
-      ..add(
-        'maxAttempts',
-        maxAttempts,
-      );
+    final helper = newBuiltValueToStringHelper('FileConfigSettings');
+    helper.add(
+      'awsAccessKeyId',
+      awsAccessKeyId,
+    );
+    helper.add(
+      'awsSecretAccessKey',
+      awsSecretAccessKey,
+    );
+    helper.add(
+      'awsSessionToken',
+      awsSessionToken,
+    );
+    helper.add(
+      'maxAttempts',
+      maxAttempts,
+    );
+    helper.add(
+      'region',
+      region,
+    );
+    helper.add(
+      'retryMode',
+      retryMode,
+    );
+    helper.add(
+      's3',
+      s3,
+    );
     return helper.toString();
   }
 }
 
 class FileConfigSettingsRestJson1Serializer
-    extends _i2.StructuredSmithySerializer<FileConfigSettings> {
+    extends _i4.StructuredSmithySerializer<FileConfigSettings> {
   const FileConfigSettingsRestJson1Serializer() : super('FileConfigSettings');
 
   @override
@@ -114,8 +117,8 @@ class FileConfigSettingsRestJson1Serializer
         _$FileConfigSettings,
       ];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols => const [
-        _i2.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
@@ -132,45 +135,63 @@ class FileConfigSettingsRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'aws_access_key_id':
-          result.awsAccessKeyId = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.awsAccessKeyId = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'aws_secret_access_key':
-          result.awsSecretAccessKey = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.awsSecretAccessKey = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'aws_session_token':
-          result.awsSessionToken = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.awsSessionToken = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'max_attempts':
-          result.maxAttempts = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int);
+          if (value != null) {
+            result.maxAttempts = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(int),
+            ) as int);
+          }
+          break;
         case 'region':
-          result.region = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.region = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'retry_mode':
-          result.retryMode = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(RetryMode),
-          ) as RetryMode);
+          if (value != null) {
+            result.retryMode = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i2.RetryMode),
+            ) as _i2.RetryMode);
+          }
+          break;
         case 's3':
-          result.s3.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(S3Config),
-          ) as S3Config));
+          if (value != null) {
+            result.s3.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i3.S3Config),
+            ) as _i3.S3Config));
+          }
+          break;
       }
     }
 
@@ -180,75 +201,67 @@ class FileConfigSettingsRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    FileConfigSettings object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final FileConfigSettings(
-      :awsAccessKeyId,
-      :awsSecretAccessKey,
-      :awsSessionToken,
-      :maxAttempts,
-      :region,
-      :retryMode,
-      :s3
-    ) = object;
-    if (awsAccessKeyId != null) {
-      result$
+    final payload = (object as FileConfigSettings);
+    final result = <Object?>[];
+    if (payload.awsAccessKeyId != null) {
+      result
         ..add('aws_access_key_id')
         ..add(serializers.serialize(
-          awsAccessKeyId,
+          payload.awsAccessKeyId!,
           specifiedType: const FullType(String),
         ));
     }
-    if (awsSecretAccessKey != null) {
-      result$
+    if (payload.awsSecretAccessKey != null) {
+      result
         ..add('aws_secret_access_key')
         ..add(serializers.serialize(
-          awsSecretAccessKey,
+          payload.awsSecretAccessKey!,
           specifiedType: const FullType(String),
         ));
     }
-    if (awsSessionToken != null) {
-      result$
+    if (payload.awsSessionToken != null) {
+      result
         ..add('aws_session_token')
         ..add(serializers.serialize(
-          awsSessionToken,
+          payload.awsSessionToken!,
           specifiedType: const FullType(String),
         ));
     }
-    if (maxAttempts != null) {
-      result$
+    if (payload.maxAttempts != null) {
+      result
         ..add('max_attempts')
         ..add(serializers.serialize(
-          maxAttempts,
+          payload.maxAttempts!,
           specifiedType: const FullType(int),
         ));
     }
-    if (region != null) {
-      result$
+    if (payload.region != null) {
+      result
         ..add('region')
         ..add(serializers.serialize(
-          region,
+          payload.region!,
           specifiedType: const FullType(String),
         ));
     }
-    if (retryMode != null) {
-      result$
+    if (payload.retryMode != null) {
+      result
         ..add('retry_mode')
         ..add(serializers.serialize(
-          retryMode,
-          specifiedType: const FullType(RetryMode),
+          payload.retryMode!,
+          specifiedType: const FullType(_i2.RetryMode),
         ));
     }
-    if (s3 != null) {
-      result$
+    if (payload.s3 != null) {
+      result
         ..add('s3')
         ..add(serializers.serialize(
-          s3,
-          specifiedType: const FullType(S3Config),
+          payload.s3!,
+          specifiedType: const FullType(_i3.S3Config),
         ));
     }
-    return result$;
+    return result;
   }
 }

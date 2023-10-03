@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'json_output.dart';
+part of amplify_storage_s3_dart.s3.model.json_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -45,7 +45,9 @@ class JsonOutputBuilder implements Builder<JsonOutput, JsonOutputBuilder> {
   set recordDelimiter(String? recordDelimiter) =>
       _$this._recordDelimiter = recordDelimiter;
 
-  JsonOutputBuilder();
+  JsonOutputBuilder() {
+    JsonOutput._init(this);
+  }
 
   JsonOutputBuilder get _$this {
     final $v = _$v;

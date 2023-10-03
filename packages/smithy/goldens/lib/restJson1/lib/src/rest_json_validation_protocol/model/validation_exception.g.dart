@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'validation_exception.dart';
+part of rest_json1_v1.rest_json_validation_protocol.model.validation_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,9 +8,9 @@ part of 'validation_exception.dart';
 
 class _$ValidationException extends ValidationException {
   @override
-  final String message;
+  final _i4.BuiltList<_i3.ValidationExceptionField>? fieldList;
   @override
-  final _i3.BuiltList<ValidationExceptionField>? fieldList;
+  final String message;
   @override
   final int? statusCode;
   @override
@@ -21,7 +21,7 @@ class _$ValidationException extends ValidationException {
       (new ValidationExceptionBuilder()..update(updates))._build();
 
   _$ValidationException._(
-      {required this.message, this.fieldList, this.statusCode, this.headers})
+      {this.fieldList, required this.message, this.statusCode, this.headers})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         message, r'ValidationException', 'message');
@@ -40,15 +40,15 @@ class _$ValidationException extends ValidationException {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is ValidationException &&
-        message == other.message &&
-        fieldList == other.fieldList;
+        fieldList == other.fieldList &&
+        message == other.message;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, message.hashCode);
     _$hash = $jc(_$hash, fieldList.hashCode);
+    _$hash = $jc(_$hash, message.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -58,15 +58,15 @@ class ValidationExceptionBuilder
     implements Builder<ValidationException, ValidationExceptionBuilder> {
   _$ValidationException? _$v;
 
+  _i4.ListBuilder<_i3.ValidationExceptionField>? _fieldList;
+  _i4.ListBuilder<_i3.ValidationExceptionField> get fieldList =>
+      _$this._fieldList ??= new _i4.ListBuilder<_i3.ValidationExceptionField>();
+  set fieldList(_i4.ListBuilder<_i3.ValidationExceptionField>? fieldList) =>
+      _$this._fieldList = fieldList;
+
   String? _message;
   String? get message => _$this._message;
   set message(String? message) => _$this._message = message;
-
-  _i3.ListBuilder<ValidationExceptionField>? _fieldList;
-  _i3.ListBuilder<ValidationExceptionField> get fieldList =>
-      _$this._fieldList ??= new _i3.ListBuilder<ValidationExceptionField>();
-  set fieldList(_i3.ListBuilder<ValidationExceptionField>? fieldList) =>
-      _$this._fieldList = fieldList;
 
   int? _statusCode;
   int? get statusCode => _$this._statusCode;
@@ -76,13 +76,15 @@ class ValidationExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  ValidationExceptionBuilder();
+  ValidationExceptionBuilder() {
+    ValidationException._init(this);
+  }
 
   ValidationExceptionBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _message = $v.message;
       _fieldList = $v.fieldList?.toBuilder();
+      _message = $v.message;
       _statusCode = $v.statusCode;
       _headers = $v.headers;
       _$v = null;
@@ -109,9 +111,9 @@ class ValidationExceptionBuilder
     try {
       _$result = _$v ??
           new _$ValidationException._(
+              fieldList: _fieldList?.build(),
               message: BuiltValueNullFieldError.checkNotNull(
                   message, r'ValidationException', 'message'),
-              fieldList: _fieldList?.build(),
               statusCode: statusCode,
               headers: headers);
     } catch (_) {

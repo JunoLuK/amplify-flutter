@@ -2,12 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 /// Exception Types.
-export '../exception/amplify_exception.dart'
-    show
-        AnalyticsException,
-        InvalidEventException,
-        NetworkException,
-        UnknownException;
+export '../exception/analytics/analytics_exception.dart';
+export '../exception/analytics/invalid_event_exception.dart';
 
 /// API Types.
 export 'analytics/analytics_event.dart';

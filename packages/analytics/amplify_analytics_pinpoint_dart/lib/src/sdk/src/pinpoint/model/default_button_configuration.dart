@@ -1,13 +1,13 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_analytics_pinpoint_dart.pinpoint.model.default_button_configuration; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/button_action.dart';
+import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/button_action.dart'
+    as _i2;
 import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i2;
+import 'package:smithy/smithy.dart' as _i3;
 
 part 'default_button_configuration.g.dart';
 
@@ -20,11 +20,12 @@ abstract class DefaultButtonConfiguration
   factory DefaultButtonConfiguration({
     String? backgroundColor,
     int? borderRadius,
-    required ButtonAction buttonAction,
+    required _i2.ButtonAction buttonAction,
     String? link,
     required String text,
     String? textColor,
   }) {
+    borderRadius ??= 0;
     return _$DefaultButtonConfiguration._(
       backgroundColor: backgroundColor,
       borderRadius: borderRadius,
@@ -42,17 +43,23 @@ abstract class DefaultButtonConfiguration
 
   const DefaultButtonConfiguration._();
 
-  static const List<_i2.SmithySerializer<DefaultButtonConfiguration>>
-      serializers = [DefaultButtonConfigurationRestJson1Serializer()];
+  static const List<_i3.SmithySerializer> serializers = [
+    DefaultButtonConfigurationRestJson1Serializer()
+  ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(DefaultButtonConfigurationBuilder b) {
+    b.borderRadius = 0;
+  }
 
   /// The background color of the button.
   String? get backgroundColor;
 
   /// The border radius of the button.
-  int? get borderRadius;
+  int get borderRadius;
 
   /// Action triggered by the button.
-  ButtonAction get buttonAction;
+  _i2.ButtonAction get buttonAction;
 
   /// Button destination.
   String? get link;
@@ -73,37 +80,37 @@ abstract class DefaultButtonConfiguration
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('DefaultButtonConfiguration')
-      ..add(
-        'backgroundColor',
-        backgroundColor,
-      )
-      ..add(
-        'borderRadius',
-        borderRadius,
-      )
-      ..add(
-        'buttonAction',
-        buttonAction,
-      )
-      ..add(
-        'link',
-        link,
-      )
-      ..add(
-        'text',
-        text,
-      )
-      ..add(
-        'textColor',
-        textColor,
-      );
+    final helper = newBuiltValueToStringHelper('DefaultButtonConfiguration');
+    helper.add(
+      'backgroundColor',
+      backgroundColor,
+    );
+    helper.add(
+      'borderRadius',
+      borderRadius,
+    );
+    helper.add(
+      'buttonAction',
+      buttonAction,
+    );
+    helper.add(
+      'link',
+      link,
+    );
+    helper.add(
+      'text',
+      text,
+    );
+    helper.add(
+      'textColor',
+      textColor,
+    );
     return helper.toString();
   }
 }
 
 class DefaultButtonConfigurationRestJson1Serializer
-    extends _i2.StructuredSmithySerializer<DefaultButtonConfiguration> {
+    extends _i3.StructuredSmithySerializer<DefaultButtonConfiguration> {
   const DefaultButtonConfigurationRestJson1Serializer()
       : super('DefaultButtonConfiguration');
 
@@ -113,8 +120,8 @@ class DefaultButtonConfigurationRestJson1Serializer
         _$DefaultButtonConfiguration,
       ];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols => const [
-        _i2.ShapeId(
+  Iterable<_i3.ShapeId> get supportedProtocols => const [
+        _i3.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
@@ -131,40 +138,49 @@ class DefaultButtonConfigurationRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'BackgroundColor':
-          result.backgroundColor = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.backgroundColor = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'BorderRadius':
           result.borderRadius = (serializers.deserialize(
-            value,
+            value!,
             specifiedType: const FullType(int),
           ) as int);
+          break;
         case 'ButtonAction':
           result.buttonAction = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(ButtonAction),
-          ) as ButtonAction);
+            value!,
+            specifiedType: const FullType(_i2.ButtonAction),
+          ) as _i2.ButtonAction);
+          break;
         case 'Link':
-          result.link = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.link = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'Text':
           result.text = (serializers.deserialize(
-            value,
+            value!,
             specifiedType: const FullType(String),
           ) as String);
+          break;
         case 'TextColor':
-          result.textColor = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.textColor = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -174,62 +190,51 @@ class DefaultButtonConfigurationRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    DefaultButtonConfiguration object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final DefaultButtonConfiguration(
-      :backgroundColor,
-      :borderRadius,
-      :buttonAction,
-      :link,
-      :text,
-      :textColor
-    ) = object;
-    result$.addAll([
+    final payload = (object as DefaultButtonConfiguration);
+    final result = <Object?>[
+      'BorderRadius',
+      serializers.serialize(
+        payload.borderRadius,
+        specifiedType: const FullType(int),
+      ),
       'ButtonAction',
       serializers.serialize(
-        buttonAction,
-        specifiedType: const FullType(ButtonAction),
+        payload.buttonAction,
+        specifiedType: const FullType(_i2.ButtonAction),
       ),
       'Text',
       serializers.serialize(
-        text,
+        payload.text,
         specifiedType: const FullType(String),
       ),
-    ]);
-    if (backgroundColor != null) {
-      result$
+    ];
+    if (payload.backgroundColor != null) {
+      result
         ..add('BackgroundColor')
         ..add(serializers.serialize(
-          backgroundColor,
+          payload.backgroundColor!,
           specifiedType: const FullType(String),
         ));
     }
-    if (borderRadius != null) {
-      result$
-        ..add('BorderRadius')
-        ..add(serializers.serialize(
-          borderRadius,
-          specifiedType: const FullType(int),
-        ));
-    }
-    if (link != null) {
-      result$
+    if (payload.link != null) {
+      result
         ..add('Link')
         ..add(serializers.serialize(
-          link,
+          payload.link!,
           specifiedType: const FullType(String),
         ));
     }
-    if (textColor != null) {
-      result$
+    if (payload.textColor != null) {
+      result
         ..add('TextColor')
         ..add(serializers.serialize(
-          textColor,
+          payload.textColor!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

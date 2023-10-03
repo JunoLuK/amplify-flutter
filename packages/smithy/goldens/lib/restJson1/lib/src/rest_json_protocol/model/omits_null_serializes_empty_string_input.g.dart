@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'omits_null_serializes_empty_string_input.dart';
+part of rest_json1_v1.rest_json_protocol.model.omits_null_serializes_empty_string_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -9,9 +9,9 @@ part of 'omits_null_serializes_empty_string_input.dart';
 class _$OmitsNullSerializesEmptyStringInput
     extends OmitsNullSerializesEmptyStringInput {
   @override
-  final String? nullValue;
-  @override
   final String? emptyString;
+  @override
+  final String? nullValue;
 
   factory _$OmitsNullSerializesEmptyStringInput(
           [void Function(OmitsNullSerializesEmptyStringInputBuilder)?
@@ -19,7 +19,7 @@ class _$OmitsNullSerializesEmptyStringInput
       (new OmitsNullSerializesEmptyStringInputBuilder()..update(updates))
           ._build();
 
-  _$OmitsNullSerializesEmptyStringInput._({this.nullValue, this.emptyString})
+  _$OmitsNullSerializesEmptyStringInput._({this.emptyString, this.nullValue})
       : super._();
 
   @override
@@ -35,15 +35,15 @@ class _$OmitsNullSerializesEmptyStringInput
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is OmitsNullSerializesEmptyStringInput &&
-        nullValue == other.nullValue &&
-        emptyString == other.emptyString;
+        emptyString == other.emptyString &&
+        nullValue == other.nullValue;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, nullValue.hashCode);
     _$hash = $jc(_$hash, emptyString.hashCode);
+    _$hash = $jc(_$hash, nullValue.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -55,21 +55,23 @@ class OmitsNullSerializesEmptyStringInputBuilder
             OmitsNullSerializesEmptyStringInputBuilder> {
   _$OmitsNullSerializesEmptyStringInput? _$v;
 
-  String? _nullValue;
-  String? get nullValue => _$this._nullValue;
-  set nullValue(String? nullValue) => _$this._nullValue = nullValue;
-
   String? _emptyString;
   String? get emptyString => _$this._emptyString;
   set emptyString(String? emptyString) => _$this._emptyString = emptyString;
 
-  OmitsNullSerializesEmptyStringInputBuilder();
+  String? _nullValue;
+  String? get nullValue => _$this._nullValue;
+  set nullValue(String? nullValue) => _$this._nullValue = nullValue;
+
+  OmitsNullSerializesEmptyStringInputBuilder() {
+    OmitsNullSerializesEmptyStringInput._init(this);
+  }
 
   OmitsNullSerializesEmptyStringInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _nullValue = $v.nullValue;
       _emptyString = $v.emptyString;
+      _nullValue = $v.nullValue;
       _$v = null;
     }
     return this;
@@ -93,7 +95,7 @@ class OmitsNullSerializesEmptyStringInputBuilder
   _$OmitsNullSerializesEmptyStringInput _build() {
     final _$result = _$v ??
         new _$OmitsNullSerializesEmptyStringInput._(
-            nullValue: nullValue, emptyString: emptyString);
+            emptyString: emptyString, nullValue: nullValue);
     replace(_$result);
     return _$result;
   }
@@ -137,7 +139,9 @@ class OmitsNullSerializesEmptyStringInputPayloadBuilder
             OmitsNullSerializesEmptyStringInputPayloadBuilder> {
   _$OmitsNullSerializesEmptyStringInputPayload? _$v;
 
-  OmitsNullSerializesEmptyStringInputPayloadBuilder();
+  OmitsNullSerializesEmptyStringInputPayloadBuilder() {
+    OmitsNullSerializesEmptyStringInputPayload._init(this);
+  }
 
   @override
   void replace(OmitsNullSerializesEmptyStringInputPayload other) {

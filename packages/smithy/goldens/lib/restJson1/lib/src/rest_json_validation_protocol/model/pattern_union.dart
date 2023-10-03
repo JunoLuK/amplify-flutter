@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.rest_json_validation_protocol.model.pattern_union; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -7,17 +6,35 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
 
-sealed class PatternUnion extends _i1.SmithyUnion<PatternUnion> {
+/// The discrete values of [PatternUnion].
+enum PatternUnionType<T extends PatternUnion> {
+  /// The type for [PatternUnionFirst].
+  first<PatternUnionFirst>(r'first'),
+
+  /// The type for [PatternUnionSecond].
+  second<PatternUnionSecond>(r'second'),
+
+  /// The type for an unknown value.
+  sdkUnknown<PatternUnionSdkUnknown>('sdkUnknown');
+
+  /// The discrete values of [PatternUnion].
+  const PatternUnionType(this.value);
+
+  /// The Smithy value.
+  final String value;
+}
+
+abstract class PatternUnion extends _i1.SmithyUnion<PatternUnion> {
   const PatternUnion._();
 
-  const factory PatternUnion.first(String first) = PatternUnionFirst$;
+  const factory PatternUnion.first(String first) = PatternUnionFirst;
 
-  const factory PatternUnion.second(String second) = PatternUnionSecond$;
+  const factory PatternUnion.second(String second) = PatternUnionSecond;
 
   const factory PatternUnion.sdkUnknown(
     String name,
     Object value,
-  ) = PatternUnionSdkUnknown$;
+  ) = PatternUnionSdkUnknown;
 
   static const List<_i1.SmithySerializer<PatternUnion>> serializers = [
     PatternUnionRestJson1Serializer()
@@ -25,8 +42,31 @@ sealed class PatternUnion extends _i1.SmithyUnion<PatternUnion> {
 
   String? get first => null;
   String? get second => null;
+  PatternUnionType get type;
   @override
   Object get value => (first ?? second)!;
+  @override
+  T? when<T>({
+    T Function(String)? first,
+    T Function(String)? second,
+    T Function(
+      String,
+      Object,
+    )?
+        sdkUnknown,
+  }) {
+    if (this is PatternUnionFirst) {
+      return first?.call((this as PatternUnionFirst).first);
+    }
+    if (this is PatternUnionSecond) {
+      return second?.call((this as PatternUnionSecond).second);
+    }
+    return sdkUnknown?.call(
+      name,
+      value,
+    );
+  }
+
   @override
   String toString() {
     final helper = newBuiltValueToStringHelper(r'PatternUnion');
@@ -46,28 +86,32 @@ sealed class PatternUnion extends _i1.SmithyUnion<PatternUnion> {
   }
 }
 
-final class PatternUnionFirst$ extends PatternUnion {
-  const PatternUnionFirst$(this.first) : super._();
+class PatternUnionFirst extends PatternUnion {
+  const PatternUnionFirst(this.first) : super._();
 
   @override
   final String first;
 
   @override
+  PatternUnionType get type => PatternUnionType.first;
+  @override
   String get name => 'first';
 }
 
-final class PatternUnionSecond$ extends PatternUnion {
-  const PatternUnionSecond$(this.second) : super._();
+class PatternUnionSecond extends PatternUnion {
+  const PatternUnionSecond(this.second) : super._();
 
   @override
   final String second;
 
   @override
+  PatternUnionType get type => PatternUnionType.second;
+  @override
   String get name => 'second';
 }
 
-final class PatternUnionSdkUnknown$ extends PatternUnion {
-  const PatternUnionSdkUnknown$(
+class PatternUnionSdkUnknown extends PatternUnion {
+  const PatternUnionSdkUnknown(
     this.name,
     this.value,
   ) : super._();
@@ -77,6 +121,9 @@ final class PatternUnionSdkUnknown$ extends PatternUnion {
 
   @override
   final Object value;
+
+  @override
+  PatternUnionType get type => PatternUnionType.sdkUnknown;
 }
 
 class PatternUnionRestJson1Serializer
@@ -86,8 +133,8 @@ class PatternUnionRestJson1Serializer
   @override
   Iterable<Type> get types => const [
         PatternUnion,
-        PatternUnionFirst$,
-        PatternUnionSecond$,
+        PatternUnionFirst,
+        PatternUnionSecond,
       ];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols => const [
@@ -102,15 +149,19 @@ class PatternUnionRestJson1Serializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final [key as String, value as Object] = serialized.toList();
+    final iterator = serialized.iterator;
+    iterator.moveNext();
+    final key = iterator.current as String;
+    iterator.moveNext();
+    final value = iterator.current as Object;
     switch (key) {
       case 'first':
-        return PatternUnionFirst$((serializers.deserialize(
+        return PatternUnionFirst((serializers.deserialize(
           value,
           specifiedType: const FullType(String),
         ) as String));
       case 'second':
-        return PatternUnionSecond$((serializers.deserialize(
+        return PatternUnionSecond((serializers.deserialize(
           value,
           specifiedType: const FullType(String),
         ) as String));
@@ -124,22 +175,27 @@ class PatternUnionRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    PatternUnion object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
+    (object as PatternUnion);
     return [
       object.name,
-      switch (object) {
-        PatternUnionFirst$(:final value) => serializers.serialize(
-            value,
-            specifiedType: const FullType(String),
-          ),
-        PatternUnionSecond$(:final value) => serializers.serialize(
-            value,
-            specifiedType: const FullType(String),
-          ),
-        PatternUnionSdkUnknown$(:final value) => value,
-      },
+      object.when<Object?>(
+        first: (String first) => serializers.serialize(
+          first,
+          specifiedType: const FullType(String),
+        ),
+        second: (String second) => serializers.serialize(
+          second,
+          specifiedType: const FullType(String),
+        ),
+        sdkUnknown: (
+          String _,
+          Object sdkUnknown,
+        ) =>
+            sdkUnknown,
+      )!,
     ];
   }
 }

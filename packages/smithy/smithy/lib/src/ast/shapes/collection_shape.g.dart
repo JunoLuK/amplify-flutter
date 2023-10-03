@@ -6,7 +6,7 @@ part of 'collection_shape.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-abstract mixin class NamedMembersShapeBuilder implements ShapeBuilder {
+abstract class NamedMembersShapeBuilder implements ShapeBuilder {
   void replace(covariant NamedMembersShape other);
   void update(void Function(NamedMembersShapeBuilder) updates);
   NamedMembersMap? get members;
@@ -19,7 +19,7 @@ abstract mixin class NamedMembersShapeBuilder implements ShapeBuilder {
   set traits(covariant TraitMap? traits);
 }
 
-abstract mixin class CollectionShapeBuilder implements ShapeBuilder {
+abstract class CollectionShapeBuilder implements ShapeBuilder {
   void replace(covariant CollectionShape other);
   void update(void Function(CollectionShapeBuilder) updates);
   MemberShapeBuilder get member;

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'internal_server_error_exception.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.internal_server_error_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -66,7 +66,9 @@ class InternalServerErrorExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  InternalServerErrorExceptionBuilder();
+  InternalServerErrorExceptionBuilder() {
+    InternalServerErrorException._init(this);
+  }
 
   InternalServerErrorExceptionBuilder get _$this {
     final $v = _$v;

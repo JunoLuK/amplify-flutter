@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'verify_software_token_response.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.verify_software_token_response;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,15 +8,15 @@ part of 'verify_software_token_response.dart';
 
 class _$VerifySoftwareTokenResponse extends VerifySoftwareTokenResponse {
   @override
-  final VerifySoftwareTokenResponseType? status;
-  @override
   final String? session;
+  @override
+  final _i2.VerifySoftwareTokenResponseType? status;
 
   factory _$VerifySoftwareTokenResponse(
           [void Function(VerifySoftwareTokenResponseBuilder)? updates]) =>
       (new VerifySoftwareTokenResponseBuilder()..update(updates))._build();
 
-  _$VerifySoftwareTokenResponse._({this.status, this.session}) : super._();
+  _$VerifySoftwareTokenResponse._({this.session, this.status}) : super._();
 
   @override
   VerifySoftwareTokenResponse rebuild(
@@ -31,15 +31,15 @@ class _$VerifySoftwareTokenResponse extends VerifySoftwareTokenResponse {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is VerifySoftwareTokenResponse &&
-        status == other.status &&
-        session == other.session;
+        session == other.session &&
+        status == other.status;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, status.hashCode);
     _$hash = $jc(_$hash, session.hashCode);
+    _$hash = $jc(_$hash, status.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -51,22 +51,24 @@ class VerifySoftwareTokenResponseBuilder
             VerifySoftwareTokenResponseBuilder> {
   _$VerifySoftwareTokenResponse? _$v;
 
-  VerifySoftwareTokenResponseType? _status;
-  VerifySoftwareTokenResponseType? get status => _$this._status;
-  set status(VerifySoftwareTokenResponseType? status) =>
-      _$this._status = status;
-
   String? _session;
   String? get session => _$this._session;
   set session(String? session) => _$this._session = session;
 
-  VerifySoftwareTokenResponseBuilder();
+  _i2.VerifySoftwareTokenResponseType? _status;
+  _i2.VerifySoftwareTokenResponseType? get status => _$this._status;
+  set status(_i2.VerifySoftwareTokenResponseType? status) =>
+      _$this._status = status;
+
+  VerifySoftwareTokenResponseBuilder() {
+    VerifySoftwareTokenResponse._init(this);
+  }
 
   VerifySoftwareTokenResponseBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _status = $v.status;
       _session = $v.session;
+      _status = $v.status;
       _$v = null;
     }
     return this;
@@ -88,7 +90,7 @@ class VerifySoftwareTokenResponseBuilder
 
   _$VerifySoftwareTokenResponse _build() {
     final _$result = _$v ??
-        new _$VerifySoftwareTokenResponse._(status: status, session: session);
+        new _$VerifySoftwareTokenResponse._(session: session, status: status);
     replace(_$result);
     return _$result;
   }

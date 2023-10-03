@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'oauth_parameters.dart';
+part of amplify_auth_cognito.hostedui.oauth_parameters;
 
 // **************************************************************************
 // BuiltValueGenerator

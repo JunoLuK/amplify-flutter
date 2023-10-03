@@ -44,8 +44,20 @@ class AuthenticatorWithCustomLayout extends StatelessWidget {
         }
       },
       child: MaterialApp(
-        theme: ThemeData.light(useMaterial3: true),
-        darkTheme: ThemeData.dark(useMaterial3: true),
+        theme: ThemeData.from(
+          colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.deepPurple,
+            backgroundColor: Colors.white,
+            brightness: Brightness.light,
+          ),
+        ),
+        darkTheme: ThemeData.from(
+          colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.deepPurple,
+            backgroundColor: Colors.black,
+            brightness: Brightness.dark,
+          ),
+        ),
         themeMode: ThemeMode.system,
         debugShowCheckedModeBanner: false,
         builder: Authenticator.builder(),
@@ -236,7 +248,7 @@ class TermsAndConditionsCheckBox extends FormField<bool> {
                       );
                     },
                     child: const Text('terms and conditions'),
-                  ),
+                  )
                 ],
               ),
               value: state.value,

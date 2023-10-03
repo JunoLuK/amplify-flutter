@@ -1,31 +1,40 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.glacier.operation.upload_archive_operation; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'dart:async' as _i2;
 
-import 'package:aws_common/aws_common.dart' as _i5;
-import 'package:aws_signature_v4/aws_signature_v4.dart' as _i3;
-import 'package:rest_json1_v1/src/glacier/common/endpoint_resolver.dart';
-import 'package:rest_json1_v1/src/glacier/common/serializers.dart';
-import 'package:rest_json1_v1/src/glacier/model/archive_creation_output.dart';
-import 'package:rest_json1_v1/src/glacier/model/invalid_parameter_value_exception.dart';
-import 'package:rest_json1_v1/src/glacier/model/missing_parameter_value_exception.dart';
-import 'package:rest_json1_v1/src/glacier/model/request_timeout_exception.dart';
-import 'package:rest_json1_v1/src/glacier/model/resource_not_found_exception.dart';
-import 'package:rest_json1_v1/src/glacier/model/service_unavailable_exception.dart';
-import 'package:rest_json1_v1/src/glacier/model/upload_archive_input.dart';
+import 'package:aws_common/aws_common.dart' as _i8;
+import 'package:aws_signature_v4/aws_signature_v4.dart' as _i5;
+import 'package:rest_json1_v1/src/glacier/common/endpoint_resolver.dart' as _i9;
+import 'package:rest_json1_v1/src/glacier/common/serializers.dart' as _i7;
+import 'package:rest_json1_v1/src/glacier/model/archive_creation_output.dart'
+    as _i4;
+import 'package:rest_json1_v1/src/glacier/model/invalid_parameter_value_exception.dart'
+    as _i10;
+import 'package:rest_json1_v1/src/glacier/model/missing_parameter_value_exception.dart'
+    as _i11;
+import 'package:rest_json1_v1/src/glacier/model/request_timeout_exception.dart'
+    as _i12;
+import 'package:rest_json1_v1/src/glacier/model/resource_not_found_exception.dart'
+    as _i13;
+import 'package:rest_json1_v1/src/glacier/model/service_unavailable_exception.dart'
+    as _i14;
+import 'package:rest_json1_v1/src/glacier/model/upload_archive_input.dart'
+    as _i3;
 import 'package:smithy/smithy.dart' as _i1;
-import 'package:smithy_aws/smithy_aws.dart' as _i4;
+import 'package:smithy_aws/smithy_aws.dart' as _i6;
 
-class UploadArchiveOperation extends _i1.HttpOperation<_i2.Stream<List<int>>,
-    UploadArchiveInput, ArchiveCreationOutputPayload, ArchiveCreationOutput> {
+class UploadArchiveOperation extends _i1.HttpOperation<
+    _i2.Stream<List<int>>,
+    _i3.UploadArchiveInput,
+    _i4.ArchiveCreationOutputPayload,
+    _i4.ArchiveCreationOutput> {
   UploadArchiveOperation({
     required String region,
     Uri? baseUri,
-    _i3.AWSCredentialsProvider credentialsProvider =
-        const _i3.AWSCredentialsProvider.defaultChain(),
+    _i5.AWSCredentialsProvider credentialsProvider =
+        const _i5.AWSCredentialsProvider.environment(),
     List<_i1.HttpRequestInterceptor> requestInterceptors = const [],
     List<_i1.HttpResponseInterceptor> responseInterceptors = const [],
   })  : _region = region,
@@ -36,21 +45,24 @@ class UploadArchiveOperation extends _i1.HttpOperation<_i2.Stream<List<int>>,
 
   @override
   late final List<
-      _i1.HttpProtocol<_i2.Stream<List<int>>, UploadArchiveInput,
-          ArchiveCreationOutputPayload, ArchiveCreationOutput>> protocols = [
-    _i4.RestJson1Protocol(
-      serializers: serializers,
-      builderFactories: builderFactories,
+      _i1.HttpProtocol<
+          _i2.Stream<List<int>>,
+          _i3.UploadArchiveInput,
+          _i4.ArchiveCreationOutputPayload,
+          _i4.ArchiveCreationOutput>> protocols = [
+    _i6.RestJson1Protocol(
+      serializers: _i7.serializers,
+      builderFactories: _i7.builderFactories,
       requestInterceptors: <_i1.HttpRequestInterceptor>[
             const _i1.WithHost(),
-            _i4.WithSigV4(
+            _i6.WithSigV4(
               region: _region,
-              service: _i5.AWSService.glacier,
+              service: _i8.AWSService.glacier,
               credentialsProvider: _credentialsProvider,
             ),
             const _i1.WithUserAgent('aws-sdk-dart/0.3.1'),
-            const _i4.WithSdkInvocationId(),
-            const _i4.WithSdkRequest(),
+            const _i6.WithSdkInvocationId(),
+            const _i6.WithSdkRequest(),
           ] +
           _requestInterceptors,
       responseInterceptors:
@@ -58,8 +70,8 @@ class UploadArchiveOperation extends _i1.HttpOperation<_i2.Stream<List<int>>,
     )
   ];
 
-  late final _i4.AWSEndpoint _awsEndpoint = endpointResolver.resolve(
-    sdkId,
+  late final _i6.AWSEndpoint _awsEndpoint = _i9.endpointResolver.resolve(
+    _i9.sdkId,
     _region,
   );
 
@@ -67,14 +79,14 @@ class UploadArchiveOperation extends _i1.HttpOperation<_i2.Stream<List<int>>,
 
   final Uri? _baseUri;
 
-  final _i3.AWSCredentialsProvider _credentialsProvider;
+  final _i5.AWSCredentialsProvider _credentialsProvider;
 
   final List<_i1.HttpRequestInterceptor> _requestInterceptors;
 
   final List<_i1.HttpResponseInterceptor> _responseInterceptors;
 
   @override
-  _i1.HttpRequest buildRequest(UploadArchiveInput input) =>
+  _i1.HttpRequest buildRequest(_i3.UploadArchiveInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = r'/{accountId}/vaults/{vaultName}/archives';
@@ -90,84 +102,81 @@ class UploadArchiveOperation extends _i1.HttpOperation<_i2.Stream<List<int>>,
         }
       });
   @override
-  int successCode([ArchiveCreationOutput? output]) => 201;
+  int successCode([_i4.ArchiveCreationOutput? output]) => 201;
   @override
-  ArchiveCreationOutput buildOutput(
-    ArchiveCreationOutputPayload payload,
-    _i5.AWSBaseHttpResponse response,
+  _i4.ArchiveCreationOutput buildOutput(
+    _i4.ArchiveCreationOutputPayload payload,
+    _i8.AWSBaseHttpResponse response,
   ) =>
-      ArchiveCreationOutput.fromResponse(
+      _i4.ArchiveCreationOutput.fromResponse(
         payload,
         response,
       );
   @override
   List<_i1.SmithyError> get errorTypes => const [
-        _i1.SmithyError<InvalidParameterValueException,
-            InvalidParameterValueException>(
+        _i1.SmithyError(
           _i1.ShapeId(
             namespace: 'com.amazonaws.glacier',
             shape: 'InvalidParameterValueException',
           ),
           _i1.ErrorKind.client,
-          InvalidParameterValueException,
+          _i10.InvalidParameterValueException,
           statusCode: 400,
-          builder: InvalidParameterValueException.fromResponse,
+          builder: _i10.InvalidParameterValueException.fromResponse,
         ),
-        _i1.SmithyError<MissingParameterValueException,
-            MissingParameterValueException>(
+        _i1.SmithyError(
           _i1.ShapeId(
             namespace: 'com.amazonaws.glacier',
             shape: 'MissingParameterValueException',
           ),
           _i1.ErrorKind.client,
-          MissingParameterValueException,
+          _i11.MissingParameterValueException,
           statusCode: 400,
-          builder: MissingParameterValueException.fromResponse,
+          builder: _i11.MissingParameterValueException.fromResponse,
         ),
-        _i1.SmithyError<RequestTimeoutException, RequestTimeoutException>(
+        _i1.SmithyError(
           _i1.ShapeId(
             namespace: 'com.amazonaws.glacier',
             shape: 'RequestTimeoutException',
           ),
           _i1.ErrorKind.client,
-          RequestTimeoutException,
+          _i12.RequestTimeoutException,
           statusCode: 408,
-          builder: RequestTimeoutException.fromResponse,
+          builder: _i12.RequestTimeoutException.fromResponse,
         ),
-        _i1.SmithyError<ResourceNotFoundException, ResourceNotFoundException>(
+        _i1.SmithyError(
           _i1.ShapeId(
             namespace: 'com.amazonaws.glacier',
             shape: 'ResourceNotFoundException',
           ),
           _i1.ErrorKind.client,
-          ResourceNotFoundException,
+          _i13.ResourceNotFoundException,
           statusCode: 404,
-          builder: ResourceNotFoundException.fromResponse,
+          builder: _i13.ResourceNotFoundException.fromResponse,
         ),
-        _i1.SmithyError<ServiceUnavailableException,
-            ServiceUnavailableException>(
+        _i1.SmithyError(
           _i1.ShapeId(
             namespace: 'com.amazonaws.glacier',
             shape: 'ServiceUnavailableException',
           ),
           _i1.ErrorKind.server,
-          ServiceUnavailableException,
+          _i14.ServiceUnavailableException,
           statusCode: 500,
-          builder: ServiceUnavailableException.fromResponse,
+          builder: _i14.ServiceUnavailableException.fromResponse,
         ),
       ];
   @override
   String get runtimeTypeName => 'UploadArchive';
   @override
-  _i4.AWSRetryer get retryer => _i4.AWSRetryer();
+  _i6.AWSRetryer get retryer => _i6.AWSRetryer();
   @override
   Uri get baseUri => _baseUri ?? endpoint.uri;
   @override
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;
   @override
-  _i1.SmithyOperation<ArchiveCreationOutput> run(
-    UploadArchiveInput input, {
-    _i5.AWSHttpClient? client,
+  _i1.SmithyOperation<_i4.ArchiveCreationOutput> run(
+    _i3.UploadArchiveInput input, {
+    _i8.AWSHttpClient? client,
     _i1.ShapeId? useProtocol,
   }) {
     return _i2.runZoned(
@@ -178,7 +187,7 @@ class UploadArchiveOperation extends _i1.HttpOperation<_i2.Stream<List<int>>,
       ),
       zoneValues: {
         ...?_awsEndpoint.credentialScope?.zoneValues,
-        ...{_i5.AWSHeaders.sdkInvocationId: _i5.uuid(secure: true)},
+        ...{_i8.AWSHeaders.sdkInvocationId: _i8.uuid(secure: true)}
       },
     );
   }

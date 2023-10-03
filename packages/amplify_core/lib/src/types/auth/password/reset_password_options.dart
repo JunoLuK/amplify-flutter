@@ -3,7 +3,6 @@
 
 import 'package:amplify_core/amplify_core.dart';
 
-/// {@category Auth}
 /// {@template amplify_core.reset_password_options}
 /// The shared reset password options among all Auth plugins.
 /// {@endtemplate}
@@ -26,7 +25,6 @@ class ResetPasswordOptions
   @override
   String get runtimeTypeName => 'ResetPasswordOptions';
 
-  /// @nodoc
   @Deprecated('Use toJson instead')
   Map<String, Object?> serializeAsMap() => toJson();
 
@@ -36,7 +34,6 @@ class ResetPasswordOptions
       };
 }
 
-/// @nodoc
 /// {@template amplify_core.auth.reset_password_plugin_options}
 /// Plugin-specific options for `Amplify.Auth.resetPassword`.
 /// {@endtemplate}

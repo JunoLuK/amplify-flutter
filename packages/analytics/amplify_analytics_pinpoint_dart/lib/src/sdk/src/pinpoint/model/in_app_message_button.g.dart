@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'in_app_message_button.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.in_app_message_button;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,13 +8,13 @@ part of 'in_app_message_button.dart';
 
 class _$InAppMessageButton extends InAppMessageButton {
   @override
-  final OverrideButtonConfiguration? android;
+  final _i2.OverrideButtonConfiguration? android;
   @override
-  final DefaultButtonConfiguration? defaultConfig;
+  final _i3.DefaultButtonConfiguration? defaultConfig;
   @override
-  final OverrideButtonConfiguration? ios;
+  final _i2.OverrideButtonConfiguration? ios;
   @override
-  final OverrideButtonConfiguration? web;
+  final _i2.OverrideButtonConfiguration? web;
 
   factory _$InAppMessageButton(
           [void Function(InAppMessageButtonBuilder)? updates]) =>
@@ -58,29 +58,31 @@ class InAppMessageButtonBuilder
     implements Builder<InAppMessageButton, InAppMessageButtonBuilder> {
   _$InAppMessageButton? _$v;
 
-  OverrideButtonConfigurationBuilder? _android;
-  OverrideButtonConfigurationBuilder get android =>
-      _$this._android ??= new OverrideButtonConfigurationBuilder();
-  set android(OverrideButtonConfigurationBuilder? android) =>
+  _i2.OverrideButtonConfigurationBuilder? _android;
+  _i2.OverrideButtonConfigurationBuilder get android =>
+      _$this._android ??= new _i2.OverrideButtonConfigurationBuilder();
+  set android(_i2.OverrideButtonConfigurationBuilder? android) =>
       _$this._android = android;
 
-  DefaultButtonConfigurationBuilder? _defaultConfig;
-  DefaultButtonConfigurationBuilder get defaultConfig =>
-      _$this._defaultConfig ??= new DefaultButtonConfigurationBuilder();
-  set defaultConfig(DefaultButtonConfigurationBuilder? defaultConfig) =>
+  _i3.DefaultButtonConfigurationBuilder? _defaultConfig;
+  _i3.DefaultButtonConfigurationBuilder get defaultConfig =>
+      _$this._defaultConfig ??= new _i3.DefaultButtonConfigurationBuilder();
+  set defaultConfig(_i3.DefaultButtonConfigurationBuilder? defaultConfig) =>
       _$this._defaultConfig = defaultConfig;
 
-  OverrideButtonConfigurationBuilder? _ios;
-  OverrideButtonConfigurationBuilder get ios =>
-      _$this._ios ??= new OverrideButtonConfigurationBuilder();
-  set ios(OverrideButtonConfigurationBuilder? ios) => _$this._ios = ios;
+  _i2.OverrideButtonConfigurationBuilder? _ios;
+  _i2.OverrideButtonConfigurationBuilder get ios =>
+      _$this._ios ??= new _i2.OverrideButtonConfigurationBuilder();
+  set ios(_i2.OverrideButtonConfigurationBuilder? ios) => _$this._ios = ios;
 
-  OverrideButtonConfigurationBuilder? _web;
-  OverrideButtonConfigurationBuilder get web =>
-      _$this._web ??= new OverrideButtonConfigurationBuilder();
-  set web(OverrideButtonConfigurationBuilder? web) => _$this._web = web;
+  _i2.OverrideButtonConfigurationBuilder? _web;
+  _i2.OverrideButtonConfigurationBuilder get web =>
+      _$this._web ??= new _i2.OverrideButtonConfigurationBuilder();
+  set web(_i2.OverrideButtonConfigurationBuilder? web) => _$this._web = web;
 
-  InAppMessageButtonBuilder();
+  InAppMessageButtonBuilder() {
+    InAppMessageButton._init(this);
+  }
 
   InAppMessageButtonBuilder get _$this {
     final $v = _$v;

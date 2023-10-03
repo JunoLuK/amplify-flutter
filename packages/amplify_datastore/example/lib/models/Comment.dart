@@ -1,35 +1,26 @@
-/*
-* Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-*
-* Licensed under the Apache License, Version 2.0 (the "License").
-* You may not use this file except in compliance with the License.
-* A copy of the License is located at
-*
-*  http://aws.amazon.com/apache2.0
-*
-* or in the "license" file accompanying this file. This file is distributed
-* on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
-* express or implied. See the License for the specific language governing
-* permissions and limitations under the License.
-*/
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: Apache-2.0
 
 // NOTE: This file is generated and may not follow lint rules defined in your app
 // Generated files can be excluded from analysis in analysis_options.yaml
 // For more info, see: https://dart.dev/guides/language/analysis-options#excluding-code-from-analysis
 
+import 'package:amplify_core/amplify_core.dart';
+import 'package:flutter/foundation.dart';
+
 // ignore_for_file: public_member_api_docs, annotate_overrides, dead_code, dead_codepublic_member_api_docs, depend_on_referenced_packages, file_names, library_private_types_in_public_api, no_leading_underscores_for_library_prefixes, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, null_check_on_nullable_type_parameter, prefer_adjacent_string_concatenation, prefer_const_constructors, prefer_if_null_operators, prefer_interpolation_to_compose_strings, slash_for_doc_comments, sort_child_properties_last, unnecessary_const, unnecessary_constructor_name, unnecessary_late, unnecessary_new, unnecessary_null_aware_assignments, unnecessary_nullable_for_final_variable_declarations, unnecessary_string_interpolations, use_build_context_synchronously
 
 import 'ModelProvider.dart';
-import 'package:amplify_core/amplify_core.dart' as amplify_core;
 
-/** This is an auto generated class representing the Comment type in your schema. */
-class Comment extends amplify_core.Model {
-  static const classType = const _CommentModelType();
+/// This is an auto generated class representing the Comment type in your schema.
+@immutable
+class Comment extends Model {
+  static const classType = _CommentModelType();
   final String id;
   final Post? _post;
   final String? _content;
-  final amplify_core.TemporalDateTime? _createdAt;
-  final amplify_core.TemporalDateTime? _updatedAt;
+  final TemporalDateTime? _createdAt;
+  final TemporalDateTime? _updatedAt;
 
   @override
   getInstanceType() => classType;
@@ -51,20 +42,20 @@ class Comment extends amplify_core.Model {
     try {
       return _content!;
     } catch (e) {
-      throw amplify_core.AmplifyCodeGenModelException(
-          amplify_core.AmplifyExceptionMessages
+      throw AmplifyCodeGenModelException(
+          AmplifyExceptionMessages
               .codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion: amplify_core.AmplifyExceptionMessages
+          recoverySuggestion: AmplifyExceptionMessages
               .codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString());
     }
   }
 
-  amplify_core.TemporalDateTime? get createdAt {
+  TemporalDateTime? get createdAt {
     return _createdAt;
   }
 
-  amplify_core.TemporalDateTime? get updatedAt {
+  TemporalDateTime? get updatedAt {
     return _updatedAt;
   }
 
@@ -77,9 +68,7 @@ class Comment extends amplify_core.Model {
 
   factory Comment({String? id, Post? post, required String content}) {
     return Comment._internal(
-        id: id == null ? amplify_core.UUID.getUUID() : id,
-        post: post,
-        content: content);
+        id: id == null ? UUID.getUUID() : id, post: post, content: content);
   }
 
   bool equals(Object other) {
@@ -100,7 +89,7 @@ class Comment extends amplify_core.Model {
 
   @override
   String toString() {
-    var buffer = new StringBuffer();
+    var buffer = StringBuffer();
 
     buffer.write("Comment {");
     buffer.write("id=" + "$id" + ", ");
@@ -121,26 +110,18 @@ class Comment extends amplify_core.Model {
         id: id, post: post ?? this.post, content: content ?? this.content);
   }
 
-  Comment copyWithModelFieldValues(
-      {ModelFieldValue<Post?>? post, ModelFieldValue<String>? content}) {
-    return Comment._internal(
-        id: id,
-        post: post == null ? this.post : post.value,
-        content: content == null ? this.content : content.value);
-  }
-
   Comment.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         _post = json['post']?['serializedData'] != null
             ? Post.fromJson(
-                new Map<String, dynamic>.from(json['post']['serializedData']))
+                Map<String, dynamic>.from(json['post']['serializedData']))
             : null,
         _content = json['content'],
         _createdAt = json['createdAt'] != null
-            ? amplify_core.TemporalDateTime.fromString(json['createdAt'])
+            ? TemporalDateTime.fromString(json['createdAt'])
             : null,
         _updatedAt = json['updatedAt'] != null
-            ? amplify_core.TemporalDateTime.fromString(json['updatedAt'])
+            ? TemporalDateTime.fromString(json['updatedAt'])
             : null;
 
   Map<String, dynamic> toJson() => {
@@ -151,88 +132,66 @@ class Comment extends amplify_core.Model {
         'updatedAt': _updatedAt?.format()
       };
 
-  Map<String, Object?> toMap() => {
-        'id': id,
-        'post': _post,
-        'content': _content,
-        'createdAt': _createdAt,
-        'updatedAt': _updatedAt
-      };
-
-  static final amplify_core.QueryModelIdentifier<CommentModelIdentifier>
-      MODEL_IDENTIFIER =
-      amplify_core.QueryModelIdentifier<CommentModelIdentifier>();
-  static final ID = amplify_core.QueryField(fieldName: "id");
-  static final POST = amplify_core.QueryField(
+  static final QueryModelIdentifier<CommentModelIdentifier> MODEL_IDENTIFIER =
+      QueryModelIdentifier<CommentModelIdentifier>();
+  static final QueryField ID = QueryField(fieldName: "id");
+  static final QueryField POST = QueryField(
       fieldName: "post",
-      fieldType: amplify_core.ModelFieldType(
-          amplify_core.ModelFieldTypeEnum.model,
-          ofModelName: 'Post'));
-  static final CONTENT = amplify_core.QueryField(fieldName: "content");
-  static var schema = amplify_core.Model.defineSchema(
-      define: (amplify_core.ModelSchemaDefinition modelSchemaDefinition) {
+      fieldType: ModelFieldType(ModelFieldTypeEnum.model,
+          ofModelName: (Post).toString()));
+  static final QueryField CONTENT = QueryField(fieldName: "content");
+  static var schema =
+      Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "Comment";
     modelSchemaDefinition.pluralName = "Comments";
 
     modelSchemaDefinition.indexes = [
-      amplify_core.ModelIndex(
-          fields: const ["postID", "content"], name: "byPost")
+      ModelIndex(fields: const ["postID", "content"], name: "byPost")
     ];
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.id());
+    modelSchemaDefinition.addField(ModelFieldDefinition.id());
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.belongsTo(
+    modelSchemaDefinition.addField(ModelFieldDefinition.belongsTo(
         key: Comment.POST,
         isRequired: false,
-        targetNames: ['postID'],
-        ofModelName: 'Post'));
+        targetNames: ["postID"],
+        ofModelName: (Post).toString()));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: Comment.CONTENT,
         isRequired: true,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.string)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.string)));
 
-    modelSchemaDefinition.addField(
-        amplify_core.ModelFieldDefinition.nonQueryField(
-            fieldName: 'createdAt',
-            isRequired: false,
-            isReadOnly: true,
-            ofType: amplify_core.ModelFieldType(
-                amplify_core.ModelFieldTypeEnum.dateTime)));
+    modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(
+        fieldName: 'createdAt',
+        isRequired: false,
+        isReadOnly: true,
+        ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)));
 
-    modelSchemaDefinition.addField(
-        amplify_core.ModelFieldDefinition.nonQueryField(
-            fieldName: 'updatedAt',
-            isRequired: false,
-            isReadOnly: true,
-            ofType: amplify_core.ModelFieldType(
-                amplify_core.ModelFieldTypeEnum.dateTime)));
+    modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(
+        fieldName: 'updatedAt',
+        isRequired: false,
+        isReadOnly: true,
+        ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)));
   });
 }
 
-class _CommentModelType extends amplify_core.ModelType<Comment> {
+class _CommentModelType extends ModelType<Comment> {
   const _CommentModelType();
 
   @override
   Comment fromJson(Map<String, dynamic> jsonData) {
     return Comment.fromJson(jsonData);
   }
-
-  @override
-  String modelName() {
-    return 'Comment';
-  }
 }
 
-/**
- * This is an auto generated class representing the model identifier
- * of [Comment] in your schema.
- */
-class CommentModelIdentifier implements amplify_core.ModelIdentifier<Comment> {
+/// This is an auto generated class representing the model identifier
+/// of [Comment] in your schema.
+@immutable
+class CommentModelIdentifier implements ModelIdentifier<Comment> {
   final String id;
 
-  /** Create an instance of CommentModelIdentifier using [id] the primary key. */
+  /// Create an instance of CommentModelIdentifier using [id] the primary key.
   const CommentModelIdentifier({required this.id});
 
   @override

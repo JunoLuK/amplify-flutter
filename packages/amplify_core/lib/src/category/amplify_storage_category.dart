@@ -18,10 +18,6 @@ class StorageCategory extends AmplifyCategory<StoragePluginInterface> {
   @nonVirtual
   Category get category => Category.storage;
 
-  @override
-  @nonVirtual
-  Set<Category> get categoryDependencies => const {Category.auth};
-
   P getPlugin<P extends StoragePluginInterface>(
     StoragePluginKey<P> pluginKey,
   ) =>
@@ -40,12 +36,9 @@ class StorageCategory extends AmplifyCategory<StoragePluginInterface> {
     String? path,
     StorageListOptions? options,
   }) {
-    return identifyCall(
-      StorageCategoryMethod.list,
-      () => defaultPlugin.list(
-        path: path,
-        options: options,
-      ),
+    return defaultPlugin.list(
+      path: path,
+      options: options,
     );
   }
 
@@ -61,12 +54,9 @@ class StorageCategory extends AmplifyCategory<StoragePluginInterface> {
     required String key,
     StorageGetPropertiesOptions? options,
   }) {
-    return identifyCall(
-      StorageCategoryMethod.getProperties,
-      () => defaultPlugin.getProperties(
-        key: key,
-        options: options,
-      ),
+    return defaultPlugin.getProperties(
+      key: key,
+      options: options,
     );
   }
 
@@ -81,12 +71,9 @@ class StorageCategory extends AmplifyCategory<StoragePluginInterface> {
     required String key,
     StorageGetUrlOptions? options,
   }) {
-    return identifyCall(
-      StorageCategoryMethod.getUrl,
-      () => defaultPlugin.getUrl(
-        key: key,
-        options: options,
-      ),
+    return defaultPlugin.getUrl(
+      key: key,
+      options: options,
     );
   }
 
@@ -103,13 +90,10 @@ class StorageCategory extends AmplifyCategory<StoragePluginInterface> {
     void Function(StorageTransferProgress)? onProgress,
     StorageDownloadDataOptions? options,
   }) {
-    return identifyCall(
-      StorageCategoryMethod.downloadData,
-      () => defaultPlugin.downloadData(
-        key: key,
-        onProgress: onProgress,
-        options: options,
-      ),
+    return defaultPlugin.downloadData(
+      key: key,
+      onProgress: onProgress,
+      options: options,
     );
   }
 
@@ -124,14 +108,11 @@ class StorageCategory extends AmplifyCategory<StoragePluginInterface> {
     void Function(StorageTransferProgress)? onProgress,
     StorageDownloadFileOptions? options,
   }) {
-    return identifyCall(
-      StorageCategoryMethod.downloadFile,
-      () => defaultPlugin.downloadFile(
-        key: key,
-        localFile: localFile,
-        onProgress: onProgress,
-        options: options,
-      ),
+    return defaultPlugin.downloadFile(
+      key: key,
+      localFile: localFile,
+      onProgress: onProgress,
+      options: options,
     );
   }
 
@@ -148,14 +129,11 @@ class StorageCategory extends AmplifyCategory<StoragePluginInterface> {
     void Function(StorageTransferProgress)? onProgress,
     StorageUploadDataOptions? options,
   }) {
-    return identifyCall(
-      StorageCategoryMethod.uploadData,
-      () => defaultPlugin.uploadData(
-        key: key,
-        data: data,
-        onProgress: onProgress,
-        options: options,
-      ),
+    return defaultPlugin.uploadData(
+      key: key,
+      data: data,
+      onProgress: onProgress,
+      options: options,
     );
   }
 
@@ -173,14 +151,11 @@ class StorageCategory extends AmplifyCategory<StoragePluginInterface> {
     void Function(StorageTransferProgress)? onProgress,
     StorageUploadFileOptions? options,
   }) {
-    return identifyCall(
-      StorageCategoryMethod.uploadFile,
-      () => defaultPlugin.uploadFile(
-        key: key,
-        localFile: localFile,
-        onProgress: onProgress,
-        options: options,
-      ),
+    return defaultPlugin.uploadFile(
+      key: key,
+      localFile: localFile,
+      onProgress: onProgress,
+      options: options,
     );
   }
 
@@ -198,13 +173,10 @@ class StorageCategory extends AmplifyCategory<StoragePluginInterface> {
     required StorageItemWithAccessLevel<StorageItem> destination,
     StorageCopyOptions? options,
   }) {
-    return identifyCall(
-      StorageCategoryMethod.copy,
-      () => defaultPlugin.copy(
-        source: source,
-        destination: destination,
-        options: options,
-      ),
+    return defaultPlugin.copy(
+      source: source,
+      destination: destination,
+      options: options,
     );
   }
 
@@ -223,13 +195,10 @@ class StorageCategory extends AmplifyCategory<StoragePluginInterface> {
     required StorageItemWithAccessLevel<StorageItem> destination,
     StorageMoveOptions? options,
   }) {
-    return identifyCall(
-      StorageCategoryMethod.move,
-      () => defaultPlugin.move(
-        source: source,
-        destination: destination,
-        options: options,
-      ),
+    return defaultPlugin.move(
+      source: source,
+      destination: destination,
+      options: options,
     );
   }
 
@@ -241,10 +210,7 @@ class StorageCategory extends AmplifyCategory<StoragePluginInterface> {
     required String key,
     StorageRemoveOptions? options,
   }) {
-    return identifyCall(
-      StorageCategoryMethod.remove,
-      () => defaultPlugin.remove(key: key, options: options),
-    );
+    return defaultPlugin.remove(key: key, options: options);
   }
 
   /// {@template amplify_core.amplify_storage_category.remove_many}
@@ -255,12 +221,9 @@ class StorageCategory extends AmplifyCategory<StoragePluginInterface> {
     required List<String> keys,
     StorageRemoveManyOptions? options,
   }) {
-    return identifyCall(
-      StorageCategoryMethod.removeMany,
-      () => defaultPlugin.removeMany(
-        keys: keys,
-        options: options,
-      ),
+    return defaultPlugin.removeMany(
+      keys: keys,
+      options: options,
     );
   }
 }

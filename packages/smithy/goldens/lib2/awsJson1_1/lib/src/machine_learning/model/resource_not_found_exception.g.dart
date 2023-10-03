@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'resource_not_found_exception.dart';
+part of aws_json1_1_v2.machine_learning.model.resource_not_found_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,9 +8,9 @@ part of 'resource_not_found_exception.dart';
 
 class _$ResourceNotFoundException extends ResourceNotFoundException {
   @override
-  final String? message;
-  @override
   final int? code;
+  @override
+  final String? message;
   @override
   final Map<String, String>? headers;
 
@@ -18,7 +18,7 @@ class _$ResourceNotFoundException extends ResourceNotFoundException {
           [void Function(ResourceNotFoundExceptionBuilder)? updates]) =>
       (new ResourceNotFoundExceptionBuilder()..update(updates))._build();
 
-  _$ResourceNotFoundException._({this.message, this.code, this.headers})
+  _$ResourceNotFoundException._({this.code, this.message, this.headers})
       : super._();
 
   @override
@@ -34,15 +34,15 @@ class _$ResourceNotFoundException extends ResourceNotFoundException {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is ResourceNotFoundException &&
-        message == other.message &&
-        code == other.code;
+        code == other.code &&
+        message == other.message;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, message.hashCode);
     _$hash = $jc(_$hash, code.hashCode);
+    _$hash = $jc(_$hash, message.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -53,25 +53,27 @@ class ResourceNotFoundExceptionBuilder
         Builder<ResourceNotFoundException, ResourceNotFoundExceptionBuilder> {
   _$ResourceNotFoundException? _$v;
 
-  String? _message;
-  String? get message => _$this._message;
-  set message(String? message) => _$this._message = message;
-
   int? _code;
   int? get code => _$this._code;
   set code(int? code) => _$this._code = code;
+
+  String? _message;
+  String? get message => _$this._message;
+  set message(String? message) => _$this._message = message;
 
   Map<String, String>? _headers;
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  ResourceNotFoundExceptionBuilder();
+  ResourceNotFoundExceptionBuilder() {
+    ResourceNotFoundException._init(this);
+  }
 
   ResourceNotFoundExceptionBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _message = $v.message;
       _code = $v.code;
+      _message = $v.message;
       _headers = $v.headers;
       _$v = null;
     }
@@ -95,7 +97,7 @@ class ResourceNotFoundExceptionBuilder
   _$ResourceNotFoundException _build() {
     final _$result = _$v ??
         new _$ResourceNotFoundException._(
-            message: message, code: code, headers: headers);
+            code: code, message: message, headers: headers);
     replace(_$result);
     return _$result;
   }

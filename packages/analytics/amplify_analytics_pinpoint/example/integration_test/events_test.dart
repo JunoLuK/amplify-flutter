@@ -89,20 +89,16 @@ void main() {
                 .having(
                   (e) => e.attributes,
                   'attributes',
-                  equals(
-                    Map.fromEntries(
-                      [stringifiedBoolProperty, stringProperty],
-                    ),
-                  ),
+                  equals(Map.fromEntries(
+                    [stringifiedBoolProperty, stringProperty],
+                  )),
                 )
                 .having(
                   (e) => e.metrics,
                   'metrics',
-                  equals(
-                    Map.fromEntries(
-                      [lossyDoubleProperty, intProperty],
-                    ),
-                  ),
+                  equals(Map.fromEntries(
+                    [lossyDoubleProperty, intProperty],
+                  )),
                 )
                 .having(
                   (e) => e.endpoint.endpointStatus,
@@ -138,8 +134,7 @@ void main() {
           ..addStringProperty(stringProperty.key, stringProperty.value);
 
         await Amplify.Analytics.registerGlobalProperties(
-          globalProperties: attributeGlobalProperties,
-        );
+            globalProperties: attributeGlobalProperties);
 
         await Amplify.Analytics.recordEvent(event: firstEvent);
         await Amplify.Analytics.flushEvents();
@@ -157,7 +152,7 @@ void main() {
                     Map.fromEntries([
                       stringifiedBoolProperty,
                       stringProperty,
-                      secondStringProperty,
+                      secondStringProperty
                     ]),
                   ),
                 )
@@ -183,8 +178,7 @@ void main() {
           ..addDoubleProperty(doubleProperty.key, doubleProperty.value);
 
         await Amplify.Analytics.registerGlobalProperties(
-          globalProperties: metricGlobalProperties,
-        );
+            globalProperties: metricGlobalProperties);
 
         await Amplify.Analytics.recordEvent(event: secondEvent);
         await Amplify.Analytics.flushEvents();
@@ -205,11 +199,9 @@ void main() {
                 .having(
                   (e) => e.metrics,
                   'metrics',
-                  equals(
-                    Map.fromEntries(
-                      [lossyDoubleProperty, intProperty, secondIntProperty],
-                    ),
-                  ),
+                  equals(Map.fromEntries(
+                    [lossyDoubleProperty, intProperty, secondIntProperty],
+                  )),
                 ),
           ),
           reason:

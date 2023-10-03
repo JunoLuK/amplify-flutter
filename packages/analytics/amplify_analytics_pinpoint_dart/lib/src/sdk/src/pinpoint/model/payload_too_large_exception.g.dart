@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'payload_too_large_exception.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.payload_too_large_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -65,7 +65,9 @@ class PayloadTooLargeExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  PayloadTooLargeExceptionBuilder();
+  PayloadTooLargeExceptionBuilder() {
+    PayloadTooLargeException._init(this);
+  }
 
   PayloadTooLargeExceptionBuilder get _$this {
     final $v = _$v;

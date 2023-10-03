@@ -10,141 +10,69 @@ import 'package:aws_common/aws_common.dart';
 /// throw an exception if an exception occurred. See [exception] for more
 /// details.
 /// {@endtemplate}
-sealed class AWSResult<V extends Object?, E extends Exception>
-    with AWSDebuggable, AWSSerializable<Map<String, Object?>> {
+class AWSResult<T, E extends Exception>
+    with AWSEquatable<AWSResult<T, E>>, AWSDebuggable {
   /// Creates a failed result.
-  const factory AWSResult.error(E exception, [StackTrace? stackTrace]) =
-      AWSErrorResult<V, E>;
+  const AWSResult.error(E this.exception, [this.stackTrace])
+      : type = AWSResultType.error,
+        _value = null;
 
   /// Creates a successful result.
-  const factory AWSResult.success(V value) = AWSSuccessResult<V, E>;
+  const AWSResult.success(T value)
+      : _value = value,
+        type = AWSResultType.success,
+        exception = null,
+        stackTrace = null;
 
-  const AWSResult._();
+  /// The value of the result, or null.
+  final T? _value;
 
   /// The exception that occurred while attempting to retrieve the value.
-  E? get exception;
+  final E? exception;
 
   /// The original stack trace of [exception], if provided.
-  StackTrace? get stackTrace;
+  final StackTrace? stackTrace;
 
   /// Indicates if the result was a success.
-  @Deprecated('Use pattern matching instead')
-  AWSResultType get type;
+  final AWSResultType type;
 
   /// The value of the result, if the result was successful.
   ///
   /// If an exception was thrown while retrieving the value, this will throw.
   /// See [exception] for more details.
-  V get value;
+  T get value {
+    switch (type) {
+      case AWSResultType.success:
+        // value will be non-null since it is required in AWSResult.success.
+        return _value!;
+      case AWSResultType.error:
+        if (stackTrace != null) {
+          // TODO(dnys1): Chain, instead, so that the current stack trace can
+          /// provide context to the original
+        }
+        // ignore: only_throw_errors
+        throw exception!;
+    }
+  }
 
   /// The value of the result, or null if there was an error retrieving it.
-  V? get valueOrNull;
-}
-
-/// {@template aws_common.aws_success_result}
-/// A successful [AWSResult].
-///
-/// For successful results, [value] is guaranteed to not throw.
-/// {@endtemplate}
-final class AWSSuccessResult<V extends Object?, E extends Exception>
-    extends AWSResult<V, E> with AWSEquatable<AWSSuccessResult<V, E>> {
-  /// {@macro aws_common.aws_success_result}
-  const AWSSuccessResult(this.value) : super._();
-
-  @override
-  final V value;
-
-  @override
-  V get valueOrNull => value;
-
-  @override
-  AWSResultType get type => AWSResultType.success;
-
-  @override
-  E? get exception => null;
-
-  @override
-  StackTrace? get stackTrace => null;
-
-  @override
-  List<Object?> get props => [value];
-
-  @override
-  String get runtimeTypeName {
-    final typeName = StringBuffer('AWSSuccessResult<')
-      ..write(
-        switch (value) {
-          AWSDebuggable(:final runtimeTypeName) => runtimeTypeName,
-          _ => V,
-        },
-      )
-      ..write(', $E>');
-    return typeName.toString();
-  }
-
-  @override
-  Map<String, Object?> toJson() => {
-        'value': switch (value) {
-          final AWSSerializable serializable => serializable.toJson(),
-          _ => value.toString(),
-        },
-      };
-}
-
-/// {@template aws_common.aws_error_result}
-/// A failed [AWSResult].
-///
-/// For failed results, [value] will always throw and [exception] is guaranteed
-/// to not be `null`.
-/// {@endtemplate}
-final class AWSErrorResult<V extends Object?, E extends Exception>
-    extends AWSResult<V, E> with AWSEquatable<AWSErrorResult<V, E>> {
-  /// {@macro aws_common.aws_error_result}
-  const AWSErrorResult(this.exception, [this.stackTrace]) : super._();
-
-  @override
-  final E exception;
-
-  @override
-  final StackTrace? stackTrace;
-
-  @override
-  V get value {
-    if (stackTrace != null) {
-      // TODO(dnys1): Chain, instead, so that the current stack trace can
-      /// provide context to the original
+  T? get valueOrNull {
+    switch (type) {
+      case AWSResultType.success:
+        // value will be non-null since it is required in AWSResult.success.
+        return _value!;
+      case AWSResultType.error:
+        return null;
     }
-    throw exception;
   }
 
   @override
-  V? get valueOrNull => null;
+  List<Object?> get props => [
+        _value,
+        exception,
+        type,
+      ];
 
   @override
-  AWSResultType get type => AWSResultType.error;
-
-  @override
-  List<Object?> get props => [exception, stackTrace];
-
-  @override
-  String get runtimeTypeName {
-    final typeName = StringBuffer('AWSErrorResult<$V, ')
-      ..write(
-        switch (exception) {
-          AWSDebuggable(:final runtimeTypeName) => runtimeTypeName,
-          _ => E,
-        },
-      )
-      ..write('>');
-    return typeName.toString();
-  }
-
-  @override
-  Map<String, Object?> toJson() => {
-        'exception': switch (exception) {
-          final AWSSerializable serializable => serializable.toJson(),
-          _ => exception.toString(),
-        },
-        'stackTrace': stackTrace?.toString(),
-      };
+  String get runtimeTypeName => 'AWSResult';
 }

@@ -17,7 +17,7 @@ extension ShapeExt on Shape {
   ///
   /// Shapes which have default values are only considered boxed when
   /// explicitly marked with the boxed trait.
-  bool get hasDefaultValue => getTrait<DefaultTrait>()?.value != null;
+  bool get hasDefaultValue => hasTrait<DefaultTrait>();
 
   /// Whether `this` is boxed. This means the shape is optionally present and
   /// has no default value.
@@ -27,13 +27,10 @@ extension ShapeExt on Shape {
       return true;
     }
     // V2
-    if (hasDefaultValue) {
+    if (hasTrait<DefaultTrait>()) {
       return false;
     }
-    if (hasTrait<ClientOptionalTrait>()) {
-      return true;
-    }
-    return isNotRequired;
+    return !hasTrait<RequiredTrait>() || hasTrait<ClientOptionalTrait>();
   }
 
   /// Whether `this` is not boxed. This means the shape is required to be present

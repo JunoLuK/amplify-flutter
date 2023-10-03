@@ -25,9 +25,8 @@ abstract class StringEnumShape
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(StringEnumShapeBuilder b) {
-    b
-      ..shapeId = ShapeId.empty
-      ..traits = TraitMap.empty();
+    b.shapeId = ShapeId.empty;
+    b.traits = TraitMap.empty();
   }
 
   @override
@@ -49,9 +48,8 @@ abstract class IntEnumShape
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(IntEnumShapeBuilder b) {
-    b
-      ..shapeId = ShapeId.empty
-      ..traits = TraitMap.empty();
+    b.shapeId = ShapeId.empty;
+    b.traits = TraitMap.empty();
   }
 
   @override

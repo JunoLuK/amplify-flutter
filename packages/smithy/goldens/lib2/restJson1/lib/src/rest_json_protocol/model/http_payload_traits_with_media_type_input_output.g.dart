@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'http_payload_traits_with_media_type_input_output.dart';
+part of rest_json1_v2.rest_json_protocol.model.http_payload_traits_with_media_type_input_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -9,9 +9,9 @@ part of 'http_payload_traits_with_media_type_input_output.dart';
 class _$HttpPayloadTraitsWithMediaTypeInputOutput
     extends HttpPayloadTraitsWithMediaTypeInputOutput {
   @override
-  final String? foo;
-  @override
   final _i2.Uint8List? blob;
+  @override
+  final String? foo;
 
   factory _$HttpPayloadTraitsWithMediaTypeInputOutput(
           [void Function(HttpPayloadTraitsWithMediaTypeInputOutputBuilder)?
@@ -19,7 +19,7 @@ class _$HttpPayloadTraitsWithMediaTypeInputOutput
       (new HttpPayloadTraitsWithMediaTypeInputOutputBuilder()..update(updates))
           ._build();
 
-  _$HttpPayloadTraitsWithMediaTypeInputOutput._({this.foo, this.blob})
+  _$HttpPayloadTraitsWithMediaTypeInputOutput._({this.blob, this.foo})
       : super._();
 
   @override
@@ -36,15 +36,15 @@ class _$HttpPayloadTraitsWithMediaTypeInputOutput
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is HttpPayloadTraitsWithMediaTypeInputOutput &&
-        foo == other.foo &&
-        blob == other.blob;
+        blob == other.blob &&
+        foo == other.foo;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, foo.hashCode);
     _$hash = $jc(_$hash, blob.hashCode);
+    _$hash = $jc(_$hash, foo.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -56,21 +56,23 @@ class HttpPayloadTraitsWithMediaTypeInputOutputBuilder
             HttpPayloadTraitsWithMediaTypeInputOutputBuilder> {
   _$HttpPayloadTraitsWithMediaTypeInputOutput? _$v;
 
-  String? _foo;
-  String? get foo => _$this._foo;
-  set foo(String? foo) => _$this._foo = foo;
-
   _i2.Uint8List? _blob;
   _i2.Uint8List? get blob => _$this._blob;
   set blob(_i2.Uint8List? blob) => _$this._blob = blob;
 
-  HttpPayloadTraitsWithMediaTypeInputOutputBuilder();
+  String? _foo;
+  String? get foo => _$this._foo;
+  set foo(String? foo) => _$this._foo = foo;
+
+  HttpPayloadTraitsWithMediaTypeInputOutputBuilder() {
+    HttpPayloadTraitsWithMediaTypeInputOutput._init(this);
+  }
 
   HttpPayloadTraitsWithMediaTypeInputOutputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _foo = $v.foo;
       _blob = $v.blob;
+      _foo = $v.foo;
       _$v = null;
     }
     return this;
@@ -94,7 +96,7 @@ class HttpPayloadTraitsWithMediaTypeInputOutputBuilder
 
   _$HttpPayloadTraitsWithMediaTypeInputOutput _build() {
     final _$result = _$v ??
-        new _$HttpPayloadTraitsWithMediaTypeInputOutput._(foo: foo, blob: blob);
+        new _$HttpPayloadTraitsWithMediaTypeInputOutput._(blob: blob, foo: foo);
     replace(_$result);
     return _$result;
   }

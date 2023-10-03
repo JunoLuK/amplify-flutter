@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'http_prefix_headers_in_response_output.dart';
+part of rest_json1_v2.rest_json_protocol.model.http_prefix_headers_in_response_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -55,7 +55,9 @@ class HttpPrefixHeadersInResponseOutputBuilder
   set prefixHeaders(_i3.MapBuilder<String, String>? prefixHeaders) =>
       _$this._prefixHeaders = prefixHeaders;
 
-  HttpPrefixHeadersInResponseOutputBuilder();
+  HttpPrefixHeadersInResponseOutputBuilder() {
+    HttpPrefixHeadersInResponseOutput._init(this);
+  }
 
   HttpPrefixHeadersInResponseOutputBuilder get _$this {
     final $v = _$v;
@@ -141,7 +143,9 @@ class HttpPrefixHeadersInResponseOutputPayloadBuilder
             HttpPrefixHeadersInResponseOutputPayloadBuilder> {
   _$HttpPrefixHeadersInResponseOutputPayload? _$v;
 
-  HttpPrefixHeadersInResponseOutputPayloadBuilder();
+  HttpPrefixHeadersInResponseOutputPayloadBuilder() {
+    HttpPrefixHeadersInResponseOutputPayload._init(this);
+  }
 
   @override
   void replace(HttpPrefixHeadersInResponseOutputPayload other) {

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'error.dart';
+part of amplify_storage_s3_dart.s3.model.error;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,18 +8,18 @@ part of 'error.dart';
 
 class _$Error extends Error {
   @override
-  final String? key;
-  @override
-  final String? versionId;
-  @override
   final String? code;
   @override
+  final String? key;
+  @override
   final String? message;
+  @override
+  final String? versionId;
 
   factory _$Error([void Function(ErrorBuilder)? updates]) =>
       (new ErrorBuilder()..update(updates))._build();
 
-  _$Error._({this.key, this.versionId, this.code, this.message}) : super._();
+  _$Error._({this.code, this.key, this.message, this.versionId}) : super._();
 
   @override
   Error rebuild(void Function(ErrorBuilder) updates) =>
@@ -32,19 +32,19 @@ class _$Error extends Error {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is Error &&
-        key == other.key &&
-        versionId == other.versionId &&
         code == other.code &&
-        message == other.message;
+        key == other.key &&
+        message == other.message &&
+        versionId == other.versionId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, key.hashCode);
-    _$hash = $jc(_$hash, versionId.hashCode);
     _$hash = $jc(_$hash, code.hashCode);
+    _$hash = $jc(_$hash, key.hashCode);
     _$hash = $jc(_$hash, message.hashCode);
+    _$hash = $jc(_$hash, versionId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -53,31 +53,33 @@ class _$Error extends Error {
 class ErrorBuilder implements Builder<Error, ErrorBuilder> {
   _$Error? _$v;
 
-  String? _key;
-  String? get key => _$this._key;
-  set key(String? key) => _$this._key = key;
-
-  String? _versionId;
-  String? get versionId => _$this._versionId;
-  set versionId(String? versionId) => _$this._versionId = versionId;
-
   String? _code;
   String? get code => _$this._code;
   set code(String? code) => _$this._code = code;
+
+  String? _key;
+  String? get key => _$this._key;
+  set key(String? key) => _$this._key = key;
 
   String? _message;
   String? get message => _$this._message;
   set message(String? message) => _$this._message = message;
 
-  ErrorBuilder();
+  String? _versionId;
+  String? get versionId => _$this._versionId;
+  set versionId(String? versionId) => _$this._versionId = versionId;
+
+  ErrorBuilder() {
+    Error._init(this);
+  }
 
   ErrorBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _key = $v.key;
-      _versionId = $v.versionId;
       _code = $v.code;
+      _key = $v.key;
       _message = $v.message;
+      _versionId = $v.versionId;
       _$v = null;
     }
     return this;
@@ -100,7 +102,7 @@ class ErrorBuilder implements Builder<Error, ErrorBuilder> {
   _$Error _build() {
     final _$result = _$v ??
         new _$Error._(
-            key: key, versionId: versionId, code: code, message: message);
+            code: code, key: key, message: message, versionId: versionId);
     replace(_$result);
     return _$result;
   }

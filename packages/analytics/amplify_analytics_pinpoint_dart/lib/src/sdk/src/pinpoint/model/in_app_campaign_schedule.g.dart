@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'in_app_campaign_schedule.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.in_app_campaign_schedule;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -10,9 +10,9 @@ class _$InAppCampaignSchedule extends InAppCampaignSchedule {
   @override
   final String? endDate;
   @override
-  final CampaignEventFilter? eventFilter;
+  final _i2.CampaignEventFilter? eventFilter;
   @override
-  final QuietTime? quietTime;
+  final _i3.QuietTime? quietTime;
 
   factory _$InAppCampaignSchedule(
           [void Function(InAppCampaignScheduleBuilder)? updates]) =>
@@ -58,18 +58,21 @@ class InAppCampaignScheduleBuilder
   String? get endDate => _$this._endDate;
   set endDate(String? endDate) => _$this._endDate = endDate;
 
-  CampaignEventFilterBuilder? _eventFilter;
-  CampaignEventFilterBuilder get eventFilter =>
-      _$this._eventFilter ??= new CampaignEventFilterBuilder();
-  set eventFilter(CampaignEventFilterBuilder? eventFilter) =>
+  _i2.CampaignEventFilterBuilder? _eventFilter;
+  _i2.CampaignEventFilterBuilder get eventFilter =>
+      _$this._eventFilter ??= new _i2.CampaignEventFilterBuilder();
+  set eventFilter(_i2.CampaignEventFilterBuilder? eventFilter) =>
       _$this._eventFilter = eventFilter;
 
-  QuietTimeBuilder? _quietTime;
-  QuietTimeBuilder get quietTime =>
-      _$this._quietTime ??= new QuietTimeBuilder();
-  set quietTime(QuietTimeBuilder? quietTime) => _$this._quietTime = quietTime;
+  _i3.QuietTimeBuilder? _quietTime;
+  _i3.QuietTimeBuilder get quietTime =>
+      _$this._quietTime ??= new _i3.QuietTimeBuilder();
+  set quietTime(_i3.QuietTimeBuilder? quietTime) =>
+      _$this._quietTime = quietTime;
 
-  InAppCampaignScheduleBuilder();
+  InAppCampaignScheduleBuilder() {
+    InAppCampaignSchedule._init(this);
+  }
 
   InAppCampaignScheduleBuilder get _$this {
     final $v = _$v;

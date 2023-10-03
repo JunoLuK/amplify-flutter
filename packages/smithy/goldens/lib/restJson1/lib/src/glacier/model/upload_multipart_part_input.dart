@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.glacier.model.upload_multipart_part_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -21,19 +20,19 @@ abstract class UploadMultipartPartInput
         _i1.HasPayload<_i2.Stream<List<int>>> {
   factory UploadMultipartPartInput({
     required String accountId,
-    required String vaultName,
-    required String uploadId,
+    _i2.Stream<List<int>>? body,
     String? checksum,
     String? range,
-    _i2.Stream<List<int>>? body,
+    required String uploadId,
+    required String vaultName,
   }) {
     return _$UploadMultipartPartInput._(
       accountId: accountId,
-      vaultName: vaultName,
-      uploadId: uploadId,
+      body: body,
       checksum: checksum,
       range: range,
-      body: body,
+      uploadId: uploadId,
+      vaultName: vaultName,
     );
   }
 
@@ -67,15 +66,18 @@ abstract class UploadMultipartPartInput
         }
       });
 
-  static const List<_i1.SmithySerializer<_i2.Stream<List<int>>?>> serializers =
-      [UploadMultipartPartInputRestJson1Serializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    UploadMultipartPartInputRestJson1Serializer()
+  ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(UploadMultipartPartInputBuilder b) {}
   String get accountId;
-  String get vaultName;
-  String get uploadId;
+  _i2.Stream<List<int>>? get body;
   String? get checksum;
   String? get range;
-  _i2.Stream<List<int>>? get body;
+  String get uploadId;
+  String get vaultName;
   @override
   String labelFor(String key) {
     switch (key) {
@@ -97,39 +99,39 @@ abstract class UploadMultipartPartInput
   @override
   List<Object?> get props => [
         accountId,
-        vaultName,
-        uploadId,
+        body,
         checksum,
         range,
-        body,
+        uploadId,
+        vaultName,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('UploadMultipartPartInput')
-      ..add(
-        'accountId',
-        accountId,
-      )
-      ..add(
-        'vaultName',
-        vaultName,
-      )
-      ..add(
-        'uploadId',
-        uploadId,
-      )
-      ..add(
-        'checksum',
-        checksum,
-      )
-      ..add(
-        'range',
-        range,
-      )
-      ..add(
-        'body',
-        body,
-      );
+    final helper = newBuiltValueToStringHelper('UploadMultipartPartInput');
+    helper.add(
+      'accountId',
+      accountId,
+    );
+    helper.add(
+      'body',
+      body,
+    );
+    helper.add(
+      'checksum',
+      checksum,
+    );
+    helper.add(
+      'range',
+      range,
+    );
+    helper.add(
+      'uploadId',
+      uploadId,
+    );
+    helper.add(
+      'vaultName',
+      vaultName,
+    );
     return helper.toString();
   }
 }
@@ -174,11 +176,14 @@ class UploadMultipartPartInputRestJson1Serializer
   @override
   Object serialize(
     Serializers serializers,
-    _i2.Stream<List<int>> object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return serializers.serialize(
-      object,
+    final payload = object is UploadMultipartPartInput
+        ? object.getPayload()
+        : (object as _i2.Stream<List<int>>?);
+    return (serializers.serialize(
+      payload!,
       specifiedType: const FullType(
         _i2.Stream,
         [
@@ -188,6 +193,6 @@ class UploadMultipartPartInputRestJson1Serializer
           )
         ],
       ),
-    )!;
+    ) as Object);
   }
 }

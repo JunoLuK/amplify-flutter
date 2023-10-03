@@ -105,43 +105,33 @@ class _AmplifyElevatedButtonState
   Widget build(BuildContext context) {
     final buttonResolver = stringResolver.buttons;
     final loadingIndicator = widget.loadingIndicator;
-    final onPressed =
-        state.isBusy ? null : () => widget.onPressed(context, state);
-    final child = state.isBusy && loadingIndicator != null
-        ? loadingIndicator
-        : Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (widget.leading != null) widget.leading!,
-              Flexible(
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    buttonResolver.resolve(
-                      context,
-                      widget.labelKey,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              if (widget.trailing != null) widget.trailing!,
-            ].spacedBy(const SizedBox(width: 10)),
-          );
-    final useMaterial3 = Theme.of(context).useMaterial3;
     return SizedBox(
       width: double.infinity,
-      child: useMaterial3
-          ? FilledButton(
-              focusNode: focusNode,
-              onPressed: onPressed,
-              child: child,
-            )
-          : ElevatedButton(
-              focusNode: focusNode,
-              onPressed: onPressed,
-              child: child,
-            ),
+      child: ElevatedButton(
+        focusNode: focusNode,
+        onPressed: state.isBusy ? null : () => widget.onPressed(context, state),
+        child: state.isBusy && loadingIndicator != null
+            ? loadingIndicator
+            : Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (widget.leading != null) widget.leading!,
+                  Flexible(
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        buttonResolver.resolve(
+                          context,
+                          widget.labelKey,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  if (widget.trailing != null) widget.trailing!,
+                ].spacedBy(const SizedBox(width: 10)),
+              ),
+      ),
     );
   }
 }
@@ -228,27 +218,6 @@ class ConfirmSignInCustomButton extends ConfirmSignInMFAButton {
   @override
   void onPressed(BuildContext context, AuthenticatorState state) =>
       state.confirmSignInCustomAuth();
-}
-
-/// {@category Prebuilt Widgets}
-/// {@template amplify_authenticator.continue_sign_in_mfa_selection_button}
-/// A prebuilt button for Sign In with MFA selection.
-///
-/// Uses [ButtonResolverKey.confirm] for localization
-/// {@endtemplate}
-class ContinueSignInMFASelectionButton extends AuthenticatorElevatedButton {
-  /// {@macro amplify_authenticator.continue_sign_in_mfa_selection_button}
-  const ContinueSignInMFASelectionButton({Key? key})
-      : super(
-          key: key ?? keyConfirmSignInMfaSelectionButton,
-        );
-
-  @override
-  ButtonResolverKey get labelKey => ButtonResolverKey.continueLabel;
-
-  @override
-  void onPressed(BuildContext context, AuthenticatorState state) =>
-      state.continueSignInWithMfaSelection();
 }
 
 /// {@category Prebuilt Widgets}

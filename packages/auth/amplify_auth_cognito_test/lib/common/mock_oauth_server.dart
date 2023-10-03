@@ -18,6 +18,7 @@ class _Request {
     required this.codeChallenge,
     required this.scope,
     required this.authCode,
+    this.nonce,
   });
 
   final String clientId;
@@ -26,6 +27,7 @@ class _Request {
   final String codeChallenge;
   final String scope;
   final String authCode;
+  final String? nonce;
 }
 
 const paramResponseType = 'response_type';
@@ -38,6 +40,7 @@ const paramCode = 'code';
 const paramCodeChallenge = 'code_challenge';
 const paramCodeChallengeMethod = 'code_challenge_method';
 const paramCodeVerifier = 'code_verifier';
+const paramNonce = 'nonce';
 const paramUsername = 'username';
 const paramPassword = 'password';
 const paramRefreshToken = 'refresh_token';
@@ -92,7 +95,10 @@ class MockOAuthServer {
   final MockClientHandler? _tokenHandler;
   late final MockClientHandler tokenHandler =
       _tokenHandler ?? createTokenHandler();
-  static MockClientHandler createTokenHandler() => (Request request) async {
+  static MockClientHandler createTokenHandler({
+    bool includeNonce = true,
+  }) =>
+      (Request request) async {
         final query = request.bodyFields;
 
         final code = query[paramCode];
@@ -128,6 +134,7 @@ class MockOAuthServer {
         final idToken = createJwt(
           type: TokenType.id,
           expiration: exp,
+          nonce: includeNonce ? session.nonce : null,
         );
         final response = <String, dynamic>{
           'token_type': 'bearer',
@@ -177,6 +184,7 @@ class MockOAuthServer {
     if (scope == null) {
       return _missingParameter(paramScope, state: state);
     }
+    final nonce = query[paramNonce];
 
     final authCode = generateState();
 
@@ -187,6 +195,7 @@ class MockOAuthServer {
       state: state,
       scope: scope,
       authCode: authCode,
+      nonce: nonce,
     );
 
     _pendingRequests[authCode] = session;

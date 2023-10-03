@@ -22,9 +22,8 @@ class FlutterDeviceContextInfoProvider implements DeviceContextInfoProvider {
     final appInfo = await _getAppInfo();
     final deviceInfo = await getDeviceInfo();
     return DeviceContextInfo(
-      countryCode:
-          WidgetsBinding.instance.platformDispatcher.locale.countryCode,
-      locale: WidgetsBinding.instance.platformDispatcher.locale.toString(),
+      countryCode: WidgetsBinding.instance.window.locale.countryCode,
+      locale: WidgetsBinding.instance.window.locale.toString(),
       appName: appInfo.appName,
       appPackageName: appInfo.packageName,
       appVersion: appInfo.version,

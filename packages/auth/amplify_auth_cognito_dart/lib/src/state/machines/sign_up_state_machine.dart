@@ -11,8 +11,7 @@ import 'package:amplify_core/amplify_core.dart';
 /// {@template amplify_auth_cognito.sign_up_state_machine}
 /// Manages user sign up with Cognito.
 /// {@endtemplate}
-final class SignUpStateMachine
-    extends AuthStateMachine<SignUpEvent, SignUpState> {
+class SignUpStateMachine extends AuthStateMachine<SignUpEvent, SignUpState> {
   /// {@macro amplify_auth_cognito.sign_up_state_machine}
   SignUpStateMachine(CognitoAuthStateMachine manager) : super(manager, type);
 
@@ -42,20 +41,24 @@ final class SignUpStateMachine
     return userPoolConfig;
   }
 
-  ASFContextDataProvider get _contextDataProvider => getOrCreate();
-
   @override
   Future<void> resolve(SignUpEvent event) async {
-    switch (event) {
-      case SignUpInitiate _:
+    switch (event.type) {
+      case SignUpEventType.initiate:
+        event as SignUpInitiate;
         emit(const SignUpState.initiating());
         await onInitiate(event);
-      case SignUpConfirm _:
+        break;
+      case SignUpEventType.confirm:
+        event as SignUpConfirm;
         emit(const SignUpState.confirming());
         await onConfirm(event);
-      case SignUpSucceeded(:final userId):
-        emit(SignUpState.success(userId: userId));
+        break;
+      case SignUpEventType.succeeded:
+        event as SignUpSucceeded;
+        emit(SignUpState.success(userId: event.userId));
         await onSucceeded(event);
+        break;
     }
   }
 
@@ -69,11 +72,6 @@ final class SignUpStateMachine
 
   /// State machine callback for the [SignUpInitiate] event.
   Future<void> onInitiate(SignUpInitiate event) async {
-    UserContextDataType? contextData;
-    final contextDataProvider = _contextDataProvider;
-    contextData = await contextDataProvider.buildRequestData(
-      event.parameters.username,
-    );
     final resp = await _cognito.signUp(
       SignUpRequest.build(
         (b) {
@@ -108,10 +106,6 @@ final class SignUpStateMachine
               clientSecret,
             );
           }
-
-          if (contextData != null) {
-            b.userContextData.replace(contextData);
-          }
         },
       ),
     ).result;
@@ -130,11 +124,6 @@ final class SignUpStateMachine
 
   /// State machine callback for the [SignUpConfirm] event.
   Future<void> onConfirm(SignUpConfirm event) async {
-    UserContextDataType? contextData;
-    final contextDataProvider = _contextDataProvider;
-    contextData = await contextDataProvider.buildRequestData(
-      event.username,
-    );
     await _cognito.confirmSignUp(
       ConfirmSignUpRequest.build((b) {
         b
@@ -151,10 +140,6 @@ final class SignUpStateMachine
             _userPoolConfig.appClientId,
             clientSecret,
           );
-        }
-
-        if (contextData != null) {
-          b.userContextData.replace(contextData);
         }
       }),
     ).result;

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'constant_and_variable_query_string_input.dart';
+part of rest_json1_v2.rest_json_protocol.model.constant_and_variable_query_string_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -63,7 +63,9 @@ class ConstantAndVariableQueryStringInputBuilder
   String? get maybeSet => _$this._maybeSet;
   set maybeSet(String? maybeSet) => _$this._maybeSet = maybeSet;
 
-  ConstantAndVariableQueryStringInputBuilder();
+  ConstantAndVariableQueryStringInputBuilder() {
+    ConstantAndVariableQueryStringInput._init(this);
+  }
 
   ConstantAndVariableQueryStringInputBuilder get _$this {
     final $v = _$v;
@@ -137,7 +139,9 @@ class ConstantAndVariableQueryStringInputPayloadBuilder
             ConstantAndVariableQueryStringInputPayloadBuilder> {
   _$ConstantAndVariableQueryStringInputPayload? _$v;
 
-  ConstantAndVariableQueryStringInputPayloadBuilder();
+  ConstantAndVariableQueryStringInputPayloadBuilder() {
+    ConstantAndVariableQueryStringInputPayload._init(this);
+  }
 
   @override
   void replace(ConstantAndVariableQueryStringInputPayload other) {

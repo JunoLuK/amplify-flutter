@@ -1,13 +1,11 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import 'dart:async';
 import 'dart:io';
 
 import 'package:aft/aft.dart';
 import 'package:aft/src/options/fail_fast_option.dart';
 import 'package:aft/src/options/glob_options.dart';
-import 'package:async/async.dart';
 
 /// Command to execute a given script in all packages.
 class ExecCommand extends AmplifyCommand with GlobOptions, FailFastOption {
@@ -47,7 +45,7 @@ class ExecCommand extends AmplifyCommand with GlobOptions, FailFastOption {
         'Running "${command.join(' ')}" in "${package.path}"...',
       );
       final result = await execCommand(
-        ['sh', '-c', command.join(' ')],
+        command,
         workingDirectory: package.path,
       );
       if (result.exitCode != 0) {
@@ -78,13 +76,6 @@ extension ExecCommandFn on AmplifyCommand {
       includeParentEnvironment: true,
       environment: environment,
       workingDirectory: workingDirectory,
-      runInShell: true,
-    );
-    unawaited(
-      StreamGroup.merge([
-        ProcessSignal.sigint.watch(),
-        if (!Platform.isWindows) ProcessSignal.sigterm.watch(),
-      ]).first.then(proc.kill),
     );
     return ProcessResult(proc.pid, await proc.exitCode, null, null);
   }

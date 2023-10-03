@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'invalid_greeting.dart';
+part of aws_json1_0_v1.json_rpc_10.model.invalid_greeting;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -59,7 +59,9 @@ class InvalidGreetingBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  InvalidGreetingBuilder();
+  InvalidGreetingBuilder() {
+    InvalidGreeting._init(this);
+  }
 
   InvalidGreetingBuilder get _$this {
     final $v = _$v;

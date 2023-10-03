@@ -1,13 +1,13 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_protocol.model.test_body_structure_input_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i3;
-import 'package:rest_json1_v2/src/rest_json_protocol/model/test_config.dart';
+import 'package:meta/meta.dart' as _i4;
+import 'package:rest_json1_v2/src/rest_json_protocol/model/test_config.dart'
+    as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'test_body_structure_input_output.g.dart';
@@ -21,12 +21,12 @@ abstract class TestBodyStructureInputOutput
             TestBodyStructureInputOutputBuilder>,
         _i1.HasPayload<TestBodyStructureInputOutputPayload> {
   factory TestBodyStructureInputOutput({
+    _i3.TestConfig? testConfig,
     String? testId,
-    TestConfig? testConfig,
   }) {
     return _$TestBodyStructureInputOutput._(
-      testId: testId,
       testConfig: testConfig,
+      testId: testId,
     );
   }
 
@@ -64,11 +64,14 @@ abstract class TestBodyStructureInputOutput
         }
       });
 
-  static const List<_i1.SmithySerializer<TestBodyStructureInputOutputPayload>>
-      serializers = [TestBodyStructureInputOutputRestJson1Serializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    TestBodyStructureInputOutputRestJson1Serializer()
+  ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(TestBodyStructureInputOutputBuilder b) {}
+  _i3.TestConfig? get testConfig;
   String? get testId;
-  TestConfig? get testConfig;
   @override
   TestBodyStructureInputOutputPayload getPayload() =>
       TestBodyStructureInputOutputPayload((b) {
@@ -78,25 +81,25 @@ abstract class TestBodyStructureInputOutput
       });
   @override
   List<Object?> get props => [
-        testId,
         testConfig,
+        testId,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('TestBodyStructureInputOutput')
-      ..add(
-        'testId',
-        testId,
-      )
-      ..add(
-        'testConfig',
-        testConfig,
-      );
+    final helper = newBuiltValueToStringHelper('TestBodyStructureInputOutput');
+    helper.add(
+      'testConfig',
+      testConfig,
+    );
+    helper.add(
+      'testId',
+      testId,
+    );
     return helper.toString();
   }
 }
 
-@_i3.internal
+@_i4.internal
 abstract class TestBodyStructureInputOutputPayload
     with
         _i2.AWSEquatable<TestBodyStructureInputOutputPayload>
@@ -109,17 +112,19 @@ abstract class TestBodyStructureInputOutputPayload
 
   const TestBodyStructureInputOutputPayload._();
 
-  TestConfig? get testConfig;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(TestBodyStructureInputOutputPayloadBuilder b) {}
+  _i3.TestConfig? get testConfig;
   @override
   List<Object?> get props => [testConfig];
   @override
   String toString() {
     final helper =
-        newBuiltValueToStringHelper('TestBodyStructureInputOutputPayload')
-          ..add(
-            'testConfig',
-            testConfig,
-          );
+        newBuiltValueToStringHelper('TestBodyStructureInputOutputPayload');
+    helper.add(
+      'testConfig',
+      testConfig,
+    );
     return helper.toString();
   }
 }
@@ -155,15 +160,15 @@ class TestBodyStructureInputOutputRestJson1Serializer extends _i1
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'testConfig':
-          result.testConfig.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(TestConfig),
-          ) as TestConfig));
+          if (value != null) {
+            result.testConfig.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i3.TestConfig),
+            ) as _i3.TestConfig));
+          }
+          break;
       }
     }
 
@@ -173,19 +178,21 @@ class TestBodyStructureInputOutputRestJson1Serializer extends _i1
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    TestBodyStructureInputOutputPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final TestBodyStructureInputOutputPayload(:testConfig) = object;
-    if (testConfig != null) {
-      result$
+    final payload = object is TestBodyStructureInputOutput
+        ? object.getPayload()
+        : (object as TestBodyStructureInputOutputPayload);
+    final result = <Object?>[];
+    if (payload.testConfig != null) {
+      result
         ..add('testConfig')
         ..add(serializers.serialize(
-          testConfig,
-          specifiedType: const FullType(TestConfig),
+          payload.testConfig!,
+          specifiedType: const FullType(_i3.TestConfig),
         ));
     }
-    return result$;
+    return result;
   }
 }

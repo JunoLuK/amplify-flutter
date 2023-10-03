@@ -10,33 +10,27 @@ class EncodedJsonObjectSerializer implements PrimitiveSerializer<JsonObject> {
   const EncodedJsonObjectSerializer();
 
   @override
-  Iterable<Type> get types => const [
-        JsonObject,
-        BoolJsonObject,
-        ListJsonObject,
-        MapJsonObject,
-        NumJsonObject,
-        StringJsonObject,
-      ];
+  final Iterable<Type> types = const [
+    JsonObject,
+    BoolJsonObject,
+    ListJsonObject,
+    MapJsonObject,
+    NumJsonObject,
+    StringJsonObject,
+  ];
 
   @override
-  String get wireName => 'JsonObject';
+  final String wireName = 'JsonObject';
 
   @override
-  Object serialize(
-    Serializers serializers,
-    JsonObject jsonObject, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
+  Object serialize(Serializers serializers, JsonObject jsonObject,
+      {FullType specifiedType = FullType.unspecified}) {
     return jsonEncode(jsonObject.value);
   }
 
   @override
-  JsonObject deserialize(
-    Serializers serializers,
-    Object? serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
+  JsonObject deserialize(Serializers serializers, Object? serialized,
+      {FullType specifiedType = FullType.unspecified}) {
     serialized as String?;
     Object? decoded;
     if (serialized != null) {

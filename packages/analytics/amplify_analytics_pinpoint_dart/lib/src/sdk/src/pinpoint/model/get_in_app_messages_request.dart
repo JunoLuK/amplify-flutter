@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_analytics_pinpoint_dart.pinpoint.model.get_in_app_messages_request; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -49,8 +48,12 @@ abstract class GetInAppMessagesRequest
         }
       });
 
-  static const List<_i1.SmithySerializer<GetInAppMessagesRequestPayload>>
-      serializers = [GetInAppMessagesRequestRestJson1Serializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    GetInAppMessagesRequestRestJson1Serializer()
+  ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(GetInAppMessagesRequestBuilder b) {}
 
   /// The unique identifier for the application. This identifier is displayed as the **Project ID** on the Amazon Pinpoint console.
   String get applicationId;
@@ -81,15 +84,15 @@ abstract class GetInAppMessagesRequest
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('GetInAppMessagesRequest')
-      ..add(
-        'applicationId',
-        applicationId,
-      )
-      ..add(
-        'endpointId',
-        endpointId,
-      );
+    final helper = newBuiltValueToStringHelper('GetInAppMessagesRequest');
+    helper.add(
+      'applicationId',
+      applicationId,
+    );
+    helper.add(
+      'endpointId',
+      endpointId,
+    );
     return helper.toString();
   }
 }
@@ -108,6 +111,8 @@ abstract class GetInAppMessagesRequestPayload
 
   const GetInAppMessagesRequestPayload._();
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(GetInAppMessagesRequestPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
   @override
@@ -149,7 +154,7 @@ class GetInAppMessagesRequestRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    GetInAppMessagesRequestPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) =>
       const <Object?>[];

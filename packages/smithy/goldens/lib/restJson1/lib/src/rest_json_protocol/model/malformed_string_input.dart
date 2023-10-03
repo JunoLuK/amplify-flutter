@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.rest_json_protocol.model.malformed_string_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -45,9 +44,12 @@ abstract class MalformedStringInput
         }
       });
 
-  static const List<_i1.SmithySerializer<MalformedStringInputPayload>>
-      serializers = [MalformedStringInputRestJson1Serializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    MalformedStringInputRestJson1Serializer()
+  ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedStringInputBuilder b) {}
   _i3.JsonObject? get blob;
   @override
   MalformedStringInputPayload getPayload() => MalformedStringInputPayload();
@@ -55,11 +57,11 @@ abstract class MalformedStringInput
   List<Object?> get props => [blob];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('MalformedStringInput')
-      ..add(
-        'blob',
-        blob,
-      );
+    final helper = newBuiltValueToStringHelper('MalformedStringInput');
+    helper.add(
+      'blob',
+      blob,
+    );
     return helper.toString();
   }
 }
@@ -76,6 +78,8 @@ abstract class MalformedStringInputPayload
 
   const MalformedStringInputPayload._();
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedStringInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
   @override
@@ -116,7 +120,7 @@ class MalformedStringInputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    MalformedStringInputPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) =>
       const <Object?>[];

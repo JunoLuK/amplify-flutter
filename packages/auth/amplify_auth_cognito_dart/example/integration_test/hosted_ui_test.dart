@@ -63,7 +63,7 @@ void main() {
 
           logger.debug('Creating user $username...');
           await adminCreateUser(username, password, autoConfirm: true);
-          addTearDown(() => adminDeleteUser(username));
+          addTearDown(() => deleteUser(username));
 
           driver = await createWebDriver();
           addTearDown(driver.quit);

@@ -40,13 +40,9 @@ class WorkerHiveGenerator extends GeneratorForAnnotation<WorkerHive> {
               {
                 for (final workerType in workers)
                   workerType.getDisplayString(withNullability: false):
-                      Block.of([
-                    (workerType.accept(_symbolVisitor) as TypeReference)
-                        .rebuild((t) => t.isNullable = false)
-                        .property('create')
-                        .code,
-                    if (workers.length == 1) const Code(','),
-                  ]),
+                      (workerType.accept(_symbolVisitor) as TypeReference)
+                          .rebuild((t) => t.isNullable = false)
+                          .property('create')
               },
               refer('String'),
               DartTypes.workerBee.workerBeeBuilder,
@@ -58,7 +54,7 @@ class WorkerHiveGenerator extends GeneratorForAnnotation<WorkerHive> {
             ..body = DartTypes.workerBee.runHive.call([
               refer('_workers'),
             ]).code,
-        ),
+        )
       ]);
     });
 

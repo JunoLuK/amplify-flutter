@@ -1,3 +1,0 @@
-on_platform:
-  node:
-    chain_stack_traces: true

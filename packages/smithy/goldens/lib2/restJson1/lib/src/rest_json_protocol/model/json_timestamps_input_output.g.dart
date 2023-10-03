@@ -1,14 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'json_timestamps_input_output.dart';
+part of rest_json1_v2.rest_json_protocol.model.json_timestamps_input_output;
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
 class _$JsonTimestampsInputOutput extends JsonTimestampsInputOutput {
-  @override
-  final DateTime? normal;
   @override
   final DateTime? dateTime;
   @override
@@ -21,19 +19,21 @@ class _$JsonTimestampsInputOutput extends JsonTimestampsInputOutput {
   final DateTime? httpDate;
   @override
   final DateTime? httpDateOnTarget;
+  @override
+  final DateTime? normal;
 
   factory _$JsonTimestampsInputOutput(
           [void Function(JsonTimestampsInputOutputBuilder)? updates]) =>
       (new JsonTimestampsInputOutputBuilder()..update(updates))._build();
 
   _$JsonTimestampsInputOutput._(
-      {this.normal,
-      this.dateTime,
+      {this.dateTime,
       this.dateTimeOnTarget,
       this.epochSeconds,
       this.epochSecondsOnTarget,
       this.httpDate,
-      this.httpDateOnTarget})
+      this.httpDateOnTarget,
+      this.normal})
       : super._();
 
   @override
@@ -49,25 +49,25 @@ class _$JsonTimestampsInputOutput extends JsonTimestampsInputOutput {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is JsonTimestampsInputOutput &&
-        normal == other.normal &&
         dateTime == other.dateTime &&
         dateTimeOnTarget == other.dateTimeOnTarget &&
         epochSeconds == other.epochSeconds &&
         epochSecondsOnTarget == other.epochSecondsOnTarget &&
         httpDate == other.httpDate &&
-        httpDateOnTarget == other.httpDateOnTarget;
+        httpDateOnTarget == other.httpDateOnTarget &&
+        normal == other.normal;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, normal.hashCode);
     _$hash = $jc(_$hash, dateTime.hashCode);
     _$hash = $jc(_$hash, dateTimeOnTarget.hashCode);
     _$hash = $jc(_$hash, epochSeconds.hashCode);
     _$hash = $jc(_$hash, epochSecondsOnTarget.hashCode);
     _$hash = $jc(_$hash, httpDate.hashCode);
     _$hash = $jc(_$hash, httpDateOnTarget.hashCode);
+    _$hash = $jc(_$hash, normal.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -77,10 +77,6 @@ class JsonTimestampsInputOutputBuilder
     implements
         Builder<JsonTimestampsInputOutput, JsonTimestampsInputOutputBuilder> {
   _$JsonTimestampsInputOutput? _$v;
-
-  DateTime? _normal;
-  DateTime? get normal => _$this._normal;
-  set normal(DateTime? normal) => _$this._normal = normal;
 
   DateTime? _dateTime;
   DateTime? get dateTime => _$this._dateTime;
@@ -110,18 +106,24 @@ class JsonTimestampsInputOutputBuilder
   set httpDateOnTarget(DateTime? httpDateOnTarget) =>
       _$this._httpDateOnTarget = httpDateOnTarget;
 
-  JsonTimestampsInputOutputBuilder();
+  DateTime? _normal;
+  DateTime? get normal => _$this._normal;
+  set normal(DateTime? normal) => _$this._normal = normal;
+
+  JsonTimestampsInputOutputBuilder() {
+    JsonTimestampsInputOutput._init(this);
+  }
 
   JsonTimestampsInputOutputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _normal = $v.normal;
       _dateTime = $v.dateTime;
       _dateTimeOnTarget = $v.dateTimeOnTarget;
       _epochSeconds = $v.epochSeconds;
       _epochSecondsOnTarget = $v.epochSecondsOnTarget;
       _httpDate = $v.httpDate;
       _httpDateOnTarget = $v.httpDateOnTarget;
+      _normal = $v.normal;
       _$v = null;
     }
     return this;
@@ -144,13 +146,13 @@ class JsonTimestampsInputOutputBuilder
   _$JsonTimestampsInputOutput _build() {
     final _$result = _$v ??
         new _$JsonTimestampsInputOutput._(
-            normal: normal,
             dateTime: dateTime,
             dateTimeOnTarget: dateTimeOnTarget,
             epochSeconds: epochSeconds,
             epochSecondsOnTarget: epochSecondsOnTarget,
             httpDate: httpDate,
-            httpDateOnTarget: httpDateOnTarget);
+            httpDateOnTarget: httpDateOnTarget,
+            normal: normal);
     replace(_$result);
     return _$result;
   }

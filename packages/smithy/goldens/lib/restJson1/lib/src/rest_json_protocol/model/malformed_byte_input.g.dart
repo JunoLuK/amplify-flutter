@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'malformed_byte_input.dart';
+part of rest_json1_v1.rest_json_protocol.model.malformed_byte_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -10,11 +10,11 @@ class _$MalformedByteInput extends MalformedByteInput {
   @override
   final int? byteInBody;
   @override
+  final int? byteInHeader;
+  @override
   final int byteInPath;
   @override
   final int? byteInQuery;
-  @override
-  final int? byteInHeader;
 
   factory _$MalformedByteInput(
           [void Function(MalformedByteInputBuilder)? updates]) =>
@@ -22,9 +22,9 @@ class _$MalformedByteInput extends MalformedByteInput {
 
   _$MalformedByteInput._(
       {this.byteInBody,
+      this.byteInHeader,
       required this.byteInPath,
-      this.byteInQuery,
-      this.byteInHeader})
+      this.byteInQuery})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         byteInPath, r'MalformedByteInput', 'byteInPath');
@@ -44,18 +44,18 @@ class _$MalformedByteInput extends MalformedByteInput {
     if (identical(other, this)) return true;
     return other is MalformedByteInput &&
         byteInBody == other.byteInBody &&
+        byteInHeader == other.byteInHeader &&
         byteInPath == other.byteInPath &&
-        byteInQuery == other.byteInQuery &&
-        byteInHeader == other.byteInHeader;
+        byteInQuery == other.byteInQuery;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, byteInBody.hashCode);
+    _$hash = $jc(_$hash, byteInHeader.hashCode);
     _$hash = $jc(_$hash, byteInPath.hashCode);
     _$hash = $jc(_$hash, byteInQuery.hashCode);
-    _$hash = $jc(_$hash, byteInHeader.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -69,6 +69,10 @@ class MalformedByteInputBuilder
   int? get byteInBody => _$this._byteInBody;
   set byteInBody(int? byteInBody) => _$this._byteInBody = byteInBody;
 
+  int? _byteInHeader;
+  int? get byteInHeader => _$this._byteInHeader;
+  set byteInHeader(int? byteInHeader) => _$this._byteInHeader = byteInHeader;
+
   int? _byteInPath;
   int? get byteInPath => _$this._byteInPath;
   set byteInPath(int? byteInPath) => _$this._byteInPath = byteInPath;
@@ -77,19 +81,17 @@ class MalformedByteInputBuilder
   int? get byteInQuery => _$this._byteInQuery;
   set byteInQuery(int? byteInQuery) => _$this._byteInQuery = byteInQuery;
 
-  int? _byteInHeader;
-  int? get byteInHeader => _$this._byteInHeader;
-  set byteInHeader(int? byteInHeader) => _$this._byteInHeader = byteInHeader;
-
-  MalformedByteInputBuilder();
+  MalformedByteInputBuilder() {
+    MalformedByteInput._init(this);
+  }
 
   MalformedByteInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _byteInBody = $v.byteInBody;
+      _byteInHeader = $v.byteInHeader;
       _byteInPath = $v.byteInPath;
       _byteInQuery = $v.byteInQuery;
-      _byteInHeader = $v.byteInHeader;
       _$v = null;
     }
     return this;
@@ -113,10 +115,10 @@ class MalformedByteInputBuilder
     final _$result = _$v ??
         new _$MalformedByteInput._(
             byteInBody: byteInBody,
+            byteInHeader: byteInHeader,
             byteInPath: BuiltValueNullFieldError.checkNotNull(
                 byteInPath, r'MalformedByteInput', 'byteInPath'),
-            byteInQuery: byteInQuery,
-            byteInHeader: byteInHeader);
+            byteInQuery: byteInQuery);
     replace(_$result);
     return _$result;
   }
@@ -165,7 +167,9 @@ class MalformedByteInputPayloadBuilder
   int? get byteInBody => _$this._byteInBody;
   set byteInBody(int? byteInBody) => _$this._byteInBody = byteInBody;
 
-  MalformedByteInputPayloadBuilder();
+  MalformedByteInputPayloadBuilder() {
+    MalformedByteInputPayload._init(this);
+  }
 
   MalformedByteInputPayloadBuilder get _$this {
     final $v = _$v;

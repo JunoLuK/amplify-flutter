@@ -1,13 +1,12 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v1.rest_xml_protocol.model.nested_xml_maps_input_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i2;
-import 'package:built_collection/built_collection.dart' as _i3;
+import 'package:built_collection/built_collection.dart' as _i4;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_xml_v1/src/rest_xml_protocol/model/foo_enum.dart';
+import 'package:rest_xml_v1/src/rest_xml_protocol/model/foo_enum.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'nested_xml_maps_input_output.g.dart';
@@ -19,29 +18,29 @@ abstract class NestedXmlMapsInputOutput
     implements
         Built<NestedXmlMapsInputOutput, NestedXmlMapsInputOutputBuilder> {
   factory NestedXmlMapsInputOutput({
-    Map<String, Map<String, FooEnum>>? nestedMap,
-    Map<String, Map<String, FooEnum>>? flatNestedMap,
+    Map<String, Map<String, _i3.FooEnum>>? flatNestedMap,
+    Map<String, Map<String, _i3.FooEnum>>? nestedMap,
   }) {
     return _$NestedXmlMapsInputOutput._(
-      nestedMap: nestedMap == null
-          ? null
-          : _i3.BuiltMap(nestedMap.map((
-              key,
-              value,
-            ) =>
-              MapEntry(
-                key,
-                _i3.BuiltMap(value),
-              ))),
       flatNestedMap: flatNestedMap == null
           ? null
-          : _i3.BuiltMap(flatNestedMap.map((
+          : _i4.BuiltMap(flatNestedMap.map((
               key,
               value,
             ) =>
               MapEntry(
                 key,
-                _i3.BuiltMap(value),
+                _i4.BuiltMap(value),
+              ))),
+      nestedMap: nestedMap == null
+          ? null
+          : _i4.BuiltMap(nestedMap.map((
+              key,
+              value,
+            ) =>
+              MapEntry(
+                key,
+                _i4.BuiltMap(value),
               ))),
     );
   }
@@ -66,29 +65,32 @@ abstract class NestedXmlMapsInputOutput
   ) =>
       payload;
 
-  static const List<_i1.SmithySerializer<NestedXmlMapsInputOutput>>
-      serializers = [NestedXmlMapsInputOutputRestXmlSerializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    NestedXmlMapsInputOutputRestXmlSerializer()
+  ];
 
-  _i3.BuiltMap<String, _i3.BuiltMap<String, FooEnum>>? get nestedMap;
-  _i3.BuiltMap<String, _i3.BuiltMap<String, FooEnum>>? get flatNestedMap;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(NestedXmlMapsInputOutputBuilder b) {}
+  _i4.BuiltMap<String, _i4.BuiltMap<String, _i3.FooEnum>>? get flatNestedMap;
+  _i4.BuiltMap<String, _i4.BuiltMap<String, _i3.FooEnum>>? get nestedMap;
   @override
   NestedXmlMapsInputOutput getPayload() => this;
   @override
   List<Object?> get props => [
-        nestedMap,
         flatNestedMap,
+        nestedMap,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('NestedXmlMapsInputOutput')
-      ..add(
-        'nestedMap',
-        nestedMap,
-      )
-      ..add(
-        'flatNestedMap',
-        flatNestedMap,
-      );
+    final helper = newBuiltValueToStringHelper('NestedXmlMapsInputOutput');
+    helper.add(
+      'flatNestedMap',
+      flatNestedMap,
+    );
+    helper.add(
+      'nestedMap',
+      nestedMap,
+    );
     return helper.toString();
   }
 }
@@ -119,54 +121,57 @@ class NestedXmlMapsInputOutputRestXmlSerializer
     final result = NestedXmlMapsInputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'flatNestedMap':
-          result.flatNestedMap.addAll(
-              const _i1.XmlBuiltMapSerializer(flattenedKey: 'flatNestedMap')
-                  .deserialize(
-                    serializers,
-                    value is String ? const [] : (value as Iterable<Object?>),
-                    specifiedType: const FullType(
-                      _i3.BuiltMap,
-                      [
-                        FullType(String),
-                        FullType(
-                          _i3.BuiltMap,
-                          [
-                            FullType(String),
-                            FullType(FooEnum),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
-                  .toMap()
-                  .cast());
+          if (value != null) {
+            result.flatNestedMap.addAll(
+                const _i1.XmlBuiltMapSerializer(flattenedKey: 'flatNestedMap')
+                    .deserialize(
+                      serializers,
+                      (value as Iterable<Object?>),
+                      specifiedType: const FullType(
+                        _i4.BuiltMap,
+                        [
+                          FullType(String),
+                          FullType(
+                            _i4.BuiltMap,
+                            [
+                              FullType(String),
+                              FullType(_i3.FooEnum),
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
+                    .toMap()
+                    .cast());
+          }
+          break;
         case 'nestedMap':
-          result.nestedMap
-              .replace(const _i1.XmlBuiltMapSerializer().deserialize(
-            serializers,
-            value is String ? const [] : (value as Iterable<Object?>),
-            specifiedType: const FullType(
-              _i3.BuiltMap,
-              [
-                FullType(String),
-                FullType(
-                  _i3.BuiltMap,
-                  [
-                    FullType(String),
-                    FullType(FooEnum),
-                  ],
-                ),
-              ],
-            ),
-          ));
+          if (value != null) {
+            result.nestedMap
+                .replace(const _i1.XmlBuiltMapSerializer().deserialize(
+              serializers,
+              (value as Iterable<Object?>),
+              specifiedType: const FullType(
+                _i4.BuiltMap,
+                [
+                  FullType(String),
+                  FullType(
+                    _i4.BuiltMap,
+                    [
+                      FullType(String),
+                      FullType(_i3.FooEnum),
+                    ],
+                  ),
+                ],
+              ),
+            ));
+          }
+          break;
       }
     }
 
@@ -176,55 +181,55 @@ class NestedXmlMapsInputOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    NestedXmlMapsInputOutput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final payload = (object as NestedXmlMapsInputOutput);
+    final result = <Object?>[
       const _i1.XmlElementName('NestedXmlMapsInputOutput')
     ];
-    final NestedXmlMapsInputOutput(:flatNestedMap, :nestedMap) = object;
-    if (flatNestedMap != null) {
-      result$.addAll(
+    if (payload.flatNestedMap != null) {
+      result.addAll(
           const _i1.XmlBuiltMapSerializer(flattenedKey: 'flatNestedMap')
               .serialize(
         serializers,
-        flatNestedMap,
+        payload.flatNestedMap!,
         specifiedType: const FullType.nullable(
-          _i3.BuiltMap,
+          _i4.BuiltMap,
           [
             FullType(String),
             FullType(
-              _i3.BuiltMap,
+              _i4.BuiltMap,
               [
                 FullType(String),
-                FullType(FooEnum),
+                FullType(_i3.FooEnum),
               ],
             ),
           ],
         ),
       ));
     }
-    if (nestedMap != null) {
-      result$
+    if (payload.nestedMap != null) {
+      result
         ..add(const _i1.XmlElementName('nestedMap'))
         ..add(const _i1.XmlBuiltMapSerializer().serialize(
           serializers,
-          nestedMap,
+          payload.nestedMap!,
           specifiedType: const FullType.nullable(
-            _i3.BuiltMap,
+            _i4.BuiltMap,
             [
               FullType(String),
               FullType(
-                _i3.BuiltMap,
+                _i4.BuiltMap,
                 [
                   FullType(String),
-                  FullType(FooEnum),
+                  FullType(_i3.FooEnum),
                 ],
               ),
             ],
           ),
         ));
     }
-    return result$;
+    return result;
   }
 }

@@ -35,13 +35,7 @@ abstract class APIPluginInterface extends AmplifyPluginInterface {
   }
 
   /// Registers an [APIAuthProvider] with this plugin.
-  void registerAuthProvider(APIAuthProvider authProvider) {
-    authProviders[authProvider.type] = authProvider;
-  }
-
-  /// The registered [APIAuthProvider] instances.
-  @protected
-  final Map<APIAuthorizationType, APIAuthProvider> authProviders = {};
+  void registerAuthProvider(APIAuthProvider authProvider);
 
   // ====== RestAPI ======
   RestOperation delete(

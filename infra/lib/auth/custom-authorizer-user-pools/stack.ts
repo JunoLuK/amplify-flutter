@@ -87,7 +87,7 @@ export class CustomAuthorizerUserPoolsStackEnvironment extends IntegrationTestSt
       },
     });
 
-    this.saveConfig({
+    this.config = {
       apiConfig: {
         apis: {
           [apiGateway.restApiName]: {
@@ -107,6 +107,6 @@ export class CustomAuthorizerUserPoolsStackEnvironment extends IntegrationTestSt
           mfa,
         },
       },
-    });
+    };
   }
 }

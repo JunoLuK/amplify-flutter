@@ -1,12 +1,18 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+// ignore_for_file: public_member_api_docs
+
 import 'dart:async';
+import 'dart:io';
 
 import 'package:aws_common/aws_common.dart';
 import 'package:aws_common/src/http/aws_http_client_io.dart'
     if (dart.library.js) 'package:aws_common/src/http/aws_http_client_js.dart';
 import 'package:meta/meta.dart';
+
+typedef CustomSecurityContext = SecurityContext Function();
+typedef CustomHttpClient = HttpClient Function();
 
 /// {@template aws_common.http.aws_http_client}
 /// An HTTP client with support for HTTP/1.1, HTTP/2, and cancelable requests.
@@ -22,6 +28,17 @@ abstract class AWSHttpClient implements Closeable {
   @protected
   @internal
   AWSHttpClient.protected();
+
+  ///Add custom client to replace create for constructor class.
+  ///Use for add interceptor or certificate.
+
+  Future<SecurityContext> Function() globalSecurityContext = () async {
+    return SecurityContext();
+  };
+
+  Future<HttpClient> Function() customHttpClient = () async {
+    return HttpClient();
+  };
 
   /// Callback for VM clients when an SSL exception occurs due to an untrusted
   /// or unverifiable certificate.
@@ -131,8 +148,17 @@ abstract class AWSBaseHttpClient extends AWSCustomHttpClient {
     unawaited(
       operation.responseProgress.forward(responseProgressController),
     );
-    completer.completeOperation(
-      operation.operation.then(transformResponse),
+    // TODO(dnys1): Use `completeOperation` when available
+    operation.operation.then(
+      (resp) async {
+        try {
+          resp = await transformResponse(resp);
+          completer.complete(resp);
+        } on Object catch (e, st) {
+          completer.completeError(e, st);
+        }
+      },
+      onError: completer.completeError,
     );
     return operation;
   }
@@ -151,8 +177,11 @@ abstract class AWSBaseHttpClient extends AWSCustomHttpClient {
     final responseProgressController =
         StreamController<int>.broadcast(sync: true);
 
+    // TODO(dnys1): Use `completeOperation` when available
+    AWSHttpOperation? underlyingOperation;
     final completer = CancelableCompleter<AWSBaseHttpResponse>(
       onCancel: () {
+        underlyingOperation?.cancel();
         requestProgressController.close();
         responseProgressController.close();
         return onCancel?.call();
@@ -163,7 +192,7 @@ abstract class AWSBaseHttpClient extends AWSCustomHttpClient {
       completer,
       requestProgressController: requestProgressController,
       responseProgressController: responseProgressController,
-    );
+    ).then((op) => underlyingOperation = op);
     return AWSHttpOperation(
       completer.operation,
       requestProgress: requestProgressController.stream,

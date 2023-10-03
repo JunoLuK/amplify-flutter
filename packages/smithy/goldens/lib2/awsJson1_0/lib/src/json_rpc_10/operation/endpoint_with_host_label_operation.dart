@@ -1,20 +1,21 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library aws_json1_0_v2.json_rpc_10.operation.endpoint_with_host_label_operation; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'dart:async' as _i4;
+import 'dart:async' as _i7;
 
-import 'package:aws_common/aws_common.dart' as _i3;
-import 'package:aws_json1_0_v2/src/json_rpc_10/common/endpoint_resolver.dart';
-import 'package:aws_json1_0_v2/src/json_rpc_10/common/serializers.dart';
-import 'package:aws_json1_0_v2/src/json_rpc_10/model/endpoint_with_host_label_operation_input.dart';
+import 'package:aws_common/aws_common.dart' as _i6;
+import 'package:aws_json1_0_v2/src/json_rpc_10/common/endpoint_resolver.dart'
+    as _i5;
+import 'package:aws_json1_0_v2/src/json_rpc_10/common/serializers.dart' as _i4;
+import 'package:aws_json1_0_v2/src/json_rpc_10/model/endpoint_with_host_label_operation_input.dart'
+    as _i2;
 import 'package:smithy/smithy.dart' as _i1;
-import 'package:smithy_aws/smithy_aws.dart' as _i2;
+import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 class EndpointWithHostLabelOperation extends _i1.HttpOperation<
-    EndpointWithHostLabelOperationInput,
-    EndpointWithHostLabelOperationInput,
+    _i2.EndpointWithHostLabelOperationInput,
+    _i2.EndpointWithHostLabelOperationInput,
     _i1.Unit,
     _i1.Unit> {
   EndpointWithHostLabelOperation({
@@ -30,13 +31,13 @@ class EndpointWithHostLabelOperation extends _i1.HttpOperation<
   @override
   late final List<
       _i1.HttpProtocol<
-          EndpointWithHostLabelOperationInput,
-          EndpointWithHostLabelOperationInput,
+          _i2.EndpointWithHostLabelOperationInput,
+          _i2.EndpointWithHostLabelOperationInput,
           _i1.Unit,
           _i1.Unit>> protocols = [
-    _i2.AwsJson1_0Protocol(
-      serializers: serializers,
-      builderFactories: builderFactories,
+    _i3.AwsJson1_0Protocol(
+      serializers: _i4.serializers,
+      builderFactories: _i4.builderFactories,
       requestInterceptors: <_i1.HttpRequestInterceptor>[
             const _i1.WithHost(),
             const _i1.WithContentLength(),
@@ -45,8 +46,8 @@ class EndpointWithHostLabelOperation extends _i1.HttpOperation<
               'JsonRpc10.EndpointWithHostLabelOperation',
             ),
             const _i1.WithUserAgent('aws-sdk-dart/0.3.1'),
-            const _i2.WithSdkInvocationId(),
-            const _i2.WithSdkRequest(),
+            const _i3.WithSdkInvocationId(),
+            const _i3.WithSdkRequest(),
           ] +
           _requestInterceptors,
       responseInterceptors:
@@ -54,8 +55,8 @@ class EndpointWithHostLabelOperation extends _i1.HttpOperation<
     )
   ];
 
-  late final _i2.AWSEndpoint _awsEndpoint = endpointResolver.resolve(
-    sdkId,
+  late final _i3.AWSEndpoint _awsEndpoint = _i5.endpointResolver.resolve(
+    _i5.sdkId,
     _region,
   );
 
@@ -68,7 +69,7 @@ class EndpointWithHostLabelOperation extends _i1.HttpOperation<
   final List<_i1.HttpResponseInterceptor> _responseInterceptors;
 
   @override
-  _i1.HttpRequest buildRequest(EndpointWithHostLabelOperationInput input) =>
+  _i1.HttpRequest buildRequest(_i2.EndpointWithHostLabelOperationInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = r'/';
@@ -79,7 +80,7 @@ class EndpointWithHostLabelOperation extends _i1.HttpOperation<
   @override
   _i1.Unit buildOutput(
     _i1.Unit payload,
-    _i3.AWSBaseHttpResponse response,
+    _i6.AWSBaseHttpResponse response,
   ) =>
       payload;
   @override
@@ -87,18 +88,18 @@ class EndpointWithHostLabelOperation extends _i1.HttpOperation<
   @override
   String get runtimeTypeName => 'EndpointWithHostLabelOperation';
   @override
-  _i2.AWSRetryer get retryer => _i2.AWSRetryer();
+  _i3.AWSRetryer get retryer => _i3.AWSRetryer();
   @override
   Uri get baseUri => _baseUri ?? endpoint.uri;
   @override
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;
   @override
   _i1.SmithyOperation<_i1.Unit> run(
-    EndpointWithHostLabelOperationInput input, {
-    _i3.AWSHttpClient? client,
+    _i2.EndpointWithHostLabelOperationInput input, {
+    _i6.AWSHttpClient? client,
     _i1.ShapeId? useProtocol,
   }) {
-    return _i4.runZoned(
+    return _i7.runZoned(
       () => super.run(
         input,
         client: client,
@@ -106,7 +107,7 @@ class EndpointWithHostLabelOperation extends _i1.HttpOperation<
       ),
       zoneValues: {
         ...?_awsEndpoint.credentialScope?.zoneValues,
-        ...{_i3.AWSHeaders.sdkInvocationId: _i3.uuid(secure: true)},
+        ...{_i6.AWSHeaders.sdkInvocationId: _i6.uuid(secure: true)}
       },
     );
   }

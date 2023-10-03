@@ -67,11 +67,11 @@ class AmplifyAuthCognitoStub extends AuthPluginInterface
     SignUpOptions? options,
   }) async {
     await Future<void>.delayed(delay);
-    var user = _users[username];
+    MockCognitoUser? user = _users[username];
     if (user != null) {
       throw usernameExistsException;
     } else {
-      var newUser = MockCognitoUser(
+      MockCognitoUser newUser = MockCognitoUser(
         username: username,
         password: password,
         email: options?.userAttributes['email'],
@@ -111,7 +111,7 @@ class AmplifyAuthCognitoStub extends AuthPluginInterface
     ResendSignUpCodeOptions? options,
   }) async {
     await Future<void>.delayed(delay);
-    var user = _users[username];
+    MockCognitoUser? user = _users[username];
     if (user == null) {
       throw userNotFoundException;
     }
@@ -125,7 +125,7 @@ class AmplifyAuthCognitoStub extends AuthPluginInterface
     SignInOptions? options,
   }) async {
     await Future<void>.delayed(delay);
-    var user = _users[username];
+    MockCognitoUser? user = _users[username];
     if (user == null) {
       throw userNotFoundException;
     }
@@ -174,7 +174,7 @@ class AmplifyAuthCognitoStub extends AuthPluginInterface
     ResetPasswordOptions? options,
   }) async {
     await Future<void>.delayed(delay);
-    var user = _users[username];
+    MockCognitoUser? user = _users[username];
     if (user == null) {
       throw userNotFoundException;
     }
@@ -195,14 +195,14 @@ class AmplifyAuthCognitoStub extends AuthPluginInterface
     ConfirmResetPasswordOptions? options,
   }) async {
     await Future<void>.delayed(delay);
-    var user = _users[username];
+    MockCognitoUser? user = _users[username];
     if (user == null) {
       throw userNotFoundException;
     }
     if (confirmationCode != verificationCode) {
       throw codeMismatchException;
     }
-    var updatedUser = user.copyWith(password: newPassword);
+    MockCognitoUser updatedUser = user.copyWith(password: newPassword);
     _users[username] = updatedUser;
     _currentUser = updatedUser;
     return const CognitoResetPasswordResult(
@@ -276,26 +276,26 @@ class AmplifyAuthCognitoStub extends AuthPluginInterface
     return [
       if (_currentUser!.email != null) ...[
         AuthUserAttribute(
-          userAttributeKey: AuthUserAttributeKey.email,
+          userAttributeKey: CognitoUserAttributeKey.email,
           value: _currentUser!.email!,
         ),
         const AuthUserAttribute(
-          userAttributeKey: AuthUserAttributeKey.emailVerified,
+          userAttributeKey: CognitoUserAttributeKey.emailVerified,
           value: 'true',
         ),
       ],
       if (_currentUser!.phoneNumber != null) ...[
         AuthUserAttribute(
-          userAttributeKey: AuthUserAttributeKey.phoneNumber,
+          userAttributeKey: CognitoUserAttributeKey.phoneNumber,
           value: _currentUser!.phoneNumber!,
         ),
         const AuthUserAttribute(
-          userAttributeKey: AuthUserAttributeKey.phoneNumberVerified,
+          userAttributeKey: CognitoUserAttributeKey.phoneNumberVerified,
           value: 'true',
         ),
       ],
       AuthUserAttribute(
-        userAttributeKey: AuthUserAttributeKey.sub,
+        userAttributeKey: const CognitoUserAttributeKey.custom('sub'),
         value: _currentUser!.sub,
       ),
     ];
@@ -348,15 +348,15 @@ class AmplifyAuthCognitoStub extends AuthPluginInterface
   }
 
   @override
-  Future<SendUserAttributeVerificationCodeResult>
-      sendUserAttributeVerificationCode({
+  Future<ResendUserAttributeConfirmationCodeResult>
+      resendUserAttributeConfirmationCode({
     required AuthUserAttributeKey userAttributeKey,
-    SendUserAttributeVerificationCodeOptions? options,
+    ResendUserAttributeConfirmationCodeOptions? options,
   }) async {
     if (_currentUser == null) {
       throw const SignedOutException('There is no user signed in.');
     }
-    return SendUserAttributeVerificationCodeResult(
+    return ResendUserAttributeConfirmationCodeResult(
       codeDeliveryDetails: _codeDeliveryDetails(_currentUser!),
     );
   }
@@ -391,13 +391,11 @@ class AmplifyAuthCognitoStub extends AuthPluginInterface
 }
 
 class MockCognitoUser {
-  const MockCognitoUser._({
-    required this.sub,
-    required this.username,
-    required this.password,
-    required this.phoneNumber,
-    required this.email,
-  });
+  final String sub;
+  final String username;
+  final String password;
+  final String? email;
+  final String? phoneNumber;
 
   factory MockCognitoUser({
     required String username,
@@ -413,11 +411,14 @@ class MockCognitoUser {
       phoneNumber: phoneNumber,
     );
   }
-  final String sub;
-  final String username;
-  final String password;
-  final String? email;
-  final String? phoneNumber;
+
+  const MockCognitoUser._({
+    required this.sub,
+    required this.username,
+    required this.password,
+    required this.phoneNumber,
+    required this.email,
+  });
 
   CognitoUserPoolTokens get userPoolTokens {
     final accessToken = JsonWebToken(

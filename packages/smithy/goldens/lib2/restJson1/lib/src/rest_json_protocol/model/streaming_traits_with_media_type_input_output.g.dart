@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'streaming_traits_with_media_type_input_output.dart';
+part of rest_json1_v2.rest_json_protocol.model.streaming_traits_with_media_type_input_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -9,9 +9,9 @@ part of 'streaming_traits_with_media_type_input_output.dart';
 class _$StreamingTraitsWithMediaTypeInputOutput
     extends StreamingTraitsWithMediaTypeInputOutput {
   @override
-  final String? foo;
+  final _i2.Stream<List<int>>? blob;
   @override
-  final _i2.Stream<List<int>> blob;
+  final String? foo;
 
   factory _$StreamingTraitsWithMediaTypeInputOutput(
           [void Function(StreamingTraitsWithMediaTypeInputOutputBuilder)?
@@ -19,11 +19,8 @@ class _$StreamingTraitsWithMediaTypeInputOutput
       (new StreamingTraitsWithMediaTypeInputOutputBuilder()..update(updates))
           ._build();
 
-  _$StreamingTraitsWithMediaTypeInputOutput._({this.foo, required this.blob})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        blob, r'StreamingTraitsWithMediaTypeInputOutput', 'blob');
-  }
+  _$StreamingTraitsWithMediaTypeInputOutput._({this.blob, this.foo})
+      : super._();
 
   @override
   StreamingTraitsWithMediaTypeInputOutput rebuild(
@@ -39,15 +36,15 @@ class _$StreamingTraitsWithMediaTypeInputOutput
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is StreamingTraitsWithMediaTypeInputOutput &&
-        foo == other.foo &&
-        blob == other.blob;
+        blob == other.blob &&
+        foo == other.foo;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, foo.hashCode);
     _$hash = $jc(_$hash, blob.hashCode);
+    _$hash = $jc(_$hash, foo.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -59,13 +56,13 @@ class StreamingTraitsWithMediaTypeInputOutputBuilder
             StreamingTraitsWithMediaTypeInputOutputBuilder> {
   _$StreamingTraitsWithMediaTypeInputOutput? _$v;
 
-  String? _foo;
-  String? get foo => _$this._foo;
-  set foo(String? foo) => _$this._foo = foo;
-
   _i2.Stream<List<int>>? _blob;
   _i2.Stream<List<int>>? get blob => _$this._blob;
   set blob(_i2.Stream<List<int>>? blob) => _$this._blob = blob;
+
+  String? _foo;
+  String? get foo => _$this._foo;
+  set foo(String? foo) => _$this._foo = foo;
 
   StreamingTraitsWithMediaTypeInputOutputBuilder() {
     StreamingTraitsWithMediaTypeInputOutput._init(this);
@@ -74,8 +71,8 @@ class StreamingTraitsWithMediaTypeInputOutputBuilder
   StreamingTraitsWithMediaTypeInputOutputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _foo = $v.foo;
       _blob = $v.blob;
+      _foo = $v.foo;
       _$v = null;
     }
     return this;
@@ -98,10 +95,7 @@ class StreamingTraitsWithMediaTypeInputOutputBuilder
 
   _$StreamingTraitsWithMediaTypeInputOutput _build() {
     final _$result = _$v ??
-        new _$StreamingTraitsWithMediaTypeInputOutput._(
-            foo: foo,
-            blob: BuiltValueNullFieldError.checkNotNull(
-                blob, r'StreamingTraitsWithMediaTypeInputOutput', 'blob'));
+        new _$StreamingTraitsWithMediaTypeInputOutput._(blob: blob, foo: foo);
     replace(_$result);
     return _$result;
   }

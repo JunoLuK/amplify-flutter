@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'too_many_requests_exception.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.too_many_requests_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -55,7 +55,9 @@ class TooManyRequestsExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  TooManyRequestsExceptionBuilder();
+  TooManyRequestsExceptionBuilder() {
+    TooManyRequestsException._init(this);
+  }
 
   TooManyRequestsExceptionBuilder get _$this {
     final $v = _$v;

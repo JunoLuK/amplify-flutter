@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_storage_s3_dart.s3.model.metadata_directive; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -7,12 +6,16 @@ import 'package:smithy/smithy.dart' as _i1;
 
 class MetadataDirective extends _i1.SmithyEnum<MetadataDirective> {
   const MetadataDirective._(
-    super.index,
-    super.name,
-    super.value,
-  );
+    int index,
+    String name,
+    String value,
+  ) : super(
+          index,
+          name,
+          value,
+        );
 
-  const MetadataDirective._sdkUnknown(super.value) : super.sdkUnknown();
+  const MetadataDirective._sdkUnknown(String value) : super.sdkUnknown(value);
 
   static const copy = MetadataDirective._(
     0,

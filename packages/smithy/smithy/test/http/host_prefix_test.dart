@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import 'package:aws_common/src/http/aws_http_response.dart';
-import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart';
 import 'package:test/test.dart';
 
@@ -33,7 +32,7 @@ void main() {
       final req = await op
           .createRequest(
             op.buildRequest(input),
-            GenericJsonProtocol(serializers: [const TestOp2InputSerializer()]),
+            GenericJsonProtocol(),
             input,
           )
           .transformRequest();
@@ -53,10 +52,9 @@ class TestOp1 extends HttpOperation<Unit, Unit, Unit, Unit> {
 
   @override
   HttpRequest buildRequest(Unit input) => HttpRequest((b) {
-        b
-          ..method = 'GET'
-          ..path = '/'
-          ..hostPrefix = 'data.';
+        b.method = 'GET';
+        b.path = '/';
+        b.hostPrefix = 'data.';
       });
 
   @override
@@ -97,49 +95,15 @@ class TestOp2Input with HasLabel {
   }
 }
 
-class TestOp2InputSerializer
-    implements PrimitiveSmithySerializer<TestOp2Input> {
-  const TestOp2InputSerializer();
-
-  @override
-  Iterable<ShapeId> get supportedProtocols =>
-      [GenericJsonProtocolDefinitionTrait.id];
-
-  @override
-  Iterable<Type> get types => const [TestOp2Input];
-
-  @override
-  String get wireName => 'TestOp2Input';
-
-  @override
-  TestOp2Input deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return const TestOp2Input();
-  }
-
-  @override
-  Object serialize(
-    Serializers serializers,
-    TestOp2Input object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return '';
-  }
-}
-
 class TestOp2 extends HttpOperation<TestOp2Input, TestOp2Input, Unit, Unit> {
   @override
   Uri get baseUri => Uri.parse('https://service.us-west-2.amazonaws.com/');
 
   @override
   HttpRequest buildRequest(TestOp2Input input) => HttpRequest((b) {
-        b
-          ..method = 'GET'
-          ..path = '/'
-          ..hostPrefix = '{Bucket}-{AccountId}.';
+        b.method = 'GET';
+        b.path = '/';
+        b.hostPrefix = '{Bucket}-{AccountId}.';
       });
 
   @override

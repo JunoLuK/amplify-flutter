@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'update_endpoints_batch_request.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.update_endpoints_batch_request;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -10,7 +10,7 @@ class _$UpdateEndpointsBatchRequest extends UpdateEndpointsBatchRequest {
   @override
   final String applicationId;
   @override
-  final EndpointBatchRequest endpointBatchRequest;
+  final _i2.EndpointBatchRequest endpointBatchRequest;
 
   factory _$UpdateEndpointsBatchRequest(
           [void Function(UpdateEndpointsBatchRequestBuilder)? updates]) =>
@@ -63,13 +63,16 @@ class UpdateEndpointsBatchRequestBuilder
   set applicationId(String? applicationId) =>
       _$this._applicationId = applicationId;
 
-  EndpointBatchRequestBuilder? _endpointBatchRequest;
-  EndpointBatchRequestBuilder get endpointBatchRequest =>
-      _$this._endpointBatchRequest ??= new EndpointBatchRequestBuilder();
-  set endpointBatchRequest(EndpointBatchRequestBuilder? endpointBatchRequest) =>
+  _i2.EndpointBatchRequestBuilder? _endpointBatchRequest;
+  _i2.EndpointBatchRequestBuilder get endpointBatchRequest =>
+      _$this._endpointBatchRequest ??= new _i2.EndpointBatchRequestBuilder();
+  set endpointBatchRequest(
+          _i2.EndpointBatchRequestBuilder? endpointBatchRequest) =>
       _$this._endpointBatchRequest = endpointBatchRequest;
 
-  UpdateEndpointsBatchRequestBuilder();
+  UpdateEndpointsBatchRequestBuilder() {
+    UpdateEndpointsBatchRequest._init(this);
+  }
 
   UpdateEndpointsBatchRequestBuilder get _$this {
     final $v = _$v;

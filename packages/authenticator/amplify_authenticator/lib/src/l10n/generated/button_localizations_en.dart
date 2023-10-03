@@ -19,9 +19,6 @@ class AuthenticatorButtonLocalizationsEn
   String get confirm => 'Confirm';
 
   @override
-  String get continueLabel => 'Continue';
-
-  @override
   String get submit => 'Submit';
 
   @override
@@ -50,9 +47,6 @@ class AuthenticatorButtonLocalizationsEn
 
   @override
   String get skip => 'Skip';
-
-  @override
-  String get copyKey => 'Copy Key';
 
   @override
   String get signOut => 'Sign Out';

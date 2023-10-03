@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.glacier.model.upload_archive_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -20,19 +19,19 @@ abstract class UploadArchiveInput
         Built<UploadArchiveInput, UploadArchiveInputBuilder>,
         _i1.HasPayload<_i2.Stream<List<int>>> {
   factory UploadArchiveInput({
-    required String vaultName,
     required String accountId,
     String? archiveDescription,
-    String? checksum,
     _i2.Stream<List<int>>? body,
+    String? checksum,
+    required String vaultName,
   }) {
     body ??= const _i2.Stream.empty();
     return _$UploadArchiveInput._(
-      vaultName: vaultName,
       accountId: accountId,
       archiveDescription: archiveDescription,
-      checksum: checksum,
       body: body,
+      checksum: checksum,
+      vaultName: vaultName,
     );
   }
 
@@ -43,7 +42,7 @@ abstract class UploadArchiveInput
   const UploadArchiveInput._();
 
   factory UploadArchiveInput.fromRequest(
-    _i2.Stream<List<int>> payload,
+    _i2.Stream<List<int>>? payload,
     _i3.AWSBaseHttpRequest request, {
     Map<String, String> labels = const {},
   }) =>
@@ -63,7 +62,7 @@ abstract class UploadArchiveInput
         }
       });
 
-  static const List<_i1.SmithySerializer<_i2.Stream<List<int>>>> serializers = [
+  static const List<_i1.SmithySerializer> serializers = [
     UploadArchiveInputRestJson1Serializer()
   ];
 
@@ -72,11 +71,11 @@ abstract class UploadArchiveInput
     b.body = const _i2.Stream.empty();
   }
 
-  String get vaultName;
   String get accountId;
   String? get archiveDescription;
+  _i2.Stream<List<int>>? get body;
   String? get checksum;
-  _i2.Stream<List<int>> get body;
+  String get vaultName;
   @override
   String labelFor(String key) {
     switch (key) {
@@ -92,38 +91,38 @@ abstract class UploadArchiveInput
   }
 
   @override
-  _i2.Stream<List<int>> getPayload() => body;
+  _i2.Stream<List<int>>? getPayload() => body;
   @override
   List<Object?> get props => [
-        vaultName,
         accountId,
         archiveDescription,
-        checksum,
         body,
+        checksum,
+        vaultName,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('UploadArchiveInput')
-      ..add(
-        'vaultName',
-        vaultName,
-      )
-      ..add(
-        'accountId',
-        accountId,
-      )
-      ..add(
-        'archiveDescription',
-        archiveDescription,
-      )
-      ..add(
-        'checksum',
-        checksum,
-      )
-      ..add(
-        'body',
-        body,
-      );
+    final helper = newBuiltValueToStringHelper('UploadArchiveInput');
+    helper.add(
+      'accountId',
+      accountId,
+    );
+    helper.add(
+      'archiveDescription',
+      archiveDescription,
+    );
+    helper.add(
+      'body',
+      body,
+    );
+    helper.add(
+      'checksum',
+      checksum,
+    );
+    helper.add(
+      'vaultName',
+      vaultName,
+    );
     return helper.toString();
   }
 }
@@ -167,11 +166,14 @@ class UploadArchiveInputRestJson1Serializer
   @override
   Object serialize(
     Serializers serializers,
-    _i2.Stream<List<int>> object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return serializers.serialize(
-      object,
+    final payload = object is UploadArchiveInput
+        ? object.getPayload()
+        : (object as _i2.Stream<List<int>>?);
+    return (serializers.serialize(
+      payload!,
       specifiedType: const FullType(
         _i2.Stream,
         [
@@ -181,6 +183,6 @@ class UploadArchiveInputRestJson1Serializer
           )
         ],
       ),
-    )!;
+    ) as Object);
   }
 }

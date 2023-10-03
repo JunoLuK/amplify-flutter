@@ -23,8 +23,7 @@ class RetryConfig with AWSEquatable<RetryConfig> {
 }
 
 @immutable
-class SmithyError<Payload extends Object?, T extends SmithyException>
-    with AWSEquatable<SmithyError<Payload, T>> {
+class SmithyError with AWSEquatable<SmithyError> {
   const SmithyError(
     this.shapeId,
     this.kind,
@@ -38,11 +37,7 @@ class SmithyError<Payload extends Object?, T extends SmithyException>
   final ErrorKind kind;
   final Type type;
   final RetryConfig? retryConfig;
-  final T Function(Payload, AWSBaseHttpResponse) builder;
-
-  T build(Object? payload, AWSBaseHttpResponse response) {
-    return builder(payload as Payload, response);
-  }
+  final Function builder;
 
   final int? _statusCode;
   int get statusCode => _statusCode ?? (kind == ErrorKind.client ? 400 : 500);
@@ -93,9 +88,9 @@ abstract class HttpResponse
 /// interceptors, without storing all of this on the request itself.
 abstract class HttpRequestContext
     implements Built<HttpRequestContext, HttpRequestContextBuilder> {
-  factory HttpRequestContext([
-    void Function(HttpRequestContextBuilder) updates,
-  ]) = _$HttpRequestContext;
+  factory HttpRequestContext(
+          [void Function(HttpRequestContextBuilder) updates]) =
+      _$HttpRequestContext;
   HttpRequestContext._();
 
   /// The service name to use when signing the request.
@@ -179,40 +174,46 @@ class SmithyHttpRequest {
     final requestProgress = StreamController<int>.broadcast(sync: true);
     final responseProgress = StreamController<int>.broadcast(sync: true);
 
+    // TODO(dnys1): Use `completeOperation` when available
+    AWSHttpOperation? underlyingOperation;
     final completer = CancelableCompleter<AWSBaseHttpResponse>(
       onCancel: () {
+        underlyingOperation?.cancel();
         requestProgress.close();
         responseProgress.close();
         onCancel?.call();
       },
     );
     Future<void>(() async {
-      try {
-        final request = await transformRequest(
-          baseClient: client,
-          isCanceled: () => completer.isCanceled,
-        );
-        final operation = request.send(
-          // We extract the transformRequest/transformResponse methods of
-          // `client` when specified. To avoid calling them twice in `send`,
-          // send the request using its baseClient.
-          // TODO(dnys1): Invert? Add interceptors option to Smithy operations?
-          client: client is AWSBaseHttpClient ? client.baseClient : client,
-        );
-        unawaited(operation.requestProgress.forward(requestProgress));
-        unawaited(operation.responseProgress.forward(responseProgress));
-        completer.completeOperation(
-          operation.operation.then(
-            (response) => _transformResponse(
+      final request = await transformRequest(
+        baseClient: client,
+        isCanceled: () => completer.isCanceled,
+      );
+      underlyingOperation = request.send(
+        // We extract the transformRequest/transformResponse methods of
+        // `client` when specified. To avoid calling them twice in `send`,
+        // send the request using its baseClient.
+        // TODO(dnys1): Invert? Add interceptors option to Smithy operations?
+        client: client is AWSBaseHttpClient ? client.baseClient : client,
+      );
+      underlyingOperation!.requestProgress.forward(requestProgress);
+      underlyingOperation!.responseProgress.forward(responseProgress);
+      // TODO(dnys1): Use `completeOperation` when available
+      underlyingOperation!.operation.then(
+        (response) async {
+          try {
+            response = await _transformResponse(
               response,
               baseClient: client,
               isCanceled: () => completer.isCanceled,
-            ),
-          ),
-        );
-      } on Object catch (e, st) {
-        completer.completeError(e, st);
-      }
+            );
+            completer.complete(response);
+          } on Object catch (e, st) {
+            completer.completeError(e, st);
+          }
+        },
+        onError: completer.completeError,
+      );
     });
     return AWSHttpOperation(
       completer.operation,

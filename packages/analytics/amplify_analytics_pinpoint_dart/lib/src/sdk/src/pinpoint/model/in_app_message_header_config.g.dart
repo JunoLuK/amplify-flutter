@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'in_app_message_header_config.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.in_app_message_header_config;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of 'in_app_message_header_config.dart';
 
 class _$InAppMessageHeaderConfig extends InAppMessageHeaderConfig {
   @override
-  final Alignment alignment;
+  final _i2.Alignment alignment;
   @override
   final String header;
   @override
@@ -63,9 +63,9 @@ class InAppMessageHeaderConfigBuilder
         Builder<InAppMessageHeaderConfig, InAppMessageHeaderConfigBuilder> {
   _$InAppMessageHeaderConfig? _$v;
 
-  Alignment? _alignment;
-  Alignment? get alignment => _$this._alignment;
-  set alignment(Alignment? alignment) => _$this._alignment = alignment;
+  _i2.Alignment? _alignment;
+  _i2.Alignment? get alignment => _$this._alignment;
+  set alignment(_i2.Alignment? alignment) => _$this._alignment = alignment;
 
   String? _header;
   String? get header => _$this._header;
@@ -75,7 +75,9 @@ class InAppMessageHeaderConfigBuilder
   String? get textColor => _$this._textColor;
   set textColor(String? textColor) => _$this._textColor = textColor;
 
-  InAppMessageHeaderConfigBuilder();
+  InAppMessageHeaderConfigBuilder() {
+    InAppMessageHeaderConfig._init(this);
+  }
 
   InAppMessageHeaderConfigBuilder get _$this {
     final $v = _$v;

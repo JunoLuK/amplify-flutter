@@ -1,7 +1,10 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-part of 'auth_state.dart';
+import 'package:amplify_auth_cognito_dart/src/model/cognito_user.dart';
+import 'package:amplify_auth_cognito_dart/src/sdk/cognito_identity_provider.dart';
+import 'package:amplify_auth_cognito_dart/src/state/state.dart';
+import 'package:amplify_core/amplify_core.dart';
 
 /// {@template amplify_auth_cognito_dart.sign_in_state_type}
 /// Discrete state types of an auth flow state machine.
@@ -29,7 +32,7 @@ enum SignInStateType {
 /// {@template amplify_auth_cognito_dart.sign_in_state}
 /// Discrete states of an auth flow state machine.
 /// {@endtemplate}
-sealed class SignInState extends AuthState<SignInStateType> {
+abstract class SignInState extends AuthState<SignInStateType> {
   /// {@macro amplify_auth_cognito_dart.sign_in_state}
   const SignInState();
 
@@ -44,13 +47,10 @@ sealed class SignInState extends AuthState<SignInStateType> {
     ChallengeNameType challengeName,
     Map<String, String> challengeParameters,
     List<CognitoUserAttributeKey> requiredAttributes,
-    AuthCodeDeliveryDetails? codeDeliveryDetails,
-    Set<MfaType>? allowedMfaTypes,
-    TotpSetupDetails? totpSetupResult,
   ) = SignInChallenge;
 
   /// {@macro amplify_auth_cognito_dart.sign_in_success}
-  const factory SignInState.success(AuthUser user) = SignInSuccess;
+  const factory SignInState.success(CognitoUser user) = SignInSuccess;
 
   /// {@macro amplify_auth_cognito_dart.sign_in_cancelling}
   const factory SignInState.cancelling() = SignInCancelling;
@@ -69,7 +69,7 @@ sealed class SignInState extends AuthState<SignInStateType> {
 /// {@template amplify_auth_cognito_dart.sign_in_not_started}
 /// Initial state.
 /// {@endtemplate}
-final class SignInNotStarted extends SignInState {
+class SignInNotStarted extends SignInState {
   /// {@macro amplify_auth_cognito_dart.sign_in_not_started}
   const SignInNotStarted();
 
@@ -83,7 +83,7 @@ final class SignInNotStarted extends SignInState {
 /// {@template amplify_auth_cognito_dart.sign_in_initiating}
 /// Sign in is initiating.
 /// {@endtemplate}
-final class SignInInitiating extends SignInState {
+class SignInInitiating extends SignInState {
   /// {@macro amplify_auth_cognito_dart.sign_in_initiating}
   const SignInInitiating();
 
@@ -97,15 +97,12 @@ final class SignInInitiating extends SignInState {
 /// {@template amplify_auth_cognito_dart.sign_in_challenge}
 /// Sign in is paused and requires user input to continue.
 /// {@endtemplate}
-final class SignInChallenge extends SignInState {
+class SignInChallenge extends SignInState {
   /// {@macro amplify_auth_cognito.sign_in_challenge}
   const SignInChallenge(
     this.challengeName,
     this.challengeParameters,
     this.requiredAttributes,
-    this.codeDeliveryDetails,
-    this.allowedMfaTypes,
-    this.totpSetupResult,
   );
 
   /// The name of the challenge requiring user input.
@@ -117,16 +114,6 @@ final class SignInChallenge extends SignInState {
   /// Required user attributes which have not been previously provided.
   final List<CognitoUserAttributeKey> requiredAttributes;
 
-  /// The code delivery details for the challenge code if triggered in this challenge.
-  final AuthCodeDeliveryDetails? codeDeliveryDetails;
-
-  /// The allowed MFA types.
-  final Set<MfaType>? allowedMfaTypes;
-
-  /// The TOTP secret code which can be rendered as a QR code and displayed
-  /// to users.
-  final TotpSetupDetails? totpSetupResult;
-
   @override
   SignInStateType get type => SignInStateType.challenge;
 
@@ -136,21 +123,18 @@ final class SignInChallenge extends SignInState {
         challengeName,
         challengeParameters,
         requiredAttributes,
-        codeDeliveryDetails,
-        allowedMfaTypes,
-        totpSetupResult,
       ];
 }
 
 /// {@template amplify_auth_cognito_dart.sign_in_success}
 /// Sign in successfully completed.
 /// {@endtemplate}
-final class SignInSuccess extends SignInState with SuccessState {
+class SignInSuccess extends SignInState with SuccessState {
   /// {@macro amplify_auth_cognito_dart.sign_in_success}
   const SignInSuccess(this.user);
 
   /// The signed in user.
-  final AuthUser user;
+  final CognitoUser user;
 
   @override
   SignInStateType get type => SignInStateType.success;
@@ -162,7 +146,7 @@ final class SignInSuccess extends SignInState with SuccessState {
 /// {@template amplify_auth_cognito_dart.sign_in_cancelling}
 /// Sign in is being cancelled by the user.
 /// {@endtemplate}
-final class SignInCancelling extends SignInState {
+class SignInCancelling extends SignInState {
   /// {@macro amplify_auth_cognito_dart.sign_in_cancelling}
   const SignInCancelling();
 
@@ -176,7 +160,7 @@ final class SignInCancelling extends SignInState {
 /// {@template amplify_auth_cognito_dart.sign_in_failure}
 /// Sign in failed with an [exception].
 /// {@endtemplate}
-final class SignInFailure extends SignInState with ErrorState {
+class SignInFailure extends SignInState with ErrorState {
   /// {@macro amplify_auth_cognito_dart.sign_in_failure}
   const SignInFailure({
     required this.previousState,

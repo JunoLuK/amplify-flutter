@@ -3,8 +3,6 @@
 
 import 'package:built_value/serializer.dart';
 
-// TODO(dnys1): Remove when doing so wouldn't crash DDC
-// ignore: use_enums
 class BigIntSerializer implements PrimitiveSerializer<BigInt> {
   const BigIntSerializer._(this._asNum);
 
@@ -21,14 +19,11 @@ class BigIntSerializer implements PrimitiveSerializer<BigInt> {
   Iterable<Type> get types => [BigInt, BigInt.zero.runtimeType];
 
   @override
-  String get wireName => 'BigInt';
+  final String wireName = 'BigInt';
 
   @override
-  Object serialize(
-    Serializers serializers,
-    BigInt bigInt, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
+  Object serialize(Serializers serializers, BigInt bigInt,
+      {FullType specifiedType = FullType.unspecified}) {
     if (_asNum) {
       return bigInt.toInt();
     }
@@ -36,11 +31,8 @@ class BigIntSerializer implements PrimitiveSerializer<BigInt> {
   }
 
   @override
-  BigInt deserialize(
-    Serializers serializers,
-    Object? serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
+  BigInt deserialize(Serializers serializers, Object? serialized,
+      {FullType specifiedType = FullType.unspecified}) {
     if (_asNum) {
       return BigInt.from(serialized as num);
     }

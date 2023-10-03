@@ -4,7 +4,6 @@
 import 'dart:async';
 
 import 'package:amplify_core/amplify_core.dart';
-import 'package:amplify_core/src/http/amplify_category_method.dart';
 
 /// {@template amplify_common.amplify_http_client}
 /// Base client for Amplify HTTP operations.
@@ -28,13 +27,10 @@ class AmplifyHttpClient extends AWSBaseHttpClient {
   ) async {
     final scopedUserAgent = Zone.current[AmplifyUserAgent] as AmplifyUserAgent?;
     final userAgent = scopedUserAgent ?? _userAgent;
-    final categoryMethod =
-        Zone.current[AmplifyCategoryMethod] as AmplifyCategoryMethod?;
-    final categoryMethodValue = categoryMethod?.headerValue ?? '';
     request.headers.update(
       AWSHeaders.platformUserAgent,
-      (value) => '$value $userAgent $categoryMethodValue',
-      ifAbsent: () => '$userAgent $categoryMethodValue',
+      (value) => '$value $userAgent',
+      ifAbsent: () => '$userAgent',
     );
     return request;
   }

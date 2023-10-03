@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_storage_s3_dart.s3.model.records_event; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -27,9 +26,12 @@ abstract class RecordsEvent
 
   const RecordsEvent._();
 
-  static const List<_i3.SmithySerializer<RecordsEvent>> serializers = [
+  static const List<_i3.SmithySerializer> serializers = [
     RecordsEventRestXmlSerializer()
   ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(RecordsEventBuilder b) {}
 
   /// The byte array of partial, one or more result records.
   _i2.Uint8List? get payload;
@@ -37,11 +39,11 @@ abstract class RecordsEvent
   List<Object?> get props => [payload];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('RecordsEvent')
-      ..add(
-        'payload',
-        payload,
-      );
+    final helper = newBuiltValueToStringHelper('RecordsEvent');
+    helper.add(
+      'payload',
+      payload,
+    );
     return helper.toString();
   }
 }
@@ -71,18 +73,18 @@ class RecordsEventRestXmlSerializer
     final result = RecordsEventBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'Payload':
-          result.payload = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(_i2.Uint8List),
-          ) as _i2.Uint8List);
+          if (value != null) {
+            result.payload = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i2.Uint8List),
+            ) as _i2.Uint8List);
+          }
+          break;
       }
     }
 
@@ -92,24 +94,24 @@ class RecordsEventRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    RecordsEvent object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final payload = (object as RecordsEvent);
+    final result = <Object?>[
       const _i3.XmlElementName(
         'RecordsEvent',
         _i3.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
       )
     ];
-    final RecordsEvent(:payload) = object;
-    if (payload != null) {
-      result$
+    if (payload.payload != null) {
+      result
         ..add(const _i3.XmlElementName('Payload'))
         ..add(serializers.serialize(
-          payload,
-          specifiedType: const FullType(_i2.Uint8List),
+          payload.payload!,
+          specifiedType: const FullType.nullable(_i2.Uint8List),
         ));
     }
-    return result$;
+    return result;
   }
 }

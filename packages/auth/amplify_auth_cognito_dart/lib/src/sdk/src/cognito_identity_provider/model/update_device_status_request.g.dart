@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'update_device_status_request.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.update_device_status_request;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -12,7 +12,7 @@ class _$UpdateDeviceStatusRequest extends UpdateDeviceStatusRequest {
   @override
   final String deviceKey;
   @override
-  final DeviceRememberedStatusType? deviceRememberedStatus;
+  final _i3.DeviceRememberedStatusType? deviceRememberedStatus;
 
   factory _$UpdateDeviceStatusRequest(
           [void Function(UpdateDeviceStatusRequestBuilder)? updates]) =>
@@ -71,14 +71,16 @@ class UpdateDeviceStatusRequestBuilder
   String? get deviceKey => _$this._deviceKey;
   set deviceKey(String? deviceKey) => _$this._deviceKey = deviceKey;
 
-  DeviceRememberedStatusType? _deviceRememberedStatus;
-  DeviceRememberedStatusType? get deviceRememberedStatus =>
+  _i3.DeviceRememberedStatusType? _deviceRememberedStatus;
+  _i3.DeviceRememberedStatusType? get deviceRememberedStatus =>
       _$this._deviceRememberedStatus;
   set deviceRememberedStatus(
-          DeviceRememberedStatusType? deviceRememberedStatus) =>
+          _i3.DeviceRememberedStatusType? deviceRememberedStatus) =>
       _$this._deviceRememberedStatus = deviceRememberedStatus;
 
-  UpdateDeviceStatusRequestBuilder();
+  UpdateDeviceStatusRequestBuilder() {
+    UpdateDeviceStatusRequest._init(this);
+  }
 
   UpdateDeviceStatusRequestBuilder get _$this {
     final $v = _$v;

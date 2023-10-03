@@ -8,11 +8,7 @@ enum MfaType {
   sms,
 
   @JsonValue('TOTP')
-  totp;
-
-  /// The value to pass to `Amplify.Auth.confirmSignIn` when
-  /// selecting an MFA type.
-  String get confirmationValue => name;
+  totp,
 }
 
 enum MfaConfiguration {

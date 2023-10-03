@@ -1,20 +1,22 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_validation_protocol.model.malformed_unique_items_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'dart:typed_data' as _i3;
 
 import 'package:aws_common/aws_common.dart' as _i2;
-import 'package:built_collection/built_collection.dart' as _i5;
+import 'package:built_collection/built_collection.dart' as _i9;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:fixnum/fixnum.dart' as _i4;
-import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/foo_enum.dart';
-import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/foo_union.dart';
-import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/greeting_struct.dart';
-import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/integer_enum.dart';
-import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/missing_key_structure.dart';
+import 'package:fixnum/fixnum.dart' as _i6;
+import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/foo_enum.dart'
+    as _i4;
+import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/foo_union.dart'
+    as _i8;
+import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/greeting_struct.dart'
+    as _i7;
+import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/integer_enum.dart'
+    as _i5;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'malformed_unique_items_input.g.dart';
@@ -28,42 +30,38 @@ abstract class MalformedUniqueItemsInput
   factory MalformedUniqueItemsInput({
     Set<_i3.Uint8List>? blobList,
     Set<bool>? booleanList,
-    Set<String>? stringList,
     Set<int>? byteList,
-    Set<int>? shortList,
-    Set<int>? integerList,
-    Set<_i4.Int64>? longList,
-    Set<DateTime>? timestampList,
     Set<DateTime>? dateTimeList,
+    Set<_i4.FooEnum>? enumList,
     Set<DateTime>? httpDateList,
-    Set<FooEnum>? enumList,
-    Set<IntegerEnum>? intEnumList,
+    Set<_i5.IntegerEnum>? intEnumList,
+    Set<int>? integerList,
     Set<List<String>>? listList,
-    Set<GreetingStruct>? structureList,
-    Set<MissingKeyStructure>? structureListWithNoKey,
-    Set<FooUnion>? unionList,
+    Set<_i6.Int64>? longList,
+    Set<int>? shortList,
+    Set<String>? stringList,
+    Set<_i7.GreetingStruct>? structureList,
+    Set<DateTime>? timestampList,
+    Set<_i8.FooUnion>? unionList,
   }) {
     return _$MalformedUniqueItemsInput._(
-      blobList: blobList == null ? null : _i5.BuiltSet(blobList),
-      booleanList: booleanList == null ? null : _i5.BuiltSet(booleanList),
-      stringList: stringList == null ? null : _i5.BuiltSet(stringList),
-      byteList: byteList == null ? null : _i5.BuiltSet(byteList),
-      shortList: shortList == null ? null : _i5.BuiltSet(shortList),
-      integerList: integerList == null ? null : _i5.BuiltSet(integerList),
-      longList: longList == null ? null : _i5.BuiltSet(longList),
-      timestampList: timestampList == null ? null : _i5.BuiltSet(timestampList),
-      dateTimeList: dateTimeList == null ? null : _i5.BuiltSet(dateTimeList),
-      httpDateList: httpDateList == null ? null : _i5.BuiltSet(httpDateList),
-      enumList: enumList == null ? null : _i5.BuiltSet(enumList),
-      intEnumList: intEnumList == null ? null : _i5.BuiltSet(intEnumList),
+      blobList: blobList == null ? null : _i9.BuiltSet(blobList),
+      booleanList: booleanList == null ? null : _i9.BuiltSet(booleanList),
+      byteList: byteList == null ? null : _i9.BuiltSet(byteList),
+      dateTimeList: dateTimeList == null ? null : _i9.BuiltSet(dateTimeList),
+      enumList: enumList == null ? null : _i9.BuiltSet(enumList),
+      httpDateList: httpDateList == null ? null : _i9.BuiltSet(httpDateList),
+      intEnumList: intEnumList == null ? null : _i9.BuiltSet(intEnumList),
+      integerList: integerList == null ? null : _i9.BuiltSet(integerList),
       listList: listList == null
           ? null
-          : _i5.BuiltSet(listList.map((el) => _i5.BuiltList(el))),
-      structureList: structureList == null ? null : _i5.BuiltSet(structureList),
-      structureListWithNoKey: structureListWithNoKey == null
-          ? null
-          : _i5.BuiltSet(structureListWithNoKey),
-      unionList: unionList == null ? null : _i5.BuiltSet(unionList),
+          : _i9.BuiltSet(listList.map((el) => _i9.BuiltList(el))),
+      longList: longList == null ? null : _i9.BuiltSet(longList),
+      shortList: shortList == null ? null : _i9.BuiltSet(shortList),
+      stringList: stringList == null ? null : _i9.BuiltSet(stringList),
+      structureList: structureList == null ? null : _i9.BuiltSet(structureList),
+      timestampList: timestampList == null ? null : _i9.BuiltSet(timestampList),
+      unionList: unionList == null ? null : _i9.BuiltSet(unionList),
     );
   }
 
@@ -80,113 +78,110 @@ abstract class MalformedUniqueItemsInput
   }) =>
       payload;
 
-  static const List<_i1.SmithySerializer<MalformedUniqueItemsInput>>
-      serializers = [MalformedUniqueItemsInputRestJson1Serializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    MalformedUniqueItemsInputRestJson1Serializer()
+  ];
 
-  _i5.BuiltSet<_i3.Uint8List>? get blobList;
-  _i5.BuiltSet<bool>? get booleanList;
-  _i5.BuiltSet<String>? get stringList;
-  _i5.BuiltSet<int>? get byteList;
-  _i5.BuiltSet<int>? get shortList;
-  _i5.BuiltSet<int>? get integerList;
-  _i5.BuiltSet<_i4.Int64>? get longList;
-  _i5.BuiltSet<DateTime>? get timestampList;
-  _i5.BuiltSet<DateTime>? get dateTimeList;
-  _i5.BuiltSet<DateTime>? get httpDateList;
-  _i5.BuiltSet<FooEnum>? get enumList;
-  _i5.BuiltSet<IntegerEnum>? get intEnumList;
-  _i5.BuiltSet<_i5.BuiltList<String>>? get listList;
-  _i5.BuiltSet<GreetingStruct>? get structureList;
-  _i5.BuiltSet<MissingKeyStructure>? get structureListWithNoKey;
-  _i5.BuiltSet<FooUnion>? get unionList;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedUniqueItemsInputBuilder b) {}
+  _i9.BuiltSet<_i3.Uint8List>? get blobList;
+  _i9.BuiltSet<bool>? get booleanList;
+  _i9.BuiltSet<int>? get byteList;
+  _i9.BuiltSet<DateTime>? get dateTimeList;
+  _i9.BuiltSet<_i4.FooEnum>? get enumList;
+  _i9.BuiltSet<DateTime>? get httpDateList;
+  _i9.BuiltSet<_i5.IntegerEnum>? get intEnumList;
+  _i9.BuiltSet<int>? get integerList;
+  _i9.BuiltSet<_i9.BuiltList<String>>? get listList;
+  _i9.BuiltSet<_i6.Int64>? get longList;
+  _i9.BuiltSet<int>? get shortList;
+  _i9.BuiltSet<String>? get stringList;
+  _i9.BuiltSet<_i7.GreetingStruct>? get structureList;
+  _i9.BuiltSet<DateTime>? get timestampList;
+  _i9.BuiltSet<_i8.FooUnion>? get unionList;
   @override
   MalformedUniqueItemsInput getPayload() => this;
   @override
   List<Object?> get props => [
         blobList,
         booleanList,
-        stringList,
         byteList,
-        shortList,
-        integerList,
-        longList,
-        timestampList,
         dateTimeList,
-        httpDateList,
         enumList,
+        httpDateList,
         intEnumList,
+        integerList,
         listList,
+        longList,
+        shortList,
+        stringList,
         structureList,
-        structureListWithNoKey,
+        timestampList,
         unionList,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('MalformedUniqueItemsInput')
-      ..add(
-        'blobList',
-        blobList,
-      )
-      ..add(
-        'booleanList',
-        booleanList,
-      )
-      ..add(
-        'stringList',
-        stringList,
-      )
-      ..add(
-        'byteList',
-        byteList,
-      )
-      ..add(
-        'shortList',
-        shortList,
-      )
-      ..add(
-        'integerList',
-        integerList,
-      )
-      ..add(
-        'longList',
-        longList,
-      )
-      ..add(
-        'timestampList',
-        timestampList,
-      )
-      ..add(
-        'dateTimeList',
-        dateTimeList,
-      )
-      ..add(
-        'httpDateList',
-        httpDateList,
-      )
-      ..add(
-        'enumList',
-        enumList,
-      )
-      ..add(
-        'intEnumList',
-        intEnumList,
-      )
-      ..add(
-        'listList',
-        listList,
-      )
-      ..add(
-        'structureList',
-        structureList,
-      )
-      ..add(
-        'structureListWithNoKey',
-        structureListWithNoKey,
-      )
-      ..add(
-        'unionList',
-        unionList,
-      );
+    final helper = newBuiltValueToStringHelper('MalformedUniqueItemsInput');
+    helper.add(
+      'blobList',
+      blobList,
+    );
+    helper.add(
+      'booleanList',
+      booleanList,
+    );
+    helper.add(
+      'byteList',
+      byteList,
+    );
+    helper.add(
+      'dateTimeList',
+      dateTimeList,
+    );
+    helper.add(
+      'enumList',
+      enumList,
+    );
+    helper.add(
+      'httpDateList',
+      httpDateList,
+    );
+    helper.add(
+      'intEnumList',
+      intEnumList,
+    );
+    helper.add(
+      'integerList',
+      integerList,
+    );
+    helper.add(
+      'listList',
+      listList,
+    );
+    helper.add(
+      'longList',
+      longList,
+    );
+    helper.add(
+      'shortList',
+      shortList,
+    );
+    helper.add(
+      'stringList',
+      stringList,
+    );
+    helper.add(
+      'structureList',
+      structureList,
+    );
+    helper.add(
+      'timestampList',
+      timestampList,
+    );
+    helper.add(
+      'unionList',
+      unionList,
+    );
     return helper.toString();
   }
 }
@@ -220,143 +215,177 @@ class MalformedUniqueItemsInputRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'blobList':
-          result.blobList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i5.BuiltSet,
-              [FullType(_i3.Uint8List)],
-            ),
-          ) as _i5.BuiltSet<_i3.Uint8List>));
+          if (value != null) {
+            result.blobList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i9.BuiltSet,
+                [FullType(_i3.Uint8List)],
+              ),
+            ) as _i9.BuiltSet<_i3.Uint8List>));
+          }
+          break;
         case 'booleanList':
-          result.booleanList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i5.BuiltSet,
-              [FullType(bool)],
-            ),
-          ) as _i5.BuiltSet<bool>));
+          if (value != null) {
+            result.booleanList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i9.BuiltSet,
+                [FullType(bool)],
+              ),
+            ) as _i9.BuiltSet<bool>));
+          }
+          break;
         case 'byteList':
-          result.byteList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i5.BuiltSet,
-              [FullType(int)],
-            ),
-          ) as _i5.BuiltSet<int>));
+          if (value != null) {
+            result.byteList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i9.BuiltSet,
+                [FullType(int)],
+              ),
+            ) as _i9.BuiltSet<int>));
+          }
+          break;
         case 'dateTimeList':
-          result.dateTimeList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i5.BuiltSet,
-              [FullType(DateTime)],
-            ),
-          ) as _i5.BuiltSet<DateTime>));
+          if (value != null) {
+            result.dateTimeList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i9.BuiltSet,
+                [FullType(DateTime)],
+              ),
+            ) as _i9.BuiltSet<DateTime>));
+          }
+          break;
         case 'enumList':
-          result.enumList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i5.BuiltSet,
-              [FullType(FooEnum)],
-            ),
-          ) as _i5.BuiltSet<FooEnum>));
+          if (value != null) {
+            result.enumList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i9.BuiltSet,
+                [FullType(_i4.FooEnum)],
+              ),
+            ) as _i9.BuiltSet<_i4.FooEnum>));
+          }
+          break;
         case 'httpDateList':
-          result.httpDateList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i5.BuiltSet,
-              [FullType(DateTime)],
-            ),
-          ) as _i5.BuiltSet<DateTime>));
+          if (value != null) {
+            result.httpDateList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i9.BuiltSet,
+                [FullType(DateTime)],
+              ),
+            ) as _i9.BuiltSet<DateTime>));
+          }
+          break;
         case 'intEnumList':
-          result.intEnumList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i5.BuiltSet,
-              [FullType(IntegerEnum)],
-            ),
-          ) as _i5.BuiltSet<IntegerEnum>));
+          if (value != null) {
+            result.intEnumList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i9.BuiltSet,
+                [FullType(_i5.IntegerEnum)],
+              ),
+            ) as _i9.BuiltSet<_i5.IntegerEnum>));
+          }
+          break;
         case 'integerList':
-          result.integerList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i5.BuiltSet,
-              [FullType(int)],
-            ),
-          ) as _i5.BuiltSet<int>));
+          if (value != null) {
+            result.integerList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i9.BuiltSet,
+                [FullType(int)],
+              ),
+            ) as _i9.BuiltSet<int>));
+          }
+          break;
         case 'listList':
-          result.listList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i5.BuiltSet,
-              [
-                FullType(
-                  _i5.BuiltList,
-                  [FullType(String)],
-                )
-              ],
-            ),
-          ) as _i5.BuiltSet<_i5.BuiltList<String>>));
+          if (value != null) {
+            result.listList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i9.BuiltSet,
+                [
+                  FullType(
+                    _i9.BuiltList,
+                    [FullType(String)],
+                  )
+                ],
+              ),
+            ) as _i9.BuiltSet<_i9.BuiltList<String>>));
+          }
+          break;
         case 'longList':
-          result.longList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i5.BuiltSet,
-              [FullType(_i4.Int64)],
-            ),
-          ) as _i5.BuiltSet<_i4.Int64>));
+          if (value != null) {
+            result.longList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i9.BuiltSet,
+                [FullType(_i6.Int64)],
+              ),
+            ) as _i9.BuiltSet<_i6.Int64>));
+          }
+          break;
         case 'shortList':
-          result.shortList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i5.BuiltSet,
-              [FullType(int)],
-            ),
-          ) as _i5.BuiltSet<int>));
+          if (value != null) {
+            result.shortList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i9.BuiltSet,
+                [FullType(int)],
+              ),
+            ) as _i9.BuiltSet<int>));
+          }
+          break;
         case 'stringList':
-          result.stringList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i5.BuiltSet,
-              [FullType(String)],
-            ),
-          ) as _i5.BuiltSet<String>));
+          if (value != null) {
+            result.stringList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i9.BuiltSet,
+                [FullType(String)],
+              ),
+            ) as _i9.BuiltSet<String>));
+          }
+          break;
         case 'structureList':
-          result.structureList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i5.BuiltSet,
-              [FullType(GreetingStruct)],
-            ),
-          ) as _i5.BuiltSet<GreetingStruct>));
-        case 'structureListWithNoKey':
-          result.structureListWithNoKey.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i5.BuiltSet,
-              [FullType(MissingKeyStructure)],
-            ),
-          ) as _i5.BuiltSet<MissingKeyStructure>));
+          if (value != null) {
+            result.structureList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i9.BuiltSet,
+                [FullType(_i7.GreetingStruct)],
+              ),
+            ) as _i9.BuiltSet<_i7.GreetingStruct>));
+          }
+          break;
         case 'timestampList':
-          result.timestampList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i5.BuiltSet,
-              [FullType(DateTime)],
-            ),
-          ) as _i5.BuiltSet<DateTime>));
+          if (value != null) {
+            result.timestampList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i9.BuiltSet,
+                [FullType(DateTime)],
+              ),
+            ) as _i9.BuiltSet<DateTime>));
+          }
+          break;
         case 'unionList':
-          result.unionList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i5.BuiltSet,
-              [FullType(FooUnion)],
-            ),
-          ) as _i5.BuiltSet<FooUnion>));
+          if (value != null) {
+            result.unionList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i9.BuiltSet,
+                [FullType(_i8.FooUnion)],
+              ),
+            ) as _i9.BuiltSet<_i8.FooUnion>));
+          }
+          break;
       }
     }
 
@@ -366,209 +395,181 @@ class MalformedUniqueItemsInputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    MalformedUniqueItemsInput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final MalformedUniqueItemsInput(
-      :blobList,
-      :booleanList,
-      :byteList,
-      :dateTimeList,
-      :enumList,
-      :httpDateList,
-      :intEnumList,
-      :integerList,
-      :listList,
-      :longList,
-      :shortList,
-      :stringList,
-      :structureList,
-      :structureListWithNoKey,
-      :timestampList,
-      :unionList
-    ) = object;
-    if (blobList != null) {
-      result$
+    final payload = (object as MalformedUniqueItemsInput);
+    final result = <Object?>[];
+    if (payload.blobList != null) {
+      result
         ..add('blobList')
         ..add(serializers.serialize(
-          blobList,
+          payload.blobList!,
           specifiedType: const FullType(
-            _i5.BuiltSet,
+            _i9.BuiltSet,
             [FullType(_i3.Uint8List)],
           ),
         ));
     }
-    if (booleanList != null) {
-      result$
+    if (payload.booleanList != null) {
+      result
         ..add('booleanList')
         ..add(serializers.serialize(
-          booleanList,
+          payload.booleanList!,
           specifiedType: const FullType(
-            _i5.BuiltSet,
+            _i9.BuiltSet,
             [FullType(bool)],
           ),
         ));
     }
-    if (byteList != null) {
-      result$
+    if (payload.byteList != null) {
+      result
         ..add('byteList')
         ..add(serializers.serialize(
-          byteList,
+          payload.byteList!,
           specifiedType: const FullType(
-            _i5.BuiltSet,
+            _i9.BuiltSet,
             [FullType(int)],
           ),
         ));
     }
-    if (dateTimeList != null) {
-      result$
+    if (payload.dateTimeList != null) {
+      result
         ..add('dateTimeList')
         ..add(serializers.serialize(
-          dateTimeList,
+          payload.dateTimeList!,
           specifiedType: const FullType(
-            _i5.BuiltSet,
+            _i9.BuiltSet,
             [FullType(DateTime)],
           ),
         ));
     }
-    if (enumList != null) {
-      result$
+    if (payload.enumList != null) {
+      result
         ..add('enumList')
         ..add(serializers.serialize(
-          enumList,
+          payload.enumList!,
           specifiedType: const FullType(
-            _i5.BuiltSet,
-            [FullType(FooEnum)],
+            _i9.BuiltSet,
+            [FullType(_i4.FooEnum)],
           ),
         ));
     }
-    if (httpDateList != null) {
-      result$
+    if (payload.httpDateList != null) {
+      result
         ..add('httpDateList')
         ..add(serializers.serialize(
-          httpDateList,
+          payload.httpDateList!,
           specifiedType: const FullType(
-            _i5.BuiltSet,
+            _i9.BuiltSet,
             [FullType(DateTime)],
           ),
         ));
     }
-    if (intEnumList != null) {
-      result$
+    if (payload.intEnumList != null) {
+      result
         ..add('intEnumList')
         ..add(serializers.serialize(
-          intEnumList,
+          payload.intEnumList!,
           specifiedType: const FullType(
-            _i5.BuiltSet,
-            [FullType(IntegerEnum)],
+            _i9.BuiltSet,
+            [FullType(_i5.IntegerEnum)],
           ),
         ));
     }
-    if (integerList != null) {
-      result$
+    if (payload.integerList != null) {
+      result
         ..add('integerList')
         ..add(serializers.serialize(
-          integerList,
+          payload.integerList!,
           specifiedType: const FullType(
-            _i5.BuiltSet,
+            _i9.BuiltSet,
             [FullType(int)],
           ),
         ));
     }
-    if (listList != null) {
-      result$
+    if (payload.listList != null) {
+      result
         ..add('listList')
         ..add(serializers.serialize(
-          listList,
+          payload.listList!,
           specifiedType: const FullType(
-            _i5.BuiltSet,
+            _i9.BuiltSet,
             [
               FullType(
-                _i5.BuiltList,
+                _i9.BuiltList,
                 [FullType(String)],
               )
             ],
           ),
         ));
     }
-    if (longList != null) {
-      result$
+    if (payload.longList != null) {
+      result
         ..add('longList')
         ..add(serializers.serialize(
-          longList,
+          payload.longList!,
           specifiedType: const FullType(
-            _i5.BuiltSet,
-            [FullType(_i4.Int64)],
+            _i9.BuiltSet,
+            [FullType(_i6.Int64)],
           ),
         ));
     }
-    if (shortList != null) {
-      result$
+    if (payload.shortList != null) {
+      result
         ..add('shortList')
         ..add(serializers.serialize(
-          shortList,
+          payload.shortList!,
           specifiedType: const FullType(
-            _i5.BuiltSet,
+            _i9.BuiltSet,
             [FullType(int)],
           ),
         ));
     }
-    if (stringList != null) {
-      result$
+    if (payload.stringList != null) {
+      result
         ..add('stringList')
         ..add(serializers.serialize(
-          stringList,
+          payload.stringList!,
           specifiedType: const FullType(
-            _i5.BuiltSet,
+            _i9.BuiltSet,
             [FullType(String)],
           ),
         ));
     }
-    if (structureList != null) {
-      result$
+    if (payload.structureList != null) {
+      result
         ..add('structureList')
         ..add(serializers.serialize(
-          structureList,
+          payload.structureList!,
           specifiedType: const FullType(
-            _i5.BuiltSet,
-            [FullType(GreetingStruct)],
+            _i9.BuiltSet,
+            [FullType(_i7.GreetingStruct)],
           ),
         ));
     }
-    if (structureListWithNoKey != null) {
-      result$
-        ..add('structureListWithNoKey')
-        ..add(serializers.serialize(
-          structureListWithNoKey,
-          specifiedType: const FullType(
-            _i5.BuiltSet,
-            [FullType(MissingKeyStructure)],
-          ),
-        ));
-    }
-    if (timestampList != null) {
-      result$
+    if (payload.timestampList != null) {
+      result
         ..add('timestampList')
         ..add(serializers.serialize(
-          timestampList,
+          payload.timestampList!,
           specifiedType: const FullType(
-            _i5.BuiltSet,
+            _i9.BuiltSet,
             [FullType(DateTime)],
           ),
         ));
     }
-    if (unionList != null) {
-      result$
+    if (payload.unionList != null) {
+      result
         ..add('unionList')
         ..add(serializers.serialize(
-          unionList,
+          payload.unionList!,
           specifiedType: const FullType(
-            _i5.BuiltSet,
-            [FullType(FooUnion)],
+            _i9.BuiltSet,
+            [FullType(_i8.FooUnion)],
           ),
         ));
     }
-    return result$;
+    return result;
   }
 }

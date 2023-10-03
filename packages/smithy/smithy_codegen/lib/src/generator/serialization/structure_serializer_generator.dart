@@ -3,8 +3,10 @@
 
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy/ast.dart';
+import 'package:smithy_codegen/src/generator/context.dart';
 import 'package:smithy_codegen/src/generator/generation_context.dart';
 import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart';
+import 'package:smithy_codegen/src/generator/serialization/serializer_config.dart';
 import 'package:smithy_codegen/src/generator/serialization/serializer_generator.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/protocol_ext.dart';
@@ -15,11 +17,11 @@ import 'package:smithy_codegen/src/util/symbol_ext.dart';
 class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
     with NamedMembersGenerationContext, StructureGenerationContext {
   StructureSerializerGenerator(
-    super.shape,
-    super.context,
-    super.protocol, {
-    super.config,
-  });
+    StructureShape shape,
+    CodegenContext context,
+    ProtocolDefinitionTrait protocol, {
+    SerializerConfig? config,
+  }) : super(shape, context, protocol, config: config);
 
   @override
   Reference get serializedSymbol =>
@@ -30,7 +32,7 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
   /// In general, this is members of the payload ([payloadMembers]).
   /// However, for test cases, we want to deserialize *all* members.
   List<MemberShape> get serializedMembers =>
-      config.usePayload ? payloadMembers : members;
+      config.usePayload ? payloadMembers : sortedMembers;
 
   @override
   bool get isStructuredSerializer =>
@@ -157,19 +159,14 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
           ]).code,
       );
 
-  Code get deserializePreamble => Code.scope(
-        (allocate) => '''
+  Code get deserializePreamble => Code.scope((allocate) => '''
       final iterator = serialized.iterator;
       while (iterator.moveNext()) {
         final key = iterator.current as ${allocate(DartTypes.core.string)};
         iterator.moveNext();
         final value = iterator.current;
-        if (value == null) {
-          continue;
-        }
         switch (key) {
-      ''',
-      );
+      ''');
 
   @override
   Code get deserializeCode {
@@ -192,11 +189,12 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
           .statement;
     }
 
-    final builder = BlockBuilder()
-      // Create the builder.
-      ..addExpression(
-        declareFinal('result').assign(builderSymbol.newInstance([])),
-      );
+    final builder = BlockBuilder();
+
+    // Create the builder.
+    builder.addExpression(
+      declareFinal('result').assign(builderSymbol.newInstance([])),
+    );
 
     // Iterate over the serialized elements.
     builder.statements.addAll([
@@ -240,11 +238,17 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
 
   /// Expression to deserialize fields within the `switch` statement.
   Iterable<Code> get fieldDeserializers sync* {
-    for (final member in serializedMembers) {
+    for (var member in serializedMembers) {
       final wireName = memberWireName(member);
       final memberSymbol = memberSymbols[member]!;
+      final isNullable = member.isNullable(context, shape);
       final targetShape = context.shapeFor(member.target);
-      final hasNestedBuilder = targetShape.hasNestedBuilder;
+      final hasNestedBuilder = [
+        ShapeType.map,
+        ShapeType.list,
+        ShapeType.set,
+        ShapeType.structure,
+      ].contains(targetShape.getType());
       final value = refer('value');
       yield Block.of([
         const Code('case '),
@@ -255,19 +259,27 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
               .property(member.dartName(ShapeType.structure))
               .property('replace')
               .call([
-            deserializerFor(member, memberSymbol: memberSymbol.unboxed),
-          ]).statement
+                deserializerFor(member, memberSymbol: memberSymbol.unboxed),
+              ])
+              .statement
+              .wrapWithBlockIf(
+                value.notEqualTo(literalNull),
+                isNullable,
+              )
         else
           refer('result')
               .property(member.dartName(ShapeType.structure))
-              .assign(
-                deserializerFor(
-                  member,
-                  value: value,
-                  memberSymbol: memberSymbol.unboxed,
-                ),
-              )
-              .statement,
+              .assign(deserializerFor(
+                member,
+                value: isNullable ? value : value.nullChecked,
+                memberSymbol: memberSymbol.unboxed,
+              ))
+              .statement
+              .wrapWithBlockIf(
+                value.notEqualTo(literalNull),
+                isNullable,
+              ),
+        const Code('break;'),
       ]);
     }
   }
@@ -284,71 +296,77 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
       return literalConstList([], DartTypes.core.object.boxed).code;
     }
     final builder = BlockBuilder();
-    final payloadVar = refer('object');
-    final resultVar = refer(r'result$');
+    final object = refer('object');
+    final payload = refer('payload');
+
+    // Get the payload, since we handle serializing the input & payload types
+    // in the same serializer.
+    final payloadSymbol = this.payloadSymbol;
+    if (hasPayload && config.usePayload) {
+      builder.addExpression(
+        declareFinal('payload').assign(
+          object.isA(symbol).conditional(
+                object.property('getPayload').call([]),
+                object.asA(payloadSymbol),
+              ),
+        ),
+      );
+    } else {
+      builder.addExpression(declareFinal('payload').assign(object.asA(symbol)));
+    }
 
     if (!isStructuredSerializer) {
+      final isNullable = payloadMember!.isNullable(context, shape);
       builder.addExpression(
         serializerFor(
           payloadMember!,
-          payloadVar,
+          isNullable ? payload.nullChecked : payload,
           memberSymbol: payloadSymbol.unboxed,
-        ).nullChecked.returned,
+        ).asA(DartTypes.core.object).returned,
       );
       return builder.build();
     }
 
-    builder.addExpression(
-      declareFinal(resultVar.symbol!).assign(
-        literalList([], DartTypes.core.object.boxed),
-      ),
-    );
-
-    // Destructure `payload` so that members can be null-checked w/ promotion.
-    builder.statements.add(
-      destructure(payloadSymbol, serializedMembers, payloadVar),
-    );
-
     // Create a result object with all the non-null members.
+    final result = <Expression>[];
     final nonNullMembers =
         serializedMembers.where((member) => !member.isNullable(context, shape));
-    final nonNullResult = <Expression>[];
-    for (final member in nonNullMembers) {
-      final memberRef = refer(member.dartName(ShapeType.structure));
-      nonNullResult.addAll([
+    for (var member in nonNullMembers) {
+      final memberRef = payload.property(member.dartName(ShapeType.structure));
+      result.addAll([
         literalString(memberWireName(member)),
         serializerFor(member, memberRef),
       ]);
     }
-    if (nonNullResult.isNotEmpty) {
-      builder.addExpression(
-        resultVar.property('addAll').call([literalList(nonNullResult)]),
-      );
-    }
+    builder.addExpression(
+      declareFinal('result').assign(
+        literalList(result, DartTypes.core.object.boxed),
+      ),
+    );
 
     // Add remaining objects only if they're non-null.
     final nullableMembers =
         serializedMembers.where((member) => member.isNullable(context, shape));
-    for (final member in nullableMembers) {
-      final memberRef = refer(member.dartName(ShapeType.structure));
+    for (var member in nullableMembers) {
+      final memberRef = payload.property(member.dartName(ShapeType.structure));
       builder.statements.addAll([
-        resultVar
+        refer('result')
             .cascade('add')
             .call([literalString(memberWireName(member))])
             .cascade('add')
             .call([
               serializerFor(
                 member,
-                memberRef,
+                memberRef.nullChecked,
                 memberSymbol: context.symbolFor(member.target, shape).unboxed,
-              ),
+              )
             ])
             .statement
             .wrapWithBlockIf(memberRef.notEqualTo(literalNull), true),
       ]);
     }
 
-    builder.addExpression(resultVar.returned);
+    builder.addExpression(refer('result').returned);
 
     return builder.build();
   }

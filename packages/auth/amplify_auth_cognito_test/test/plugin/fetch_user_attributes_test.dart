@@ -93,11 +93,7 @@ void main() {
   late AmplifyAuthCognitoDart plugin;
 
   group('fetchUserAttributes', () {
-    tearDown(() async {
-      await plugin.close();
-    });
-
-    test('converts user attributes correctly', () async {
+    setUp(() {
       stateMachine = MockCognitoAuthStateMachine()
         ..addInstance<CognitoIdentityProviderClient>(
           MockCognitoIdentityProviderClient(
@@ -111,6 +107,13 @@ void main() {
           ),
         );
       plugin = AmplifyAuthCognitoDart()..stateMachine = stateMachine;
+    });
+
+    tearDown(() async {
+      await plugin.close();
+    });
+
+    test('converts user attributes correctly', () async {
       final res = await plugin.fetchUserAttributes();
       final expected = [
         AuthUserAttribute(
@@ -199,16 +202,6 @@ void main() {
     });
 
     test('refreshes token before calling Cognito', () async {
-      stateMachine = CognitoAuthStateMachine()
-        ..addInstance<CognitoIdentityProviderClient>(
-          MockCognitoIdentityProviderClient(
-            getUser: () async => GetUserResponse(
-              userAttributes: [],
-              username: username,
-            ),
-          ),
-        );
-
       final secureStorage = MockSecureStorage();
       SecureStorageInterface storageFactory(scope) => secureStorage;
       seedStorage(

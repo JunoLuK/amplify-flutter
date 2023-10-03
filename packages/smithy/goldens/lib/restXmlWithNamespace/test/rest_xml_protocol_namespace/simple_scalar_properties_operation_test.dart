@@ -1,15 +1,17 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 // ignore_for_file: unused_element
 library rest_xml_with_namespace_v1.rest_xml_protocol_namespace.test.simple_scalar_properties_operation_test_test; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:built_value/serializer.dart';
-import 'package:fixnum/fixnum.dart' as _i4;
-import 'package:rest_xml_with_namespace_v1/src/rest_xml_protocol_namespace/model/nested_with_namespace.dart';
-import 'package:rest_xml_with_namespace_v1/src/rest_xml_protocol_namespace/model/simple_scalar_properties_input_output.dart';
-import 'package:rest_xml_with_namespace_v1/src/rest_xml_protocol_namespace/operation/simple_scalar_properties_operation.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:fixnum/fixnum.dart' as _i6;
+import 'package:rest_xml_with_namespace_v1/src/rest_xml_protocol_namespace/model/nested_with_namespace.dart'
+    as _i7;
+import 'package:rest_xml_with_namespace_v1/src/rest_xml_protocol_namespace/model/simple_scalar_properties_input_output.dart'
+    as _i5;
+import 'package:rest_xml_with_namespace_v1/src/rest_xml_protocol_namespace/operation/simple_scalar_properties_operation.dart'
+    as _i3;
+import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
@@ -18,14 +20,14 @@ void main() {
     'XmlNamespaceSimpleScalarProperties (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: SimpleScalarPropertiesOperation(
+        operation: _i3.SimpleScalarPropertiesOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'XmlNamespaceSimpleScalarProperties',
           documentation: 'Serializes simple scalar properties',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restXml',
           ),
@@ -75,14 +77,14 @@ void main() {
     'XmlNamespaceSimpleScalarProperties (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: SimpleScalarPropertiesOperation(
+        operation: _i3.SimpleScalarPropertiesOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'XmlNamespaceSimpleScalarProperties',
           documentation: 'Serializes simple scalar properties',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restXml',
           ),
@@ -124,91 +126,121 @@ void main() {
   );
 }
 
-class SimpleScalarPropertiesInputOutputRestXmlSerializer
-    extends _i3.StructuredSmithySerializer<SimpleScalarPropertiesInputOutput> {
+class SimpleScalarPropertiesInputOutputRestXmlSerializer extends _i4
+    .StructuredSmithySerializer<_i5.SimpleScalarPropertiesInputOutput> {
   const SimpleScalarPropertiesInputOutputRestXmlSerializer()
       : super('SimpleScalarPropertiesInputOutput');
 
   @override
-  Iterable<Type> get types => const [SimpleScalarPropertiesInputOutput];
+  Iterable<Type> get types => const [_i5.SimpleScalarPropertiesInputOutput];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restXml',
         )
       ];
   @override
-  SimpleScalarPropertiesInputOutput deserialize(
+  _i5.SimpleScalarPropertiesInputOutput deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = SimpleScalarPropertiesInputOutputBuilder();
+    final result = _i5.SimpleScalarPropertiesInputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
-        case 'foo':
-          result.foo = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
-        case 'stringValue':
-          result.stringValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
-        case 'trueBooleanValue':
-          result.trueBooleanValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool);
-        case 'falseBooleanValue':
-          result.falseBooleanValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool);
         case 'byteValue':
-          result.byteValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int);
-        case 'shortValue':
-          result.shortValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int);
-        case 'integerValue':
-          result.integerValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int);
-        case 'longValue':
-          result.longValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(_i4.Int64),
-          ) as _i4.Int64);
-        case 'floatValue':
-          result.floatValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(double),
-          ) as double);
-        case 'Nested':
-          result.nested.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(NestedWithNamespace),
-          ) as NestedWithNamespace));
+          if (value != null) {
+            result.byteValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(int),
+            ) as int);
+          }
+          break;
         case 'doubleValue':
-          result.doubleValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(double),
-          ) as double);
+          if (value != null) {
+            result.doubleValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(double),
+            ) as double);
+          }
+          break;
+        case 'falseBooleanValue':
+          if (value != null) {
+            result.falseBooleanValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(bool),
+            ) as bool);
+          }
+          break;
+        case 'floatValue':
+          if (value != null) {
+            result.floatValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(double),
+            ) as double);
+          }
+          break;
+        case 'foo':
+          if (value != null) {
+            result.foo = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
+        case 'integerValue':
+          if (value != null) {
+            result.integerValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(int),
+            ) as int);
+          }
+          break;
+        case 'longValue':
+          if (value != null) {
+            result.longValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i6.Int64),
+            ) as _i6.Int64);
+          }
+          break;
+        case 'Nested':
+          if (value != null) {
+            result.nested.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i7.NestedWithNamespace),
+            ) as _i7.NestedWithNamespace));
+          }
+          break;
+        case 'shortValue':
+          if (value != null) {
+            result.shortValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(int),
+            ) as int);
+          }
+          break;
+        case 'stringValue':
+          if (value != null) {
+            result.stringValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
+        case 'trueBooleanValue':
+          if (value != null) {
+            result.trueBooleanValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(bool),
+            ) as bool);
+          }
+          break;
       }
     }
 
@@ -218,7 +250,7 @@ class SimpleScalarPropertiesInputOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    SimpleScalarPropertiesInputOutput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
@@ -226,39 +258,39 @@ class SimpleScalarPropertiesInputOutputRestXmlSerializer
 }
 
 class NestedWithNamespaceRestXmlSerializer
-    extends _i3.StructuredSmithySerializer<NestedWithNamespace> {
+    extends _i4.StructuredSmithySerializer<_i7.NestedWithNamespace> {
   const NestedWithNamespaceRestXmlSerializer() : super('NestedWithNamespace');
 
   @override
-  Iterable<Type> get types => const [NestedWithNamespace];
+  Iterable<Type> get types => const [_i7.NestedWithNamespace];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restXml',
         )
       ];
   @override
-  NestedWithNamespace deserialize(
+  _i7.NestedWithNamespace deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = NestedWithNamespaceBuilder();
+    final result = _i7.NestedWithNamespaceBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'attrField':
-          result.attrField = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.attrField = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -268,7 +300,7 @@ class NestedWithNamespaceRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    NestedWithNamespace object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');

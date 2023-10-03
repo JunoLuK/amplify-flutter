@@ -1,21 +1,27 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_protocol.operation.post_player_action_operation; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'dart:async' as _i4;
+import 'dart:async' as _i8;
 
-import 'package:aws_common/aws_common.dart' as _i3;
-import 'package:rest_json1_v2/src/rest_json_protocol/common/endpoint_resolver.dart';
-import 'package:rest_json1_v2/src/rest_json_protocol/common/serializers.dart';
-import 'package:rest_json1_v2/src/rest_json_protocol/model/post_player_action_input.dart';
-import 'package:rest_json1_v2/src/rest_json_protocol/model/post_player_action_output.dart';
+import 'package:aws_common/aws_common.dart' as _i7;
+import 'package:rest_json1_v2/src/rest_json_protocol/common/endpoint_resolver.dart'
+    as _i6;
+import 'package:rest_json1_v2/src/rest_json_protocol/common/serializers.dart'
+    as _i5;
+import 'package:rest_json1_v2/src/rest_json_protocol/model/post_player_action_input.dart'
+    as _i2;
+import 'package:rest_json1_v2/src/rest_json_protocol/model/post_player_action_output.dart'
+    as _i3;
 import 'package:smithy/smithy.dart' as _i1;
-import 'package:smithy_aws/smithy_aws.dart' as _i2;
+import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
 /// This operation defines a union with a Unit member.
-class PostPlayerActionOperation extends _i1.HttpOperation<PostPlayerActionInput,
-    PostPlayerActionInput, PostPlayerActionOutput, PostPlayerActionOutput> {
+class PostPlayerActionOperation extends _i1.HttpOperation<
+    _i2.PostPlayerActionInput,
+    _i2.PostPlayerActionInput,
+    _i3.PostPlayerActionOutput,
+    _i3.PostPlayerActionOutput> {
   /// This operation defines a union with a Unit member.
   PostPlayerActionOperation({
     required String region,
@@ -29,17 +35,17 @@ class PostPlayerActionOperation extends _i1.HttpOperation<PostPlayerActionInput,
 
   @override
   late final List<
-      _i1.HttpProtocol<PostPlayerActionInput, PostPlayerActionInput,
-          PostPlayerActionOutput, PostPlayerActionOutput>> protocols = [
-    _i2.RestJson1Protocol(
-      serializers: serializers,
-      builderFactories: builderFactories,
+      _i1.HttpProtocol<_i2.PostPlayerActionInput, _i2.PostPlayerActionInput,
+          _i3.PostPlayerActionOutput, _i3.PostPlayerActionOutput>> protocols = [
+    _i4.RestJson1Protocol(
+      serializers: _i5.serializers,
+      builderFactories: _i5.builderFactories,
       requestInterceptors: <_i1.HttpRequestInterceptor>[
             const _i1.WithHost(),
             const _i1.WithContentLength(),
             const _i1.WithUserAgent('aws-sdk-dart/0.3.1'),
-            const _i2.WithSdkInvocationId(),
-            const _i2.WithSdkRequest(),
+            const _i4.WithSdkInvocationId(),
+            const _i4.WithSdkRequest(),
           ] +
           _requestInterceptors,
       responseInterceptors:
@@ -47,8 +53,8 @@ class PostPlayerActionOperation extends _i1.HttpOperation<PostPlayerActionInput,
     )
   ];
 
-  late final _i2.AWSEndpoint _awsEndpoint = endpointResolver.resolve(
-    sdkId,
+  late final _i4.AWSEndpoint _awsEndpoint = _i6.endpointResolver.resolve(
+    _i6.sdkId,
     _region,
   );
 
@@ -61,19 +67,19 @@ class PostPlayerActionOperation extends _i1.HttpOperation<PostPlayerActionInput,
   final List<_i1.HttpResponseInterceptor> _responseInterceptors;
 
   @override
-  _i1.HttpRequest buildRequest(PostPlayerActionInput input) =>
+  _i1.HttpRequest buildRequest(_i2.PostPlayerActionInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = r'/PostPlayerAction';
       });
   @override
-  int successCode([PostPlayerActionOutput? output]) => 200;
+  int successCode([_i3.PostPlayerActionOutput? output]) => 200;
   @override
-  PostPlayerActionOutput buildOutput(
-    PostPlayerActionOutput payload,
-    _i3.AWSBaseHttpResponse response,
+  _i3.PostPlayerActionOutput buildOutput(
+    _i3.PostPlayerActionOutput payload,
+    _i7.AWSBaseHttpResponse response,
   ) =>
-      PostPlayerActionOutput.fromResponse(
+      _i3.PostPlayerActionOutput.fromResponse(
         payload,
         response,
       );
@@ -82,18 +88,18 @@ class PostPlayerActionOperation extends _i1.HttpOperation<PostPlayerActionInput,
   @override
   String get runtimeTypeName => 'PostPlayerAction';
   @override
-  _i2.AWSRetryer get retryer => _i2.AWSRetryer();
+  _i4.AWSRetryer get retryer => _i4.AWSRetryer();
   @override
   Uri get baseUri => _baseUri ?? endpoint.uri;
   @override
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;
   @override
-  _i1.SmithyOperation<PostPlayerActionOutput> run(
-    PostPlayerActionInput input, {
-    _i3.AWSHttpClient? client,
+  _i1.SmithyOperation<_i3.PostPlayerActionOutput> run(
+    _i2.PostPlayerActionInput input, {
+    _i7.AWSHttpClient? client,
     _i1.ShapeId? useProtocol,
   }) {
-    return _i4.runZoned(
+    return _i8.runZoned(
       () => super.run(
         input,
         client: client,
@@ -101,7 +107,7 @@ class PostPlayerActionOperation extends _i1.HttpOperation<PostPlayerActionInput,
       ),
       zoneValues: {
         ...?_awsEndpoint.credentialScope?.zoneValues,
-        ...{_i3.AWSHeaders.sdkInvocationId: _i3.uuid(secure: true)},
+        ...{_i7.AWSHeaders.sdkInvocationId: _i7.uuid(secure: true)}
       },
     );
   }

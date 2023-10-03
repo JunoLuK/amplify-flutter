@@ -4,10 +4,10 @@
 extension ListX<T> on List<T> {
   List<T> spacedBy(T spacer) {
     return [
-      for (final item in this) ...[
+      for (var item in this) ...[
         item,
         spacer,
-      ],
+      ]
     ]..removeLast();
   }
 }

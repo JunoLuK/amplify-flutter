@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library custom_v2.custom.model.http_checksum_really_required_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -8,7 +7,7 @@ import 'dart:typed_data' as _i2;
 import 'package:aws_common/aws_common.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:custom_v2/src/custom/model/checksum_algorithm.dart';
+import 'package:custom_v2/src/custom/model/checksum_algorithm.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'http_checksum_really_required_input.g.dart';
@@ -22,7 +21,7 @@ abstract class HttpChecksumReallyRequiredInput
             HttpChecksumReallyRequiredInputBuilder>,
         _i1.HasPayload<_i2.Uint8List> {
   factory HttpChecksumReallyRequiredInput({
-    ChecksumAlgorithm? checksumAlgorithm,
+    _i4.ChecksumAlgorithm? checksumAlgorithm,
     _i2.Uint8List? content,
   }) {
     return _$HttpChecksumReallyRequiredInput._(
@@ -45,16 +44,18 @@ abstract class HttpChecksumReallyRequiredInput
       HttpChecksumReallyRequiredInput.build((b) {
         b.content = payload;
         if (request.headers['x-amz-request-algorithm'] != null) {
-          b.checksumAlgorithm = ChecksumAlgorithm.values
+          b.checksumAlgorithm = _i4.ChecksumAlgorithm.values
               .byValue(request.headers['x-amz-request-algorithm']!);
         }
       });
 
-  static const List<_i1.SmithySerializer<_i2.Uint8List?>> serializers = [
+  static const List<_i1.SmithySerializer> serializers = [
     HttpChecksumReallyRequiredInputRestJson1Serializer()
   ];
 
-  ChecksumAlgorithm? get checksumAlgorithm;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HttpChecksumReallyRequiredInputBuilder b) {}
+  _i4.ChecksumAlgorithm? get checksumAlgorithm;
   _i2.Uint8List? get content;
   @override
   _i2.Uint8List? getPayload() => content;
@@ -66,15 +67,15 @@ abstract class HttpChecksumReallyRequiredInput
   @override
   String toString() {
     final helper =
-        newBuiltValueToStringHelper('HttpChecksumReallyRequiredInput')
-          ..add(
-            'checksumAlgorithm',
-            checksumAlgorithm,
-          )
-          ..add(
-            'content',
-            content,
-          );
+        newBuiltValueToStringHelper('HttpChecksumReallyRequiredInput');
+    helper.add(
+      'checksumAlgorithm',
+      checksumAlgorithm,
+    );
+    helper.add(
+      'content',
+      content,
+    );
     return helper.toString();
   }
 }
@@ -111,12 +112,15 @@ class HttpChecksumReallyRequiredInputRestJson1Serializer
   @override
   Object serialize(
     Serializers serializers,
-    _i2.Uint8List object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return serializers.serialize(
-      object,
+    final payload = object is HttpChecksumReallyRequiredInput
+        ? object.getPayload()
+        : (object as _i2.Uint8List?);
+    return (serializers.serialize(
+      payload!,
       specifiedType: const FullType(_i2.Uint8List),
-    )!;
+    ) as Object);
   }
 }

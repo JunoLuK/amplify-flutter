@@ -1,7 +1,9 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-part of 'auth_state.dart';
+import 'package:amplify_auth_cognito_dart/amplify_auth_cognito_dart.dart';
+import 'package:amplify_auth_cognito_dart/src/state/state.dart';
+import 'package:amplify_core/amplify_core.dart';
 
 /// Discrete state types of the fetch auth session state machine.
 enum FetchAuthSessionStateType {
@@ -22,7 +24,7 @@ enum FetchAuthSessionStateType {
 }
 
 /// Discrete states of the fetch auth session state machine.
-sealed class FetchAuthSessionState
+abstract class FetchAuthSessionState
     extends AuthState<FetchAuthSessionStateType> {
   const FetchAuthSessionState._();
 
@@ -53,7 +55,7 @@ sealed class FetchAuthSessionState
 /// {@template amplify_auth_cognito.fetch_auth_session_idle}
 /// The state machine is idle and ready to receive a command.
 /// {@endtemplate}
-final class FetchAuthSessionIdle extends FetchAuthSessionState {
+class FetchAuthSessionIdle extends FetchAuthSessionState {
   /// {@macro amplify_auth_cognito.fetch_auth_session_idle}
   const FetchAuthSessionIdle() : super._();
 
@@ -67,7 +69,7 @@ final class FetchAuthSessionIdle extends FetchAuthSessionState {
 /// {@template amplify_auth_cognito.fetch_auth_session_fetching}
 /// The state machine is fetching the current auth session.
 /// {@endtemplate}
-final class FetchAuthSessionFetching extends FetchAuthSessionState {
+class FetchAuthSessionFetching extends FetchAuthSessionState {
   /// {@macro amplify_auth_cognito.fetch_auth_session_fetching}
   const FetchAuthSessionFetching() : super._();
 
@@ -81,7 +83,7 @@ final class FetchAuthSessionFetching extends FetchAuthSessionState {
 /// {@template amplify_auth_cognito.fetch_auth_session_refreshing}
 /// The state machine is refreshing the current auth session.
 /// {@endtemplate}
-final class FetchAuthSessionRefreshing extends FetchAuthSessionState {
+class FetchAuthSessionRefreshing extends FetchAuthSessionState {
   /// {@macro amplify_auth_cognito.fetch_auth_session_refreshing}
   const FetchAuthSessionRefreshing() : super._();
 
@@ -95,8 +97,7 @@ final class FetchAuthSessionRefreshing extends FetchAuthSessionState {
 /// {@template amplify_auth_cognito.fetch_auth_session_success}
 /// The state machine successfully fetched the current auth session.
 /// {@endtemplate}
-final class FetchAuthSessionSuccess extends FetchAuthSessionState
-    with SuccessState {
+class FetchAuthSessionSuccess extends FetchAuthSessionState with SuccessState {
   /// {@macro amplify_auth_cognito.fetch_auth_session_success}
   const FetchAuthSessionSuccess(this.session) : super._();
 
@@ -113,8 +114,7 @@ final class FetchAuthSessionSuccess extends FetchAuthSessionState
 /// {@template amplify_auth_cognito.fetch_auth_session_failure}
 /// The state machine encountered an error fetching the current auth session.
 /// {@endtemplate}
-final class FetchAuthSessionFailure extends FetchAuthSessionState
-    with ErrorState {
+class FetchAuthSessionFailure extends FetchAuthSessionState with ErrorState {
   /// {@macro amplify_auth_cognito.fetch_auth_session_failure}
   const FetchAuthSessionFailure(this.exception, this.stackTrace) : super._();
 

@@ -14,22 +14,14 @@ void main() {
   AmplifyDataStore dataStore =
       AmplifyDataStore(modelProvider: ModelProvider.instance);
 
-  final binding = TestWidgetsFlutterBinding.ensureInitialized();
+  TestWidgetsFlutterBinding.ensureInitialized();
 
   tearDown(() {
-    binding.defaultBinaryMessenger.setMockMethodCallHandler(
-      dataStoreChannel,
-      null,
-    );
+    dataStoreChannel.setMockMethodCallHandler(null);
   });
 
   test('Clear executes successfully', () async {
-    binding.defaultBinaryMessenger.setMockMethodCallHandler(
-      dataStoreChannel,
-      (MethodCall methodCall) async {
-        return null;
-      },
-    );
+    dataStoreChannel.setMockMethodCallHandler((MethodCall methodCall) async {});
     Future<void> clearFuture = dataStore.clear();
     expect(clearFuture, completes);
   });
@@ -37,16 +29,13 @@ void main() {
   test(
       'A PlatformException for a failed API call results in the corresponding DataStoreException',
       () async {
-    binding.defaultBinaryMessenger.setMockMethodCallHandler(
-      dataStoreChannel,
-      (MethodCall methodCall) async {
-        throw PlatformException(code: 'DataStoreException', details: {
-          'message': 'Clear failed for whatever known reason',
-          'recoverySuggestion': 'some insightful suggestion',
-          'underlyingException': 'Act of God'
-        });
-      },
-    );
+    dataStoreChannel.setMockMethodCallHandler((MethodCall methodCall) async {
+      throw PlatformException(code: 'DataStoreException', details: {
+        'message': 'Clear failed for whatever known reason',
+        'recoverySuggestion': 'some insightful suggestion',
+        'underlyingException': 'Act of God'
+      });
+    });
     expect(
         () => dataStore.clear(),
         throwsA(isA<DataStoreException>()
@@ -67,12 +56,9 @@ void main() {
       'recoverySuggestion': 'some insightful suggestion',
       'underlyingException': 'Act of God'
     });
-    binding.defaultBinaryMessenger.setMockMethodCallHandler(
-      dataStoreChannel,
-      (MethodCall methodCall) async {
-        throw platformException;
-      },
-    );
+    dataStoreChannel.setMockMethodCallHandler((MethodCall methodCall) async {
+      throw platformException;
+    });
     expect(
         () => dataStore.clear(),
         throwsA(isA<DataStoreException>()

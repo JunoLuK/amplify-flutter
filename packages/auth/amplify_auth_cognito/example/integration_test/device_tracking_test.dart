@@ -4,12 +4,13 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_auth_cognito_dart/src/credentials/device_metadata_repository.dart';
 import 'package:amplify_auth_cognito_dart/src/sdk/cognito_identity_provider.dart';
-import 'package:amplify_auth_integration_test/amplify_auth_integration_test.dart';
+import 'package:amplify_auth_cognito_example/amplifyconfiguration.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_integration_test/amplify_integration_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'test_runner.dart';
+import 'utils/setup_utils.dart';
+import 'utils/test_utils.dart';
 
 enum DeviceState { untracked, tracked, remembered }
 
@@ -20,7 +21,7 @@ DeviceMetadataRepository get deviceRepo =>
         .getOrCreate<DeviceMetadataRepository>();
 
 void main() {
-  testRunner.setupTests();
+  initTests();
 
   group('Device Tracking', () {
     // The username selected by the user.
@@ -68,9 +69,13 @@ void main() {
           autoConfirm: true,
           verifyAttributes: true,
           enableMfa: enableMfa,
-          attributes: {
-            if (emailAlias) AuthUserAttributeKey.email: username!,
-          },
+          attributes: [
+            if (emailAlias)
+              AuthUserAttribute(
+                userAttributeKey: CognitoUserAttributeKey.email,
+                value: username!,
+              ),
+          ],
         );
         if (emailAlias) {
           expect(
@@ -80,7 +85,8 @@ void main() {
                 'as the username',
           );
         }
-        addTearDown(() {
+        addTearDown(() async {
+          await deleteUser(cognitoUsername);
           username = null;
           password = null;
         });
@@ -115,13 +121,13 @@ void main() {
     for (final environmentName in deviceOptInEnvironments) {
       group('Opt-In', () {
         group(environmentName, () {
-          setUp(() async {
-            await testRunner.configure(
-              environmentName: environmentName,
+          setUpAll(() async {
+            await configureAuth(
+              config: amplifyEnvironments[environmentName]!,
             );
-
-            await signIn();
           });
+
+          setUp(signIn);
 
           asyncTest('device is not automatically remembered', (_) async {
             expect(await getDeviceState(), DeviceState.tracked);
@@ -173,13 +179,13 @@ void main() {
     group(
       'Opt-In (MFA)',
       () {
-        setUp(() async {
-          await testRunner.configure(
-            environmentName: 'device-tracking-opt-in',
+        setUpAll(() async {
+          await configureAuth(
+            config: amplifyEnvironments['device-tracking-opt-in']!,
           );
-
-          await signIn(enableMfa: true);
         });
+
+        setUp(() => signIn(enableMfa: true));
 
         asyncTest('cannot bypass MFA when device is not remembered', (_) async {
           await signOutUser();
@@ -224,13 +230,13 @@ void main() {
     );
 
     group('Always', () {
-      setUp(() async {
-        await testRunner.configure(
-          environmentName: 'device-tracking-always',
+      setUpAll(() async {
+        await configureAuth(
+          config: amplifyEnvironments['device-tracking-always']!,
         );
-
-        await signIn();
       });
+
+      setUp(signIn);
 
       asyncTest('device is automatically remembered', (_) async {
         expect(await getDeviceState(), DeviceState.remembered);
@@ -271,13 +277,13 @@ void main() {
     });
 
     group('Always (MFA)', () {
-      setUp(() async {
-        await testRunner.configure(
-          environmentName: 'device-tracking-always',
+      setUpAll(() async {
+        await configureAuth(
+          config: amplifyEnvironments['device-tracking-always']!,
         );
-
-        await signIn(enableMfa: true);
       });
+
+      setUp(() => signIn(enableMfa: true));
 
       asyncTest('can bypass MFA when device is always remembered', (_) async {
         await signOutUser();
@@ -306,13 +312,13 @@ void main() {
     });
 
     group('Always (Email Alias)', () {
-      setUp(() async {
-        await testRunner.configure(
-          environmentName: 'device-tracking-email-alias',
+      setUpAll(() async {
+        await configureAuth(
+          config: amplifyEnvironments['device-tracking-email-alias']!,
         );
-
-        await signIn(emailAlias: true);
       });
+
+      setUp(() => signIn(emailAlias: true));
 
       asyncTest('device is automatically remembered', (_) async {
         expect(await getDeviceState(), DeviceState.remembered);
@@ -353,13 +359,13 @@ void main() {
     });
 
     group('Always (Email Alias / MFA)', () {
-      setUp(() async {
-        await testRunner.configure(
-          environmentName: 'device-tracking-email-alias',
+      setUpAll(() async {
+        await configureAuth(
+          config: amplifyEnvironments['device-tracking-email-alias']!,
         );
-
-        await signIn(emailAlias: true, enableMfa: true);
       });
+
+      setUp(() => signIn(emailAlias: true, enableMfa: true));
 
       asyncTest('device is automatically remembered', (_) async {
         expect(await getDeviceState(), DeviceState.remembered);

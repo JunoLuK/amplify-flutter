@@ -9,7 +9,7 @@ import 'package:amplify_core/amplify_core.dart';
 /// - [CognitoCompleteSignOut]
 /// - [CognitoFailedSignOut]
 /// - [CognitoPartialSignOut]
-sealed class CognitoSignOutResult extends SignOutResult
+abstract class CognitoSignOutResult extends SignOutResult
     with AWSEquatable<CognitoSignOutResult> {
   /// {@macro amplify_core.auth.sign_out_result}
   const CognitoSignOutResult._();
@@ -46,7 +46,7 @@ sealed class CognitoSignOutResult extends SignOutResult
 /// {@template amplify_auth_cognito_dart.model.cognito_complete_sign_out}
 /// The result of a call to `Amplify.Auth.signOut`.
 /// {@endtemplate}
-final class CognitoCompleteSignOut extends CognitoSignOutResult {
+class CognitoCompleteSignOut extends CognitoSignOutResult {
   /// {@macro amplify_auth_cognito_dart.model.cognito_complete_sign_out}
   const CognitoCompleteSignOut._() : super._();
 
@@ -57,7 +57,7 @@ final class CognitoCompleteSignOut extends CognitoSignOutResult {
 /// {@template amplify_auth_cognito_dart.model.cognito_failed_sign_out}
 /// A sign out which did not complete. The user will remain signed in.
 /// {@endtemplate}
-final class CognitoFailedSignOut extends CognitoSignOutResult {
+class CognitoFailedSignOut extends CognitoSignOutResult {
   /// {@macro amplify_auth_cognito_dart.model.cognito_failed_sign_out}
   const CognitoFailedSignOut._(this.exception) : super._();
 
@@ -81,7 +81,7 @@ final class CognitoFailedSignOut extends CognitoSignOutResult {
 /// A partial success during sign out where credentials have been cleared
 /// from the device.
 /// {@endtemplate}
-final class CognitoPartialSignOut extends CognitoSignOutResult {
+class CognitoPartialSignOut extends CognitoSignOutResult {
   /// {@macro amplify_auth_cognito_dart.model.cognito_partial_sign_out}
   const CognitoPartialSignOut._({
     this.hostedUiException,
@@ -106,7 +106,7 @@ final class CognitoPartialSignOut extends CognitoSignOutResult {
         hostedUiException,
         globalSignOutException,
         revokeTokenException,
-        signedOutLocally,
+        signedOutLocally
       ];
 
   @override
@@ -121,7 +121,7 @@ final class CognitoPartialSignOut extends CognitoSignOutResult {
 /// {@template amplify_auth_cognito_dart.model.signout.hosted_ui_exception}
 /// Exception thrown trying to sign out of Hosted UI.
 /// {@endtemplate}
-final class HostedUiException extends UnknownException {
+class HostedUiException extends AuthException {
   /// {@macro amplify_auth_cognito_dart.model.signout.hosted_ui_exception}
   const HostedUiException({
     super.underlyingException,
@@ -137,7 +137,7 @@ final class HostedUiException extends UnknownException {
 /// {@template amplify_auth_cognito_dart.model.signout.global_sign_out_exception}
 /// Exception thrown trying to sign out the user globally.
 /// {@endtemplate}
-final class GlobalSignOutException extends AuthServiceException {
+class GlobalSignOutException extends AuthException {
   /// {@macro amplify_auth_cognito_dart.model.signout.global_sign_out_exception}
   const GlobalSignOutException({
     required this.accessToken,
@@ -159,7 +159,7 @@ final class GlobalSignOutException extends AuthServiceException {
 /// {@template amplify_auth_cognito_dart.model.signout.revoke_token_exception}
 /// Exception thrown trying to revoke the user's token.
 /// {@endtemplate}
-final class RevokeTokenException extends AuthServiceException {
+class RevokeTokenException extends AuthException {
   /// {@macro amplify_auth_cognito_dart.model.signout.revoke_token_exception}
   const RevokeTokenException({
     required this.refreshToken,

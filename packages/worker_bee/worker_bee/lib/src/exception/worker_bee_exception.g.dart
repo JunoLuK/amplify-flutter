@@ -66,7 +66,7 @@ class _$WorkerBeeExceptionImplSerializer
   }
 }
 
-abstract mixin class WorkerBeeExceptionBuilder {
+abstract class WorkerBeeExceptionBuilder {
   void replace(WorkerBeeException other);
   void update(void Function(WorkerBeeExceptionBuilder) updates);
   String? get error;

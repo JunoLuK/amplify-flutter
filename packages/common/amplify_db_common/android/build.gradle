@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.1.0'
+        classpath 'com.android.tools.build:gradle:7.2.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -41,13 +41,11 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 16
     }
-
-    namespace 'com.amazonaws.amplify.amplify_db_common'
 }
 
 dependencies {
     // Keep in sync with: https://github.com/simolus3/sqlite3.dart/blob/main/sqlite3_flutter_libs/android/build.gradle
-    implementation 'eu.simonbinder:sqlite3-native-library:3.43.0'
+    implementation 'eu.simonbinder:sqlite3-native-library:3.40.0'
 }

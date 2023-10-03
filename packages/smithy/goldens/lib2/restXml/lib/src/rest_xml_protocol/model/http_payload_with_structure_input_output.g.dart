@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'http_payload_with_structure_input_output.dart';
+part of rest_xml_v2.rest_xml_protocol.model.http_payload_with_structure_input_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -9,7 +9,7 @@ part of 'http_payload_with_structure_input_output.dart';
 class _$HttpPayloadWithStructureInputOutput
     extends HttpPayloadWithStructureInputOutput {
   @override
-  final NestedPayload? nested;
+  final _i2.NestedPayload? nested;
 
   factory _$HttpPayloadWithStructureInputOutput(
           [void Function(HttpPayloadWithStructureInputOutputBuilder)?
@@ -50,12 +50,14 @@ class HttpPayloadWithStructureInputOutputBuilder
             HttpPayloadWithStructureInputOutputBuilder> {
   _$HttpPayloadWithStructureInputOutput? _$v;
 
-  NestedPayloadBuilder? _nested;
-  NestedPayloadBuilder get nested =>
-      _$this._nested ??= new NestedPayloadBuilder();
-  set nested(NestedPayloadBuilder? nested) => _$this._nested = nested;
+  _i2.NestedPayloadBuilder? _nested;
+  _i2.NestedPayloadBuilder get nested =>
+      _$this._nested ??= new _i2.NestedPayloadBuilder();
+  set nested(_i2.NestedPayloadBuilder? nested) => _$this._nested = nested;
 
-  HttpPayloadWithStructureInputOutputBuilder();
+  HttpPayloadWithStructureInputOutputBuilder() {
+    HttpPayloadWithStructureInputOutput._init(this);
+  }
 
   HttpPayloadWithStructureInputOutputBuilder get _$this {
     final $v = _$v;

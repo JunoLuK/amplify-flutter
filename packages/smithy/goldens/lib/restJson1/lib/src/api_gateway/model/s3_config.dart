@@ -1,13 +1,13 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.api_gateway.model.s3_config; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v1/src/api_gateway/model/s3_addressing_style.dart';
-import 'package:smithy/smithy.dart' as _i2;
+import 'package:rest_json1_v1/src/api_gateway/model/s3_addressing_style.dart'
+    as _i2;
+import 'package:smithy/smithy.dart' as _i3;
 
 part 's3_config.g.dart';
 
@@ -17,7 +17,7 @@ abstract class S3Config
     implements Built<S3Config, S3ConfigBuilder> {
   /// Configuration specific to S3.
   factory S3Config({
-    S3AddressingStyle? addressingStyle,
+    _i2.S3AddressingStyle? addressingStyle,
     bool? useAccelerateEndpoint,
     bool? useDualstackEndpoint,
   }) {
@@ -33,12 +33,15 @@ abstract class S3Config
 
   const S3Config._();
 
-  static const List<_i2.SmithySerializer<S3Config>> serializers = [
+  static const List<_i3.SmithySerializer> serializers = [
     S3ConfigRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(S3ConfigBuilder b) {}
+
   /// Controls the S3 addressing bucket style.
-  S3AddressingStyle? get addressingStyle;
+  _i2.S3AddressingStyle? get addressingStyle;
   bool? get useAccelerateEndpoint;
   bool? get useDualstackEndpoint;
   @override
@@ -49,25 +52,25 @@ abstract class S3Config
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('S3Config')
-      ..add(
-        'addressingStyle',
-        addressingStyle,
-      )
-      ..add(
-        'useAccelerateEndpoint',
-        useAccelerateEndpoint,
-      )
-      ..add(
-        'useDualstackEndpoint',
-        useDualstackEndpoint,
-      );
+    final helper = newBuiltValueToStringHelper('S3Config');
+    helper.add(
+      'addressingStyle',
+      addressingStyle,
+    );
+    helper.add(
+      'useAccelerateEndpoint',
+      useAccelerateEndpoint,
+    );
+    helper.add(
+      'useDualstackEndpoint',
+      useDualstackEndpoint,
+    );
     return helper.toString();
   }
 }
 
 class S3ConfigRestJson1Serializer
-    extends _i2.StructuredSmithySerializer<S3Config> {
+    extends _i3.StructuredSmithySerializer<S3Config> {
   const S3ConfigRestJson1Serializer() : super('S3Config');
 
   @override
@@ -76,8 +79,8 @@ class S3ConfigRestJson1Serializer
         _$S3Config,
       ];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols => const [
-        _i2.ShapeId(
+  Iterable<_i3.ShapeId> get supportedProtocols => const [
+        _i3.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
@@ -94,25 +97,31 @@ class S3ConfigRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'addressing_style':
-          result.addressingStyle = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(S3AddressingStyle),
-          ) as S3AddressingStyle);
+          if (value != null) {
+            result.addressingStyle = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i2.S3AddressingStyle),
+            ) as _i2.S3AddressingStyle);
+          }
+          break;
         case 'use_accelerate_endpoint':
-          result.useAccelerateEndpoint = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool);
+          if (value != null) {
+            result.useAccelerateEndpoint = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(bool),
+            ) as bool);
+          }
+          break;
         case 'use_dualstack_endpoint':
-          result.useDualstackEndpoint = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool);
+          if (value != null) {
+            result.useDualstackEndpoint = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(bool),
+            ) as bool);
+          }
+          break;
       }
     }
 
@@ -122,39 +131,35 @@ class S3ConfigRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    S3Config object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final S3Config(
-      :addressingStyle,
-      :useAccelerateEndpoint,
-      :useDualstackEndpoint
-    ) = object;
-    if (addressingStyle != null) {
-      result$
+    final payload = (object as S3Config);
+    final result = <Object?>[];
+    if (payload.addressingStyle != null) {
+      result
         ..add('addressing_style')
         ..add(serializers.serialize(
-          addressingStyle,
-          specifiedType: const FullType(S3AddressingStyle),
+          payload.addressingStyle!,
+          specifiedType: const FullType(_i2.S3AddressingStyle),
         ));
     }
-    if (useAccelerateEndpoint != null) {
-      result$
+    if (payload.useAccelerateEndpoint != null) {
+      result
         ..add('use_accelerate_endpoint')
         ..add(serializers.serialize(
-          useAccelerateEndpoint,
+          payload.useAccelerateEndpoint!,
           specifiedType: const FullType(bool),
         ));
     }
-    if (useDualstackEndpoint != null) {
-      result$
+    if (payload.useDualstackEndpoint != null) {
+      result
         ..add('use_dualstack_endpoint')
         ..add(serializers.serialize(
-          useDualstackEndpoint,
+          payload.useDualstackEndpoint!,
           specifiedType: const FullType(bool),
         ));
     }
-    return result$;
+    return result;
   }
 }

@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v2.rest_xml_protocol.model.fractional_seconds_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -13,8 +12,14 @@ part 'fractional_seconds_output.g.dart';
 abstract class FractionalSecondsOutput
     with _i1.AWSEquatable<FractionalSecondsOutput>
     implements Built<FractionalSecondsOutput, FractionalSecondsOutputBuilder> {
-  factory FractionalSecondsOutput({DateTime? datetime}) {
-    return _$FractionalSecondsOutput._(datetime: datetime);
+  factory FractionalSecondsOutput({
+    DateTime? datetime,
+    DateTime? httpdate,
+  }) {
+    return _$FractionalSecondsOutput._(
+      datetime: datetime,
+      httpdate: httpdate,
+    );
   }
 
   factory FractionalSecondsOutput.build(
@@ -30,19 +35,30 @@ abstract class FractionalSecondsOutput
   ) =>
       payload;
 
-  static const List<_i2.SmithySerializer<FractionalSecondsOutput>> serializers =
-      [FractionalSecondsOutputRestXmlSerializer()];
+  static const List<_i2.SmithySerializer> serializers = [
+    FractionalSecondsOutputRestXmlSerializer()
+  ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(FractionalSecondsOutputBuilder b) {}
   DateTime? get datetime;
+  DateTime? get httpdate;
   @override
-  List<Object?> get props => [datetime];
+  List<Object?> get props => [
+        datetime,
+        httpdate,
+      ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('FractionalSecondsOutput')
-      ..add(
-        'datetime',
-        datetime,
-      );
+    final helper = newBuiltValueToStringHelper('FractionalSecondsOutput');
+    helper.add(
+      'datetime',
+      datetime,
+    );
+    helper.add(
+      'httpdate',
+      httpdate,
+    );
     return helper.toString();
   }
 }
@@ -73,18 +89,26 @@ class FractionalSecondsOutputRestXmlSerializer
     final result = FractionalSecondsOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'datetime':
-          result.datetime = _i2.TimestampSerializer.dateTime.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.datetime = _i2.TimestampSerializer.dateTime.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
+        case 'httpdate':
+          if (value != null) {
+            result.httpdate = _i2.TimestampSerializer.httpDate.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
       }
     }
 
@@ -94,21 +118,29 @@ class FractionalSecondsOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    FractionalSecondsOutput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final payload = (object as FractionalSecondsOutput);
+    final result = <Object?>[
       const _i2.XmlElementName('FractionalSecondsOutput')
     ];
-    final FractionalSecondsOutput(:datetime) = object;
-    if (datetime != null) {
-      result$
+    if (payload.datetime != null) {
+      result
         ..add(const _i2.XmlElementName('datetime'))
         ..add(_i2.TimestampSerializer.dateTime.serialize(
           serializers,
-          datetime,
+          payload.datetime!,
         ));
     }
-    return result$;
+    if (payload.httpdate != null) {
+      result
+        ..add(const _i2.XmlElementName('httpdate'))
+        ..add(_i2.TimestampSerializer.httpDate.serialize(
+          serializers,
+          payload.httpdate!,
+        ));
+    }
+    return result;
   }
 }

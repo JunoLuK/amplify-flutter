@@ -1,14 +1,14 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_storage_s3_dart.s3.model.delete; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/object_identifier.dart';
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/object_identifier.dart'
+    as _i2;
 import 'package:aws_common/aws_common.dart' as _i1;
-import 'package:built_collection/built_collection.dart' as _i2;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:smithy/smithy.dart' as _i4;
 
 part 'delete.g.dart';
 
@@ -18,11 +18,11 @@ abstract class Delete
     implements Built<Delete, DeleteBuilder> {
   /// Container for the objects to delete.
   factory Delete({
-    required List<ObjectIdentifier> objects,
+    required List<_i2.ObjectIdentifier> objects,
     bool? quiet,
   }) {
     return _$Delete._(
-      objects: _i2.BuiltList(objects),
+      objects: _i3.BuiltList(objects),
       quiet: quiet,
     );
   }
@@ -32,12 +32,15 @@ abstract class Delete
 
   const Delete._();
 
-  static const List<_i3.SmithySerializer<Delete>> serializers = [
+  static const List<_i4.SmithySerializer> serializers = [
     DeleteRestXmlSerializer()
   ];
 
-  /// The object to delete.
-  _i2.BuiltList<ObjectIdentifier> get objects;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(DeleteBuilder b) {}
+
+  /// The objects to delete.
+  _i3.BuiltList<_i2.ObjectIdentifier> get objects;
 
   /// Element to enable quiet mode for the request. When you add this element, you must set its value to true.
   bool? get quiet;
@@ -48,20 +51,20 @@ abstract class Delete
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('Delete')
-      ..add(
-        'objects',
-        objects,
-      )
-      ..add(
-        'quiet',
-        quiet,
-      );
+    final helper = newBuiltValueToStringHelper('Delete');
+    helper.add(
+      'objects',
+      objects,
+    );
+    helper.add(
+      'quiet',
+      quiet,
+    );
     return helper.toString();
   }
 }
 
-class DeleteRestXmlSerializer extends _i3.StructuredSmithySerializer<Delete> {
+class DeleteRestXmlSerializer extends _i4.StructuredSmithySerializer<Delete> {
   const DeleteRestXmlSerializer() : super('Delete');
 
   @override
@@ -70,8 +73,8 @@ class DeleteRestXmlSerializer extends _i3.StructuredSmithySerializer<Delete> {
         _$Delete,
       ];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restXml',
         )
@@ -85,23 +88,24 @@ class DeleteRestXmlSerializer extends _i3.StructuredSmithySerializer<Delete> {
     final result = DeleteBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'Object':
           result.objects.add((serializers.deserialize(
             value,
-            specifiedType: const FullType(ObjectIdentifier),
-          ) as ObjectIdentifier));
+            specifiedType: const FullType(_i2.ObjectIdentifier),
+          ) as _i2.ObjectIdentifier));
+          break;
         case 'Quiet':
-          result.quiet = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool);
+          if (value != null) {
+            result.quiet = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(bool),
+            ) as bool);
+          }
+          break;
       }
     }
 
@@ -111,33 +115,33 @@ class DeleteRestXmlSerializer extends _i3.StructuredSmithySerializer<Delete> {
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Delete object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
-      const _i3.XmlElementName(
+    final payload = (object as Delete);
+    final result = <Object?>[
+      const _i4.XmlElementName(
         'Delete',
-        _i3.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
+        _i4.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
       )
     ];
-    final Delete(:objects, :quiet) = object;
-    result$.addAll(
-        const _i3.XmlBuiltListSerializer(memberName: 'Object').serialize(
+    result.addAll(
+        const _i4.XmlBuiltListSerializer(memberName: 'Object').serialize(
       serializers,
-      objects,
-      specifiedType: const FullType(
-        _i2.BuiltList,
-        [FullType(ObjectIdentifier)],
+      payload.objects,
+      specifiedType: const FullType.nullable(
+        _i3.BuiltList,
+        [FullType(_i2.ObjectIdentifier)],
       ),
     ));
-    if (quiet != null) {
-      result$
-        ..add(const _i3.XmlElementName('Quiet'))
+    if (payload.quiet != null) {
+      result
+        ..add(const _i4.XmlElementName('Quiet'))
         ..add(serializers.serialize(
-          quiet,
-          specifiedType: const FullType(bool),
+          payload.quiet!,
+          specifiedType: const FullType.nullable(bool),
         ));
     }
-    return result$;
+    return result;
   }
 }

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'get_credentials_for_identity_response.dart';
+part of amplify_auth_cognito_dart.cognito_identity.model.get_credentials_for_identity_response;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -9,16 +9,16 @@ part of 'get_credentials_for_identity_response.dart';
 class _$GetCredentialsForIdentityResponse
     extends GetCredentialsForIdentityResponse {
   @override
-  final String? identityId;
+  final _i2.Credentials? credentials;
   @override
-  final Credentials? credentials;
+  final String? identityId;
 
   factory _$GetCredentialsForIdentityResponse(
           [void Function(GetCredentialsForIdentityResponseBuilder)? updates]) =>
       (new GetCredentialsForIdentityResponseBuilder()..update(updates))
           ._build();
 
-  _$GetCredentialsForIdentityResponse._({this.identityId, this.credentials})
+  _$GetCredentialsForIdentityResponse._({this.credentials, this.identityId})
       : super._();
 
   @override
@@ -34,15 +34,15 @@ class _$GetCredentialsForIdentityResponse
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is GetCredentialsForIdentityResponse &&
-        identityId == other.identityId &&
-        credentials == other.credentials;
+        credentials == other.credentials &&
+        identityId == other.identityId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, identityId.hashCode);
     _$hash = $jc(_$hash, credentials.hashCode);
+    _$hash = $jc(_$hash, identityId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -54,23 +54,25 @@ class GetCredentialsForIdentityResponseBuilder
             GetCredentialsForIdentityResponseBuilder> {
   _$GetCredentialsForIdentityResponse? _$v;
 
+  _i2.CredentialsBuilder? _credentials;
+  _i2.CredentialsBuilder get credentials =>
+      _$this._credentials ??= new _i2.CredentialsBuilder();
+  set credentials(_i2.CredentialsBuilder? credentials) =>
+      _$this._credentials = credentials;
+
   String? _identityId;
   String? get identityId => _$this._identityId;
   set identityId(String? identityId) => _$this._identityId = identityId;
 
-  CredentialsBuilder? _credentials;
-  CredentialsBuilder get credentials =>
-      _$this._credentials ??= new CredentialsBuilder();
-  set credentials(CredentialsBuilder? credentials) =>
-      _$this._credentials = credentials;
-
-  GetCredentialsForIdentityResponseBuilder();
+  GetCredentialsForIdentityResponseBuilder() {
+    GetCredentialsForIdentityResponse._init(this);
+  }
 
   GetCredentialsForIdentityResponseBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _identityId = $v.identityId;
       _credentials = $v.credentials?.toBuilder();
+      _identityId = $v.identityId;
       _$v = null;
     }
     return this;
@@ -96,7 +98,7 @@ class GetCredentialsForIdentityResponseBuilder
     try {
       _$result = _$v ??
           new _$GetCredentialsForIdentityResponse._(
-              identityId: identityId, credentials: _credentials?.build());
+              credentials: _credentials?.build(), identityId: identityId);
     } catch (_) {
       late String _$failedField;
       try {

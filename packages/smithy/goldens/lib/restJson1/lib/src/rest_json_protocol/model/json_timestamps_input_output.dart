@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.rest_json_protocol.model.json_timestamps_input_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -17,22 +16,22 @@ abstract class JsonTimestampsInputOutput
     implements
         Built<JsonTimestampsInputOutput, JsonTimestampsInputOutputBuilder> {
   factory JsonTimestampsInputOutput({
-    DateTime? normal,
     DateTime? dateTime,
     DateTime? dateTimeOnTarget,
     DateTime? epochSeconds,
     DateTime? epochSecondsOnTarget,
     DateTime? httpDate,
     DateTime? httpDateOnTarget,
+    DateTime? normal,
   }) {
     return _$JsonTimestampsInputOutput._(
-      normal: normal,
       dateTime: dateTime,
       dateTimeOnTarget: dateTimeOnTarget,
       epochSeconds: epochSeconds,
       epochSecondsOnTarget: epochSecondsOnTarget,
       httpDate: httpDate,
       httpDateOnTarget: httpDateOnTarget,
+      normal: normal,
     );
   }
 
@@ -56,59 +55,62 @@ abstract class JsonTimestampsInputOutput
   ) =>
       payload;
 
-  static const List<_i1.SmithySerializer<JsonTimestampsInputOutput>>
-      serializers = [JsonTimestampsInputOutputRestJson1Serializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    JsonTimestampsInputOutputRestJson1Serializer()
+  ];
 
-  DateTime? get normal;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(JsonTimestampsInputOutputBuilder b) {}
   DateTime? get dateTime;
   DateTime? get dateTimeOnTarget;
   DateTime? get epochSeconds;
   DateTime? get epochSecondsOnTarget;
   DateTime? get httpDate;
   DateTime? get httpDateOnTarget;
+  DateTime? get normal;
   @override
   JsonTimestampsInputOutput getPayload() => this;
   @override
   List<Object?> get props => [
-        normal,
         dateTime,
         dateTimeOnTarget,
         epochSeconds,
         epochSecondsOnTarget,
         httpDate,
         httpDateOnTarget,
+        normal,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('JsonTimestampsInputOutput')
-      ..add(
-        'normal',
-        normal,
-      )
-      ..add(
-        'dateTime',
-        dateTime,
-      )
-      ..add(
-        'dateTimeOnTarget',
-        dateTimeOnTarget,
-      )
-      ..add(
-        'epochSeconds',
-        epochSeconds,
-      )
-      ..add(
-        'epochSecondsOnTarget',
-        epochSecondsOnTarget,
-      )
-      ..add(
-        'httpDate',
-        httpDate,
-      )
-      ..add(
-        'httpDateOnTarget',
-        httpDateOnTarget,
-      );
+    final helper = newBuiltValueToStringHelper('JsonTimestampsInputOutput');
+    helper.add(
+      'dateTime',
+      dateTime,
+    );
+    helper.add(
+      'dateTimeOnTarget',
+      dateTimeOnTarget,
+    );
+    helper.add(
+      'epochSeconds',
+      epochSeconds,
+    );
+    helper.add(
+      'epochSecondsOnTarget',
+      epochSecondsOnTarget,
+    );
+    helper.add(
+      'httpDate',
+      httpDate,
+    );
+    helper.add(
+      'httpDateOnTarget',
+      httpDateOnTarget,
+    );
+    helper.add(
+      'normal',
+      normal,
+    );
     return helper.toString();
   }
 }
@@ -142,49 +144,67 @@ class JsonTimestampsInputOutputRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'dateTime':
-          result.dateTime = _i1.TimestampSerializer.dateTime.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.dateTime = _i1.TimestampSerializer.dateTime.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'dateTimeOnTarget':
-          result.dateTimeOnTarget =
-              _i1.TimestampSerializer.dateTime.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.dateTimeOnTarget =
+                _i1.TimestampSerializer.dateTime.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'epochSeconds':
-          result.epochSeconds =
-              _i1.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.epochSeconds =
+                _i1.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'epochSecondsOnTarget':
-          result.epochSecondsOnTarget =
-              _i1.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.epochSecondsOnTarget =
+                _i1.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'httpDate':
-          result.httpDate = _i1.TimestampSerializer.httpDate.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.httpDate = _i1.TimestampSerializer.httpDate.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'httpDateOnTarget':
-          result.httpDateOnTarget =
-              _i1.TimestampSerializer.httpDate.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.httpDateOnTarget =
+                _i1.TimestampSerializer.httpDate.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'normal':
-          result.normal = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime);
+          if (value != null) {
+            result.normal = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(DateTime),
+            ) as DateTime);
+          }
+          break;
       }
     }
 
@@ -194,75 +214,67 @@ class JsonTimestampsInputOutputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    JsonTimestampsInputOutput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final JsonTimestampsInputOutput(
-      :dateTime,
-      :dateTimeOnTarget,
-      :epochSeconds,
-      :epochSecondsOnTarget,
-      :httpDate,
-      :httpDateOnTarget,
-      :normal
-    ) = object;
-    if (dateTime != null) {
-      result$
+    final payload = (object as JsonTimestampsInputOutput);
+    final result = <Object?>[];
+    if (payload.dateTime != null) {
+      result
         ..add('dateTime')
         ..add(_i1.TimestampSerializer.dateTime.serialize(
           serializers,
-          dateTime,
+          payload.dateTime!,
         ));
     }
-    if (dateTimeOnTarget != null) {
-      result$
+    if (payload.dateTimeOnTarget != null) {
+      result
         ..add('dateTimeOnTarget')
         ..add(_i1.TimestampSerializer.dateTime.serialize(
           serializers,
-          dateTimeOnTarget,
+          payload.dateTimeOnTarget!,
         ));
     }
-    if (epochSeconds != null) {
-      result$
+    if (payload.epochSeconds != null) {
+      result
         ..add('epochSeconds')
         ..add(_i1.TimestampSerializer.epochSeconds.serialize(
           serializers,
-          epochSeconds,
+          payload.epochSeconds!,
         ));
     }
-    if (epochSecondsOnTarget != null) {
-      result$
+    if (payload.epochSecondsOnTarget != null) {
+      result
         ..add('epochSecondsOnTarget')
         ..add(_i1.TimestampSerializer.epochSeconds.serialize(
           serializers,
-          epochSecondsOnTarget,
+          payload.epochSecondsOnTarget!,
         ));
     }
-    if (httpDate != null) {
-      result$
+    if (payload.httpDate != null) {
+      result
         ..add('httpDate')
         ..add(_i1.TimestampSerializer.httpDate.serialize(
           serializers,
-          httpDate,
+          payload.httpDate!,
         ));
     }
-    if (httpDateOnTarget != null) {
-      result$
+    if (payload.httpDateOnTarget != null) {
+      result
         ..add('httpDateOnTarget')
         ..add(_i1.TimestampSerializer.httpDate.serialize(
           serializers,
-          httpDateOnTarget,
+          payload.httpDateOnTarget!,
         ));
     }
-    if (normal != null) {
-      result$
+    if (payload.normal != null) {
+      result
         ..add('normal')
         ..add(serializers.serialize(
-          normal,
+          payload.normal!,
           specifiedType: const FullType(DateTime),
         ));
     }
-    return result$;
+    return result;
   }
 }

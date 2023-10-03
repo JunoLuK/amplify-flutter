@@ -1,9 +1,8 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-part of '../amplify_exception.dart';
+import 'package:amplify_core/amplify_core.dart';
 
-/// {@category Auth}
 /// {@template amplify_core.auth.validation_exception}
 /// Exception thrown when one of the input fields to an operation is invalid.
 /// {@endtemplate}

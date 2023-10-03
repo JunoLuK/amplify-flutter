@@ -58,9 +58,6 @@ abstract class AWSIamAmplifyAuthProvider extends AmplifyAuthProvider
     AWSBaseHttpRequest request, {
     covariant IamAuthProviderOptions options,
   });
-
-  @override
-  String get runtimeTypeName => 'AWSIamAmplifyAuthProvider';
 }
 
 abstract class ApiKeyAmplifyAuthProvider extends AmplifyAuthProvider {

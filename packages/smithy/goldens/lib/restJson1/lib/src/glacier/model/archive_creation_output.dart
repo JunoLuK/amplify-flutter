@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.glacier.model.archive_creation_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -18,14 +17,14 @@ abstract class ArchiveCreationOutput
         _i2.EmptyPayload,
         _i2.HasPayload<ArchiveCreationOutputPayload> {
   factory ArchiveCreationOutput({
-    String? location,
-    String? checksum,
     String? archiveId,
+    String? checksum,
+    String? location,
   }) {
     return _$ArchiveCreationOutput._(
-      location: location,
-      checksum: checksum,
       archiveId: archiveId,
+      checksum: checksum,
+      location: location,
     );
   }
 
@@ -52,35 +51,38 @@ abstract class ArchiveCreationOutput
         }
       });
 
-  static const List<_i2.SmithySerializer<ArchiveCreationOutputPayload>>
-      serializers = [ArchiveCreationOutputRestJson1Serializer()];
+  static const List<_i2.SmithySerializer> serializers = [
+    ArchiveCreationOutputRestJson1Serializer()
+  ];
 
-  String? get location;
-  String? get checksum;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ArchiveCreationOutputBuilder b) {}
   String? get archiveId;
+  String? get checksum;
+  String? get location;
   @override
   ArchiveCreationOutputPayload getPayload() => ArchiveCreationOutputPayload();
   @override
   List<Object?> get props => [
-        location,
-        checksum,
         archiveId,
+        checksum,
+        location,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('ArchiveCreationOutput')
-      ..add(
-        'location',
-        location,
-      )
-      ..add(
-        'checksum',
-        checksum,
-      )
-      ..add(
-        'archiveId',
-        archiveId,
-      );
+    final helper = newBuiltValueToStringHelper('ArchiveCreationOutput');
+    helper.add(
+      'archiveId',
+      archiveId,
+    );
+    helper.add(
+      'checksum',
+      checksum,
+    );
+    helper.add(
+      'location',
+      location,
+    );
     return helper.toString();
   }
 }
@@ -99,6 +101,8 @@ abstract class ArchiveCreationOutputPayload
 
   const ArchiveCreationOutputPayload._();
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ArchiveCreationOutputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
   @override
@@ -139,7 +143,7 @@ class ArchiveCreationOutputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    ArchiveCreationOutputPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) =>
       const <Object?>[];

@@ -8,6 +8,7 @@ part of 'srp_device_password_verifier_worker.dart';
 
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(CognitoDeviceSecrets.serializer)
+      ..add(SignInParameters.serializer)
       ..add(SrpDevicePasswordVerifierMessage.serializer)
       ..add(SrpInitResult.serializer)
       ..addBuilderFactory(
@@ -43,6 +44,9 @@ class _$SrpDevicePasswordVerifierMessageSerializer
       'deviceSecrets',
       serializers.serialize(object.deviceSecrets,
           specifiedType: const FullType(CognitoDeviceSecrets)),
+      'parameters',
+      serializers.serialize(object.parameters,
+          specifiedType: const FullType(SignInParameters)),
       'challengeParameters',
       serializers.serialize(object.challengeParameters,
           specifiedType: const FullType(BuiltMap,
@@ -88,6 +92,11 @@ class _$SrpDevicePasswordVerifierMessageSerializer
                   specifiedType: const FullType(CognitoDeviceSecrets))!
               as CognitoDeviceSecrets;
           break;
+        case 'parameters':
+          result.parameters = serializers.deserialize(value,
+                  specifiedType: const FullType(SignInParameters))!
+              as SignInParameters;
+          break;
         case 'challengeParameters':
           result.challengeParameters = serializers.deserialize(value,
               specifiedType: const FullType(BuiltMap, const [
@@ -113,6 +122,8 @@ class _$SrpDevicePasswordVerifierMessage
   @override
   final CognitoDeviceSecrets deviceSecrets;
   @override
+  final SignInParameters parameters;
+  @override
   final BuiltMap<String, String> challengeParameters;
 
   factory _$SrpDevicePasswordVerifierMessage(
@@ -124,6 +135,7 @@ class _$SrpDevicePasswordVerifierMessage
       required this.clientId,
       this.clientSecret,
       required this.deviceSecrets,
+      required this.parameters,
       required this.challengeParameters})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -132,6 +144,8 @@ class _$SrpDevicePasswordVerifierMessage
         clientId, r'SrpDevicePasswordVerifierMessage', 'clientId');
     BuiltValueNullFieldError.checkNotNull(
         deviceSecrets, r'SrpDevicePasswordVerifierMessage', 'deviceSecrets');
+    BuiltValueNullFieldError.checkNotNull(
+        parameters, r'SrpDevicePasswordVerifierMessage', 'parameters');
     BuiltValueNullFieldError.checkNotNull(challengeParameters,
         r'SrpDevicePasswordVerifierMessage', 'challengeParameters');
   }
@@ -153,6 +167,7 @@ class _$SrpDevicePasswordVerifierMessage
         clientId == other.clientId &&
         clientSecret == other.clientSecret &&
         deviceSecrets == other.deviceSecrets &&
+        parameters == other.parameters &&
         challengeParameters == other.challengeParameters;
   }
 
@@ -163,6 +178,7 @@ class _$SrpDevicePasswordVerifierMessage
     _$hash = $jc(_$hash, clientId.hashCode);
     _$hash = $jc(_$hash, clientSecret.hashCode);
     _$hash = $jc(_$hash, deviceSecrets.hashCode);
+    _$hash = $jc(_$hash, parameters.hashCode);
     _$hash = $jc(_$hash, challengeParameters.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -175,6 +191,7 @@ class _$SrpDevicePasswordVerifierMessage
           ..add('clientId', clientId)
           ..add('clientSecret', clientSecret)
           ..add('deviceSecrets', deviceSecrets)
+          ..add('parameters', parameters)
           ..add('challengeParameters', challengeParameters))
         .toString();
   }
@@ -203,6 +220,11 @@ class SrpDevicePasswordVerifierMessageBuilder
   set deviceSecrets(CognitoDeviceSecrets? deviceSecrets) =>
       _$this._deviceSecrets = deviceSecrets;
 
+  SignInParameters? _parameters;
+  SignInParameters? get parameters => _$this._parameters;
+  set parameters(SignInParameters? parameters) =>
+      _$this._parameters = parameters;
+
   BuiltMap<String, String>? _challengeParameters;
   BuiltMap<String, String>? get challengeParameters =>
       _$this._challengeParameters;
@@ -218,6 +240,7 @@ class SrpDevicePasswordVerifierMessageBuilder
       _clientId = $v.clientId;
       _clientSecret = $v.clientSecret;
       _deviceSecrets = $v.deviceSecrets;
+      _parameters = $v.parameters;
       _challengeParameters = $v.challengeParameters;
       _$v = null;
     }
@@ -248,6 +271,8 @@ class SrpDevicePasswordVerifierMessageBuilder
             clientSecret: clientSecret,
             deviceSecrets: BuiltValueNullFieldError.checkNotNull(deviceSecrets,
                 r'SrpDevicePasswordVerifierMessage', 'deviceSecrets'),
+            parameters: BuiltValueNullFieldError.checkNotNull(
+                parameters, r'SrpDevicePasswordVerifierMessage', 'parameters'),
             challengeParameters: BuiltValueNullFieldError.checkNotNull(
                 challengeParameters,
                 r'SrpDevicePasswordVerifierMessage',

@@ -3,7 +3,6 @@
 
 import 'package:amplify_core/amplify_core.dart';
 
-/// {@category Auth}
 abstract class AuthNextStep with AWSSerializable<Map<String, Object?>> {
   const AuthNextStep({
     this.codeDeliveryDetails,

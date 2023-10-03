@@ -54,7 +54,7 @@ import 'package:amplify_authenticator/src/l10n/authenticator_localizations.dart'
 import 'package:amplify_authenticator/src/l10n/resolver.dart';
 import 'package:flutter/material.dart';
 
-enum DialCodeResolverKey {
+enum CountryResolverKey {
   selectDialCode,
   noDialCodeSearchResults,
   $enumStrings
@@ -63,7 +63,7 @@ enum DialCodeResolverKey {
 
   output.write('''
 
-  class CountryResolver extends Resolver<DialCodeResolverKey> {
+  class CountryResolver extends Resolver<CountryResolverKey> {
   const CountryResolver();
   
   String selectDialCode(BuildContext context) {
@@ -87,17 +87,17 @@ enum DialCodeResolverKey {
 
   output.write('''
     @override
-    String resolve(BuildContext context, DialCodeResolverKey key) {
+    String resolve(BuildContext context, CountryResolverKey key) {
       switch (key) {
-        case DialCodeResolverKey.selectDialCode:
+        case CountryResolverKey.selectDialCode:
           return selectDialCode(context);
-        case DialCodeResolverKey.noDialCodeSearchResults:
+        case CountryResolverKey.noDialCodeSearchResults:
           return noDialCodeSearchResults(context);
     ''');
 
   for (var element in _countries) {
     output.write('''
-    case DialCodeResolverKey.${element.key}:
+    case CountryResolverKey.${element.key}:
       return ${element.code.toLowerCase()}(context);
     ''');
   }
@@ -152,7 +152,7 @@ class Country {
   
   final String countryCode;
   final String value;
-  final DialCodeResolverKey key;
+  final CountryResolverKey key;
 }
 
 /// List of country information
@@ -167,7 +167,7 @@ const countryCodes = [
   for (var element in _countries) {
     var comma = _countries.indexOf(element) != _countries.length - 1 ? ',' : '';
     list.write('''
-  Country('${element.code}', '${element.dialCode}', DialCodeResolverKey.${element.key})$comma
+  Country('${element.code}', '${element.dialCode}', CountryResolverKey.${element.key})$comma
   ''');
   }
 
@@ -175,5 +175,5 @@ const countryCodes = [
 ];
   ''');
 
-  File('$dir/../utils/dial_code.dart').writeAsString(list.toString());
+  File('$dir/../utils/country_code.dart').writeAsString(list.toString());
 }

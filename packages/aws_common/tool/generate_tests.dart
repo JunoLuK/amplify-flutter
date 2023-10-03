@@ -21,9 +21,6 @@ Future<void> generateParserTests() async {
 
   final output = StringBuffer(
     '''
-// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: Apache-2.0
-
 // Generated with tool/generate_tests.dart. Do not modify by hand.
 
 import 'dart:convert';
@@ -133,12 +130,9 @@ Future<void> generateFileLocationTests() async {
 
   final output = StringBuffer(
     '''
-// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: Apache-2.0
-
 // Generated with tool/generate_tests.dart. Do not modify by hand.
 
-import 'package:aws_common/src/config/aws_path_provider.dart';
+import 'package:aws_common/aws_common.dart';
 import 'package:os_detect/override.dart';
 import 'package:test/test.dart';
 
@@ -165,7 +159,7 @@ void main() {
 test(r'${test.name}', () {
   overrideOperatingSystem(const OperatingSystem('${test.platform.name}', ''), () {
      overrideEnvironment({
-      ${test.environment.entries.map((entry) => "'${entry.key}': r'${entry.value}',").join('\n')}
+      ${test.environment.entries.map((entry) => "'${entry.key}': r'${entry.value}'").join(',\n')}
      }, () {
           expect(pathProvider.configFileLocation, completion(r'${test.configLocation}'),);
           expect(pathProvider.sharedCredentialsFileLocation, completion(r'${test.credentialsLocation}'),);
@@ -178,13 +172,7 @@ test(r'${test.name}', () {
   output.writeln('});}');
 
   await File(outputFilepath).writeAsString(output.toString());
-  final formatRes = await Process.run(
-    'dart',
-    ['format', '--fix', outputFilepath],
-  );
-  if (formatRes.exitCode != 0) {
-    throw Exception(formatRes.stderr);
-  }
+  await Process.run('dart', ['format', '--fix', outputFilepath]);
 }
 
 Future<void> generateProfileTests() async {
@@ -198,9 +186,6 @@ Future<void> generateProfileTests() async {
 
   final output = StringBuffer(
     '''
-// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: Apache-2.0
-
 // Generated with tool/generate_tests.dart. Do not modify by hand.
 
 import 'dart:convert';
@@ -234,27 +219,34 @@ expect(
       );
     } else {
       final credentialsType = test.output.credentialType!;
-      final expect = switch (credentialsType) {
+      final String expect;
+      switch (credentialsType) {
         // TODO(dnys1): Assume role credentials provider
-        AWSCredentialsType.assumeRole => '''
+        case AWSCredentialsType.assumeRole:
+          expect = '''
 isA<AWSCredentialsProvider>(),
 skip: 'Assume role credentials are not supported yet'
-''',
-        AWSCredentialsType.session => '''
+''';
+          break;
+        case AWSCredentialsType.session:
+          expect = '''
 isA<StaticCredentialsProvider>().having(
   (p) => p.retrieve().sessionToken,
   'sessionToken',
   isNotNull,
 )
-''',
-        AWSCredentialsType.basic => '''
+''';
+          break;
+        case AWSCredentialsType.basic:
+          expect = '''
 isA<StaticCredentialsProvider>().having(
   (p) => p.retrieve().sessionToken,
   'sessionToken',
   isNull,
 )
-''',
-      };
+''';
+          break;
+      }
       output.writeln(
         '''
 expect(

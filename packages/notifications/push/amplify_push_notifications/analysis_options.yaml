@@ -3,4 +3,3 @@ include: package:amplify_lints/library.yaml
 analyzer:
   exclude:
     - "**/*.g.dart"
-    - "**/*.mocks.dart"

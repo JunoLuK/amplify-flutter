@@ -11,6 +11,10 @@ A CLI tool for managing the Amplify Flutter repository.
   - `check`: Checks constraints against `aft.yaml`, for use in CI
   - `update`: Updates constraints in `aft.yaml` to match latest in `pub.dev`
   - `apply`: Applies constraints in `aft.yaml` to all repo packages
+  - `pub-verify`: Verifies Amplify constraints against the top pub.dev packages
+- `docs`: Develop package documentation
+  - `build`: Builds documentation for packages
+  - `serve`: Serves package documentation for local development
 - `exec`: Execute a command in all repo packages
 - `generate`: Generates various repo items
   - `workflows`: Generates GitHub actions workflows for all packages in the repo
@@ -20,37 +24,32 @@ A CLI tool for managing the Amplify Flutter repository.
 - `run`: Run a script defined in `aft.yaml`
 - `version-bump`: Bumps version using git history
 
-## Setup
+A full list of available commands and options can be found by running `aft --help`.
 
-To run some commands, `libgit2` is required and can be installed with the following commands:
+## Development
 
-```sh
-$ brew install libgit2
-```
-
-```sh
-$ sudo apt-get install libgit2-dev
-```
-
-To activate `aft`, run:
+To activate and run the local `aft` package:
 
 ```sh
 $ dart pub global activate -spath packages/aft
+$ aft --help
 ```
 
-A full list of available commands and options can be found by running `aft --help`.
+Make sure the Dart pub cache is in your PATH to run `aft` as a global executable after activating. See [here](https://dart.dev/tools/pub/cmd/pub-global#running-a-script-from-your-path) for more information.
 
-
-## Writing Scripts
+### Writing Scripts
 
 `aft` supports running named scripts using the `aft run` command. Scripts are defined in the `scripts` section of the `aft.yaml` and consist of two parts:
+
 - `from`: defines where the script will run
 - `run`: defines the script which will run
 
-### Package Selectors
-The `from` option specifies a package selector which is a way to describe which packages (or more specifically, package paths) a script will run from. 
+#### Package Selectors
+
+The `from` option specifies a package selector which is a way to describe which packages (or more specifically, package paths) a script will run from.
 
 Selectors can be:
+
 - A built-in selector:
   - `all`: All packages in the repo
   - `example`: Example apps
@@ -60,10 +59,10 @@ Selectors can be:
   - `current`: Selects the current directory
   - `dart`: All Dart packages
   - `flutter`: All Flutter packages
- - A **String** which is not a built-in selector:
-   - A package name (e.g. `amplify_flutter`)
-   - A component name (e.g. `Amplify Dart`)
-   - A glob which is matched against the package name and path (e.g. `*auth*`)
+- A **String** which is not a built-in selector:
+  - A package name (e.g. `amplify_flutter`)
+  - A component name (e.g. `Amplify Dart`)
+  - A glob which is matched against the package name and path (e.g. `*auth*`)
 - A **List** of selectors which get OR'd together.
 - A **Map** which has keys for one of:
   - `include`/`exclude`: Explicitly includes/excludes a package selector
@@ -73,6 +72,7 @@ Selectors can be:
 Some examples:
 
 To select a specific set of packages:
+
 ```yaml
 from:
   - amplify_auth_cognito
@@ -81,6 +81,7 @@ from:
 ```
 
 To select all but a few packages:
+
 ```yaml
 from:
   exclude:
@@ -96,6 +97,7 @@ from:
 ```
 
 To select all Flutter example packages:
+
 ```yaml
 from:
   and:
@@ -105,7 +107,7 @@ from:
 
 The combinations can get as complex as you want!
 
-### Templated Scripts
+#### Templated Scripts
 
 The `run` option takes in any valid Bash script which will be templated using [`mustache`](https://mustache.github.io/mustache.5.html) to give access to the context in which the script is running.
 

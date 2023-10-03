@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_storage_s3_dart.s3.model.select_object_content_request;
+part of 'select_object_content_request.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -10,27 +10,27 @@ class _$SelectObjectContentRequest extends SelectObjectContentRequest {
   @override
   final String bucket;
   @override
-  final String? expectedBucketOwner;
-  @override
-  final String expression;
-  @override
-  final _i3.ExpressionType expressionType;
-  @override
-  final _i4.InputSerialization inputSerialization;
-  @override
   final String key;
-  @override
-  final _i5.OutputSerialization outputSerialization;
-  @override
-  final _i6.RequestProgress? requestProgress;
-  @override
-  final _i7.ScanRange? scanRange;
   @override
   final String? sseCustomerAlgorithm;
   @override
   final String? sseCustomerKey;
   @override
   final String? sseCustomerKeyMd5;
+  @override
+  final String expression;
+  @override
+  final ExpressionType expressionType;
+  @override
+  final RequestProgress? requestProgress;
+  @override
+  final InputSerialization inputSerialization;
+  @override
+  final OutputSerialization outputSerialization;
+  @override
+  final ScanRange? scanRange;
+  @override
+  final String? expectedBucketOwner;
 
   factory _$SelectObjectContentRequest(
           [void Function(SelectObjectContentRequestBuilder)? updates]) =>
@@ -38,28 +38,28 @@ class _$SelectObjectContentRequest extends SelectObjectContentRequest {
 
   _$SelectObjectContentRequest._(
       {required this.bucket,
-      this.expectedBucketOwner,
-      required this.expression,
-      required this.expressionType,
-      required this.inputSerialization,
       required this.key,
-      required this.outputSerialization,
-      this.requestProgress,
-      this.scanRange,
       this.sseCustomerAlgorithm,
       this.sseCustomerKey,
-      this.sseCustomerKeyMd5})
+      this.sseCustomerKeyMd5,
+      required this.expression,
+      required this.expressionType,
+      this.requestProgress,
+      required this.inputSerialization,
+      required this.outputSerialization,
+      this.scanRange,
+      this.expectedBucketOwner})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         bucket, r'SelectObjectContentRequest', 'bucket');
+    BuiltValueNullFieldError.checkNotNull(
+        key, r'SelectObjectContentRequest', 'key');
     BuiltValueNullFieldError.checkNotNull(
         expression, r'SelectObjectContentRequest', 'expression');
     BuiltValueNullFieldError.checkNotNull(
         expressionType, r'SelectObjectContentRequest', 'expressionType');
     BuiltValueNullFieldError.checkNotNull(inputSerialization,
         r'SelectObjectContentRequest', 'inputSerialization');
-    BuiltValueNullFieldError.checkNotNull(
-        key, r'SelectObjectContentRequest', 'key');
     BuiltValueNullFieldError.checkNotNull(outputSerialization,
         r'SelectObjectContentRequest', 'outputSerialization');
   }
@@ -78,34 +78,34 @@ class _$SelectObjectContentRequest extends SelectObjectContentRequest {
     if (identical(other, this)) return true;
     return other is SelectObjectContentRequest &&
         bucket == other.bucket &&
-        expectedBucketOwner == other.expectedBucketOwner &&
-        expression == other.expression &&
-        expressionType == other.expressionType &&
-        inputSerialization == other.inputSerialization &&
         key == other.key &&
-        outputSerialization == other.outputSerialization &&
-        requestProgress == other.requestProgress &&
-        scanRange == other.scanRange &&
         sseCustomerAlgorithm == other.sseCustomerAlgorithm &&
         sseCustomerKey == other.sseCustomerKey &&
-        sseCustomerKeyMd5 == other.sseCustomerKeyMd5;
+        sseCustomerKeyMd5 == other.sseCustomerKeyMd5 &&
+        expression == other.expression &&
+        expressionType == other.expressionType &&
+        requestProgress == other.requestProgress &&
+        inputSerialization == other.inputSerialization &&
+        outputSerialization == other.outputSerialization &&
+        scanRange == other.scanRange &&
+        expectedBucketOwner == other.expectedBucketOwner;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, bucket.hashCode);
-    _$hash = $jc(_$hash, expectedBucketOwner.hashCode);
-    _$hash = $jc(_$hash, expression.hashCode);
-    _$hash = $jc(_$hash, expressionType.hashCode);
-    _$hash = $jc(_$hash, inputSerialization.hashCode);
     _$hash = $jc(_$hash, key.hashCode);
-    _$hash = $jc(_$hash, outputSerialization.hashCode);
-    _$hash = $jc(_$hash, requestProgress.hashCode);
-    _$hash = $jc(_$hash, scanRange.hashCode);
     _$hash = $jc(_$hash, sseCustomerAlgorithm.hashCode);
     _$hash = $jc(_$hash, sseCustomerKey.hashCode);
     _$hash = $jc(_$hash, sseCustomerKeyMd5.hashCode);
+    _$hash = $jc(_$hash, expression.hashCode);
+    _$hash = $jc(_$hash, expressionType.hashCode);
+    _$hash = $jc(_$hash, requestProgress.hashCode);
+    _$hash = $jc(_$hash, inputSerialization.hashCode);
+    _$hash = $jc(_$hash, outputSerialization.hashCode);
+    _$hash = $jc(_$hash, scanRange.hashCode);
+    _$hash = $jc(_$hash, expectedBucketOwner.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -120,48 +120,9 @@ class SelectObjectContentRequestBuilder
   String? get bucket => _$this._bucket;
   set bucket(String? bucket) => _$this._bucket = bucket;
 
-  String? _expectedBucketOwner;
-  String? get expectedBucketOwner => _$this._expectedBucketOwner;
-  set expectedBucketOwner(String? expectedBucketOwner) =>
-      _$this._expectedBucketOwner = expectedBucketOwner;
-
-  String? _expression;
-  String? get expression => _$this._expression;
-  set expression(String? expression) => _$this._expression = expression;
-
-  _i3.ExpressionType? _expressionType;
-  _i3.ExpressionType? get expressionType => _$this._expressionType;
-  set expressionType(_i3.ExpressionType? expressionType) =>
-      _$this._expressionType = expressionType;
-
-  _i4.InputSerializationBuilder? _inputSerialization;
-  _i4.InputSerializationBuilder get inputSerialization =>
-      _$this._inputSerialization ??= new _i4.InputSerializationBuilder();
-  set inputSerialization(_i4.InputSerializationBuilder? inputSerialization) =>
-      _$this._inputSerialization = inputSerialization;
-
   String? _key;
   String? get key => _$this._key;
   set key(String? key) => _$this._key = key;
-
-  _i5.OutputSerializationBuilder? _outputSerialization;
-  _i5.OutputSerializationBuilder get outputSerialization =>
-      _$this._outputSerialization ??= new _i5.OutputSerializationBuilder();
-  set outputSerialization(
-          _i5.OutputSerializationBuilder? outputSerialization) =>
-      _$this._outputSerialization = outputSerialization;
-
-  _i6.RequestProgressBuilder? _requestProgress;
-  _i6.RequestProgressBuilder get requestProgress =>
-      _$this._requestProgress ??= new _i6.RequestProgressBuilder();
-  set requestProgress(_i6.RequestProgressBuilder? requestProgress) =>
-      _$this._requestProgress = requestProgress;
-
-  _i7.ScanRangeBuilder? _scanRange;
-  _i7.ScanRangeBuilder get scanRange =>
-      _$this._scanRange ??= new _i7.ScanRangeBuilder();
-  set scanRange(_i7.ScanRangeBuilder? scanRange) =>
-      _$this._scanRange = scanRange;
 
   String? _sseCustomerAlgorithm;
   String? get sseCustomerAlgorithm => _$this._sseCustomerAlgorithm;
@@ -178,25 +139,60 @@ class SelectObjectContentRequestBuilder
   set sseCustomerKeyMd5(String? sseCustomerKeyMd5) =>
       _$this._sseCustomerKeyMd5 = sseCustomerKeyMd5;
 
-  SelectObjectContentRequestBuilder() {
-    SelectObjectContentRequest._init(this);
-  }
+  String? _expression;
+  String? get expression => _$this._expression;
+  set expression(String? expression) => _$this._expression = expression;
+
+  ExpressionType? _expressionType;
+  ExpressionType? get expressionType => _$this._expressionType;
+  set expressionType(ExpressionType? expressionType) =>
+      _$this._expressionType = expressionType;
+
+  RequestProgressBuilder? _requestProgress;
+  RequestProgressBuilder get requestProgress =>
+      _$this._requestProgress ??= new RequestProgressBuilder();
+  set requestProgress(RequestProgressBuilder? requestProgress) =>
+      _$this._requestProgress = requestProgress;
+
+  InputSerializationBuilder? _inputSerialization;
+  InputSerializationBuilder get inputSerialization =>
+      _$this._inputSerialization ??= new InputSerializationBuilder();
+  set inputSerialization(InputSerializationBuilder? inputSerialization) =>
+      _$this._inputSerialization = inputSerialization;
+
+  OutputSerializationBuilder? _outputSerialization;
+  OutputSerializationBuilder get outputSerialization =>
+      _$this._outputSerialization ??= new OutputSerializationBuilder();
+  set outputSerialization(OutputSerializationBuilder? outputSerialization) =>
+      _$this._outputSerialization = outputSerialization;
+
+  ScanRangeBuilder? _scanRange;
+  ScanRangeBuilder get scanRange =>
+      _$this._scanRange ??= new ScanRangeBuilder();
+  set scanRange(ScanRangeBuilder? scanRange) => _$this._scanRange = scanRange;
+
+  String? _expectedBucketOwner;
+  String? get expectedBucketOwner => _$this._expectedBucketOwner;
+  set expectedBucketOwner(String? expectedBucketOwner) =>
+      _$this._expectedBucketOwner = expectedBucketOwner;
+
+  SelectObjectContentRequestBuilder();
 
   SelectObjectContentRequestBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _bucket = $v.bucket;
-      _expectedBucketOwner = $v.expectedBucketOwner;
-      _expression = $v.expression;
-      _expressionType = $v.expressionType;
-      _inputSerialization = $v.inputSerialization.toBuilder();
       _key = $v.key;
-      _outputSerialization = $v.outputSerialization.toBuilder();
-      _requestProgress = $v.requestProgress?.toBuilder();
-      _scanRange = $v.scanRange?.toBuilder();
       _sseCustomerAlgorithm = $v.sseCustomerAlgorithm;
       _sseCustomerKey = $v.sseCustomerKey;
       _sseCustomerKeyMd5 = $v.sseCustomerKeyMd5;
+      _expression = $v.expression;
+      _expressionType = $v.expressionType;
+      _requestProgress = $v.requestProgress?.toBuilder();
+      _inputSerialization = $v.inputSerialization.toBuilder();
+      _outputSerialization = $v.outputSerialization.toBuilder();
+      _scanRange = $v.scanRange?.toBuilder();
+      _expectedBucketOwner = $v.expectedBucketOwner;
       _$v = null;
     }
     return this;
@@ -223,32 +219,31 @@ class SelectObjectContentRequestBuilder
           new _$SelectObjectContentRequest._(
               bucket: BuiltValueNullFieldError.checkNotNull(
                   bucket, r'SelectObjectContentRequest', 'bucket'),
-              expectedBucketOwner: expectedBucketOwner,
+              key: BuiltValueNullFieldError.checkNotNull(
+                  key, r'SelectObjectContentRequest', 'key'),
+              sseCustomerAlgorithm: sseCustomerAlgorithm,
+              sseCustomerKey: sseCustomerKey,
+              sseCustomerKeyMd5: sseCustomerKeyMd5,
               expression: BuiltValueNullFieldError.checkNotNull(
                   expression, r'SelectObjectContentRequest', 'expression'),
               expressionType: BuiltValueNullFieldError.checkNotNull(
                   expressionType,
                   r'SelectObjectContentRequest',
                   'expressionType'),
-              inputSerialization: inputSerialization.build(),
-              key: BuiltValueNullFieldError.checkNotNull(
-                  key, r'SelectObjectContentRequest', 'key'),
-              outputSerialization: outputSerialization.build(),
               requestProgress: _requestProgress?.build(),
+              inputSerialization: inputSerialization.build(),
+              outputSerialization: outputSerialization.build(),
               scanRange: _scanRange?.build(),
-              sseCustomerAlgorithm: sseCustomerAlgorithm,
-              sseCustomerKey: sseCustomerKey,
-              sseCustomerKeyMd5: sseCustomerKeyMd5);
+              expectedBucketOwner: expectedBucketOwner);
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'inputSerialization';
-        inputSerialization.build();
-
-        _$failedField = 'outputSerialization';
-        outputSerialization.build();
         _$failedField = 'requestProgress';
         _requestProgress?.build();
+        _$failedField = 'inputSerialization';
+        inputSerialization.build();
+        _$failedField = 'outputSerialization';
+        outputSerialization.build();
         _$failedField = 'scanRange';
         _scanRange?.build();
       } catch (e) {
@@ -267,15 +262,15 @@ class _$SelectObjectContentRequestPayload
   @override
   final String expression;
   @override
-  final _i3.ExpressionType expressionType;
+  final ExpressionType expressionType;
   @override
-  final _i4.InputSerialization inputSerialization;
+  final InputSerialization inputSerialization;
   @override
-  final _i5.OutputSerialization outputSerialization;
+  final OutputSerialization outputSerialization;
   @override
-  final _i6.RequestProgress? requestProgress;
+  final RequestProgress? requestProgress;
   @override
-  final _i7.ScanRange? scanRange;
+  final ScanRange? scanRange;
 
   factory _$SelectObjectContentRequestPayload(
           [void Function(SelectObjectContentRequestPayloadBuilder)? updates]) =>
@@ -345,39 +340,35 @@ class SelectObjectContentRequestPayloadBuilder
   String? get expression => _$this._expression;
   set expression(String? expression) => _$this._expression = expression;
 
-  _i3.ExpressionType? _expressionType;
-  _i3.ExpressionType? get expressionType => _$this._expressionType;
-  set expressionType(_i3.ExpressionType? expressionType) =>
+  ExpressionType? _expressionType;
+  ExpressionType? get expressionType => _$this._expressionType;
+  set expressionType(ExpressionType? expressionType) =>
       _$this._expressionType = expressionType;
 
-  _i4.InputSerializationBuilder? _inputSerialization;
-  _i4.InputSerializationBuilder get inputSerialization =>
-      _$this._inputSerialization ??= new _i4.InputSerializationBuilder();
-  set inputSerialization(_i4.InputSerializationBuilder? inputSerialization) =>
+  InputSerializationBuilder? _inputSerialization;
+  InputSerializationBuilder get inputSerialization =>
+      _$this._inputSerialization ??= new InputSerializationBuilder();
+  set inputSerialization(InputSerializationBuilder? inputSerialization) =>
       _$this._inputSerialization = inputSerialization;
 
-  _i5.OutputSerializationBuilder? _outputSerialization;
-  _i5.OutputSerializationBuilder get outputSerialization =>
-      _$this._outputSerialization ??= new _i5.OutputSerializationBuilder();
-  set outputSerialization(
-          _i5.OutputSerializationBuilder? outputSerialization) =>
+  OutputSerializationBuilder? _outputSerialization;
+  OutputSerializationBuilder get outputSerialization =>
+      _$this._outputSerialization ??= new OutputSerializationBuilder();
+  set outputSerialization(OutputSerializationBuilder? outputSerialization) =>
       _$this._outputSerialization = outputSerialization;
 
-  _i6.RequestProgressBuilder? _requestProgress;
-  _i6.RequestProgressBuilder get requestProgress =>
-      _$this._requestProgress ??= new _i6.RequestProgressBuilder();
-  set requestProgress(_i6.RequestProgressBuilder? requestProgress) =>
+  RequestProgressBuilder? _requestProgress;
+  RequestProgressBuilder get requestProgress =>
+      _$this._requestProgress ??= new RequestProgressBuilder();
+  set requestProgress(RequestProgressBuilder? requestProgress) =>
       _$this._requestProgress = requestProgress;
 
-  _i7.ScanRangeBuilder? _scanRange;
-  _i7.ScanRangeBuilder get scanRange =>
-      _$this._scanRange ??= new _i7.ScanRangeBuilder();
-  set scanRange(_i7.ScanRangeBuilder? scanRange) =>
-      _$this._scanRange = scanRange;
+  ScanRangeBuilder? _scanRange;
+  ScanRangeBuilder get scanRange =>
+      _$this._scanRange ??= new ScanRangeBuilder();
+  set scanRange(ScanRangeBuilder? scanRange) => _$this._scanRange = scanRange;
 
-  SelectObjectContentRequestPayloadBuilder() {
-    SelectObjectContentRequestPayload._init(this);
-  }
+  SelectObjectContentRequestPayloadBuilder();
 
   SelectObjectContentRequestPayloadBuilder get _$this {
     final $v = _$v;

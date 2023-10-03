@@ -1,10 +1,10 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_analytics_pinpoint_dart.pinpoint.model.put_events_request; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/events_request.dart'
-    as _i2;
-import 'package:aws_common/aws_common.dart' as _i3;
+import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/events_request.dart';
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -12,13 +12,13 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'put_events_request.g.dart';
 
 abstract class PutEventsRequest
-    with _i1.HttpInput<_i2.EventsRequest>, _i3.AWSEquatable<PutEventsRequest>
+    with _i1.HttpInput<EventsRequest>, _i2.AWSEquatable<PutEventsRequest>
     implements
         Built<PutEventsRequest, PutEventsRequestBuilder>,
-        _i1.HasPayload<_i2.EventsRequest> {
+        _i1.HasPayload<EventsRequest> {
   factory PutEventsRequest({
     required String applicationId,
-    required _i2.EventsRequest eventsRequest,
+    required EventsRequest eventsRequest,
   }) {
     return _$PutEventsRequest._(
       applicationId: applicationId,
@@ -32,8 +32,8 @@ abstract class PutEventsRequest
   const PutEventsRequest._();
 
   factory PutEventsRequest.fromRequest(
-    _i2.EventsRequest payload,
-    _i3.AWSBaseHttpRequest request, {
+    EventsRequest payload,
+    _i2.AWSBaseHttpRequest request, {
     Map<String, String> labels = const {},
   }) =>
       PutEventsRequest.build((b) {
@@ -43,18 +43,15 @@ abstract class PutEventsRequest
         }
       });
 
-  static const List<_i1.SmithySerializer> serializers = [
+  static const List<_i1.SmithySerializer<EventsRequest>> serializers = [
     PutEventsRequestRestJson1Serializer()
   ];
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(PutEventsRequestBuilder b) {}
 
   /// The unique identifier for the application. This identifier is displayed as the **Project ID** on the Amazon Pinpoint console.
   String get applicationId;
 
   /// Specifies a batch of events to process.
-  _i2.EventsRequest get eventsRequest;
+  EventsRequest get eventsRequest;
   @override
   String labelFor(String key) {
     switch (key) {
@@ -68,7 +65,7 @@ abstract class PutEventsRequest
   }
 
   @override
-  _i2.EventsRequest getPayload() => eventsRequest;
+  EventsRequest getPayload() => eventsRequest;
   @override
   List<Object?> get props => [
         applicationId,
@@ -76,21 +73,21 @@ abstract class PutEventsRequest
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('PutEventsRequest');
-    helper.add(
-      'applicationId',
-      applicationId,
-    );
-    helper.add(
-      'eventsRequest',
-      eventsRequest,
-    );
+    final helper = newBuiltValueToStringHelper('PutEventsRequest')
+      ..add(
+        'applicationId',
+        applicationId,
+      )
+      ..add(
+        'eventsRequest',
+        eventsRequest,
+      );
     return helper.toString();
   }
 }
 
 class PutEventsRequestRestJson1Serializer
-    extends _i1.PrimitiveSmithySerializer<_i2.EventsRequest> {
+    extends _i1.PrimitiveSmithySerializer<EventsRequest> {
   const PutEventsRequestRestJson1Serializer() : super('PutEventsRequest');
 
   @override
@@ -106,29 +103,26 @@ class PutEventsRequestRestJson1Serializer
         )
       ];
   @override
-  _i2.EventsRequest deserialize(
+  EventsRequest deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return (serializers.deserialize(
       serialized,
-      specifiedType: const FullType(_i2.EventsRequest),
-    ) as _i2.EventsRequest);
+      specifiedType: const FullType(EventsRequest),
+    ) as EventsRequest);
   }
 
   @override
   Object serialize(
     Serializers serializers,
-    Object? object, {
+    EventsRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = object is PutEventsRequest
-        ? object.getPayload()
-        : (object as _i2.EventsRequest);
-    return (serializers.serialize(
-      payload,
-      specifiedType: const FullType(_i2.EventsRequest),
-    ) as Object);
+    return serializers.serialize(
+      object,
+      specifiedType: const FullType(EventsRequest),
+    )!;
   }
 }

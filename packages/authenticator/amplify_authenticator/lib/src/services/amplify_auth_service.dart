@@ -28,8 +28,18 @@ abstract class AuthService {
 
   Future<AuthUser?> get currentUser;
 
+  /// Checks to see if a user has a valid session.
+  ///
+  /// A valid session is a session in which the tokens are not expired, OR
+  /// the access/id tokens have expired but the state of the refresh token is
+  /// unknown due to network unavailability.
   Future<bool> isValidSession();
 
+  /// Checks if a user is logged in based on whether or not there are
+  /// tokens on the device.
+  ///
+  /// This will not check whether or not those tokens are valid. To check
+  /// if tokens are valid, see [isValidSession].
   Future<bool> get isLoggedIn;
 
   Future<ResetPasswordResult> resetPassword(String username);
@@ -49,8 +59,8 @@ abstract class AuthService {
 
   Future<GetAttributeVerificationStatusResult> getAttributeVerificationStatus();
 
-  Future<ResendUserAttributeConfirmationCodeResult>
-      resendUserAttributeConfirmationCode({
+  Future<SendUserAttributeVerificationCodeResult>
+      sendUserAttributeVerificationCode({
     required CognitoUserAttributeKey userAttributeKey,
   });
 
@@ -65,7 +75,9 @@ abstract class AuthService {
   Stream<AuthHubEvent> get hubEvents;
 }
 
-class AmplifyAuthService implements AuthService {
+class AmplifyAuthService
+    with AWSDebuggable, AmplifyLoggerMixin
+    implements AuthService {
   static final userAgent =
       'amplify-authenticator/${packageVersion.split('+').first}';
 
@@ -189,9 +201,8 @@ class AmplifyAuthService implements AuthService {
   Future<bool> get isLoggedIn async {
     return _withUserAgent(() async {
       try {
-        final result = await Amplify.Auth.fetchAuthSession();
-
-        return result.isSignedIn;
+        await Amplify.Auth.getCurrentUser();
+        return true;
       } on SignedOutException {
         return false;
       }
@@ -201,22 +212,24 @@ class AmplifyAuthService implements AuthService {
   @override
   Future<bool> isValidSession() async {
     return _withUserAgent(() async {
-      final res = await Amplify.Auth.fetchAuthSession() as CognitoAuthSession;
-      try {
+      final session =
+          await Amplify.Auth.fetchAuthSession() as CognitoAuthSession;
+      final CognitoAuthSession(:userPoolTokensResult) = session;
+      return switch (userPoolTokensResult) {
         // If tokens can be retrieved without an exception, return true.
-        res.userPoolTokensResult.value;
-        return true;
-      } on SignedOutException {
-        return false;
-      } on NetworkException {
-        // NetworkException indicates that access and/or id tokens have expired
-        // and cannot be refreshed due to a network error. In this case the user
-        // should be treated as authenticated to allow for offline use cases.
-        return true;
-      } on Exception {
-        // Any other exception should be thrown to be handled appropriately.
-        rethrow;
-      }
+        AuthSuccessResult _ => true,
+        AuthErrorResult(:final exception) => switch (exception) {
+            SignedOutException _ => false,
+
+            // NetworkException indicates that access and/or id tokens have expired
+            // and cannot be refreshed due to a network error. In this case the user
+            // should be treated as authenticated to allow for offline use cases.
+            NetworkException _ => true,
+
+            // Any other exception should be thrown to be handled appropriately.
+            _ => throw exception,
+          },
+      };
     });
   }
 
@@ -243,12 +256,12 @@ class AmplifyAuthService implements AuthService {
   }
 
   @override
-  Future<ResendUserAttributeConfirmationCodeResult>
-      resendUserAttributeConfirmationCode({
+  Future<SendUserAttributeVerificationCodeResult>
+      sendUserAttributeVerificationCode({
     required CognitoUserAttributeKey userAttributeKey,
   }) {
     return _withUserAgent(
-      () => Amplify.Auth.resendUserAttributeConfirmationCode(
+      () => Amplify.Auth.sendUserAttributeVerificationCode(
         userAttributeKey: userAttributeKey,
       ),
     );
@@ -278,8 +291,7 @@ class AmplifyAuthService implements AuthService {
       final userAttributes = await Amplify.Auth.fetchUserAttributes();
 
       final verifiableAttributes = userAttributes
-          .map((e) => e.userAttributeKey)
-          .cast<CognitoUserAttributeKey>()
+          .map((e) => e.userAttributeKey.toCognitoUserAttributeKey())
           .where(
             (element) =>
                 element == CognitoUserAttributeKey.email ||
@@ -312,13 +324,26 @@ class AmplifyAuthService implements AuthService {
   }
 
   @override
-  Future<AmplifyConfig> waitForConfiguration() {
-    return Amplify.asyncConfig;
+  Future<AmplifyConfig> waitForConfiguration() async {
+    final timer = Timer.periodic(const Duration(seconds: 10), (timer) {
+      logger.warn(
+        'Amplify is taking longer than expected to configure.'
+        ' Have you called `Amplify.configure()`?',
+      );
+    });
+    try {
+      return await Amplify.asyncConfig;
+    } finally {
+      timer.cancel();
+    }
   }
 
   @override
   Stream<AuthHubEvent> get hubEvents =>
       Amplify.Hub.availableStreams[HubChannel.Auth]!.cast();
+
+  @override
+  String get runtimeTypeName => 'AmplifyAuthService';
 }
 
 class GetAttributeVerificationStatusResult {

@@ -42,6 +42,22 @@ class SerializerConfig {
           usePrivateSymbols: true,
         );
 
+  /// Config for AWS Query
+  const SerializerConfig.awsQuery()
+      : this(
+          usePayload: false,
+          renameMembers: true,
+          usePrivateSymbols: true,
+        );
+
+  /// Config for EC2 Query
+  const SerializerConfig.ec2Query()
+      : this(
+          usePayload: false,
+          renameMembers: true,
+          usePrivateSymbols: true,
+        );
+
   final bool renameMembers;
   final bool usePayload;
   final bool usePrivateSymbols;

@@ -12,7 +12,7 @@ import 'package:test/test.dart';
 void main() {
   ReadableStream createReadableStream() {
     return ReadableStream(
-      createUnderlyingSource(
+      UnderlyingSource(
         start: (controller) {
           controller
             ..enqueue(Uint8List.fromList([1, 2, 3, 4, 5]))
@@ -52,7 +52,7 @@ void main() {
       test('', () {
         final stream = Stream.fromIterable([
           [1, 2, 3, 4, 5],
-          [6, 7, 8, 9, 0]
+          [6, 7, 8, 9, 0],
         ]);
         final readableStream = stream.asReadableStream();
         expect(

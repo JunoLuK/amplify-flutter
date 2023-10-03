@@ -1,10 +1,10 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_analytics_pinpoint_dart.pinpoint.model.update_endpoint_request; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/endpoint_request.dart'
-    as _i2;
-import 'package:aws_common/aws_common.dart' as _i3;
+import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/endpoint_request.dart';
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -12,16 +12,14 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'update_endpoint_request.g.dart';
 
 abstract class UpdateEndpointRequest
-    with
-        _i1.HttpInput<_i2.EndpointRequest>,
-        _i3.AWSEquatable<UpdateEndpointRequest>
+    with _i1.HttpInput<EndpointRequest>, _i2.AWSEquatable<UpdateEndpointRequest>
     implements
         Built<UpdateEndpointRequest, UpdateEndpointRequestBuilder>,
-        _i1.HasPayload<_i2.EndpointRequest> {
+        _i1.HasPayload<EndpointRequest> {
   factory UpdateEndpointRequest({
     required String applicationId,
     required String endpointId,
-    required _i2.EndpointRequest endpointRequest,
+    required EndpointRequest endpointRequest,
   }) {
     return _$UpdateEndpointRequest._(
       applicationId: applicationId,
@@ -37,8 +35,8 @@ abstract class UpdateEndpointRequest
   const UpdateEndpointRequest._();
 
   factory UpdateEndpointRequest.fromRequest(
-    _i2.EndpointRequest payload,
-    _i3.AWSBaseHttpRequest request, {
+    EndpointRequest payload,
+    _i2.AWSBaseHttpRequest request, {
     Map<String, String> labels = const {},
   }) =>
       UpdateEndpointRequest.build((b) {
@@ -51,12 +49,9 @@ abstract class UpdateEndpointRequest
         }
       });
 
-  static const List<_i1.SmithySerializer> serializers = [
+  static const List<_i1.SmithySerializer<EndpointRequest>> serializers = [
     UpdateEndpointRequestRestJson1Serializer()
   ];
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(UpdateEndpointRequestBuilder b) {}
 
   /// The unique identifier for the application. This identifier is displayed as the **Project ID** on the Amazon Pinpoint console.
   String get applicationId;
@@ -65,7 +60,7 @@ abstract class UpdateEndpointRequest
   String get endpointId;
 
   /// Specifies the channel type and other settings for an endpoint.
-  _i2.EndpointRequest get endpointRequest;
+  EndpointRequest get endpointRequest;
   @override
   String labelFor(String key) {
     switch (key) {
@@ -81,7 +76,7 @@ abstract class UpdateEndpointRequest
   }
 
   @override
-  _i2.EndpointRequest getPayload() => endpointRequest;
+  EndpointRequest getPayload() => endpointRequest;
   @override
   List<Object?> get props => [
         applicationId,
@@ -90,25 +85,25 @@ abstract class UpdateEndpointRequest
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('UpdateEndpointRequest');
-    helper.add(
-      'applicationId',
-      applicationId,
-    );
-    helper.add(
-      'endpointId',
-      endpointId,
-    );
-    helper.add(
-      'endpointRequest',
-      endpointRequest,
-    );
+    final helper = newBuiltValueToStringHelper('UpdateEndpointRequest')
+      ..add(
+        'applicationId',
+        applicationId,
+      )
+      ..add(
+        'endpointId',
+        endpointId,
+      )
+      ..add(
+        'endpointRequest',
+        endpointRequest,
+      );
     return helper.toString();
   }
 }
 
 class UpdateEndpointRequestRestJson1Serializer
-    extends _i1.PrimitiveSmithySerializer<_i2.EndpointRequest> {
+    extends _i1.PrimitiveSmithySerializer<EndpointRequest> {
   const UpdateEndpointRequestRestJson1Serializer()
       : super('UpdateEndpointRequest');
 
@@ -125,29 +120,26 @@ class UpdateEndpointRequestRestJson1Serializer
         )
       ];
   @override
-  _i2.EndpointRequest deserialize(
+  EndpointRequest deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return (serializers.deserialize(
       serialized,
-      specifiedType: const FullType(_i2.EndpointRequest),
-    ) as _i2.EndpointRequest);
+      specifiedType: const FullType(EndpointRequest),
+    ) as EndpointRequest);
   }
 
   @override
   Object serialize(
     Serializers serializers,
-    Object? object, {
+    EndpointRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = object is UpdateEndpointRequest
-        ? object.getPayload()
-        : (object as _i2.EndpointRequest);
-    return (serializers.serialize(
-      payload,
-      specifiedType: const FullType(_i2.EndpointRequest),
-    ) as Object);
+    return serializers.serialize(
+      object,
+      specifiedType: const FullType(EndpointRequest),
+    )!;
   }
 }

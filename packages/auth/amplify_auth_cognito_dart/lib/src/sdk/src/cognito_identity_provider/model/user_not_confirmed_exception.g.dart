@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity_provider.model.user_not_confirmed_exception;
+part of 'user_not_confirmed_exception.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -55,9 +55,7 @@ class UserNotConfirmedExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  UserNotConfirmedExceptionBuilder() {
-    UserNotConfirmedException._init(this);
-  }
+  UserNotConfirmedExceptionBuilder();
 
   UserNotConfirmedExceptionBuilder get _$this {
     final $v = _$v;

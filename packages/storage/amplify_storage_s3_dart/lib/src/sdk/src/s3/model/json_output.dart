@@ -1,4 +1,5 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_storage_s3_dart.s3.model.json_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -24,12 +25,9 @@ abstract class JsonOutput
 
   const JsonOutput._();
 
-  static const List<_i2.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer<JsonOutput>> serializers = [
     JsonOutputRestXmlSerializer()
   ];
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(JsonOutputBuilder b) {}
 
   /// The value used to separate individual records in the output. If no value is specified, Amazon S3 uses a newline character ('\\n').
   String? get recordDelimiter;
@@ -37,11 +35,11 @@ abstract class JsonOutput
   List<Object?> get props => [recordDelimiter];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('JsonOutput');
-    helper.add(
-      'recordDelimiter',
-      recordDelimiter,
-    );
+    final helper = newBuiltValueToStringHelper('JsonOutput')
+      ..add(
+        'recordDelimiter',
+        recordDelimiter,
+      );
     return helper.toString();
   }
 }
@@ -71,18 +69,18 @@ class JsonOutputRestXmlSerializer
     final result = JsonOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current;
+      final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      switch (key as String) {
+      if (value == null) {
+        continue;
+      }
+      switch (key) {
         case 'RecordDelimiter':
-          if (value != null) {
-            result.recordDelimiter = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.recordDelimiter = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
       }
     }
 
@@ -92,24 +90,24 @@ class JsonOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    JsonOutput object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as JsonOutput);
-    final result = <Object?>[
+    final result$ = <Object?>[
       const _i2.XmlElementName(
         'JsonOutput',
         _i2.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
       )
     ];
-    if (payload.recordDelimiter != null) {
-      result
+    final JsonOutput(:recordDelimiter) = object;
+    if (recordDelimiter != null) {
+      result$
         ..add(const _i2.XmlElementName('RecordDelimiter'))
         ..add(serializers.serialize(
-          payload.recordDelimiter!,
+          recordDelimiter,
           specifiedType: const FullType(String),
         ));
     }
-    return result;
+    return result$;
   }
 }

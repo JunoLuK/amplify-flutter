@@ -13,7 +13,7 @@ import 'package:meta/meta.dart';
 /// {@template amplify_auth_cognito.anonymous_credentials_provider}
 /// Creates a credentials provider with no credentials.
 /// {@endtemplate}
-class AnonymousCredentialsProvider implements AWSCredentialsProvider {
+final class AnonymousCredentialsProvider implements AWSCredentialsProvider {
   /// {@macro amplify_auth_cognito.anonymous_credentials_provider}
   const AnonymousCredentialsProvider();
 
@@ -21,12 +21,15 @@ class AnonymousCredentialsProvider implements AWSCredentialsProvider {
   FutureOr<AWSCredentials> retrieve() {
     throw const AuthNotAuthorizedException('No credentials available');
   }
+
+  @override
+  String get runtimeTypeName => 'AnonymousCredentialsProvider';
 }
 
 /// {@template amplify_auth_cognito.inline_credentials_provider}
 /// Creates a credentials provider using a closure.
 /// {@endtemplate}
-class InlineCredentialsProvider implements AWSCredentialsProvider {
+final class InlineCredentialsProvider implements AWSCredentialsProvider {
   /// {@macro amplify_auth_cognito.inline_credentials_provider}
   const InlineCredentialsProvider(this._retrieve);
 
@@ -34,4 +37,7 @@ class InlineCredentialsProvider implements AWSCredentialsProvider {
 
   @override
   FutureOr<AWSCredentials> retrieve() => _retrieve();
+
+  @override
+  String get runtimeTypeName => 'InlineCredentialsProvider';
 }

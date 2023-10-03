@@ -1,4 +1,5 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_analytics_pinpoint_dart.pinpoint.model.endpoint_demographic; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -43,12 +44,9 @@ abstract class EndpointDemographic
 
   const EndpointDemographic._();
 
-  static const List<_i2.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer<EndpointDemographic>> serializers = [
     EndpointDemographicRestJson1Serializer()
   ];
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(EndpointDemographicBuilder b) {}
 
   /// The version of the app that's associated with the endpoint.
   String? get appVersion;
@@ -86,39 +84,39 @@ abstract class EndpointDemographic
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('EndpointDemographic');
-    helper.add(
-      'appVersion',
-      appVersion,
-    );
-    helper.add(
-      'locale',
-      locale,
-    );
-    helper.add(
-      'make',
-      make,
-    );
-    helper.add(
-      'model',
-      model,
-    );
-    helper.add(
-      'modelVersion',
-      modelVersion,
-    );
-    helper.add(
-      'platform',
-      platform,
-    );
-    helper.add(
-      'platformVersion',
-      platformVersion,
-    );
-    helper.add(
-      'timezone',
-      timezone,
-    );
+    final helper = newBuiltValueToStringHelper('EndpointDemographic')
+      ..add(
+        'appVersion',
+        appVersion,
+      )
+      ..add(
+        'locale',
+        locale,
+      )
+      ..add(
+        'make',
+        make,
+      )
+      ..add(
+        'model',
+        model,
+      )
+      ..add(
+        'modelVersion',
+        modelVersion,
+      )
+      ..add(
+        'platform',
+        platform,
+      )
+      ..add(
+        'platformVersion',
+        platformVersion,
+      )
+      ..add(
+        'timezone',
+        timezone,
+      );
     return helper.toString();
   }
 }
@@ -151,71 +149,50 @@ class EndpointDemographicRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'AppVersion':
-          if (value != null) {
-            result.appVersion = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.appVersion = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
         case 'Locale':
-          if (value != null) {
-            result.locale = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.locale = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
         case 'Make':
-          if (value != null) {
-            result.make = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.make = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
         case 'Model':
-          if (value != null) {
-            result.model = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.model = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
         case 'ModelVersion':
-          if (value != null) {
-            result.modelVersion = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.modelVersion = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
         case 'Platform':
-          if (value != null) {
-            result.platform = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.platform = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
         case 'PlatformVersion':
-          if (value != null) {
-            result.platformVersion = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.platformVersion = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
         case 'Timezone':
-          if (value != null) {
-            result.timezone = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.timezone = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
       }
     }
 
@@ -225,75 +202,84 @@ class EndpointDemographicRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    EndpointDemographic object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as EndpointDemographic);
-    final result = <Object?>[];
-    if (payload.appVersion != null) {
-      result
+    final result$ = <Object?>[];
+    final EndpointDemographic(
+      :appVersion,
+      :locale,
+      :make,
+      :model,
+      :modelVersion,
+      :platform,
+      :platformVersion,
+      :timezone
+    ) = object;
+    if (appVersion != null) {
+      result$
         ..add('AppVersion')
         ..add(serializers.serialize(
-          payload.appVersion!,
+          appVersion,
           specifiedType: const FullType(String),
         ));
     }
-    if (payload.locale != null) {
-      result
+    if (locale != null) {
+      result$
         ..add('Locale')
         ..add(serializers.serialize(
-          payload.locale!,
+          locale,
           specifiedType: const FullType(String),
         ));
     }
-    if (payload.make != null) {
-      result
+    if (make != null) {
+      result$
         ..add('Make')
         ..add(serializers.serialize(
-          payload.make!,
+          make,
           specifiedType: const FullType(String),
         ));
     }
-    if (payload.model != null) {
-      result
+    if (model != null) {
+      result$
         ..add('Model')
         ..add(serializers.serialize(
-          payload.model!,
+          model,
           specifiedType: const FullType(String),
         ));
     }
-    if (payload.modelVersion != null) {
-      result
+    if (modelVersion != null) {
+      result$
         ..add('ModelVersion')
         ..add(serializers.serialize(
-          payload.modelVersion!,
+          modelVersion,
           specifiedType: const FullType(String),
         ));
     }
-    if (payload.platform != null) {
-      result
+    if (platform != null) {
+      result$
         ..add('Platform')
         ..add(serializers.serialize(
-          payload.platform!,
+          platform,
           specifiedType: const FullType(String),
         ));
     }
-    if (payload.platformVersion != null) {
-      result
+    if (platformVersion != null) {
+      result$
         ..add('PlatformVersion')
         ..add(serializers.serialize(
-          payload.platformVersion!,
+          platformVersion,
           specifiedType: const FullType(String),
         ));
     }
-    if (payload.timezone != null) {
-      result
+    if (timezone != null) {
+      result$
         ..add('Timezone')
         ..add(serializers.serialize(
-          payload.timezone!,
+          timezone,
           specifiedType: const FullType(String),
         ));
     }
-    return result;
+    return result$;
   }
 }

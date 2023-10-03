@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_storage_s3_dart.s3.model.completed_multipart_upload;
+part of 'completed_multipart_upload.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of amplify_storage_s3_dart.s3.model.completed_multipart_upload;
 
 class _$CompletedMultipartUpload extends CompletedMultipartUpload {
   @override
-  final _i3.BuiltList<_i2.CompletedPart>? parts;
+  final _i2.BuiltList<CompletedPart>? parts;
 
   factory _$CompletedMultipartUpload(
           [void Function(CompletedMultipartUploadBuilder)? updates]) =>
@@ -45,14 +45,12 @@ class CompletedMultipartUploadBuilder
         Builder<CompletedMultipartUpload, CompletedMultipartUploadBuilder> {
   _$CompletedMultipartUpload? _$v;
 
-  _i3.ListBuilder<_i2.CompletedPart>? _parts;
-  _i3.ListBuilder<_i2.CompletedPart> get parts =>
-      _$this._parts ??= new _i3.ListBuilder<_i2.CompletedPart>();
-  set parts(_i3.ListBuilder<_i2.CompletedPart>? parts) => _$this._parts = parts;
+  _i2.ListBuilder<CompletedPart>? _parts;
+  _i2.ListBuilder<CompletedPart> get parts =>
+      _$this._parts ??= new _i2.ListBuilder<CompletedPart>();
+  set parts(_i2.ListBuilder<CompletedPart>? parts) => _$this._parts = parts;
 
-  CompletedMultipartUploadBuilder() {
-    CompletedMultipartUpload._init(this);
-  }
+  CompletedMultipartUploadBuilder();
 
   CompletedMultipartUploadBuilder get _$this {
     final $v = _$v;

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_storage_s3_dart.s3.model.output_serialization;
+part of 'output_serialization.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,9 +8,9 @@ part of amplify_storage_s3_dart.s3.model.output_serialization;
 
 class _$OutputSerialization extends OutputSerialization {
   @override
-  final _i2.CsvOutput? csv;
+  final CsvOutput? csv;
   @override
-  final _i3.JsonOutput? json;
+  final JsonOutput? json;
 
   factory _$OutputSerialization(
           [void Function(OutputSerializationBuilder)? updates]) =>
@@ -49,18 +49,15 @@ class OutputSerializationBuilder
     implements Builder<OutputSerialization, OutputSerializationBuilder> {
   _$OutputSerialization? _$v;
 
-  _i2.CsvOutputBuilder? _csv;
-  _i2.CsvOutputBuilder get csv => _$this._csv ??= new _i2.CsvOutputBuilder();
-  set csv(_i2.CsvOutputBuilder? csv) => _$this._csv = csv;
+  CsvOutputBuilder? _csv;
+  CsvOutputBuilder get csv => _$this._csv ??= new CsvOutputBuilder();
+  set csv(CsvOutputBuilder? csv) => _$this._csv = csv;
 
-  _i3.JsonOutputBuilder? _json;
-  _i3.JsonOutputBuilder get json =>
-      _$this._json ??= new _i3.JsonOutputBuilder();
-  set json(_i3.JsonOutputBuilder? json) => _$this._json = json;
+  JsonOutputBuilder? _json;
+  JsonOutputBuilder get json => _$this._json ??= new JsonOutputBuilder();
+  set json(JsonOutputBuilder? json) => _$this._json = json;
 
-  OutputSerializationBuilder() {
-    OutputSerialization._init(this);
-  }
+  OutputSerializationBuilder();
 
   OutputSerializationBuilder get _$this {
     final $v = _$v;

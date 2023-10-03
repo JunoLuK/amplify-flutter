@@ -46,14 +46,14 @@ class MockCognitoIdentityProviderClient
     Future<ResendConfirmationCodeResponse> Function()? resendConfirmationCode,
     Future<RespondToAuthChallengeResponse> Function(
       RespondToAuthChallengeRequest,
-    )?
-        respondToAuthChallenge,
+    )? respondToAuthChallenge,
     Future<RevokeTokenResponse> Function()? revokeToken,
     Future<SignUpResponse> Function()? signUp,
     Future<UpdateDeviceStatusResponse> Function()? updateDeviceStatus,
     Future<UpdateUserAttributesResponse> Function()? updateUserAttributes,
     Future<VerifySoftwareTokenResponse> Function()? verifySoftwareToken,
     Future<VerifyUserAttributeResponse> Function()? verifyUserAttribute,
+    Future<SetUserMfaPreferenceResponse> Function()? setUserMfaPreference,
   })  : _associateSoftwareToken = associateSoftwareToken,
         _changePassword = changePassword,
         _confirmDevice = confirmDevice,
@@ -75,7 +75,8 @@ class MockCognitoIdentityProviderClient
         _updateDeviceStatus = updateDeviceStatus,
         _updateUserAttributes = updateUserAttributes,
         _verifySoftwareToken = verifySoftwareToken,
-        _verifyUserAttribute = verifyUserAttribute;
+        _verifyUserAttribute = verifyUserAttribute,
+        _setUserMfaPreference = setUserMfaPreference;
 
   final Future<AssociateSoftwareTokenResponse> Function()?
       _associateSoftwareToken;
@@ -106,6 +107,7 @@ class MockCognitoIdentityProviderClient
   final Future<UpdateUserAttributesResponse> Function()? _updateUserAttributes;
   final Future<VerifySoftwareTokenResponse> Function()? _verifySoftwareToken;
   final Future<VerifyUserAttributeResponse> Function()? _verifyUserAttribute;
+  final Future<SetUserMfaPreferenceResponse> Function()? _setUserMfaPreference;
 
   @override
   SmithyOperation<AssociateSoftwareTokenResponse> associateSoftwareToken(
@@ -289,6 +291,14 @@ class MockCognitoIdentityProviderClient
     AWSCredentialsProvider? credentialsProvider,
   }) =>
       _mockIfProvided(_verifyUserAttribute);
+
+  @override
+  SmithyOperation<SetUserMfaPreferenceResponse> setUserMfaPreference(
+    SetUserMfaPreferenceRequest input, {
+    AWSHttpClient? client,
+    AWSCredentialsProvider? credentialsProvider,
+  }) =>
+      _mockIfProvided(_setUserMfaPreference);
 }
 
 class MockCognitoIdentityClient implements CognitoIdentityClient {

@@ -1,4 +1,5 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_analytics_pinpoint_dart.pinpoint.model.quiet_time; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -30,12 +31,9 @@ abstract class QuietTime
 
   const QuietTime._();
 
-  static const List<_i2.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer<QuietTime>> serializers = [
     QuietTimeRestJson1Serializer()
   ];
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(QuietTimeBuilder b) {}
 
   /// The specific time when quiet time ends. This value has to use 24-hour notation and be in HH:MM format, where HH is the hour (with a leading zero, if applicable) and MM is the minutes. For example, use 02:30 to represent 2:30 AM, or 14:30 to represent 2:30 PM.
   String? get end;
@@ -49,15 +47,15 @@ abstract class QuietTime
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('QuietTime');
-    helper.add(
-      'end',
-      end,
-    );
-    helper.add(
-      'start',
-      start,
-    );
+    final helper = newBuiltValueToStringHelper('QuietTime')
+      ..add(
+        'end',
+        end,
+      )
+      ..add(
+        'start',
+        start,
+      );
     return helper.toString();
   }
 }
@@ -90,23 +88,20 @@ class QuietTimeRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'End':
-          if (value != null) {
-            result.end = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.end = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
         case 'Start':
-          if (value != null) {
-            result.start = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.start = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
       }
     }
 
@@ -116,27 +111,27 @@ class QuietTimeRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    QuietTime object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as QuietTime);
-    final result = <Object?>[];
-    if (payload.end != null) {
-      result
+    final result$ = <Object?>[];
+    final QuietTime(:end, :start) = object;
+    if (end != null) {
+      result$
         ..add('End')
         ..add(serializers.serialize(
-          payload.end!,
+          end,
           specifiedType: const FullType(String),
         ));
     }
-    if (payload.start != null) {
-      result
+    if (start != null) {
+      result$
         ..add('Start')
         ..add(serializers.serialize(
-          payload.start!,
+          start,
           specifiedType: const FullType(String),
         ));
     }
-    return result;
+    return result$;
   }
 }

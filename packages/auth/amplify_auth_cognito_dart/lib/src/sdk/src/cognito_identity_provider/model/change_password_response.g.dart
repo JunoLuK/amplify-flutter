@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity_provider.model.change_password_response;
+part of 'change_password_response.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -38,9 +38,7 @@ class ChangePasswordResponseBuilder
     implements Builder<ChangePasswordResponse, ChangePasswordResponseBuilder> {
   _$ChangePasswordResponse? _$v;
 
-  ChangePasswordResponseBuilder() {
-    ChangePasswordResponse._init(this);
-  }
+  ChangePasswordResponseBuilder();
 
   @override
   void replace(ChangePasswordResponse other) {

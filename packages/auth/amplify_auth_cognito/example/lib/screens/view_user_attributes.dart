@@ -75,7 +75,7 @@ class _ViewUserAttributesScreenState extends State<ViewUserAttributesScreen> {
           IconButton(
             icon: const Icon(Icons.refresh),
             onPressed: () => _fetchAttributes(isRefresh: true),
-          )
+          ),
         ],
       ),
       body: Builder(
@@ -94,7 +94,7 @@ class _ViewUserAttributesScreenState extends State<ViewUserAttributesScreen> {
                 itemBuilder: (context, index) {
                   final attribute = _userAttributes[index];
                   final userAttributeKey =
-                      attribute.userAttributeKey as CognitoUserAttributeKey;
+                      attribute.userAttributeKey.toCognitoUserAttributeKey();
                   final value = attribute.value;
                   return ListTile(
                     title: Text(userAttributeKey.key),

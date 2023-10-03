@@ -9,6 +9,7 @@ import 'package:amplify_authenticator/src/blocs/auth/auth_data.dart';
 import 'package:amplify_authenticator/src/services/amplify_auth_service.dart';
 import 'package:amplify_authenticator/src/state/auth_state.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
+import 'package:meta/meta.dart';
 
 part 'auth_event.dart';
 
@@ -24,6 +25,7 @@ class StateMachineBloc
     required AuthService authService,
     required this.preferPrivateSession,
     this.initialStep = AuthenticatorStep.signIn,
+    this.totpOptions,
   }) : _authService = authService {
     _hubSubscription = _authService.hubEvents.listen(_mapHubEvent);
     final blocStream = _authEventStream.asyncExpand((event) async* {
@@ -39,6 +41,7 @@ class StateMachineBloc
   final AuthService _authService;
   final bool preferPrivateSession;
   final AuthenticatorStep initialStep;
+  final TotpOptions? totpOptions;
 
   @override
   String get runtimeTypeName => 'StateMachineBloc';
@@ -78,6 +81,16 @@ class StateMachineBloc
     logger.debug('Emitting next state: $state');
     _controllerSink.add(state);
     _currentState = state;
+  }
+
+  @visibleForTesting
+  void setState(AuthState state) {
+    if (!zDebugMode) {
+      throw StateError(
+        'StateMachineBloc.setState should only be called in tests',
+      );
+    }
+    _emit(state);
   }
 
   /// Manages exception events separate from the bloc's state.
@@ -143,14 +156,12 @@ class StateMachineBloc
           break;
         }
         nextState = const AuthenticatedState();
-        break;
       case AuthHubEventType.signedOut:
       case AuthHubEventType.sessionExpired:
       case AuthHubEventType.userDeleted:
         if (_currentState is AuthenticatedState) {
           nextState = UnauthenticatedState(step: initialStep);
         }
-        break;
     }
     if (nextState != null) {
       _emit(nextState);
@@ -159,7 +170,7 @@ class StateMachineBloc
 
   Stream<AuthState> _authLoad() async* {
     yield const LoadingState();
-    await Amplify.asyncConfig;
+    await _authService.waitForConfiguration();
     yield* _isValidSession();
     // Emit empty event to resolve bug with broken event handling on web (possible DDC issue)
     // TODO(dnys1): investigate broken event handling
@@ -208,21 +219,31 @@ class StateMachineBloc
       switch (result.nextStep.signInStep) {
         case AuthSignInStep.confirmSignInWithSmsMfaCode:
           yield UnauthenticatedState.confirmSignInMfa;
-          break;
         case AuthSignInStep.confirmSignInWithCustomChallenge:
           yield ConfirmSignInCustom(
             publicParameters: result.nextStep.additionalInfo,
           );
-          break;
         case AuthSignInStep.confirmSignInWithNewPassword:
           yield UnauthenticatedState.confirmSignInNewPassword;
-          break;
+        case AuthSignInStep.confirmSignInWithTotpMfaCode:
+          yield UnauthenticatedState.confirmSignInWithTotpMfaCode;
+        case AuthSignInStep.continueSignInWithMfaSelection:
+          yield ContinueSignInWithMfaSelection(
+            allowedMfaTypes: result.nextStep.allowedMfaTypes,
+          );
+        case AuthSignInStep.continueSignInWithTotpSetup:
+          assert(
+            result.nextStep.totpSetupDetails != null,
+            'Sign In Result should have totpSetupDetails',
+          );
+          yield await ContinueSignInTotpSetup.setupURI(
+            result.nextStep.totpSetupDetails!,
+            totpOptions,
+          );
         case AuthSignInStep.resetPassword:
           yield UnauthenticatedState.resetPassword;
-          break;
         case AuthSignInStep.confirmSignUp:
           yield UnauthenticatedState.confirmSignUp;
-          break;
         case AuthSignInStep.done:
           if (rememberDevice) {
             try {
@@ -234,7 +255,6 @@ class StateMachineBloc
             }
           }
           yield* _checkUserVerification();
-          break;
         default:
           break;
       }
@@ -253,6 +273,9 @@ class StateMachineBloc
     } on Exception catch (e) {
       _exceptionController.add(AuthenticatorException(e));
     }
+
+    // Emit empty event to resolve bug with broken event handling on web (possible DDC issue)
+    yield* const Stream.empty();
   }
 
   Stream<AuthState> _confirmResetPassword(
@@ -296,24 +319,38 @@ class StateMachineBloc
       case AuthSignInStep.confirmSignInWithSmsMfaCode:
         _notifyCodeSent(result.nextStep.codeDeliveryDetails?.destination);
         _emit(UnauthenticatedState.confirmSignInMfa);
-        break;
       case AuthSignInStep.confirmSignInWithCustomChallenge:
         _emit(
           ConfirmSignInCustom(
             publicParameters: result.nextStep.additionalInfo,
           ),
         );
-        break;
       case AuthSignInStep.confirmSignInWithNewPassword:
         _emit(UnauthenticatedState.confirmSignInNewPassword);
-        break;
+      case AuthSignInStep.continueSignInWithMfaSelection:
+        _emit(
+          ContinueSignInWithMfaSelection(
+            allowedMfaTypes: result.nextStep.allowedMfaTypes,
+          ),
+        );
+      case AuthSignInStep.continueSignInWithTotpSetup:
+        assert(
+          result.nextStep.totpSetupDetails != null,
+          'Sign In Result should have totpSetupDetails',
+        );
+        _emit(
+          await ContinueSignInTotpSetup.setupURI(
+            result.nextStep.totpSetupDetails!,
+            totpOptions,
+          ),
+        );
+      case AuthSignInStep.confirmSignInWithTotpMfaCode:
+        _emit(UnauthenticatedState.confirmSignInWithTotpMfaCode);
       case AuthSignInStep.resetPassword:
         _emit(UnauthenticatedState.confirmResetPassword);
-        break;
       case AuthSignInStep.confirmSignUp:
         _notifyCodeSent(result.nextStep.codeDeliveryDetails?.destination);
         _emit(UnauthenticatedState.confirmSignUp);
-        break;
       case AuthSignInStep.done:
         if (isSocialSignIn) {
           _emit(const AuthenticatedState());
@@ -322,7 +359,6 @@ class StateMachineBloc
             _emit(state);
           }
         }
-        break;
       default:
         break;
     }
@@ -414,7 +450,6 @@ class StateMachineBloc
         case AuthSignUpStep.confirmSignUp:
           _notifyCodeSent(result.nextStep.codeDeliveryDetails?.destination);
           yield UnauthenticatedState.confirmSignUp;
-          break;
         case AuthSignUpStep.done:
           final authSignInData = AuthUsernamePasswordSignInData(
             username: data.username,
@@ -422,7 +457,6 @@ class StateMachineBloc
           );
 
           yield* _signIn(authSignInData);
-          break;
       }
     } on Exception catch (e) {
       _exceptionController.add(AuthenticatorException(e));
@@ -460,7 +494,7 @@ class StateMachineBloc
 
   Stream<AuthState> _verifyUser(AuthVerifyUserData data) async* {
     try {
-      final result = await _authService.resendUserAttributeConfirmationCode(
+      final result = await _authService.sendUserAttributeVerificationCode(
         userAttributeKey: data.userAttributeKey,
       );
       _notifyCodeSent(result.codeDeliveryDetails.destination);

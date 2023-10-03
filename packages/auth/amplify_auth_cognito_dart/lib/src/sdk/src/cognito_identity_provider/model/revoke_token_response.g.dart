@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity_provider.model.revoke_token_response;
+part of 'revoke_token_response.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -38,9 +38,7 @@ class RevokeTokenResponseBuilder
     implements Builder<RevokeTokenResponse, RevokeTokenResponseBuilder> {
   _$RevokeTokenResponse? _$v;
 
-  RevokeTokenResponseBuilder() {
-    RevokeTokenResponse._init(this);
-  }
+  RevokeTokenResponseBuilder();
 
   @override
   void replace(RevokeTokenResponse other) {

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity_provider.model.invalid_email_role_access_policy_exception;
+part of 'invalid_email_role_access_policy_exception.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -62,9 +62,7 @@ class InvalidEmailRoleAccessPolicyExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  InvalidEmailRoleAccessPolicyExceptionBuilder() {
-    InvalidEmailRoleAccessPolicyException._init(this);
-  }
+  InvalidEmailRoleAccessPolicyExceptionBuilder();
 
   InvalidEmailRoleAccessPolicyExceptionBuilder get _$this {
     final $v = _$v;

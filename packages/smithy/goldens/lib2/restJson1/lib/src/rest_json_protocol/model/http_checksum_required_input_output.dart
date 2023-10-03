@@ -1,4 +1,5 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_protocol.model.http_checksum_required_input_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -40,12 +41,9 @@ abstract class HttpChecksumRequiredInputOutput
   ) =>
       payload;
 
-  static const List<_i1.SmithySerializer> serializers = [
-    HttpChecksumRequiredInputOutputRestJson1Serializer()
-  ];
+  static const List<_i1.SmithySerializer<HttpChecksumRequiredInputOutput>>
+      serializers = [HttpChecksumRequiredInputOutputRestJson1Serializer()];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(HttpChecksumRequiredInputOutputBuilder b) {}
   String? get foo;
   @override
   HttpChecksumRequiredInputOutput getPayload() => this;
@@ -54,11 +52,11 @@ abstract class HttpChecksumRequiredInputOutput
   @override
   String toString() {
     final helper =
-        newBuiltValueToStringHelper('HttpChecksumRequiredInputOutput');
-    helper.add(
-      'foo',
-      foo,
-    );
+        newBuiltValueToStringHelper('HttpChecksumRequiredInputOutput')
+          ..add(
+            'foo',
+            foo,
+          );
     return helper.toString();
   }
 }
@@ -92,15 +90,15 @@ class HttpChecksumRequiredInputOutputRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'foo':
-          if (value != null) {
-            result.foo = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.foo = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
       }
     }
 
@@ -110,19 +108,19 @@ class HttpChecksumRequiredInputOutputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    HttpChecksumRequiredInputOutput object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as HttpChecksumRequiredInputOutput);
-    final result = <Object?>[];
-    if (payload.foo != null) {
-      result
+    final result$ = <Object?>[];
+    final HttpChecksumRequiredInputOutput(:foo) = object;
+    if (foo != null) {
+      result$
         ..add('foo')
         ..add(serializers.serialize(
-          payload.foo!,
+          foo,
           specifiedType: const FullType(String),
         ));
     }
-    return result;
+    return result$;
   }
 }

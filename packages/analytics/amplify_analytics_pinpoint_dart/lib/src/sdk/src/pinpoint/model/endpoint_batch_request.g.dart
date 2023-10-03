@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_analytics_pinpoint_dart.pinpoint.model.endpoint_batch_request;
+part of 'endpoint_batch_request.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of amplify_analytics_pinpoint_dart.pinpoint.model.endpoint_batch_request;
 
 class _$EndpointBatchRequest extends EndpointBatchRequest {
   @override
-  final _i3.BuiltList<_i2.EndpointBatchItem> item;
+  final _i2.BuiltList<EndpointBatchItem> item;
 
   factory _$EndpointBatchRequest(
           [void Function(EndpointBatchRequestBuilder)? updates]) =>
@@ -47,14 +47,12 @@ class EndpointBatchRequestBuilder
     implements Builder<EndpointBatchRequest, EndpointBatchRequestBuilder> {
   _$EndpointBatchRequest? _$v;
 
-  _i3.ListBuilder<_i2.EndpointBatchItem>? _item;
-  _i3.ListBuilder<_i2.EndpointBatchItem> get item =>
-      _$this._item ??= new _i3.ListBuilder<_i2.EndpointBatchItem>();
-  set item(_i3.ListBuilder<_i2.EndpointBatchItem>? item) => _$this._item = item;
+  _i2.ListBuilder<EndpointBatchItem>? _item;
+  _i2.ListBuilder<EndpointBatchItem> get item =>
+      _$this._item ??= new _i2.ListBuilder<EndpointBatchItem>();
+  set item(_i2.ListBuilder<EndpointBatchItem>? item) => _$this._item = item;
 
-  EndpointBatchRequestBuilder() {
-    EndpointBatchRequest._init(this);
-  }
+  EndpointBatchRequestBuilder();
 
   EndpointBatchRequestBuilder get _$this {
     final $v = _$v;

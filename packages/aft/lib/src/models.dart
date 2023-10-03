@@ -1,38 +1,43 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import 'package:aft/src/models/raw_config.dart';
+import 'package:aft/src/config/raw_config.dart';
 import 'package:collection/collection.dart';
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
 
-export 'models/config.dart';
-export 'models/package_selector.dart';
-export 'models/raw_config.dart';
+export 'config/config.dart';
+export 'config/package_selector.dart';
+export 'config/raw_config.dart';
+export 'config/serializers.dart';
 
 /// Packages which report as an example app, but should be considered as
 /// publishable for some purposes.
 const falsePositiveExamples = [
   'aft',
   'smithy_codegen',
-  'smoke_test',
   'amplify_auth_cognito_test',
   'amplify_secure_storage_test',
   'amplify_native_legacy_wrapper',
+  'pub_server',
 
   // Smithy Golden packages
   'aws_json1_0_v1',
-  'aws_json1_1_v1',
-  'rest_json1_v1',
-  'rest_xml_v1',
-  'rest_xml_with_namespace_v1',
   'aws_json1_0_v2',
+  'aws_json1_1_v1',
   'aws_json1_1_v2',
+  'aws_query_v1',
+  'aws_query_v2',
+  'rest_json1_v1',
   'rest_json1_v2',
+  'rest_xml_v1',
   'rest_xml_v2',
+  'rest_xml_with_namespace_v1',
   'rest_xml_with_namespace_v2',
   'custom_v1',
   'custom_v2',
+  'ec2_query_v1',
+  'ec2_query_v2',
 ];
 
 /// The flavor of a package, e.g. Dart/Flutter.
@@ -75,7 +80,7 @@ extension AmplifyVersion on Version {
     if (preRelease.isEmpty) {
       switch (type) {
         case VersionBumpType.patch:
-          return major == 0 ? replace(build: [newBuild]) : nextPatch;
+          return nextPatch;
         case VersionBumpType.nonBreaking:
           return major == 0 ? nextPatch : nextMinor;
         case VersionBumpType.breaking:

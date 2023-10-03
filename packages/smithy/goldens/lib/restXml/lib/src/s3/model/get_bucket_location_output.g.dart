@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of rest_xml_v1.s3.model.get_bucket_location_output;
+part of 'get_bucket_location_output.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of rest_xml_v1.s3.model.get_bucket_location_output;
 
 class _$GetBucketLocationOutput extends GetBucketLocationOutput {
   @override
-  final _i3.BucketLocationConstraint? locationConstraint;
+  final BucketLocationConstraint? locationConstraint;
 
   factory _$GetBucketLocationOutput(
           [void Function(GetBucketLocationOutputBuilder)? updates]) =>
@@ -46,15 +46,13 @@ class GetBucketLocationOutputBuilder
         Builder<GetBucketLocationOutput, GetBucketLocationOutputBuilder> {
   _$GetBucketLocationOutput? _$v;
 
-  _i3.BucketLocationConstraint? _locationConstraint;
-  _i3.BucketLocationConstraint? get locationConstraint =>
+  BucketLocationConstraint? _locationConstraint;
+  BucketLocationConstraint? get locationConstraint =>
       _$this._locationConstraint;
-  set locationConstraint(_i3.BucketLocationConstraint? locationConstraint) =>
+  set locationConstraint(BucketLocationConstraint? locationConstraint) =>
       _$this._locationConstraint = locationConstraint;
 
-  GetBucketLocationOutputBuilder() {
-    GetBucketLocationOutput._init(this);
-  }
+  GetBucketLocationOutputBuilder();
 
   GetBucketLocationOutputBuilder get _$this {
     final $v = _$v;

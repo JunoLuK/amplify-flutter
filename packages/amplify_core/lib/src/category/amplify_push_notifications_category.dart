@@ -9,6 +9,10 @@ class PushNotificationsCategory
   @nonVirtual
   Category get category => Category.pushNotifications;
 
+  @override
+  @nonVirtual
+  Set<Category> get categoryDependencies => const {Category.analytics};
+
   /// {@template amplify_core.amplify_push_notifications_category.get_permission_status}
   /// The current Push Notificaiton permission state.
   ///
@@ -90,11 +94,14 @@ class PushNotificationsCategory
   /// {@endtemplate}
   Future<void> identifyUser({
     required String userId,
-    required UserProfile userProfile,
+    UserProfile? userProfile,
   }) =>
-      defaultPlugin.identifyUser(
-        userId: userId,
-        userProfile: userProfile,
+      identifyCall(
+        PushNotificationsCategoryMethod.identifyUser,
+        () => defaultPlugin.identifyUser(
+          userId: userId,
+          userProfile: userProfile,
+        ),
       );
 
   /// {@template amplify_core.amplify_push_notifications_category.get_badge_count}

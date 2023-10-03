@@ -1,17 +1,15 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 // ignore_for_file: unused_element
 library rest_json1_v2.rest_json_protocol.test.http_prefix_headers_operation_test_test; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:built_collection/built_collection.dart' as _i6;
+import 'package:built_collection/built_collection.dart' as _i4;
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v2/src/rest_json_protocol/model/http_prefix_headers_input.dart'
-    as _i5;
-import 'package:rest_json1_v2/src/rest_json_protocol/model/http_prefix_headers_output.dart'
-    as _i7;
-import 'package:rest_json1_v2/src/rest_json_protocol/operation/http_prefix_headers_operation.dart'
-    as _i3;
-import 'package:smithy/smithy.dart' as _i4;
+import 'package:rest_json1_v2/src/rest_json_protocol/model/http_prefix_headers_input.dart';
+import 'package:rest_json1_v2/src/rest_json_protocol/model/http_prefix_headers_output.dart';
+import 'package:rest_json1_v2/src/rest_json_protocol/operation/http_prefix_headers_operation.dart';
+import 'package:smithy/smithy.dart' as _i3;
 import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
@@ -20,14 +18,14 @@ void main() {
     'RestJsonHttpPrefixHeadersArePresent (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: _i3.HttpPrefixHeadersOperation(
+        operation: HttpPrefixHeadersOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'RestJsonHttpPrefixHeadersArePresent',
           documentation: 'Adds headers by prefix',
-          protocol: _i4.ShapeId(
+          protocol: _i3.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -68,7 +66,7 @@ void main() {
     'RestJsonHttpPrefixHeadersAreNotPresent (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: _i3.HttpPrefixHeadersOperation(
+        operation: HttpPrefixHeadersOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
@@ -76,7 +74,7 @@ void main() {
           id: 'RestJsonHttpPrefixHeadersAreNotPresent',
           documentation:
               'No prefix headers are serialized because the value is empty',
-          protocol: _i4.ShapeId(
+          protocol: _i3.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -110,14 +108,14 @@ void main() {
     'RestJsonHttpPrefixHeadersArePresent (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: _i3.HttpPrefixHeadersOperation(
+        operation: HttpPrefixHeadersOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'RestJsonHttpPrefixHeadersArePresent',
           documentation: 'Adds headers by prefix',
-          protocol: _i4.ShapeId(
+          protocol: _i3.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -151,54 +149,51 @@ void main() {
 }
 
 class HttpPrefixHeadersInputRestJson1Serializer
-    extends _i4.StructuredSmithySerializer<_i5.HttpPrefixHeadersInput> {
+    extends _i3.StructuredSmithySerializer<HttpPrefixHeadersInput> {
   const HttpPrefixHeadersInputRestJson1Serializer()
       : super('HttpPrefixHeadersInput');
 
   @override
-  Iterable<Type> get types => const [_i5.HttpPrefixHeadersInput];
+  Iterable<Type> get types => const [HttpPrefixHeadersInput];
   @override
-  Iterable<_i4.ShapeId> get supportedProtocols => const [
-        _i4.ShapeId(
+  Iterable<_i3.ShapeId> get supportedProtocols => const [
+        _i3.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
       ];
   @override
-  _i5.HttpPrefixHeadersInput deserialize(
+  HttpPrefixHeadersInput deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = _i5.HttpPrefixHeadersInputBuilder();
+    final result = HttpPrefixHeadersInputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'foo':
-          if (value != null) {
-            result.foo = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.foo = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
         case 'fooMap':
-          if (value != null) {
-            result.fooMap.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(
-                _i6.BuiltMap,
-                [
-                  FullType(String),
-                  FullType(String),
-                ],
-              ),
-            ) as _i6.BuiltMap<String, String>));
-          }
-          break;
+          result.fooMap.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(
+              _i4.BuiltMap,
+              [
+                FullType(String),
+                FullType(String),
+              ],
+            ),
+          ) as _i4.BuiltMap<String, String>));
       }
     }
 
@@ -208,7 +203,7 @@ class HttpPrefixHeadersInputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    HttpPrefixHeadersInput object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
@@ -216,54 +211,51 @@ class HttpPrefixHeadersInputRestJson1Serializer
 }
 
 class HttpPrefixHeadersOutputRestJson1Serializer
-    extends _i4.StructuredSmithySerializer<_i7.HttpPrefixHeadersOutput> {
+    extends _i3.StructuredSmithySerializer<HttpPrefixHeadersOutput> {
   const HttpPrefixHeadersOutputRestJson1Serializer()
       : super('HttpPrefixHeadersOutput');
 
   @override
-  Iterable<Type> get types => const [_i7.HttpPrefixHeadersOutput];
+  Iterable<Type> get types => const [HttpPrefixHeadersOutput];
   @override
-  Iterable<_i4.ShapeId> get supportedProtocols => const [
-        _i4.ShapeId(
+  Iterable<_i3.ShapeId> get supportedProtocols => const [
+        _i3.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
       ];
   @override
-  _i7.HttpPrefixHeadersOutput deserialize(
+  HttpPrefixHeadersOutput deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = _i7.HttpPrefixHeadersOutputBuilder();
+    final result = HttpPrefixHeadersOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'foo':
-          if (value != null) {
-            result.foo = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.foo = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
         case 'fooMap':
-          if (value != null) {
-            result.fooMap.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(
-                _i6.BuiltMap,
-                [
-                  FullType(String),
-                  FullType(String),
-                ],
-              ),
-            ) as _i6.BuiltMap<String, String>));
-          }
-          break;
+          result.fooMap.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(
+              _i4.BuiltMap,
+              [
+                FullType(String),
+                FullType(String),
+              ],
+            ),
+          ) as _i4.BuiltMap<String, String>));
       }
     }
 
@@ -273,7 +265,7 @@ class HttpPrefixHeadersOutputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    HttpPrefixHeadersOutput object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');

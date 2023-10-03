@@ -25,80 +25,65 @@ const exampleApps = {
 
 late final Directory repoRoot = () {
   Directory dir = Directory.current;
+  Directory? rootDir;
   while (p.absolute(dir.parent.path) != p.absolute(dir.path)) {
     final files = dir.listSync().whereType<File>();
-    if (files.any((f) => p.basename(f.path) == 'aft.yaml')) {
-      return dir;
+    if (files.any((f) => p.basename(f.path) == 'pubspec.yaml')) {
+      rootDir = dir;
     }
     dir = dir.parent;
   }
-  throw StateError('Could not locate repo root');
+  if (rootDir == null) {
+    throw StateError('Could not locate repo root');
+  }
+  return rootDir;
 }();
 
 void main() {
-  final outputs = jsonDecode(File('outputs.json').readAsStringSync())
-      as Map<String, dynamic>;
-  final categories =
-      outputs['AmplifyFlutterIntegStack'] as Map<String, dynamic>;
-  for (final entry in categories.entries) {
+  final <String, dynamic>{
+    'AmplifyFlutterIntegStack': {
+      'Categories': String categoriesJson,
+    }
+  } = jsonDecode(File('outputs.json').readAsStringSync());
+  final categories = jsonDecode(categoriesJson) as Map<String, dynamic>;
+  for (final MapEntry(key: categoryName, value: categoryInfo)
+      in categories.entries) {
+    final <String, dynamic>{
+      'region': String region,
+      'bucketName': String bucketName,
+    } = categoryInfo;
     final category = Category.values.firstWhere(
-      (c) => c.name.toLowerCase() == entry.key,
+      (c) => c.name.toLowerCase() == categoryName,
     );
-    final categoryConfig = jsonDecode(entry.value) as Map<String, dynamic>;
-    final bucketName = categoryConfig['bucket'] as String;
-    final environments = categoryConfig['environments'] as Map<String, dynamic>;
-    final config = StringBuffer();
-    final mainEnvName =
-        environments.containsKey('main') ? 'main' : environments.keys.first;
-    config.writeln('const amplifyEnvironments = <String, String>{');
-    environments.forEach((environmentName, json) {
-      final environmentJson = prettyPrintJson(json);
-      config.writeln("'$environmentName': '''$environmentJson''',");
-    });
-    final mainEnvConfig = prettyPrintJson(environments[mainEnvName]);
-    config.write('''
-};
-
-const amplifyconfig = \'\'\'$mainEnvConfig\'\'\';
-''');
-
-    for (var i = 0; i < exampleApps[category]!.length; i++) {
-      final exampleApp = exampleApps[category]![i];
-      final exampleConfig = File(
-        p.join(
-          repoRoot.uri.resolve(exampleApp).path,
-          'lib/amplifyconfiguration.dart',
-        ),
+    for (final exampleApp in exampleApps[category]!) {
+      final exampleConfig = p.join(
+        repoRoot.uri.resolve(exampleApp).path,
+        'lib/amplifyconfiguration.dart',
       );
-      exampleConfig
-        ..createSync(recursive: true)
-        ..writeAsStringSync(config.toString());
 
-      if (i == 0) {
-        // Upload config to S3
-        final uploadRes = Process.runSync(
-          'aws',
-          [
-            '--profile=${Platform.environment['AWS_PROFILE'] ?? 'default'}',
-            's3',
-            'cp',
-            exampleConfig.path,
-            's3://$bucketName/amplifyconfiguration.dart',
-          ],
-          stdoutEncoding: utf8,
-          stderrEncoding: utf8,
+      final downloadRes = Process.runSync(
+        'aws',
+        [
+          '--profile=${Platform.environment['AWS_PROFILE'] ?? 'default'}',
+          '--region=$region',
+          's3',
+          'cp',
+          's3://$bucketName/amplifyconfiguration.dart',
+          exampleConfig,
+        ],
+        stdoutEncoding: utf8,
+        stderrEncoding: utf8,
+      );
+      if (downloadRes.exitCode != 0) {
+        stderr.writeln(
+          'Error downloading ${category.name} config from S3: '
+          '${downloadRes.stdout}\n${downloadRes.stderr}',
         );
-        if (uploadRes.exitCode != 0) {
-          stderr.writeln(
-            'Error uploading ${category.name} config to S3: '
-            '${uploadRes.stdout}\n${uploadRes.stderr}',
-          );
-        } else {
-          stdout.writeln(
-            '${category.name} config successfully uploaded to S3 bucket: '
-            '$bucketName',
-          );
-        }
+      } else {
+        stdout.writeln(
+          '${category.name} config successfully downloaded from S3 bucket: '
+          '$bucketName',
+        );
       }
     }
   }

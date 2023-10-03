@@ -1,4 +1,5 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_protocol.model.test_no_payload_input_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -50,12 +51,9 @@ abstract class TestNoPayloadInputOutput
         }
       });
 
-  static const List<_i1.SmithySerializer> serializers = [
-    TestNoPayloadInputOutputRestJson1Serializer()
-  ];
+  static const List<_i1.SmithySerializer<TestNoPayloadInputOutputPayload>>
+      serializers = [TestNoPayloadInputOutputRestJson1Serializer()];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(TestNoPayloadInputOutputBuilder b) {}
   String? get testId;
   @override
   TestNoPayloadInputOutputPayload getPayload() =>
@@ -64,11 +62,11 @@ abstract class TestNoPayloadInputOutput
   List<Object?> get props => [testId];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('TestNoPayloadInputOutput');
-    helper.add(
-      'testId',
-      testId,
-    );
+    final helper = newBuiltValueToStringHelper('TestNoPayloadInputOutput')
+      ..add(
+        'testId',
+        testId,
+      );
     return helper.toString();
   }
 }
@@ -87,8 +85,6 @@ abstract class TestNoPayloadInputOutputPayload
 
   const TestNoPayloadInputOutputPayload._();
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(TestNoPayloadInputOutputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
   @override
@@ -130,7 +126,7 @@ class TestNoPayloadInputOutputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    TestNoPayloadInputOutputPayload object, {
     FullType specifiedType = FullType.unspecified,
   }) =>
       const <Object?>[];

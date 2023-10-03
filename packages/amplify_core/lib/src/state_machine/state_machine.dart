@@ -31,15 +31,15 @@ mixin Dispatcher<E extends StateMachineEvent, S extends StateMachineState> {
   ) async {
     final completer = dispatch(event);
     final state = await completer.completed;
-    if (state is ErrorState) {
-      Error.throwWithStackTrace(state.exception, state.stackTrace);
+    if (state case ErrorState(:final exception, :final stackTrace)) {
+      Error.throwWithStackTrace(exception, stackTrace);
     }
     return state as SuccessState;
   }
 }
 
 /// Interface for emitting a state from a state machine.
-abstract class Emitter<S extends StateMachineState> {
+abstract interface class Emitter<S extends StateMachineState> {
   /// Emits a new state.
   void emit(S state);
 }
@@ -47,7 +47,7 @@ abstract class Emitter<S extends StateMachineState> {
 /// {@template amplify_core.state_machine_type}
 /// A marker for state machine types to improve DX with generic functions.
 /// {@endtemplate}
-class StateMachineToken<
+final class StateMachineToken<
     Event extends ManagerEvent,
     State extends ManagerState,
     ManagerEvent extends StateMachineEvent,
@@ -68,7 +68,7 @@ abstract class StateMachineManager<
         E extends StateMachineEvent,
         S extends StateMachineState,
         Manager extends StateMachineManager<E, S, Manager>>
-    with Dispatcher<E, S>
+    with Dispatcher<E, S>, AWSDebuggable, AWSLoggerMixin
     implements DependencyManager, Closeable {
   /// {@macro amplify_core.state_machinedispatcher}
   StateMachineManager(
@@ -102,9 +102,16 @@ abstract class StateMachineManager<
 
   Future<void> _listenForEvents() async {
     await for (final completer in _eventController.stream) {
-      await dispatch(completer.event, completer).completed;
+      try {
+        await dispatch(completer.event, completer).completed;
+      } on Object {
+        continue;
+      }
     }
   }
+
+  @override
+  String get runtimeTypeName => 'StateMachineManager';
 
   @override
   void addBuilder<T extends Object>(
@@ -161,8 +168,8 @@ abstract class StateMachineManager<
   ) async {
     final completer = accept(event);
     final state = await completer.completed;
-    if (state is ErrorState) {
-      Error.throwWithStackTrace(state.exception, state.stackTrace);
+    if (state case ErrorState(:final exception, :final stackTrace)) {
+      Error.throwWithStackTrace(exception, stackTrace);
     }
     return state as SuccessState;
   }
@@ -288,18 +295,21 @@ abstract class StateMachine<
     // Chain the stack trace of [_currentEvent]'s creation and the state machine
     // error to create a full picture of the error's lifecycle.
     final eventTrace = Trace.from(_currentCompleter.stackTrace);
-    final stateMachineTrace = Trace.from(stackTrace);
-    stackTrace = Chain([stateMachineTrace, eventTrace]);
+    final stateMachineTrace = Chain.forTrace(stackTrace);
+    stackTrace = Chain([...stateMachineTrace.traces, eventTrace]);
 
-    logger.error('Emitted error', error, stackTrace);
+    logger.debug('Emitted error', error, stackTrace);
 
     final resolution = resolveError(error, stackTrace);
+
+    logger.debug('Resolved error with state', resolution?.type);
 
     // Add the error to the state stream if it cannot be resolved to a new
     // state internally.
     if (resolution == null) {
-      _currentCompleter.completeError(error, stackTrace);
       _stateController.addError(error, stackTrace);
+      manager._stateController.addError(error, stackTrace);
+      _currentCompleter.completeError(error, stackTrace);
       return;
     }
 

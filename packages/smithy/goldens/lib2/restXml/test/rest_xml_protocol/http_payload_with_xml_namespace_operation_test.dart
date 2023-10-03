@@ -1,16 +1,14 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 // ignore_for_file: unused_element
 library rest_xml_v2.rest_xml_protocol.test.http_payload_with_xml_namespace_operation_test_test; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:built_value/serializer.dart';
-import 'package:rest_xml_v2/src/rest_xml_protocol/model/http_payload_with_xml_namespace_input_output.dart'
-    as _i5;
-import 'package:rest_xml_v2/src/rest_xml_protocol/model/payload_with_xml_namespace.dart'
-    as _i6;
-import 'package:rest_xml_v2/src/rest_xml_protocol/operation/http_payload_with_xml_namespace_operation.dart'
-    as _i3;
-import 'package:smithy/smithy.dart' as _i4;
+import 'package:rest_xml_v2/src/rest_xml_protocol/model/http_payload_with_xml_namespace_input_output.dart';
+import 'package:rest_xml_v2/src/rest_xml_protocol/model/payload_with_xml_namespace.dart';
+import 'package:rest_xml_v2/src/rest_xml_protocol/operation/http_payload_with_xml_namespace_operation.dart';
+import 'package:smithy/smithy.dart' as _i3;
 import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
@@ -19,7 +17,7 @@ void main() {
     'HttpPayloadWithXmlNamespace (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: _i3.HttpPayloadWithXmlNamespaceOperation(
+        operation: HttpPayloadWithXmlNamespaceOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
@@ -27,7 +25,7 @@ void main() {
           id: 'HttpPayloadWithXmlNamespace',
           documentation:
               'Serializes a structure in the payload using a wrapper with an XML namespace',
-          protocol: _i4.ShapeId(
+          protocol: _i3.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restXml',
           ),
@@ -64,7 +62,7 @@ void main() {
     'HttpPayloadWithXmlNamespace (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: _i3.HttpPayloadWithXmlNamespaceOperation(
+        operation: HttpPayloadWithXmlNamespaceOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
@@ -72,7 +70,7 @@ void main() {
           id: 'HttpPayloadWithXmlNamespace',
           documentation:
               'Serializes a structure in the payload using a wrapper with an XML namespace',
-          protocol: _i4.ShapeId(
+          protocol: _i3.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restXml',
           ),
@@ -101,42 +99,41 @@ void main() {
   );
 }
 
-class HttpPayloadWithXmlNamespaceInputOutputRestXmlSerializer extends _i4
-    .StructuredSmithySerializer<_i5.HttpPayloadWithXmlNamespaceInputOutput> {
+class HttpPayloadWithXmlNamespaceInputOutputRestXmlSerializer extends _i3
+    .StructuredSmithySerializer<HttpPayloadWithXmlNamespaceInputOutput> {
   const HttpPayloadWithXmlNamespaceInputOutputRestXmlSerializer()
       : super('HttpPayloadWithXmlNamespaceInputOutput');
 
   @override
-  Iterable<Type> get types =>
-      const [_i5.HttpPayloadWithXmlNamespaceInputOutput];
+  Iterable<Type> get types => const [HttpPayloadWithXmlNamespaceInputOutput];
   @override
-  Iterable<_i4.ShapeId> get supportedProtocols => const [
-        _i4.ShapeId(
+  Iterable<_i3.ShapeId> get supportedProtocols => const [
+        _i3.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restXml',
         )
       ];
   @override
-  _i5.HttpPayloadWithXmlNamespaceInputOutput deserialize(
+  HttpPayloadWithXmlNamespaceInputOutput deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = _i5.HttpPayloadWithXmlNamespaceInputOutputBuilder();
+    final result = HttpPayloadWithXmlNamespaceInputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'nested':
-          if (value != null) {
-            result.nested.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i6.PayloadWithXmlNamespace),
-            ) as _i6.PayloadWithXmlNamespace));
-          }
-          break;
+          result.nested.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(PayloadWithXmlNamespace),
+          ) as PayloadWithXmlNamespace));
       }
     }
 
@@ -146,7 +143,7 @@ class HttpPayloadWithXmlNamespaceInputOutputRestXmlSerializer extends _i4
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    HttpPayloadWithXmlNamespaceInputOutput object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
@@ -154,40 +151,40 @@ class HttpPayloadWithXmlNamespaceInputOutputRestXmlSerializer extends _i4
 }
 
 class PayloadWithXmlNamespaceRestXmlSerializer
-    extends _i4.StructuredSmithySerializer<_i6.PayloadWithXmlNamespace> {
+    extends _i3.StructuredSmithySerializer<PayloadWithXmlNamespace> {
   const PayloadWithXmlNamespaceRestXmlSerializer()
       : super('PayloadWithXmlNamespace');
 
   @override
-  Iterable<Type> get types => const [_i6.PayloadWithXmlNamespace];
+  Iterable<Type> get types => const [PayloadWithXmlNamespace];
   @override
-  Iterable<_i4.ShapeId> get supportedProtocols => const [
-        _i4.ShapeId(
+  Iterable<_i3.ShapeId> get supportedProtocols => const [
+        _i3.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restXml',
         )
       ];
   @override
-  _i6.PayloadWithXmlNamespace deserialize(
+  PayloadWithXmlNamespace deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = _i6.PayloadWithXmlNamespaceBuilder();
+    final result = PayloadWithXmlNamespaceBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'name':
-          if (value != null) {
-            result.name = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.name = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
       }
     }
 
@@ -197,7 +194,7 @@ class PayloadWithXmlNamespaceRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    PayloadWithXmlNamespace object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');

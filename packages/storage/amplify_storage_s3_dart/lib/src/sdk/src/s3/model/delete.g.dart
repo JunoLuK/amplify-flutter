@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_storage_s3_dart.s3.model.delete;
+part of 'delete.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of amplify_storage_s3_dart.s3.model.delete;
 
 class _$Delete extends Delete {
   @override
-  final _i3.BuiltList<_i2.ObjectIdentifier> objects;
+  final _i2.BuiltList<ObjectIdentifier> objects;
   @override
   final bool? quiet;
 
@@ -45,19 +45,17 @@ class _$Delete extends Delete {
 class DeleteBuilder implements Builder<Delete, DeleteBuilder> {
   _$Delete? _$v;
 
-  _i3.ListBuilder<_i2.ObjectIdentifier>? _objects;
-  _i3.ListBuilder<_i2.ObjectIdentifier> get objects =>
-      _$this._objects ??= new _i3.ListBuilder<_i2.ObjectIdentifier>();
-  set objects(_i3.ListBuilder<_i2.ObjectIdentifier>? objects) =>
+  _i2.ListBuilder<ObjectIdentifier>? _objects;
+  _i2.ListBuilder<ObjectIdentifier> get objects =>
+      _$this._objects ??= new _i2.ListBuilder<ObjectIdentifier>();
+  set objects(_i2.ListBuilder<ObjectIdentifier>? objects) =>
       _$this._objects = objects;
 
   bool? _quiet;
   bool? get quiet => _$this._quiet;
   set quiet(bool? quiet) => _$this._quiet = quiet;
 
-  DeleteBuilder() {
-    Delete._init(this);
-  }
+  DeleteBuilder();
 
   DeleteBuilder get _$this {
     final $v = _$v;

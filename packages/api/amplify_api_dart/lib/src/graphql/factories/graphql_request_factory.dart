@@ -159,13 +159,11 @@ class GraphQLRequestFactory {
           upperOutput = r'($id: ID!)';
           lowerOutput = r'(id: $id)';
         }
-        break;
       case GraphQLRequestOperation.list:
         upperOutput =
             '(\$filter: Model${modelName}FilterInput, \$limit: Int, \$nextToken: String)';
         lowerOutput =
             r'(filter: $filter, limit: $limit, nextToken: $nextToken)';
-        break;
       case GraphQLRequestOperation.create:
       case GraphQLRequestOperation.update:
       case GraphQLRequestOperation.delete:
@@ -174,7 +172,6 @@ class GraphQLRequestFactory {
         upperOutput =
             '(\$input: $operationValue${modelName}Input!, \$condition:  Model${modelName}ConditionInput)';
         lowerOutput = r'(input: $input, condition: $condition)';
-        break;
       case GraphQLRequestOperation.onCreate:
       case GraphQLRequestOperation.onUpdate:
       case GraphQLRequestOperation.onDelete:
@@ -183,7 +180,6 @@ class GraphQLRequestFactory {
           upperOutput = '(\$filter: ModelSubscription${modelName}FilterInput)';
           lowerOutput = r'(filter: $filter)';
         }
-        break;
       default:
         throw const ApiOperationException(
           'GraphQL Request Operation is currently unsupported',
@@ -254,7 +250,7 @@ class GraphQLRequestFactory {
     return <String, dynamic>{
       'filter': filter,
       'limit': limit,
-      'nextToken': nextToken
+      'nextToken': nextToken,
     };
   }
 
@@ -316,7 +312,7 @@ class GraphQLRequestFactory {
       return <String, dynamic>{
         fieldName: _queryFieldOperatorToPartialGraphQLFilter(
           queryPredicate.queryFieldOperator,
-        )
+        ),
       };
     }
 
@@ -333,7 +329,7 @@ class GraphQLRequestFactory {
             typeExpression: queryPredicateToGraphQLFilter(
               queryPredicate.predicates[0],
               modelType,
-            )
+            ),
           };
         }
         // Public not() API only allows 1 condition but QueryPredicateGroup
@@ -350,7 +346,7 @@ class GraphQLRequestFactory {
               (predicate) =>
                   queryPredicateToGraphQLFilter(predicate, modelType)!,
             )
-            .toList()
+            .toList(),
       };
     }
 
@@ -447,15 +443,15 @@ Map<String, dynamic> _queryFieldOperatorToPartialGraphQLFilter(
   final filterExpression = _getGraphQLFilterExpression(queryFieldOperator.type);
   if (queryFieldOperator is QueryFieldOperatorSingleValue) {
     return <String, dynamic>{
-      filterExpression: _getSerializedValue(queryFieldOperator.value)
+      filterExpression: _getSerializedValue(queryFieldOperator.value),
     };
   }
   if (queryFieldOperator is BetweenQueryOperator) {
     return <String, dynamic>{
       filterExpression: <dynamic>[
         _getSerializedValue(queryFieldOperator.start),
-        _getSerializedValue(queryFieldOperator.end)
-      ]
+        _getSerializedValue(queryFieldOperator.end),
+      ],
     };
   }
 
@@ -474,7 +470,7 @@ String _getGraphQLFilterExpression(QueryFieldOperatorType operatorType) {
     QueryFieldOperatorType.greater_or_equal: 'ge',
     QueryFieldOperatorType.between: 'between',
     QueryFieldOperatorType.contains: 'contains',
-    QueryFieldOperatorType.begins_with: 'beginsWith'
+    QueryFieldOperatorType.begins_with: 'beginsWith',
   };
   final result = dictionary[operatorType];
   if (result == null) {

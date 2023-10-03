@@ -1,9 +1,6 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-// TODO(dnys1): Investigate DDC failures
-@Tags(['no-ddc'])
-
 import 'dart:async';
 
 import 'package:amplify_auth_cognito_dart/src/flows/constants.dart';
@@ -80,6 +77,7 @@ void main() {
               ..username = srpUsername
               ..password = srpPassword,
           )
+          // No challenge parameters
           ..challengeParameters = BuiltMap(<String, String>{})
           ..timestamp = DateTime.utc(2017, 6, 15, 7),
       );

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity_provider.model.associate_software_token_response;
+part of 'associate_software_token_response.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -60,9 +60,7 @@ class AssociateSoftwareTokenResponseBuilder
   String? get session => _$this._session;
   set session(String? session) => _$this._session = session;
 
-  AssociateSoftwareTokenResponseBuilder() {
-    AssociateSoftwareTokenResponse._init(this);
-  }
+  AssociateSoftwareTokenResponseBuilder();
 
   AssociateSoftwareTokenResponseBuilder get _$this {
     final $v = _$v;

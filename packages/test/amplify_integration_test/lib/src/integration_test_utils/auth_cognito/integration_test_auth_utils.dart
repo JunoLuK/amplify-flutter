@@ -6,7 +6,25 @@ import 'dart:convert';
 
 import 'package:amplify_core/amplify_core.dart';
 import 'package:amplify_integration_test/amplify_integration_test.dart';
+import 'package:amplify_integration_test/src/sdk/src/cognito_identity_provider/common/serializers.dart';
+import 'package:built_value/iso_8601_date_time_serializer.dart';
+import 'package:built_value/serializer.dart';
+import 'package:built_value/standard_json_plugin.dart';
 import 'package:stream_transform/stream_transform.dart';
+import 'package:test/scaffolding.dart';
+
+export 'package:amplify_integration_test/src/sdk/cognito_identity_provider.dart'
+    show
+        AuthEventType,
+        EventContextDataType,
+        EventFeedbackType,
+        EventType,
+        EventTypeHelpers,
+        EventResponseType,
+        EventResponseTypeHelpers,
+        EventRiskType,
+        RiskDecisionType,
+        RiskDecisionTypeHelpers;
 
 final _logger =
     AmplifyLogger.category(Category.auth).createChild('IntegrationTestUtils');
@@ -30,11 +48,75 @@ Future<Map<String, Object?>> _graphQL(
   return responseJson;
 }
 
+final Serializers _serializers = () {
+  final builder = Serializers().toBuilder()..addPlugin(StandardJsonPlugin());
+  for (final builderFactory in builderFactories.entries) {
+    builder.addBuilderFactory(builderFactory.key, builderFactory.value);
+  }
+  builder
+    ..addAll(serializers)
+    ..add(Iso8601DateTimeSerializer()); // since we're serializing JSON in JS
+  return builder.build();
+}();
+
+/// Lists auth events for the given [username].
+///
+/// This method only works in user pools with advanced security features (ASF)
+/// enabled.
+Future<List<AuthEventType>> adminListAuthEvents(String username) async {
+  final result = await _graphQL(
+    r'''
+query ListAuthEvents($username: String!) {
+  listAuthEvents(username: $username)
+}
+''',
+    variables: <String, dynamic>{
+      'username': username,
+    },
+  );
+
+  final eventsJson =
+      jsonDecode(result['listAuthEvents'] as String) as List<Object?>;
+  final events = <AuthEventType>[];
+  for (final eventJson in eventsJson) {
+    final event = _serializers.deserialize(
+      eventJson,
+      specifiedType: const FullType(AuthEventType),
+    ) as AuthEventType;
+    events.add(event);
+  }
+  return events;
+}
+
+/// Enables SMS MFA for [username] using Cognito's `SetUserMFAPreference` API.
+Future<void> adminEnableSmsMfa(String username) async {
+  final result = await _graphQL(
+    r'''
+mutation EnableSmsMfa($username: String!) {
+  enableSmsMfa(username: $username) {
+    error
+    success
+  }
+}''',
+    variables: <String, dynamic>{
+      'username': username,
+    },
+  );
+  _logger.debug('Got enableSmsMfa result: $result');
+
+  final enableMfaError = (result['enableSmsMfa'] as Map?)?['error'];
+  if (enableMfaError != null) {
+    throw Exception(enableMfaError);
+  }
+
+  _logger.debug('Successfully enabled SMS MFA for user "$username"');
+}
+
 /// Deletes a Cognito user in backend infrastructure.
 ///
 /// This method differs from the Auth.deleteUser API in that
 /// an access token is not required.
-Future<void> deleteUser(String username) async {
+Future<void> adminDeleteUser(String username) async {
   final result = await _graphQL(
     r'''
 mutation DeleteUser($username: String!) {
@@ -47,11 +129,14 @@ mutation DeleteUser($username: String!) {
       'username': username,
     },
   );
+  _logger.debug('Got deleteUser result: $result');
 
   final deleteError = (result['deleteUser'] as Map?)?['error'];
   if (deleteError != null) {
     throw Exception(deleteError);
   }
+
+  _logger.debug('Successfully deleted user "$username"');
 }
 
 /// Deletes a Cognito device identified by [deviceKey].
@@ -98,50 +183,41 @@ Future<String> adminCreateUser(
   bool autoConfirm = false,
   bool enableMfa = false,
   bool verifyAttributes = false,
-  List<AuthUserAttribute> attributes = const [],
+  bool autoFillAttributes = true,
+  Map<AuthUserAttributeKey, String> attributes = const {},
 }) async {
   final createUserParams = <String, dynamic>{
     'autoConfirm': autoConfirm,
-    'email': attributes
-        .firstWhere(
-          (el) => el.userAttributeKey == CognitoUserAttributeKey.email,
-          orElse: () => AuthUserAttribute(
-            userAttributeKey: CognitoUserAttributeKey.email,
-            value: generateEmail(),
-          ),
-        )
-        .value,
     'enableMFA': enableMfa,
-    'givenName': attributes
-        .firstWhere(
-          (el) => el.userAttributeKey == CognitoUserAttributeKey.givenName,
-          orElse: () => const AuthUserAttribute(
-            userAttributeKey: CognitoUserAttributeKey.givenName,
-            value: 'default_given_name',
-          ),
-        )
-        .value,
-    'name': attributes
-        .firstWhere(
-          (el) => el.userAttributeKey == CognitoUserAttributeKey.name,
-          orElse: () => const AuthUserAttribute(
-            userAttributeKey: CognitoUserAttributeKey.name,
-            value: 'default_name',
-          ),
-        )
-        .value,
-    'phoneNumber': attributes
-        .firstWhere(
-          (el) => el.userAttributeKey == CognitoUserAttributeKey.phoneNumber,
-          orElse: () => AuthUserAttribute(
-            userAttributeKey: CognitoUserAttributeKey.phoneNumber,
-            value: generatePhoneNumber(),
-          ),
-        )
-        .value,
     'username': username,
     'verifyAttributes': verifyAttributes,
   };
+
+  final attributeMap = attributes.map(
+    (name, value) => MapEntry(name.key, value),
+  );
+  final email = attributeMap.remove(AuthUserAttributeKey.email.key) ??
+      (autoFillAttributes ? generateEmail() : null);
+  if (email != null) {
+    createUserParams['email'] = email;
+  }
+  final phoneNumber =
+      attributeMap.remove(AuthUserAttributeKey.phoneNumber.key) ??
+          (autoFillAttributes ? generatePhoneNumber() : null);
+  if (phoneNumber != null) {
+    createUserParams['phoneNumber'] = phoneNumber;
+  }
+  final name = attributeMap.remove(AuthUserAttributeKey.name.key) ??
+      (autoFillAttributes ? 'default_name' : null);
+  if (name != null) {
+    createUserParams['name'] = name;
+  }
+  final givenName = attributeMap.remove(AuthUserAttributeKey.givenName.key) ??
+      (autoFillAttributes ? 'default_given_name' : null);
+  if (givenName != null) {
+    createUserParams['givenName'] = name;
+  }
+  assert(attributeMap.isEmpty, 'Unsupported attributes: $attributeMap');
 
   _logger.debug('Creating user "$username" with values: $createUserParams');
   final result = await _graphQL(
@@ -161,37 +237,69 @@ Future<String> adminCreateUser(
       },
     },
   );
-  _logger.debug('Got result: $result');
+  _logger.debug('Got createUser result: $result');
 
   final createError = (result['createUser'] as Map?)?['error'];
   if (createError != null) {
     throw Exception(createError);
   }
 
-  return (result['createUser'] as Map)['cognitoUsername'] as String;
+  final cognitoUsername =
+      (result['createUser'] as Map)['cognitoUsername'] as String;
+
+  addTearDown(() async {
+    try {
+      await _oneOf([
+        // TODO(dnys1): Cognito cannot always delete a user by `cognitoUsername`. Why?
+        () => adminDeleteUser(username),
+        () => adminDeleteUser(cognitoUsername),
+      ]);
+    } on Exception catch (e) {
+      _logger.debug('Error deleting user ($username / $cognitoUsername):', e);
+    }
+  });
+
+  _logger.debug('Successfully created user "$username"');
+
+  // Prevent eventual consistency issues caused by authenticating a user
+  // too quickly after creation.
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+
+  return cognitoUsername;
 }
 
+/// {@template amplify_integration_test.otp_result}
+/// Captures the result of an OTP code being sent to an email or phone number.
+/// {@endtemplate}
 class OtpResult {
+  /// {@macro amplify_integration_test.otp_result}
   const OtpResult(this.code);
 
+  /// The future value of the OTP code.
   final Future<String> code;
 }
 
-enum UserAttributeType { username, email, phone }
+enum _UserAttributeType { username, email, phone }
 
+/// Identifies a user by a particular attribute.
 class UserAttribute {
+  /// Identifies a user by their username.
   const UserAttribute.username(String username)
-      : value = username,
-        type = UserAttributeType.username;
-  const UserAttribute.email(String email)
-      : value = email,
-        type = UserAttributeType.email;
-  const UserAttribute.phone(String phoneNumber)
-      : value = phoneNumber,
-        type = UserAttributeType.phone;
+      : _value = username,
+        _type = _UserAttributeType.username;
 
-  final UserAttributeType type;
-  final String value;
+  /// Identifies a user by their email.
+  const UserAttribute.email(String email)
+      : _value = email,
+        _type = _UserAttributeType.email;
+
+  /// Identifies a user by their phone number.
+  const UserAttribute.phone(String phoneNumber)
+      : _value = phoneNumber,
+        _type = _UserAttributeType.phone;
+
+  final _UserAttributeType _type;
+  final String _value;
 }
 
 /// Returns the OTP code for [userAttribute].
@@ -207,15 +315,15 @@ Future<OtpResult> getOtpCode(UserAttribute userAttribute) async {
   final code = otpCodes
       .tap((event) => _logger.debug('Got OTP Code: $event'))
       .where((event) {
-        switch (userAttribute.type) {
-          case UserAttributeType.username:
-            return event.username == userAttribute.value;
-          case UserAttributeType.email:
+        switch (userAttribute._type) {
+          case _UserAttributeType.username:
+            return event.username == userAttribute._value;
+          case _UserAttributeType.email:
             return event.userAttributes[CognitoUserAttributeKey.email] ==
-                userAttribute.value;
-          case UserAttributeType.phone:
+                userAttribute._value;
+          case _UserAttributeType.phone:
             return event.userAttributes[CognitoUserAttributeKey.phoneNumber] ==
-                userAttribute.value;
+                userAttribute._value;
         }
       })
       .map((event) => event.code)
@@ -259,7 +367,26 @@ Stream<CreateMFACodeResponse> getOtpCodes({void Function()? onEstablished}) {
     if (event.hasErrors) {
       throw Exception(event.errors);
     }
-    final json = jsonDecode(event.data!)['onCreateMFACode'] as Map;
+    final json = (jsonDecode(event.data!) as Map)['onCreateMFACode'] as Map;
     return CreateMFACodeResponse.fromJson(json.cast());
   });
+}
+
+/// Completes if one of the [futures] completes successfully.
+///
+/// Otherwise, throws with the combined errors of all of them.
+Future<void> _oneOf(List<Future<Object?> Function()> futures) async {
+  var success = false;
+  Exception? error;
+  for (final future in futures) {
+    try {
+      await future();
+      success = true;
+    } on Exception catch (e) {
+      error = e;
+    }
+  }
+  if (!success) {
+    throw error!;
+  }
 }

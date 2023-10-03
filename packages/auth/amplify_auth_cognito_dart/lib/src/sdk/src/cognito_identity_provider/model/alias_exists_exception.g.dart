@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity_provider.model.alias_exists_exception;
+part of 'alias_exists_exception.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -54,9 +54,7 @@ class AliasExistsExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  AliasExistsExceptionBuilder() {
-    AliasExistsException._init(this);
-  }
+  AliasExistsExceptionBuilder();
 
   AliasExistsExceptionBuilder get _$this {
     final $v = _$v;

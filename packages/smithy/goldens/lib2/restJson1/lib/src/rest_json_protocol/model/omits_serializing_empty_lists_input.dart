@@ -1,16 +1,15 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_protocol.model.omits_serializing_empty_lists_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i2;
-import 'package:built_collection/built_collection.dart' as _i5;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i6;
-import 'package:rest_json1_v2/src/rest_json_protocol/model/foo_enum.dart'
-    as _i3;
-import 'package:rest_json1_v2/src/rest_json_protocol/model/integer_enum.dart'
-    as _i4;
+import 'package:meta/meta.dart' as _i4;
+import 'package:rest_json1_v2/src/rest_json_protocol/model/foo_enum.dart';
+import 'package:rest_json1_v2/src/rest_json_protocol/model/integer_enum.dart';
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'omits_serializing_empty_lists_input.g.dart';
@@ -25,30 +24,30 @@ abstract class OmitsSerializingEmptyListsInput
         _i1.EmptyPayload,
         _i1.HasPayload<OmitsSerializingEmptyListsInputPayload> {
   factory OmitsSerializingEmptyListsInput({
-    List<bool>? queryBooleanList,
-    List<double>? queryDoubleList,
-    List<_i3.FooEnum>? queryEnumList,
-    List<_i4.IntegerEnum>? queryIntegerEnumList,
-    List<int>? queryIntegerList,
     List<String>? queryStringList,
+    List<int>? queryIntegerList,
+    List<double>? queryDoubleList,
+    List<bool>? queryBooleanList,
     List<DateTime>? queryTimestampList,
+    List<FooEnum>? queryEnumList,
+    List<IntegerEnum>? queryIntegerEnumList,
   }) {
     return _$OmitsSerializingEmptyListsInput._(
-      queryBooleanList:
-          queryBooleanList == null ? null : _i5.BuiltList(queryBooleanList),
+      queryStringList:
+          queryStringList == null ? null : _i3.BuiltList(queryStringList),
+      queryIntegerList:
+          queryIntegerList == null ? null : _i3.BuiltList(queryIntegerList),
       queryDoubleList:
-          queryDoubleList == null ? null : _i5.BuiltList(queryDoubleList),
+          queryDoubleList == null ? null : _i3.BuiltList(queryDoubleList),
+      queryBooleanList:
+          queryBooleanList == null ? null : _i3.BuiltList(queryBooleanList),
+      queryTimestampList:
+          queryTimestampList == null ? null : _i3.BuiltList(queryTimestampList),
       queryEnumList:
-          queryEnumList == null ? null : _i5.BuiltList(queryEnumList),
+          queryEnumList == null ? null : _i3.BuiltList(queryEnumList),
       queryIntegerEnumList: queryIntegerEnumList == null
           ? null
-          : _i5.BuiltList(queryIntegerEnumList),
-      queryIntegerList:
-          queryIntegerList == null ? null : _i5.BuiltList(queryIntegerList),
-      queryStringList:
-          queryStringList == null ? null : _i5.BuiltList(queryStringList),
-      queryTimestampList:
-          queryTimestampList == null ? null : _i5.BuiltList(queryTimestampList),
+          : _i3.BuiltList(queryIntegerEnumList),
     );
   }
 
@@ -98,79 +97,76 @@ abstract class OmitsSerializingEmptyListsInput
         if (request.queryParameters['EnumList'] != null) {
           b.queryEnumList.addAll(_i1
               .parseHeader(request.queryParameters['EnumList']!)
-              .map((el) => _i3.FooEnum.values.byValue(el.trim())));
+              .map((el) => FooEnum.values.byValue(el.trim())));
         }
         if (request.queryParameters['IntegerEnumList'] != null) {
           b.queryIntegerEnumList.addAll(_i1
               .parseHeader(request.queryParameters['IntegerEnumList']!)
-              .map((el) =>
-                  _i4.IntegerEnum.values.byValue(int.parse(el.trim()))));
+              .map((el) => IntegerEnum.values.byValue(int.parse(el.trim()))));
         }
       });
 
-  static const List<_i1.SmithySerializer> serializers = [
-    OmitsSerializingEmptyListsInputRestJson1Serializer()
-  ];
+  static const List<
+          _i1.SmithySerializer<OmitsSerializingEmptyListsInputPayload>>
+      serializers = [OmitsSerializingEmptyListsInputRestJson1Serializer()];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(OmitsSerializingEmptyListsInputBuilder b) {}
-  _i5.BuiltList<bool>? get queryBooleanList;
-  _i5.BuiltList<double>? get queryDoubleList;
-  _i5.BuiltList<_i3.FooEnum>? get queryEnumList;
-  _i5.BuiltList<_i4.IntegerEnum>? get queryIntegerEnumList;
-  _i5.BuiltList<int>? get queryIntegerList;
-  _i5.BuiltList<String>? get queryStringList;
-  _i5.BuiltList<DateTime>? get queryTimestampList;
+  _i3.BuiltList<String>? get queryStringList;
+  _i3.BuiltList<int>? get queryIntegerList;
+  _i3.BuiltList<double>? get queryDoubleList;
+  _i3.BuiltList<bool>? get queryBooleanList;
+  _i3.BuiltList<DateTime>? get queryTimestampList;
+  _i3.BuiltList<FooEnum>? get queryEnumList;
+  _i3.BuiltList<IntegerEnum>? get queryIntegerEnumList;
   @override
   OmitsSerializingEmptyListsInputPayload getPayload() =>
       OmitsSerializingEmptyListsInputPayload();
   @override
   List<Object?> get props => [
-        queryBooleanList,
+        queryStringList,
+        queryIntegerList,
         queryDoubleList,
+        queryBooleanList,
+        queryTimestampList,
         queryEnumList,
         queryIntegerEnumList,
-        queryIntegerList,
-        queryStringList,
-        queryTimestampList,
       ];
   @override
   String toString() {
     final helper =
-        newBuiltValueToStringHelper('OmitsSerializingEmptyListsInput');
-    helper.add(
-      'queryBooleanList',
-      queryBooleanList,
-    );
-    helper.add(
-      'queryDoubleList',
-      queryDoubleList,
-    );
-    helper.add(
-      'queryEnumList',
-      queryEnumList,
-    );
-    helper.add(
-      'queryIntegerEnumList',
-      queryIntegerEnumList,
-    );
-    helper.add(
-      'queryIntegerList',
-      queryIntegerList,
-    );
-    helper.add(
-      'queryStringList',
-      queryStringList,
-    );
-    helper.add(
-      'queryTimestampList',
-      queryTimestampList,
-    );
+        newBuiltValueToStringHelper('OmitsSerializingEmptyListsInput')
+          ..add(
+            'queryStringList',
+            queryStringList,
+          )
+          ..add(
+            'queryIntegerList',
+            queryIntegerList,
+          )
+          ..add(
+            'queryDoubleList',
+            queryDoubleList,
+          )
+          ..add(
+            'queryBooleanList',
+            queryBooleanList,
+          )
+          ..add(
+            'queryTimestampList',
+            queryTimestampList,
+          )
+          ..add(
+            'queryEnumList',
+            queryEnumList,
+          )
+          ..add(
+            'queryIntegerEnumList',
+            queryIntegerEnumList,
+          );
     return helper.toString();
   }
 }
 
-@_i6.internal
+@_i4.internal
 abstract class OmitsSerializingEmptyListsInputPayload
     with
         _i2.AWSEquatable<OmitsSerializingEmptyListsInputPayload>
@@ -184,8 +180,6 @@ abstract class OmitsSerializingEmptyListsInputPayload
 
   const OmitsSerializingEmptyListsInputPayload._();
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(OmitsSerializingEmptyListsInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
   @override
@@ -227,7 +221,7 @@ class OmitsSerializingEmptyListsInputRestJson1Serializer extends _i1
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    OmitsSerializingEmptyListsInputPayload object, {
     FullType specifiedType = FullType.unspecified,
   }) =>
       const <Object?>[];

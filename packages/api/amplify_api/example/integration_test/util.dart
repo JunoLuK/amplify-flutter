@@ -40,7 +40,7 @@ class TestUser {
       username: _username,
       password: _password,
       options: SignUpOptions(
-        userAttributes: {CognitoUserAttributeKey.email: testEmail},
+        userAttributes: {AuthUserAttributeKey.email: testEmail},
       ),
     );
     if (!result.isSignUpComplete) {
@@ -83,7 +83,7 @@ Future<void> configureAmplify() async {
           macOSOptions: MacOSSecureStorageOptions(useDataProtection: false),
         ),
       ),
-      AmplifyAPI(modelProvider: ModelProvider.instance)
+      AmplifyAPI(modelProvider: ModelProvider.instance),
     ]);
     await Amplify.configure(amplifyconfig);
   }

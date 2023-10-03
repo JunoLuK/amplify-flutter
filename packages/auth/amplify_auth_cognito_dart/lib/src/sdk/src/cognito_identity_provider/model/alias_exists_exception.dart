@@ -1,4 +1,5 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_auth_cognito_dart.cognito_identity_provider.model.alias_exists_exception; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -36,12 +37,9 @@ abstract class AliasExistsException
         b.headers = response.headers;
       });
 
-  static const List<_i2.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer<AliasExistsException>> serializers = [
     AliasExistsExceptionAwsJson11Serializer()
   ];
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(AliasExistsExceptionBuilder b) {}
 
   /// The message that Amazon Cognito sends to the user when the value of an alias attribute is already linked to another user profile.
   @override
@@ -65,11 +63,11 @@ abstract class AliasExistsException
   List<Object?> get props => [message];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('AliasExistsException');
-    helper.add(
-      'message',
-      message,
-    );
+    final helper = newBuiltValueToStringHelper('AliasExistsException')
+      ..add(
+        'message',
+        message,
+      );
     return helper.toString();
   }
 }
@@ -103,15 +101,15 @@ class AliasExistsExceptionAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'message':
-          if (value != null) {
-            result.message = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.message = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
       }
     }
 
@@ -121,19 +119,19 @@ class AliasExistsExceptionAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    AliasExistsException object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as AliasExistsException);
-    final result = <Object?>[];
-    if (payload.message != null) {
-      result
+    final result$ = <Object?>[];
+    final AliasExistsException(:message) = object;
+    if (message != null) {
+      result$
         ..add('message')
         ..add(serializers.serialize(
-          payload.message!,
+          message,
           specifiedType: const FullType(String),
         ));
     }
-    return result;
+    return result$;
   }
 }

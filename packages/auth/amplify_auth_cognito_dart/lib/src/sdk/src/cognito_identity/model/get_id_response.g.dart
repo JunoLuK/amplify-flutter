@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity.model.get_id_response;
+part of 'get_id_response.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -45,9 +45,7 @@ class GetIdResponseBuilder
   String? get identityId => _$this._identityId;
   set identityId(String? identityId) => _$this._identityId = identityId;
 
-  GetIdResponseBuilder() {
-    GetIdResponse._init(this);
-  }
+  GetIdResponseBuilder();
 
   GetIdResponseBuilder get _$this {
     final $v = _$v;

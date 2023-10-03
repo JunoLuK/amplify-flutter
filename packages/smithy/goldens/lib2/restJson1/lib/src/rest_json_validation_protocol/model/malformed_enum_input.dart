@@ -1,15 +1,15 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_validation_protocol.model.malformed_enum_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i2;
-import 'package:built_collection/built_collection.dart' as _i5;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/enum_string.dart'
-    as _i3;
-import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/enum_union.dart'
-    as _i4;
+import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/enum_string.dart';
+import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/enum_trait_string.dart';
+import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/enum_union.dart';
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'malformed_enum_input.g.dart';
@@ -18,15 +18,17 @@ abstract class MalformedEnumInput
     with _i1.HttpInput<MalformedEnumInput>, _i2.AWSEquatable<MalformedEnumInput>
     implements Built<MalformedEnumInput, MalformedEnumInputBuilder> {
   factory MalformedEnumInput({
-    List<_i3.EnumString>? list,
-    Map<_i3.EnumString, _i3.EnumString>? map,
-    _i3.EnumString? string,
-    _i4.EnumUnion? union,
+    EnumString? string,
+    EnumTraitString? stringWithEnumTrait,
+    List<EnumString>? list,
+    Map<EnumString, EnumString>? map,
+    EnumUnion? union,
   }) {
     return _$MalformedEnumInput._(
-      list: list == null ? null : _i5.BuiltList(list),
-      map: map == null ? null : _i5.BuiltMap(map),
       string: string,
+      stringWithEnumTrait: stringWithEnumTrait,
+      list: list == null ? null : _i3.BuiltList(list),
+      map: map == null ? null : _i3.BuiltMap(map),
       union: union,
     );
   }
@@ -44,44 +46,48 @@ abstract class MalformedEnumInput
   }) =>
       payload;
 
-  static const List<_i1.SmithySerializer> serializers = [
+  static const List<_i1.SmithySerializer<MalformedEnumInput>> serializers = [
     MalformedEnumInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MalformedEnumInputBuilder b) {}
-  _i5.BuiltList<_i3.EnumString>? get list;
-  _i5.BuiltMap<_i3.EnumString, _i3.EnumString>? get map;
-  _i3.EnumString? get string;
-  _i4.EnumUnion? get union;
+  EnumString? get string;
+  EnumTraitString? get stringWithEnumTrait;
+  _i3.BuiltList<EnumString>? get list;
+  _i3.BuiltMap<EnumString, EnumString>? get map;
+  EnumUnion? get union;
   @override
   MalformedEnumInput getPayload() => this;
   @override
   List<Object?> get props => [
+        string,
+        stringWithEnumTrait,
         list,
         map,
-        string,
         union,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('MalformedEnumInput');
-    helper.add(
-      'list',
-      list,
-    );
-    helper.add(
-      'map',
-      map,
-    );
-    helper.add(
-      'string',
-      string,
-    );
-    helper.add(
-      'union',
-      union,
-    );
+    final helper = newBuiltValueToStringHelper('MalformedEnumInput')
+      ..add(
+        'string',
+        string,
+      )
+      ..add(
+        'stringWithEnumTrait',
+        stringWithEnumTrait,
+      )
+      ..add(
+        'list',
+        list,
+      )
+      ..add(
+        'map',
+        map,
+      )
+      ..add(
+        'union',
+        union,
+      );
     return helper.toString();
   }
 }
@@ -114,48 +120,44 @@ class MalformedEnumInputRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'list':
-          if (value != null) {
-            result.list.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(
-                _i5.BuiltList,
-                [FullType(_i3.EnumString)],
-              ),
-            ) as _i5.BuiltList<_i3.EnumString>));
-          }
-          break;
+          result.list.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(
+              _i3.BuiltList,
+              [FullType(EnumString)],
+            ),
+          ) as _i3.BuiltList<EnumString>));
         case 'map':
-          if (value != null) {
-            result.map.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(
-                _i5.BuiltMap,
-                [
-                  FullType(_i3.EnumString),
-                  FullType(_i3.EnumString),
-                ],
-              ),
-            ) as _i5.BuiltMap<_i3.EnumString, _i3.EnumString>));
-          }
-          break;
+          result.map.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(
+              _i3.BuiltMap,
+              [
+                FullType(EnumString),
+                FullType(EnumString),
+              ],
+            ),
+          ) as _i3.BuiltMap<EnumString, EnumString>));
         case 'string':
-          if (value != null) {
-            result.string = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i3.EnumString),
-            ) as _i3.EnumString);
-          }
-          break;
+          result.string = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(EnumString),
+          ) as EnumString);
+        case 'stringWithEnumTrait':
+          result.stringWithEnumTrait = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(EnumTraitString),
+          ) as EnumTraitString);
         case 'union':
-          if (value != null) {
-            result.union = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i4.EnumUnion),
-            ) as _i4.EnumUnion);
-          }
-          break;
+          result.union = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(EnumUnion),
+          ) as EnumUnion);
       }
     }
 
@@ -165,52 +167,66 @@ class MalformedEnumInputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    MalformedEnumInput object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as MalformedEnumInput);
-    final result = <Object?>[];
-    if (payload.list != null) {
-      result
+    final result$ = <Object?>[];
+    final MalformedEnumInput(
+      :list,
+      :map,
+      :string,
+      :stringWithEnumTrait,
+      :union
+    ) = object;
+    if (list != null) {
+      result$
         ..add('list')
         ..add(serializers.serialize(
-          payload.list!,
+          list,
           specifiedType: const FullType(
-            _i5.BuiltList,
-            [FullType(_i3.EnumString)],
+            _i3.BuiltList,
+            [FullType(EnumString)],
           ),
         ));
     }
-    if (payload.map != null) {
-      result
+    if (map != null) {
+      result$
         ..add('map')
         ..add(serializers.serialize(
-          payload.map!,
+          map,
           specifiedType: const FullType(
-            _i5.BuiltMap,
+            _i3.BuiltMap,
             [
-              FullType(_i3.EnumString),
-              FullType(_i3.EnumString),
+              FullType(EnumString),
+              FullType(EnumString),
             ],
           ),
         ));
     }
-    if (payload.string != null) {
-      result
+    if (string != null) {
+      result$
         ..add('string')
         ..add(serializers.serialize(
-          payload.string!,
-          specifiedType: const FullType(_i3.EnumString),
+          string,
+          specifiedType: const FullType(EnumString),
         ));
     }
-    if (payload.union != null) {
-      result
+    if (stringWithEnumTrait != null) {
+      result$
+        ..add('stringWithEnumTrait')
+        ..add(serializers.serialize(
+          stringWithEnumTrait,
+          specifiedType: const FullType(EnumTraitString),
+        ));
+    }
+    if (union != null) {
+      result$
         ..add('union')
         ..add(serializers.serialize(
-          payload.union!,
-          specifiedType: const FullType(_i4.EnumUnion),
+          union,
+          specifiedType: const FullType(EnumUnion),
         ));
     }
-    return result;
+    return result$;
   }
 }

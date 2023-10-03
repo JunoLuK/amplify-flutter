@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity_provider.model.invalid_sms_role_access_policy_exception;
+part of 'invalid_sms_role_access_policy_exception.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -61,9 +61,7 @@ class InvalidSmsRoleAccessPolicyExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  InvalidSmsRoleAccessPolicyExceptionBuilder() {
-    InvalidSmsRoleAccessPolicyException._init(this);
-  }
+  InvalidSmsRoleAccessPolicyExceptionBuilder();
 
   InvalidSmsRoleAccessPolicyExceptionBuilder get _$this {
     final $v = _$v;

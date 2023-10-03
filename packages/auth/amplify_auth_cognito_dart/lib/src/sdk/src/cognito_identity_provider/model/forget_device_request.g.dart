@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity_provider.model.forget_device_request;
+part of 'forget_device_request.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -61,9 +61,7 @@ class ForgetDeviceRequestBuilder
   String? get deviceKey => _$this._deviceKey;
   set deviceKey(String? deviceKey) => _$this._deviceKey = deviceKey;
 
-  ForgetDeviceRequestBuilder() {
-    ForgetDeviceRequest._init(this);
-  }
+  ForgetDeviceRequestBuilder();
 
   ForgetDeviceRequestBuilder get _$this {
     final $v = _$v;

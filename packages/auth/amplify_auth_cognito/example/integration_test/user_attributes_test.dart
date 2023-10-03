@@ -2,74 +2,79 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
-import 'package:amplify_auth_cognito_example/amplifyconfiguration.dart';
+import 'package:amplify_auth_integration_test/amplify_auth_integration_test.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_integration_test/amplify_integration_test.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'utils/setup_utils.dart';
-import 'utils/test_utils.dart';
+import 'test_runner.dart';
 
 extension on List<AuthUserAttribute> {
-  String? valueOf(AuthUserAttributeKey key) =>
-      singleWhereOrNull((el) => el.userAttributeKey == key)?.value;
+  String? valueOf(AuthUserAttributeKey authUserAttributeKey) =>
+      singleWhereOrNull(
+        (el) => el.userAttributeKey == authUserAttributeKey,
+      )?.value;
 }
 
 void main() {
-  initTests();
+  testRunner.setupTests();
+
+  final logger = AmplifyLogger().createChild('UserAttributes');
+
+  late String username;
+  late String password;
+  late String email;
+  late String phoneNumber;
+  late String name;
+
+  Future<void> createAndLoginUser() async {
+    username = generateUsername();
+    password = generatePassword();
+    email = generateEmail();
+    phoneNumber = generatePhoneNumber();
+    name = generateNameAttribute();
+
+    await adminCreateUser(
+      username,
+      password,
+      autoConfirm: true,
+      verifyAttributes: true,
+      attributes: {
+        AuthUserAttributeKey.name: name,
+        AuthUserAttributeKey.email: email,
+        AuthUserAttributeKey.phoneNumber: phoneNumber,
+      },
+    );
+
+    final res = await Amplify.Auth.signIn(
+      username: username,
+      password: password,
+    );
+    expect(
+      res.isSignedIn,
+      isTrue,
+      reason: '${res.nextStep.signInStep} should be "DONE"',
+    );
+
+    final user = {
+      'username': username,
+      'email': email,
+      'phoneNumber': phoneNumber,
+      'name': name,
+    };
+    logger.debug('Created user with attributes: ${prettyPrintJson(user)}');
+  }
 
   group('User Attributes', () {
     for (final environmentName in userPoolEnvironments) {
       group(environmentName, () {
-        late String username;
-        late String password;
-        late String email;
-        late String phoneNumber;
-        late String name;
-
-        setUpAll(() async {
-          await configureAuth(
-            config: amplifyEnvironments[environmentName]!,
+        setUp(() async {
+          await testRunner.configure(
+            environmentName: environmentName,
           );
 
-          username = generateUsername();
-          password = generatePassword();
-          email = generateEmail();
-          phoneNumber = generatePhoneNumber();
-          name = generateNameAttribute();
-
-          final cognitoUsername = await adminCreateUser(
-            username,
-            password,
-            autoConfirm: true,
-            verifyAttributes: true,
-            attributes: [
-              AuthUserAttribute(
-                userAttributeKey: CognitoUserAttributeKey.name,
-                value: name,
-              ),
-              AuthUserAttribute(
-                userAttributeKey: CognitoUserAttributeKey.email,
-                value: email,
-              ),
-              AuthUserAttribute(
-                userAttributeKey: CognitoUserAttributeKey.phoneNumber,
-                value: phoneNumber,
-              )
-            ],
-          );
-          addTearDown(() => deleteUser(cognitoUsername));
-
-          final res = await Amplify.Auth.signIn(
-            username: username,
-            password: password,
-          );
-          expect(
-            res.isSignedIn,
-            isTrue,
-            reason: '${res.nextStep.signInStep} should be "DONE"',
-          );
+          await createAndLoginUser();
         });
 
         group('fetchUserAttributes', () {
@@ -77,15 +82,15 @@ void main() {
             final userAttributes = await Amplify.Auth.fetchUserAttributes();
 
             expect(
-              userAttributes.valueOf(CognitoUserAttributeKey.email),
+              userAttributes.valueOf(AuthUserAttributeKey.email),
               email,
             );
             expect(
-              userAttributes.valueOf(CognitoUserAttributeKey.phoneNumber),
+              userAttributes.valueOf(AuthUserAttributeKey.phoneNumber),
               phoneNumber,
             );
             expect(
-              userAttributes.valueOf(CognitoUserAttributeKey.name),
+              userAttributes.valueOf(AuthUserAttributeKey.name),
               name,
             );
           });
@@ -95,7 +100,7 @@ void main() {
           asyncTest('should update a single users attribute', (_) async {
             final updatedName = generateNameAttribute();
             final res = await Amplify.Auth.updateUserAttribute(
-              userAttributeKey: CognitoUserAttributeKey.name,
+              userAttributeKey: AuthUserAttributeKey.name,
               value: updatedName,
             );
             expect(
@@ -105,9 +110,9 @@ void main() {
 
             final userAttributes = await Amplify.Auth.fetchUserAttributes();
             expect(
-              userAttributes.valueOf(CognitoUserAttributeKey.name),
+              userAttributes.valueOf(AuthUserAttributeKey.name),
               updatedName,
-              reason: 'Attribute shoud be updated',
+              reason: 'Attribute should be updated',
             );
           });
 
@@ -133,7 +138,7 @@ void main() {
               const invalidEmailAddress = 'invalidEmailFormat.com';
               await expectLater(
                 Amplify.Auth.updateUserAttribute(
-                  userAttributeKey: CognitoUserAttributeKey.email,
+                  userAttributeKey: AuthUserAttributeKey.email,
                   value: invalidEmailAddress,
                 ),
                 throwsA(isA<InvalidParameterException>()),
@@ -149,11 +154,11 @@ void main() {
             await Amplify.Auth.updateUserAttributes(
               attributes: [
                 AuthUserAttribute(
-                  userAttributeKey: CognitoUserAttributeKey.name,
+                  userAttributeKey: AuthUserAttributeKey.name,
                   value: updatedName,
                 ),
                 AuthUserAttribute(
-                  userAttributeKey: CognitoUserAttributeKey.givenName,
+                  userAttributeKey: AuthUserAttributeKey.givenName,
                   value: updatedGivenName,
                 ),
               ],
@@ -161,14 +166,14 @@ void main() {
 
             final userAttributes = await Amplify.Auth.fetchUserAttributes();
             expect(
-              userAttributes.valueOf(CognitoUserAttributeKey.name),
+              userAttributes.valueOf(AuthUserAttributeKey.name),
               updatedName,
-              reason: 'Attribute shoud be updated',
+              reason: 'Attribute should be updated',
             );
             expect(
-              userAttributes.valueOf(CognitoUserAttributeKey.givenName),
+              userAttributes.valueOf(AuthUserAttributeKey.givenName),
               updatedGivenName,
-              reason: 'Attribute shoud be updated',
+              reason: 'Attribute should be updated',
             );
           });
 
@@ -178,7 +183,7 @@ void main() {
             (_) async {
               // set initial state
               await Amplify.Auth.updateUserAttribute(
-                userAttributeKey: CognitoUserAttributeKey.name,
+                userAttributeKey: AuthUserAttributeKey.name,
                 value: name,
               );
 
@@ -188,7 +193,7 @@ void main() {
                 Amplify.Auth.updateUserAttributes(
                   attributes: [
                     AuthUserAttribute(
-                      userAttributeKey: CognitoUserAttributeKey.name,
+                      userAttributeKey: AuthUserAttributeKey.name,
                       value: updatedName,
                     ),
                     AuthUserAttribute(
@@ -204,12 +209,245 @@ void main() {
 
               final userAttributes = await Amplify.Auth.fetchUserAttributes();
               expect(
-                userAttributes.valueOf(CognitoUserAttributeKey.name),
+                userAttributes.valueOf(AuthUserAttributeKey.name),
                 name,
-                reason: 'Attribute shoud not be updated',
+                reason: 'Attribute should not be updated',
               );
             },
           );
+        });
+      });
+    }
+
+    for (final (environmentName, keepOriginal) in [
+      ('main', false),
+      ('keep-original-attributes', true),
+    ]) {
+      group(environmentName, () {
+        setUp(() async {
+          await testRunner.configure(
+            environmentName: environmentName,
+          );
+
+          await createAndLoginUser();
+        });
+
+        group('resendUserAttributeConfirmationCode', () {
+          asyncTest('to email', (_) async {
+            final newEmail = generateEmail();
+            // Cognito sends the confirmation code to the new attribute
+            // even when `keepOriginal` is true and even though it uses the old
+            // attribute when resending the code.
+            final code = await getOtpCode(UserAttribute.email(newEmail));
+            logger.debug(
+              'Updating email (keepOriginal=$keepOriginal) to: $newEmail',
+            );
+            final updateResult = await Amplify.Auth.updateUserAttribute(
+              userAttributeKey: AuthUserAttributeKey.email,
+              value: newEmail,
+            );
+            expect(updateResult.isUpdated, false);
+            expect(
+              updateResult.nextStep.updateAttributeStep,
+              AuthUpdateAttributeStep.confirmAttributeWithCode,
+            );
+            expect(
+              updateResult.nextStep.codeDeliveryDetails?.attributeKey,
+              AuthUserAttributeKey.email,
+            );
+            expect(
+              updateResult.nextStep.codeDeliveryDetails?.deliveryMedium,
+              DeliveryMedium.email,
+            );
+            expect(
+              updateResult.nextStep.codeDeliveryDetails?.destination,
+              isNotNull,
+            );
+
+            // Drain original code
+            await expectLater(
+              code.code,
+              completes,
+              reason:
+                  'Cognito sends the confirmation code to the new attribute '
+                  'even when keepOriginal is true and even though it uses the old '
+                  'attribute when resending the code',
+            );
+            logger.debug('Got original code');
+
+            final resentCode = await getOtpCode(
+              UserAttribute.email(keepOriginal ? email : newEmail),
+            );
+            final resendResult =
+                // ignore: deprecated_member_use
+                await Amplify.Auth.resendUserAttributeConfirmationCode(
+              userAttributeKey: AuthUserAttributeKey.email,
+            );
+            expect(
+              resendResult.codeDeliveryDetails.attributeKey,
+              AuthUserAttributeKey.email,
+            );
+            expect(
+              resendResult.codeDeliveryDetails.deliveryMedium,
+              DeliveryMedium.email,
+            );
+            expect(
+              resendResult.codeDeliveryDetails.destination,
+              isNotNull,
+            );
+
+            await expectLater(
+              Amplify.Auth.confirmUserAttribute(
+                userAttributeKey: AuthUserAttributeKey.email,
+                confirmationCode: await resentCode.code,
+              ),
+              completes,
+            );
+          });
+        });
+
+        group('sendUserAttributeVerificationCode', () {
+          asyncTest('to email', (_) async {
+            final newEmail = generateEmail();
+            // Cognito sends the confirmation code to the new attribute
+            // even when `keepOriginal` is true and even though it uses the old
+            // attribute when resending the code.
+            final code = await getOtpCode(UserAttribute.email(newEmail));
+            logger.debug(
+              'Updating email (keepOriginal=$keepOriginal) to: $newEmail',
+            );
+            final updateResult = await Amplify.Auth.updateUserAttribute(
+              userAttributeKey: AuthUserAttributeKey.email,
+              value: newEmail,
+            );
+            expect(updateResult.isUpdated, false);
+            expect(
+              updateResult.nextStep.updateAttributeStep,
+              AuthUpdateAttributeStep.confirmAttributeWithCode,
+            );
+            expect(
+              updateResult.nextStep.codeDeliveryDetails?.attributeKey,
+              AuthUserAttributeKey.email,
+            );
+            expect(
+              updateResult.nextStep.codeDeliveryDetails?.deliveryMedium,
+              DeliveryMedium.email,
+            );
+            expect(
+              updateResult.nextStep.codeDeliveryDetails?.destination,
+              isNotNull,
+            );
+
+            // Drain original code
+            await expectLater(
+              code.code,
+              completes,
+              reason:
+                  'Cognito sends the confirmation code to the new attribute '
+                  'even when keepOriginal is true and even though it uses the old '
+                  'attribute when resending the code',
+            );
+            logger.debug('Got original code');
+
+            final resentCode = await getOtpCode(
+              UserAttribute.email(keepOriginal ? email : newEmail),
+            );
+            final resendResult =
+                await Amplify.Auth.sendUserAttributeVerificationCode(
+              userAttributeKey: AuthUserAttributeKey.email,
+            );
+            expect(
+              resendResult.codeDeliveryDetails.attributeKey,
+              AuthUserAttributeKey.email,
+            );
+            expect(
+              resendResult.codeDeliveryDetails.deliveryMedium,
+              DeliveryMedium.email,
+            );
+            expect(
+              resendResult.codeDeliveryDetails.destination,
+              isNotNull,
+            );
+
+            await expectLater(
+              Amplify.Auth.confirmUserAttribute(
+                userAttributeKey: AuthUserAttributeKey.email,
+                confirmationCode: await resentCode.code,
+              ),
+              completes,
+            );
+          });
+
+          asyncTest('to phoneNumber', (_) async {
+            final newPhoneNumber = generatePhoneNumber();
+            // Cognito sends the confirmation code to the new attribute
+            // even when `keepOriginal` is true and even though it uses the old
+            // attribute when resending the code.
+            final code = await getOtpCode(UserAttribute.phone(newPhoneNumber));
+            logger.debug(
+              'Updating phoneNumber (keepOriginal=$keepOriginal) to: $newPhoneNumber',
+            );
+            final updateResult = await Amplify.Auth.updateUserAttribute(
+              userAttributeKey: AuthUserAttributeKey.phoneNumber,
+              value: newPhoneNumber,
+            );
+            expect(updateResult.isUpdated, false);
+            expect(
+              updateResult.nextStep.updateAttributeStep,
+              AuthUpdateAttributeStep.confirmAttributeWithCode,
+            );
+            expect(
+              updateResult.nextStep.codeDeliveryDetails?.attributeKey,
+              AuthUserAttributeKey.phoneNumber,
+            );
+            expect(
+              updateResult.nextStep.codeDeliveryDetails?.deliveryMedium,
+              DeliveryMedium.sms,
+            );
+            expect(
+              updateResult.nextStep.codeDeliveryDetails?.destination,
+              isNotNull,
+            );
+
+            // Drain original code
+            await expectLater(
+              code.code,
+              completes,
+              reason:
+                  'Cognito sends the confirmation code to the new attribute '
+                  'even when keepOriginal is true and even though it uses the old '
+                  'attribute when resending the code',
+            );
+            logger.debug('Got original code');
+
+            final resentCode = await getOtpCode(
+              UserAttribute.phone(keepOriginal ? phoneNumber : newPhoneNumber),
+            );
+            final resendResult =
+                await Amplify.Auth.sendUserAttributeVerificationCode(
+              userAttributeKey: AuthUserAttributeKey.phoneNumber,
+            );
+            expect(
+              resendResult.codeDeliveryDetails.attributeKey,
+              AuthUserAttributeKey.phoneNumber,
+            );
+            expect(
+              resendResult.codeDeliveryDetails.deliveryMedium,
+              DeliveryMedium.sms,
+            );
+            expect(
+              resendResult.codeDeliveryDetails.destination,
+              isNotNull,
+            );
+
+            await expectLater(
+              Amplify.Auth.confirmUserAttribute(
+                userAttributeKey: AuthUserAttributeKey.phoneNumber,
+                confirmationCode: await resentCode.code,
+              ),
+              completes,
+            );
+          });
         });
       });
     }

@@ -1,3 +1,47 @@
+## 0.3.1
+
+- Minor bug fixes and improvements
+
+## 0.3.0+7
+
+### Fixes
+- fix(analytics): AWSPinpointUserProfile Added null check for user attributes ([#3598](https://github.com/aws-amplify/amplify-flutter/pull/3598))
+
+## 0.3.0+6
+
+- Minor bug fixes and improvements
+
+## 0.3.0+5
+
+- Minor bug fixes and improvements
+
+## 0.3.0+4
+
+- Minor bug fixes and improvements
+
+## 0.3.0+3
+
+- Minor bug fixes and improvements
+
+## 0.3.0+2
+
+### Fixes
+- fix(analytics): Disallowed unauth access
+
+## 0.3.0+1
+
+- Minor bug fixes and improvements
+
+## 0.3.0
+
+### Features
+- Dart 3 support (must update Dart SDK constraint to `^3.0.0`)
+
+## 0.2.0+3
+
+### Fixes
+- fix(repo): Flutter 3.3 support
+
 ## 0.2.0+2
 
 - Minor bug fixes and improvements

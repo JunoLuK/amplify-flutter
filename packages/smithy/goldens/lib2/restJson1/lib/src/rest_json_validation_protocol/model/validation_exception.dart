@@ -1,13 +1,13 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_validation_protocol.model.validation_exception; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i1;
-import 'package:built_collection/built_collection.dart' as _i4;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/validation_exception_field.dart'
-    as _i3;
+import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/validation_exception_field.dart';
 import 'package:smithy/smithy.dart' as _i2;
 
 part 'validation_exception.g.dart';
@@ -20,12 +20,12 @@ abstract class ValidationException
         _i2.SmithyHttpException {
   /// A standard error for input validation failures. This should be thrown by services when a member of the input structure falls outside of the modeled or documented constraints.
   factory ValidationException({
-    List<_i3.ValidationExceptionField>? fieldList,
     required String message,
+    List<ValidationExceptionField>? fieldList,
   }) {
     return _$ValidationException._(
-      fieldList: fieldList == null ? null : _i4.BuiltList(fieldList),
       message: message,
+      fieldList: fieldList == null ? null : _i3.BuiltList(fieldList),
     );
   }
 
@@ -46,19 +46,16 @@ abstract class ValidationException
         b.headers = response.headers;
       });
 
-  static const List<_i2.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer<ValidationException>> serializers = [
     ValidationExceptionRestJson1Serializer()
   ];
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(ValidationExceptionBuilder b) {}
-
-  /// A list of specific failures encountered while validating the input. A member can appear in this list more than once if it failed to satisfy multiple constraints.
-  _i4.BuiltList<_i3.ValidationExceptionField>? get fieldList;
 
   /// A summary of the validation failure.
   @override
   String get message;
+
+  /// A list of specific failures encountered while validating the input. A member can appear in this list more than once if it failed to satisfy multiple constraints.
+  _i3.BuiltList<ValidationExceptionField>? get fieldList;
   @override
   _i2.ShapeId get shapeId => const _i2.ShapeId(
         namespace: 'smithy.framework',
@@ -76,20 +73,20 @@ abstract class ValidationException
   Exception? get underlyingException => null;
   @override
   List<Object?> get props => [
-        fieldList,
         message,
+        fieldList,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('ValidationException');
-    helper.add(
-      'fieldList',
-      fieldList,
-    );
-    helper.add(
-      'message',
-      message,
-    );
+    final helper = newBuiltValueToStringHelper('ValidationException')
+      ..add(
+        'message',
+        message,
+      )
+      ..add(
+        'fieldList',
+        fieldList,
+      );
     return helper.toString();
   }
 }
@@ -122,24 +119,23 @@ class ValidationExceptionRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'fieldList':
-          if (value != null) {
-            result.fieldList.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(
-                _i4.BuiltList,
-                [FullType(_i3.ValidationExceptionField)],
-              ),
-            ) as _i4.BuiltList<_i3.ValidationExceptionField>));
-          }
-          break;
+          result.fieldList.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(
+              _i3.BuiltList,
+              [FullType(ValidationExceptionField)],
+            ),
+          ) as _i3.BuiltList<ValidationExceptionField>));
         case 'message':
           result.message = (serializers.deserialize(
-            value!,
+            value,
             specifiedType: const FullType(String),
           ) as String);
-          break;
       }
     }
 
@@ -149,28 +145,29 @@ class ValidationExceptionRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    ValidationException object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as ValidationException);
-    final result = <Object?>[
+    final result$ = <Object?>[];
+    final ValidationException(:fieldList, :message) = object;
+    result$.addAll([
       'message',
       serializers.serialize(
-        payload.message,
+        message,
         specifiedType: const FullType(String),
       ),
-    ];
-    if (payload.fieldList != null) {
-      result
+    ]);
+    if (fieldList != null) {
+      result$
         ..add('fieldList')
         ..add(serializers.serialize(
-          payload.fieldList!,
+          fieldList,
           specifiedType: const FullType(
-            _i4.BuiltList,
-            [FullType(_i3.ValidationExceptionField)],
+            _i3.BuiltList,
+            [FullType(ValidationExceptionField)],
           ),
         ));
     }
-    return result;
+    return result$;
   }
 }

@@ -1,20 +1,17 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_validation_protocol.model.scoped_config; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i1;
-import 'package:built_collection/built_collection.dart' as _i6;
+import 'package:built_collection/built_collection.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/client_config.dart'
-    as _i2;
-import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/environment_config.dart'
-    as _i4;
-import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/file_config_settings.dart'
-    as _i3;
-import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/operation_config.dart'
-    as _i5;
-import 'package:smithy/smithy.dart' as _i7;
+import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/client_config.dart';
+import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/environment_config.dart';
+import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/file_config_settings.dart';
+import 'package:rest_json1_v2/src/rest_json_validation_protocol/model/operation_config.dart';
+import 'package:smithy/smithy.dart' as _i3;
 
 part 'scoped_config.g.dart';
 
@@ -24,18 +21,18 @@ abstract class ScopedConfig
     implements Built<ScopedConfig, ScopedConfigBuilder> {
   /// Config settings that are scoped to different sources, such as environment variables or the AWS config file.
   factory ScopedConfig({
-    _i2.ClientConfig? client,
-    Map<String, _i3.FileConfigSettings>? configFile,
-    Map<String, _i3.FileConfigSettings>? credentialsFile,
-    _i4.EnvironmentConfig? environment,
-    _i5.OperationConfig? operation,
+    EnvironmentConfig? environment,
+    Map<String, FileConfigSettings>? configFile,
+    Map<String, FileConfigSettings>? credentialsFile,
+    ClientConfig? client,
+    OperationConfig? operation,
   }) {
     return _$ScopedConfig._(
-      client: client,
-      configFile: configFile == null ? null : _i6.BuiltMap(configFile),
-      credentialsFile:
-          credentialsFile == null ? null : _i6.BuiltMap(credentialsFile),
       environment: environment,
+      configFile: configFile == null ? null : _i2.BuiltMap(configFile),
+      credentialsFile:
+          credentialsFile == null ? null : _i2.BuiltMap(credentialsFile),
+      client: client,
       operation: operation,
     );
   }
@@ -46,64 +43,61 @@ abstract class ScopedConfig
 
   const ScopedConfig._();
 
-  static const List<_i7.SmithySerializer> serializers = [
+  static const List<_i3.SmithySerializer<ScopedConfig>> serializers = [
     ScopedConfigRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(ScopedConfigBuilder b) {}
+  /// Config settings that can be set as environment variables.
+  EnvironmentConfig? get environment;
+
+  /// A shape representing a parsed config file, which is a map of profile names to configuration sets.
+  _i2.BuiltMap<String, FileConfigSettings>? get configFile;
+
+  /// A shape representing a parsed config file, which is a map of profile names to configuration sets.
+  _i2.BuiltMap<String, FileConfigSettings>? get credentialsFile;
 
   /// Configuration that is set on the constructed client.
-  _i2.ClientConfig? get client;
-
-  /// A shape representing a parsed config file, which is a map of profile names to configuration sets.
-  _i6.BuiltMap<String, _i3.FileConfigSettings>? get configFile;
-
-  /// A shape representing a parsed config file, which is a map of profile names to configuration sets.
-  _i6.BuiltMap<String, _i3.FileConfigSettings>? get credentialsFile;
-
-  /// Config settings that can be set as environment variables.
-  _i4.EnvironmentConfig? get environment;
+  ClientConfig? get client;
 
   /// Configuration that is set for the scope of a single operation.
-  _i5.OperationConfig? get operation;
+  OperationConfig? get operation;
   @override
   List<Object?> get props => [
-        client,
+        environment,
         configFile,
         credentialsFile,
-        environment,
+        client,
         operation,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('ScopedConfig');
-    helper.add(
-      'client',
-      client,
-    );
-    helper.add(
-      'configFile',
-      configFile,
-    );
-    helper.add(
-      'credentialsFile',
-      credentialsFile,
-    );
-    helper.add(
-      'environment',
-      environment,
-    );
-    helper.add(
-      'operation',
-      operation,
-    );
+    final helper = newBuiltValueToStringHelper('ScopedConfig')
+      ..add(
+        'environment',
+        environment,
+      )
+      ..add(
+        'configFile',
+        configFile,
+      )
+      ..add(
+        'credentialsFile',
+        credentialsFile,
+      )
+      ..add(
+        'client',
+        client,
+      )
+      ..add(
+        'operation',
+        operation,
+      );
     return helper.toString();
   }
 }
 
 class ScopedConfigRestJson1Serializer
-    extends _i7.StructuredSmithySerializer<ScopedConfig> {
+    extends _i3.StructuredSmithySerializer<ScopedConfig> {
   const ScopedConfigRestJson1Serializer() : super('ScopedConfig');
 
   @override
@@ -112,8 +106,8 @@ class ScopedConfigRestJson1Serializer
         _$ScopedConfig,
       ];
   @override
-  Iterable<_i7.ShapeId> get supportedProtocols => const [
-        _i7.ShapeId(
+  Iterable<_i3.ShapeId> get supportedProtocols => const [
+        _i3.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
@@ -130,59 +124,47 @@ class ScopedConfigRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'client':
-          if (value != null) {
-            result.client.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i2.ClientConfig),
-            ) as _i2.ClientConfig));
-          }
-          break;
+          result.client.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(ClientConfig),
+          ) as ClientConfig));
         case 'configFile':
-          if (value != null) {
-            result.configFile.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(
-                _i6.BuiltMap,
-                [
-                  FullType(String),
-                  FullType(_i3.FileConfigSettings),
-                ],
-              ),
-            ) as _i6.BuiltMap<String, _i3.FileConfigSettings>));
-          }
-          break;
+          result.configFile.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(
+              _i2.BuiltMap,
+              [
+                FullType(String),
+                FullType(FileConfigSettings),
+              ],
+            ),
+          ) as _i2.BuiltMap<String, FileConfigSettings>));
         case 'credentialsFile':
-          if (value != null) {
-            result.credentialsFile.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(
-                _i6.BuiltMap,
-                [
-                  FullType(String),
-                  FullType(_i3.FileConfigSettings),
-                ],
-              ),
-            ) as _i6.BuiltMap<String, _i3.FileConfigSettings>));
-          }
-          break;
+          result.credentialsFile.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(
+              _i2.BuiltMap,
+              [
+                FullType(String),
+                FullType(FileConfigSettings),
+              ],
+            ),
+          ) as _i2.BuiltMap<String, FileConfigSettings>));
         case 'environment':
-          if (value != null) {
-            result.environment.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i4.EnvironmentConfig),
-            ) as _i4.EnvironmentConfig));
-          }
-          break;
+          result.environment.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(EnvironmentConfig),
+          ) as EnvironmentConfig));
         case 'operation':
-          if (value != null) {
-            result.operation.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i5.OperationConfig),
-            ) as _i5.OperationConfig));
-          }
-          break;
+          result.operation.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(OperationConfig),
+          ) as OperationConfig));
       }
     }
 
@@ -192,63 +174,69 @@ class ScopedConfigRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    ScopedConfig object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as ScopedConfig);
-    final result = <Object?>[];
-    if (payload.client != null) {
-      result
+    final result$ = <Object?>[];
+    final ScopedConfig(
+      :client,
+      :configFile,
+      :credentialsFile,
+      :environment,
+      :operation
+    ) = object;
+    if (client != null) {
+      result$
         ..add('client')
         ..add(serializers.serialize(
-          payload.client!,
-          specifiedType: const FullType(_i2.ClientConfig),
+          client,
+          specifiedType: const FullType(ClientConfig),
         ));
     }
-    if (payload.configFile != null) {
-      result
+    if (configFile != null) {
+      result$
         ..add('configFile')
         ..add(serializers.serialize(
-          payload.configFile!,
+          configFile,
           specifiedType: const FullType(
-            _i6.BuiltMap,
+            _i2.BuiltMap,
             [
               FullType(String),
-              FullType(_i3.FileConfigSettings),
+              FullType(FileConfigSettings),
             ],
           ),
         ));
     }
-    if (payload.credentialsFile != null) {
-      result
+    if (credentialsFile != null) {
+      result$
         ..add('credentialsFile')
         ..add(serializers.serialize(
-          payload.credentialsFile!,
+          credentialsFile,
           specifiedType: const FullType(
-            _i6.BuiltMap,
+            _i2.BuiltMap,
             [
               FullType(String),
-              FullType(_i3.FileConfigSettings),
+              FullType(FileConfigSettings),
             ],
           ),
         ));
     }
-    if (payload.environment != null) {
-      result
+    if (environment != null) {
+      result$
         ..add('environment')
         ..add(serializers.serialize(
-          payload.environment!,
-          specifiedType: const FullType(_i4.EnvironmentConfig),
+          environment,
+          specifiedType: const FullType(EnvironmentConfig),
         ));
     }
-    if (payload.operation != null) {
-      result
+    if (operation != null) {
+      result$
         ..add('operation')
         ..add(serializers.serialize(
-          payload.operation!,
-          specifiedType: const FullType(_i5.OperationConfig),
+          operation,
+          specifiedType: const FullType(OperationConfig),
         ));
     }
-    return result;
+    return result$;
   }
 }

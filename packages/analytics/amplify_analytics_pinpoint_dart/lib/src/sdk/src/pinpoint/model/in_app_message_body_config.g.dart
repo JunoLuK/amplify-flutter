@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_analytics_pinpoint_dart.pinpoint.model.in_app_message_body_config;
+part of 'in_app_message_body_config.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of amplify_analytics_pinpoint_dart.pinpoint.model.in_app_message_body_confi
 
 class _$InAppMessageBodyConfig extends InAppMessageBodyConfig {
   @override
-  final _i2.Alignment alignment;
+  final Alignment alignment;
   @override
   final String body;
   @override
@@ -62,9 +62,9 @@ class InAppMessageBodyConfigBuilder
     implements Builder<InAppMessageBodyConfig, InAppMessageBodyConfigBuilder> {
   _$InAppMessageBodyConfig? _$v;
 
-  _i2.Alignment? _alignment;
-  _i2.Alignment? get alignment => _$this._alignment;
-  set alignment(_i2.Alignment? alignment) => _$this._alignment = alignment;
+  Alignment? _alignment;
+  Alignment? get alignment => _$this._alignment;
+  set alignment(Alignment? alignment) => _$this._alignment = alignment;
 
   String? _body;
   String? get body => _$this._body;
@@ -74,9 +74,7 @@ class InAppMessageBodyConfigBuilder
   String? get textColor => _$this._textColor;
   set textColor(String? textColor) => _$this._textColor = textColor;
 
-  InAppMessageBodyConfigBuilder() {
-    InAppMessageBodyConfig._init(this);
-  }
+  InAppMessageBodyConfigBuilder();
 
   InAppMessageBodyConfigBuilder get _$this {
     final $v = _$v;

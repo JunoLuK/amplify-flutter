@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_analytics_pinpoint_dart.pinpoint.model.put_events_request;
+part of 'put_events_request.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -10,7 +10,7 @@ class _$PutEventsRequest extends PutEventsRequest {
   @override
   final String applicationId;
   @override
-  final _i2.EventsRequest eventsRequest;
+  final EventsRequest eventsRequest;
 
   factory _$PutEventsRequest(
           [void Function(PutEventsRequestBuilder)? updates]) =>
@@ -60,15 +60,13 @@ class PutEventsRequestBuilder
   set applicationId(String? applicationId) =>
       _$this._applicationId = applicationId;
 
-  _i2.EventsRequestBuilder? _eventsRequest;
-  _i2.EventsRequestBuilder get eventsRequest =>
-      _$this._eventsRequest ??= new _i2.EventsRequestBuilder();
-  set eventsRequest(_i2.EventsRequestBuilder? eventsRequest) =>
+  EventsRequestBuilder? _eventsRequest;
+  EventsRequestBuilder get eventsRequest =>
+      _$this._eventsRequest ??= new EventsRequestBuilder();
+  set eventsRequest(EventsRequestBuilder? eventsRequest) =>
       _$this._eventsRequest = eventsRequest;
 
-  PutEventsRequestBuilder() {
-    PutEventsRequest._init(this);
-  }
+  PutEventsRequestBuilder();
 
   PutEventsRequestBuilder get _$this {
     final $v = _$v;

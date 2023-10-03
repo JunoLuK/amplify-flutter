@@ -1,13 +1,14 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.api_gateway.model.rest_apis; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i1;
-import 'package:built_collection/built_collection.dart' as _i3;
+import 'package:built_collection/built_collection.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v1/src/api_gateway/model/rest_api.dart' as _i2;
-import 'package:smithy/smithy.dart' as _i4;
+import 'package:rest_json1_v1/src/api_gateway/model/rest_api.dart';
+import 'package:smithy/smithy.dart' as _i3;
 
 part 'rest_apis.g.dart';
 
@@ -15,11 +16,11 @@ abstract class RestApis
     with _i1.AWSEquatable<RestApis>
     implements Built<RestApis, RestApisBuilder> {
   factory RestApis({
-    List<_i2.RestApi>? items,
+    List<RestApi>? items,
     String? position,
   }) {
     return _$RestApis._(
-      items: items == null ? null : _i3.BuiltList(items),
+      items: items == null ? null : _i2.BuiltList(items),
       position: position,
     );
   }
@@ -35,13 +36,11 @@ abstract class RestApis
   ) =>
       payload;
 
-  static const List<_i4.SmithySerializer> serializers = [
+  static const List<_i3.SmithySerializer<RestApis>> serializers = [
     RestApisRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(RestApisBuilder b) {}
-  _i3.BuiltList<_i2.RestApi>? get items;
+  _i2.BuiltList<RestApi>? get items;
   String? get position;
   @override
   List<Object?> get props => [
@@ -50,21 +49,21 @@ abstract class RestApis
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('RestApis');
-    helper.add(
-      'items',
-      items,
-    );
-    helper.add(
-      'position',
-      position,
-    );
+    final helper = newBuiltValueToStringHelper('RestApis')
+      ..add(
+        'items',
+        items,
+      )
+      ..add(
+        'position',
+        position,
+      );
     return helper.toString();
   }
 }
 
 class RestApisRestJson1Serializer
-    extends _i4.StructuredSmithySerializer<RestApis> {
+    extends _i3.StructuredSmithySerializer<RestApis> {
   const RestApisRestJson1Serializer() : super('RestApis');
 
   @override
@@ -73,8 +72,8 @@ class RestApisRestJson1Serializer
         _$RestApis,
       ];
   @override
-  Iterable<_i4.ShapeId> get supportedProtocols => const [
-        _i4.ShapeId(
+  Iterable<_i3.ShapeId> get supportedProtocols => const [
+        _i3.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
@@ -91,26 +90,23 @@ class RestApisRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'item':
-          if (value != null) {
-            result.items.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(
-                _i3.BuiltList,
-                [FullType(_i2.RestApi)],
-              ),
-            ) as _i3.BuiltList<_i2.RestApi>));
-          }
-          break;
+          result.items.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(
+              _i2.BuiltList,
+              [FullType(RestApi)],
+            ),
+          ) as _i2.BuiltList<RestApi>));
         case 'position':
-          if (value != null) {
-            result.position = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.position = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
       }
     }
 
@@ -120,30 +116,30 @@ class RestApisRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    RestApis object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as RestApis);
-    final result = <Object?>[];
-    if (payload.items != null) {
-      result
+    final result$ = <Object?>[];
+    final RestApis(:items, :position) = object;
+    if (items != null) {
+      result$
         ..add('item')
         ..add(serializers.serialize(
-          payload.items!,
+          items,
           specifiedType: const FullType(
-            _i3.BuiltList,
-            [FullType(_i2.RestApi)],
+            _i2.BuiltList,
+            [FullType(RestApi)],
           ),
         ));
     }
-    if (payload.position != null) {
-      result
+    if (position != null) {
+      result$
         ..add('position')
         ..add(serializers.serialize(
-          payload.position!,
+          position,
           specifiedType: const FullType(String),
         ));
     }
-    return result;
+    return result$;
   }
 }

@@ -28,9 +28,14 @@ import 'mock_secure_storage.dart';
 import 'test_event.dart';
 
 Future<void> configureAnalytics({
+  String environmentName = 'main',
   AppLifecycleProvider? appLifecycleProvider,
+  String? endpointId,
 }) async {
-  storageFactory(scope) => mockPersistedSecuredStorage;
+  storageFactory(scope) {
+    return setupAndCreateMockPersistedSecuredStorage(endpointId: endpointId);
+  }
+
   await Amplify.addPlugins([
     AmplifyAuthCognito(
       secureStorageFactory: storageFactory,
@@ -41,16 +46,12 @@ Future<void> configureAnalytics({
     ),
     AmplifyAPI(),
   ]);
-  await Amplify.configure(amplifyconfig);
+  await Amplify.configure(amplifyEnvironments[environmentName]!);
 
   addTearDown(() async {
     // Flush pending events.
     await Amplify.Analytics.flushEvents();
-    try {
-      await Amplify.Auth.signOut();
-    } on Exception {
-      // ok
-    }
+    await Amplify.Auth.signOut();
     await Amplify.reset();
   });
 }

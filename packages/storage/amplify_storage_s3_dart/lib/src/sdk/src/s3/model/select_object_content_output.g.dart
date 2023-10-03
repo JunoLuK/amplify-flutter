@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_storage_s3_dart.s3.model.select_object_content_output;
+part of 'select_object_content_output.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of amplify_storage_s3_dart.s3.model.select_object_content_output;
 
 class _$SelectObjectContentOutput extends SelectObjectContentOutput {
   @override
-  final _i3.SelectObjectContentEventStream? payload;
+  final SelectObjectContentEventStream? payload;
 
   factory _$SelectObjectContentOutput(
           [void Function(SelectObjectContentOutputBuilder)? updates]) =>
@@ -45,14 +45,12 @@ class SelectObjectContentOutputBuilder
         Builder<SelectObjectContentOutput, SelectObjectContentOutputBuilder> {
   _$SelectObjectContentOutput? _$v;
 
-  _i3.SelectObjectContentEventStream? _payload;
-  _i3.SelectObjectContentEventStream? get payload => _$this._payload;
-  set payload(_i3.SelectObjectContentEventStream? payload) =>
+  SelectObjectContentEventStream? _payload;
+  SelectObjectContentEventStream? get payload => _$this._payload;
+  set payload(SelectObjectContentEventStream? payload) =>
       _$this._payload = payload;
 
-  SelectObjectContentOutputBuilder() {
-    SelectObjectContentOutput._init(this);
-  }
+  SelectObjectContentOutputBuilder();
 
   SelectObjectContentOutputBuilder get _$this {
     final $v = _$v;

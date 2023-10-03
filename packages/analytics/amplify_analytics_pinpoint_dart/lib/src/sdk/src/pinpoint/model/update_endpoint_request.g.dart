@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_analytics_pinpoint_dart.pinpoint.model.update_endpoint_request;
+part of 'update_endpoint_request.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -12,7 +12,7 @@ class _$UpdateEndpointRequest extends UpdateEndpointRequest {
   @override
   final String endpointId;
   @override
-  final _i2.EndpointRequest endpointRequest;
+  final EndpointRequest endpointRequest;
 
   factory _$UpdateEndpointRequest(
           [void Function(UpdateEndpointRequestBuilder)? updates]) =>
@@ -73,15 +73,13 @@ class UpdateEndpointRequestBuilder
   String? get endpointId => _$this._endpointId;
   set endpointId(String? endpointId) => _$this._endpointId = endpointId;
 
-  _i2.EndpointRequestBuilder? _endpointRequest;
-  _i2.EndpointRequestBuilder get endpointRequest =>
-      _$this._endpointRequest ??= new _i2.EndpointRequestBuilder();
-  set endpointRequest(_i2.EndpointRequestBuilder? endpointRequest) =>
+  EndpointRequestBuilder? _endpointRequest;
+  EndpointRequestBuilder get endpointRequest =>
+      _$this._endpointRequest ??= new EndpointRequestBuilder();
+  set endpointRequest(EndpointRequestBuilder? endpointRequest) =>
       _$this._endpointRequest = endpointRequest;
 
-  UpdateEndpointRequestBuilder() {
-    UpdateEndpointRequest._init(this);
-  }
+  UpdateEndpointRequestBuilder();
 
   UpdateEndpointRequestBuilder get _$this {
     final $v = _$v;

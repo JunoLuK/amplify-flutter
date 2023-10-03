@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of rest_xml_v1.rest_xml_protocol.model.xml_maps_xml_name_input_output;
+part of 'xml_maps_xml_name_input_output.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of rest_xml_v1.rest_xml_protocol.model.xml_maps_xml_name_input_output;
 
 class _$XmlMapsXmlNameInputOutput extends XmlMapsXmlNameInputOutput {
   @override
-  final _i4.BuiltMap<String, _i3.GreetingStruct>? myMap;
+  final _i3.BuiltMap<String, GreetingStruct>? myMap;
 
   factory _$XmlMapsXmlNameInputOutput(
           [void Function(XmlMapsXmlNameInputOutputBuilder)? updates]) =>
@@ -45,15 +45,13 @@ class XmlMapsXmlNameInputOutputBuilder
         Builder<XmlMapsXmlNameInputOutput, XmlMapsXmlNameInputOutputBuilder> {
   _$XmlMapsXmlNameInputOutput? _$v;
 
-  _i4.MapBuilder<String, _i3.GreetingStruct>? _myMap;
-  _i4.MapBuilder<String, _i3.GreetingStruct> get myMap =>
-      _$this._myMap ??= new _i4.MapBuilder<String, _i3.GreetingStruct>();
-  set myMap(_i4.MapBuilder<String, _i3.GreetingStruct>? myMap) =>
+  _i3.MapBuilder<String, GreetingStruct>? _myMap;
+  _i3.MapBuilder<String, GreetingStruct> get myMap =>
+      _$this._myMap ??= new _i3.MapBuilder<String, GreetingStruct>();
+  set myMap(_i3.MapBuilder<String, GreetingStruct>? myMap) =>
       _$this._myMap = myMap;
 
-  XmlMapsXmlNameInputOutputBuilder() {
-    XmlMapsXmlNameInputOutput._init(this);
-  }
+  XmlMapsXmlNameInputOutputBuilder();
 
   XmlMapsXmlNameInputOutputBuilder get _$this {
     final $v = _$v;

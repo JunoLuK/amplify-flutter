@@ -10,51 +10,35 @@ import 'package:smithy/ast.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/core/reserved_words.dart';
+import 'package:smithy_codegen/src/generator/enum_generator.dart';
 import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/generator/visitors/symbol_visitor.dart';
+import 'package:smithy_codegen/src/util/config_parameter.dart';
 import 'package:smithy_codegen/src/util/docs.dart';
+import 'package:smithy_codegen/src/util/protocol_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
-import 'config_parameter.dart';
-
 extension SimpleShapeUtil on SimpleShape {
-  Reference get typeReference {
-    switch (getType()) {
-      case ShapeType.bigDecimal:
-        throw UnimplementedError();
-      case ShapeType.bigInteger:
-        return DartTypes.core.bigInt;
-      case ShapeType.blob:
-        if (isStreaming) {
-          return DartTypes.async
-              .stream(DartTypes.core.list(DartTypes.core.int));
-        }
-        return DartTypes.typedData.uint8List;
-      case ShapeType.boolean:
-        return DartTypes.core.bool;
-      case ShapeType.byte:
-        return DartTypes.core.int;
-      case ShapeType.document:
-        return DartTypes.builtValue.jsonObject;
-      case ShapeType.double:
-        return DartTypes.core.double;
-      case ShapeType.float:
-        return DartTypes.core.double;
-      case ShapeType.integer:
-        return DartTypes.core.int;
-      case ShapeType.long:
-        return DartTypes.fixNum.int64;
-      case ShapeType.short:
-        return DartTypes.core.int;
-      case ShapeType.string:
-        return DartTypes.core.string;
-      case ShapeType.timestamp:
-        return DartTypes.core.dateTime;
-      default:
-        throw ArgumentError('Invalid simple shape: ${getType()}');
-    }
-  }
+  Reference get typeReference => switch (getType()) {
+        ShapeType.bigDecimal => throw UnimplementedError(),
+        ShapeType.bigInteger => DartTypes.core.bigInt,
+        ShapeType.blob when isStreaming =>
+          DartTypes.async.stream(DartTypes.core.list(DartTypes.core.int)),
+        ShapeType.blob when (!isStreaming) => DartTypes.typedData.uint8List,
+        ShapeType.boolean => DartTypes.core.bool,
+        ShapeType.byte => DartTypes.core.int,
+        ShapeType.document => DartTypes.builtValue.jsonObject,
+        ShapeType.double => DartTypes.core.double,
+        ShapeType.float => DartTypes.core.double,
+        ShapeType.integer => DartTypes.core.int,
+        ShapeType.long => DartTypes.fixNum.int64,
+        ShapeType.short => DartTypes.core.int,
+        ShapeType.string => DartTypes.core.string,
+        ShapeType.timestamp => DartTypes.core.dateTime,
+        final ShapeType invalid =>
+          throw ArgumentError('Invalid simple shape: $invalid'),
+      };
 }
 
 extension ShapeClassName on Shape {
@@ -66,7 +50,6 @@ extension ShapeClassName on Shape {
     switch (type) {
       case ShapeType.string:
         if (!isEnum) return null;
-        break;
       case ShapeType.enum_:
       case ShapeType.intEnum:
       case ShapeType.structure:
@@ -116,7 +99,7 @@ extension DartName on String {
 
     final escapeChar =
         (parentType == ShapeType.enum_ || parentType == ShapeType.union)
-            ? '\$'
+            ? r'$'
             : '_';
     var name = this;
     if (reservedWords.contains(name)) {
@@ -129,9 +112,60 @@ extension DartName on String {
 extension MemberShapeUtils on MemberShape {
   /// The name of this shape in a Dart struct.
   String dartName(ShapeType type) => memberName.camelCase.nameEscaped(type);
+
+  /// Whether `this` requires transformation in the factory constructor.
+  bool get requiresTransformation {
+    final symbol = context.symbolFor(target);
+    return symbol.requiresBuiltValueTransformation || symbol != friendlySymbol;
+  }
+
+  /// Transforms `built_collection` symbols to their `dart:core` counterpart,
+  /// e.g. BuiltList -> List, BuiltSet -> Set, etc for use in factory
+  /// constructors so that users do not need to concern themselves with built
+  /// types when constructing instances.
+  Reference get friendlySymbol {
+    final ref = context.symbolFor(target);
+    final overriddenCommonSymbol = context.overridesFor(this)?.friendlySymbol;
+    return overriddenCommonSymbol ?? ref.coreFriendlySymbol;
+  }
+
+  /// Recursively converts `dart:core` types like lists, maps, and sets into the
+  /// built value types expected by constructors.
+  Expression transformFromFriendly({required String name, bool? isNullable}) {
+    final typeRef = context.symbolFor(target).typeRef;
+    isNullable ??= typeRef.isNullable!;
+    if (context.symbolOverrideFor(this)
+        case ShapeOverrides(:final transformFromFriendly)) {
+      return transformFromFriendly(refer(name), isNullable: isNullable);
+    }
+    return typeRef.transformToBuiltValue(
+      name: name,
+      isNullable: isNullable,
+    );
+  }
 }
 
 extension ShapeUtils on Shape {
+  /// Whether the shape is a primitive value (more specifically, a bool or number)
+  /// in an S3 service closure.
+  ///
+  /// S3 models incorrectly label these values as boxed and until this is fixed,
+  /// we must work around this by explicitly unboxing them.
+  // TOOD(dnys1): Remove when S3 models are fixed.
+  bool isS3Primitive(CodegenContext context) {
+    final isS3 = context.serviceShapeId?.namespace == 'com.amazonaws.s3';
+    const primitiveTypes = [
+      ShapeType.boolean,
+      ShapeType.integer,
+      ShapeType.long,
+    ];
+    final targetShape = switch (this) {
+      final MemberShape member => context.shapeFor(member.target),
+      _ => this,
+    };
+    return isS3 && primitiveTypes.contains(targetShape.getType());
+  }
+
   bool isNullable(CodegenContext context, [Shape? parent]) {
     final isMemberShape = parent != null;
     if (!isMemberShape) {
@@ -159,11 +193,21 @@ extension ShapeUtils on Shape {
       // Shapes which are part of a structure are always considered boxed
       // unless they are marked with the `@required` trait.
       case ShapeType.structure:
-        final targetShape = this is MemberShape
-            ? context.shapeFor((this as MemberShape).target)
-            : this;
-        final isBoxed = targetShape.isBoxed;
-        return isNotRequired && (targetShape.hasDefaultValue ? isBoxed : true);
+        final targetShape = switch (context.smithyVersion) {
+          SmithyVersion.v1 => switch (this) {
+              final MemberShape member => context.shapeFor(member.target),
+              _ => this,
+            },
+          _ => switch (this) {
+              MemberShape _ => this,
+              _ => throw ArgumentError.value(
+                  '$shapeId',
+                  'shapeId',
+                  'Null checks for structs should only happen on the member shape',
+                ),
+            },
+        };
+        return isS3Primitive(context) || targetShape.isBoxed;
 
       // All but one value in a union is non-null. We represent all values
       // with nullable getters, though.
@@ -258,46 +302,98 @@ extension ShapeUtils on Shape {
   }
 
   /// The default value of this shape when not boxed.
-  Expression? defaultValue(CodegenContext context) {
-    if (isBoxed) {
+  (Expression, bool isConst)? defaultValue(CodegenContext context) {
+    final defaultShape = switch (this) {
+      final MemberShape member when context.smithyVersion == SmithyVersion.v1 =>
+        context.shapeFor(member.target),
+      _ => this,
+    };
+    if (defaultShape.isBoxed) {
       return null;
     }
-    final targetShape = this is MemberShape
-        ? context.shapeFor((this as MemberShape).target)
-        : this;
-    final defaultTrait =
-        getTrait<DefaultTrait>() ?? targetShape.getTrait<DefaultTrait>();
+    if (defaultShape.isS3Primitive(context)) {
+      return null;
+    }
+    final defaultTrait = defaultShape.getTrait<DefaultTrait>();
     final defaultValue = defaultTrait?.value;
-    switch (targetShape.getType()) {
-      case ShapeType.byte:
-      case ShapeType.short:
-      case ShapeType.integer:
-      case ShapeType.float:
-      case ShapeType.double:
-        return literalNum(defaultValue as num? ?? 0);
-      case ShapeType.long:
-        return defaultValue == null || defaultValue == 0
-            ? DartTypes.fixNum.int64.property('ZERO')
-            : DartTypes.fixNum.int64.newInstance([
-                literalNum(defaultValue as int),
-              ]);
-      case ShapeType.boolean:
-        return literalBool(defaultValue as bool? ?? false);
-      case ShapeType.blob:
-        if (defaultValue is! String) {
-          return null;
-        }
-        final encoded = utf8.encode(defaultValue);
+    if (defaultValue == null) {
+      return null;
+    }
+    final targetShape = switch (this) {
+      final MemberShape member => context.shapeFor(member.target),
+      _ => this,
+    };
+    switch (targetShape) {
+      case StringShape _:
+        assert(
+          defaultValue is String,
+          'String shapes should only accept string default values',
+        );
+        return (literalString(defaultValue as String, raw: true), true);
+      case final StringEnumShape targetShape:
+        assert(
+          defaultValue is String,
+          'String enum shapes should only accept string default values',
+        );
+        final enumValue = targetShape.enumValues.singleWhere(
+          (val) => val.expectTrait<EnumValueTrait>().value == defaultValue,
+          orElse: () => throw StateError(
+            'No ${targetShape.shapeId.shape} enum value found for $defaultValue',
+          ),
+        );
+        return (
+          context
+              .symbolFor(targetShape.shapeId)
+              .property(enumValue.enumVariantName),
+          true,
+        );
+      case ByteShape _ || PrimitiveByteShape _:
+      case ShortShape _ || PrimitiveShortShape _:
+      case IntegerShape _ || PrimitiveIntegerShape _:
+      case FloatShape _ || PrimitiveFloatShape _:
+      case DoubleShape _ || PrimitiveDoubleShape _:
+        assert(
+          defaultValue is num,
+          'Number shapes should only accept numeric default values',
+        );
+        return (literalNum(defaultValue as num), true);
+      case LongShape _ || PrimitiveLongShape _:
+        return defaultValue == 0
+            ? (DartTypes.fixNum.int64.property('ZERO'), true)
+            : (
+                DartTypes.fixNum.int64.newInstance([
+                  literalNum(defaultValue as int),
+                ]),
+                false,
+              );
+      case BooleanShape _ || PrimitiveBooleanShape _:
+        return (literalBool(defaultValue as bool), true);
+      case BlobShape _:
+        assert(
+          defaultValue is String,
+          'Blob shapes should only accept string default values',
+        );
+        final encoded = utf8.encode(defaultValue as String);
         final encodedExp = literalConstList(encoded);
         if (!targetShape.isStreaming) {
-          return encodedExp;
+          return (encodedExp, true);
         }
         if (encoded.isEmpty) {
-          return DartTypes.async.stream().constInstanceNamed('empty', []);
+          return (
+            DartTypes.async.stream().constInstanceNamed('empty', []),
+            true,
+          );
         }
-        return DartTypes.async.stream().newInstanceNamed('value', [
-          encodedExp,
-        ]);
+        return (
+          DartTypes.async.stream().newInstanceNamed('value', [
+            encodedExp,
+          ]),
+          false,
+        );
+      case ListShape _:
+        return (literalConstList([]), true);
+      case MapShape _:
+        return (literalConstMap({}), true);
       default:
         return null;
     }
@@ -313,21 +409,16 @@ extension ShapeUtils on Shape {
   }
 
   /// The library type generated for this shape.
-  SmithyLibrary_LibraryType get libraryType {
-    switch (getType()) {
-      case ShapeType.service:
-        return SmithyLibrary_LibraryType.CLIENT;
-      case ShapeType.operation:
-        return SmithyLibrary_LibraryType.OPERATION;
-      case ShapeType.structure:
-      case ShapeType.union:
-        return SmithyLibrary_LibraryType.MODEL;
-      default:
-        return isEnum
-            ? SmithyLibrary_LibraryType.MODEL
-            : throw ArgumentError('Invalid shape type: ${getType()}');
-    }
-  }
+  SmithyLibrary_LibraryType get libraryType => switch (getType()) {
+        ShapeType.service => SmithyLibrary_LibraryType.CLIENT,
+        ShapeType.operation => SmithyLibrary_LibraryType.OPERATION,
+        ShapeType.structure ||
+        ShapeType.union =>
+          SmithyLibrary_LibraryType.MODEL,
+        ShapeType _ when isEnum => SmithyLibrary_LibraryType.MODEL,
+        final ShapeType invalid =>
+          throw ArgumentError('Invalid shape type: $invalid'),
+      };
 
   /// The smithy library for this shape.
   SmithyLibrary smithyLibrary(CodegenContext context) {
@@ -336,11 +427,20 @@ extension ShapeUtils on Shape {
     if (basePath != null && !basePath.endsWith('/')) {
       basePath = '$basePath/';
     }
+    var filename = rename?.pascalCase.snakeCase;
+    if (filename == null) {
+      final shape = this;
+      if (shape is OperationShape) {
+        filename = shape.dartName(context).snakeCase;
+      } else {
+        filename = shape.shapeId.shape.pascalCase.snakeCase;
+      }
+    }
     return SmithyLibrary()
       ..packageName = context.packageName
       ..serviceName = context.serviceName
       ..libraryType = libraryType
-      ..filename = (rename ?? shapeId.shape).pascalCase.snakeCase
+      ..filename = filename
       ..basePath = basePath ?? '';
   }
 
@@ -360,14 +460,28 @@ extension ShapeUtils on Shape {
         ..pageSizePath = trait.pageSize,
     );
   }
+
+  /// Whether the type generates a built_value builder.
+  bool get hasNestedBuilder {
+    if (context.shapeOverrides.containsKey(shapeId)) {
+      // We can't assume these types are built_value types.
+      return false;
+    }
+    return const [
+      ShapeType.map,
+      ShapeType.list,
+      ShapeType.set,
+      ShapeType.structure,
+    ].contains(getType());
+  }
 }
 
 extension NamedMembersShapeUtil on NamedMembersShape {
   PaginationItem parsePathToExpression(CodegenContext context, String p) {
-    NamedMembersShape shape = this;
+    var shape = this;
     final path = p.split('.');
-    final List<Expression Function(Expression)> exps = [];
-    bool isNullable = false;
+    final exps = <Expression Function(Expression)>[];
+    var isNullable = false;
     late MemberShape member;
     late Reference symbol;
     while (path.isNotEmpty) {
@@ -397,12 +511,21 @@ extension NamedMembersShapeUtil on NamedMembersShape {
 
 extension OperationShapeUtil on OperationShape {
   /// The name of this operation as a Dart class.
-  String get dartName {
+  String dartName(CodegenContext context) {
     final shapeName = shapeId.shape.pascalCase;
     if (shapeName.endsWith('Operation')) {
       return shapeName;
     }
-    return '${shapeName}_Operation'.pascalCase;
+
+    // Don't rename if doing so would conflict with another class.
+    final operationShapeName = '${shapeName}_Operation'.pascalCase;
+    final existingShape = context.shapes.keys.firstWhereOrNull((shapeId) {
+      return shapeId.shape.pascalCase == operationShapeName;
+    });
+    if (existingShape != null) {
+      return shapeName;
+    }
+    return operationShapeName;
   }
 
   /// The shape for the operation's input.
@@ -443,31 +566,39 @@ extension OperationShapeUtil on OperationShape {
       }
 
       if (b.inputTokenPath != null) {
-        b.inputToken.replace(inputShape(context).parsePathToExpression(
-          context,
-          b.inputTokenPath!,
-        ));
+        b.inputToken.replace(
+          inputShape(context).parsePathToExpression(
+            context,
+            b.inputTokenPath!,
+          ),
+        );
       }
 
       if (b.outputTokenPath != null) {
-        b.outputToken.replace(outputShape(context).parsePathToExpression(
-          context,
-          b.outputTokenPath!,
-        ));
+        b.outputToken.replace(
+          outputShape(context).parsePathToExpression(
+            context,
+            b.outputTokenPath!,
+          ),
+        );
       }
 
       if (b.itemsPath != null) {
-        b.items.replace(outputShape(context).parsePathToExpression(
-          context,
-          b.itemsPath!,
-        ));
+        b.items.replace(
+          outputShape(context).parsePathToExpression(
+            context,
+            b.itemsPath!,
+          ),
+        );
       }
 
       if (b.pageSizePath != null) {
-        b.pageSize.replace(inputShape(context).parsePathToExpression(
-          context,
-          b.pageSizePath!,
-        ));
+        b.pageSize.replace(
+          inputShape(context).parsePathToExpression(
+            context,
+            b.pageSizePath!,
+          ),
+        );
       }
     });
   }
@@ -485,8 +616,15 @@ extension OperationShapeUtil on OperationShape {
     // See:
     // - https://awslabs.github.io/smithy/1.0/spec/aws/aws-json-1_0-protocol.html
     // - https://awslabs.github.io/smithy/1.0/spec/aws/aws-json-1_1-protocol.html
-    if ([AwsJson1_0Trait.id, AwsJson1_1Trait.id]
-        .contains(protocol.singleOrNull?.shapeId)) {
+    //
+    // awsQuery and ec2Query send all requests as "POST" to the root path.
+    const rpcProtocols = [
+      AwsJson1_0Trait.id,
+      AwsJson1_1Trait.id,
+      AwsQueryTrait.id,
+      Ec2QueryTrait.id,
+    ];
+    if (rpcProtocols.contains(protocol.singleOrNull?.shapeId)) {
       return const HttpTrait(method: 'POST', uri: '/');
     }
     return null;
@@ -564,7 +702,7 @@ extension OperationShapeUtil on OperationShape {
               ParameterLocation.clientMethod
           ..required = true
           ..defaultTo = DartTypes.awsSigV4.awsCredentialsProvider
-              .constInstanceNamed('environment', []).code,
+              .constInstanceNamed('defaultChain', []).code,
       );
     }
 
@@ -649,7 +787,7 @@ extension StructureShapeUtil on StructureShape {
   }
 
   /// The symbol for the HTTP payload, or `this` if not supported.
-  HttpPayload httpPayload(CodegenContext context) {
+  HttpPayload get httpPayload {
     MemberShape? payloadMember;
     if (isS3UnwrappedOutput(context)) {
       payloadMember = members.values.single;
@@ -672,15 +810,14 @@ extension StructureShapeUtil on StructureShape {
   }
 
   /// HTTP metadata on operation output structures.
-  HttpOutputTraits? httpOutputTraits(
-    CodegenContext context, {
+  HttpOutputTraits? httpOutputTraits({
     bool overrideTrait = false,
   }) {
     if (!isOutputShape && !overrideTrait && Shape.unit != shapeId) {
       return null;
     }
     final builder = HttpOutputTraitsBuilder();
-    for (var member in members.values) {
+    for (final member in members.values) {
       final headerTrait = member.getTrait<HttpHeaderTrait>();
       if (headerTrait != null) {
         builder.httpHeaders[headerTrait.value] = member;
@@ -699,15 +836,14 @@ extension StructureShapeUtil on StructureShape {
   }
 
   /// HTTP metadata on operation input structures.
-  HttpInputTraits? httpInputTraits(
-    CodegenContext context, {
+  HttpInputTraits? httpInputTraits({
     bool overrideTrait = false,
   }) {
     if (!isInputShape && !overrideTrait && Shape.unit != shapeId) {
       return null;
     }
     final builder = HttpInputTraitsBuilder();
-    for (var member in members.values) {
+    for (final member in members.values) {
       final headerTrait = member.getTrait<HttpHeaderTrait>();
       if (headerTrait != null) {
         builder.httpHeaders[headerTrait.value] = member;
@@ -735,13 +871,16 @@ extension StructureShapeUtil on StructureShape {
     return builder.build();
   }
 
-  HttpErrorTraits? httpErrorTraits(CodegenContext context) {
+  HttpErrorTraits? httpErrorTraits([
+    Reference? payloadSymbol,
+  ]) {
     if (!isError) {
       return null;
     }
-    final builder = HttpErrorTraitsBuilder();
-    builder.symbol = context.symbolFor(shapeId);
-    builder.shapeId = shapeId;
+    final builder = HttpErrorTraitsBuilder()
+      ..symbol = context.symbolFor(shapeId)
+      ..payloadSymbol = payloadSymbol
+      ..shapeId = shapeId;
     final errorTrait = expectTrait<ErrorTrait>();
     builder.kind = errorTrait.type;
     final httpErrorTrait = getTrait<HttpErrorTrait>();
@@ -754,7 +893,7 @@ extension StructureShapeUtil on StructureShape {
         isThrottlingError: retryTrait.throttling,
       );
     }
-    for (var member in members.values) {
+    for (final member in members.values) {
       final headerTrait = member.getTrait<HttpHeaderTrait>();
       if (headerTrait != null) {
         builder.httpHeaders[headerTrait.value] = member;
@@ -771,7 +910,7 @@ extension StructureShapeUtil on StructureShape {
 
   /// Member shapes and their [Reference] types.
   Map<MemberShape, Reference> memberSymbols(CodegenContext context) => {
-        for (var member in sortedMembers)
+        for (final member in sortedMembers)
           member: context
               .symbolFor(member.target, this)
               .withBoxed(member.isNullable(context, this)),
@@ -784,15 +923,20 @@ extension StructureShapeUtil on StructureShape {
     });
 
   /// The member shape to serialize when [HttpPayloadTrait] is used.
-  MemberShape? payloadShape(CodegenContext context) =>
-      httpPayload(context).member;
+  MemberShape? get payloadShape => httpPayload.member;
 
   /// The list of all members which convey some information about the request,
   /// and for most protocols are not included in the body of the request.
-  List<MemberShape> metadataMembers(CodegenContext context) {
-    final httpInputTraits = this.httpInputTraits(context);
-    final httpOutputTraits = this.httpOutputTraits(context);
-    final httpErrorTraits = this.httpErrorTraits(context);
+  List<MemberShape> get metadataMembers {
+    final serviceSupportsHttpTraits = context.serviceProtocols
+        .any((protocol) => protocol.supportsTrait(HttpPayloadTrait.id));
+    if (!serviceSupportsHttpTraits) {
+      return const [];
+    }
+
+    final httpInputTraits = this.httpInputTraits();
+    final httpOutputTraits = this.httpOutputTraits();
+    final httpErrorTraits = this.httpErrorTraits();
 
     return <MemberShape?>{
       ...?httpInputTraits?.httpHeaders.values,
@@ -813,8 +957,8 @@ extension StructureShapeUtil on StructureShape {
 
   /// The list of all members which should always be included in the body of
   /// the request.
-  List<MemberShape> payloadMembers(CodegenContext context) => sortedMembers
-      .where((member) => !metadataMembers(context).contains(member))
+  List<MemberShape> get payloadMembers => sortedMembers
+      .where((member) => !metadataMembers.contains(member))
       .toList();
 
   /// Whether the structure has an HTTP payload.
@@ -823,17 +967,19 @@ extension StructureShapeUtil on StructureShape {
       return true;
     }
     return (isInputShape || isOutputShape || isError) &&
-        (metadataMembers(context).isNotEmpty ||
-            members.values.any((shape) => shape.hasTrait<HttpPayloadTrait>()));
+        (members.values.any(
+          (shape) =>
+              shape.hasTrait<HttpPayloadTrait>() || metadataMembers.isNotEmpty,
+        ));
   }
 
   /// Whether the structure needs a payload struct.
   bool hasBuiltPayload(CodegenContext context) =>
-      hasPayload(context) && payloadShape(context) == null;
+      hasPayload(context) && payloadShape == null;
 
   /// Whether the structure has a streaming payload.
   bool hasStreamingPayload(CodegenContext context) {
-    final payloadShape = this.payloadShape(context);
+    final payloadShape = this.payloadShape;
     return hasPayload(context) &&
         payloadShape != null &&
         (payloadShape.isStreaming ||

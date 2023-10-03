@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_storage_s3_dart.s3.model.upload_part_copy_output;
+part of 'upload_part_copy_output.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,35 +8,35 @@ part of amplify_storage_s3_dart.s3.model.upload_part_copy_output;
 
 class _$UploadPartCopyOutput extends UploadPartCopyOutput {
   @override
-  final bool? bucketKeyEnabled;
-  @override
-  final _i3.CopyPartResult? copyPartResult;
-  @override
   final String? copySourceVersionId;
   @override
-  final _i4.RequestCharged? requestCharged;
+  final CopyPartResult? copyPartResult;
   @override
-  final _i5.ServerSideEncryption? serverSideEncryption;
+  final ServerSideEncryption? serverSideEncryption;
   @override
   final String? sseCustomerAlgorithm;
   @override
   final String? sseCustomerKeyMd5;
   @override
   final String? ssekmsKeyId;
+  @override
+  final bool? bucketKeyEnabled;
+  @override
+  final RequestCharged? requestCharged;
 
   factory _$UploadPartCopyOutput(
           [void Function(UploadPartCopyOutputBuilder)? updates]) =>
       (new UploadPartCopyOutputBuilder()..update(updates))._build();
 
   _$UploadPartCopyOutput._(
-      {this.bucketKeyEnabled,
+      {this.copySourceVersionId,
       this.copyPartResult,
-      this.copySourceVersionId,
-      this.requestCharged,
       this.serverSideEncryption,
       this.sseCustomerAlgorithm,
       this.sseCustomerKeyMd5,
-      this.ssekmsKeyId})
+      this.ssekmsKeyId,
+      this.bucketKeyEnabled,
+      this.requestCharged})
       : super._();
 
   @override
@@ -52,27 +52,27 @@ class _$UploadPartCopyOutput extends UploadPartCopyOutput {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is UploadPartCopyOutput &&
-        bucketKeyEnabled == other.bucketKeyEnabled &&
-        copyPartResult == other.copyPartResult &&
         copySourceVersionId == other.copySourceVersionId &&
-        requestCharged == other.requestCharged &&
+        copyPartResult == other.copyPartResult &&
         serverSideEncryption == other.serverSideEncryption &&
         sseCustomerAlgorithm == other.sseCustomerAlgorithm &&
         sseCustomerKeyMd5 == other.sseCustomerKeyMd5 &&
-        ssekmsKeyId == other.ssekmsKeyId;
+        ssekmsKeyId == other.ssekmsKeyId &&
+        bucketKeyEnabled == other.bucketKeyEnabled &&
+        requestCharged == other.requestCharged;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, bucketKeyEnabled.hashCode);
-    _$hash = $jc(_$hash, copyPartResult.hashCode);
     _$hash = $jc(_$hash, copySourceVersionId.hashCode);
-    _$hash = $jc(_$hash, requestCharged.hashCode);
+    _$hash = $jc(_$hash, copyPartResult.hashCode);
     _$hash = $jc(_$hash, serverSideEncryption.hashCode);
     _$hash = $jc(_$hash, sseCustomerAlgorithm.hashCode);
     _$hash = $jc(_$hash, sseCustomerKeyMd5.hashCode);
     _$hash = $jc(_$hash, ssekmsKeyId.hashCode);
+    _$hash = $jc(_$hash, bucketKeyEnabled.hashCode);
+    _$hash = $jc(_$hash, requestCharged.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -82,31 +82,21 @@ class UploadPartCopyOutputBuilder
     implements Builder<UploadPartCopyOutput, UploadPartCopyOutputBuilder> {
   _$UploadPartCopyOutput? _$v;
 
-  bool? _bucketKeyEnabled;
-  bool? get bucketKeyEnabled => _$this._bucketKeyEnabled;
-  set bucketKeyEnabled(bool? bucketKeyEnabled) =>
-      _$this._bucketKeyEnabled = bucketKeyEnabled;
-
-  _i3.CopyPartResultBuilder? _copyPartResult;
-  _i3.CopyPartResultBuilder get copyPartResult =>
-      _$this._copyPartResult ??= new _i3.CopyPartResultBuilder();
-  set copyPartResult(_i3.CopyPartResultBuilder? copyPartResult) =>
-      _$this._copyPartResult = copyPartResult;
-
   String? _copySourceVersionId;
   String? get copySourceVersionId => _$this._copySourceVersionId;
   set copySourceVersionId(String? copySourceVersionId) =>
       _$this._copySourceVersionId = copySourceVersionId;
 
-  _i4.RequestCharged? _requestCharged;
-  _i4.RequestCharged? get requestCharged => _$this._requestCharged;
-  set requestCharged(_i4.RequestCharged? requestCharged) =>
-      _$this._requestCharged = requestCharged;
+  CopyPartResultBuilder? _copyPartResult;
+  CopyPartResultBuilder get copyPartResult =>
+      _$this._copyPartResult ??= new CopyPartResultBuilder();
+  set copyPartResult(CopyPartResultBuilder? copyPartResult) =>
+      _$this._copyPartResult = copyPartResult;
 
-  _i5.ServerSideEncryption? _serverSideEncryption;
-  _i5.ServerSideEncryption? get serverSideEncryption =>
+  ServerSideEncryption? _serverSideEncryption;
+  ServerSideEncryption? get serverSideEncryption =>
       _$this._serverSideEncryption;
-  set serverSideEncryption(_i5.ServerSideEncryption? serverSideEncryption) =>
+  set serverSideEncryption(ServerSideEncryption? serverSideEncryption) =>
       _$this._serverSideEncryption = serverSideEncryption;
 
   String? _sseCustomerAlgorithm;
@@ -123,21 +113,29 @@ class UploadPartCopyOutputBuilder
   String? get ssekmsKeyId => _$this._ssekmsKeyId;
   set ssekmsKeyId(String? ssekmsKeyId) => _$this._ssekmsKeyId = ssekmsKeyId;
 
-  UploadPartCopyOutputBuilder() {
-    UploadPartCopyOutput._init(this);
-  }
+  bool? _bucketKeyEnabled;
+  bool? get bucketKeyEnabled => _$this._bucketKeyEnabled;
+  set bucketKeyEnabled(bool? bucketKeyEnabled) =>
+      _$this._bucketKeyEnabled = bucketKeyEnabled;
+
+  RequestCharged? _requestCharged;
+  RequestCharged? get requestCharged => _$this._requestCharged;
+  set requestCharged(RequestCharged? requestCharged) =>
+      _$this._requestCharged = requestCharged;
+
+  UploadPartCopyOutputBuilder();
 
   UploadPartCopyOutputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _bucketKeyEnabled = $v.bucketKeyEnabled;
-      _copyPartResult = $v.copyPartResult?.toBuilder();
       _copySourceVersionId = $v.copySourceVersionId;
-      _requestCharged = $v.requestCharged;
+      _copyPartResult = $v.copyPartResult?.toBuilder();
       _serverSideEncryption = $v.serverSideEncryption;
       _sseCustomerAlgorithm = $v.sseCustomerAlgorithm;
       _sseCustomerKeyMd5 = $v.sseCustomerKeyMd5;
       _ssekmsKeyId = $v.ssekmsKeyId;
+      _bucketKeyEnabled = $v.bucketKeyEnabled;
+      _requestCharged = $v.requestCharged;
       _$v = null;
     }
     return this;
@@ -162,14 +160,14 @@ class UploadPartCopyOutputBuilder
     try {
       _$result = _$v ??
           new _$UploadPartCopyOutput._(
-              bucketKeyEnabled: bucketKeyEnabled,
-              copyPartResult: _copyPartResult?.build(),
               copySourceVersionId: copySourceVersionId,
-              requestCharged: requestCharged,
+              copyPartResult: _copyPartResult?.build(),
               serverSideEncryption: serverSideEncryption,
               sseCustomerAlgorithm: sseCustomerAlgorithm,
               sseCustomerKeyMd5: sseCustomerKeyMd5,
-              ssekmsKeyId: ssekmsKeyId);
+              ssekmsKeyId: ssekmsKeyId,
+              bucketKeyEnabled: bucketKeyEnabled,
+              requestCharged: requestCharged);
     } catch (_) {
       late String _$failedField;
       try {

@@ -1,13 +1,13 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_storage_s3_dart.s3.model.delete_object_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/request_charged.dart'
-    as _i3;
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/request_charged.dart';
 import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i4;
+import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i2;
 
 part 'delete_object_output.g.dart';
@@ -20,13 +20,13 @@ abstract class DeleteObjectOutput
         _i2.HasPayload<DeleteObjectOutputPayload> {
   factory DeleteObjectOutput({
     bool? deleteMarker,
-    _i3.RequestCharged? requestCharged,
     String? versionId,
+    RequestCharged? requestCharged,
   }) {
     return _$DeleteObjectOutput._(
       deleteMarker: deleteMarker,
-      requestCharged: requestCharged,
       versionId: versionId,
+      requestCharged: requestCharged,
     );
   }
 
@@ -49,54 +49,50 @@ abstract class DeleteObjectOutput
           b.versionId = response.headers['x-amz-version-id']!;
         }
         if (response.headers['x-amz-request-charged'] != null) {
-          b.requestCharged = _i3.RequestCharged.values
+          b.requestCharged = RequestCharged.values
               .byValue(response.headers['x-amz-request-charged']!);
         }
       });
 
-  static const List<_i2.SmithySerializer> serializers = [
-    DeleteObjectOutputRestXmlSerializer()
-  ];
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(DeleteObjectOutputBuilder b) {}
+  static const List<_i2.SmithySerializer<DeleteObjectOutputPayload>>
+      serializers = [DeleteObjectOutputRestXmlSerializer()];
 
   /// Specifies whether the versioned object that was permanently deleted was (true) or was not (false) a delete marker.
   bool? get deleteMarker;
 
-  /// If present, indicates that the requester was successfully charged for the request.
-  _i3.RequestCharged? get requestCharged;
-
   /// Returns the version ID of the delete marker created as a result of the DELETE operation.
   String? get versionId;
+
+  /// If present, indicates that the requester was successfully charged for the request.
+  RequestCharged? get requestCharged;
   @override
   DeleteObjectOutputPayload getPayload() => DeleteObjectOutputPayload();
   @override
   List<Object?> get props => [
         deleteMarker,
-        requestCharged,
         versionId,
+        requestCharged,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('DeleteObjectOutput');
-    helper.add(
-      'deleteMarker',
-      deleteMarker,
-    );
-    helper.add(
-      'requestCharged',
-      requestCharged,
-    );
-    helper.add(
-      'versionId',
-      versionId,
-    );
+    final helper = newBuiltValueToStringHelper('DeleteObjectOutput')
+      ..add(
+        'deleteMarker',
+        deleteMarker,
+      )
+      ..add(
+        'versionId',
+        versionId,
+      )
+      ..add(
+        'requestCharged',
+        requestCharged,
+      );
     return helper.toString();
   }
 }
 
-@_i4.internal
+@_i3.internal
 abstract class DeleteObjectOutputPayload
     with _i1.AWSEquatable<DeleteObjectOutputPayload>
     implements
@@ -108,8 +104,6 @@ abstract class DeleteObjectOutputPayload
 
   const DeleteObjectOutputPayload._();
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(DeleteObjectOutputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
   @override
@@ -149,15 +143,16 @@ class DeleteObjectOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    DeleteObjectOutputPayload object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = <Object?>[
+    final result$ = <Object?>[
       const _i2.XmlElementName(
         'DeleteObjectOutput',
         _i2.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
       )
     ];
-    return result;
+
+    return result$;
   }
 }

@@ -1,3 +1,55 @@
+## 0.3.4
+
+- Minor bug fixes and improvements
+
+## 0.3.3
+
+- Minor bug fixes and improvements
+
+## 0.3.2+3
+
+- Minor bug fixes and improvements
+
+## 0.3.2+2
+
+- Minor bug fixes and improvements
+
+## 0.3.2+1
+
+- Minor bug fixes and improvements
+
+## 0.3.2
+
+- Minor bug fixes and improvements
+
+## 0.3.1+1
+
+### Fixes
+- fix(storage): list options pageSize and nextToken params got lost ([#3291](https://github.com/aws-amplify/amplify-flutter/pull/3291))
+
+## 0.3.1
+
+### Fixes
+- fix(storage): API doc errors
+
+### Features
+- feat(storage): using path style URLs when bucket name contains dots
+
+## 0.3.0+1
+
+- Minor bug fixes and improvements
+
+## 0.3.0
+
+### Features
+- Dart 3 support (must update Dart SDK constraint to `^3.0.0`)
+
+## 0.2.0+3
+
+### Fixes
+- fix(repo): Flutter 3.3 support
+- fix(storage): API doc errors
+
 ## 0.2.0+2
 
 ### Fixes

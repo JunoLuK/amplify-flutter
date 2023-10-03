@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_storage_s3_dart.s3.model.copy_object_request;
+part of 'copy_object_request.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,15 +8,13 @@ part of amplify_storage_s3_dart.s3.model.copy_object_request;
 
 class _$CopyObjectRequest extends CopyObjectRequest {
   @override
-  final _i3.ObjectCannedAcl? acl;
+  final ObjectCannedAcl? acl;
   @override
   final String bucket;
   @override
-  final bool? bucketKeyEnabled;
-  @override
   final String? cacheControl;
   @override
-  final _i4.ChecksumAlgorithm? checksumAlgorithm;
+  final ChecksumAlgorithm? checksumAlgorithm;
   @override
   final String? contentDisposition;
   @override
@@ -36,16 +34,6 @@ class _$CopyObjectRequest extends CopyObjectRequest {
   @override
   final DateTime? copySourceIfUnmodifiedSince;
   @override
-  final String? copySourceSseCustomerAlgorithm;
-  @override
-  final String? copySourceSseCustomerKey;
-  @override
-  final String? copySourceSseCustomerKeyMd5;
-  @override
-  final String? expectedBucketOwner;
-  @override
-  final String? expectedSourceBucketOwner;
-  @override
   final DateTime? expires;
   @override
   final String? grantFullControl;
@@ -58,19 +46,17 @@ class _$CopyObjectRequest extends CopyObjectRequest {
   @override
   final String key;
   @override
-  final _i12.BuiltMap<String, String>? metadata;
+  final _i3.BuiltMap<String, String>? metadata;
   @override
-  final _i5.MetadataDirective? metadataDirective;
+  final MetadataDirective? metadataDirective;
   @override
-  final _i6.ObjectLockLegalHoldStatus? objectLockLegalHoldStatus;
+  final TaggingDirective? taggingDirective;
   @override
-  final _i7.ObjectLockMode? objectLockMode;
+  final ServerSideEncryption? serverSideEncryption;
   @override
-  final DateTime? objectLockRetainUntilDate;
+  final StorageClass? storageClass;
   @override
-  final _i8.RequestPayer? requestPayer;
-  @override
-  final _i9.ServerSideEncryption? serverSideEncryption;
+  final String? websiteRedirectLocation;
   @override
   final String? sseCustomerAlgorithm;
   @override
@@ -78,17 +64,31 @@ class _$CopyObjectRequest extends CopyObjectRequest {
   @override
   final String? sseCustomerKeyMd5;
   @override
-  final String? ssekmsEncryptionContext;
-  @override
   final String? ssekmsKeyId;
   @override
-  final _i10.StorageClass? storageClass;
+  final String? ssekmsEncryptionContext;
+  @override
+  final bool? bucketKeyEnabled;
+  @override
+  final String? copySourceSseCustomerAlgorithm;
+  @override
+  final String? copySourceSseCustomerKey;
+  @override
+  final String? copySourceSseCustomerKeyMd5;
+  @override
+  final RequestPayer? requestPayer;
   @override
   final String? tagging;
   @override
-  final _i11.TaggingDirective? taggingDirective;
+  final ObjectLockMode? objectLockMode;
   @override
-  final String? websiteRedirectLocation;
+  final DateTime? objectLockRetainUntilDate;
+  @override
+  final ObjectLockLegalHoldStatus? objectLockLegalHoldStatus;
+  @override
+  final String? expectedBucketOwner;
+  @override
+  final String? expectedSourceBucketOwner;
 
   factory _$CopyObjectRequest(
           [void Function(CopyObjectRequestBuilder)? updates]) =>
@@ -97,7 +97,6 @@ class _$CopyObjectRequest extends CopyObjectRequest {
   _$CopyObjectRequest._(
       {this.acl,
       required this.bucket,
-      this.bucketKeyEnabled,
       this.cacheControl,
       this.checksumAlgorithm,
       this.contentDisposition,
@@ -109,11 +108,6 @@ class _$CopyObjectRequest extends CopyObjectRequest {
       this.copySourceIfModifiedSince,
       this.copySourceIfNoneMatch,
       this.copySourceIfUnmodifiedSince,
-      this.copySourceSseCustomerAlgorithm,
-      this.copySourceSseCustomerKey,
-      this.copySourceSseCustomerKeyMd5,
-      this.expectedBucketOwner,
-      this.expectedSourceBucketOwner,
       this.expires,
       this.grantFullControl,
       this.grantRead,
@@ -122,20 +116,26 @@ class _$CopyObjectRequest extends CopyObjectRequest {
       required this.key,
       this.metadata,
       this.metadataDirective,
-      this.objectLockLegalHoldStatus,
-      this.objectLockMode,
-      this.objectLockRetainUntilDate,
-      this.requestPayer,
+      this.taggingDirective,
       this.serverSideEncryption,
+      this.storageClass,
+      this.websiteRedirectLocation,
       this.sseCustomerAlgorithm,
       this.sseCustomerKey,
       this.sseCustomerKeyMd5,
-      this.ssekmsEncryptionContext,
       this.ssekmsKeyId,
-      this.storageClass,
+      this.ssekmsEncryptionContext,
+      this.bucketKeyEnabled,
+      this.copySourceSseCustomerAlgorithm,
+      this.copySourceSseCustomerKey,
+      this.copySourceSseCustomerKeyMd5,
+      this.requestPayer,
       this.tagging,
-      this.taggingDirective,
-      this.websiteRedirectLocation})
+      this.objectLockMode,
+      this.objectLockRetainUntilDate,
+      this.objectLockLegalHoldStatus,
+      this.expectedBucketOwner,
+      this.expectedSourceBucketOwner})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         bucket, r'CopyObjectRequest', 'bucket');
@@ -158,7 +158,6 @@ class _$CopyObjectRequest extends CopyObjectRequest {
     return other is CopyObjectRequest &&
         acl == other.acl &&
         bucket == other.bucket &&
-        bucketKeyEnabled == other.bucketKeyEnabled &&
         cacheControl == other.cacheControl &&
         checksumAlgorithm == other.checksumAlgorithm &&
         contentDisposition == other.contentDisposition &&
@@ -170,12 +169,6 @@ class _$CopyObjectRequest extends CopyObjectRequest {
         copySourceIfModifiedSince == other.copySourceIfModifiedSince &&
         copySourceIfNoneMatch == other.copySourceIfNoneMatch &&
         copySourceIfUnmodifiedSince == other.copySourceIfUnmodifiedSince &&
-        copySourceSseCustomerAlgorithm ==
-            other.copySourceSseCustomerAlgorithm &&
-        copySourceSseCustomerKey == other.copySourceSseCustomerKey &&
-        copySourceSseCustomerKeyMd5 == other.copySourceSseCustomerKeyMd5 &&
-        expectedBucketOwner == other.expectedBucketOwner &&
-        expectedSourceBucketOwner == other.expectedSourceBucketOwner &&
         expires == other.expires &&
         grantFullControl == other.grantFullControl &&
         grantRead == other.grantRead &&
@@ -184,20 +177,27 @@ class _$CopyObjectRequest extends CopyObjectRequest {
         key == other.key &&
         metadata == other.metadata &&
         metadataDirective == other.metadataDirective &&
-        objectLockLegalHoldStatus == other.objectLockLegalHoldStatus &&
-        objectLockMode == other.objectLockMode &&
-        objectLockRetainUntilDate == other.objectLockRetainUntilDate &&
-        requestPayer == other.requestPayer &&
+        taggingDirective == other.taggingDirective &&
         serverSideEncryption == other.serverSideEncryption &&
+        storageClass == other.storageClass &&
+        websiteRedirectLocation == other.websiteRedirectLocation &&
         sseCustomerAlgorithm == other.sseCustomerAlgorithm &&
         sseCustomerKey == other.sseCustomerKey &&
         sseCustomerKeyMd5 == other.sseCustomerKeyMd5 &&
-        ssekmsEncryptionContext == other.ssekmsEncryptionContext &&
         ssekmsKeyId == other.ssekmsKeyId &&
-        storageClass == other.storageClass &&
+        ssekmsEncryptionContext == other.ssekmsEncryptionContext &&
+        bucketKeyEnabled == other.bucketKeyEnabled &&
+        copySourceSseCustomerAlgorithm ==
+            other.copySourceSseCustomerAlgorithm &&
+        copySourceSseCustomerKey == other.copySourceSseCustomerKey &&
+        copySourceSseCustomerKeyMd5 == other.copySourceSseCustomerKeyMd5 &&
+        requestPayer == other.requestPayer &&
         tagging == other.tagging &&
-        taggingDirective == other.taggingDirective &&
-        websiteRedirectLocation == other.websiteRedirectLocation;
+        objectLockMode == other.objectLockMode &&
+        objectLockRetainUntilDate == other.objectLockRetainUntilDate &&
+        objectLockLegalHoldStatus == other.objectLockLegalHoldStatus &&
+        expectedBucketOwner == other.expectedBucketOwner &&
+        expectedSourceBucketOwner == other.expectedSourceBucketOwner;
   }
 
   @override
@@ -205,7 +205,6 @@ class _$CopyObjectRequest extends CopyObjectRequest {
     var _$hash = 0;
     _$hash = $jc(_$hash, acl.hashCode);
     _$hash = $jc(_$hash, bucket.hashCode);
-    _$hash = $jc(_$hash, bucketKeyEnabled.hashCode);
     _$hash = $jc(_$hash, cacheControl.hashCode);
     _$hash = $jc(_$hash, checksumAlgorithm.hashCode);
     _$hash = $jc(_$hash, contentDisposition.hashCode);
@@ -217,11 +216,6 @@ class _$CopyObjectRequest extends CopyObjectRequest {
     _$hash = $jc(_$hash, copySourceIfModifiedSince.hashCode);
     _$hash = $jc(_$hash, copySourceIfNoneMatch.hashCode);
     _$hash = $jc(_$hash, copySourceIfUnmodifiedSince.hashCode);
-    _$hash = $jc(_$hash, copySourceSseCustomerAlgorithm.hashCode);
-    _$hash = $jc(_$hash, copySourceSseCustomerKey.hashCode);
-    _$hash = $jc(_$hash, copySourceSseCustomerKeyMd5.hashCode);
-    _$hash = $jc(_$hash, expectedBucketOwner.hashCode);
-    _$hash = $jc(_$hash, expectedSourceBucketOwner.hashCode);
     _$hash = $jc(_$hash, expires.hashCode);
     _$hash = $jc(_$hash, grantFullControl.hashCode);
     _$hash = $jc(_$hash, grantRead.hashCode);
@@ -230,20 +224,26 @@ class _$CopyObjectRequest extends CopyObjectRequest {
     _$hash = $jc(_$hash, key.hashCode);
     _$hash = $jc(_$hash, metadata.hashCode);
     _$hash = $jc(_$hash, metadataDirective.hashCode);
-    _$hash = $jc(_$hash, objectLockLegalHoldStatus.hashCode);
-    _$hash = $jc(_$hash, objectLockMode.hashCode);
-    _$hash = $jc(_$hash, objectLockRetainUntilDate.hashCode);
-    _$hash = $jc(_$hash, requestPayer.hashCode);
+    _$hash = $jc(_$hash, taggingDirective.hashCode);
     _$hash = $jc(_$hash, serverSideEncryption.hashCode);
+    _$hash = $jc(_$hash, storageClass.hashCode);
+    _$hash = $jc(_$hash, websiteRedirectLocation.hashCode);
     _$hash = $jc(_$hash, sseCustomerAlgorithm.hashCode);
     _$hash = $jc(_$hash, sseCustomerKey.hashCode);
     _$hash = $jc(_$hash, sseCustomerKeyMd5.hashCode);
-    _$hash = $jc(_$hash, ssekmsEncryptionContext.hashCode);
     _$hash = $jc(_$hash, ssekmsKeyId.hashCode);
-    _$hash = $jc(_$hash, storageClass.hashCode);
+    _$hash = $jc(_$hash, ssekmsEncryptionContext.hashCode);
+    _$hash = $jc(_$hash, bucketKeyEnabled.hashCode);
+    _$hash = $jc(_$hash, copySourceSseCustomerAlgorithm.hashCode);
+    _$hash = $jc(_$hash, copySourceSseCustomerKey.hashCode);
+    _$hash = $jc(_$hash, copySourceSseCustomerKeyMd5.hashCode);
+    _$hash = $jc(_$hash, requestPayer.hashCode);
     _$hash = $jc(_$hash, tagging.hashCode);
-    _$hash = $jc(_$hash, taggingDirective.hashCode);
-    _$hash = $jc(_$hash, websiteRedirectLocation.hashCode);
+    _$hash = $jc(_$hash, objectLockMode.hashCode);
+    _$hash = $jc(_$hash, objectLockRetainUntilDate.hashCode);
+    _$hash = $jc(_$hash, objectLockLegalHoldStatus.hashCode);
+    _$hash = $jc(_$hash, expectedBucketOwner.hashCode);
+    _$hash = $jc(_$hash, expectedSourceBucketOwner.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -253,26 +253,21 @@ class CopyObjectRequestBuilder
     implements Builder<CopyObjectRequest, CopyObjectRequestBuilder> {
   _$CopyObjectRequest? _$v;
 
-  _i3.ObjectCannedAcl? _acl;
-  _i3.ObjectCannedAcl? get acl => _$this._acl;
-  set acl(_i3.ObjectCannedAcl? acl) => _$this._acl = acl;
+  ObjectCannedAcl? _acl;
+  ObjectCannedAcl? get acl => _$this._acl;
+  set acl(ObjectCannedAcl? acl) => _$this._acl = acl;
 
   String? _bucket;
   String? get bucket => _$this._bucket;
   set bucket(String? bucket) => _$this._bucket = bucket;
 
-  bool? _bucketKeyEnabled;
-  bool? get bucketKeyEnabled => _$this._bucketKeyEnabled;
-  set bucketKeyEnabled(bool? bucketKeyEnabled) =>
-      _$this._bucketKeyEnabled = bucketKeyEnabled;
-
   String? _cacheControl;
   String? get cacheControl => _$this._cacheControl;
   set cacheControl(String? cacheControl) => _$this._cacheControl = cacheControl;
 
-  _i4.ChecksumAlgorithm? _checksumAlgorithm;
-  _i4.ChecksumAlgorithm? get checksumAlgorithm => _$this._checksumAlgorithm;
-  set checksumAlgorithm(_i4.ChecksumAlgorithm? checksumAlgorithm) =>
+  ChecksumAlgorithm? _checksumAlgorithm;
+  ChecksumAlgorithm? get checksumAlgorithm => _$this._checksumAlgorithm;
+  set checksumAlgorithm(ChecksumAlgorithm? checksumAlgorithm) =>
       _$this._checksumAlgorithm = checksumAlgorithm;
 
   String? _contentDisposition;
@@ -319,33 +314,6 @@ class CopyObjectRequestBuilder
   set copySourceIfUnmodifiedSince(DateTime? copySourceIfUnmodifiedSince) =>
       _$this._copySourceIfUnmodifiedSince = copySourceIfUnmodifiedSince;
 
-  String? _copySourceSseCustomerAlgorithm;
-  String? get copySourceSseCustomerAlgorithm =>
-      _$this._copySourceSseCustomerAlgorithm;
-  set copySourceSseCustomerAlgorithm(String? copySourceSseCustomerAlgorithm) =>
-      _$this._copySourceSseCustomerAlgorithm = copySourceSseCustomerAlgorithm;
-
-  String? _copySourceSseCustomerKey;
-  String? get copySourceSseCustomerKey => _$this._copySourceSseCustomerKey;
-  set copySourceSseCustomerKey(String? copySourceSseCustomerKey) =>
-      _$this._copySourceSseCustomerKey = copySourceSseCustomerKey;
-
-  String? _copySourceSseCustomerKeyMd5;
-  String? get copySourceSseCustomerKeyMd5 =>
-      _$this._copySourceSseCustomerKeyMd5;
-  set copySourceSseCustomerKeyMd5(String? copySourceSseCustomerKeyMd5) =>
-      _$this._copySourceSseCustomerKeyMd5 = copySourceSseCustomerKeyMd5;
-
-  String? _expectedBucketOwner;
-  String? get expectedBucketOwner => _$this._expectedBucketOwner;
-  set expectedBucketOwner(String? expectedBucketOwner) =>
-      _$this._expectedBucketOwner = expectedBucketOwner;
-
-  String? _expectedSourceBucketOwner;
-  String? get expectedSourceBucketOwner => _$this._expectedSourceBucketOwner;
-  set expectedSourceBucketOwner(String? expectedSourceBucketOwner) =>
-      _$this._expectedSourceBucketOwner = expectedSourceBucketOwner;
-
   DateTime? _expires;
   DateTime? get expires => _$this._expires;
   set expires(DateTime? expires) => _$this._expires = expires;
@@ -372,44 +340,37 @@ class CopyObjectRequestBuilder
   String? get key => _$this._key;
   set key(String? key) => _$this._key = key;
 
-  _i12.MapBuilder<String, String>? _metadata;
-  _i12.MapBuilder<String, String> get metadata =>
-      _$this._metadata ??= new _i12.MapBuilder<String, String>();
-  set metadata(_i12.MapBuilder<String, String>? metadata) =>
+  _i3.MapBuilder<String, String>? _metadata;
+  _i3.MapBuilder<String, String> get metadata =>
+      _$this._metadata ??= new _i3.MapBuilder<String, String>();
+  set metadata(_i3.MapBuilder<String, String>? metadata) =>
       _$this._metadata = metadata;
 
-  _i5.MetadataDirective? _metadataDirective;
-  _i5.MetadataDirective? get metadataDirective => _$this._metadataDirective;
-  set metadataDirective(_i5.MetadataDirective? metadataDirective) =>
+  MetadataDirective? _metadataDirective;
+  MetadataDirective? get metadataDirective => _$this._metadataDirective;
+  set metadataDirective(MetadataDirective? metadataDirective) =>
       _$this._metadataDirective = metadataDirective;
 
-  _i6.ObjectLockLegalHoldStatus? _objectLockLegalHoldStatus;
-  _i6.ObjectLockLegalHoldStatus? get objectLockLegalHoldStatus =>
-      _$this._objectLockLegalHoldStatus;
-  set objectLockLegalHoldStatus(
-          _i6.ObjectLockLegalHoldStatus? objectLockLegalHoldStatus) =>
-      _$this._objectLockLegalHoldStatus = objectLockLegalHoldStatus;
+  TaggingDirective? _taggingDirective;
+  TaggingDirective? get taggingDirective => _$this._taggingDirective;
+  set taggingDirective(TaggingDirective? taggingDirective) =>
+      _$this._taggingDirective = taggingDirective;
 
-  _i7.ObjectLockMode? _objectLockMode;
-  _i7.ObjectLockMode? get objectLockMode => _$this._objectLockMode;
-  set objectLockMode(_i7.ObjectLockMode? objectLockMode) =>
-      _$this._objectLockMode = objectLockMode;
-
-  DateTime? _objectLockRetainUntilDate;
-  DateTime? get objectLockRetainUntilDate => _$this._objectLockRetainUntilDate;
-  set objectLockRetainUntilDate(DateTime? objectLockRetainUntilDate) =>
-      _$this._objectLockRetainUntilDate = objectLockRetainUntilDate;
-
-  _i8.RequestPayer? _requestPayer;
-  _i8.RequestPayer? get requestPayer => _$this._requestPayer;
-  set requestPayer(_i8.RequestPayer? requestPayer) =>
-      _$this._requestPayer = requestPayer;
-
-  _i9.ServerSideEncryption? _serverSideEncryption;
-  _i9.ServerSideEncryption? get serverSideEncryption =>
+  ServerSideEncryption? _serverSideEncryption;
+  ServerSideEncryption? get serverSideEncryption =>
       _$this._serverSideEncryption;
-  set serverSideEncryption(_i9.ServerSideEncryption? serverSideEncryption) =>
+  set serverSideEncryption(ServerSideEncryption? serverSideEncryption) =>
       _$this._serverSideEncryption = serverSideEncryption;
+
+  StorageClass? _storageClass;
+  StorageClass? get storageClass => _$this._storageClass;
+  set storageClass(StorageClass? storageClass) =>
+      _$this._storageClass = storageClass;
+
+  String? _websiteRedirectLocation;
+  String? get websiteRedirectLocation => _$this._websiteRedirectLocation;
+  set websiteRedirectLocation(String? websiteRedirectLocation) =>
+      _$this._websiteRedirectLocation = websiteRedirectLocation;
 
   String? _sseCustomerAlgorithm;
   String? get sseCustomerAlgorithm => _$this._sseCustomerAlgorithm;
@@ -426,44 +387,80 @@ class CopyObjectRequestBuilder
   set sseCustomerKeyMd5(String? sseCustomerKeyMd5) =>
       _$this._sseCustomerKeyMd5 = sseCustomerKeyMd5;
 
+  String? _ssekmsKeyId;
+  String? get ssekmsKeyId => _$this._ssekmsKeyId;
+  set ssekmsKeyId(String? ssekmsKeyId) => _$this._ssekmsKeyId = ssekmsKeyId;
+
   String? _ssekmsEncryptionContext;
   String? get ssekmsEncryptionContext => _$this._ssekmsEncryptionContext;
   set ssekmsEncryptionContext(String? ssekmsEncryptionContext) =>
       _$this._ssekmsEncryptionContext = ssekmsEncryptionContext;
 
-  String? _ssekmsKeyId;
-  String? get ssekmsKeyId => _$this._ssekmsKeyId;
-  set ssekmsKeyId(String? ssekmsKeyId) => _$this._ssekmsKeyId = ssekmsKeyId;
+  bool? _bucketKeyEnabled;
+  bool? get bucketKeyEnabled => _$this._bucketKeyEnabled;
+  set bucketKeyEnabled(bool? bucketKeyEnabled) =>
+      _$this._bucketKeyEnabled = bucketKeyEnabled;
 
-  _i10.StorageClass? _storageClass;
-  _i10.StorageClass? get storageClass => _$this._storageClass;
-  set storageClass(_i10.StorageClass? storageClass) =>
-      _$this._storageClass = storageClass;
+  String? _copySourceSseCustomerAlgorithm;
+  String? get copySourceSseCustomerAlgorithm =>
+      _$this._copySourceSseCustomerAlgorithm;
+  set copySourceSseCustomerAlgorithm(String? copySourceSseCustomerAlgorithm) =>
+      _$this._copySourceSseCustomerAlgorithm = copySourceSseCustomerAlgorithm;
+
+  String? _copySourceSseCustomerKey;
+  String? get copySourceSseCustomerKey => _$this._copySourceSseCustomerKey;
+  set copySourceSseCustomerKey(String? copySourceSseCustomerKey) =>
+      _$this._copySourceSseCustomerKey = copySourceSseCustomerKey;
+
+  String? _copySourceSseCustomerKeyMd5;
+  String? get copySourceSseCustomerKeyMd5 =>
+      _$this._copySourceSseCustomerKeyMd5;
+  set copySourceSseCustomerKeyMd5(String? copySourceSseCustomerKeyMd5) =>
+      _$this._copySourceSseCustomerKeyMd5 = copySourceSseCustomerKeyMd5;
+
+  RequestPayer? _requestPayer;
+  RequestPayer? get requestPayer => _$this._requestPayer;
+  set requestPayer(RequestPayer? requestPayer) =>
+      _$this._requestPayer = requestPayer;
 
   String? _tagging;
   String? get tagging => _$this._tagging;
   set tagging(String? tagging) => _$this._tagging = tagging;
 
-  _i11.TaggingDirective? _taggingDirective;
-  _i11.TaggingDirective? get taggingDirective => _$this._taggingDirective;
-  set taggingDirective(_i11.TaggingDirective? taggingDirective) =>
-      _$this._taggingDirective = taggingDirective;
+  ObjectLockMode? _objectLockMode;
+  ObjectLockMode? get objectLockMode => _$this._objectLockMode;
+  set objectLockMode(ObjectLockMode? objectLockMode) =>
+      _$this._objectLockMode = objectLockMode;
 
-  String? _websiteRedirectLocation;
-  String? get websiteRedirectLocation => _$this._websiteRedirectLocation;
-  set websiteRedirectLocation(String? websiteRedirectLocation) =>
-      _$this._websiteRedirectLocation = websiteRedirectLocation;
+  DateTime? _objectLockRetainUntilDate;
+  DateTime? get objectLockRetainUntilDate => _$this._objectLockRetainUntilDate;
+  set objectLockRetainUntilDate(DateTime? objectLockRetainUntilDate) =>
+      _$this._objectLockRetainUntilDate = objectLockRetainUntilDate;
 
-  CopyObjectRequestBuilder() {
-    CopyObjectRequest._init(this);
-  }
+  ObjectLockLegalHoldStatus? _objectLockLegalHoldStatus;
+  ObjectLockLegalHoldStatus? get objectLockLegalHoldStatus =>
+      _$this._objectLockLegalHoldStatus;
+  set objectLockLegalHoldStatus(
+          ObjectLockLegalHoldStatus? objectLockLegalHoldStatus) =>
+      _$this._objectLockLegalHoldStatus = objectLockLegalHoldStatus;
+
+  String? _expectedBucketOwner;
+  String? get expectedBucketOwner => _$this._expectedBucketOwner;
+  set expectedBucketOwner(String? expectedBucketOwner) =>
+      _$this._expectedBucketOwner = expectedBucketOwner;
+
+  String? _expectedSourceBucketOwner;
+  String? get expectedSourceBucketOwner => _$this._expectedSourceBucketOwner;
+  set expectedSourceBucketOwner(String? expectedSourceBucketOwner) =>
+      _$this._expectedSourceBucketOwner = expectedSourceBucketOwner;
+
+  CopyObjectRequestBuilder();
 
   CopyObjectRequestBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _acl = $v.acl;
       _bucket = $v.bucket;
-      _bucketKeyEnabled = $v.bucketKeyEnabled;
       _cacheControl = $v.cacheControl;
       _checksumAlgorithm = $v.checksumAlgorithm;
       _contentDisposition = $v.contentDisposition;
@@ -475,11 +472,6 @@ class CopyObjectRequestBuilder
       _copySourceIfModifiedSince = $v.copySourceIfModifiedSince;
       _copySourceIfNoneMatch = $v.copySourceIfNoneMatch;
       _copySourceIfUnmodifiedSince = $v.copySourceIfUnmodifiedSince;
-      _copySourceSseCustomerAlgorithm = $v.copySourceSseCustomerAlgorithm;
-      _copySourceSseCustomerKey = $v.copySourceSseCustomerKey;
-      _copySourceSseCustomerKeyMd5 = $v.copySourceSseCustomerKeyMd5;
-      _expectedBucketOwner = $v.expectedBucketOwner;
-      _expectedSourceBucketOwner = $v.expectedSourceBucketOwner;
       _expires = $v.expires;
       _grantFullControl = $v.grantFullControl;
       _grantRead = $v.grantRead;
@@ -488,20 +480,26 @@ class CopyObjectRequestBuilder
       _key = $v.key;
       _metadata = $v.metadata?.toBuilder();
       _metadataDirective = $v.metadataDirective;
-      _objectLockLegalHoldStatus = $v.objectLockLegalHoldStatus;
-      _objectLockMode = $v.objectLockMode;
-      _objectLockRetainUntilDate = $v.objectLockRetainUntilDate;
-      _requestPayer = $v.requestPayer;
+      _taggingDirective = $v.taggingDirective;
       _serverSideEncryption = $v.serverSideEncryption;
+      _storageClass = $v.storageClass;
+      _websiteRedirectLocation = $v.websiteRedirectLocation;
       _sseCustomerAlgorithm = $v.sseCustomerAlgorithm;
       _sseCustomerKey = $v.sseCustomerKey;
       _sseCustomerKeyMd5 = $v.sseCustomerKeyMd5;
-      _ssekmsEncryptionContext = $v.ssekmsEncryptionContext;
       _ssekmsKeyId = $v.ssekmsKeyId;
-      _storageClass = $v.storageClass;
+      _ssekmsEncryptionContext = $v.ssekmsEncryptionContext;
+      _bucketKeyEnabled = $v.bucketKeyEnabled;
+      _copySourceSseCustomerAlgorithm = $v.copySourceSseCustomerAlgorithm;
+      _copySourceSseCustomerKey = $v.copySourceSseCustomerKey;
+      _copySourceSseCustomerKeyMd5 = $v.copySourceSseCustomerKeyMd5;
+      _requestPayer = $v.requestPayer;
       _tagging = $v.tagging;
-      _taggingDirective = $v.taggingDirective;
-      _websiteRedirectLocation = $v.websiteRedirectLocation;
+      _objectLockMode = $v.objectLockMode;
+      _objectLockRetainUntilDate = $v.objectLockRetainUntilDate;
+      _objectLockLegalHoldStatus = $v.objectLockLegalHoldStatus;
+      _expectedBucketOwner = $v.expectedBucketOwner;
+      _expectedSourceBucketOwner = $v.expectedSourceBucketOwner;
       _$v = null;
     }
     return this;
@@ -529,7 +527,6 @@ class CopyObjectRequestBuilder
               acl: acl,
               bucket: BuiltValueNullFieldError.checkNotNull(
                   bucket, r'CopyObjectRequest', 'bucket'),
-              bucketKeyEnabled: bucketKeyEnabled,
               cacheControl: cacheControl,
               checksumAlgorithm: checksumAlgorithm,
               contentDisposition: contentDisposition,
@@ -542,11 +539,6 @@ class CopyObjectRequestBuilder
               copySourceIfModifiedSince: copySourceIfModifiedSince,
               copySourceIfNoneMatch: copySourceIfNoneMatch,
               copySourceIfUnmodifiedSince: copySourceIfUnmodifiedSince,
-              copySourceSseCustomerAlgorithm: copySourceSseCustomerAlgorithm,
-              copySourceSseCustomerKey: copySourceSseCustomerKey,
-              copySourceSseCustomerKeyMd5: copySourceSseCustomerKeyMd5,
-              expectedBucketOwner: expectedBucketOwner,
-              expectedSourceBucketOwner: expectedSourceBucketOwner,
               expires: expires,
               grantFullControl: grantFullControl,
               grantRead: grantRead,
@@ -556,20 +548,26 @@ class CopyObjectRequestBuilder
                   key, r'CopyObjectRequest', 'key'),
               metadata: _metadata?.build(),
               metadataDirective: metadataDirective,
-              objectLockLegalHoldStatus: objectLockLegalHoldStatus,
-              objectLockMode: objectLockMode,
-              objectLockRetainUntilDate: objectLockRetainUntilDate,
-              requestPayer: requestPayer,
+              taggingDirective: taggingDirective,
               serverSideEncryption: serverSideEncryption,
+              storageClass: storageClass,
+              websiteRedirectLocation: websiteRedirectLocation,
               sseCustomerAlgorithm: sseCustomerAlgorithm,
               sseCustomerKey: sseCustomerKey,
               sseCustomerKeyMd5: sseCustomerKeyMd5,
-              ssekmsEncryptionContext: ssekmsEncryptionContext,
               ssekmsKeyId: ssekmsKeyId,
-              storageClass: storageClass,
+              ssekmsEncryptionContext: ssekmsEncryptionContext,
+              bucketKeyEnabled: bucketKeyEnabled,
+              copySourceSseCustomerAlgorithm: copySourceSseCustomerAlgorithm,
+              copySourceSseCustomerKey: copySourceSseCustomerKey,
+              copySourceSseCustomerKeyMd5: copySourceSseCustomerKeyMd5,
+              requestPayer: requestPayer,
               tagging: tagging,
-              taggingDirective: taggingDirective,
-              websiteRedirectLocation: websiteRedirectLocation);
+              objectLockMode: objectLockMode,
+              objectLockRetainUntilDate: objectLockRetainUntilDate,
+              objectLockLegalHoldStatus: objectLockLegalHoldStatus,
+              expectedBucketOwner: expectedBucketOwner,
+              expectedSourceBucketOwner: expectedSourceBucketOwner);
     } catch (_) {
       late String _$failedField;
       try {
@@ -619,9 +617,7 @@ class CopyObjectRequestPayloadBuilder
         Builder<CopyObjectRequestPayload, CopyObjectRequestPayloadBuilder> {
   _$CopyObjectRequestPayload? _$v;
 
-  CopyObjectRequestPayloadBuilder() {
-    CopyObjectRequestPayload._init(this);
-  }
+  CopyObjectRequestPayloadBuilder();
 
   @override
   void replace(CopyObjectRequestPayload other) {

@@ -27,26 +27,31 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
   /// Tracks visited shapes to prevent stack overflow from nesting.
   final Set<ShapeId> seen = {};
 
-  GeneratedLibrary _buildLibrary(Shape shape, Library library) =>
+  GeneratedLibrary _buildLibrary(
+    Shape shape,
+    Library library, {
+    SmithyLibrary? smithyLibrary,
+  }) =>
       GeneratedLibrary(
-        shape.smithyLibrary(context),
+        smithyLibrary ?? shape.smithyLibrary(context),
         library,
       );
 
   @override
-  Iterable<GeneratedLibrary> operationShape(OperationShape shape,
-      [Shape? parent]) sync* {
+  Iterable<GeneratedLibrary> operationShape(
+    OperationShape shape, [
+    Shape? parent,
+  ]) sync* {
     if (seen.contains(shape.shapeId)) {
       return;
     }
     seen.add(shape.shapeId);
 
     // Build the operation class.
-    final operationLibrary = _buildLibrary(
+    yield _buildLibrary(
       shape,
       OperationGenerator(shape, context).generate(),
     );
-    yield operationLibrary;
 
     // Build the waiters, if any
     // if (shape.hasTrait<WaitableTrait>()) {
@@ -68,7 +73,7 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
       packageName: context.packageName,
       serviceName: context.serviceName,
       libraryType: SmithyLibrary_LibraryType.TEST,
-      filename: shape.dartName,
+      filename: shape.dartName(context),
     );
     final generated = OperationTestGenerator(
       shape,
@@ -96,8 +101,10 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
   }
 
   @override
-  Iterable<GeneratedLibrary> serviceShape(ServiceShape shape,
-      [Shape? parent]) sync* {
+  Iterable<GeneratedLibrary> serviceShape(
+    ServiceShape shape, [
+    Shape? parent,
+  ]) sync* {
     if (seen.contains(shape.shapeId)) {
       return;
     }
@@ -169,7 +176,9 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
     }
     seen.add(shape.shapeId);
 
-    yield _buildLibrary(shape, EnumGenerator(shape, context).generate());
+    if (!context.hasSymbolOverrideFor(shape)) {
+      yield _buildLibrary(shape, EnumGenerator(shape, context).generate());
+    }
   }
 
   @override
@@ -203,8 +212,10 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
   }
 
   @override
-  Iterable<GeneratedLibrary> structureShape(StructureShape shape,
-      [Shape? parent]) sync* {
+  Iterable<GeneratedLibrary> structureShape(
+    StructureShape shape, [
+    Shape? parent,
+  ]) sync* {
     if (seen.contains(shape.shapeId)) {
       return;
     }
@@ -215,22 +226,30 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
       return;
     }
     yield* _foreignMembers(shape.members.values.map((member) => member.target));
-    yield _buildLibrary(
-      shape,
-      StructureGenerator(shape, context).generate(),
-    );
+
+    if (!context.hasSymbolOverrideFor(shape)) {
+      yield _buildLibrary(
+        shape,
+        StructureGenerator(shape, context).generate(),
+      );
+    }
   }
 
   @override
-  Iterable<GeneratedLibrary> unionShape(UnionShape shape,
-      [Shape? parent]) sync* {
+  Iterable<GeneratedLibrary> unionShape(
+    UnionShape shape, [
+    Shape? parent,
+  ]) sync* {
     if (seen.contains(shape.shapeId)) {
       return;
     }
     seen.add(shape.shapeId);
 
     yield* _foreignMembers(shape.members.values.map((member) => member.target));
-    yield _buildLibrary(shape, UnionGenerator(shape, context).generate());
+
+    if (!context.hasSymbolOverrideFor(shape)) {
+      yield _buildLibrary(shape, UnionGenerator(shape, context).generate());
+    }
   }
 
   Iterable<GeneratedLibrary> _foreignMembers(Iterable<ShapeId> shapeIds) {

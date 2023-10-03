@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_analytics_pinpoint_dart.pinpoint.model.update_endpoints_batch_response;
+part of 'update_endpoints_batch_response.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of amplify_analytics_pinpoint_dart.pinpoint.model.update_endpoints_batch_re
 
 class _$UpdateEndpointsBatchResponse extends UpdateEndpointsBatchResponse {
   @override
-  final _i3.MessageBody messageBody;
+  final MessageBody messageBody;
 
   factory _$UpdateEndpointsBatchResponse(
           [void Function(UpdateEndpointsBatchResponseBuilder)? updates]) =>
@@ -50,15 +50,13 @@ class UpdateEndpointsBatchResponseBuilder
             UpdateEndpointsBatchResponseBuilder> {
   _$UpdateEndpointsBatchResponse? _$v;
 
-  _i3.MessageBodyBuilder? _messageBody;
-  _i3.MessageBodyBuilder get messageBody =>
-      _$this._messageBody ??= new _i3.MessageBodyBuilder();
-  set messageBody(_i3.MessageBodyBuilder? messageBody) =>
+  MessageBodyBuilder? _messageBody;
+  MessageBodyBuilder get messageBody =>
+      _$this._messageBody ??= new MessageBodyBuilder();
+  set messageBody(MessageBodyBuilder? messageBody) =>
       _$this._messageBody = messageBody;
 
-  UpdateEndpointsBatchResponseBuilder() {
-    UpdateEndpointsBatchResponse._init(this);
-  }
+  UpdateEndpointsBatchResponseBuilder();
 
   UpdateEndpointsBatchResponseBuilder get _$this {
     final $v = _$v;

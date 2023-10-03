@@ -1,13 +1,13 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_storage_s3_dart.s3.model.csv_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/file_header_info.dart'
-    as _i2;
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/file_header_info.dart';
 import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'csv_input.g.dart';
 
@@ -17,22 +17,22 @@ abstract class CsvInput
     implements Built<CsvInput, CsvInputBuilder> {
   /// Describes how an uncompressed comma-separated values (CSV)-formatted input object is formatted.
   factory CsvInput({
-    bool? allowQuotedRecordDelimiter,
+    FileHeaderInfo? fileHeaderInfo,
     String? comments,
-    String? fieldDelimiter,
-    _i2.FileHeaderInfo? fileHeaderInfo,
-    String? quoteCharacter,
     String? quoteEscapeCharacter,
     String? recordDelimiter,
+    String? fieldDelimiter,
+    String? quoteCharacter,
+    bool? allowQuotedRecordDelimiter,
   }) {
     return _$CsvInput._(
-      allowQuotedRecordDelimiter: allowQuotedRecordDelimiter,
-      comments: comments,
-      fieldDelimiter: fieldDelimiter,
       fileHeaderInfo: fileHeaderInfo,
-      quoteCharacter: quoteCharacter,
+      comments: comments,
       quoteEscapeCharacter: quoteEscapeCharacter,
       recordDelimiter: recordDelimiter,
+      fieldDelimiter: fieldDelimiter,
+      quoteCharacter: quoteCharacter,
+      allowQuotedRecordDelimiter: allowQuotedRecordDelimiter,
     );
   }
 
@@ -41,21 +41,9 @@ abstract class CsvInput
 
   const CsvInput._();
 
-  static const List<_i3.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer<CsvInput>> serializers = [
     CsvInputRestXmlSerializer()
   ];
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(CsvInputBuilder b) {}
-
-  /// Specifies that CSV field values may contain quoted record delimiters and such records should be allowed. Default value is FALSE. Setting this value to TRUE may lower performance.
-  bool? get allowQuotedRecordDelimiter;
-
-  /// A single character used to indicate that a row should be ignored when the character is present at the start of that row. You can specify any character to indicate a comment line.
-  String? get comments;
-
-  /// A single character used to separate individual fields in a record. You can specify an arbitrary delimiter.
-  String? get fieldDelimiter;
 
   /// Describes the first line of input. Valid values are:
   ///
@@ -64,7 +52,21 @@ abstract class CsvInput
   /// *   `IGNORE`: First line is a header, but you can't use the header values to indicate the column in an expression. You can use column position (such as \_1, \_2, …) to indicate the column (`SELECT s._1 FROM OBJECT s`).
   ///
   /// *   `Use`: First line is a header, and you can use the header value to identify a column in an expression (`SELECT "name" FROM OBJECT`).
-  _i2.FileHeaderInfo? get fileHeaderInfo;
+  FileHeaderInfo? get fileHeaderInfo;
+
+  /// A single character used to indicate that a row should be ignored when the character is present at the start of that row. You can specify any character to indicate a comment line. The default character is `#`.
+  ///
+  /// Default: `#`
+  String? get comments;
+
+  /// A single character used for escaping the quotation mark character inside an already escaped value. For example, the value `""" a , b """` is parsed as `" a , b "`.
+  String? get quoteEscapeCharacter;
+
+  /// A single character used to separate individual records in the input. Instead of the default value, you can specify an arbitrary delimiter.
+  String? get recordDelimiter;
+
+  /// A single character used to separate individual fields in a record. You can specify an arbitrary delimiter.
+  String? get fieldDelimiter;
 
   /// A single character used for escaping when the field delimiter is part of the value. For example, if the value is `a, b`, Amazon S3 wraps this field value in quotation marks, as follows: `" a , b "`.
   ///
@@ -75,58 +77,55 @@ abstract class CsvInput
   /// Ancestors: `CSV`
   String? get quoteCharacter;
 
-  /// A single character used for escaping the quotation mark character inside an already escaped value. For example, the value `""" a , b """` is parsed as `" a , b "`.
-  String? get quoteEscapeCharacter;
-
-  /// A single character used to separate individual records in the input. Instead of the default value, you can specify an arbitrary delimiter.
-  String? get recordDelimiter;
+  /// Specifies that CSV field values may contain quoted record delimiters and such records should be allowed. Default value is FALSE. Setting this value to TRUE may lower performance.
+  bool? get allowQuotedRecordDelimiter;
   @override
   List<Object?> get props => [
-        allowQuotedRecordDelimiter,
-        comments,
-        fieldDelimiter,
         fileHeaderInfo,
-        quoteCharacter,
+        comments,
         quoteEscapeCharacter,
         recordDelimiter,
+        fieldDelimiter,
+        quoteCharacter,
+        allowQuotedRecordDelimiter,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('CsvInput');
-    helper.add(
-      'allowQuotedRecordDelimiter',
-      allowQuotedRecordDelimiter,
-    );
-    helper.add(
-      'comments',
-      comments,
-    );
-    helper.add(
-      'fieldDelimiter',
-      fieldDelimiter,
-    );
-    helper.add(
-      'fileHeaderInfo',
-      fileHeaderInfo,
-    );
-    helper.add(
-      'quoteCharacter',
-      quoteCharacter,
-    );
-    helper.add(
-      'quoteEscapeCharacter',
-      quoteEscapeCharacter,
-    );
-    helper.add(
-      'recordDelimiter',
-      recordDelimiter,
-    );
+    final helper = newBuiltValueToStringHelper('CsvInput')
+      ..add(
+        'fileHeaderInfo',
+        fileHeaderInfo,
+      )
+      ..add(
+        'comments',
+        comments,
+      )
+      ..add(
+        'quoteEscapeCharacter',
+        quoteEscapeCharacter,
+      )
+      ..add(
+        'recordDelimiter',
+        recordDelimiter,
+      )
+      ..add(
+        'fieldDelimiter',
+        fieldDelimiter,
+      )
+      ..add(
+        'quoteCharacter',
+        quoteCharacter,
+      )
+      ..add(
+        'allowQuotedRecordDelimiter',
+        allowQuotedRecordDelimiter,
+      );
     return helper.toString();
   }
 }
 
 class CsvInputRestXmlSerializer
-    extends _i3.StructuredSmithySerializer<CsvInput> {
+    extends _i2.StructuredSmithySerializer<CsvInput> {
   const CsvInputRestXmlSerializer() : super('CsvInput');
 
   @override
@@ -135,8 +134,8 @@ class CsvInputRestXmlSerializer
         _$CsvInput,
       ];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i2.ShapeId> get supportedProtocols => const [
+        _i2.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restXml',
         )
@@ -150,66 +149,48 @@ class CsvInputRestXmlSerializer
     final result = CsvInputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current;
+      final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      switch (key as String) {
+      if (value == null) {
+        continue;
+      }
+      switch (key) {
         case 'AllowQuotedRecordDelimiter':
-          if (value != null) {
-            result.allowQuotedRecordDelimiter = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(bool),
-            ) as bool);
-          }
-          break;
+          result.allowQuotedRecordDelimiter = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool);
         case 'Comments':
-          if (value != null) {
-            result.comments = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.comments = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
         case 'FieldDelimiter':
-          if (value != null) {
-            result.fieldDelimiter = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.fieldDelimiter = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
         case 'FileHeaderInfo':
-          if (value != null) {
-            result.fileHeaderInfo = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i2.FileHeaderInfo),
-            ) as _i2.FileHeaderInfo);
-          }
-          break;
+          result.fileHeaderInfo = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(FileHeaderInfo),
+          ) as FileHeaderInfo);
         case 'QuoteCharacter':
-          if (value != null) {
-            result.quoteCharacter = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.quoteCharacter = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
         case 'QuoteEscapeCharacter':
-          if (value != null) {
-            result.quoteEscapeCharacter = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.quoteEscapeCharacter = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
         case 'RecordDelimiter':
-          if (value != null) {
-            result.recordDelimiter = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.recordDelimiter = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
       }
     }
 
@@ -219,72 +200,80 @@ class CsvInputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    CsvInput object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as CsvInput);
-    final result = <Object?>[
-      const _i3.XmlElementName(
+    final result$ = <Object?>[
+      const _i2.XmlElementName(
         'CsvInput',
-        _i3.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
+        _i2.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
       )
     ];
-    if (payload.allowQuotedRecordDelimiter != null) {
-      result
-        ..add(const _i3.XmlElementName('AllowQuotedRecordDelimiter'))
+    final CsvInput(
+      :allowQuotedRecordDelimiter,
+      :comments,
+      :fieldDelimiter,
+      :fileHeaderInfo,
+      :quoteCharacter,
+      :quoteEscapeCharacter,
+      :recordDelimiter
+    ) = object;
+    if (allowQuotedRecordDelimiter != null) {
+      result$
+        ..add(const _i2.XmlElementName('AllowQuotedRecordDelimiter'))
         ..add(serializers.serialize(
-          payload.allowQuotedRecordDelimiter!,
-          specifiedType: const FullType.nullable(bool),
+          allowQuotedRecordDelimiter,
+          specifiedType: const FullType(bool),
         ));
     }
-    if (payload.comments != null) {
-      result
-        ..add(const _i3.XmlElementName('Comments'))
+    if (comments != null) {
+      result$
+        ..add(const _i2.XmlElementName('Comments'))
         ..add(serializers.serialize(
-          payload.comments!,
+          comments,
           specifiedType: const FullType(String),
         ));
     }
-    if (payload.fieldDelimiter != null) {
-      result
-        ..add(const _i3.XmlElementName('FieldDelimiter'))
+    if (fieldDelimiter != null) {
+      result$
+        ..add(const _i2.XmlElementName('FieldDelimiter'))
         ..add(serializers.serialize(
-          payload.fieldDelimiter!,
+          fieldDelimiter,
           specifiedType: const FullType(String),
         ));
     }
-    if (payload.fileHeaderInfo != null) {
-      result
-        ..add(const _i3.XmlElementName('FileHeaderInfo'))
+    if (fileHeaderInfo != null) {
+      result$
+        ..add(const _i2.XmlElementName('FileHeaderInfo'))
         ..add(serializers.serialize(
-          payload.fileHeaderInfo!,
-          specifiedType: const FullType.nullable(_i2.FileHeaderInfo),
+          fileHeaderInfo,
+          specifiedType: const FullType(FileHeaderInfo),
         ));
     }
-    if (payload.quoteCharacter != null) {
-      result
-        ..add(const _i3.XmlElementName('QuoteCharacter'))
+    if (quoteCharacter != null) {
+      result$
+        ..add(const _i2.XmlElementName('QuoteCharacter'))
         ..add(serializers.serialize(
-          payload.quoteCharacter!,
+          quoteCharacter,
           specifiedType: const FullType(String),
         ));
     }
-    if (payload.quoteEscapeCharacter != null) {
-      result
-        ..add(const _i3.XmlElementName('QuoteEscapeCharacter'))
+    if (quoteEscapeCharacter != null) {
+      result$
+        ..add(const _i2.XmlElementName('QuoteEscapeCharacter'))
         ..add(serializers.serialize(
-          payload.quoteEscapeCharacter!,
+          quoteEscapeCharacter,
           specifiedType: const FullType(String),
         ));
     }
-    if (payload.recordDelimiter != null) {
-      result
-        ..add(const _i3.XmlElementName('RecordDelimiter'))
+    if (recordDelimiter != null) {
+      result$
+        ..add(const _i2.XmlElementName('RecordDelimiter'))
         ..add(serializers.serialize(
-          payload.recordDelimiter!,
+          recordDelimiter,
           specifiedType: const FullType(String),
         ));
     }
-    return result;
+    return result$;
   }
 }

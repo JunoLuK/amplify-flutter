@@ -1,3 +1,67 @@
+## 1.4.2
+
+### Fixes
+- fix(aft): Constraints edge cases ([#3732](https://github.com/aws-amplify/amplify-flutter/pull/3732))
+
+## 1.4.1
+
+### Fixes
+- fix(auth): Crash with EXC_BAD_ACCESS ([#3657](https://github.com/aws-amplify/amplify-flutter/pull/3657))
+- fix(auth): Custom auth with device tracking, no SRP ([#3652](https://github.com/aws-amplify/amplify-flutter/pull/3652))
+- fix(auth): Uncaught Hosted UI cancellation ([#3686](https://github.com/aws-amplify/amplify-flutter/pull/3686))
+
+## 1.4.0
+
+### Features
+- feat(auth): TOTP MFA
+- feat(authenticator): TOTP MFA ([#3609](https://github.com/aws-amplify/amplify-flutter/pull/3609))
+
+## 1.3.3
+
+### Fixes
+- fix(auth): Pass `deviceKey` in custom auth challenge
+
+## 1.3.2
+
+- Minor bug fixes and improvements
+
+## 1.3.1
+
+### Fixes
+- fix(auth): Android Hosted UI flakiness
+
+## 1.3.0
+
+### Features
+- feat(auth): Enable ASF
+
+## 1.2.1
+
+- Minor bug fixes and improvements
+
+## 1.2.0
+
+### Fixes
+- fix(auth): Attribute key equality ([#3136](https://github.com/aws-amplify/amplify-flutter/pull/3136))
+- fix(auth): `signOut` after user deletion ([#3162](https://github.com/aws-amplify/amplify-flutter/pull/3162))
+
+## 1.1.1
+
+### Fixes
+- fix(auth): remove duplicate continuation call for hosted UI ([#3112](https://github.com/aws-amplify/amplify-flutter/pull/3112))
+- fix: suppress browser on sign out when preferPrivateSession is true ([#3099](https://github.com/aws-amplify/amplify-flutter/pull/3099))
+- fix(auth): User attribute serialization
+
+## 1.1.0
+
+### Features
+- Dart 3 support (must update Dart SDK constraint to `^3.0.0`)
+
+## 1.0.1
+
+### Fixes
+- fix(repo): Flutter 3.3 support
+
 ## 1.0.0
 
 We are thrilled to release version 1.0 of the Amplify Flutter libraries!

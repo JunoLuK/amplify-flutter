@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_auth_cognito_dart.cognito_identity.model.resource_not_found_exception; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -37,8 +36,12 @@ abstract class ResourceNotFoundException
         b.headers = response.headers;
       });
 
-  static const List<_i2.SmithySerializer<ResourceNotFoundException>>
-      serializers = [ResourceNotFoundExceptionAwsJson11Serializer()];
+  static const List<_i2.SmithySerializer> serializers = [
+    ResourceNotFoundExceptionAwsJson11Serializer()
+  ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ResourceNotFoundExceptionBuilder b) {}
 
   /// The message returned by a ResourceNotFoundException.
   @override
@@ -62,11 +65,11 @@ abstract class ResourceNotFoundException
   List<Object?> get props => [message];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('ResourceNotFoundException')
-      ..add(
-        'message',
-        message,
-      );
+    final helper = newBuiltValueToStringHelper('ResourceNotFoundException');
+    helper.add(
+      'message',
+      message,
+    );
     return helper.toString();
   }
 }
@@ -100,15 +103,15 @@ class ResourceNotFoundExceptionAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'message':
-          result.message = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.message = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -118,19 +121,19 @@ class ResourceNotFoundExceptionAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    ResourceNotFoundException object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final ResourceNotFoundException(:message) = object;
-    if (message != null) {
-      result$
+    final payload = (object as ResourceNotFoundException);
+    final result = <Object?>[];
+    if (payload.message != null) {
+      result
         ..add('message')
         ..add(serializers.serialize(
-          message,
+          payload.message!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

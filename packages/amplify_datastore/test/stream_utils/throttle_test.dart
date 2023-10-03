@@ -148,11 +148,6 @@ void main() {
         controllers = [controller, broadcastController];
       });
 
-      tearDownAll(() {
-        controller.close();
-        broadcastController.close();
-      });
-
       test('the source stream can be cancelled', () async {
         for (var controller in controllers) {
           var streamWasCanceled = false;

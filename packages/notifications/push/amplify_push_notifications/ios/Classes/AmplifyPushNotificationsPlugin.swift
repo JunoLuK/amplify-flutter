@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import Flutter
+import amplify_flutter_ios
 import AmplifyUtilsNotifications
 
 public class AmplifyPushNotificationsPlugin: NSObject, FlutterPlugin, PushNotificationsHostApi {
@@ -30,10 +31,6 @@ public class AmplifyPushNotificationsPlugin: NSObject, FlutterPlugin, PushNotifi
         PushNotificationsHostApiSetup(messenger, pluginInstance)
 
         registrar.addApplicationDelegate(pluginInstance)
-    }
-
-    public func requestInitialTokenWithError(_ error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
-        UIApplication.shared.registerForRemoteNotifications()
     }
 
     public func getPermissionStatus(completion: @escaping (GetPermissionStatusResult?, FlutterError?) -> Void) {

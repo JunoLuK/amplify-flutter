@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.rest_json_protocol.model.invalid_greeting; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -36,10 +35,12 @@ abstract class InvalidGreeting
         b.headers = response.headers;
       });
 
-  static const List<_i2.SmithySerializer<InvalidGreeting>> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     InvalidGreetingRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(InvalidGreetingBuilder b) {}
   @override
   String? get message;
   @override
@@ -61,11 +62,11 @@ abstract class InvalidGreeting
   List<Object?> get props => [message];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('InvalidGreeting')
-      ..add(
-        'message',
-        message,
-      );
+    final helper = newBuiltValueToStringHelper('InvalidGreeting');
+    helper.add(
+      'message',
+      message,
+    );
     return helper.toString();
   }
 }
@@ -98,15 +99,15 @@ class InvalidGreetingRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'Message':
-          result.message = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.message = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -116,19 +117,19 @@ class InvalidGreetingRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    InvalidGreeting object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final InvalidGreeting(:message) = object;
-    if (message != null) {
-      result$
+    final payload = (object as InvalidGreeting);
+    final result = <Object?>[];
+    if (payload.message != null) {
+      result
         ..add('Message')
         ..add(serializers.serialize(
-          message,
+          payload.message!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

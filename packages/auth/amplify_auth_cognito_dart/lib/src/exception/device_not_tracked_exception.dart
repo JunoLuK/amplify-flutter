@@ -7,7 +7,7 @@ import 'package:amplify_core/amplify_core.dart';
 /// Exception thrown when a request is made for a device which is either not
 /// currently tracked or previously forgotten.
 /// {@endtemplate}
-final class DeviceNotTrackedException extends AuthServiceException {
+class DeviceNotTrackedException extends AuthException {
   /// {@macro amplify_core.auth.device_not_tracked_exception}
   const DeviceNotTrackedException({
     super.recoverySuggestion,

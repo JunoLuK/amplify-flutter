@@ -3,7 +3,7 @@
 
 import 'dart:async';
 
-import 'package:amplify_auth_cognito_dart/src/state/state.dart';
+import 'package:amplify_auth_cognito_dart/src/state/state/credential_store_state.dart';
 import 'package:amplify_auth_cognito_test/hosted_ui/hosted_ui_common.dart';
 import 'package:amplify_auth_cognito_test/hosted_ui/hosted_ui_server.dart';
 import 'package:amplify_core/amplify_core.dart';
@@ -20,24 +20,19 @@ class HostedUiClient implements Closeable {
     final client = Client(socket.cast<String>());
     unawaited(client.listen());
 
-    _logger.debug('Configuring...');
     await client.sendRequest('configure', {
       'config': amplifyConfig,
     });
-    _logger.debug('Successfully configured');
     return HostedUiClient._(client);
   }
 
-  static final AWSLogger _logger = AWSLogger().createChild('HostedUiClient');
   final Client _client;
 
   /// Signs in using Hosted UI and returns the sign in URL.
   Future<String> signInWithWebUI() async {
-    _logger.debug('Signing in...');
     final resp = await _client.sendRequest('signInWithWebUI', {
       'provider': AuthProvider.cognito.toJson(),
     });
-    _logger.debug('Got sign-in response: $resp');
     if (resp is! String) {
       throw Exception('Invalid response: $resp');
     }
@@ -46,9 +41,7 @@ class HostedUiClient implements Closeable {
 
   /// Retrieves credentials directly from the store without refreshing.
   Future<CredentialStoreData> getCredentials() async {
-    _logger.debug('Getting credentials...');
     final resp = await _client.sendRequest('getCredentials');
-    _logger.debug('Got credentials response: $resp');
     if (resp is! Map<Object?, Object?>) {
       throw Exception('Invalid response: $resp');
     }
@@ -57,11 +50,9 @@ class HostedUiClient implements Closeable {
 
   /// Signs out using Hosted UI and returns the sign out URL.
   Future<String> signOutWithWebUI({bool globalSignOut = false}) async {
-    _logger.debug('Signing out (globalSignOut: $globalSignOut)...');
     final resp = await _client.sendRequest('signOutWithWebUI', {
       'globalSignOut': globalSignOut,
     });
-    _logger.debug('Got sign-out response: $resp');
     if (resp is! String) {
       throw Exception('Invalid response: $resp');
     }
@@ -70,8 +61,6 @@ class HostedUiClient implements Closeable {
 
   @override
   Future<void> close() async {
-    _logger.debug('Closing client...');
     await _client.close();
-    _logger.debug('Closed client');
   }
 }

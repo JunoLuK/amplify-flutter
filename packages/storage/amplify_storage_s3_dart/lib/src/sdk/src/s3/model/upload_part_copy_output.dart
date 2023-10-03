@@ -1,11 +1,13 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_storage_s3_dart.s3.model.upload_part_copy_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/copy_part_result.dart';
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/request_charged.dart';
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/server_side_encryption.dart';
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/copy_part_result.dart'
+    as _i3;
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/request_charged.dart'
+    as _i4;
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/server_side_encryption.dart'
+    as _i5;
 import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -17,26 +19,26 @@ abstract class UploadPartCopyOutput
     with _i1.AWSEquatable<UploadPartCopyOutput>
     implements
         Built<UploadPartCopyOutput, UploadPartCopyOutputBuilder>,
-        _i2.HasPayload<CopyPartResult> {
+        _i2.HasPayload<_i3.CopyPartResult> {
   factory UploadPartCopyOutput({
+    bool? bucketKeyEnabled,
+    _i3.CopyPartResult? copyPartResult,
     String? copySourceVersionId,
-    CopyPartResult? copyPartResult,
-    ServerSideEncryption? serverSideEncryption,
+    _i4.RequestCharged? requestCharged,
+    _i5.ServerSideEncryption? serverSideEncryption,
     String? sseCustomerAlgorithm,
     String? sseCustomerKeyMd5,
     String? ssekmsKeyId,
-    bool? bucketKeyEnabled,
-    RequestCharged? requestCharged,
   }) {
     return _$UploadPartCopyOutput._(
-      copySourceVersionId: copySourceVersionId,
+      bucketKeyEnabled: bucketKeyEnabled,
       copyPartResult: copyPartResult,
+      copySourceVersionId: copySourceVersionId,
+      requestCharged: requestCharged,
       serverSideEncryption: serverSideEncryption,
       sseCustomerAlgorithm: sseCustomerAlgorithm,
       sseCustomerKeyMd5: sseCustomerKeyMd5,
       ssekmsKeyId: ssekmsKeyId,
-      bucketKeyEnabled: bucketKeyEnabled,
-      requestCharged: requestCharged,
     );
   }
 
@@ -48,7 +50,7 @@ abstract class UploadPartCopyOutput
 
   /// Constructs a [UploadPartCopyOutput] from a [payload] and [response].
   factory UploadPartCopyOutput.fromResponse(
-    CopyPartResult? payload,
+    _i3.CopyPartResult? payload,
     _i1.AWSBaseHttpResponse response,
   ) =>
       UploadPartCopyOutput.build((b) {
@@ -60,7 +62,7 @@ abstract class UploadPartCopyOutput
               response.headers['x-amz-copy-source-version-id']!;
         }
         if (response.headers['x-amz-server-side-encryption'] != null) {
-          b.serverSideEncryption = ServerSideEncryption.values
+          b.serverSideEncryption = _i5.ServerSideEncryption.values
               .byValue(response.headers['x-amz-server-side-encryption']!);
         }
         if (response
@@ -87,23 +89,32 @@ abstract class UploadPartCopyOutput
               'true';
         }
         if (response.headers['x-amz-request-charged'] != null) {
-          b.requestCharged = RequestCharged.values
+          b.requestCharged = _i4.RequestCharged.values
               .byValue(response.headers['x-amz-request-charged']!);
         }
       });
 
-  static const List<_i2.SmithySerializer<CopyPartResult?>> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     UploadPartCopyOutputRestXmlSerializer()
   ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(UploadPartCopyOutputBuilder b) {}
+
+  /// Indicates whether the multipart upload uses an S3 Bucket Key for server-side encryption with Amazon Web Services KMS (SSE-KMS).
+  bool? get bucketKeyEnabled;
+
+  /// Container for all response elements.
+  _i3.CopyPartResult? get copyPartResult;
 
   /// The version of the source object that was copied, if you have enabled versioning on the source bucket.
   String? get copySourceVersionId;
 
-  /// Container for all response elements.
-  CopyPartResult? get copyPartResult;
+  /// If present, indicates that the requester was successfully charged for the request.
+  _i4.RequestCharged? get requestCharged;
 
-  /// The server-side encryption algorithm used when storing this object in Amazon S3 (for example, `AES256`, `aws:kms`).
-  ServerSideEncryption? get serverSideEncryption;
+  /// The server-side encryption algorithm used when storing this object in Amazon S3 (for example, AES256, aws:kms).
+  _i5.ServerSideEncryption? get serverSideEncryption;
 
   /// If server-side encryption with a customer-provided encryption key was requested, the response will include this header confirming the encryption algorithm used.
   String? get sseCustomerAlgorithm;
@@ -111,68 +122,62 @@ abstract class UploadPartCopyOutput
   /// If server-side encryption with a customer-provided encryption key was requested, the response will include this header to provide round-trip message integrity verification of the customer-provided encryption key.
   String? get sseCustomerKeyMd5;
 
-  /// If present, specifies the ID of the Key Management Service (KMS) symmetric encryption customer managed key that was used for the object.
+  /// If present, specifies the ID of the Amazon Web Services Key Management Service (Amazon Web Services KMS) symmetric customer managed key that was used for the object.
   String? get ssekmsKeyId;
-
-  /// Indicates whether the multipart upload uses an S3 Bucket Key for server-side encryption with Key Management Service (KMS) keys (SSE-KMS).
-  bool? get bucketKeyEnabled;
-
-  /// If present, indicates that the requester was successfully charged for the request.
-  RequestCharged? get requestCharged;
   @override
-  CopyPartResult? getPayload() => copyPartResult ?? CopyPartResult();
+  _i3.CopyPartResult? getPayload() => copyPartResult ?? _i3.CopyPartResult();
   @override
   List<Object?> get props => [
-        copySourceVersionId,
+        bucketKeyEnabled,
         copyPartResult,
+        copySourceVersionId,
+        requestCharged,
         serverSideEncryption,
         sseCustomerAlgorithm,
         sseCustomerKeyMd5,
         ssekmsKeyId,
-        bucketKeyEnabled,
-        requestCharged,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('UploadPartCopyOutput')
-      ..add(
-        'copySourceVersionId',
-        copySourceVersionId,
-      )
-      ..add(
-        'copyPartResult',
-        copyPartResult,
-      )
-      ..add(
-        'serverSideEncryption',
-        serverSideEncryption,
-      )
-      ..add(
-        'sseCustomerAlgorithm',
-        sseCustomerAlgorithm,
-      )
-      ..add(
-        'sseCustomerKeyMd5',
-        sseCustomerKeyMd5,
-      )
-      ..add(
-        'ssekmsKeyId',
-        '***SENSITIVE***',
-      )
-      ..add(
-        'bucketKeyEnabled',
-        bucketKeyEnabled,
-      )
-      ..add(
-        'requestCharged',
-        requestCharged,
-      );
+    final helper = newBuiltValueToStringHelper('UploadPartCopyOutput');
+    helper.add(
+      'bucketKeyEnabled',
+      bucketKeyEnabled,
+    );
+    helper.add(
+      'copyPartResult',
+      copyPartResult,
+    );
+    helper.add(
+      'copySourceVersionId',
+      copySourceVersionId,
+    );
+    helper.add(
+      'requestCharged',
+      requestCharged,
+    );
+    helper.add(
+      'serverSideEncryption',
+      serverSideEncryption,
+    );
+    helper.add(
+      'sseCustomerAlgorithm',
+      sseCustomerAlgorithm,
+    );
+    helper.add(
+      'sseCustomerKeyMd5',
+      sseCustomerKeyMd5,
+    );
+    helper.add(
+      'ssekmsKeyId',
+      '***SENSITIVE***',
+    );
     return helper.toString();
   }
 }
 
 class UploadPartCopyOutputRestXmlSerializer
-    extends _i2.StructuredSmithySerializer<CopyPartResult> {
+    extends _i2.StructuredSmithySerializer<_i3.CopyPartResult> {
   const UploadPartCopyOutputRestXmlSerializer() : super('UploadPartCopyOutput');
 
   @override
@@ -188,51 +193,66 @@ class UploadPartCopyOutputRestXmlSerializer
         )
       ];
   @override
-  CopyPartResult deserialize(
+  _i3.CopyPartResult deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = CopyPartResultBuilder();
+    final result = _i3.CopyPartResultBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'ETag':
-          result.eTag = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.eTag = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'LastModified':
-          result.lastModified = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime);
+          if (value != null) {
+            result.lastModified = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(DateTime),
+            ) as DateTime);
+          }
+          break;
         case 'ChecksumCRC32':
-          result.checksumCrc32 = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.checksumCrc32 = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'ChecksumCRC32C':
-          result.checksumCrc32C = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.checksumCrc32C = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'ChecksumSHA1':
-          result.checksumSha1 = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.checksumSha1 = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'ChecksumSHA256':
-          result.checksumSha256 = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.checksumSha256 = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -242,71 +262,69 @@ class UploadPartCopyOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    CopyPartResult object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final payload = object is UploadPartCopyOutput
+        ? object.getPayload()
+        : (object as _i3.CopyPartResult?);
+    final result = <Object?>[
       const _i2.XmlElementName(
         'CopyPartResult',
         _i2.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
       )
     ];
-    final CopyPartResult(
-      :eTag,
-      :lastModified,
-      :checksumCrc32,
-      :checksumCrc32C,
-      :checksumSha1,
-      :checksumSha256
-    ) = object;
-    if (eTag != null) {
-      result$
+    if (payload == null) {
+      return result;
+    }
+    if (payload.eTag != null) {
+      result
         ..add(const _i2.XmlElementName('ETag'))
         ..add(serializers.serialize(
-          eTag,
+          payload.eTag!,
           specifiedType: const FullType(String),
         ));
     }
-    if (lastModified != null) {
-      result$
+    if (payload.lastModified != null) {
+      result
         ..add(const _i2.XmlElementName('LastModified'))
         ..add(serializers.serialize(
-          lastModified,
-          specifiedType: const FullType(DateTime),
+          payload.lastModified!,
+          specifiedType: const FullType.nullable(DateTime),
         ));
     }
-    if (checksumCrc32 != null) {
-      result$
+    if (payload.checksumCrc32 != null) {
+      result
         ..add(const _i2.XmlElementName('ChecksumCRC32'))
         ..add(serializers.serialize(
-          checksumCrc32,
+          payload.checksumCrc32!,
           specifiedType: const FullType(String),
         ));
     }
-    if (checksumCrc32C != null) {
-      result$
+    if (payload.checksumCrc32C != null) {
+      result
         ..add(const _i2.XmlElementName('ChecksumCRC32C'))
         ..add(serializers.serialize(
-          checksumCrc32C,
+          payload.checksumCrc32C!,
           specifiedType: const FullType(String),
         ));
     }
-    if (checksumSha1 != null) {
-      result$
+    if (payload.checksumSha1 != null) {
+      result
         ..add(const _i2.XmlElementName('ChecksumSHA1'))
         ..add(serializers.serialize(
-          checksumSha1,
+          payload.checksumSha1!,
           specifiedType: const FullType(String),
         ));
     }
-    if (checksumSha256 != null) {
-      result$
+    if (payload.checksumSha256 != null) {
+      result
         ..add(const _i2.XmlElementName('ChecksumSHA256'))
         ..add(serializers.serialize(
-          checksumSha256,
+          payload.checksumSha256!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

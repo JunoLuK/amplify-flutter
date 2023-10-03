@@ -1,14 +1,15 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 // ignore_for_file: unused_element
 library rest_json1_v2.rest_json_protocol.test.document_type_operation_test_test; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:built_value/json_object.dart' as _i4;
+import 'package:built_value/json_object.dart' as _i6;
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v2/src/rest_json_protocol/model/document_type_input_output.dart';
-import 'package:rest_json1_v2/src/rest_json_protocol/operation/document_type_operation.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:rest_json1_v2/src/rest_json_protocol/model/document_type_input_output.dart'
+    as _i5;
+import 'package:rest_json1_v2/src/rest_json_protocol/operation/document_type_operation.dart'
+    as _i3;
+import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
@@ -17,7 +18,7 @@ void main() {
     'DocumentTypeInputWithObject (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: DocumentTypeOperation(
+        operation: _i3.DocumentTypeOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
@@ -25,7 +26,7 @@ void main() {
           id: 'DocumentTypeInputWithObject',
           documentation:
               'Serializes document types as part of the JSON request payload with no escaping.',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -60,14 +61,14 @@ void main() {
     'DocumentInputWithString (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: DocumentTypeOperation(
+        operation: _i3.DocumentTypeOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'DocumentInputWithString',
           documentation: 'Serializes document types using a string.',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -102,14 +103,14 @@ void main() {
     'DocumentInputWithNumber (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: DocumentTypeOperation(
+        operation: _i3.DocumentTypeOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'DocumentInputWithNumber',
           documentation: 'Serializes document types using a number.',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -143,14 +144,14 @@ void main() {
     'DocumentInputWithBoolean (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: DocumentTypeOperation(
+        operation: _i3.DocumentTypeOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'DocumentInputWithBoolean',
           documentation: 'Serializes document types using a boolean.',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -184,14 +185,14 @@ void main() {
     'DocumentInputWithList (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: DocumentTypeOperation(
+        operation: _i3.DocumentTypeOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'DocumentInputWithList',
           documentation: 'Serializes document types using a list.',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -241,7 +242,7 @@ void main() {
     'DocumentOutput (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: DocumentTypeOperation(
+        operation: _i3.DocumentTypeOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
@@ -249,7 +250,7 @@ void main() {
           id: 'DocumentOutput',
           documentation:
               'Serializes documents as part of the JSON response payload with no escaping.',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -278,14 +279,14 @@ void main() {
     'DocumentOutputString (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: DocumentTypeOperation(
+        operation: _i3.DocumentTypeOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'DocumentOutputString',
           documentation: 'Document types can be JSON scalars too.',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -314,14 +315,14 @@ void main() {
     'DocumentOutputNumber (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: DocumentTypeOperation(
+        operation: _i3.DocumentTypeOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'DocumentOutputNumber',
           documentation: 'Document types can be JSON scalars too.',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -349,14 +350,14 @@ void main() {
     'DocumentOutputBoolean (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: DocumentTypeOperation(
+        operation: _i3.DocumentTypeOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'DocumentOutputBoolean',
           documentation: 'Document types can be JSON scalars too.',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -385,14 +386,14 @@ void main() {
     'DocumentOutputArray (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: DocumentTypeOperation(
+        operation: _i3.DocumentTypeOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'DocumentOutputArray',
           documentation: 'Document types can be JSON arrays.',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -423,45 +424,48 @@ void main() {
 }
 
 class DocumentTypeInputOutputRestJson1Serializer
-    extends _i3.StructuredSmithySerializer<DocumentTypeInputOutput> {
+    extends _i4.StructuredSmithySerializer<_i5.DocumentTypeInputOutput> {
   const DocumentTypeInputOutputRestJson1Serializer()
       : super('DocumentTypeInputOutput');
 
   @override
-  Iterable<Type> get types => const [DocumentTypeInputOutput];
+  Iterable<Type> get types => const [_i5.DocumentTypeInputOutput];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
       ];
   @override
-  DocumentTypeInputOutput deserialize(
+  _i5.DocumentTypeInputOutput deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = DocumentTypeInputOutputBuilder();
+    final result = _i5.DocumentTypeInputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
-        case 'stringValue':
-          result.stringValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
         case 'documentValue':
-          result.documentValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(_i4.JsonObject),
-          ) as _i4.JsonObject);
+          if (value != null) {
+            result.documentValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i6.JsonObject),
+            ) as _i6.JsonObject);
+          }
+          break;
+        case 'stringValue':
+          if (value != null) {
+            result.stringValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -471,7 +475,7 @@ class DocumentTypeInputOutputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    DocumentTypeInputOutput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');

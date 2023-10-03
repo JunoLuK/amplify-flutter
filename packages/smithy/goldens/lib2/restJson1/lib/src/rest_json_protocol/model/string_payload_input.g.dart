@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'string_payload_input.dart';
+part of rest_json1_v2.rest_json_protocol.model.string_payload_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -48,7 +48,9 @@ class StringPayloadInputBuilder
   String? get payload => _$this._payload;
   set payload(String? payload) => _$this._payload = payload;
 
-  StringPayloadInputBuilder();
+  StringPayloadInputBuilder() {
+    StringPayloadInput._init(this);
+  }
 
   StringPayloadInputBuilder get _$this {
     final $v = _$v;

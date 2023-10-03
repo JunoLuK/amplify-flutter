@@ -1,7 +1,7 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-part of '../amplify_exception.dart';
+import 'package:amplify_core/amplify_core.dart';
 
 @Deprecated('Use HttpStatusException instead')
 typedef RestException = HttpStatusException;

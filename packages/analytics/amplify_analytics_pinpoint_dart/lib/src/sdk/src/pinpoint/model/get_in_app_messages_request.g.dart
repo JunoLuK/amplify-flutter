@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'get_in_app_messages_request.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.get_in_app_messages_request;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -66,7 +66,9 @@ class GetInAppMessagesRequestBuilder
   String? get endpointId => _$this._endpointId;
   set endpointId(String? endpointId) => _$this._endpointId = endpointId;
 
-  GetInAppMessagesRequestBuilder();
+  GetInAppMessagesRequestBuilder() {
+    GetInAppMessagesRequest._init(this);
+  }
 
   GetInAppMessagesRequestBuilder get _$this {
     final $v = _$v;
@@ -138,7 +140,9 @@ class GetInAppMessagesRequestPayloadBuilder
             GetInAppMessagesRequestPayloadBuilder> {
   _$GetInAppMessagesRequestPayload? _$v;
 
-  GetInAppMessagesRequestPayloadBuilder();
+  GetInAppMessagesRequestPayloadBuilder() {
+    GetInAppMessagesRequestPayload._init(this);
+  }
 
   @override
   void replace(GetInAppMessagesRequestPayload other) {

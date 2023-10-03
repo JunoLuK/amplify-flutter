@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'query_params_as_string_list_map_input.dart';
+part of rest_json1_v1.rest_json_protocol.model.query_params_as_string_list_map_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -9,15 +9,15 @@ part of 'query_params_as_string_list_map_input.dart';
 class _$QueryParamsAsStringListMapInput
     extends QueryParamsAsStringListMapInput {
   @override
-  final String? qux;
-  @override
   final _i3.BuiltListMultimap<String, String>? foo;
+  @override
+  final String? qux;
 
   factory _$QueryParamsAsStringListMapInput(
           [void Function(QueryParamsAsStringListMapInputBuilder)? updates]) =>
       (new QueryParamsAsStringListMapInputBuilder()..update(updates))._build();
 
-  _$QueryParamsAsStringListMapInput._({this.qux, this.foo}) : super._();
+  _$QueryParamsAsStringListMapInput._({this.foo, this.qux}) : super._();
 
   @override
   QueryParamsAsStringListMapInput rebuild(
@@ -32,15 +32,15 @@ class _$QueryParamsAsStringListMapInput
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is QueryParamsAsStringListMapInput &&
-        qux == other.qux &&
-        foo == other.foo;
+        foo == other.foo &&
+        qux == other.qux;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, qux.hashCode);
     _$hash = $jc(_$hash, foo.hashCode);
+    _$hash = $jc(_$hash, qux.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -52,22 +52,24 @@ class QueryParamsAsStringListMapInputBuilder
             QueryParamsAsStringListMapInputBuilder> {
   _$QueryParamsAsStringListMapInput? _$v;
 
-  String? _qux;
-  String? get qux => _$this._qux;
-  set qux(String? qux) => _$this._qux = qux;
-
   _i3.ListMultimapBuilder<String, String>? _foo;
   _i3.ListMultimapBuilder<String, String> get foo =>
       _$this._foo ??= new _i3.ListMultimapBuilder<String, String>();
   set foo(_i3.ListMultimapBuilder<String, String>? foo) => _$this._foo = foo;
 
-  QueryParamsAsStringListMapInputBuilder();
+  String? _qux;
+  String? get qux => _$this._qux;
+  set qux(String? qux) => _$this._qux = qux;
+
+  QueryParamsAsStringListMapInputBuilder() {
+    QueryParamsAsStringListMapInput._init(this);
+  }
 
   QueryParamsAsStringListMapInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _qux = $v.qux;
       _foo = $v.foo?.toBuilder();
+      _qux = $v.qux;
       _$v = null;
     }
     return this;
@@ -91,7 +93,7 @@ class QueryParamsAsStringListMapInputBuilder
     _$QueryParamsAsStringListMapInput _$result;
     try {
       _$result = _$v ??
-          new _$QueryParamsAsStringListMapInput._(qux: qux, foo: _foo?.build());
+          new _$QueryParamsAsStringListMapInput._(foo: _foo?.build(), qux: qux);
     } catch (_) {
       late String _$failedField;
       try {
@@ -146,7 +148,9 @@ class QueryParamsAsStringListMapInputPayloadBuilder
             QueryParamsAsStringListMapInputPayloadBuilder> {
   _$QueryParamsAsStringListMapInputPayload? _$v;
 
-  QueryParamsAsStringListMapInputPayloadBuilder();
+  QueryParamsAsStringListMapInputPayloadBuilder() {
+    QueryParamsAsStringListMapInputPayload._init(this);
+  }
 
   @override
   void replace(QueryParamsAsStringListMapInputPayload other) {

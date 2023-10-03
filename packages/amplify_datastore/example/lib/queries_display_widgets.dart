@@ -3,8 +3,7 @@
 
 part of sample_app;
 
-Widget displayQueryButtons(bool isAmplifyConfigured, String queriesToView,
-    Function updateQueriesToView) {
+Widget displayQueryButtons(bool isAmplifyConfigured, _MyAppState app) {
   var boldText =
       TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 14);
   return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -15,54 +14,60 @@ Widget displayQueryButtons(bool isAmplifyConfigured, String queriesToView,
     ElevatedButton(
       onPressed: () {
         if (isAmplifyConfigured) {
-          updateQueriesToView("Blog");
+          app.setState(() {
+            app._queriesToView = "Blog";
+          });
         }
         return null;
       },
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(
-          queriesToView == "Blog" ? Colors.white10 : Colors.white60,
+          app._queriesToView == "Blog" ? Colors.white10 : Colors.white60,
         ),
       ),
       child: Text(
         'Blogs',
-        style: queriesToView == "Blog" ? boldText : TextStyle(),
+        style: app._queriesToView == "Blog" ? boldText : TextStyle(),
       ),
     ),
     divider,
     ElevatedButton(
       onPressed: () {
         if (isAmplifyConfigured) {
-          updateQueriesToView("Post");
+          app.setState(() {
+            app._queriesToView = "Post";
+          });
         }
         return null;
       },
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(
-          queriesToView == "Post" ? Colors.white10 : Colors.white60,
+          app._queriesToView == "Post" ? Colors.white10 : Colors.white60,
         ),
       ),
       child: Text(
         'Posts',
-        style: queriesToView == "Post" ? boldText : TextStyle(),
+        style: app._queriesToView == "Post" ? boldText : TextStyle(),
       ),
     ),
     divider,
     ElevatedButton(
       onPressed: () {
         if (isAmplifyConfigured) {
-          updateQueriesToView("Comment");
+          app.setState(() {
+            app._queriesToView = "Comment";
+          });
         }
         return null;
       },
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(
-          queriesToView == "Comment" ? Colors.white10 : Colors.white60,
+          app._queriesToView == "Comment" ? Colors.white10 : Colors.white60,
         ),
       ),
       child: Text(
         'Comments',
-        style: queriesToView == "Comment" ? boldText : TextStyle(),
+        style: app._queriesToView == "Comment" ? boldText : TextStyle(),
       ),
     ),
   ]);

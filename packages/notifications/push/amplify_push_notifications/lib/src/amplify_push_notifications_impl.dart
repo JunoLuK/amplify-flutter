@@ -8,8 +8,6 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:amplify_core/amplify_core.dart';
-// ignore: implementation_imports, invalid_use_of_internal_member
-import 'package:amplify_core/src/http/amplify_category_method.dart';
 import 'package:amplify_push_notifications/src/native_push_notifications_plugin.g.dart';
 import 'package:amplify_push_notifications/src/push_notifications_flutter_api.dart';
 import 'package:amplify_secure_storage/amplify_secure_storage.dart';
@@ -104,13 +102,11 @@ abstract class AmplifyPushNotifications
     _onForegroundNotificationReceived = foregroundNotificationEventChannel
         .receiveBroadcastStream()
         .cast<Map<Object?, Object?>>()
-        .map((map) => map.cast<String, Object?>())
         .map(PushNotificationMessage.fromJson);
 
     _onNotificationOpened = notificationOpenedEventChannel
         .receiveBroadcastStream()
         .cast<Map<Object?, Object?>>()
-        .map((map) => map.cast<String, Object?>())
         .map(PushNotificationMessage.fromJson);
   }
 
@@ -189,17 +185,14 @@ abstract class AmplifyPushNotifications
   @override
   Future<void> identifyUser({
     required String userId,
-    UserProfile? userProfile,
+    required UserProfile userProfile,
   }) async {
     if (!_isConfigured) {
       throw _needsConfigurationException;
     }
-    await identifyCall(
-      PushNotificationsCategoryMethod.identifyUser,
-      () => _serviceProviderClient.identifyUser(
-        userId: userId,
-        userProfile: userProfile,
-      ),
+    await _serviceProviderClient.identifyUser(
+      userId: userId,
+      userProfile: userProfile,
     );
   }
 
@@ -245,7 +238,7 @@ abstract class AmplifyPushNotifications
     final rawLaunchNotification = await _hostApi.getLaunchNotification();
     if (rawLaunchNotification != null) {
       final launchNotification =
-          PushNotificationMessage.fromJson(rawLaunchNotification.cast());
+          PushNotificationMessage.fromJson(rawLaunchNotification);
       _launchNotification = launchNotification;
       _flutterApi.onNullifyLaunchNotificationCallback = () {
         _launchNotification = null;
@@ -342,26 +335,14 @@ abstract class AmplifyPushNotifications
 
   Future<void> _registerDeviceWhenConfigure() async {
     late String deviceToken;
-
     try {
-      await _hostApi.requestInitialToken();
-      deviceToken =
-          await _bufferedTokenStream.peek.timeout(const Duration(seconds: 5));
+      deviceToken = await _bufferedTokenStream.peek;
     } on PlatformException catch (error) {
       // the error mostly like is the App doesn't have corresponding
       // capability to request a push notification device token
       throw PushNotificationException(
-        'Error occurred awaiting for device token.',
-        recoverySuggestion: 'Review the underlying exception.',
-        underlyingException: error,
-      );
-    } on TimeoutException catch (error) {
-      throw PushNotificationException(
-        'Timed out awaiting for device token.',
-        recoverySuggestion:
-            'This may happen when the native apps have not been correctly configured'
-            ' for push notifications, review push notification configurations'
-            ' of the native iOS and Android apps of your Flutter project.',
+        'Error occurred awaiting for device token',
+        recoverySuggestion: 'Please review the underlying exception',
         underlyingException: error,
       );
     }
@@ -371,23 +352,17 @@ abstract class AmplifyPushNotifications
   void _foregroundNotificationListener(
     PushNotificationMessage pushNotificationMessage,
   ) =>
-      identifyCall(
-        PushNotificationsCategoryMethod.foregroundMessageReceived,
-        () => _serviceProviderClient.recordNotificationEvent(
-          eventType: PinpointEventType.foregroundMessageReceived,
-          notification: pushNotificationMessage,
-        ),
+      _serviceProviderClient.recordNotificationEvent(
+        eventType: PinpointEventType.foregroundMessageReceived,
+        notification: pushNotificationMessage,
       );
 
   void _notificationOpenedListener(
     PushNotificationMessage pushNotificationMessage,
   ) =>
-      identifyCall(
-        PushNotificationsCategoryMethod.notificationOpened,
-        () => _serviceProviderClient.recordNotificationEvent(
-          eventType: PinpointEventType.notificationOpened,
-          notification: pushNotificationMessage,
-        ),
+      _serviceProviderClient.recordNotificationEvent(
+        eventType: PinpointEventType.notificationOpened,
+        notification: pushNotificationMessage,
       );
 
   void _tokenReceivedListener(String deviceToken) {
@@ -396,10 +371,7 @@ abstract class AmplifyPushNotifications
 
   Future<void> _registerDevice(String address) async {
     try {
-      await identifyCall(
-        PushNotificationsCategoryMethod.registerDevice,
-        () => _serviceProviderClient.registerDevice(address),
-      );
+      await _serviceProviderClient.registerDevice(address);
       _logger.debug('Successfully registered device with the service provider');
     } on Exception catch (error) {
       // the error mostly like is the App doesn't have corresponding
@@ -445,11 +417,8 @@ abstract class AmplifyPushNotifications
   void _recordAnalyticsForLaunchNotification(
     PushNotificationMessage launchNotification,
   ) =>
-      identifyCall(
-        PushNotificationsCategoryMethod.launchNotification,
-        () => _serviceProviderClient.recordNotificationEvent(
-          eventType: PinpointEventType.notificationOpened,
-          notification: launchNotification,
-        ),
+      _serviceProviderClient.recordNotificationEvent(
+        eventType: PinpointEventType.notificationOpened,
+        notification: launchNotification,
       );
 }

@@ -2,29 +2,36 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import 'package:amplify_authenticator_test/amplify_authenticator_test.dart';
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_integration_test/amplify_integration_test.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:integration_test/integration_test.dart';
 
-import 'test_runner.dart';
+import 'config.dart';
 import 'utils/test_utils.dart';
 
 // This test follows the Amplify UI feature "sign-up-with-email-with-lambda-trigger"
 // https://github.com/aws-amplify/amplify-ui/blob/main/packages/e2e/features/ui/components/authenticator/sign-up-with-email-with-lambda-trigger.feature
 
 void main() {
-  testRunner.setupTests();
+  AWSLogger().logLevel = LogLevel.verbose;
+  final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  // resolves issue on iOS. See: https://github.com/flutter/flutter/issues/89651
+  binding.deferFirstFrame();
 
   group(
     'Sign Up with Email with Pre Sign Up Lambda Trigger for Auto Confirmation',
     () {
       // Background
-      setUp(() async {
+      setUpAll(() async {
         // Given I'm running the example
         // "ui/components/authenticator/sign-up-with-email-lambda"
-        await testRunner.configure(
+        await loadConfiguration(
           environmentName: 'sign-in-with-email-lambda-trigger',
         );
       });
+
+      tearDown(deleteTestUser);
 
       // Scenario: Login mechanism set to "email"
       testWidgets(
@@ -87,6 +94,18 @@ void main() {
 
           // And I confirm my password
           await po.enterPasswordConfirmation(password);
+
+          // And I intercept '{ "headers": { "X-Amz-Target": "AWSCognitoIdentityProviderService.SignUp" } }'
+          // with fixture "sign-up-with-email-with-lambda-trigger"
+          noOp();
+
+          // And I mock 'Amplify.Auth.signIn' with fixture
+          // "Auth.signIn-verified-email"
+          noOp();
+
+          // And I mock 'Amplify.Auth.currentAuthenticatedUser' with fixture
+          // "Auth.currentAuthenticatedUser-verified-email"
+          noOp();
 
           // And I click the "Create Account" button
           await po.submitSignUp();

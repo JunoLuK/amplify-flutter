@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'object_not_in_active_tier_error.dart';
+part of amplify_storage_s3_dart.s3.model.object_not_in_active_tier_error;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -52,7 +52,9 @@ class ObjectNotInActiveTierErrorBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  ObjectNotInActiveTierErrorBuilder();
+  ObjectNotInActiveTierErrorBuilder() {
+    ObjectNotInActiveTierError._init(this);
+  }
 
   ObjectNotInActiveTierErrorBuilder get _$this {
     final $v = _$v;

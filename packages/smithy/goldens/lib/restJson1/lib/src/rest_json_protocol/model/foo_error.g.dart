@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'foo_error.dart';
+part of rest_json1_v1.rest_json_protocol.model.foo_error;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -41,7 +41,9 @@ class FooErrorBuilder implements Builder<FooError, FooErrorBuilder> {
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  FooErrorBuilder();
+  FooErrorBuilder() {
+    FooError._init(this);
+  }
 
   FooErrorBuilder get _$this {
     final $v = _$v;

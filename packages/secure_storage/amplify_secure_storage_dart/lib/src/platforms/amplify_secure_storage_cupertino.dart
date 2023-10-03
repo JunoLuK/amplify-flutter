@@ -14,7 +14,6 @@ import 'package:amplify_secure_storage_dart/src/exception/secure_storage_excepti
 import 'package:amplify_secure_storage_dart/src/exception/unknown_exception.dart';
 import 'package:amplify_secure_storage_dart/src/ffi/cupertino/cupertino.dart';
 import 'package:ffi/ffi.dart';
-import 'package:meta/meta.dart';
 
 /// {@template amplify_secure_storage_dart.amplify_secure_storage_cupertino}
 /// The implementation of [SecureStorageInterface] for iOS and MacOS.
@@ -314,30 +313,29 @@ class AmplifySecureStorageCupertino extends AmplifySecureStorageInterface {
 
   /// Maps the result code to a [SecureStorageException].
   SecureStorageException _getExceptionFromResultCode(int code) {
-    final securityFrameworkError = SecurityFrameworkError.fromCode(code);
+    final securityFrameworkError = _SecurityFrameworkError.fromCode(code);
     return securityFrameworkError.toSecureStorageException();
   }
 }
 
 /// An error from the Security Framework.
-@visibleForTesting
-class SecurityFrameworkError {
-  SecurityFrameworkError({required this.code, required this.message});
+class _SecurityFrameworkError {
+  _SecurityFrameworkError({required this.code, required this.message});
 
   /// Creates an error from the given result code.
-  factory SecurityFrameworkError.fromCode(int code) {
+  factory _SecurityFrameworkError.fromCode(int code) {
     final cfString = security.SecCopyErrorMessageString(code, nullptr);
     if (cfString == nullptr) {
-      return SecurityFrameworkError(
+      return _SecurityFrameworkError(
         code: code,
         message: _noErrorStringMessage,
       );
     }
     try {
       final message = cfString.toDartString() ?? _noErrorStringMessage;
-      return SecurityFrameworkError(code: code, message: message);
+      return _SecurityFrameworkError(code: code, message: message);
     } on Exception {
-      return SecurityFrameworkError(
+      return _SecurityFrameworkError(
         code: code,
         message: 'The error string could not be parsed.',
       );

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'software_token_mfa_not_found_exception.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.software_token_mfa_not_found_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -60,7 +60,9 @@ class SoftwareTokenMfaNotFoundExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  SoftwareTokenMfaNotFoundExceptionBuilder();
+  SoftwareTokenMfaNotFoundExceptionBuilder() {
+    SoftwareTokenMfaNotFoundException._init(this);
+  }
 
   SoftwareTokenMfaNotFoundExceptionBuilder get _$this {
     final $v = _$v;

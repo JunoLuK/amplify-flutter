@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'limit_exceeded_exception.dart';
+part of amplify_auth_cognito_dart.cognito_identity.model.limit_exceeded_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -54,7 +54,9 @@ class LimitExceededExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  LimitExceededExceptionBuilder();
+  LimitExceededExceptionBuilder() {
+    LimitExceededException._init(this);
+  }
 
   LimitExceededExceptionBuilder get _$this {
     final $v = _$v;

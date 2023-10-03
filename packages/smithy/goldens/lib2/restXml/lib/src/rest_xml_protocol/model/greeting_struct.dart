@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v2.rest_xml_protocol.model.greeting_struct; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -22,20 +21,22 @@ abstract class GreetingStruct
 
   const GreetingStruct._();
 
-  static const List<_i2.SmithySerializer<GreetingStruct>> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     GreetingStructRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(GreetingStructBuilder b) {}
   String? get hi;
   @override
   List<Object?> get props => [hi];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('GreetingStruct')
-      ..add(
-        'hi',
-        hi,
-      );
+    final helper = newBuiltValueToStringHelper('GreetingStruct');
+    helper.add(
+      'hi',
+      hi,
+    );
     return helper.toString();
   }
 }
@@ -65,18 +66,18 @@ class GreetingStructRestXmlSerializer
     final result = GreetingStructBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'hi':
-          result.hi = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.hi = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -86,19 +87,19 @@ class GreetingStructRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    GreetingStruct object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[const _i2.XmlElementName('GreetingStruct')];
-    final GreetingStruct(:hi) = object;
-    if (hi != null) {
-      result$
+    final payload = (object as GreetingStruct);
+    final result = <Object?>[const _i2.XmlElementName('GreetingStruct')];
+    if (payload.hi != null) {
+      result
         ..add(const _i2.XmlElementName('hi'))
         ..add(serializers.serialize(
-          hi,
+          payload.hi!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

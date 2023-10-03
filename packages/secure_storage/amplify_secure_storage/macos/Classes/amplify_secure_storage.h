@@ -4,4 +4,6 @@
 #ifndef amplify_secure_storage_h
 #define amplify_secure_storage_h
 
+#import "Messages.h"
+
 #endif /* amplify_secure_storage_h */

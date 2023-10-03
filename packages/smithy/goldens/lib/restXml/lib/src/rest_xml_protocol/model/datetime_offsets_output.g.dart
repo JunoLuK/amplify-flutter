@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'datetime_offsets_output.dart';
+part of rest_xml_v1.rest_xml_protocol.model.datetime_offsets_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -48,7 +48,9 @@ class DatetimeOffsetsOutputBuilder
   DateTime? get datetime => _$this._datetime;
   set datetime(DateTime? datetime) => _$this._datetime = datetime;
 
-  DatetimeOffsetsOutputBuilder();
+  DatetimeOffsetsOutputBuilder() {
+    DatetimeOffsetsOutput._init(this);
+  }
 
   DatetimeOffsetsOutputBuilder get _$this {
     final $v = _$v;

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'verify_user_attribute_request.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.verify_user_attribute_request;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -78,7 +78,9 @@ class VerifyUserAttributeRequestBuilder
   String? get code => _$this._code;
   set code(String? code) => _$this._code = code;
 
-  VerifyUserAttributeRequestBuilder();
+  VerifyUserAttributeRequestBuilder() {
+    VerifyUserAttributeRequest._init(this);
+  }
 
   VerifyUserAttributeRequestBuilder get _$this {
     final $v = _$v;

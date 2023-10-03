@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'empty_input_and_empty_output_input.dart';
+part of rest_json1_v1.rest_json_protocol.model.empty_input_and_empty_output_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -40,7 +40,9 @@ class EmptyInputAndEmptyOutputInputBuilder
             EmptyInputAndEmptyOutputInputBuilder> {
   _$EmptyInputAndEmptyOutputInput? _$v;
 
-  EmptyInputAndEmptyOutputInputBuilder();
+  EmptyInputAndEmptyOutputInputBuilder() {
+    EmptyInputAndEmptyOutputInput._init(this);
+  }
 
   @override
   void replace(EmptyInputAndEmptyOutputInput other) {

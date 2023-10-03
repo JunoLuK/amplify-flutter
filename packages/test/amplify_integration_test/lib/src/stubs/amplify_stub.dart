@@ -6,14 +6,9 @@ import 'dart:convert';
 
 import 'package:amplify_core/amplify_core.dart';
 
-/// {@template amplify_integration_test.amplify_stub}
 /// A stub of [Amplify] that holds the config in memory and
 /// does nothing else to register plugins.
-/// {@endtemplate}
 class AmplifyStub extends AmplifyClass {
-  /// {@macro amplify_integration_test.amplify_stub}
-  AmplifyStub() : super.protected();
-
   AmplifyConfig? _config;
 
   bool _isConfigured = false;
@@ -31,7 +26,7 @@ class AmplifyStub extends AmplifyClass {
   }
 
   @override
-  Future<void> addPluginPlatform(AmplifyPluginInterface plugin) async {
+  Future<void> addPlugin(AmplifyPluginInterface plugin) async {
     try {
       if (plugin is AuthPluginInterface) {
         await Auth.addPlugin(
@@ -80,5 +75,12 @@ class AmplifyStub extends AmplifyClass {
     } on Exception {
       return const AmplifyConfig();
     }
+  }
+
+  AmplifyStub() : super.protected();
+
+  @override
+  Future<void> configurePlatform(String config) async {
+    // no-op
   }
 }

@@ -1,27 +1,26 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library custom_v2.s3.operation.get_object_operation; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'dart:async' as _i2;
+import 'dart:async' as _i3;
 
-import 'package:aws_common/aws_common.dart' as _i5;
-import 'package:aws_signature_v4/aws_signature_v4.dart' as _i4;
-import 'package:custom_v2/src/s3/common/endpoint_resolver.dart';
-import 'package:custom_v2/src/s3/common/serializers.dart';
-import 'package:custom_v2/src/s3/model/get_object_output.dart';
-import 'package:custom_v2/src/s3/model/get_object_request.dart';
+import 'package:aws_common/aws_common.dart' as _i8;
+import 'package:aws_signature_v4/aws_signature_v4.dart' as _i6;
+import 'package:custom_v2/src/s3/common/endpoint_resolver.dart' as _i9;
+import 'package:custom_v2/src/s3/common/serializers.dart' as _i7;
+import 'package:custom_v2/src/s3/model/get_object_output.dart' as _i4;
+import 'package:custom_v2/src/s3/model/get_object_request.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
-import 'package:smithy_aws/smithy_aws.dart' as _i3;
+import 'package:smithy_aws/smithy_aws.dart' as _i5;
 
-class GetObjectOperation extends _i1.HttpOperation<GetObjectRequestPayload,
-    GetObjectRequest, _i2.Stream<List<int>>, GetObjectOutput> {
+class GetObjectOperation extends _i1.HttpOperation<_i2.GetObjectRequestPayload,
+    _i2.GetObjectRequest, _i3.Stream<List<int>>, _i4.GetObjectOutput> {
   GetObjectOperation({
     required String region,
     Uri? baseUri,
-    _i3.S3ClientConfig s3ClientConfig = const _i3.S3ClientConfig(),
-    _i4.AWSCredentialsProvider credentialsProvider =
-        const _i4.AWSCredentialsProvider.defaultChain(),
+    _i5.S3ClientConfig s3ClientConfig = const _i5.S3ClientConfig(),
+    _i6.AWSCredentialsProvider credentialsProvider =
+        const _i6.AWSCredentialsProvider.environment(),
     List<_i1.HttpRequestInterceptor> requestInterceptors = const [],
     List<_i1.HttpResponseInterceptor> responseInterceptors = const [],
   })  : _region = region,
@@ -33,35 +32,35 @@ class GetObjectOperation extends _i1.HttpOperation<GetObjectRequestPayload,
 
   @override
   late final List<
-      _i1.HttpProtocol<GetObjectRequestPayload, GetObjectRequest,
-          _i2.Stream<List<int>>, GetObjectOutput>> protocols = [
-    _i3.RestXmlProtocol(
-      serializers: serializers,
-      builderFactories: builderFactories,
+      _i1.HttpProtocol<_i2.GetObjectRequestPayload, _i2.GetObjectRequest,
+          _i3.Stream<List<int>>, _i4.GetObjectOutput>> protocols = [
+    _i5.RestXmlProtocol(
+      serializers: _i7.serializers,
+      builderFactories: _i7.builderFactories,
       requestInterceptors: <_i1.HttpRequestInterceptor>[
             const _i1.WithHost(),
-            _i3.WithSigV4(
+            _i5.WithSigV4(
               region: _region,
-              service: _i5.AWSService.s3,
+              service: _i8.AWSService.s3,
               credentialsProvider: _credentialsProvider,
               serviceConfiguration: _s3ClientConfig.signerConfiguration ??
-                  _i4.S3ServiceConfiguration(),
+                  _i6.S3ServiceConfiguration(),
             ),
             const _i1.WithUserAgent('aws-sdk-dart/0.3.1'),
-            const _i3.WithSdkInvocationId(),
-            const _i3.WithSdkRequest(),
+            const _i5.WithSdkInvocationId(),
+            const _i5.WithSdkRequest(),
           ] +
           _requestInterceptors,
       responseInterceptors: <_i1.HttpResponseInterceptor>[
-            const _i3.CheckPartialResponse()
+            const _i5.CheckPartialResponse()
           ] +
           _responseInterceptors,
       noErrorWrapping: true,
     )
   ];
 
-  late final _i3.AWSEndpoint _awsEndpoint = endpointResolver.resolve(
-    sdkId,
+  late final _i5.AWSEndpoint _awsEndpoint = _i9.endpointResolver.resolve(
+    _i9.sdkId,
     _region,
   );
 
@@ -69,16 +68,17 @@ class GetObjectOperation extends _i1.HttpOperation<GetObjectRequestPayload,
 
   final Uri? _baseUri;
 
-  final _i3.S3ClientConfig _s3ClientConfig;
+  final _i5.S3ClientConfig _s3ClientConfig;
 
-  final _i4.AWSCredentialsProvider _credentialsProvider;
+  final _i6.AWSCredentialsProvider _credentialsProvider;
 
   final List<_i1.HttpRequestInterceptor> _requestInterceptors;
 
   final List<_i1.HttpResponseInterceptor> _responseInterceptors;
 
   @override
-  _i1.HttpRequest buildRequest(GetObjectRequest input) => _i1.HttpRequest((b) {
+  _i1.HttpRequest buildRequest(_i2.GetObjectRequest input) =>
+      _i1.HttpRequest((b) {
         b.method = 'GET';
         b.path = _s3ClientConfig.usePathStyle
             ? r'/{Bucket}/{Key+}?x-id=GetObject'
@@ -91,13 +91,13 @@ class GetObjectOperation extends _i1.HttpOperation<GetObjectRequestPayload,
         }
       });
   @override
-  int successCode([GetObjectOutput? output]) => 200;
+  int successCode([_i4.GetObjectOutput? output]) => 200;
   @override
-  GetObjectOutput buildOutput(
-    _i2.Stream<List<int>> payload,
-    _i5.AWSBaseHttpResponse response,
+  _i4.GetObjectOutput buildOutput(
+    _i3.Stream<List<int>>? payload,
+    _i8.AWSBaseHttpResponse response,
   ) =>
-      GetObjectOutput.fromResponse(
+      _i4.GetObjectOutput.fromResponse(
         payload,
         response,
       );
@@ -106,7 +106,7 @@ class GetObjectOperation extends _i1.HttpOperation<GetObjectRequestPayload,
   @override
   String get runtimeTypeName => 'GetObject';
   @override
-  _i3.AWSRetryer get retryer => _i3.AWSRetryer();
+  _i5.AWSRetryer get retryer => _i5.AWSRetryer();
   @override
   Uri get baseUri {
     var baseUri = _baseUri ?? endpoint.uri;
@@ -128,12 +128,12 @@ class GetObjectOperation extends _i1.HttpOperation<GetObjectRequestPayload,
   @override
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;
   @override
-  _i1.SmithyOperation<GetObjectOutput> run(
-    GetObjectRequest input, {
-    _i5.AWSHttpClient? client,
+  _i1.SmithyOperation<_i4.GetObjectOutput> run(
+    _i2.GetObjectRequest input, {
+    _i8.AWSHttpClient? client,
     _i1.ShapeId? useProtocol,
   }) {
-    return _i2.runZoned(
+    return _i3.runZoned(
       () => super.run(
         input,
         client: client,
@@ -141,7 +141,7 @@ class GetObjectOperation extends _i1.HttpOperation<GetObjectRequestPayload,
       ),
       zoneValues: {
         ...?_awsEndpoint.credentialScope?.zoneValues,
-        ...{_i5.AWSHeaders.sdkInvocationId: _i5.uuid(secure: true)},
+        ...{_i8.AWSHeaders.sdkInvocationId: _i8.uuid(secure: true)}
       },
     );
   }

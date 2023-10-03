@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_auth_cognito_dart.cognito_identity_provider.model.associate_software_token_response; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -39,8 +38,12 @@ abstract class AssociateSoftwareTokenResponse
   ) =>
       payload;
 
-  static const List<_i2.SmithySerializer<AssociateSoftwareTokenResponse>>
-      serializers = [AssociateSoftwareTokenResponseAwsJson11Serializer()];
+  static const List<_i2.SmithySerializer> serializers = [
+    AssociateSoftwareTokenResponseAwsJson11Serializer()
+  ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(AssociateSoftwareTokenResponseBuilder b) {}
 
   /// A unique generated shared secret code that is used in the TOTP algorithm to generate a one-time code.
   String? get secretCode;
@@ -54,15 +57,16 @@ abstract class AssociateSoftwareTokenResponse
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('AssociateSoftwareTokenResponse')
-      ..add(
-        'secretCode',
-        '***SENSITIVE***',
-      )
-      ..add(
-        'session',
-        '***SENSITIVE***',
-      );
+    final helper =
+        newBuiltValueToStringHelper('AssociateSoftwareTokenResponse');
+    helper.add(
+      'secretCode',
+      '***SENSITIVE***',
+    );
+    helper.add(
+      'session',
+      session,
+    );
     return helper.toString();
   }
 }
@@ -96,20 +100,23 @@ class AssociateSoftwareTokenResponseAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'SecretCode':
-          result.secretCode = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.secretCode = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'Session':
-          result.session = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.session = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -119,27 +126,27 @@ class AssociateSoftwareTokenResponseAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    AssociateSoftwareTokenResponse object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final AssociateSoftwareTokenResponse(:secretCode, :session) = object;
-    if (secretCode != null) {
-      result$
+    final payload = (object as AssociateSoftwareTokenResponse);
+    final result = <Object?>[];
+    if (payload.secretCode != null) {
+      result
         ..add('SecretCode')
         ..add(serializers.serialize(
-          secretCode,
+          payload.secretCode!,
           specifiedType: const FullType(String),
         ));
     }
-    if (session != null) {
-      result$
+    if (payload.session != null) {
+      result
         ..add('Session')
         ..add(serializers.serialize(
-          session,
+          payload.session!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

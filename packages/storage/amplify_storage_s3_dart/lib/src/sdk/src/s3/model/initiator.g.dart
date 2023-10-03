@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'initiator.dart';
+part of amplify_storage_s3_dart.s3.model.initiator;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,14 +8,14 @@ part of 'initiator.dart';
 
 class _$Initiator extends Initiator {
   @override
-  final String? id;
-  @override
   final String? displayName;
+  @override
+  final String? id;
 
   factory _$Initiator([void Function(InitiatorBuilder)? updates]) =>
       (new InitiatorBuilder()..update(updates))._build();
 
-  _$Initiator._({this.id, this.displayName}) : super._();
+  _$Initiator._({this.displayName, this.id}) : super._();
 
   @override
   Initiator rebuild(void Function(InitiatorBuilder) updates) =>
@@ -28,15 +28,15 @@ class _$Initiator extends Initiator {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is Initiator &&
-        id == other.id &&
-        displayName == other.displayName;
+        displayName == other.displayName &&
+        id == other.id;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, displayName.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -45,21 +45,23 @@ class _$Initiator extends Initiator {
 class InitiatorBuilder implements Builder<Initiator, InitiatorBuilder> {
   _$Initiator? _$v;
 
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
   String? _displayName;
   String? get displayName => _$this._displayName;
   set displayName(String? displayName) => _$this._displayName = displayName;
 
-  InitiatorBuilder();
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  InitiatorBuilder() {
+    Initiator._init(this);
+  }
 
   InitiatorBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _id = $v.id;
       _displayName = $v.displayName;
+      _id = $v.id;
       _$v = null;
     }
     return this;
@@ -80,7 +82,7 @@ class InitiatorBuilder implements Builder<Initiator, InitiatorBuilder> {
   Initiator build() => _build();
 
   _$Initiator _build() {
-    final _$result = _$v ?? new _$Initiator._(id: id, displayName: displayName);
+    final _$result = _$v ?? new _$Initiator._(displayName: displayName, id: id);
     replace(_$result);
     return _$result;
   }

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'malformed_float_input.dart';
+part of rest_json1_v1.rest_json_protocol.model.malformed_float_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -10,11 +10,11 @@ class _$MalformedFloatInput extends MalformedFloatInput {
   @override
   final double? floatInBody;
   @override
+  final double? floatInHeader;
+  @override
   final double floatInPath;
   @override
   final double? floatInQuery;
-  @override
-  final double? floatInHeader;
 
   factory _$MalformedFloatInput(
           [void Function(MalformedFloatInputBuilder)? updates]) =>
@@ -22,9 +22,9 @@ class _$MalformedFloatInput extends MalformedFloatInput {
 
   _$MalformedFloatInput._(
       {this.floatInBody,
+      this.floatInHeader,
       required this.floatInPath,
-      this.floatInQuery,
-      this.floatInHeader})
+      this.floatInQuery})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         floatInPath, r'MalformedFloatInput', 'floatInPath');
@@ -44,18 +44,18 @@ class _$MalformedFloatInput extends MalformedFloatInput {
     if (identical(other, this)) return true;
     return other is MalformedFloatInput &&
         floatInBody == other.floatInBody &&
+        floatInHeader == other.floatInHeader &&
         floatInPath == other.floatInPath &&
-        floatInQuery == other.floatInQuery &&
-        floatInHeader == other.floatInHeader;
+        floatInQuery == other.floatInQuery;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, floatInBody.hashCode);
+    _$hash = $jc(_$hash, floatInHeader.hashCode);
     _$hash = $jc(_$hash, floatInPath.hashCode);
     _$hash = $jc(_$hash, floatInQuery.hashCode);
-    _$hash = $jc(_$hash, floatInHeader.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -69,6 +69,11 @@ class MalformedFloatInputBuilder
   double? get floatInBody => _$this._floatInBody;
   set floatInBody(double? floatInBody) => _$this._floatInBody = floatInBody;
 
+  double? _floatInHeader;
+  double? get floatInHeader => _$this._floatInHeader;
+  set floatInHeader(double? floatInHeader) =>
+      _$this._floatInHeader = floatInHeader;
+
   double? _floatInPath;
   double? get floatInPath => _$this._floatInPath;
   set floatInPath(double? floatInPath) => _$this._floatInPath = floatInPath;
@@ -77,20 +82,17 @@ class MalformedFloatInputBuilder
   double? get floatInQuery => _$this._floatInQuery;
   set floatInQuery(double? floatInQuery) => _$this._floatInQuery = floatInQuery;
 
-  double? _floatInHeader;
-  double? get floatInHeader => _$this._floatInHeader;
-  set floatInHeader(double? floatInHeader) =>
-      _$this._floatInHeader = floatInHeader;
-
-  MalformedFloatInputBuilder();
+  MalformedFloatInputBuilder() {
+    MalformedFloatInput._init(this);
+  }
 
   MalformedFloatInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _floatInBody = $v.floatInBody;
+      _floatInHeader = $v.floatInHeader;
       _floatInPath = $v.floatInPath;
       _floatInQuery = $v.floatInQuery;
-      _floatInHeader = $v.floatInHeader;
       _$v = null;
     }
     return this;
@@ -114,10 +116,10 @@ class MalformedFloatInputBuilder
     final _$result = _$v ??
         new _$MalformedFloatInput._(
             floatInBody: floatInBody,
+            floatInHeader: floatInHeader,
             floatInPath: BuiltValueNullFieldError.checkNotNull(
                 floatInPath, r'MalformedFloatInput', 'floatInPath'),
-            floatInQuery: floatInQuery,
-            floatInHeader: floatInHeader);
+            floatInQuery: floatInQuery);
     replace(_$result);
     return _$result;
   }
@@ -167,7 +169,9 @@ class MalformedFloatInputPayloadBuilder
   double? get floatInBody => _$this._floatInBody;
   set floatInBody(double? floatInBody) => _$this._floatInBody = floatInBody;
 
-  MalformedFloatInputPayloadBuilder();
+  MalformedFloatInputPayloadBuilder() {
+    MalformedFloatInputPayload._init(this);
+  }
 
   MalformedFloatInputPayloadBuilder get _$this {
     final $v = _$v;

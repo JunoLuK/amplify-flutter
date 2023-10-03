@@ -10,7 +10,7 @@ final random = Random();
 const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
 const digits = '1234567890';
-const symbols = r'~/`!@#$%^&*(),._?:;{}|<>';
+const symbols = '~/`!@#\$%^&*(),._?:;{}|<>';
 
 String generatePhoneNumber() {
   final buf = StringBuffer('+1');
@@ -26,32 +26,32 @@ String generatePhoneNumber() {
 
 PhoneNumber generateUSPhoneNumber() {
   const countryCode = '+1';
-  final areaCode = StringBuffer();
+  var areaCode = '';
   for (var i = 0; i < 3; i++) {
-    areaCode.write(digits[random.nextInt(digits.length)]);
+    areaCode += digits[random.nextInt(digits.length)];
   }
-  final phoneNumber = StringBuffer('55501');
+  var phoneNumber = '55501';
   for (var i = 0; i < 2; i++) {
-    phoneNumber.write(digits[random.nextInt(digits.length)]);
+    phoneNumber += digits[random.nextInt(digits.length)];
   }
   return PhoneNumber(
     countryCode: countryCode,
-    areaCode: areaCode.toString(),
-    phoneNumber: phoneNumber.toString(),
+    areaCode: areaCode,
+    phoneNumber: phoneNumber,
   );
 }
 
 PhoneNumber generateFrenchPhoneNumber() {
   const countryCode = '+33';
   const areaCode = '1';
-  final phoneNumber = StringBuffer('9900');
+  var phoneNumber = '9900';
   for (var i = 0; i < 4; i++) {
-    phoneNumber.write(digits[random.nextInt(digits.length)]);
+    phoneNumber += digits[random.nextInt(digits.length)];
   }
   return PhoneNumber(
     countryCode: countryCode,
     areaCode: areaCode,
-    phoneNumber: phoneNumber.toString(),
+    phoneNumber: phoneNumber,
   );
 }
 
@@ -67,14 +67,15 @@ String generatePassword() =>
 String generateNameAttribute() => 'FAKE-NAME-${uuid()}';
 
 class PhoneNumber {
+  final String countryCode;
+  final String? areaCode;
+  final String phoneNumber;
+
   PhoneNumber({
     required this.countryCode,
     this.areaCode = '',
     required this.phoneNumber,
   });
-  final String countryCode;
-  final String? areaCode;
-  final String phoneNumber;
 
   /// returns a phone number without the country code
   String withOutCountryCode() => '$areaCode$phoneNumber';

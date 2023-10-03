@@ -39,8 +39,6 @@ void main() {
         .setMockMessageHandler(channelName, null);
   });
 
-  tearDownAll(() => dataStoreStreamController.close());
-
   handler(event) {
     ServicesBinding.instance.defaultBinaryMessenger.handlePlatformMessage(
       channelName,
@@ -142,7 +140,8 @@ void main() {
     );
 
     List<DataStoreHubEvent> events = [];
-    StreamSubscription sub = dataStoreStreamController.stream.listen((event) {
+    StreamSubscription sub =
+        await dataStoreStreamController.stream.listen((event) {
       events.add(event);
     });
 
@@ -169,7 +168,8 @@ void main() {
     );
 
     List<DataStoreHubEvent> events = [];
-    StreamSubscription sub = dataStoreStreamController.stream.listen((event) {
+    StreamSubscription sub =
+        await dataStoreStreamController.stream.listen((event) {
       events.add(event);
     });
 
@@ -200,7 +200,8 @@ void main() {
     );
 
     List<DataStoreHubEvent> events = [];
-    StreamSubscription sub = dataStoreStreamController.stream.listen((event) {
+    StreamSubscription sub =
+        await dataStoreStreamController.stream.listen((event) {
       events.add(event);
     });
 
@@ -235,7 +236,8 @@ void main() {
     );
 
     List<DataStoreHubEvent> events = [];
-    StreamSubscription sub = dataStoreStreamController.stream.listen((event) {
+    StreamSubscription sub =
+        await dataStoreStreamController.stream.listen((event) {
       events.add(event);
     });
 
@@ -276,7 +278,8 @@ void main() {
     );
 
     List<DataStoreHubEvent> events = [];
-    StreamSubscription sub = dataStoreStreamController.stream.listen((event) {
+    StreamSubscription sub =
+        await dataStoreStreamController.stream.listen((event) {
       events.add(event);
     });
 
@@ -304,7 +307,8 @@ void main() {
     );
 
     List<DataStoreHubEvent> events = [];
-    StreamSubscription sub = dataStoreStreamController.stream.listen((event) {
+    StreamSubscription sub =
+        await dataStoreStreamController.stream.listen((event) {
       events.add(event);
     });
 

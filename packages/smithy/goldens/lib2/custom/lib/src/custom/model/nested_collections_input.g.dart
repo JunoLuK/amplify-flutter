@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'nested_collections_input.dart';
+part of custom_v2.custom.model.nested_collections_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -58,7 +58,9 @@ class NestedCollectionsInputBuilder
               mapOfListOfMapOfLists) =>
       _$this._mapOfListOfMapOfLists = mapOfListOfMapOfLists;
 
-  NestedCollectionsInputBuilder();
+  NestedCollectionsInputBuilder() {
+    NestedCollectionsInput._init(this);
+  }
 
   NestedCollectionsInputBuilder get _$this {
     final $v = _$v;

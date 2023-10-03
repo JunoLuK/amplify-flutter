@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'http_checksum_required_input.dart';
+part of custom_v2.custom.model.http_checksum_required_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -49,7 +49,9 @@ class HttpChecksumRequiredInputBuilder
   _i2.Uint8List? get content => _$this._content;
   set content(_i2.Uint8List? content) => _$this._content = content;
 
-  HttpChecksumRequiredInputBuilder();
+  HttpChecksumRequiredInputBuilder() {
+    HttpChecksumRequiredInput._init(this);
+  }
 
   HttpChecksumRequiredInputBuilder get _$this {
     final $v = _$v;

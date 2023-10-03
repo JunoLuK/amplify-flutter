@@ -33,7 +33,6 @@ class AwsJson1_0Trait extends AWSProtocolTrait {
         EndpointTrait.id,
         HostLabelTrait.id,
         TimestampFormatTrait.id,
-        AwsQueryCompatibleTrait.id,
       ];
 }
 

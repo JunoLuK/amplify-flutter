@@ -1,25 +1,25 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v2.rest_xml_protocol.model.http_payload_with_structure_input_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_xml_v2/src/rest_xml_protocol/model/nested_payload.dart';
+import 'package:rest_xml_v2/src/rest_xml_protocol/model/nested_payload.dart'
+    as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'http_payload_with_structure_input_output.g.dart';
 
 abstract class HttpPayloadWithStructureInputOutput
     with
-        _i1.HttpInput<NestedPayload>,
-        _i2.AWSEquatable<HttpPayloadWithStructureInputOutput>
+        _i1.HttpInput<_i2.NestedPayload>,
+        _i3.AWSEquatable<HttpPayloadWithStructureInputOutput>
     implements
         Built<HttpPayloadWithStructureInputOutput,
             HttpPayloadWithStructureInputOutputBuilder>,
-        _i1.HasPayload<NestedPayload> {
-  factory HttpPayloadWithStructureInputOutput({NestedPayload? nested}) {
+        _i1.HasPayload<_i2.NestedPayload> {
+  factory HttpPayloadWithStructureInputOutput({_i2.NestedPayload? nested}) {
     return _$HttpPayloadWithStructureInputOutput._(nested: nested);
   }
 
@@ -30,8 +30,8 @@ abstract class HttpPayloadWithStructureInputOutput
   const HttpPayloadWithStructureInputOutput._();
 
   factory HttpPayloadWithStructureInputOutput.fromRequest(
-    NestedPayload? payload,
-    _i2.AWSBaseHttpRequest request, {
+    _i2.NestedPayload? payload,
+    _i3.AWSBaseHttpRequest request, {
     Map<String, String> labels = const {},
   }) =>
       HttpPayloadWithStructureInputOutput.build((b) {
@@ -42,8 +42,8 @@ abstract class HttpPayloadWithStructureInputOutput
 
   /// Constructs a [HttpPayloadWithStructureInputOutput] from a [payload] and [response].
   factory HttpPayloadWithStructureInputOutput.fromResponse(
-    NestedPayload? payload,
-    _i2.AWSBaseHttpResponse response,
+    _i2.NestedPayload? payload,
+    _i3.AWSBaseHttpResponse response,
   ) =>
       HttpPayloadWithStructureInputOutput.build((b) {
         if (payload != null) {
@@ -51,29 +51,31 @@ abstract class HttpPayloadWithStructureInputOutput
         }
       });
 
-  static const List<_i1.SmithySerializer<NestedPayload?>> serializers = [
+  static const List<_i1.SmithySerializer> serializers = [
     HttpPayloadWithStructureInputOutputRestXmlSerializer()
   ];
 
-  NestedPayload? get nested;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HttpPayloadWithStructureInputOutputBuilder b) {}
+  _i2.NestedPayload? get nested;
   @override
-  NestedPayload? getPayload() => nested ?? NestedPayload();
+  _i2.NestedPayload? getPayload() => nested ?? _i2.NestedPayload();
   @override
   List<Object?> get props => [nested];
   @override
   String toString() {
     final helper =
-        newBuiltValueToStringHelper('HttpPayloadWithStructureInputOutput')
-          ..add(
-            'nested',
-            nested,
-          );
+        newBuiltValueToStringHelper('HttpPayloadWithStructureInputOutput');
+    helper.add(
+      'nested',
+      nested,
+    );
     return helper.toString();
   }
 }
 
 class HttpPayloadWithStructureInputOutputRestXmlSerializer
-    extends _i1.StructuredSmithySerializer<NestedPayload> {
+    extends _i1.StructuredSmithySerializer<_i2.NestedPayload> {
   const HttpPayloadWithStructureInputOutputRestXmlSerializer()
       : super('HttpPayloadWithStructureInputOutput');
 
@@ -90,31 +92,34 @@ class HttpPayloadWithStructureInputOutputRestXmlSerializer
         )
       ];
   @override
-  NestedPayload deserialize(
+  _i2.NestedPayload deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = NestedPayloadBuilder();
+    final result = _i2.NestedPayloadBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'greeting':
-          result.greeting = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.greeting = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'name':
-          result.name = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.name = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -124,27 +129,32 @@ class HttpPayloadWithStructureInputOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    NestedPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[const _i1.XmlElementName('NestedPayload')];
-    final NestedPayload(:greeting, :name) = object;
-    if (greeting != null) {
-      result$
+    final payload = object is HttpPayloadWithStructureInputOutput
+        ? object.getPayload()
+        : (object as _i2.NestedPayload?);
+    final result = <Object?>[const _i1.XmlElementName('NestedPayload')];
+    if (payload == null) {
+      return result;
+    }
+    if (payload.greeting != null) {
+      result
         ..add(const _i1.XmlElementName('greeting'))
         ..add(serializers.serialize(
-          greeting,
+          payload.greeting!,
           specifiedType: const FullType(String),
         ));
     }
-    if (name != null) {
-      result$
+    if (payload.name != null) {
+      result
         ..add(const _i1.XmlElementName('name'))
         ..add(serializers.serialize(
-          name,
+          payload.name!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

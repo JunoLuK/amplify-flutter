@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'json_input.dart';
+part of amplify_storage_s3_dart.s3.model.json_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of 'json_input.dart';
 
 class _$JsonInput extends JsonInput {
   @override
-  final JsonType? type;
+  final _i2.JsonType? type;
 
   factory _$JsonInput([void Function(JsonInputBuilder)? updates]) =>
       (new JsonInputBuilder()..update(updates))._build();
@@ -40,11 +40,13 @@ class _$JsonInput extends JsonInput {
 class JsonInputBuilder implements Builder<JsonInput, JsonInputBuilder> {
   _$JsonInput? _$v;
 
-  JsonType? _type;
-  JsonType? get type => _$this._type;
-  set type(JsonType? type) => _$this._type = type;
+  _i2.JsonType? _type;
+  _i2.JsonType? get type => _$this._type;
+  set type(_i2.JsonType? type) => _$this._type = type;
 
-  JsonInputBuilder();
+  JsonInputBuilder() {
+    JsonInput._init(this);
+  }
 
   JsonInputBuilder get _$this {
     final $v = _$v;

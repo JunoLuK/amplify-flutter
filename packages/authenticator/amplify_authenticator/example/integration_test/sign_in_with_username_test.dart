@@ -10,20 +10,26 @@ import 'package:amplify_authenticator_test/amplify_authenticator_test.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_integration_test/amplify_integration_test.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:integration_test/integration_test.dart';
 
-import 'test_runner.dart';
+import 'config.dart';
 import 'utils/test_utils.dart';
 
 void main() {
-  testRunner.setupTests();
+  AWSLogger().logLevel = LogLevel.verbose;
+  final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  // resolves issue on iOS. See: https://github.com/flutter/flutter/issues/89651
+  binding.deferFirstFrame();
 
   group('sign-in-with-username', () {
     // Given I'm running the example "ui/components/authenticator/sign-in-with-username.feature"
-    setUp(() async {
-      await testRunner.configure(
+    setUpAll(() async {
+      await loadConfiguration(
         environmentName: 'sign-in-with-username',
       );
     });
+
+    tearDown(deleteTestUser);
 
     // Scenario: Sign in with unknown credentials
     testWidgets('Sign in with unknown credentials', (tester) async {
@@ -57,12 +63,13 @@ void main() {
     testWidgets('Sign in with confirmed credentials', (tester) async {
       final username = generateUsername();
       final password = generatePassword();
-      await adminCreateUser(
+      final cognitoUsername = await adminCreateUser(
         username,
         password,
         autoConfirm: true,
         verifyAttributes: true,
       );
+      addTearDown(() => deleteUser(cognitoUsername));
 
       await loadAuthenticator(tester: tester);
       final signInPage = SignInPage(tester: tester);
@@ -97,12 +104,13 @@ void main() {
         (tester) async {
       final username = generateUsername();
       final password = generatePassword();
-      await adminCreateUser(
+      final cognitoUsername = await adminCreateUser(
         username,
         password,
         autoConfirm: true,
         verifyAttributes: true,
       );
+      addTearDown(() => deleteUser(cognitoUsername));
 
       await loadAuthenticator(tester: tester);
       final signInPage = SignInPage(tester: tester);
@@ -144,7 +152,8 @@ void main() {
         (tester) async {
       final username = generateUsername();
       final password = generatePassword();
-      await adminCreateUser(username, password);
+      final cognitoUsername = await adminCreateUser(username, password);
+      addTearDown(() => deleteUser(cognitoUsername));
 
       await loadAuthenticator(tester: tester);
       final signInPage = SignInPage(tester: tester);
@@ -181,12 +190,13 @@ void main() {
       (tester) async {
         final username = generateUsername();
         final password = generatePassword();
-        await adminCreateUser(
+        final cognitoUsername = await adminCreateUser(
           username,
           password,
           autoConfirm: true,
           verifyAttributes: true,
         );
+        addTearDown(() => deleteUser(cognitoUsername));
 
         await loadAuthenticator(tester: tester);
         final signInPage = SignInPage(tester: tester);

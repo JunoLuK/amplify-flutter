@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'json_int_enums_input_output.dart';
+part of aws_json1_1_v1.json_protocol.model.json_int_enums_input_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -16,9 +16,9 @@ class _$JsonIntEnumsInputOutput extends JsonIntEnumsInputOutput {
   @override
   final _i3.BuiltList<int>? intEnumList;
   @override
-  final _i3.BuiltSet<int>? intEnumSet;
-  @override
   final _i3.BuiltMap<String, int>? intEnumMap;
+  @override
+  final _i3.BuiltSet<int>? intEnumSet;
 
   factory _$JsonIntEnumsInputOutput(
           [void Function(JsonIntEnumsInputOutputBuilder)? updates]) =>
@@ -29,8 +29,8 @@ class _$JsonIntEnumsInputOutput extends JsonIntEnumsInputOutput {
       this.intEnum2,
       this.intEnum3,
       this.intEnumList,
-      this.intEnumSet,
-      this.intEnumMap})
+      this.intEnumMap,
+      this.intEnumSet})
       : super._();
 
   @override
@@ -50,8 +50,8 @@ class _$JsonIntEnumsInputOutput extends JsonIntEnumsInputOutput {
         intEnum2 == other.intEnum2 &&
         intEnum3 == other.intEnum3 &&
         intEnumList == other.intEnumList &&
-        intEnumSet == other.intEnumSet &&
-        intEnumMap == other.intEnumMap;
+        intEnumMap == other.intEnumMap &&
+        intEnumSet == other.intEnumSet;
   }
 
   @override
@@ -61,8 +61,8 @@ class _$JsonIntEnumsInputOutput extends JsonIntEnumsInputOutput {
     _$hash = $jc(_$hash, intEnum2.hashCode);
     _$hash = $jc(_$hash, intEnum3.hashCode);
     _$hash = $jc(_$hash, intEnumList.hashCode);
-    _$hash = $jc(_$hash, intEnumSet.hashCode);
     _$hash = $jc(_$hash, intEnumMap.hashCode);
+    _$hash = $jc(_$hash, intEnumSet.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -91,19 +91,21 @@ class JsonIntEnumsInputOutputBuilder
   set intEnumList(_i3.ListBuilder<int>? intEnumList) =>
       _$this._intEnumList = intEnumList;
 
-  _i3.SetBuilder<int>? _intEnumSet;
-  _i3.SetBuilder<int> get intEnumSet =>
-      _$this._intEnumSet ??= new _i3.SetBuilder<int>();
-  set intEnumSet(_i3.SetBuilder<int>? intEnumSet) =>
-      _$this._intEnumSet = intEnumSet;
-
   _i3.MapBuilder<String, int>? _intEnumMap;
   _i3.MapBuilder<String, int> get intEnumMap =>
       _$this._intEnumMap ??= new _i3.MapBuilder<String, int>();
   set intEnumMap(_i3.MapBuilder<String, int>? intEnumMap) =>
       _$this._intEnumMap = intEnumMap;
 
-  JsonIntEnumsInputOutputBuilder();
+  _i3.SetBuilder<int>? _intEnumSet;
+  _i3.SetBuilder<int> get intEnumSet =>
+      _$this._intEnumSet ??= new _i3.SetBuilder<int>();
+  set intEnumSet(_i3.SetBuilder<int>? intEnumSet) =>
+      _$this._intEnumSet = intEnumSet;
+
+  JsonIntEnumsInputOutputBuilder() {
+    JsonIntEnumsInputOutput._init(this);
+  }
 
   JsonIntEnumsInputOutputBuilder get _$this {
     final $v = _$v;
@@ -112,8 +114,8 @@ class JsonIntEnumsInputOutputBuilder
       _intEnum2 = $v.intEnum2;
       _intEnum3 = $v.intEnum3;
       _intEnumList = $v.intEnumList?.toBuilder();
-      _intEnumSet = $v.intEnumSet?.toBuilder();
       _intEnumMap = $v.intEnumMap?.toBuilder();
+      _intEnumSet = $v.intEnumSet?.toBuilder();
       _$v = null;
     }
     return this;
@@ -142,17 +144,17 @@ class JsonIntEnumsInputOutputBuilder
               intEnum2: intEnum2,
               intEnum3: intEnum3,
               intEnumList: _intEnumList?.build(),
-              intEnumSet: _intEnumSet?.build(),
-              intEnumMap: _intEnumMap?.build());
+              intEnumMap: _intEnumMap?.build(),
+              intEnumSet: _intEnumSet?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'intEnumList';
         _intEnumList?.build();
-        _$failedField = 'intEnumSet';
-        _intEnumSet?.build();
         _$failedField = 'intEnumMap';
         _intEnumMap?.build();
+        _$failedField = 'intEnumSet';
+        _intEnumSet?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'JsonIntEnumsInputOutput', _$failedField, e.toString());

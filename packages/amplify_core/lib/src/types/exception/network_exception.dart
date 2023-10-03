@@ -1,7 +1,7 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-part of 'amplify_exception.dart';
+import 'package:amplify_core/amplify_core.dart';
 
 /// {@template amplify_core.network_exception}
 /// Exception thrown when the requested operation fails due to a network
@@ -19,9 +19,6 @@ class NetworkException extends AmplifyException
     super.recoverySuggestion,
     super.underlyingException,
   });
-
-  @override
-  String get runtimeTypeName => 'NetworkException';
 }
 
 extension AWSHttpExceptionToAmplifyException on AWSHttpException {

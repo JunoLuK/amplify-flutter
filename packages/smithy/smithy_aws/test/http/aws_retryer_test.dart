@@ -35,8 +35,7 @@ class TestSuite {
     required this.responses,
   });
 
-  factory TestSuite.fromJson(Map<String, Object?> json) =>
-      _$TestSuiteFromJson(json);
+  factory TestSuite.fromJson(Map json) => _$TestSuiteFromJson(json);
 
   final TestSuiteGiven given;
   final List<TestCase> responses;
@@ -52,8 +51,7 @@ class TestSuiteGiven {
     required this.maxBackoffTime,
   });
 
-  factory TestSuiteGiven.fromJson(Map<String, Object?> json) =>
-      _$TestSuiteGivenFromJson(json);
+  factory TestSuiteGiven.fromJson(Map json) => _$TestSuiteGivenFromJson(json);
 
   final int maxAttempts;
   final int initialRetryTokens;
@@ -67,7 +65,7 @@ class TestSuiteGiven {
         initialRetryTokens,
         exponentialBase,
         exponentialPower,
-        maxBackoffTime,
+        maxBackoffTime
       ].join('|');
 }
 
@@ -78,8 +76,7 @@ class TestCase {
     required this.expected,
   });
 
-  factory TestCase.fromJson(Map<String, Object?> json) =>
-      _$TestCaseFromJson(json);
+  factory TestCase.fromJson(Map json) => _$TestCaseFromJson(json);
 
   final TestCaseResponse response;
   final TestCaseExpected expected;
@@ -91,7 +88,7 @@ class TestCaseResponse {
     required this.statusCode,
   });
 
-  factory TestCaseResponse.fromJson(Map<String, Object?> json) =>
+  factory TestCaseResponse.fromJson(Map json) =>
       _$TestCaseResponseFromJson(json);
 
   final int statusCode;
@@ -105,7 +102,7 @@ class TestCaseExpected {
     this.delay,
   });
 
-  factory TestCaseExpected.fromJson(Map<String, Object?> json) =>
+  factory TestCaseExpected.fromJson(Map json) =>
       _$TestCaseExpectedFromJson(json);
 
   final Outcome outcome;
@@ -115,10 +112,7 @@ class TestCaseExpected {
 
 List<TestSuite> loadTestSuite(String testSuiteYaml) {
   final yaml = loadYamlStream(testSuiteYaml);
-  return yaml
-      .cast<Map<Object?, Object?>>()
-      .map((json) => TestSuite.fromJson(json.cast()))
-      .toList();
+  return yaml.cast<Map>().map(TestSuite.fromJson).toList();
 }
 
 void main() {
@@ -134,60 +128,56 @@ void main() {
           maxBackoffTime: Duration(seconds: testSuite.given.maxBackoffTime),
         );
         test('${testSuite.given}', () {
-          runZoned(
-            () async {
-              final outcome = testSuite.responses.last;
-              final Matcher expectation;
-              switch (outcome.expected.outcome) {
-                case Outcome.success:
-                case Outcome.retryRequest:
-                  expectation = completes;
-                case Outcome.maxAttemptsExceeded:
-                case Outcome.retryQuotaExceeded:
-                  expectation = throwsA(isA<_TransientSmithyException>());
-              }
+          runZoned(() async {
+            final outcome = testSuite.responses.last;
+            final Matcher expectation;
+            switch (outcome.expected.outcome) {
+              case Outcome.success:
+              case Outcome.retryRequest:
+                expectation = completes;
+                break;
+              case Outcome.maxAttemptsExceeded:
+              case Outcome.retryQuotaExceeded:
+                expectation = throwsA(isA<_TransientSmithyException>());
+                break;
+            }
 
-              // TODO(dnys1): Try to get fake_async to work properly to avoid
-              /// unnecessary test delays.
-              var retry = 0;
-              TestCase testCase() => testSuite.responses[retry];
-              await expectLater(
-                retryer.retry<void>(
-                  () {
-                    final completer = CancelableCompleter<void>();
-                    final response = testCase().response;
-                    if (response.statusCode == 200) {
-                      completer.complete();
-                    } else {
-                      completer
-                          .completeError(const _TransientSmithyException());
-                    }
-                    return completer.operation;
-                  },
-                  onRetry: (e, [delay]) {
-                    final expectedDelay = testCase().expected.delay;
-                    expect(delay?.inSeconds, equals(expectedDelay));
-                    expect(
-                      retryer.retryQuota,
-                      equals(testCase().expected.retryQuota),
-                    );
-                    retry++;
-                  },
-                ).valueOrCancellation(),
-                expectation,
-              );
+            // TODO(dnys1): Try to get fake_async to work properly to avoid
+            /// unnecessary test delays.
+            var retry = 0;
+            TestCase testCase() => testSuite.responses[retry];
+            await expectLater(
+              retryer.retry<void>(
+                () {
+                  final completer = CancelableCompleter<void>();
+                  final response = testCase().response;
+                  if (response.statusCode == 200) {
+                    completer.complete();
+                  } else {
+                    completer.completeError(const _TransientSmithyException());
+                  }
+                  return completer.operation;
+                },
+                onRetry: (e, [delay]) {
+                  final expectedDelay = testCase().expected.delay;
+                  expect(delay?.inSeconds, equals(expectedDelay));
+                  expect(
+                    retryer.retryQuota,
+                    equals(testCase().expected.retryQuota),
+                  );
+                  retry++;
+                },
+              ).valueOrCancellation(),
+              expectation,
+            );
 
-              final expectedRetries = testSuite.responses
-                  .where(
-                    (resp) => resp.expected.outcome == Outcome.retryRequest,
-                  )
-                  .length;
-              expect(retry, equals(expectedRetries));
-            },
-            zoneValues: {
-              AWSConfigValue.maxAttempts: maxAttempts,
-            },
-          );
+            final expectedRetries = testSuite.responses
+                .where((resp) => resp.expected.outcome == Outcome.retryRequest)
+                .length;
+            expect(retry, equals(expectedRetries));
+          }, zoneValues: {
+            AWSConfigValue.maxAttempts: maxAttempts,
+          });
         });
       }
     });

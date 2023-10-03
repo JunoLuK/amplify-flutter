@@ -42,7 +42,6 @@ const _$DeliveryMediumEnumMap = {
   DeliveryMedium.email: 'email',
   DeliveryMedium.phone: 'phone',
   DeliveryMedium.sms: 'sms',
-  DeliveryMedium.totp: 'totp',
   DeliveryMedium.unknown: 'unknown',
 };
 

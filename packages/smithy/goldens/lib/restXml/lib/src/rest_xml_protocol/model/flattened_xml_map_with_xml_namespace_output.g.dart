@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'flattened_xml_map_with_xml_namespace_output.dart';
+part of rest_xml_v1.rest_xml_protocol.model.flattened_xml_map_with_xml_namespace_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -56,7 +56,9 @@ class FlattenedXmlMapWithXmlNamespaceOutputBuilder
       _$this._myMap ??= new _i2.MapBuilder<String, String>();
   set myMap(_i2.MapBuilder<String, String>? myMap) => _$this._myMap = myMap;
 
-  FlattenedXmlMapWithXmlNamespaceOutputBuilder();
+  FlattenedXmlMapWithXmlNamespaceOutputBuilder() {
+    FlattenedXmlMapWithXmlNamespaceOutput._init(this);
+  }
 
   FlattenedXmlMapWithXmlNamespaceOutputBuilder get _$this {
     final $v = _$v;

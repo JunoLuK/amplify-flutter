@@ -1,7 +1,8 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-part of 'auth_event.dart';
+import 'package:amplify_auth_cognito_dart/src/state/state.dart';
+import 'package:amplify_core/amplify_core.dart';
 
 /// {@template amplify_auth_cognito.credential_store_event_type}
 /// Discrete event types of the credential store state machine.
@@ -23,7 +24,7 @@ enum CredentialStoreEventType {
 /// {@template amplify_auth_cognito.credential_store_event}
 /// Discrete events of the credential store state machine.
 /// {@endtemplate}
-sealed class CredentialStoreEvent
+abstract class CredentialStoreEvent
     extends AuthEvent<CredentialStoreEventType, CredentialStoreStateType> {
   /// {@macro amplify_auth_cognito.credential_store_event}
   const CredentialStoreEvent._();
@@ -59,7 +60,7 @@ sealed class CredentialStoreEvent
 /// {@template amplify_auth_cognito.credential_store_load}
 /// Initiates loading of previously-stored credentials.
 /// {@endtemplate}
-final class CredentialStoreLoadCredentialStore extends CredentialStoreEvent {
+class CredentialStoreLoadCredentialStore extends CredentialStoreEvent {
   /// {@macro amplify_auth_cognito.credential_store_load}
   const CredentialStoreLoadCredentialStore() : super._();
 
@@ -89,7 +90,7 @@ final class CredentialStoreLoadCredentialStore extends CredentialStoreEvent {
 /// {@template amplify_auth_cognito.store_credentials}
 /// Initiates storing of user credentials.
 /// {@endtemplate}
-final class CredentialStoreStoreCredentials extends CredentialStoreEvent {
+class CredentialStoreStoreCredentials extends CredentialStoreEvent {
   /// {@macro amplify_auth_cognito.store_credentials}
   const CredentialStoreStoreCredentials(this.data) : super._();
 
@@ -127,7 +128,7 @@ final class CredentialStoreStoreCredentials extends CredentialStoreEvent {
 /// {@template amplify_auth_cognito.clear_credentials}
 /// Initiates clearing of the credential store.
 /// {@endtemplate}
-final class CredentialStoreClearCredentials extends CredentialStoreEvent {
+class CredentialStoreClearCredentials extends CredentialStoreEvent {
   /// {@macro amplify_auth_cognito.clear_credentials}
   const CredentialStoreClearCredentials([
     this.keys = const [],
@@ -165,7 +166,7 @@ final class CredentialStoreClearCredentials extends CredentialStoreEvent {
 /// {@template amplify_auth_cognito.credential_store_succeeded}
 /// Successful completion of a credential store task.
 /// {@endtemplate}
-final class CredentialStoreSucceeded extends CredentialStoreEvent {
+class CredentialStoreSucceeded extends CredentialStoreEvent {
   /// {@macro amplify_auth_cognito.credential_store_succeeded}
   const CredentialStoreSucceeded(this.data) : super._();
 

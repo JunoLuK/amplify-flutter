@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'global_sign_out_response.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.global_sign_out_response;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -38,7 +38,9 @@ class GlobalSignOutResponseBuilder
     implements Builder<GlobalSignOutResponse, GlobalSignOutResponseBuilder> {
   _$GlobalSignOutResponse? _$v;
 
-  GlobalSignOutResponseBuilder();
+  GlobalSignOutResponseBuilder() {
+    GlobalSignOutResponse._init(this);
+  }
 
   @override
   void replace(GlobalSignOutResponse other) {

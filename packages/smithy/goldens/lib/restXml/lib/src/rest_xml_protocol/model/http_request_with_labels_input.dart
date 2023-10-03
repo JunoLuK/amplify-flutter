@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v1.rest_xml_protocol.model.http_request_with_labels_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -21,23 +20,29 @@ abstract class HttpRequestWithLabelsInput
         _i1.EmptyPayload,
         _i1.HasPayload<HttpRequestWithLabelsInputPayload> {
   factory HttpRequestWithLabelsInput({
+    bool? boolean,
+    double? double_,
+    double? float,
+    int? integer,
+    _i3.Int64? long,
+    int? short,
     required String string,
-    required int short,
-    required int integer,
-    required _i3.Int64 long,
-    required double float,
-    required double double_,
-    required bool boolean,
     required DateTime timestamp,
   }) {
+    boolean ??= false;
+    double_ ??= 0;
+    float ??= 0;
+    integer ??= 0;
+    long ??= _i3.Int64.ZERO;
+    short ??= 0;
     return _$HttpRequestWithLabelsInput._(
-      string: string,
-      short: short,
+      boolean: boolean,
+      double_: double_,
+      float: float,
       integer: integer,
       long: long,
-      float: float,
-      double_: double_,
-      boolean: boolean,
+      short: short,
+      string: string,
       timestamp: timestamp,
     );
   }
@@ -83,18 +88,28 @@ abstract class HttpRequestWithLabelsInput
         }
       });
 
-  static const List<_i1.SmithySerializer<HttpRequestWithLabelsInputPayload>>
-      serializers = [HttpRequestWithLabelsInputRestXmlSerializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    HttpRequestWithLabelsInputRestXmlSerializer()
+  ];
 
-  String get string;
-  int get short;
-  int get integer;
-  _i3.Int64 get long;
-  double get float;
-  double get double_;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HttpRequestWithLabelsInputBuilder b) {
+    b.boolean = false;
+    b.double_ = 0;
+    b.float = 0;
+    b.integer = 0;
+    b.long = _i3.Int64.ZERO;
+    b.short = 0;
+  }
 
   /// Serialized in the path as true or false.
   bool get boolean;
+  double get double_;
+  double get float;
+  int get integer;
+  _i3.Int64 get long;
+  int get short;
+  String get string;
 
   /// Note that this member has no format, so it's serialized as an RFC 3399 date-time.
   DateTime get timestamp;
@@ -131,50 +146,50 @@ abstract class HttpRequestWithLabelsInput
       HttpRequestWithLabelsInputPayload();
   @override
   List<Object?> get props => [
-        string,
-        short,
+        boolean,
+        double_,
+        float,
         integer,
         long,
-        float,
-        double_,
-        boolean,
+        short,
+        string,
         timestamp,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('HttpRequestWithLabelsInput')
-      ..add(
-        'string',
-        string,
-      )
-      ..add(
-        'short',
-        short,
-      )
-      ..add(
-        'integer',
-        integer,
-      )
-      ..add(
-        'long',
-        long,
-      )
-      ..add(
-        'float',
-        float,
-      )
-      ..add(
-        'double_',
-        double_,
-      )
-      ..add(
-        'boolean',
-        boolean,
-      )
-      ..add(
-        'timestamp',
-        timestamp,
-      );
+    final helper = newBuiltValueToStringHelper('HttpRequestWithLabelsInput');
+    helper.add(
+      'boolean',
+      boolean,
+    );
+    helper.add(
+      'double_',
+      double_,
+    );
+    helper.add(
+      'float',
+      float,
+    );
+    helper.add(
+      'integer',
+      integer,
+    );
+    helper.add(
+      'long',
+      long,
+    );
+    helper.add(
+      'short',
+      short,
+    );
+    helper.add(
+      'string',
+      string,
+    );
+    helper.add(
+      'timestamp',
+      timestamp,
+    );
     return helper.toString();
   }
 }
@@ -193,6 +208,8 @@ abstract class HttpRequestWithLabelsInputPayload
 
   const HttpRequestWithLabelsInputPayload._();
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HttpRequestWithLabelsInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
   @override
@@ -234,13 +251,12 @@ class HttpRequestWithLabelsInputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    HttpRequestWithLabelsInputPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final result = <Object?>[
       const _i1.XmlElementName('HttpRequestWithLabelsInput')
     ];
-
-    return result$;
+    return result;
   }
 }

@@ -1,6 +1,9 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+@JS()
+library amplify_secure_storage_dart.js.indexed_db;
+
 import 'dart:async';
 import 'dart:js_util' as js_util;
 
@@ -16,7 +19,7 @@ external IDBFactory? get indexedDB;
 /// {@endtemplate}
 @JS()
 @staticInterop
-abstract class DOMStringList {}
+class DOMStringList {}
 
 /// {@macro amplify_secure_storage_dart.dom_string_list}
 extension PropsDOMStringList on DOMStringList {
@@ -32,7 +35,7 @@ extension PropsDOMStringList on DOMStringList {
 /// {@endtemplate}
 @JS()
 @staticInterop
-abstract class IDBVersionChangeEvent extends Event {}
+class IDBVersionChangeEvent extends Event {}
 
 /// {@macro amplify_secure_storage_dart.idb_version_change_event}
 extension PropsIDBVersionChangeEvent on IDBVersionChangeEvent {
@@ -90,7 +93,7 @@ extension PropsIDBRequest<T> on IDBRequest<T> {
 /// {@endtemplate}
 @JS()
 @staticInterop
-abstract class IDBOpenDBRequest extends IDBRequest<IDBDatabase> {}
+class IDBOpenDBRequest extends IDBRequest<IDBDatabase> {}
 
 /// {@macro amplify_secure_storage_dart.idb_open_db_request}
 extension PropsIDBOpenDBRequest on IDBOpenDBRequest {
@@ -107,7 +110,7 @@ extension PropsIDBOpenDBRequest on IDBOpenDBRequest {
 /// {@endtemplate}
 @JS()
 @staticInterop
-abstract class IDBFactory {}
+class IDBFactory {}
 
 /// {@macro amplify_secure_storage_dart.idb_factory}
 extension PropsIDBFactory on IDBFactory {
@@ -127,7 +130,7 @@ extension PropsIDBFactory on IDBFactory {
 /// {@endtemplate}
 @JS()
 @staticInterop
-abstract class IDBDatabase {}
+class IDBDatabase {}
 
 /// {@macro amplify_secure_storage_dart.idb_database}
 extension PropsIDBDatabase on IDBDatabase {
@@ -167,16 +170,6 @@ extension PropsIDBDatabase on IDBDatabase {
       [name, js_util.jsify(params)],
     );
   }
-
-  /// Returns the object store for [storeName] in a new transaction.
-  IDBObjectStore getObjectStore(String storeName) {
-    final transaction = this.transaction(
-      storeName,
-      mode: IDBTransactionMode.readwrite,
-    );
-    final store = transaction.objectStore(storeName);
-    return store;
-  }
 }
 
 /// {@template amplify_secure_storage_dart.idb_object_store}
@@ -187,7 +180,7 @@ extension PropsIDBDatabase on IDBDatabase {
 /// {@endtemplate}
 @JS()
 @staticInterop
-abstract class IDBObjectStore {}
+class IDBObjectStore {}
 
 /// {@macro amplify_secure_storage_dart.idb_object_store}
 extension PropsIDBObjectStore on IDBObjectStore {
@@ -259,7 +252,7 @@ extension PropsIDBObjectStore on IDBObjectStore {
 /// {@endtemplate}
 @JS()
 @staticInterop
-abstract class IDBTransaction {}
+class IDBTransaction {}
 
 /// {@macro amplify_secure_storage_dart.idb_transaction}
 extension PropsIDBTransaction on IDBTransaction {

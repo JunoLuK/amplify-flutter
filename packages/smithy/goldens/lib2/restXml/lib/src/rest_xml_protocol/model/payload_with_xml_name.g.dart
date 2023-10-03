@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'payload_with_xml_name.dart';
+part of rest_xml_v2.rest_xml_protocol.model.payload_with_xml_name;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -48,7 +48,9 @@ class PayloadWithXmlNameBuilder
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
-  PayloadWithXmlNameBuilder();
+  PayloadWithXmlNameBuilder() {
+    PayloadWithXmlName._init(this);
+  }
 
   PayloadWithXmlNameBuilder get _$this {
     final $v = _$v;

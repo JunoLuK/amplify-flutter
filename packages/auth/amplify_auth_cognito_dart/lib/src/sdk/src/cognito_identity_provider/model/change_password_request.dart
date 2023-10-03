@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_auth_cognito_dart.cognito_identity_provider.model.change_password_request; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -18,14 +17,14 @@ abstract class ChangePasswordRequest
     implements Built<ChangePasswordRequest, ChangePasswordRequestBuilder> {
   /// Represents the request to change a user password.
   factory ChangePasswordRequest({
+    required String accessToken,
     required String previousPassword,
     required String proposedPassword,
-    required String accessToken,
   }) {
     return _$ChangePasswordRequest._(
+      accessToken: accessToken,
       previousPassword: previousPassword,
       proposedPassword: proposedPassword,
-      accessToken: accessToken,
     );
   }
 
@@ -43,41 +42,44 @@ abstract class ChangePasswordRequest
   }) =>
       payload;
 
-  static const List<_i1.SmithySerializer<ChangePasswordRequest>> serializers = [
+  static const List<_i1.SmithySerializer> serializers = [
     ChangePasswordRequestAwsJson11Serializer()
   ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ChangePasswordRequestBuilder b) {}
+
+  /// A valid access token that Amazon Cognito issued to the user whose password you want to change.
+  String get accessToken;
 
   /// The old password.
   String get previousPassword;
 
   /// The new password.
   String get proposedPassword;
-
-  /// A valid access token that Amazon Cognito issued to the user whose password you want to change.
-  String get accessToken;
   @override
   ChangePasswordRequest getPayload() => this;
   @override
   List<Object?> get props => [
+        accessToken,
         previousPassword,
         proposedPassword,
-        accessToken,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('ChangePasswordRequest')
-      ..add(
-        'previousPassword',
-        '***SENSITIVE***',
-      )
-      ..add(
-        'proposedPassword',
-        '***SENSITIVE***',
-      )
-      ..add(
-        'accessToken',
-        '***SENSITIVE***',
-      );
+    final helper = newBuiltValueToStringHelper('ChangePasswordRequest');
+    helper.add(
+      'accessToken',
+      '***SENSITIVE***',
+    );
+    helper.add(
+      'previousPassword',
+      '***SENSITIVE***',
+    );
+    helper.add(
+      'proposedPassword',
+      '***SENSITIVE***',
+    );
     return helper.toString();
   }
 }
@@ -111,25 +113,25 @@ class ChangePasswordRequestAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
-        case 'PreviousPassword':
-          result.previousPassword = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
-        case 'ProposedPassword':
-          result.proposedPassword = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
         case 'AccessToken':
           result.accessToken = (serializers.deserialize(
-            value,
+            value!,
             specifiedType: const FullType(String),
           ) as String);
+          break;
+        case 'PreviousPassword':
+          result.previousPassword = (serializers.deserialize(
+            value!,
+            specifiedType: const FullType(String),
+          ) as String);
+          break;
+        case 'ProposedPassword':
+          result.proposedPassword = (serializers.deserialize(
+            value!,
+            specifiedType: const FullType(String),
+          ) as String);
+          break;
       }
     }
 
@@ -139,32 +141,27 @@ class ChangePasswordRequestAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    ChangePasswordRequest object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final ChangePasswordRequest(
-      :previousPassword,
-      :proposedPassword,
-      :accessToken
-    ) = object;
-    result$.addAll([
+    final payload = (object as ChangePasswordRequest);
+    final result = <Object?>[
+      'AccessToken',
+      serializers.serialize(
+        payload.accessToken,
+        specifiedType: const FullType(String),
+      ),
       'PreviousPassword',
       serializers.serialize(
-        previousPassword,
+        payload.previousPassword,
         specifiedType: const FullType(String),
       ),
       'ProposedPassword',
       serializers.serialize(
-        proposedPassword,
+        payload.proposedPassword,
         specifiedType: const FullType(String),
       ),
-      'AccessToken',
-      serializers.serialize(
-        accessToken,
-        specifiedType: const FullType(String),
-      ),
-    ]);
-    return result$;
+    ];
+    return result;
   }
 }

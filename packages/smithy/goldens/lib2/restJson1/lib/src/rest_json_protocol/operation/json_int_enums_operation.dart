@@ -1,20 +1,25 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_protocol.operation.json_int_enums_operation; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'dart:async' as _i4;
+import 'dart:async' as _i7;
 
-import 'package:aws_common/aws_common.dart' as _i3;
-import 'package:rest_json1_v2/src/rest_json_protocol/common/endpoint_resolver.dart';
-import 'package:rest_json1_v2/src/rest_json_protocol/common/serializers.dart';
-import 'package:rest_json1_v2/src/rest_json_protocol/model/json_int_enums_input_output.dart';
+import 'package:aws_common/aws_common.dart' as _i6;
+import 'package:rest_json1_v2/src/rest_json_protocol/common/endpoint_resolver.dart'
+    as _i5;
+import 'package:rest_json1_v2/src/rest_json_protocol/common/serializers.dart'
+    as _i4;
+import 'package:rest_json1_v2/src/rest_json_protocol/model/json_int_enums_input_output.dart'
+    as _i2;
 import 'package:smithy/smithy.dart' as _i1;
-import 'package:smithy_aws/smithy_aws.dart' as _i2;
+import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 /// This example serializes intEnums as top level properties, in lists, sets, and maps.
-class JsonIntEnumsOperation extends _i1.HttpOperation<JsonIntEnumsInputOutput,
-    JsonIntEnumsInputOutput, JsonIntEnumsInputOutput, JsonIntEnumsInputOutput> {
+class JsonIntEnumsOperation extends _i1.HttpOperation<
+    _i2.JsonIntEnumsInputOutput,
+    _i2.JsonIntEnumsInputOutput,
+    _i2.JsonIntEnumsInputOutput,
+    _i2.JsonIntEnumsInputOutput> {
   /// This example serializes intEnums as top level properties, in lists, sets, and maps.
   JsonIntEnumsOperation({
     required String region,
@@ -28,17 +33,20 @@ class JsonIntEnumsOperation extends _i1.HttpOperation<JsonIntEnumsInputOutput,
 
   @override
   late final List<
-      _i1.HttpProtocol<JsonIntEnumsInputOutput, JsonIntEnumsInputOutput,
-          JsonIntEnumsInputOutput, JsonIntEnumsInputOutput>> protocols = [
-    _i2.RestJson1Protocol(
-      serializers: serializers,
-      builderFactories: builderFactories,
+      _i1.HttpProtocol<
+          _i2.JsonIntEnumsInputOutput,
+          _i2.JsonIntEnumsInputOutput,
+          _i2.JsonIntEnumsInputOutput,
+          _i2.JsonIntEnumsInputOutput>> protocols = [
+    _i3.RestJson1Protocol(
+      serializers: _i4.serializers,
+      builderFactories: _i4.builderFactories,
       requestInterceptors: <_i1.HttpRequestInterceptor>[
             const _i1.WithHost(),
             const _i1.WithContentLength(),
             const _i1.WithUserAgent('aws-sdk-dart/0.3.1'),
-            const _i2.WithSdkInvocationId(),
-            const _i2.WithSdkRequest(),
+            const _i3.WithSdkInvocationId(),
+            const _i3.WithSdkRequest(),
           ] +
           _requestInterceptors,
       responseInterceptors:
@@ -46,8 +54,8 @@ class JsonIntEnumsOperation extends _i1.HttpOperation<JsonIntEnumsInputOutput,
     )
   ];
 
-  late final _i2.AWSEndpoint _awsEndpoint = endpointResolver.resolve(
-    sdkId,
+  late final _i3.AWSEndpoint _awsEndpoint = _i5.endpointResolver.resolve(
+    _i5.sdkId,
     _region,
   );
 
@@ -60,19 +68,19 @@ class JsonIntEnumsOperation extends _i1.HttpOperation<JsonIntEnumsInputOutput,
   final List<_i1.HttpResponseInterceptor> _responseInterceptors;
 
   @override
-  _i1.HttpRequest buildRequest(JsonIntEnumsInputOutput input) =>
+  _i1.HttpRequest buildRequest(_i2.JsonIntEnumsInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'PUT';
         b.path = r'/JsonIntEnums';
       });
   @override
-  int successCode([JsonIntEnumsInputOutput? output]) => 200;
+  int successCode([_i2.JsonIntEnumsInputOutput? output]) => 200;
   @override
-  JsonIntEnumsInputOutput buildOutput(
-    JsonIntEnumsInputOutput payload,
-    _i3.AWSBaseHttpResponse response,
+  _i2.JsonIntEnumsInputOutput buildOutput(
+    _i2.JsonIntEnumsInputOutput payload,
+    _i6.AWSBaseHttpResponse response,
   ) =>
-      JsonIntEnumsInputOutput.fromResponse(
+      _i2.JsonIntEnumsInputOutput.fromResponse(
         payload,
         response,
       );
@@ -81,18 +89,18 @@ class JsonIntEnumsOperation extends _i1.HttpOperation<JsonIntEnumsInputOutput,
   @override
   String get runtimeTypeName => 'JsonIntEnums';
   @override
-  _i2.AWSRetryer get retryer => _i2.AWSRetryer();
+  _i3.AWSRetryer get retryer => _i3.AWSRetryer();
   @override
   Uri get baseUri => _baseUri ?? endpoint.uri;
   @override
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;
   @override
-  _i1.SmithyOperation<JsonIntEnumsInputOutput> run(
-    JsonIntEnumsInputOutput input, {
-    _i3.AWSHttpClient? client,
+  _i1.SmithyOperation<_i2.JsonIntEnumsInputOutput> run(
+    _i2.JsonIntEnumsInputOutput input, {
+    _i6.AWSHttpClient? client,
     _i1.ShapeId? useProtocol,
   }) {
-    return _i4.runZoned(
+    return _i7.runZoned(
       () => super.run(
         input,
         client: client,
@@ -100,7 +108,7 @@ class JsonIntEnumsOperation extends _i1.HttpOperation<JsonIntEnumsInputOutput,
       ),
       zoneValues: {
         ...?_awsEndpoint.credentialScope?.zoneValues,
-        ...{_i3.AWSHeaders.sdkInvocationId: _i3.uuid(secure: true)},
+        ...{_i6.AWSHeaders.sdkInvocationId: _i6.uuid(secure: true)}
       },
     );
   }

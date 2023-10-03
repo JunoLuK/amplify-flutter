@@ -8,9 +8,10 @@ import 'package:jmespath/src/lex.dart';
 import 'package:jmespath/src/parser.dart';
 import 'package:smithy/ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
-import 'package:smithy_codegen/src/jmespath/visitor.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
+
+import 'visitor.dart';
 
 class JmespathExpressionVisitor extends JmesVisitor<Expression> {
   JmespathExpressionVisitor({
@@ -79,13 +80,11 @@ class JmespathExpressionVisitor extends JmesVisitor<Expression> {
     final parentNode = node.children[0];
     final parentExp = visit(parentNode);
     final childExp = visit(node.children[1]);
-    final codeExp = CodeExpression(
-      Block.of([
-        parentExp.code,
-        const Code('.'),
-        childExp.code,
-      ]),
-    );
+    final codeExp = CodeExpression(Block.of([
+      parentExp.code,
+      const Code('.'),
+      childExp.code,
+    ]));
     if ((_root == node && base != null) ||
         parentNode.value == 'input' ||
         parentNode.value == 'output') {

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'response_code_http_fallback_input_output.dart';
+part of rest_json1_v1.rest_json_protocol.model.response_code_http_fallback_input_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -43,7 +43,9 @@ class ResponseCodeHttpFallbackInputOutputBuilder
             ResponseCodeHttpFallbackInputOutputBuilder> {
   _$ResponseCodeHttpFallbackInputOutput? _$v;
 
-  ResponseCodeHttpFallbackInputOutputBuilder();
+  ResponseCodeHttpFallbackInputOutputBuilder() {
+    ResponseCodeHttpFallbackInputOutput._init(this);
+  }
 
   @override
   void replace(ResponseCodeHttpFallbackInputOutput other) {

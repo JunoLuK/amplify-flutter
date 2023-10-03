@@ -1,14 +1,14 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_analytics_pinpoint_dart.pinpoint.model.attribute_dimension; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/attribute_type.dart';
+import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/attribute_type.dart'
+    as _i2;
 import 'package:aws_common/aws_common.dart' as _i1;
-import 'package:built_collection/built_collection.dart' as _i2;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:smithy/smithy.dart' as _i4;
 
 part 'attribute_dimension.g.dart';
 
@@ -18,12 +18,12 @@ abstract class AttributeDimension
     implements Built<AttributeDimension, AttributeDimensionBuilder> {
   /// Specifies attribute-based criteria for including or excluding endpoints from a segment.
   factory AttributeDimension({
-    AttributeType? attributeType,
+    _i2.AttributeType? attributeType,
     required List<String> values,
   }) {
     return _$AttributeDimension._(
       attributeType: attributeType,
-      values: _i2.BuiltList(values),
+      values: _i3.BuiltList(values),
     );
   }
 
@@ -34,9 +34,12 @@ abstract class AttributeDimension
 
   const AttributeDimension._();
 
-  static const List<_i3.SmithySerializer<AttributeDimension>> serializers = [
+  static const List<_i4.SmithySerializer> serializers = [
     AttributeDimensionRestJson1Serializer()
   ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(AttributeDimensionBuilder b) {}
 
   /// The type of segment dimension to use. Valid values are:
   ///
@@ -47,10 +50,10 @@ abstract class AttributeDimension
   /// *   AFTER - endpoints with attributes read as ISO_INSTANT datetimes after the value are included in the segment.
   /// *   ON - endpoints with attributes read as ISO_INSTANT dates on the value are included in the segment. Time is ignored in this comparison.
   /// *   BETWEEN - endpoints with attributes read as ISO_INSTANT datetimes between the values are included in the segment.
-  AttributeType? get attributeType;
+  _i2.AttributeType? get attributeType;
 
   /// The criteria values to use for the segment dimension. Depending on the value of the AttributeType property, endpoints are included or excluded from the segment if their attribute values match the criteria values.
-  _i2.BuiltList<String> get values;
+  _i3.BuiltList<String> get values;
   @override
   List<Object?> get props => [
         attributeType,
@@ -58,21 +61,21 @@ abstract class AttributeDimension
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('AttributeDimension')
-      ..add(
-        'attributeType',
-        attributeType,
-      )
-      ..add(
-        'values',
-        values,
-      );
+    final helper = newBuiltValueToStringHelper('AttributeDimension');
+    helper.add(
+      'attributeType',
+      attributeType,
+    );
+    helper.add(
+      'values',
+      values,
+    );
     return helper.toString();
   }
 }
 
 class AttributeDimensionRestJson1Serializer
-    extends _i3.StructuredSmithySerializer<AttributeDimension> {
+    extends _i4.StructuredSmithySerializer<AttributeDimension> {
   const AttributeDimensionRestJson1Serializer() : super('AttributeDimension');
 
   @override
@@ -81,8 +84,8 @@ class AttributeDimensionRestJson1Serializer
         _$AttributeDimension,
       ];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
@@ -99,23 +102,24 @@ class AttributeDimensionRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'AttributeType':
-          result.attributeType = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(AttributeType),
-          ) as AttributeType);
+          if (value != null) {
+            result.attributeType = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i2.AttributeType),
+            ) as _i2.AttributeType);
+          }
+          break;
         case 'Values':
           result.values.replace((serializers.deserialize(
             value,
             specifiedType: const FullType(
-              _i2.BuiltList,
+              _i3.BuiltList,
               [FullType(String)],
             ),
-          ) as _i2.BuiltList<String>));
+          ) as _i3.BuiltList<String>));
+          break;
       }
     }
 
@@ -125,29 +129,28 @@ class AttributeDimensionRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    AttributeDimension object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final AttributeDimension(:attributeType, :values) = object;
-    result$.addAll([
+    final payload = (object as AttributeDimension);
+    final result = <Object?>[
       'Values',
       serializers.serialize(
-        values,
+        payload.values,
         specifiedType: const FullType(
-          _i2.BuiltList,
+          _i3.BuiltList,
           [FullType(String)],
         ),
       ),
-    ]);
-    if (attributeType != null) {
-      result$
+    ];
+    if (payload.attributeType != null) {
+      result
         ..add('AttributeType')
         ..add(serializers.serialize(
-          attributeType,
-          specifiedType: const FullType(AttributeType),
+          payload.attributeType!,
+          specifiedType: const FullType(_i2.AttributeType),
         ));
     }
-    return result$;
+    return result;
   }
 }

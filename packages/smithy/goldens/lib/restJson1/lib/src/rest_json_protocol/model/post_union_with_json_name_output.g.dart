@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'post_union_with_json_name_output.dart';
+part of rest_json1_v1.rest_json_protocol.model.post_union_with_json_name_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of 'post_union_with_json_name_output.dart';
 
 class _$PostUnionWithJsonNameOutput extends PostUnionWithJsonNameOutput {
   @override
-  final UnionWithJsonName value;
+  final _i2.UnionWithJsonName value;
 
   factory _$PostUnionWithJsonNameOutput(
           [void Function(PostUnionWithJsonNameOutputBuilder)? updates]) =>
@@ -49,11 +49,13 @@ class PostUnionWithJsonNameOutputBuilder
             PostUnionWithJsonNameOutputBuilder> {
   _$PostUnionWithJsonNameOutput? _$v;
 
-  UnionWithJsonName? _value;
-  UnionWithJsonName? get value => _$this._value;
-  set value(UnionWithJsonName? value) => _$this._value = value;
+  _i2.UnionWithJsonName? _value;
+  _i2.UnionWithJsonName? get value => _$this._value;
+  set value(_i2.UnionWithJsonName? value) => _$this._value = value;
 
-  PostUnionWithJsonNameOutputBuilder();
+  PostUnionWithJsonNameOutputBuilder() {
+    PostUnionWithJsonNameOutput._init(this);
+  }
 
   PostUnionWithJsonNameOutputBuilder get _$this {
     final $v = _$v;

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'empty_input_and_empty_output_input.dart';
+part of aws_json1_0_v2.json_rpc_10.model.empty_input_and_empty_output_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -40,7 +40,9 @@ class EmptyInputAndEmptyOutputInputBuilder
             EmptyInputAndEmptyOutputInputBuilder> {
   _$EmptyInputAndEmptyOutputInput? _$v;
 
-  EmptyInputAndEmptyOutputInputBuilder();
+  EmptyInputAndEmptyOutputInputBuilder() {
+    EmptyInputAndEmptyOutputInput._init(this);
+  }
 
   @override
   void replace(EmptyInputAndEmptyOutputInput other) {

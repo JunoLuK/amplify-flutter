@@ -7,14 +7,14 @@ import 'dart:convert';
 import 'package:build/build.dart';
 import 'package:path/path.dart' as p;
 
-/// Copies the generated workers to `.js` and `.min.js` files, respectively.
+/// Copies the generated workers to [_publishedWorkersJs].
 class WorkerCopyBuilder extends Builder {
   @override
   late final Map<String, List<String>> buildExtensions = {
     '.debug.dart.js': ['.js'],
     '.release.dart.js': ['.min.js'],
     '.debug.dart.js.map': ['.js.map'],
-    '.release.dart.js.map': ['.min.js.map'],
+    '.release.dart.js.map': ['.min.js.map']
   };
 
   static final _sourceMapUrl = RegExp(r'sourceMappingURL=[\w\.]*');

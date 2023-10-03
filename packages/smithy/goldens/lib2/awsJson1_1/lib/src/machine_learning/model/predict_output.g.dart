@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'predict_output.dart';
+part of aws_json1_1_v2.machine_learning.model.predict_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of 'predict_output.dart';
 
 class _$PredictOutput extends PredictOutput {
   @override
-  final Prediction? prediction;
+  final _i2.Prediction? prediction;
 
   factory _$PredictOutput([void Function(PredictOutputBuilder)? updates]) =>
       (new PredictOutputBuilder()..update(updates))._build();
@@ -41,13 +41,15 @@ class PredictOutputBuilder
     implements Builder<PredictOutput, PredictOutputBuilder> {
   _$PredictOutput? _$v;
 
-  PredictionBuilder? _prediction;
-  PredictionBuilder get prediction =>
-      _$this._prediction ??= new PredictionBuilder();
-  set prediction(PredictionBuilder? prediction) =>
+  _i2.PredictionBuilder? _prediction;
+  _i2.PredictionBuilder get prediction =>
+      _$this._prediction ??= new _i2.PredictionBuilder();
+  set prediction(_i2.PredictionBuilder? prediction) =>
       _$this._prediction = prediction;
 
-  PredictOutputBuilder();
+  PredictOutputBuilder() {
+    PredictOutput._init(this);
+  }
 
   PredictOutputBuilder get _$this {
     final $v = _$v;

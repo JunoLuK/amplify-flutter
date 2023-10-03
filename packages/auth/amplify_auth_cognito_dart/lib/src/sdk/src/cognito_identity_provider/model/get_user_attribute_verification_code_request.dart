@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_auth_cognito_dart.cognito_identity_provider.model.get_user_attribute_verification_code_request; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -47,11 +46,12 @@ abstract class GetUserAttributeVerificationCodeRequest
   }) =>
       payload;
 
-  static const List<
-          _i1.SmithySerializer<GetUserAttributeVerificationCodeRequest>>
-      serializers = [
+  static const List<_i1.SmithySerializer> serializers = [
     GetUserAttributeVerificationCodeRequestAwsJson11Serializer()
   ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(GetUserAttributeVerificationCodeRequestBuilder b) {}
 
   /// A non-expired access token for the user whose attribute verification code you want to generate.
   String get accessToken;
@@ -84,19 +84,19 @@ abstract class GetUserAttributeVerificationCodeRequest
   @override
   String toString() {
     final helper =
-        newBuiltValueToStringHelper('GetUserAttributeVerificationCodeRequest')
-          ..add(
-            'accessToken',
-            '***SENSITIVE***',
-          )
-          ..add(
-            'attributeName',
-            attributeName,
-          )
-          ..add(
-            'clientMetadata',
-            clientMetadata,
-          );
+        newBuiltValueToStringHelper('GetUserAttributeVerificationCodeRequest');
+    helper.add(
+      'accessToken',
+      '***SENSITIVE***',
+    );
+    helper.add(
+      'attributeName',
+      attributeName,
+    );
+    helper.add(
+      'clientMetadata',
+      clientMetadata,
+    );
     return helper.toString();
   }
 }
@@ -130,31 +130,33 @@ class GetUserAttributeVerificationCodeRequestAwsJson11Serializer extends _i1
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'AccessToken':
           result.accessToken = (serializers.deserialize(
-            value,
+            value!,
             specifiedType: const FullType(String),
           ) as String);
+          break;
         case 'AttributeName':
           result.attributeName = (serializers.deserialize(
-            value,
+            value!,
             specifiedType: const FullType(String),
           ) as String);
+          break;
         case 'ClientMetadata':
-          result.clientMetadata.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i3.BuiltMap,
-              [
-                FullType(String),
-                FullType(String),
-              ],
-            ),
-          ) as _i3.BuiltMap<String, String>));
+          if (value != null) {
+            result.clientMetadata.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i3.BuiltMap,
+                [
+                  FullType(String),
+                  FullType(String),
+                ],
+              ),
+            ) as _i3.BuiltMap<String, String>));
+          }
+          break;
       }
     }
 
@@ -164,32 +166,27 @@ class GetUserAttributeVerificationCodeRequestAwsJson11Serializer extends _i1
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    GetUserAttributeVerificationCodeRequest object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final GetUserAttributeVerificationCodeRequest(
-      :accessToken,
-      :attributeName,
-      :clientMetadata
-    ) = object;
-    result$.addAll([
+    final payload = (object as GetUserAttributeVerificationCodeRequest);
+    final result = <Object?>[
       'AccessToken',
       serializers.serialize(
-        accessToken,
+        payload.accessToken,
         specifiedType: const FullType(String),
       ),
       'AttributeName',
       serializers.serialize(
-        attributeName,
+        payload.attributeName,
         specifiedType: const FullType(String),
       ),
-    ]);
-    if (clientMetadata != null) {
-      result$
+    ];
+    if (payload.clientMetadata != null) {
+      result
         ..add('ClientMetadata')
         ..add(serializers.serialize(
-          clientMetadata,
+          payload.clientMetadata!,
           specifiedType: const FullType(
             _i3.BuiltMap,
             [
@@ -199,6 +196,6 @@ class GetUserAttributeVerificationCodeRequestAwsJson11Serializer extends _i1
           ),
         ));
     }
-    return result$;
+    return result;
   }
 }

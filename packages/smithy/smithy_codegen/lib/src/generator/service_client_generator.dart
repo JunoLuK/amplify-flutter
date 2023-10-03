@@ -15,11 +15,13 @@ import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
 class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
   ServiceClientGenerator(
-    super.shape,
+    ServiceShape shape,
     CodegenContext context, {
-    super.smithyLibrary,
+    SmithyLibrary? smithyLibrary,
   }) : super(
+          shape,
           context: context,
+          smithyLibrary: smithyLibrary,
         );
 
   late final List<OperationShape> _operations =
@@ -68,14 +70,12 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
           _operations
               .expand((op) => op.operationParameters(context))
               .where((p) => p.location.inClientConstructor)
-              .map(
-                (parameter) => Field(
-                  (f) => f
-                    ..modifier = FieldModifier.final$
-                    ..type = parameter.type
-                    ..name = private(parameter.name),
-                ),
-              ),
+              .map((parameter) => Field(
+                    (f) => f
+                      ..modifier = FieldModifier.final$
+                      ..type = parameter.type
+                      ..name = private(parameter.name),
+                  )),
         );
 
   Iterable<Parameter> get constructorParameters =>
@@ -138,11 +138,9 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
           ..lambda = false
           ..requiredParameters.addAll([
             if (operationInput != DartTypes.smithy.unit)
-              Parameter(
-                (p) => p
-                  ..type = operationInput
-                  ..name = 'input',
-              ),
+              Parameter((p) => p
+                ..type = operationInput
+                ..name = 'input')
           ])
           ..optionalParameters.addAll(
             operationParameters.where((p) => p.location.inClientMethod).map(
@@ -166,7 +164,7 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
                       ? refer(param.name).ifNullThen(refer(private(param.name)))
                       : param.location.inClientConstructor
                           ? refer(private(param.name))
-                          : refer(param.name),
+                          : refer(param.name)
               })
               .property(isPaginated ? 'runPaginated' : 'run')
               .call([
@@ -176,11 +174,10 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
                   refer('input'),
               ], {
                 for (final param in operationParameters.where(
-                  (p) => p.location.inClientMethod && p.location.inRun,
-                ))
+                    (p) => p.location.inClientMethod && p.location.inRun))
                   param.name: param.location.inClientConstructor
                       ? refer(param.name).ifNullThen(refer(private(param.name)))
-                      : refer(param.name),
+                      : refer(param.name)
               })
               .returned
               .statement,

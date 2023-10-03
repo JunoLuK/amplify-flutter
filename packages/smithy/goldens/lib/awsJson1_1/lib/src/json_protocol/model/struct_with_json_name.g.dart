@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'struct_with_json_name.dart';
+part of aws_json1_1_v1.json_protocol.model.struct_with_json_name;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -48,7 +48,9 @@ class StructWithJsonNameBuilder
   String? get value => _$this._value;
   set value(String? value) => _$this._value = value;
 
-  StructWithJsonNameBuilder();
+  StructWithJsonNameBuilder() {
+    StructWithJsonName._init(this);
+  }
 
   StructWithJsonNameBuilder get _$this {
     final $v = _$v;

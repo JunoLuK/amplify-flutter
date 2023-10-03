@@ -31,15 +31,6 @@ class AuthenticatorScreen extends StatelessAuthenticatorComponent {
   const AuthenticatorScreen.confirmSignInNewPassword({Key? key})
       : this(key: key, step: AuthenticatorStep.confirmSignInNewPassword);
 
-  const AuthenticatorScreen.continueSignInWithMfaSelection({Key? key})
-      : this(key: key, step: AuthenticatorStep.continueSignInWithMfaSelection);
-
-  const AuthenticatorScreen.continueSignInWithTotpSetup({Key? key})
-      : this(key: key, step: AuthenticatorStep.continueSignInWithTotpSetup);
-
-  const AuthenticatorScreen.confirmSignInWithTotpMfaCode({Key? key})
-      : this(key: key, step: AuthenticatorStep.confirmSignInWithTotpMfaCode);
-
   const AuthenticatorScreen.resetPassword({Key? key})
       : this(key: key, step: AuthenticatorStep.resetPassword);
 
@@ -80,18 +71,17 @@ class AuthenticatorScreen extends StatelessAuthenticatorComponent {
             initialIndex: step == AuthenticatorStep.signUp ? 1 : 0,
           ),
         );
+        break;
       case AuthenticatorStep.confirmSignUp:
       case AuthenticatorStep.confirmSignInCustomAuth:
       case AuthenticatorStep.confirmSignInMfa:
       case AuthenticatorStep.confirmSignInNewPassword:
-      case AuthenticatorStep.continueSignInWithMfaSelection:
-      case AuthenticatorStep.continueSignInWithTotpSetup:
-      case AuthenticatorStep.confirmSignInWithTotpMfaCode:
       case AuthenticatorStep.resetPassword:
       case AuthenticatorStep.confirmResetPassword:
       case AuthenticatorStep.verifyUser:
       case AuthenticatorStep.confirmVerifyUser:
         child = _FormWrapperView(step: step);
+        break;
       case AuthenticatorStep.loading:
         throw StateError('Invalid step: $this');
     }
@@ -164,6 +154,7 @@ class _FormWrapperView extends StatelessAuthenticatorComponent {
       case AuthenticatorStep.signIn:
       case AuthenticatorStep.signUp:
         layout = form;
+        break;
       default:
         layout = Column(
           children: <Widget>[
@@ -259,7 +250,7 @@ class _AuthenticatorTabViewState
         TabBar(
           controller: _controller,
           tabs: [
-            for (final tab in widget.tabs)
+            for (var tab in widget.tabs)
               Tab(
                 key: ValueKey(tab),
                 text: stringResolver.buttons.resolve(context, tab.tabTitle),
@@ -291,9 +282,6 @@ extension on AuthenticatorStep {
       case AuthenticatorStep.confirmSignInCustomAuth:
       case AuthenticatorStep.confirmSignInMfa:
       case AuthenticatorStep.confirmSignInNewPassword:
-      case AuthenticatorStep.continueSignInWithMfaSelection:
-      case AuthenticatorStep.continueSignInWithTotpSetup:
-      case AuthenticatorStep.confirmSignInWithTotpMfaCode:
       case AuthenticatorStep.resetPassword:
       case AuthenticatorStep.confirmResetPassword:
       case AuthenticatorStep.verifyUser:

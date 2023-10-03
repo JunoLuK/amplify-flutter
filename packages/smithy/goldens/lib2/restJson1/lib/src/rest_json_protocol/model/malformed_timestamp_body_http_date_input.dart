@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_protocol.model.malformed_timestamp_body_http_date_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -34,9 +33,12 @@ abstract class MalformedTimestampBodyHttpDateInput
   }) =>
       payload;
 
-  static const List<_i1.SmithySerializer<MalformedTimestampBodyHttpDateInput>>
-      serializers = [MalformedTimestampBodyHttpDateInputRestJson1Serializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    MalformedTimestampBodyHttpDateInputRestJson1Serializer()
+  ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedTimestampBodyHttpDateInputBuilder b) {}
   DateTime get timestamp;
   @override
   MalformedTimestampBodyHttpDateInput getPayload() => this;
@@ -45,11 +47,11 @@ abstract class MalformedTimestampBodyHttpDateInput
   @override
   String toString() {
     final helper =
-        newBuiltValueToStringHelper('MalformedTimestampBodyHttpDateInput')
-          ..add(
-            'timestamp',
-            timestamp,
-          );
+        newBuiltValueToStringHelper('MalformedTimestampBodyHttpDateInput');
+    helper.add(
+      'timestamp',
+      timestamp,
+    );
     return helper.toString();
   }
 }
@@ -83,15 +85,13 @@ class MalformedTimestampBodyHttpDateInputRestJson1Serializer extends _i1
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'timestamp':
           result.timestamp = _i1.TimestampSerializer.httpDate.deserialize(
             serializers,
-            value,
+            value!,
           );
+          break;
       }
     }
 
@@ -101,18 +101,17 @@ class MalformedTimestampBodyHttpDateInputRestJson1Serializer extends _i1
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    MalformedTimestampBodyHttpDateInput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final MalformedTimestampBodyHttpDateInput(:timestamp) = object;
-    result$.addAll([
+    final payload = (object as MalformedTimestampBodyHttpDateInput);
+    final result = <Object?>[
       'timestamp',
       _i1.TimestampSerializer.httpDate.serialize(
         serializers,
-        timestamp,
+        payload.timestamp,
       ),
-    ]);
-    return result$;
+    ];
+    return result;
   }
 }

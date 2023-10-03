@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'endpoint_item_response.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.endpoint_item_response;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -10,13 +10,17 @@ class _$EndpointItemResponse extends EndpointItemResponse {
   @override
   final String? message;
   @override
-  final int? statusCode;
+  final int statusCode;
 
   factory _$EndpointItemResponse(
           [void Function(EndpointItemResponseBuilder)? updates]) =>
       (new EndpointItemResponseBuilder()..update(updates))._build();
 
-  _$EndpointItemResponse._({this.message, this.statusCode}) : super._();
+  _$EndpointItemResponse._({this.message, required this.statusCode})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        statusCode, r'EndpointItemResponse', 'statusCode');
+  }
 
   @override
   EndpointItemResponse rebuild(
@@ -57,7 +61,9 @@ class EndpointItemResponseBuilder
   int? get statusCode => _$this._statusCode;
   set statusCode(int? statusCode) => _$this._statusCode = statusCode;
 
-  EndpointItemResponseBuilder();
+  EndpointItemResponseBuilder() {
+    EndpointItemResponse._init(this);
+  }
 
   EndpointItemResponseBuilder get _$this {
     final $v = _$v;
@@ -85,7 +91,10 @@ class EndpointItemResponseBuilder
 
   _$EndpointItemResponse _build() {
     final _$result = _$v ??
-        new _$EndpointItemResponse._(message: message, statusCode: statusCode);
+        new _$EndpointItemResponse._(
+            message: message,
+            statusCode: BuiltValueNullFieldError.checkNotNull(
+                statusCode, r'EndpointItemResponse', 'statusCode'));
     replace(_$result);
     return _$result;
   }

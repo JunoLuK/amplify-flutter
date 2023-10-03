@@ -1,10 +1,10 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import * as cognito_identity from "@aws-cdk/aws-cognito-identitypool-alpha";
 import * as cdk from "aws-cdk-lib";
 import { Duration, Expiration, RemovalPolicy, Stack } from "aws-cdk-lib";
 import * as appsync from "aws-cdk-lib/aws-appsync";
+import * as cognito from "aws-cdk-lib/aws-cognito";
 import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
 import * as iam from "aws-cdk-lib/aws-iam";
 import * as kinesis from "aws-cdk-lib/aws-kinesis";
@@ -18,34 +18,17 @@ import {
   AmplifyCategory,
   IntegrationTestStack,
   IntegrationTestStackEnvironment,
-  IntegrationTestStackEnvironmentProps,
-  inOneYear
+  IntegrationTestStackEnvironmentProps
 } from "../common";
 
-export interface AnalyticsIntegrationTestStackEnvironmentProps extends IntegrationTestStackEnvironmentProps {
-  /**
-   * Whether unauthenticated users are allowed to access Pinpoint resources.
-   * 
-   * @default true
-   */
-  allowUnauthAccess?: boolean;
-
-  /**
-   * Whether the identity pool supports unauthenticated identities.
-   * 
-   * @default true
-   */
-  allowUnauthIdentites?: boolean;
-}
-
 export class AnalyticsIntegrationTestStack extends IntegrationTestStack<
-  AnalyticsIntegrationTestStackEnvironmentProps,
+  IntegrationTestStackEnvironmentProps,
   AnalyticsIntegrationTestStackEnvironment
 > {
   constructor(
     scope: Construct,
-    environments: AnalyticsIntegrationTestStackEnvironmentProps[],
-    props?: cdk.StackProps
+    environments: IntegrationTestStackEnvironmentProps[],
+    props?: cdk.NestedStackProps
   ) {
     super({
       scope,
@@ -56,7 +39,7 @@ export class AnalyticsIntegrationTestStack extends IntegrationTestStack<
   }
 
   protected buildEnvironments(
-    props: AnalyticsIntegrationTestStackEnvironmentProps[]
+    props: IntegrationTestStackEnvironmentProps[]
   ): AnalyticsIntegrationTestStackEnvironment[] {
     return props.map(
       (environment) =>
@@ -69,15 +52,13 @@ export class AnalyticsIntegrationTestStack extends IntegrationTestStack<
   }
 }
 
-class AnalyticsIntegrationTestStackEnvironment extends IntegrationTestStackEnvironment<AnalyticsIntegrationTestStackEnvironmentProps> {
+class AnalyticsIntegrationTestStackEnvironment extends IntegrationTestStackEnvironment<IntegrationTestStackEnvironmentProps> {
   constructor(
     scope: Construct,
     baseName: string,
-    props: AnalyticsIntegrationTestStackEnvironmentProps
+    props: IntegrationTestStackEnvironmentProps
   ) {
     super(scope, baseName, props);
-
-    const { allowUnauthAccess = true, allowUnauthIdentites = true } = props;
 
     const pinpointApp = new pinpoint.CfnApp(this, "PinpointApp", {
       name: this.name,
@@ -86,27 +67,56 @@ class AnalyticsIntegrationTestStackEnvironment extends IntegrationTestStackEnvir
     // Create the Cognito Identity Pool with permission to put events
     // to the `pinpointApp`.
 
-    const identityPool = new cognito_identity.IdentityPool(this, "IdentityPool", {
-      allowUnauthenticatedIdentities: allowUnauthIdentites,
+    const identityPool = new cognito.CfnIdentityPool(this, "IdentityPool", {
+      allowUnauthenticatedIdentities: true,
     });
 
-    const pinpointStatement = new iam.PolicyStatement({
-      effect: iam.Effect.ALLOW,
-      actions: [
-        "mobiletargeting:PutEvents",
-        "mobiletargeting:UpdateEndpoint",
-      ],
-      resources: [
-        // All subresources on the Pinpoint app. This is how Amplify
-        // does it even though it can probably be tweaked for the
-        // the two actions above:
-        // https://docs.aws.amazon.com/pinpoint/latest/developerguide/permissions-actions.html
-        `${pinpointApp.attrArn}*`,
-      ],
+    const unauthenticatedRole = new iam.Role(this, "UnauthenticatedRole", {
+      description: "Default role for anonymous users",
+      assumedBy: new iam.FederatedPrincipal(
+        "cognito-identity.amazonaws.com",
+        {
+          StringEquals: {
+            "cognito-identity.amazonaws.com:aud": identityPool.ref,
+          },
+          "ForAnyValue:StringLike": {
+            "cognito-identity.amazonaws.com:amr": "unauthenticated",
+          },
+        },
+        "sts:AssumeRoleWithWebIdentity"
+      ),
+      inlinePolicies: {
+        pinpoint: new iam.PolicyDocument({
+          statements: [
+            new iam.PolicyStatement({
+              effect: iam.Effect.ALLOW,
+              actions: [
+                "mobiletargeting:PutEvents",
+                "mobiletargeting:UpdateEndpoint",
+              ],
+              resources: [
+                // All subresources on the Pinpoint app. This is how Amplify
+                // does it even though it can probably be tweaked for the
+                // the two actions above:
+                // https://docs.aws.amazon.com/pinpoint/latest/developerguide/permissions-actions.html
+                `${pinpointApp.attrArn}*`,
+              ],
+            }),
+          ],
+        }),
+      },
     });
-    if (allowUnauthAccess) {
-      identityPool.unauthenticatedRole.addToPrincipalPolicy(pinpointStatement);
-    }
+
+    new cognito.CfnIdentityPoolRoleAttachment(
+      this,
+      "IdentityPoolRoleAttachment",
+      {
+        identityPoolId: identityPool.ref,
+        roles: {
+          unauthenticated: unauthenticatedRole.roleArn,
+        },
+      }
+    );
 
     // Create a Kinesis Data Stream and configure Pinpoint to stream
     // events to it.
@@ -165,16 +175,14 @@ class AnalyticsIntegrationTestStackEnvironment extends IntegrationTestStackEnvir
     const authorizationType = appsync.AuthorizationType.API_KEY;
     const graphQLApi = new appsync.GraphqlApi(this, "GraphQLApi", {
       name: this.name,
-      definition: {
-        schema: appsync.SchemaFile.fromAsset(
-          path.resolve(__dirname, "schema.graphql")
-        ),
-      },
+      schema: appsync.SchemaFile.fromAsset(
+        path.resolve(__dirname, "schema.graphql")
+      ),
       authorizationConfig: {
         defaultAuthorization: {
           authorizationType,
           apiKeyConfig: {
-            expires: inOneYear(),
+            expires: Expiration.after(Duration.days(365)),
           },
         },
       },
@@ -240,7 +248,7 @@ class AnalyticsIntegrationTestStackEnvironment extends IntegrationTestStackEnvir
 
     // Output the values needed to build our Amplify configuration.
 
-    this.saveConfig({
+    this.config = {
       analyticsConfig: {
         appId: pinpointApp.ref,
       },
@@ -256,9 +264,9 @@ class AnalyticsIntegrationTestStackEnvironment extends IntegrationTestStackEnvir
       },
       authConfig: {
         identityPoolConfig: {
-          identityPoolId: identityPool.identityPoolId,
+          identityPoolId: identityPool.ref,
         },
       },
-    });
+    };
   }
 }

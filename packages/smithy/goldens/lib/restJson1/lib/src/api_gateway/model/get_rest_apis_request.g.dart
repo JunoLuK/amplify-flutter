@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'get_rest_apis_request.dart';
+part of rest_json1_v1.api_gateway.model.get_rest_apis_request;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,15 +8,15 @@ part of 'get_rest_apis_request.dart';
 
 class _$GetRestApisRequest extends GetRestApisRequest {
   @override
-  final String? position;
-  @override
   final int? limit;
+  @override
+  final String? position;
 
   factory _$GetRestApisRequest(
           [void Function(GetRestApisRequestBuilder)? updates]) =>
       (new GetRestApisRequestBuilder()..update(updates))._build();
 
-  _$GetRestApisRequest._({this.position, this.limit}) : super._();
+  _$GetRestApisRequest._({this.limit, this.position}) : super._();
 
   @override
   GetRestApisRequest rebuild(
@@ -31,15 +31,15 @@ class _$GetRestApisRequest extends GetRestApisRequest {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is GetRestApisRequest &&
-        position == other.position &&
-        limit == other.limit;
+        limit == other.limit &&
+        position == other.position;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, position.hashCode);
     _$hash = $jc(_$hash, limit.hashCode);
+    _$hash = $jc(_$hash, position.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -49,21 +49,23 @@ class GetRestApisRequestBuilder
     implements Builder<GetRestApisRequest, GetRestApisRequestBuilder> {
   _$GetRestApisRequest? _$v;
 
-  String? _position;
-  String? get position => _$this._position;
-  set position(String? position) => _$this._position = position;
-
   int? _limit;
   int? get limit => _$this._limit;
   set limit(int? limit) => _$this._limit = limit;
 
-  GetRestApisRequestBuilder();
+  String? _position;
+  String? get position => _$this._position;
+  set position(String? position) => _$this._position = position;
+
+  GetRestApisRequestBuilder() {
+    GetRestApisRequest._init(this);
+  }
 
   GetRestApisRequestBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _position = $v.position;
       _limit = $v.limit;
+      _position = $v.position;
       _$v = null;
     }
     return this;
@@ -85,7 +87,7 @@ class GetRestApisRequestBuilder
 
   _$GetRestApisRequest _build() {
     final _$result =
-        _$v ?? new _$GetRestApisRequest._(position: position, limit: limit);
+        _$v ?? new _$GetRestApisRequest._(limit: limit, position: position);
     replace(_$result);
     return _$result;
   }
@@ -124,7 +126,9 @@ class GetRestApisRequestPayloadBuilder
         Builder<GetRestApisRequestPayload, GetRestApisRequestPayloadBuilder> {
   _$GetRestApisRequestPayload? _$v;
 
-  GetRestApisRequestPayloadBuilder();
+  GetRestApisRequestPayloadBuilder() {
+    GetRestApisRequestPayload._init(this);
+  }
 
   @override
   void replace(GetRestApisRequestPayload other) {

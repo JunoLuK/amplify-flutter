@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'internal_error_exception.dart';
+part of amplify_auth_cognito_dart.cognito_identity.model.internal_error_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -61,7 +61,9 @@ class InternalErrorExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  InternalErrorExceptionBuilder();
+  InternalErrorExceptionBuilder() {
+    InternalErrorException._init(this);
+  }
 
   InternalErrorExceptionBuilder get _$this {
     final $v = _$v;

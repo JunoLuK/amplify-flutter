@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v1.rest_xml_protocol.model.xml_timestamps_input_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -17,22 +16,22 @@ abstract class XmlTimestampsInputOutput
     implements
         Built<XmlTimestampsInputOutput, XmlTimestampsInputOutputBuilder> {
   factory XmlTimestampsInputOutput({
-    DateTime? normal,
     DateTime? dateTime,
     DateTime? dateTimeOnTarget,
     DateTime? epochSeconds,
     DateTime? epochSecondsOnTarget,
     DateTime? httpDate,
     DateTime? httpDateOnTarget,
+    DateTime? normal,
   }) {
     return _$XmlTimestampsInputOutput._(
-      normal: normal,
       dateTime: dateTime,
       dateTimeOnTarget: dateTimeOnTarget,
       epochSeconds: epochSeconds,
       epochSecondsOnTarget: epochSecondsOnTarget,
       httpDate: httpDate,
       httpDateOnTarget: httpDateOnTarget,
+      normal: normal,
     );
   }
 
@@ -56,59 +55,62 @@ abstract class XmlTimestampsInputOutput
   ) =>
       payload;
 
-  static const List<_i1.SmithySerializer<XmlTimestampsInputOutput>>
-      serializers = [XmlTimestampsInputOutputRestXmlSerializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    XmlTimestampsInputOutputRestXmlSerializer()
+  ];
 
-  DateTime? get normal;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(XmlTimestampsInputOutputBuilder b) {}
   DateTime? get dateTime;
   DateTime? get dateTimeOnTarget;
   DateTime? get epochSeconds;
   DateTime? get epochSecondsOnTarget;
   DateTime? get httpDate;
   DateTime? get httpDateOnTarget;
+  DateTime? get normal;
   @override
   XmlTimestampsInputOutput getPayload() => this;
   @override
   List<Object?> get props => [
-        normal,
         dateTime,
         dateTimeOnTarget,
         epochSeconds,
         epochSecondsOnTarget,
         httpDate,
         httpDateOnTarget,
+        normal,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('XmlTimestampsInputOutput')
-      ..add(
-        'normal',
-        normal,
-      )
-      ..add(
-        'dateTime',
-        dateTime,
-      )
-      ..add(
-        'dateTimeOnTarget',
-        dateTimeOnTarget,
-      )
-      ..add(
-        'epochSeconds',
-        epochSeconds,
-      )
-      ..add(
-        'epochSecondsOnTarget',
-        epochSecondsOnTarget,
-      )
-      ..add(
-        'httpDate',
-        httpDate,
-      )
-      ..add(
-        'httpDateOnTarget',
-        httpDateOnTarget,
-      );
+    final helper = newBuiltValueToStringHelper('XmlTimestampsInputOutput');
+    helper.add(
+      'dateTime',
+      dateTime,
+    );
+    helper.add(
+      'dateTimeOnTarget',
+      dateTimeOnTarget,
+    );
+    helper.add(
+      'epochSeconds',
+      epochSeconds,
+    );
+    helper.add(
+      'epochSecondsOnTarget',
+      epochSecondsOnTarget,
+    );
+    helper.add(
+      'httpDate',
+      httpDate,
+    );
+    helper.add(
+      'httpDateOnTarget',
+      httpDateOnTarget,
+    );
+    helper.add(
+      'normal',
+      normal,
+    );
     return helper.toString();
   }
 }
@@ -139,52 +141,70 @@ class XmlTimestampsInputOutputRestXmlSerializer
     final result = XmlTimestampsInputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'dateTime':
-          result.dateTime = _i1.TimestampSerializer.dateTime.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.dateTime = _i1.TimestampSerializer.dateTime.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'dateTimeOnTarget':
-          result.dateTimeOnTarget =
-              _i1.TimestampSerializer.dateTime.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.dateTimeOnTarget =
+                _i1.TimestampSerializer.dateTime.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'epochSeconds':
-          result.epochSeconds =
-              _i1.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.epochSeconds =
+                _i1.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'epochSecondsOnTarget':
-          result.epochSecondsOnTarget =
-              _i1.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.epochSecondsOnTarget =
+                _i1.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'httpDate':
-          result.httpDate = _i1.TimestampSerializer.httpDate.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.httpDate = _i1.TimestampSerializer.httpDate.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'httpDateOnTarget':
-          result.httpDateOnTarget =
-              _i1.TimestampSerializer.httpDate.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.httpDateOnTarget =
+                _i1.TimestampSerializer.httpDate.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'normal':
-          result.normal = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime);
+          if (value != null) {
+            result.normal = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(DateTime),
+            ) as DateTime);
+          }
+          break;
       }
     }
 
@@ -194,77 +214,69 @@ class XmlTimestampsInputOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    XmlTimestampsInputOutput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final payload = (object as XmlTimestampsInputOutput);
+    final result = <Object?>[
       const _i1.XmlElementName('XmlTimestampsInputOutput')
     ];
-    final XmlTimestampsInputOutput(
-      :dateTime,
-      :dateTimeOnTarget,
-      :epochSeconds,
-      :epochSecondsOnTarget,
-      :httpDate,
-      :httpDateOnTarget,
-      :normal
-    ) = object;
-    if (dateTime != null) {
-      result$
+    if (payload.dateTime != null) {
+      result
         ..add(const _i1.XmlElementName('dateTime'))
         ..add(_i1.TimestampSerializer.dateTime.serialize(
           serializers,
-          dateTime,
+          payload.dateTime!,
         ));
     }
-    if (dateTimeOnTarget != null) {
-      result$
+    if (payload.dateTimeOnTarget != null) {
+      result
         ..add(const _i1.XmlElementName('dateTimeOnTarget'))
         ..add(_i1.TimestampSerializer.dateTime.serialize(
           serializers,
-          dateTimeOnTarget,
+          payload.dateTimeOnTarget!,
         ));
     }
-    if (epochSeconds != null) {
-      result$
+    if (payload.epochSeconds != null) {
+      result
         ..add(const _i1.XmlElementName('epochSeconds'))
         ..add(_i1.TimestampSerializer.epochSeconds.serialize(
           serializers,
-          epochSeconds,
+          payload.epochSeconds!,
         ));
     }
-    if (epochSecondsOnTarget != null) {
-      result$
+    if (payload.epochSecondsOnTarget != null) {
+      result
         ..add(const _i1.XmlElementName('epochSecondsOnTarget'))
         ..add(_i1.TimestampSerializer.epochSeconds.serialize(
           serializers,
-          epochSecondsOnTarget,
+          payload.epochSecondsOnTarget!,
         ));
     }
-    if (httpDate != null) {
-      result$
+    if (payload.httpDate != null) {
+      result
         ..add(const _i1.XmlElementName('httpDate'))
         ..add(_i1.TimestampSerializer.httpDate.serialize(
           serializers,
-          httpDate,
+          payload.httpDate!,
         ));
     }
-    if (httpDateOnTarget != null) {
-      result$
+    if (payload.httpDateOnTarget != null) {
+      result
         ..add(const _i1.XmlElementName('httpDateOnTarget'))
         ..add(_i1.TimestampSerializer.httpDate.serialize(
           serializers,
-          httpDateOnTarget,
+          payload.httpDateOnTarget!,
         ));
     }
-    if (normal != null) {
-      result$
+    if (payload.normal != null) {
+      result
         ..add(const _i1.XmlElementName('normal'))
         ..add(serializers.serialize(
-          normal,
+          payload.normal!,
           specifiedType: const FullType.nullable(DateTime),
         ));
     }
-    return result$;
+    return result;
   }
 }

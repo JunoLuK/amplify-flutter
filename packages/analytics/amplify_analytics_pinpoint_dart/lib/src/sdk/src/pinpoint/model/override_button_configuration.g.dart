@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'override_button_configuration.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.override_button_configuration;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of 'override_button_configuration.dart';
 
 class _$OverrideButtonConfiguration extends OverrideButtonConfiguration {
   @override
-  final ButtonAction buttonAction;
+  final _i2.ButtonAction buttonAction;
   @override
   final String? link;
 
@@ -55,16 +55,18 @@ class OverrideButtonConfigurationBuilder
             OverrideButtonConfigurationBuilder> {
   _$OverrideButtonConfiguration? _$v;
 
-  ButtonAction? _buttonAction;
-  ButtonAction? get buttonAction => _$this._buttonAction;
-  set buttonAction(ButtonAction? buttonAction) =>
+  _i2.ButtonAction? _buttonAction;
+  _i2.ButtonAction? get buttonAction => _$this._buttonAction;
+  set buttonAction(_i2.ButtonAction? buttonAction) =>
       _$this._buttonAction = buttonAction;
 
   String? _link;
   String? get link => _$this._link;
   set link(String? link) => _$this._link = link;
 
-  OverrideButtonConfigurationBuilder();
+  OverrideButtonConfigurationBuilder() {
+    OverrideButtonConfiguration._init(this);
+  }
 
   OverrideButtonConfigurationBuilder get _$this {
     final $v = _$v;

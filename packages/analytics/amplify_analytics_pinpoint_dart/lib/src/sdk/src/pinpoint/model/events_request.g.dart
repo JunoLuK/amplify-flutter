@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'events_request.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.events_request;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of 'events_request.dart';
 
 class _$EventsRequest extends EventsRequest {
   @override
-  final _i2.BuiltMap<String, EventsBatch> batchItem;
+  final _i3.BuiltMap<String, _i2.EventsBatch> batchItem;
 
   factory _$EventsRequest([void Function(EventsRequestBuilder)? updates]) =>
       (new EventsRequestBuilder()..update(updates))._build();
@@ -44,13 +44,15 @@ class EventsRequestBuilder
     implements Builder<EventsRequest, EventsRequestBuilder> {
   _$EventsRequest? _$v;
 
-  _i2.MapBuilder<String, EventsBatch>? _batchItem;
-  _i2.MapBuilder<String, EventsBatch> get batchItem =>
-      _$this._batchItem ??= new _i2.MapBuilder<String, EventsBatch>();
-  set batchItem(_i2.MapBuilder<String, EventsBatch>? batchItem) =>
+  _i3.MapBuilder<String, _i2.EventsBatch>? _batchItem;
+  _i3.MapBuilder<String, _i2.EventsBatch> get batchItem =>
+      _$this._batchItem ??= new _i3.MapBuilder<String, _i2.EventsBatch>();
+  set batchItem(_i3.MapBuilder<String, _i2.EventsBatch>? batchItem) =>
       _$this._batchItem = batchItem;
 
-  EventsRequestBuilder();
+  EventsRequestBuilder() {
+    EventsRequest._init(this);
+  }
 
   EventsRequestBuilder get _$this {
     final $v = _$v;

@@ -4,6 +4,7 @@
 package com.amazonaws.amplify.amplify_native_legacy_wrapper
 
 import android.content.Context
+import androidx.annotation.NonNull
 import com.amazonaws.mobile.client.AWSMobileClient
 import com.amazonaws.mobile.client.Callback
 import com.amazonaws.mobile.config.AWSConfiguration
@@ -18,12 +19,12 @@ class AmplifyNativeLegacyWrapperPlugin: FlutterPlugin, LegacyNativePluginPigeon.
   private lateinit var context: Context
   private val awsMobileClient = AWSMobileClient.getInstance()
 
-  override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     context = flutterPluginBinding.applicationContext
     LegacyNativePluginPigeon.LegacyNativePlugin.setup(flutterPluginBinding.binaryMessenger, this)
   }
 
-  override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
+  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
     LegacyNativePluginPigeon.LegacyNativePlugin.setup(binding.binaryMessenger, null)
   }
 
@@ -62,7 +63,7 @@ class ResultCallback<T>(private val result: LegacyNativePluginPigeon.Result<Void
     this.result.success(null)
   }
 
-  override fun onError(e: Exception) {
+  override fun onError(e: Exception?) {
     this.result.error(e)
   }
 

@@ -40,9 +40,6 @@ service JsonProtocol {
         // client-only timestamp parsing tests
         DatetimeOffsets,
         FractionalSeconds
-
-        // requestCompression trait tests
-        PutWithContentEncoding
     ],
 }
 

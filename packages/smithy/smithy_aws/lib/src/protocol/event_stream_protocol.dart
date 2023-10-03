@@ -4,7 +4,8 @@
 import 'package:aws_common/aws_common.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart';
-import 'package:smithy_aws/src/protocol/aws_http_protocol.dart';
+
+import 'aws_http_protocol.dart';
 
 class EventStreamProtocol<InputPayload, Input, OutputPayload, Output>
     implements AWSHttpProtocol<InputPayload, Input, OutputPayload, Output> {
@@ -17,11 +18,14 @@ class EventStreamProtocol<InputPayload, Input, OutputPayload, Output>
   String get contentType => _baseProtocol.contentType;
 
   @override
-  Future<OutputPayload> deserialize(Stream<List<int>> response) async {
+  Future<Object?> deserialize(
+    Stream<List<int>> response, {
+    FullType? specifiedType,
+  }) async {
     return serializers.deserialize(
       response,
       specifiedType: FullType(OutputPayload),
-    ) as OutputPayload;
+    );
   }
 
   @override
@@ -46,7 +50,8 @@ class EventStreamProtocol<InputPayload, Input, OutputPayload, Output>
       _baseProtocol.responseInterceptors;
 
   @override
-  Stream<List<int>> serialize(Input input) => _baseProtocol.serialize(input);
+  Stream<List<int>> serialize(Object? input, {FullType? specifiedType}) =>
+      _baseProtocol.serialize(input, specifiedType: specifiedType);
 
   @override
   Serializers get serializers => _baseProtocol.serializers;

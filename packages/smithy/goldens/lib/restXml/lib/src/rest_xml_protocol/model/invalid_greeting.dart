@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v1.rest_xml_protocol.model.invalid_greeting; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -36,10 +35,12 @@ abstract class InvalidGreeting
         b.headers = response.headers;
       });
 
-  static const List<_i2.SmithySerializer<InvalidGreeting>> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     InvalidGreetingRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(InvalidGreetingBuilder b) {}
   @override
   String? get message;
   @override
@@ -61,11 +62,11 @@ abstract class InvalidGreeting
   List<Object?> get props => [message];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('InvalidGreeting')
-      ..add(
-        'message',
-        message,
-      );
+    final helper = newBuiltValueToStringHelper('InvalidGreeting');
+    helper.add(
+      'message',
+      message,
+    );
     return helper.toString();
   }
 }
@@ -103,18 +104,18 @@ class InvalidGreetingRestXmlSerializer
     }
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'Message':
-          result.message = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.message = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -124,19 +125,19 @@ class InvalidGreetingRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    InvalidGreeting object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[const _i2.XmlElementName('InvalidGreeting')];
-    final InvalidGreeting(:message) = object;
-    if (message != null) {
-      result$
+    final payload = (object as InvalidGreeting);
+    final result = <Object?>[const _i2.XmlElementName('InvalidGreeting')];
+    if (payload.message != null) {
+      result
         ..add(const _i2.XmlElementName('Message'))
         ..add(serializers.serialize(
-          message,
+          payload.message!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

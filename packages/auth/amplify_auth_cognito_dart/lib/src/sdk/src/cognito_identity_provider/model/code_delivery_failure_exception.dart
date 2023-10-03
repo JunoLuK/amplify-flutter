@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_auth_cognito_dart.cognito_identity_provider.model.code_delivery_failure_exception; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -39,8 +38,12 @@ abstract class CodeDeliveryFailureException
         b.headers = response.headers;
       });
 
-  static const List<_i2.SmithySerializer<CodeDeliveryFailureException>>
-      serializers = [CodeDeliveryFailureExceptionAwsJson11Serializer()];
+  static const List<_i2.SmithySerializer> serializers = [
+    CodeDeliveryFailureExceptionAwsJson11Serializer()
+  ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(CodeDeliveryFailureExceptionBuilder b) {}
 
   /// The message sent when a verification code fails to deliver successfully.
   @override
@@ -64,11 +67,11 @@ abstract class CodeDeliveryFailureException
   List<Object?> get props => [message];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('CodeDeliveryFailureException')
-      ..add(
-        'message',
-        message,
-      );
+    final helper = newBuiltValueToStringHelper('CodeDeliveryFailureException');
+    helper.add(
+      'message',
+      message,
+    );
     return helper.toString();
   }
 }
@@ -102,15 +105,15 @@ class CodeDeliveryFailureExceptionAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'message':
-          result.message = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.message = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -120,19 +123,19 @@ class CodeDeliveryFailureExceptionAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    CodeDeliveryFailureException object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final CodeDeliveryFailureException(:message) = object;
-    if (message != null) {
-      result$
+    final payload = (object as CodeDeliveryFailureException);
+    final result = <Object?>[];
+    if (payload.message != null) {
+      result
         ..add('message')
         ..add(serializers.serialize(
-          message,
+          payload.message!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

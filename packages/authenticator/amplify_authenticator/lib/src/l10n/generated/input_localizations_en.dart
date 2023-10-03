@@ -146,14 +146,4 @@ class AuthenticatorInputLocalizationsEn
 
   @override
   String get customChallenge => 'Confirmation Code';
-
-  @override
-  String get selectSms => 'Text Message (SMS)';
-
-  @override
-  String get selectTotp => 'Authenticator App (TOTP)';
-
-  @override
-  String get totpCodePrompt =>
-      'Please enter the code from your registered Authenticator app';
 }

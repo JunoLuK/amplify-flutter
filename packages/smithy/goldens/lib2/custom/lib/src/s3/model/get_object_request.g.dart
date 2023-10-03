@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'get_object_request.dart';
+part of custom_v2.s3.model.get_object_request;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -69,7 +69,9 @@ class GetObjectRequestBuilder
   String? get range => _$this._range;
   set range(String? range) => _$this._range = range;
 
-  GetObjectRequestBuilder();
+  GetObjectRequestBuilder() {
+    GetObjectRequest._init(this);
+  }
 
   GetObjectRequestBuilder get _$this {
     final $v = _$v;
@@ -142,7 +144,9 @@ class GetObjectRequestPayloadBuilder
         Builder<GetObjectRequestPayload, GetObjectRequestPayloadBuilder> {
   _$GetObjectRequestPayload? _$v;
 
-  GetObjectRequestPayloadBuilder();
+  GetObjectRequestPayloadBuilder() {
+    GetObjectRequestPayload._init(this);
+  }
 
   @override
   void replace(GetObjectRequestPayload other) {

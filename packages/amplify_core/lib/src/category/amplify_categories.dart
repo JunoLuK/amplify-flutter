@@ -6,7 +6,6 @@ library amplify_interface;
 import 'dart:async';
 
 import 'package:amplify_core/amplify_core.dart';
-import 'package:amplify_core/src/http/amplify_category_method.dart';
 import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 
@@ -50,25 +49,33 @@ enum Category {
   storage,
 
   /// Push Notifications
-  pushNotifications;
+  pushNotifications,
+}
 
-  String get name => switch (this) {
-        Category.analytics => 'Analytics',
-        Category.api => 'API',
-        Category.auth => 'Auth',
-        Category.dataStore => 'DataStore',
-        Category.hub => 'Hub',
-        Category.storage => 'Storage',
-        Category.pushNotifications => 'PushNotifications',
-      };
+extension CategoryName on Category {
+  String get name {
+    switch (this) {
+      case Category.analytics:
+        return 'Analytics';
+      case Category.api:
+        return 'API';
+      case Category.auth:
+        return 'Auth';
+      case Category.dataStore:
+        return 'DataStore';
+      case Category.hub:
+        return 'Hub';
+      case Category.storage:
+        return 'Storage';
+      case Category.pushNotifications:
+        return 'PushNotifications';
+    }
+  }
 }
 
 /// Base functionality for Amplify categories.
 abstract class AmplifyCategory<P extends AmplifyPluginInterface> {
   Category get category;
-
-  /// The categories this category depends on.
-  Set<Category> get categoryDependencies;
 
   final List<P> _plugins = [];
 
@@ -81,10 +88,11 @@ abstract class AmplifyCategory<P extends AmplifyPluginInterface> {
 
   @protected
   P get defaultPlugin {
-    if (plugins case [final singlePlugin]) {
-      return singlePlugin;
+    final plugin = plugins.firstOrNull;
+    if (plugin == null) {
+      throw _pluginNotAddedException(category.name);
     }
-    throw _pluginNotAddedException(category.name);
+    return plugin;
   }
 
   /// Adds a plugin to the category.

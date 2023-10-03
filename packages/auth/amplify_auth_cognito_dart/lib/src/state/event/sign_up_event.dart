@@ -1,7 +1,9 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-part of 'auth_event.dart';
+import 'package:amplify_auth_cognito_dart/src/model/sign_up_parameters.dart';
+import 'package:amplify_auth_cognito_dart/src/state/state.dart';
+import 'package:amplify_core/amplify_core.dart';
 
 /// Discrete event types of the sign up flow.
 enum SignUpEventType {
@@ -16,7 +18,7 @@ enum SignUpEventType {
 }
 
 /// Discrete events of the sign up flow.
-sealed class SignUpEvent extends AuthEvent<SignUpEventType, SignUpStateType> {
+abstract class SignUpEvent extends AuthEvent<SignUpEventType, SignUpStateType> {
   const SignUpEvent._();
 
   /// {@macro amplify_auth_cognito.sign_up_inititate}
@@ -46,7 +48,7 @@ sealed class SignUpEvent extends AuthEvent<SignUpEventType, SignUpStateType> {
 /// {@template amplify_auth_cognito.sign_up_inititate}
 /// Initiates the sign up flow.
 /// {@endtemplate}
-final class SignUpInitiate extends SignUpEvent {
+class SignUpInitiate extends SignUpEvent {
   /// {@macro amplify_auth_cognito.sign_up_inititate}
   const SignUpInitiate({
     required this.parameters,
@@ -83,7 +85,7 @@ final class SignUpInitiate extends SignUpEvent {
 /// {@template amplify_auth_cognito.sign_up_confirm}
 /// Confirms a sign up.
 /// {@endtemplate}
-final class SignUpConfirm extends SignUpEvent {
+class SignUpConfirm extends SignUpEvent {
   /// {@macro amplify_auth_cognito.sign_up_confirm}
   const SignUpConfirm({
     required this.username,
@@ -116,7 +118,7 @@ final class SignUpConfirm extends SignUpEvent {
 /// {@template amplify_auth_cognito.sign_up_succeeded}
 /// A successful sign up/confirm sign up event.
 /// {@endtemplate}
-final class SignUpSucceeded extends SignUpEvent {
+class SignUpSucceeded extends SignUpEvent {
   /// {@macro amplify_auth_cognito.sign_up_succeeded}
   const SignUpSucceeded({
     this.userId,

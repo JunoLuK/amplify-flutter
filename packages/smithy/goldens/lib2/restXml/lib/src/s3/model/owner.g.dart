@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'owner.dart';
+part of rest_xml_v2.s3.model.owner;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -51,7 +51,9 @@ class OwnerBuilder implements Builder<Owner, OwnerBuilder> {
   String? get id => _$this._id;
   set id(String? id) => _$this._id = id;
 
-  OwnerBuilder();
+  OwnerBuilder() {
+    Owner._init(this);
+  }
 
   OwnerBuilder get _$this {
     final $v = _$v;

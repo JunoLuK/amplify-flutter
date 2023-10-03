@@ -77,9 +77,8 @@ abstract class ConfirmDeviceWorker
     StreamSink<ConfirmDeviceResponse> respond,
   ) async {
     await for (final message in listen) {
-      final ConfirmDeviceMessage(:newDeviceMetadata, :accessToken) = message;
-      final deviceGroupKey = newDeviceMetadata.deviceGroupKey;
-      final deviceKey = newDeviceMetadata.deviceKey;
+      final deviceGroupKey = message.newDeviceMetadata.deviceGroupKey;
+      final deviceKey = message.newDeviceMetadata.deviceKey;
       if (deviceGroupKey == null || deviceKey == null) {
         throw InvalidParameterException(message: 'Missing device metadata');
       }
@@ -101,7 +100,7 @@ abstract class ConfirmDeviceWorker
       );
       final request = ConfirmDeviceRequest.build((b) {
         b
-          ..accessToken = accessToken
+          ..accessToken = message.accessToken
           ..deviceKey = deviceKey
           ..deviceSecretVerifierConfig.passwordVerifier =
               base64Encode(encodeBigInt(verifier))

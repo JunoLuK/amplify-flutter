@@ -15,18 +15,18 @@ const output = 'lib/src/sdk/sdk_exception.dart';
 ///
 /// If a Cognito type has the same name, we do not want to create another
 /// wrapper, but instead use the base type.
-const authExceptions = {
-  'InvalidStateException': 'InvalidStateServiceException',
-  'NotAuthorizedException': 'NotAuthorizedServiceException',
-  'SessionExpiredException': 'SessionExpiredServiceException',
-  'SignedOutException': 'SignedOutServiceException',
-  'UnknownException': 'UnknownServiceException',
-  'ValidationException': 'ValidationServiceException',
-};
+const authExceptions = [
+  'InvalidStateException',
+  'NotAuthorizedException',
+  'SessionExpiredException',
+  'SignedOutException',
+  'UnknownException',
+  'ValidationException',
+];
 
-void main(List<String> args) async {
+void main(List<String> args) {
   // Should be run with `aft generate-sdk`
-  final astJson = stdin.readLineSync()!;
+  final astJson = args.single;
   final ast = parseAstJson(astJson);
 
   final exceptions = StringBuffer(r'''
@@ -42,22 +42,10 @@ import 'package:amplify_core/amplify_core.dart' as core;
 import 'package:meta/meta.dart';
 import 'package:smithy/smithy.dart';
 
-/// {@template amplify_auth_cognito_dart.sdk.cognito_service_exception}
-/// An [core.AuthServiceException] thrown by Cognito.
-/// {@endtemplate}
-sealed class CognitoServiceException extends core.AuthServiceException {
-  /// {@macro amplify_auth_cognito_dart.sdk.cognito_service_exception}
-  const CognitoServiceException(
-    super.message, {
-    super.recoverySuggestion,
-    super.underlyingException,
-  });
-}
-
 /// {@template amplify_auth_cognito_dart.sdk.lambda_exception}
 /// Exception thrown when an error from the AWS Lambda service is encountered.
 /// {@endtemplate}
-final class LambdaException extends CognitoServiceException {
+class LambdaException extends core.AuthServiceException {
   /// {@macro amplify_auth_cognito_dart.sdk.lambda_exception}
   factory LambdaException(String message, {
     String? recoverySuggestion, 
@@ -106,8 +94,7 @@ final class LambdaException extends CognitoServiceException {
 /// {@template amplify_auth_cognito_dart.sdk_exception.unknown_service_exception}
 /// An unknown exception raised by Cognito.
 /// {@endtemplate}
-final class UnknownServiceException extends CognitoServiceException
-    implements core.UnknownException {
+class UnknownServiceException extends core.AuthServiceException {
   /// {@macro amplify_auth_cognito_dart.sdk_exception.unknown_service_exception}
   const UnknownServiceException(super.message, {super.recoverySuggestion, super.underlyingException,});
 
@@ -159,11 +146,13 @@ typedef MFAMethodNotFoundException = MfaMethodNotFoundException;
   )..addAll(errorShapes);
   final sdkExceptions = <String>{};
   for (final shape in uniqueErrorShapes) {
-    final shapeName = shape.shapeId.shape;
+    final shapeName = shape.shapeId.shape.pascalCase;
     sdkExceptions.add(shapeName);
 
-    final hasCoreType = authExceptions.keys.contains(shapeName);
-    final className = authExceptions[shapeName] ?? shapeName.pascalCase;
+    if (authExceptions.contains(shapeName)) {
+      continue;
+    }
+
     final templateName =
         'amplify_auth_cognito_dart.sdk_exception.${shapeName.snakeCase}';
     final docs = shape.formattedDocs(context);
@@ -171,16 +160,16 @@ typedef MFAMethodNotFoundException = MfaMethodNotFoundException;
 /// {@template $templateName}
 ${docs.isEmpty ? '/// Cognito `$shapeName` exception' : docs}
 /// {@endtemplate}
-final class $className extends CognitoServiceException ${hasCoreType ? 'implements core.Auth$shapeName' : ''} {
+class $shapeName extends core.AuthServiceException {
   /// {@macro $templateName}
-  const $className(
+  const $shapeName(
     super.message, {
     super.recoverySuggestion, 
     super.underlyingException,
   });
 
   @override
-  String get runtimeTypeName => '$className';
+  String get runtimeTypeName => '$shapeName';
 }
 ''');
   }
@@ -192,33 +181,33 @@ final class $className extends CognitoServiceException ${hasCoreType ? 'implemen
 @internal
 Object transformSdkException(Object e) {
   if (e is! SmithyException) {
-    return e is Exception ? core.AuthException.fromException(e) : e;
+    return e;
   }
-  final message = e.message ?? 'An unknown error occurred';
-  final shapeName = e.shapeId?.shape;
-
+  final message = e.message ?? e.toString();
+  final shapeId = e.shapeId;
+  if (shapeId == null) {
+    return UnknownServiceException(message, underlyingException: e);
+  }
   // Some exceptions are returned as non-Lambda exceptions even though they
   // orginated in user-defined lambdas.
   if (LambdaException.isLambdaException(message) ||
-      shapeName == 'InvalidLambdaResponseException' ||
-      shapeName == 'UnexpectedLambdaException' ||
-      shapeName == 'UserLambdaValidationException') {
+      shapeId.shape == 'InvalidLambdaResponseException' ||
+      shapeId.shape == 'UnexpectedLambdaException' ||
+      shapeId.shape == 'UserLambdaValidationException') {
     return LambdaException(message, underlyingException: e);
   }
-
-  return switch (shapeName) {
 ''');
 
   for (final exception in sdkExceptions) {
-    final exceptionClass = authExceptions[exception] ?? exception.pascalCase;
     exceptions.write('''
-    '$exception' => $exceptionClass(message, underlyingException: e,),
+  if (shapeId.shape == '$exception') {
+    return ${authExceptions.contains(exception) ? 'core.Auth$exception' : exception}(message, underlyingException: e,);
+  }
 ''');
   }
 
   exceptions.write('''
-    _ => UnknownServiceException(message, underlyingException: e),
-  };
+  return UnknownServiceException(message, underlyingException: e);
 }
 ''');
 

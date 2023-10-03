@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'malformed_length_override_input.dart';
+part of rest_json1_v2.rest_json_validation_protocol.model.malformed_length_override_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -10,15 +10,15 @@ class _$MalformedLengthOverrideInput extends MalformedLengthOverrideInput {
   @override
   final _i3.Uint8List? blob;
   @override
-  final String? string;
-  @override
-  final String? minString;
-  @override
-  final String? maxString;
-  @override
   final _i4.BuiltList<String>? list;
   @override
   final _i4.BuiltListMultimap<String, String>? map;
+  @override
+  final String? maxString;
+  @override
+  final String? minString;
+  @override
+  final String? string;
 
   factory _$MalformedLengthOverrideInput(
           [void Function(MalformedLengthOverrideInputBuilder)? updates]) =>
@@ -26,11 +26,11 @@ class _$MalformedLengthOverrideInput extends MalformedLengthOverrideInput {
 
   _$MalformedLengthOverrideInput._(
       {this.blob,
-      this.string,
-      this.minString,
-      this.maxString,
       this.list,
-      this.map})
+      this.map,
+      this.maxString,
+      this.minString,
+      this.string})
       : super._();
 
   @override
@@ -47,22 +47,22 @@ class _$MalformedLengthOverrideInput extends MalformedLengthOverrideInput {
     if (identical(other, this)) return true;
     return other is MalformedLengthOverrideInput &&
         blob == other.blob &&
-        string == other.string &&
-        minString == other.minString &&
-        maxString == other.maxString &&
         list == other.list &&
-        map == other.map;
+        map == other.map &&
+        maxString == other.maxString &&
+        minString == other.minString &&
+        string == other.string;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, blob.hashCode);
-    _$hash = $jc(_$hash, string.hashCode);
-    _$hash = $jc(_$hash, minString.hashCode);
-    _$hash = $jc(_$hash, maxString.hashCode);
     _$hash = $jc(_$hash, list.hashCode);
     _$hash = $jc(_$hash, map.hashCode);
+    _$hash = $jc(_$hash, maxString.hashCode);
+    _$hash = $jc(_$hash, minString.hashCode);
+    _$hash = $jc(_$hash, string.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -78,18 +78,6 @@ class MalformedLengthOverrideInputBuilder
   _i3.Uint8List? get blob => _$this._blob;
   set blob(_i3.Uint8List? blob) => _$this._blob = blob;
 
-  String? _string;
-  String? get string => _$this._string;
-  set string(String? string) => _$this._string = string;
-
-  String? _minString;
-  String? get minString => _$this._minString;
-  set minString(String? minString) => _$this._minString = minString;
-
-  String? _maxString;
-  String? get maxString => _$this._maxString;
-  set maxString(String? maxString) => _$this._maxString = maxString;
-
   _i4.ListBuilder<String>? _list;
   _i4.ListBuilder<String> get list =>
       _$this._list ??= new _i4.ListBuilder<String>();
@@ -100,17 +88,31 @@ class MalformedLengthOverrideInputBuilder
       _$this._map ??= new _i4.ListMultimapBuilder<String, String>();
   set map(_i4.ListMultimapBuilder<String, String>? map) => _$this._map = map;
 
-  MalformedLengthOverrideInputBuilder();
+  String? _maxString;
+  String? get maxString => _$this._maxString;
+  set maxString(String? maxString) => _$this._maxString = maxString;
+
+  String? _minString;
+  String? get minString => _$this._minString;
+  set minString(String? minString) => _$this._minString = minString;
+
+  String? _string;
+  String? get string => _$this._string;
+  set string(String? string) => _$this._string = string;
+
+  MalformedLengthOverrideInputBuilder() {
+    MalformedLengthOverrideInput._init(this);
+  }
 
   MalformedLengthOverrideInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _blob = $v.blob;
-      _string = $v.string;
-      _minString = $v.minString;
-      _maxString = $v.maxString;
       _list = $v.list?.toBuilder();
       _map = $v.map?.toBuilder();
+      _maxString = $v.maxString;
+      _minString = $v.minString;
+      _string = $v.string;
       _$v = null;
     }
     return this;
@@ -136,11 +138,11 @@ class MalformedLengthOverrideInputBuilder
       _$result = _$v ??
           new _$MalformedLengthOverrideInput._(
               blob: blob,
-              string: string,
-              minString: minString,
-              maxString: maxString,
               list: _list?.build(),
-              map: _map?.build());
+              map: _map?.build(),
+              maxString: maxString,
+              minString: minString,
+              string: string);
     } catch (_) {
       late String _$failedField;
       try {

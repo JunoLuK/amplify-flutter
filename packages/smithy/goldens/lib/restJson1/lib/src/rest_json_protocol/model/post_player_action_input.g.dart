@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'post_player_action_input.dart';
+part of rest_json1_v1.rest_json_protocol.model.post_player_action_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of 'post_player_action_input.dart';
 
 class _$PostPlayerActionInput extends PostPlayerActionInput {
   @override
-  final PlayerAction? action;
+  final _i3.PlayerAction? action;
 
   factory _$PostPlayerActionInput(
           [void Function(PostPlayerActionInputBuilder)? updates]) =>
@@ -44,11 +44,13 @@ class PostPlayerActionInputBuilder
     implements Builder<PostPlayerActionInput, PostPlayerActionInputBuilder> {
   _$PostPlayerActionInput? _$v;
 
-  PlayerAction? _action;
-  PlayerAction? get action => _$this._action;
-  set action(PlayerAction? action) => _$this._action = action;
+  _i3.PlayerAction? _action;
+  _i3.PlayerAction? get action => _$this._action;
+  set action(_i3.PlayerAction? action) => _$this._action = action;
 
-  PostPlayerActionInputBuilder();
+  PostPlayerActionInputBuilder() {
+    PostPlayerActionInput._init(this);
+  }
 
   PostPlayerActionInputBuilder get _$this {
     final $v = _$v;

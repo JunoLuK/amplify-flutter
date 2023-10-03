@@ -1,23 +1,25 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library aws_json1_0_v1.json_rpc_10.operation.simple_scalar_properties_operation; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'dart:async' as _i4;
+import 'dart:async' as _i8;
 
-import 'package:aws_common/aws_common.dart' as _i3;
-import 'package:aws_json1_0_v1/src/json_rpc_10/common/endpoint_resolver.dart';
-import 'package:aws_json1_0_v1/src/json_rpc_10/common/serializers.dart';
-import 'package:aws_json1_0_v1/src/json_rpc_10/model/simple_scalar_properties_input.dart';
-import 'package:aws_json1_0_v1/src/json_rpc_10/model/simple_scalar_properties_output.dart';
+import 'package:aws_common/aws_common.dart' as _i7;
+import 'package:aws_json1_0_v1/src/json_rpc_10/common/endpoint_resolver.dart'
+    as _i6;
+import 'package:aws_json1_0_v1/src/json_rpc_10/common/serializers.dart' as _i5;
+import 'package:aws_json1_0_v1/src/json_rpc_10/model/simple_scalar_properties_input.dart'
+    as _i2;
+import 'package:aws_json1_0_v1/src/json_rpc_10/model/simple_scalar_properties_output.dart'
+    as _i3;
 import 'package:smithy/smithy.dart' as _i1;
-import 'package:smithy_aws/smithy_aws.dart' as _i2;
+import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
 class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
-    SimpleScalarPropertiesInput,
-    SimpleScalarPropertiesInput,
-    SimpleScalarPropertiesOutput,
-    SimpleScalarPropertiesOutput> {
+    _i2.SimpleScalarPropertiesInput,
+    _i2.SimpleScalarPropertiesInput,
+    _i3.SimpleScalarPropertiesOutput,
+    _i3.SimpleScalarPropertiesOutput> {
   SimpleScalarPropertiesOperation({
     required String region,
     Uri? baseUri,
@@ -31,13 +33,13 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
   @override
   late final List<
       _i1.HttpProtocol<
-          SimpleScalarPropertiesInput,
-          SimpleScalarPropertiesInput,
-          SimpleScalarPropertiesOutput,
-          SimpleScalarPropertiesOutput>> protocols = [
-    _i2.AwsJson1_0Protocol(
-      serializers: serializers,
-      builderFactories: builderFactories,
+          _i2.SimpleScalarPropertiesInput,
+          _i2.SimpleScalarPropertiesInput,
+          _i3.SimpleScalarPropertiesOutput,
+          _i3.SimpleScalarPropertiesOutput>> protocols = [
+    _i4.AwsJson1_0Protocol(
+      serializers: _i5.serializers,
+      builderFactories: _i5.builderFactories,
       requestInterceptors: <_i1.HttpRequestInterceptor>[
             const _i1.WithHost(),
             const _i1.WithContentLength(),
@@ -46,8 +48,8 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
               'JsonRpc10.SimpleScalarProperties',
             ),
             const _i1.WithUserAgent('aws-sdk-dart/0.3.1'),
-            const _i2.WithSdkInvocationId(),
-            const _i2.WithSdkRequest(),
+            const _i4.WithSdkInvocationId(),
+            const _i4.WithSdkRequest(),
           ] +
           _requestInterceptors,
       responseInterceptors:
@@ -55,8 +57,8 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
     )
   ];
 
-  late final _i2.AWSEndpoint _awsEndpoint = endpointResolver.resolve(
-    sdkId,
+  late final _i4.AWSEndpoint _awsEndpoint = _i6.endpointResolver.resolve(
+    _i6.sdkId,
     _region,
   );
 
@@ -69,19 +71,19 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
   final List<_i1.HttpResponseInterceptor> _responseInterceptors;
 
   @override
-  _i1.HttpRequest buildRequest(SimpleScalarPropertiesInput input) =>
+  _i1.HttpRequest buildRequest(_i2.SimpleScalarPropertiesInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = r'/';
       });
   @override
-  int successCode([SimpleScalarPropertiesOutput? output]) => 200;
+  int successCode([_i3.SimpleScalarPropertiesOutput? output]) => 200;
   @override
-  SimpleScalarPropertiesOutput buildOutput(
-    SimpleScalarPropertiesOutput payload,
-    _i3.AWSBaseHttpResponse response,
+  _i3.SimpleScalarPropertiesOutput buildOutput(
+    _i3.SimpleScalarPropertiesOutput payload,
+    _i7.AWSBaseHttpResponse response,
   ) =>
-      SimpleScalarPropertiesOutput.fromResponse(
+      _i3.SimpleScalarPropertiesOutput.fromResponse(
         payload,
         response,
       );
@@ -90,18 +92,18 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
   @override
   String get runtimeTypeName => 'SimpleScalarProperties';
   @override
-  _i2.AWSRetryer get retryer => _i2.AWSRetryer();
+  _i4.AWSRetryer get retryer => _i4.AWSRetryer();
   @override
   Uri get baseUri => _baseUri ?? endpoint.uri;
   @override
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;
   @override
-  _i1.SmithyOperation<SimpleScalarPropertiesOutput> run(
-    SimpleScalarPropertiesInput input, {
-    _i3.AWSHttpClient? client,
+  _i1.SmithyOperation<_i3.SimpleScalarPropertiesOutput> run(
+    _i2.SimpleScalarPropertiesInput input, {
+    _i7.AWSHttpClient? client,
     _i1.ShapeId? useProtocol,
   }) {
-    return _i4.runZoned(
+    return _i8.runZoned(
       () => super.run(
         input,
         client: client,
@@ -109,7 +111,7 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
       ),
       zoneValues: {
         ...?_awsEndpoint.credentialScope?.zoneValues,
-        ...{_i3.AWSHeaders.sdkInvocationId: _i3.uuid(secure: true)},
+        ...{_i7.AWSHeaders.sdkInvocationId: _i7.uuid(secure: true)}
       },
     );
   }

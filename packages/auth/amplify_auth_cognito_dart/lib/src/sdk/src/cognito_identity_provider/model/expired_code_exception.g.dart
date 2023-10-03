@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'expired_code_exception.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.expired_code_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -54,7 +54,9 @@ class ExpiredCodeExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  ExpiredCodeExceptionBuilder();
+  ExpiredCodeExceptionBuilder() {
+    ExpiredCodeException._init(this);
+  }
 
   ExpiredCodeExceptionBuilder get _$this {
     final $v = _$v;

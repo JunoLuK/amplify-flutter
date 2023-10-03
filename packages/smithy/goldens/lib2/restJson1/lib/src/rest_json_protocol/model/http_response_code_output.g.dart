@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'http_response_code_output.dart';
+part of rest_json1_v2.rest_json_protocol.model.http_response_code_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -48,7 +48,9 @@ class HttpResponseCodeOutputBuilder
   int? get status => _$this._status;
   set status(int? status) => _$this._status = status;
 
-  HttpResponseCodeOutputBuilder();
+  HttpResponseCodeOutputBuilder() {
+    HttpResponseCodeOutput._init(this);
+  }
 
   HttpResponseCodeOutputBuilder get _$this {
     final $v = _$v;
@@ -114,7 +116,9 @@ class HttpResponseCodeOutputPayloadBuilder
             HttpResponseCodeOutputPayloadBuilder> {
   _$HttpResponseCodeOutputPayload? _$v;
 
-  HttpResponseCodeOutputPayloadBuilder();
+  HttpResponseCodeOutputPayloadBuilder() {
+    HttpResponseCodeOutputPayload._init(this);
+  }
 
   @override
   void replace(HttpResponseCodeOutputPayload other) {

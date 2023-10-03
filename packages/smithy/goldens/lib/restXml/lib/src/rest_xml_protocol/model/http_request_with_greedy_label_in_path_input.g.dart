@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'http_request_with_greedy_label_in_path_input.dart';
+part of rest_xml_v1.rest_xml_protocol.model.http_request_with_greedy_label_in_path_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -9,9 +9,9 @@ part of 'http_request_with_greedy_label_in_path_input.dart';
 class _$HttpRequestWithGreedyLabelInPathInput
     extends HttpRequestWithGreedyLabelInPathInput {
   @override
-  final String foo;
-  @override
   final String baz;
+  @override
+  final String foo;
 
   factory _$HttpRequestWithGreedyLabelInPathInput(
           [void Function(HttpRequestWithGreedyLabelInPathInputBuilder)?
@@ -20,12 +20,12 @@ class _$HttpRequestWithGreedyLabelInPathInput
           ._build();
 
   _$HttpRequestWithGreedyLabelInPathInput._(
-      {required this.foo, required this.baz})
+      {required this.baz, required this.foo})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        foo, r'HttpRequestWithGreedyLabelInPathInput', 'foo');
-    BuiltValueNullFieldError.checkNotNull(
         baz, r'HttpRequestWithGreedyLabelInPathInput', 'baz');
+    BuiltValueNullFieldError.checkNotNull(
+        foo, r'HttpRequestWithGreedyLabelInPathInput', 'foo');
   }
 
   @override
@@ -42,15 +42,15 @@ class _$HttpRequestWithGreedyLabelInPathInput
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is HttpRequestWithGreedyLabelInPathInput &&
-        foo == other.foo &&
-        baz == other.baz;
+        baz == other.baz &&
+        foo == other.foo;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, foo.hashCode);
     _$hash = $jc(_$hash, baz.hashCode);
+    _$hash = $jc(_$hash, foo.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -62,21 +62,23 @@ class HttpRequestWithGreedyLabelInPathInputBuilder
             HttpRequestWithGreedyLabelInPathInputBuilder> {
   _$HttpRequestWithGreedyLabelInPathInput? _$v;
 
-  String? _foo;
-  String? get foo => _$this._foo;
-  set foo(String? foo) => _$this._foo = foo;
-
   String? _baz;
   String? get baz => _$this._baz;
   set baz(String? baz) => _$this._baz = baz;
 
-  HttpRequestWithGreedyLabelInPathInputBuilder();
+  String? _foo;
+  String? get foo => _$this._foo;
+  set foo(String? foo) => _$this._foo = foo;
+
+  HttpRequestWithGreedyLabelInPathInputBuilder() {
+    HttpRequestWithGreedyLabelInPathInput._init(this);
+  }
 
   HttpRequestWithGreedyLabelInPathInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _foo = $v.foo;
       _baz = $v.baz;
+      _foo = $v.foo;
       _$v = null;
     }
     return this;
@@ -100,10 +102,10 @@ class HttpRequestWithGreedyLabelInPathInputBuilder
   _$HttpRequestWithGreedyLabelInPathInput _build() {
     final _$result = _$v ??
         new _$HttpRequestWithGreedyLabelInPathInput._(
-            foo: BuiltValueNullFieldError.checkNotNull(
-                foo, r'HttpRequestWithGreedyLabelInPathInput', 'foo'),
             baz: BuiltValueNullFieldError.checkNotNull(
-                baz, r'HttpRequestWithGreedyLabelInPathInput', 'baz'));
+                baz, r'HttpRequestWithGreedyLabelInPathInput', 'baz'),
+            foo: BuiltValueNullFieldError.checkNotNull(
+                foo, r'HttpRequestWithGreedyLabelInPathInput', 'foo'));
     replace(_$result);
     return _$result;
   }
@@ -148,7 +150,9 @@ class HttpRequestWithGreedyLabelInPathInputPayloadBuilder
             HttpRequestWithGreedyLabelInPathInputPayloadBuilder> {
   _$HttpRequestWithGreedyLabelInPathInputPayload? _$v;
 
-  HttpRequestWithGreedyLabelInPathInputPayloadBuilder();
+  HttpRequestWithGreedyLabelInPathInputPayloadBuilder() {
+    HttpRequestWithGreedyLabelInPathInputPayload._init(this);
+  }
 
   @override
   void replace(HttpRequestWithGreedyLabelInPathInputPayload other) {

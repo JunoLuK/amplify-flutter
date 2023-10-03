@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'invalid_parameter_exception.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.invalid_parameter_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -55,7 +55,9 @@ class InvalidParameterExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  InvalidParameterExceptionBuilder();
+  InvalidParameterExceptionBuilder() {
+    InvalidParameterException._init(this);
+  }
 
   InvalidParameterExceptionBuilder get _$this {
     final $v = _$v;

@@ -18,7 +18,7 @@ class RestXmlProtocol<InputPayload, Input, OutputPayload, Output>
     this.mediaType,
     List<HttpRequestInterceptor> requestInterceptors = const [],
     List<HttpResponseInterceptor> responseInterceptors = const [],
-    List<SmithySerializer<dynamic>> serializers = const [],
+    List<SmithySerializer> serializers = const [],
     Map<FullType, Function> builderFactories = const {},
     this.noErrorWrapping = false,
   }) : super(
@@ -65,7 +65,8 @@ class RestXmlProtocol<InputPayload, Input, OutputPayload, Output>
       'application/xml';
 
   @override
-  late final XmlSerializer wireSerializer = XmlSerializer(serializers);
+  late final FullSerializer<List<int>> wireSerializer =
+      XmlSerializer(serializers);
 
   static Future<String?> resolveError(AWSBaseHttpResponse response) async {
     try {

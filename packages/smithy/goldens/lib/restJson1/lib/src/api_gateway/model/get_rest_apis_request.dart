@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.api_gateway.model.get_rest_apis_request; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -20,12 +19,12 @@ abstract class GetRestApisRequest
         _i1.EmptyPayload,
         _i1.HasPayload<GetRestApisRequestPayload> {
   factory GetRestApisRequest({
-    String? position,
     int? limit,
+    String? position,
   }) {
     return _$GetRestApisRequest._(
-      position: position,
       limit: limit,
+      position: position,
     );
   }
 
@@ -49,29 +48,32 @@ abstract class GetRestApisRequest
         }
       });
 
-  static const List<_i1.SmithySerializer<GetRestApisRequestPayload>>
-      serializers = [GetRestApisRequestRestJson1Serializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    GetRestApisRequestRestJson1Serializer()
+  ];
 
-  String? get position;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(GetRestApisRequestBuilder b) {}
   int? get limit;
+  String? get position;
   @override
   GetRestApisRequestPayload getPayload() => GetRestApisRequestPayload();
   @override
   List<Object?> get props => [
-        position,
         limit,
+        position,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('GetRestApisRequest')
-      ..add(
-        'position',
-        position,
-      )
-      ..add(
-        'limit',
-        limit,
-      );
+    final helper = newBuiltValueToStringHelper('GetRestApisRequest');
+    helper.add(
+      'limit',
+      limit,
+    );
+    helper.add(
+      'position',
+      position,
+    );
     return helper.toString();
   }
 }
@@ -88,6 +90,8 @@ abstract class GetRestApisRequestPayload
 
   const GetRestApisRequestPayload._();
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(GetRestApisRequestPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
   @override
@@ -127,7 +131,7 @@ class GetRestApisRequestRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    GetRestApisRequestPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) =>
       const <Object?>[];

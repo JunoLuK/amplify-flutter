@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'set_dimension.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.set_dimension;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,9 +8,9 @@ part of 'set_dimension.dart';
 
 class _$SetDimension extends SetDimension {
   @override
-  final DimensionType? dimensionType;
+  final _i2.DimensionType? dimensionType;
   @override
-  final _i2.BuiltList<String> values;
+  final _i3.BuiltList<String> values;
 
   factory _$SetDimension([void Function(SetDimensionBuilder)? updates]) =>
       (new SetDimensionBuilder()..update(updates))._build();
@@ -48,17 +48,19 @@ class SetDimensionBuilder
     implements Builder<SetDimension, SetDimensionBuilder> {
   _$SetDimension? _$v;
 
-  DimensionType? _dimensionType;
-  DimensionType? get dimensionType => _$this._dimensionType;
-  set dimensionType(DimensionType? dimensionType) =>
+  _i2.DimensionType? _dimensionType;
+  _i2.DimensionType? get dimensionType => _$this._dimensionType;
+  set dimensionType(_i2.DimensionType? dimensionType) =>
       _$this._dimensionType = dimensionType;
 
-  _i2.ListBuilder<String>? _values;
-  _i2.ListBuilder<String> get values =>
-      _$this._values ??= new _i2.ListBuilder<String>();
-  set values(_i2.ListBuilder<String>? values) => _$this._values = values;
+  _i3.ListBuilder<String>? _values;
+  _i3.ListBuilder<String> get values =>
+      _$this._values ??= new _i3.ListBuilder<String>();
+  set values(_i3.ListBuilder<String>? values) => _$this._values = values;
 
-  SetDimensionBuilder();
+  SetDimensionBuilder() {
+    SetDimension._init(this);
+  }
 
   SetDimensionBuilder get _$this {
     final $v = _$v;

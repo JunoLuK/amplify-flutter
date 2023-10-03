@@ -1,14 +1,13 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v2.s3.model.list_objects_v2_request; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i3;
-import 'package:rest_xml_v2/src/s3/model/encoding_type.dart';
-import 'package:rest_xml_v2/src/s3/model/request_payer.dart';
+import 'package:meta/meta.dart' as _i5;
+import 'package:rest_xml_v2/src/s3/model/encoding_type.dart' as _i3;
+import 'package:rest_xml_v2/src/s3/model/request_payer.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'list_objects_v2_request.g.dart';
@@ -23,27 +22,27 @@ abstract class ListObjectsV2Request
         _i1.HasPayload<ListObjectsV2RequestPayload> {
   factory ListObjectsV2Request({
     required String bucket,
+    String? continuationToken,
     String? delimiter,
-    EncodingType? encodingType,
+    _i3.EncodingType? encodingType,
+    String? expectedBucketOwner,
+    bool? fetchOwner,
     int? maxKeys,
     String? prefix,
-    String? continuationToken,
-    bool? fetchOwner,
+    _i4.RequestPayer? requestPayer,
     String? startAfter,
-    RequestPayer? requestPayer,
-    String? expectedBucketOwner,
   }) {
     return _$ListObjectsV2Request._(
       bucket: bucket,
+      continuationToken: continuationToken,
       delimiter: delimiter,
       encodingType: encodingType,
+      expectedBucketOwner: expectedBucketOwner,
+      fetchOwner: fetchOwner,
       maxKeys: maxKeys,
       prefix: prefix,
-      continuationToken: continuationToken,
-      fetchOwner: fetchOwner,
-      startAfter: startAfter,
       requestPayer: requestPayer,
-      expectedBucketOwner: expectedBucketOwner,
+      startAfter: startAfter,
     );
   }
 
@@ -60,7 +59,7 @@ abstract class ListObjectsV2Request
   }) =>
       ListObjectsV2Request.build((b) {
         if (request.headers['x-amz-request-payer'] != null) {
-          b.requestPayer = RequestPayer.values
+          b.requestPayer = _i4.RequestPayer.values
               .byValue(request.headers['x-amz-request-payer']!);
         }
         if (request.headers['x-amz-expected-bucket-owner'] != null) {
@@ -71,7 +70,7 @@ abstract class ListObjectsV2Request
           b.delimiter = request.queryParameters['delimiter']!;
         }
         if (request.queryParameters['encoding-type'] != null) {
-          b.encodingType = EncodingType.values
+          b.encodingType = _i3.EncodingType.values
               .byValue(request.queryParameters['encoding-type']!);
         }
         if (request.queryParameters['max-keys'] != null) {
@@ -94,19 +93,22 @@ abstract class ListObjectsV2Request
         }
       });
 
-  static const List<_i1.SmithySerializer<ListObjectsV2RequestPayload>>
-      serializers = [ListObjectsV2RequestRestXmlSerializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    ListObjectsV2RequestRestXmlSerializer()
+  ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ListObjectsV2RequestBuilder b) {}
   String get bucket;
+  String? get continuationToken;
   String? get delimiter;
-  EncodingType? get encodingType;
+  _i3.EncodingType? get encodingType;
+  String? get expectedBucketOwner;
+  bool? get fetchOwner;
   int? get maxKeys;
   String? get prefix;
-  String? get continuationToken;
-  bool? get fetchOwner;
+  _i4.RequestPayer? get requestPayer;
   String? get startAfter;
-  RequestPayer? get requestPayer;
-  String? get expectedBucketOwner;
   @override
   String labelFor(String key) {
     switch (key) {
@@ -124,64 +126,64 @@ abstract class ListObjectsV2Request
   @override
   List<Object?> get props => [
         bucket,
+        continuationToken,
         delimiter,
         encodingType,
+        expectedBucketOwner,
+        fetchOwner,
         maxKeys,
         prefix,
-        continuationToken,
-        fetchOwner,
-        startAfter,
         requestPayer,
-        expectedBucketOwner,
+        startAfter,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('ListObjectsV2Request')
-      ..add(
-        'bucket',
-        bucket,
-      )
-      ..add(
-        'delimiter',
-        delimiter,
-      )
-      ..add(
-        'encodingType',
-        encodingType,
-      )
-      ..add(
-        'maxKeys',
-        maxKeys,
-      )
-      ..add(
-        'prefix',
-        prefix,
-      )
-      ..add(
-        'continuationToken',
-        continuationToken,
-      )
-      ..add(
-        'fetchOwner',
-        fetchOwner,
-      )
-      ..add(
-        'startAfter',
-        startAfter,
-      )
-      ..add(
-        'requestPayer',
-        requestPayer,
-      )
-      ..add(
-        'expectedBucketOwner',
-        expectedBucketOwner,
-      );
+    final helper = newBuiltValueToStringHelper('ListObjectsV2Request');
+    helper.add(
+      'bucket',
+      bucket,
+    );
+    helper.add(
+      'continuationToken',
+      continuationToken,
+    );
+    helper.add(
+      'delimiter',
+      delimiter,
+    );
+    helper.add(
+      'encodingType',
+      encodingType,
+    );
+    helper.add(
+      'expectedBucketOwner',
+      expectedBucketOwner,
+    );
+    helper.add(
+      'fetchOwner',
+      fetchOwner,
+    );
+    helper.add(
+      'maxKeys',
+      maxKeys,
+    );
+    helper.add(
+      'prefix',
+      prefix,
+    );
+    helper.add(
+      'requestPayer',
+      requestPayer,
+    );
+    helper.add(
+      'startAfter',
+      startAfter,
+    );
     return helper.toString();
   }
 }
 
-@_i3.internal
+@_i5.internal
 abstract class ListObjectsV2RequestPayload
     with _i2.AWSEquatable<ListObjectsV2RequestPayload>
     implements
@@ -193,6 +195,8 @@ abstract class ListObjectsV2RequestPayload
 
   const ListObjectsV2RequestPayload._();
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ListObjectsV2RequestPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
   @override
@@ -232,16 +236,15 @@ class ListObjectsV2RequestRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    ListObjectsV2RequestPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final result = <Object?>[
       const _i1.XmlElementName(
         'ListObjectsV2Request',
         _i1.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
       )
     ];
-
-    return result$;
+    return result;
   }
 }

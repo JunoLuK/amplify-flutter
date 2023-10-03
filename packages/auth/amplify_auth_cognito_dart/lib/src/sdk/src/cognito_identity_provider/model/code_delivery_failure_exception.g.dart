@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'code_delivery_failure_exception.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.code_delivery_failure_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -56,7 +56,9 @@ class CodeDeliveryFailureExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  CodeDeliveryFailureExceptionBuilder();
+  CodeDeliveryFailureExceptionBuilder() {
+    CodeDeliveryFailureException._init(this);
+  }
 
   CodeDeliveryFailureExceptionBuilder get _$this {
     final $v = _$v;

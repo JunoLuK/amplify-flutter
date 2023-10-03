@@ -63,7 +63,7 @@ if [ ! -e $TARGET ]; then
 fi
 
 if [ -n $CI ]; then
-    flutter pub upgrade
+    flutter pub get
 fi
 
 testsList+=("$TARGET")

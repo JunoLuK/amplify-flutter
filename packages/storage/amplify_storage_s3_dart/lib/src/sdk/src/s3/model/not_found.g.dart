@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'not_found.dart';
+part of amplify_storage_s3_dart.s3.model.not_found;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -47,7 +47,9 @@ class NotFoundBuilder implements Builder<NotFound, NotFoundBuilder> {
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  NotFoundBuilder();
+  NotFoundBuilder() {
+    NotFound._init(this);
+  }
 
   NotFoundBuilder get _$this {
     final $v = _$v;

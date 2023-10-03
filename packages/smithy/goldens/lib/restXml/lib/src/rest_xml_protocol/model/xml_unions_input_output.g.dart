@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'xml_unions_input_output.dart';
+part of rest_xml_v1.rest_xml_protocol.model.xml_unions_input_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of 'xml_unions_input_output.dart';
 
 class _$XmlUnionsInputOutput extends XmlUnionsInputOutput {
   @override
-  final XmlUnionShape? unionValue;
+  final _i3.XmlUnionShape? unionValue;
 
   factory _$XmlUnionsInputOutput(
           [void Function(XmlUnionsInputOutputBuilder)? updates]) =>
@@ -44,11 +44,14 @@ class XmlUnionsInputOutputBuilder
     implements Builder<XmlUnionsInputOutput, XmlUnionsInputOutputBuilder> {
   _$XmlUnionsInputOutput? _$v;
 
-  XmlUnionShape? _unionValue;
-  XmlUnionShape? get unionValue => _$this._unionValue;
-  set unionValue(XmlUnionShape? unionValue) => _$this._unionValue = unionValue;
+  _i3.XmlUnionShape? _unionValue;
+  _i3.XmlUnionShape? get unionValue => _$this._unionValue;
+  set unionValue(_i3.XmlUnionShape? unionValue) =>
+      _$this._unionValue = unionValue;
 
-  XmlUnionsInputOutputBuilder();
+  XmlUnionsInputOutputBuilder() {
+    XmlUnionsInputOutput._init(this);
+  }
 
   XmlUnionsInputOutputBuilder get _$this {
     final $v = _$v;

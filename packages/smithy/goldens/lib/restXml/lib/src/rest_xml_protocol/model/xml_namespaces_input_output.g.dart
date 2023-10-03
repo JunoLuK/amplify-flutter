@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'xml_namespaces_input_output.dart';
+part of rest_xml_v1.rest_xml_protocol.model.xml_namespaces_input_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of 'xml_namespaces_input_output.dart';
 
 class _$XmlNamespacesInputOutput extends XmlNamespacesInputOutput {
   @override
-  final XmlNamespaceNested? nested;
+  final _i3.XmlNamespaceNested? nested;
 
   factory _$XmlNamespacesInputOutput(
           [void Function(XmlNamespacesInputOutputBuilder)? updates]) =>
@@ -45,12 +45,14 @@ class XmlNamespacesInputOutputBuilder
         Builder<XmlNamespacesInputOutput, XmlNamespacesInputOutputBuilder> {
   _$XmlNamespacesInputOutput? _$v;
 
-  XmlNamespaceNestedBuilder? _nested;
-  XmlNamespaceNestedBuilder get nested =>
-      _$this._nested ??= new XmlNamespaceNestedBuilder();
-  set nested(XmlNamespaceNestedBuilder? nested) => _$this._nested = nested;
+  _i3.XmlNamespaceNestedBuilder? _nested;
+  _i3.XmlNamespaceNestedBuilder get nested =>
+      _$this._nested ??= new _i3.XmlNamespaceNestedBuilder();
+  set nested(_i3.XmlNamespaceNestedBuilder? nested) => _$this._nested = nested;
 
-  XmlNamespacesInputOutputBuilder();
+  XmlNamespacesInputOutputBuilder() {
+    XmlNamespacesInputOutput._init(this);
+  }
 
   XmlNamespacesInputOutputBuilder get _$this {
     final $v = _$v;

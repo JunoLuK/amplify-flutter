@@ -1,13 +1,14 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 // ignore_for_file: unused_element
 library rest_xml_v2.rest_xml_protocol.test.xml_timestamps_operation_test_test; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:built_value/serializer.dart';
-import 'package:rest_xml_v2/src/rest_xml_protocol/model/xml_timestamps_input_output.dart';
-import 'package:rest_xml_v2/src/rest_xml_protocol/operation/xml_timestamps_operation.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:rest_xml_v2/src/rest_xml_protocol/model/xml_timestamps_input_output.dart'
+    as _i5;
+import 'package:rest_xml_v2/src/rest_xml_protocol/operation/xml_timestamps_operation.dart'
+    as _i3;
+import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
@@ -16,14 +17,14 @@ void main() {
     'XmlTimestamps (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: XmlTimestampsOperation(
+        operation: _i3.XmlTimestampsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'XmlTimestamps',
           documentation: 'Tests how normal timestamps are serialized',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restXml',
           ),
@@ -55,7 +56,7 @@ void main() {
     'XmlTimestampsWithDateTimeFormat (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: XmlTimestampsOperation(
+        operation: _i3.XmlTimestampsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
@@ -63,7 +64,7 @@ void main() {
           id: 'XmlTimestampsWithDateTimeFormat',
           documentation:
               'Ensures that the timestampFormat of date-time works like normal timestamps',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restXml',
           ),
@@ -95,7 +96,7 @@ void main() {
     'XmlTimestampsWithDateTimeOnTargetFormat (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: XmlTimestampsOperation(
+        operation: _i3.XmlTimestampsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
@@ -103,7 +104,7 @@ void main() {
           id: 'XmlTimestampsWithDateTimeOnTargetFormat',
           documentation:
               'Ensures that the timestampFormat of date-time on the target shape works like normal timestamps',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restXml',
           ),
@@ -135,7 +136,7 @@ void main() {
     'XmlTimestampsWithEpochSecondsFormat (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: XmlTimestampsOperation(
+        operation: _i3.XmlTimestampsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
@@ -143,7 +144,7 @@ void main() {
           id: 'XmlTimestampsWithEpochSecondsFormat',
           documentation:
               'Ensures that the timestampFormat of epoch-seconds works',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restXml',
           ),
@@ -175,7 +176,7 @@ void main() {
     'XmlTimestampsWithEpochSecondsOnTargetFormat (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: XmlTimestampsOperation(
+        operation: _i3.XmlTimestampsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
@@ -183,7 +184,7 @@ void main() {
           id: 'XmlTimestampsWithEpochSecondsOnTargetFormat',
           documentation:
               'Ensures that the timestampFormat of epoch-seconds on the target shape works',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restXml',
           ),
@@ -215,14 +216,14 @@ void main() {
     'XmlTimestampsWithHttpDateFormat (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: XmlTimestampsOperation(
+        operation: _i3.XmlTimestampsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'XmlTimestampsWithHttpDateFormat',
           documentation: 'Ensures that the timestampFormat of http-date works',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restXml',
           ),
@@ -254,7 +255,7 @@ void main() {
     'XmlTimestampsWithHttpDateOnTargetFormat (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: XmlTimestampsOperation(
+        operation: _i3.XmlTimestampsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
@@ -262,7 +263,7 @@ void main() {
           id: 'XmlTimestampsWithHttpDateOnTargetFormat',
           documentation:
               'Ensures that the timestampFormat of http-date on the target shape works',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restXml',
           ),
@@ -294,14 +295,14 @@ void main() {
     'XmlTimestamps (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: XmlTimestampsOperation(
+        operation: _i3.XmlTimestampsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'XmlTimestamps',
           documentation: 'Tests how normal timestamps are serialized',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restXml',
           ),
@@ -327,7 +328,7 @@ void main() {
     'XmlTimestampsWithDateTimeFormat (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: XmlTimestampsOperation(
+        operation: _i3.XmlTimestampsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
@@ -335,7 +336,7 @@ void main() {
           id: 'XmlTimestampsWithDateTimeFormat',
           documentation:
               'Ensures that the timestampFormat of date-time works like normal timestamps',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restXml',
           ),
@@ -361,7 +362,7 @@ void main() {
     'XmlTimestampsWithDateTimeOnTargetFormat (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: XmlTimestampsOperation(
+        operation: _i3.XmlTimestampsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
@@ -369,7 +370,7 @@ void main() {
           id: 'XmlTimestampsWithDateTimeOnTargetFormat',
           documentation:
               'Ensures that the timestampFormat of date-time on the target shape works like normal timestamps',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restXml',
           ),
@@ -395,7 +396,7 @@ void main() {
     'XmlTimestampsWithEpochSecondsFormat (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: XmlTimestampsOperation(
+        operation: _i3.XmlTimestampsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
@@ -403,7 +404,7 @@ void main() {
           id: 'XmlTimestampsWithEpochSecondsFormat',
           documentation:
               'Ensures that the timestampFormat of epoch-seconds works',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restXml',
           ),
@@ -429,7 +430,7 @@ void main() {
     'XmlTimestampsWithEpochSecondsOnTargetFormat (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: XmlTimestampsOperation(
+        operation: _i3.XmlTimestampsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
@@ -437,7 +438,7 @@ void main() {
           id: 'XmlTimestampsWithEpochSecondsOnTargetFormat',
           documentation:
               'Ensures that the timestampFormat of epoch-seconds on the target shape works',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restXml',
           ),
@@ -463,14 +464,14 @@ void main() {
     'XmlTimestampsWithHttpDateFormat (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: XmlTimestampsOperation(
+        operation: _i3.XmlTimestampsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'XmlTimestampsWithHttpDateFormat',
           documentation: 'Ensures that the timestampFormat of http-date works',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restXml',
           ),
@@ -496,7 +497,7 @@ void main() {
     'XmlTimestampsWithHttpDateOnTargetFormat (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: XmlTimestampsOperation(
+        operation: _i3.XmlTimestampsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
@@ -504,7 +505,7 @@ void main() {
           id: 'XmlTimestampsWithHttpDateOnTargetFormat',
           documentation:
               'Ensures that the timestampFormat of http-date on the target shape works',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restXml',
           ),
@@ -529,74 +530,92 @@ void main() {
 }
 
 class XmlTimestampsInputOutputRestXmlSerializer
-    extends _i3.StructuredSmithySerializer<XmlTimestampsInputOutput> {
+    extends _i4.StructuredSmithySerializer<_i5.XmlTimestampsInputOutput> {
   const XmlTimestampsInputOutputRestXmlSerializer()
       : super('XmlTimestampsInputOutput');
 
   @override
-  Iterable<Type> get types => const [XmlTimestampsInputOutput];
+  Iterable<Type> get types => const [_i5.XmlTimestampsInputOutput];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restXml',
         )
       ];
   @override
-  XmlTimestampsInputOutput deserialize(
+  _i5.XmlTimestampsInputOutput deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = XmlTimestampsInputOutputBuilder();
+    final result = _i5.XmlTimestampsInputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
-        case 'normal':
-          result.normal = _i3.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
         case 'dateTime':
-          result.dateTime = _i3.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.dateTime = _i4.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'dateTimeOnTarget':
-          result.dateTimeOnTarget =
-              _i3.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.dateTimeOnTarget =
+                _i4.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'epochSeconds':
-          result.epochSeconds =
-              _i3.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.epochSeconds =
+                _i4.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'epochSecondsOnTarget':
-          result.epochSecondsOnTarget =
-              _i3.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.epochSecondsOnTarget =
+                _i4.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'httpDate':
-          result.httpDate = _i3.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.httpDate = _i4.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'httpDateOnTarget':
-          result.httpDateOnTarget =
-              _i3.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.httpDateOnTarget =
+                _i4.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
+        case 'normal':
+          if (value != null) {
+            result.normal = _i4.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
       }
     }
 
@@ -606,7 +625,7 @@ class XmlTimestampsInputOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    XmlTimestampsInputOutput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');

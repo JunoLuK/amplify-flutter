@@ -1,13 +1,12 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-part of '../amplify_exception.dart';
+import 'package:amplify_core/amplify_core.dart';
 
-/// {@category Auth}
 /// {@template amplify_core.auth.auth_exception}
-/// The class for Auth category exceptions.
+/// The base class for Auth category exceptions.
 /// {@endtemplate}
-sealed class AuthException extends AmplifyException with AWSDebuggable {
+abstract class AuthException extends AmplifyException with AWSDebuggable {
   /// {@macro amplify_core.auth.auth_exception}
   const AuthException(
     super.message, {

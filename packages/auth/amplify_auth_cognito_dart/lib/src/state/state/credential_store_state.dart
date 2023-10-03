@@ -1,7 +1,11 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-part of 'auth_state.dart';
+import 'package:amplify_auth_cognito_dart/amplify_auth_cognito_dart.dart';
+import 'package:amplify_auth_cognito_dart/src/state/state.dart';
+import 'package:amplify_core/amplify_core.dart';
+
+part 'credential_store_state.g.dart';
 
 /// Discrete state types of the credential store state machine.
 enum CredentialStoreStateType {
@@ -28,7 +32,8 @@ enum CredentialStoreStateType {
 }
 
 /// Discrete states of the credential store state machine.
-sealed class CredentialStoreState extends AuthState<CredentialStoreStateType> {
+abstract class CredentialStoreState
+    extends AuthState<CredentialStoreStateType> {
   const CredentialStoreState._();
 
   /// {@macro amplify_auth_cognito.credential_store_not_configured}
@@ -68,7 +73,7 @@ sealed class CredentialStoreState extends AuthState<CredentialStoreStateType> {
 /// {@template amplify_auth_cognito.credential_store_not_configured}
 /// The credential store has not yet been configured.
 /// {@endtemplate}
-final class CredentialStoreNotConfigured extends CredentialStoreState {
+class CredentialStoreNotConfigured extends CredentialStoreState {
   /// {@macro amplify_auth_cognito.credential_store_not_configured}
   const CredentialStoreNotConfigured() : super._();
 
@@ -82,7 +87,7 @@ final class CredentialStoreNotConfigured extends CredentialStoreState {
 /// {@template amplify_auth_cognito.credential_store_migrating_legacy_store}
 /// Credentials are being migrated from the V1 credential store.
 /// {@endtemplate}
-final class CredentialStoreMigratingLegacyStore extends CredentialStoreState {
+class CredentialStoreMigratingLegacyStore extends CredentialStoreState {
   /// {@macro amplify_auth_cognito.credential_store_migrating_legacy_store}
   const CredentialStoreMigratingLegacyStore() : super._();
 
@@ -97,8 +102,7 @@ final class CredentialStoreMigratingLegacyStore extends CredentialStoreState {
 /// {@template amplify_auth_cognito.credential_store_loading_stored_credentials}
 /// Credentials are being loading from the credential store.
 /// {@endtemplate}
-final class CredentialStoreLoadingStoredCredentials
-    extends CredentialStoreState {
+class CredentialStoreLoadingStoredCredentials extends CredentialStoreState {
   /// {@macro amplify_auth_cognito.credential_store_loading_stored_credentials}
   const CredentialStoreLoadingStoredCredentials() : super._();
 
@@ -113,7 +117,7 @@ final class CredentialStoreLoadingStoredCredentials
 /// {@template amplify_auth_cognito.credential_store_storing_credentials}
 /// Credentials are being written to the credential store.
 /// {@endtemplate}
-final class CredentialStoreStoringCredentials extends CredentialStoreState {
+class CredentialStoreStoringCredentials extends CredentialStoreState {
   /// {@macro amplify_auth_cognito.credential_store_storing_credentials}
   const CredentialStoreStoringCredentials() : super._();
 
@@ -128,7 +132,7 @@ final class CredentialStoreStoringCredentials extends CredentialStoreState {
 /// {@template amplify_auth_cognito.credential_store_clearing_credentials}
 /// Credentials are being cleared from the credential store.
 /// {@endtemplate}
-final class CredentialStoreClearingCredentials extends CredentialStoreState {
+class CredentialStoreClearingCredentials extends CredentialStoreState {
   /// {@macro amplify_auth_cognito.credential_store_clearing_credentials}
   const CredentialStoreClearingCredentials() : super._();
 
@@ -143,8 +147,7 @@ final class CredentialStoreClearingCredentials extends CredentialStoreState {
 /// {@template amplify_auth_cognito.credential_store_success}
 /// A successful result to a requested save/load of credentials.
 /// {@endtemplate}
-final class CredentialStoreSuccess extends CredentialStoreState
-    with SuccessState {
+class CredentialStoreSuccess extends CredentialStoreState with SuccessState {
   /// {@macro amplify_auth_cognito.credential_store_success}
   const CredentialStoreSuccess(this.data) : super._();
 
@@ -164,8 +167,7 @@ final class CredentialStoreSuccess extends CredentialStoreState
 /// {@template amplify_auth_cognito.credential_store_failure}
 /// A failure saving/loading data from the credential store.
 /// {@endtemplate}
-final class CredentialStoreFailure extends CredentialStoreState
-    with ErrorState {
+class CredentialStoreFailure extends CredentialStoreState with ErrorState {
   /// {@macro amplify_auth_cognito.credential_store_failure}
   const CredentialStoreFailure(this.exception, this.stackTrace) : super._();
 

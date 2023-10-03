@@ -113,5 +113,3 @@ print('Got url: ${result.url}');
 final result = await Amplify.Storage.getUrl(key: 'ExampleKey').result;
 print('Got url: ${result.url.toString()}');
 ```
-
-### Check out the [migration guide](https://docs.amplify.aws/lib/project-setup/upgrade-guide/q/platform/flutter/) for more information.

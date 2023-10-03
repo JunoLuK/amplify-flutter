@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'copy_object_request.dart';
+part of custom_v2.s3.model.copy_object_request;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -72,7 +72,9 @@ class CopyObjectRequestBuilder
   String? get key => _$this._key;
   set key(String? key) => _$this._key = key;
 
-  CopyObjectRequestBuilder();
+  CopyObjectRequestBuilder() {
+    CopyObjectRequest._init(this);
+  }
 
   CopyObjectRequestBuilder get _$this {
     final $v = _$v;
@@ -146,7 +148,9 @@ class CopyObjectRequestPayloadBuilder
         Builder<CopyObjectRequestPayload, CopyObjectRequestPayloadBuilder> {
   _$CopyObjectRequestPayload? _$v;
 
-  CopyObjectRequestPayloadBuilder();
+  CopyObjectRequestPayloadBuilder() {
+    CopyObjectRequestPayload._init(this);
+  }
 
   @override
   void replace(CopyObjectRequestPayload other) {

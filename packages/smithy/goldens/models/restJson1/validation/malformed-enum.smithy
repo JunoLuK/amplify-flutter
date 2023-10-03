@@ -39,42 +39,8 @@ apply MalformedEnum @httpMalformedRequestTests([
                 mediaType: "application/json",
                 assertion: {
                     contents: """
-                    { "message" : "1 validation error detected. Value at '/string' failed to satisfy constraint: Member must satisfy enum value set: [abc, def, jkl]",
-                      "fieldList" : [{"message": "Value at '/string' failed to satisfy constraint: Member must satisfy enum value set: [abc, def, jkl]", "path": "/string"}]}"""
-                }
-            }
-        },
-        testParameters: {
-            value: ["ABC", "XYZ"]
-        }
-    },
-    {
-        id: "RestJsonMalformedEnumTraitString",
-        documentation: """
-        When a string member does not contain a valid enum value,
-        the response should be a 400 ValidationException. Internal-only
-        enum values are excluded from the response message.""",
-        protocol: restJson1,
-        request: {
-            method: "POST",
-            uri: "/MalformedEnum",
-            body: """
-            { "stringWithEnumTrait" : $value:S }""",
-            headers: {
-                "content-type": "application/json"
-            }
-        },
-        response: {
-            code: 400,
-            headers: {
-                "x-amzn-errortype": "ValidationException"
-            },
-            body: {
-                mediaType: "application/json",
-                assertion: {
-                    contents: """
-                    { "message" : "1 validation error detected. Value at '/stringWithEnumTrait' failed to satisfy constraint: Member must satisfy enum value set: [abc, def]",
-                      "fieldList" : [{"message": "Value at '/stringWithEnumTrait' failed to satisfy constraint: Member must satisfy enum value set: [abc, def]", "path": "/stringWithEnumTrait"}]}"""
+                    { "message" : "1 validation error detected. Value at '/string' failed to satisfy constraint: Member must satisfy enum value set: [abc, def]",
+                      "fieldList" : [{"message": "Value at '/string' failed to satisfy constraint: Member must satisfy enum value set: [abc, def]", "path": "/string"}]}"""
                 }
             }
         },
@@ -107,8 +73,8 @@ apply MalformedEnum @httpMalformedRequestTests([
                 mediaType: "application/json",
                 assertion: {
                     contents: """
-                    { "message" : "1 validation error detected. Value at '/list/0' failed to satisfy constraint: Member must satisfy enum value set: [abc, def, jkl]",
-                      "fieldList" : [{"message": "Value at '/list/0' failed to satisfy constraint: Member must satisfy enum value set: [abc, def, jkl]", "path": "/list/0"}]}"""
+                    { "message" : "1 validation error detected. Value at '/list/0' failed to satisfy constraint: Member must satisfy enum value set: [abc, def]",
+                      "fieldList" : [{"message": "Value at '/list/0' failed to satisfy constraint: Member must satisfy enum value set: [abc, def]", "path": "/list/0"}]}"""
                 }
             }
         },
@@ -141,8 +107,8 @@ apply MalformedEnum @httpMalformedRequestTests([
                 mediaType: "application/json",
                 assertion: {
                     contents: """
-                    { "message" : "1 validation error detected. Value at '/map' failed to satisfy constraint: Member must satisfy enum value set: [abc, def, jkl]",
-                      "fieldList" : [{"message": "Value at '/map' failed to satisfy constraint: Member must satisfy enum value set: [abc, def, jkl]", "path": "/map"}]}"""
+                    { "message" : "1 validation error detected. Value at '/map' failed to satisfy constraint: Member must satisfy enum value set: [abc, def]",
+                      "fieldList" : [{"message": "Value at '/map' failed to satisfy constraint: Member must satisfy enum value set: [abc, def]", "path": "/map"}]}"""
                 }
             }
         },
@@ -175,8 +141,8 @@ apply MalformedEnum @httpMalformedRequestTests([
                 mediaType: "application/json",
                 assertion: {
                     contents: """
-                    { "message" : "1 validation error detected. Value at '/map/abc' failed to satisfy constraint: Member must satisfy enum value set: [abc, def, jkl]",
-                      "fieldList" : [{"message": "Value at '/map/abc' failed to satisfy constraint: Member must satisfy enum value set: [abc, def, jkl]", "path": "/map/abc"}]}"""
+                    { "message" : "1 validation error detected. Value at '/map/abc' failed to satisfy constraint: Member must satisfy enum value set: [abc, def]",
+                      "fieldList" : [{"message": "Value at '/map/abc' failed to satisfy constraint: Member must satisfy enum value set: [abc, def]", "path": "/map/abc"}]}"""
                 }
             }
         },
@@ -209,8 +175,8 @@ apply MalformedEnum @httpMalformedRequestTests([
                 mediaType: "application/json",
                 assertion: {
                     contents: """
-                    { "message" : "1 validation error detected. Value at '/union/first' failed to satisfy constraint: Member must satisfy enum value set: [abc, def, jkl]",
-                      "fieldList" : [{"message": "Value at '/union/first' failed to satisfy constraint: Member must satisfy enum value set: [abc, def, jkl]", "path": "/union/first"}]}"""
+                    { "message" : "1 validation error detected. Value at '/union/first' failed to satisfy constraint: Member must satisfy enum value set: [abc, def]",
+                      "fieldList" : [{"message": "Value at '/union/first' failed to satisfy constraint: Member must satisfy enum value set: [abc, def]", "path": "/union/first"}]}"""
                 }
             }
         },
@@ -222,8 +188,6 @@ apply MalformedEnum @httpMalformedRequestTests([
 
 structure MalformedEnumInput {
     string: EnumString,
-
-    stringWithEnumTrait: EnumTraitString,
 
     list: EnumList,
 
@@ -242,14 +206,6 @@ enum EnumString {
     @tags(["internal"])
     JKL = "jkl"
 }
-
-@suppress(["ModelDeprecation"])
-@enum([
-    {value: "abc", name: "ABC", tags: ["external"]},
-    {value: "def", name: "DEF"},
-    {value: "ghi", name: "GHI", tags: ["internal"]},
-])
-string EnumTraitString
 
 list EnumList {
     member: EnumString

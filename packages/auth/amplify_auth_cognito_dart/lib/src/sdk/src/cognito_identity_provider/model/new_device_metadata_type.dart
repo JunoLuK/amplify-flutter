@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_auth_cognito_dart.cognito_identity_provider.model.new_device_metadata_type; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -16,12 +15,12 @@ abstract class NewDeviceMetadataType
     implements Built<NewDeviceMetadataType, NewDeviceMetadataTypeBuilder> {
   /// The new device metadata type.
   factory NewDeviceMetadataType({
-    String? deviceKey,
     String? deviceGroupKey,
+    String? deviceKey,
   }) {
     return _$NewDeviceMetadataType._(
-      deviceKey: deviceKey,
       deviceGroupKey: deviceGroupKey,
+      deviceKey: deviceKey,
     );
   }
 
@@ -32,31 +31,34 @@ abstract class NewDeviceMetadataType
 
   const NewDeviceMetadataType._();
 
-  static const List<_i2.SmithySerializer<NewDeviceMetadataType>> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     NewDeviceMetadataTypeAwsJson11Serializer()
   ];
 
-  /// The device key.
-  String? get deviceKey;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(NewDeviceMetadataTypeBuilder b) {}
 
   /// The device group key.
   String? get deviceGroupKey;
+
+  /// The device key.
+  String? get deviceKey;
   @override
   List<Object?> get props => [
-        deviceKey,
         deviceGroupKey,
+        deviceKey,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('NewDeviceMetadataType')
-      ..add(
-        'deviceKey',
-        deviceKey,
-      )
-      ..add(
-        'deviceGroupKey',
-        deviceGroupKey,
-      );
+    final helper = newBuiltValueToStringHelper('NewDeviceMetadataType');
+    helper.add(
+      'deviceGroupKey',
+      deviceGroupKey,
+    );
+    helper.add(
+      'deviceKey',
+      deviceKey,
+    );
     return helper.toString();
   }
 }
@@ -90,20 +92,23 @@ class NewDeviceMetadataTypeAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
-        case 'DeviceKey':
-          result.deviceKey = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
         case 'DeviceGroupKey':
-          result.deviceGroupKey = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.deviceGroupKey = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
+        case 'DeviceKey':
+          if (value != null) {
+            result.deviceKey = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -113,27 +118,27 @@ class NewDeviceMetadataTypeAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    NewDeviceMetadataType object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final NewDeviceMetadataType(:deviceKey, :deviceGroupKey) = object;
-    if (deviceKey != null) {
-      result$
-        ..add('DeviceKey')
-        ..add(serializers.serialize(
-          deviceKey,
-          specifiedType: const FullType(String),
-        ));
-    }
-    if (deviceGroupKey != null) {
-      result$
+    final payload = (object as NewDeviceMetadataType);
+    final result = <Object?>[];
+    if (payload.deviceGroupKey != null) {
+      result
         ..add('DeviceGroupKey')
         ..add(serializers.serialize(
-          deviceGroupKey,
+          payload.deviceGroupKey!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    if (payload.deviceKey != null) {
+      result
+        ..add('DeviceKey')
+        ..add(serializers.serialize(
+          payload.deviceKey!,
+          specifiedType: const FullType(String),
+        ));
+    }
+    return result;
   }
 }

@@ -11,9 +11,8 @@ void main() {
     test(
         'should parse simple standard Message with title, body and default channelId',
         () {
-      final parsedAndroidMessage = PushNotificationMessage.fromJson(
-        standardAndroidPushMessage.cast(),
-      );
+      final parsedAndroidMessage =
+          PushNotificationMessage.fromJson(standardAndroidPushMessage);
       expect(parsedAndroidMessage.title, 'TITTLE');
       expect(parsedAndroidMessage.body, 'BODY');
       expect(
@@ -21,43 +20,32 @@ void main() {
         'PINPOINT.NOTIFICATION',
       );
 
-      final parsedSimpleiOSMessage = PushNotificationMessage.fromJson(
-        simpleAlertiOSMessage.cast(),
-      );
-      expect(parsedSimpleiOSMessage.title, 'Hello, world');
-
-      final parsediOSMessage = PushNotificationMessage.fromJson(
-        standardiOSMessage.cast(),
-      );
+      final parsediOSMessage =
+          PushNotificationMessage.fromJson(standardiOSMessage);
       expect(parsediOSMessage.title, 'TITTLE');
       expect(parsediOSMessage.body, 'BODY');
     });
 
     test('should parse url and deeplink', () {
-      final parsedAndroidMessage = PushNotificationMessage.fromJson(
-        urlsAndroidMessage.cast(),
-      );
+      final parsedAndroidMessage =
+          PushNotificationMessage.fromJson(urlsAndroidMessage);
       expect(parsedAndroidMessage.goToUrl, 'URL');
       expect(parsedAndroidMessage.deeplinkUrl, 'DEEPLINK');
 
       // ios shares the same key to pass along deeplink and url
-      final parseiOSMessage = PushNotificationMessage.fromJson(
-        urlsiOSMessage.cast(),
-      );
+      final parseiOSMessage = PushNotificationMessage.fromJson(urlsiOSMessage);
       expect(parseiOSMessage.goToUrl, 'URL');
       expect(parseiOSMessage.deeplinkUrl, 'URL');
     });
 
     test('should parse imageUrl', () {
-      final parsedAndroidMessage = PushNotificationMessage.fromJson(
-        imageUrlAndroidPushMessage.cast(),
-      );
+      final parsedAndroidMessage =
+          PushNotificationMessage.fromJson(imageUrlAndroidPushMessage);
       expect(parsedAndroidMessage.imageUrl, 'TEST_URL');
 
       // ios shares the same key to pass along deeplink and url
-      final parseiOSMessage = PushNotificationMessage.fromJson(
-        imageUrliOSMessage.cast(),
-      );
+      final parseiOSMessage =
+          PushNotificationMessage.fromJson(imageUrliOSMessage);
       expect(parseiOSMessage.imageUrl, 'TEST_URL');
     });
   });

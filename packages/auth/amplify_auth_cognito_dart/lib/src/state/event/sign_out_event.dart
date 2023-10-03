@@ -1,7 +1,8 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-part of 'auth_event.dart';
+import 'package:amplify_auth_cognito_dart/src/state/state.dart';
+import 'package:amplify_core/amplify_core.dart';
 
 /// {@template amplify_auth_cognito.sign_out_event_type}
 /// Discrete event types of the Sign Out state machine.
@@ -14,7 +15,7 @@ enum SignOutEventType {
 /// {@template amplify_auth_cognito.sign_out_event}
 /// Discrete events of the Sign Out state machine.
 /// {@endtemplate}
-sealed class SignOutEvent
+abstract class SignOutEvent
     extends AuthEvent<SignOutEventType, SignOutStateType> {
   const SignOutEvent._();
 
@@ -31,7 +32,7 @@ sealed class SignOutEvent
 /// {@template amplify_auth_cognito.sign_out_initiate}
 /// Inititates a sign out for the current user.
 /// {@endtemplate}
-final class SignOutInitiate extends SignOutEvent {
+class SignOutInitiate extends SignOutEvent {
   /// {@macro amplify_auth_cognito.sign_out_initiate}
   const SignOutInitiate(this.options) : super._();
 

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'get_object_output.dart';
+part of custom_v2.s3.model.get_object_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of 'get_object_output.dart';
 
 class _$GetObjectOutput extends GetObjectOutput {
   @override
-  final _i3.Stream<List<int>> body;
+  final _i3.Stream<List<int>>? body;
   @override
   final int? contentLength;
   @override
@@ -17,11 +17,8 @@ class _$GetObjectOutput extends GetObjectOutput {
   factory _$GetObjectOutput([void Function(GetObjectOutputBuilder)? updates]) =>
       (new GetObjectOutputBuilder()..update(updates))._build();
 
-  _$GetObjectOutput._(
-      {required this.body, this.contentLength, this.contentRange})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(body, r'GetObjectOutput', 'body');
-  }
+  _$GetObjectOutput._({this.body, this.contentLength, this.contentRange})
+      : super._();
 
   @override
   GetObjectOutput rebuild(void Function(GetObjectOutputBuilder) updates) =>
@@ -100,8 +97,7 @@ class GetObjectOutputBuilder
   _$GetObjectOutput _build() {
     final _$result = _$v ??
         new _$GetObjectOutput._(
-            body: BuiltValueNullFieldError.checkNotNull(
-                body, r'GetObjectOutput', 'body'),
+            body: body,
             contentLength: contentLength,
             contentRange: contentRange);
     replace(_$result);

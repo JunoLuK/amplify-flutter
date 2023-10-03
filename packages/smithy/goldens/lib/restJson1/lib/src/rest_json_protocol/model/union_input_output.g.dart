@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'union_input_output.dart';
+part of rest_json1_v1.rest_json_protocol.model.union_input_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of 'union_input_output.dart';
 
 class _$UnionInputOutput extends UnionInputOutput {
   @override
-  final MyUnion? contents;
+  final _i3.MyUnion? contents;
 
   factory _$UnionInputOutput(
           [void Function(UnionInputOutputBuilder)? updates]) =>
@@ -43,11 +43,13 @@ class UnionInputOutputBuilder
     implements Builder<UnionInputOutput, UnionInputOutputBuilder> {
   _$UnionInputOutput? _$v;
 
-  MyUnion? _contents;
-  MyUnion? get contents => _$this._contents;
-  set contents(MyUnion? contents) => _$this._contents = contents;
+  _i3.MyUnion? _contents;
+  _i3.MyUnion? get contents => _$this._contents;
+  set contents(_i3.MyUnion? contents) => _$this._contents = contents;
 
-  UnionInputOutputBuilder();
+  UnionInputOutputBuilder() {
+    UnionInputOutput._init(this);
+  }
 
   UnionInputOutputBuilder get _$this {
     final $v = _$v;

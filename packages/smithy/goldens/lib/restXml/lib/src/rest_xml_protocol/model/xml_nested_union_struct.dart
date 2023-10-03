@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v1.rest_xml_protocol.model.xml_nested_union_struct; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -15,24 +14,24 @@ abstract class XmlNestedUnionStruct
     with _i1.AWSEquatable<XmlNestedUnionStruct>
     implements Built<XmlNestedUnionStruct, XmlNestedUnionStructBuilder> {
   factory XmlNestedUnionStruct({
-    String? stringValue,
     bool? booleanValue,
     int? byteValue,
-    int? shortValue,
+    double? doubleValue,
+    double? floatValue,
     int? integerValue,
     _i2.Int64? longValue,
-    double? floatValue,
-    double? doubleValue,
+    int? shortValue,
+    String? stringValue,
   }) {
     return _$XmlNestedUnionStruct._(
-      stringValue: stringValue,
       booleanValue: booleanValue,
       byteValue: byteValue,
-      shortValue: shortValue,
+      doubleValue: doubleValue,
+      floatValue: floatValue,
       integerValue: integerValue,
       longValue: longValue,
-      floatValue: floatValue,
-      doubleValue: doubleValue,
+      shortValue: shortValue,
+      stringValue: stringValue,
     );
   }
 
@@ -42,64 +41,66 @@ abstract class XmlNestedUnionStruct
 
   const XmlNestedUnionStruct._();
 
-  static const List<_i3.SmithySerializer<XmlNestedUnionStruct>> serializers = [
+  static const List<_i3.SmithySerializer> serializers = [
     XmlNestedUnionStructRestXmlSerializer()
   ];
 
-  String? get stringValue;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(XmlNestedUnionStructBuilder b) {}
   bool? get booleanValue;
   int? get byteValue;
-  int? get shortValue;
+  double? get doubleValue;
+  double? get floatValue;
   int? get integerValue;
   _i2.Int64? get longValue;
-  double? get floatValue;
-  double? get doubleValue;
+  int? get shortValue;
+  String? get stringValue;
   @override
   List<Object?> get props => [
-        stringValue,
         booleanValue,
         byteValue,
-        shortValue,
+        doubleValue,
+        floatValue,
         integerValue,
         longValue,
-        floatValue,
-        doubleValue,
+        shortValue,
+        stringValue,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('XmlNestedUnionStruct')
-      ..add(
-        'stringValue',
-        stringValue,
-      )
-      ..add(
-        'booleanValue',
-        booleanValue,
-      )
-      ..add(
-        'byteValue',
-        byteValue,
-      )
-      ..add(
-        'shortValue',
-        shortValue,
-      )
-      ..add(
-        'integerValue',
-        integerValue,
-      )
-      ..add(
-        'longValue',
-        longValue,
-      )
-      ..add(
-        'floatValue',
-        floatValue,
-      )
-      ..add(
-        'doubleValue',
-        doubleValue,
-      );
+    final helper = newBuiltValueToStringHelper('XmlNestedUnionStruct');
+    helper.add(
+      'booleanValue',
+      booleanValue,
+    );
+    helper.add(
+      'byteValue',
+      byteValue,
+    );
+    helper.add(
+      'doubleValue',
+      doubleValue,
+    );
+    helper.add(
+      'floatValue',
+      floatValue,
+    );
+    helper.add(
+      'integerValue',
+      integerValue,
+    );
+    helper.add(
+      'longValue',
+      longValue,
+    );
+    helper.add(
+      'shortValue',
+      shortValue,
+    );
+    helper.add(
+      'stringValue',
+      stringValue,
+    );
     return helper.toString();
   }
 }
@@ -129,53 +130,74 @@ class XmlNestedUnionStructRestXmlSerializer
     final result = XmlNestedUnionStructBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'booleanValue':
-          result.booleanValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool);
+          if (value != null) {
+            result.booleanValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(bool),
+            ) as bool);
+          }
+          break;
         case 'byteValue':
-          result.byteValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int);
+          if (value != null) {
+            result.byteValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(int),
+            ) as int);
+          }
+          break;
         case 'doubleValue':
-          result.doubleValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(double),
-          ) as double);
+          if (value != null) {
+            result.doubleValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(double),
+            ) as double);
+          }
+          break;
         case 'floatValue':
-          result.floatValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(double),
-          ) as double);
+          if (value != null) {
+            result.floatValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(double),
+            ) as double);
+          }
+          break;
         case 'integerValue':
-          result.integerValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int);
+          if (value != null) {
+            result.integerValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(int),
+            ) as int);
+          }
+          break;
         case 'longValue':
-          result.longValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(_i2.Int64),
-          ) as _i2.Int64);
+          if (value != null) {
+            result.longValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i2.Int64),
+            ) as _i2.Int64);
+          }
+          break;
         case 'shortValue':
-          result.shortValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int);
+          if (value != null) {
+            result.shortValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(int),
+            ) as int);
+          }
+          break;
         case 'stringValue':
-          result.stringValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.stringValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -185,84 +207,75 @@ class XmlNestedUnionStructRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    XmlNestedUnionStruct object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[const _i3.XmlElementName('XmlNestedUnionStruct')];
-    final XmlNestedUnionStruct(
-      :booleanValue,
-      :byteValue,
-      :doubleValue,
-      :floatValue,
-      :integerValue,
-      :longValue,
-      :shortValue,
-      :stringValue
-    ) = object;
-    if (booleanValue != null) {
-      result$
+    final payload = (object as XmlNestedUnionStruct);
+    final result = <Object?>[const _i3.XmlElementName('XmlNestedUnionStruct')];
+    if (payload.booleanValue != null) {
+      result
         ..add(const _i3.XmlElementName('booleanValue'))
         ..add(serializers.serialize(
-          booleanValue,
+          payload.booleanValue!,
           specifiedType: const FullType.nullable(bool),
         ));
     }
-    if (byteValue != null) {
-      result$
+    if (payload.byteValue != null) {
+      result
         ..add(const _i3.XmlElementName('byteValue'))
         ..add(serializers.serialize(
-          byteValue,
+          payload.byteValue!,
           specifiedType: const FullType.nullable(int),
         ));
     }
-    if (doubleValue != null) {
-      result$
+    if (payload.doubleValue != null) {
+      result
         ..add(const _i3.XmlElementName('doubleValue'))
         ..add(serializers.serialize(
-          doubleValue,
+          payload.doubleValue!,
           specifiedType: const FullType.nullable(double),
         ));
     }
-    if (floatValue != null) {
-      result$
+    if (payload.floatValue != null) {
+      result
         ..add(const _i3.XmlElementName('floatValue'))
         ..add(serializers.serialize(
-          floatValue,
+          payload.floatValue!,
           specifiedType: const FullType.nullable(double),
         ));
     }
-    if (integerValue != null) {
-      result$
+    if (payload.integerValue != null) {
+      result
         ..add(const _i3.XmlElementName('integerValue'))
         ..add(serializers.serialize(
-          integerValue,
+          payload.integerValue!,
           specifiedType: const FullType.nullable(int),
         ));
     }
-    if (longValue != null) {
-      result$
+    if (payload.longValue != null) {
+      result
         ..add(const _i3.XmlElementName('longValue'))
         ..add(serializers.serialize(
-          longValue,
+          payload.longValue!,
           specifiedType: const FullType.nullable(_i2.Int64),
         ));
     }
-    if (shortValue != null) {
-      result$
+    if (payload.shortValue != null) {
+      result
         ..add(const _i3.XmlElementName('shortValue'))
         ..add(serializers.serialize(
-          shortValue,
+          payload.shortValue!,
           specifiedType: const FullType.nullable(int),
         ));
     }
-    if (stringValue != null) {
-      result$
+    if (payload.stringValue != null) {
+      result
         ..add(const _i3.XmlElementName('stringValue'))
         ..add(serializers.serialize(
-          stringValue,
+          payload.stringValue!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

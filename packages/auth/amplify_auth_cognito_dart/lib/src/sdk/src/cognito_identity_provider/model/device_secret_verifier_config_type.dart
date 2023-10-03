@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_auth_cognito_dart.cognito_identity_provider.model.device_secret_verifier_config_type; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -35,8 +34,12 @@ abstract class DeviceSecretVerifierConfigType
 
   const DeviceSecretVerifierConfigType._();
 
-  static const List<_i2.SmithySerializer<DeviceSecretVerifierConfigType>>
-      serializers = [DeviceSecretVerifierConfigTypeAwsJson11Serializer()];
+  static const List<_i2.SmithySerializer> serializers = [
+    DeviceSecretVerifierConfigTypeAwsJson11Serializer()
+  ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(DeviceSecretVerifierConfigTypeBuilder b) {}
 
   /// The password verifier.
   String? get passwordVerifier;
@@ -50,15 +53,16 @@ abstract class DeviceSecretVerifierConfigType
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('DeviceSecretVerifierConfigType')
-      ..add(
-        'passwordVerifier',
-        passwordVerifier,
-      )
-      ..add(
-        'salt',
-        salt,
-      );
+    final helper =
+        newBuiltValueToStringHelper('DeviceSecretVerifierConfigType');
+    helper.add(
+      'passwordVerifier',
+      passwordVerifier,
+    );
+    helper.add(
+      'salt',
+      salt,
+    );
     return helper.toString();
   }
 }
@@ -92,20 +96,23 @@ class DeviceSecretVerifierConfigTypeAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'PasswordVerifier':
-          result.passwordVerifier = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.passwordVerifier = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'Salt':
-          result.salt = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.salt = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -115,27 +122,27 @@ class DeviceSecretVerifierConfigTypeAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    DeviceSecretVerifierConfigType object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final DeviceSecretVerifierConfigType(:passwordVerifier, :salt) = object;
-    if (passwordVerifier != null) {
-      result$
+    final payload = (object as DeviceSecretVerifierConfigType);
+    final result = <Object?>[];
+    if (payload.passwordVerifier != null) {
+      result
         ..add('PasswordVerifier')
         ..add(serializers.serialize(
-          passwordVerifier,
+          payload.passwordVerifier!,
           specifiedType: const FullType(String),
         ));
     }
-    if (salt != null) {
-      result$
+    if (payload.salt != null) {
+      result
         ..add('Salt')
         ..add(serializers.serialize(
-          salt,
+          payload.salt!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

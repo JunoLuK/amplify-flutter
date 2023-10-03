@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'complex_error.dart';
+part of aws_json1_1_v2.json_protocol.model.complex_error;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,9 +8,9 @@ part of 'complex_error.dart';
 
 class _$ComplexError extends ComplexError {
   @override
-  final String? topLevel;
+  final _i3.ComplexNestedErrorData? nested;
   @override
-  final ComplexNestedErrorData? nested;
+  final String? topLevel;
   @override
   final int? statusCode;
   @override
@@ -19,7 +19,7 @@ class _$ComplexError extends ComplexError {
   factory _$ComplexError([void Function(ComplexErrorBuilder)? updates]) =>
       (new ComplexErrorBuilder()..update(updates))._build();
 
-  _$ComplexError._({this.topLevel, this.nested, this.statusCode, this.headers})
+  _$ComplexError._({this.nested, this.topLevel, this.statusCode, this.headers})
       : super._();
 
   @override
@@ -33,15 +33,15 @@ class _$ComplexError extends ComplexError {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is ComplexError &&
-        topLevel == other.topLevel &&
-        nested == other.nested;
+        nested == other.nested &&
+        topLevel == other.topLevel;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, topLevel.hashCode);
     _$hash = $jc(_$hash, nested.hashCode);
+    _$hash = $jc(_$hash, topLevel.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -51,14 +51,15 @@ class ComplexErrorBuilder
     implements Builder<ComplexError, ComplexErrorBuilder> {
   _$ComplexError? _$v;
 
+  _i3.ComplexNestedErrorDataBuilder? _nested;
+  _i3.ComplexNestedErrorDataBuilder get nested =>
+      _$this._nested ??= new _i3.ComplexNestedErrorDataBuilder();
+  set nested(_i3.ComplexNestedErrorDataBuilder? nested) =>
+      _$this._nested = nested;
+
   String? _topLevel;
   String? get topLevel => _$this._topLevel;
   set topLevel(String? topLevel) => _$this._topLevel = topLevel;
-
-  ComplexNestedErrorDataBuilder? _nested;
-  ComplexNestedErrorDataBuilder get nested =>
-      _$this._nested ??= new ComplexNestedErrorDataBuilder();
-  set nested(ComplexNestedErrorDataBuilder? nested) => _$this._nested = nested;
 
   int? _statusCode;
   int? get statusCode => _$this._statusCode;
@@ -68,13 +69,15 @@ class ComplexErrorBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  ComplexErrorBuilder();
+  ComplexErrorBuilder() {
+    ComplexError._init(this);
+  }
 
   ComplexErrorBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _topLevel = $v.topLevel;
       _nested = $v.nested?.toBuilder();
+      _topLevel = $v.topLevel;
       _statusCode = $v.statusCode;
       _headers = $v.headers;
       _$v = null;
@@ -101,8 +104,8 @@ class ComplexErrorBuilder
     try {
       _$result = _$v ??
           new _$ComplexError._(
-              topLevel: topLevel,
               nested: _nested?.build(),
+              topLevel: topLevel,
               statusCode: statusCode,
               headers: headers);
     } catch (_) {

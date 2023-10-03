@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'ignore_query_params_in_response_output.dart';
+part of rest_xml_v1.rest_xml_protocol.model.ignore_query_params_in_response_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -52,7 +52,9 @@ class IgnoreQueryParamsInResponseOutputBuilder
   String? get baz => _$this._baz;
   set baz(String? baz) => _$this._baz = baz;
 
-  IgnoreQueryParamsInResponseOutputBuilder();
+  IgnoreQueryParamsInResponseOutputBuilder() {
+    IgnoreQueryParamsInResponseOutput._init(this);
+  }
 
   IgnoreQueryParamsInResponseOutputBuilder get _$this {
     final $v = _$v;

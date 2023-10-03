@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'malformed_request_body_input.dart';
+part of rest_json1_v1.rest_json_protocol.model.malformed_request_body_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,15 +8,15 @@ part of 'malformed_request_body_input.dart';
 
 class _$MalformedRequestBodyInput extends MalformedRequestBodyInput {
   @override
-  final int? int_;
-  @override
   final double? float;
+  @override
+  final int? int_;
 
   factory _$MalformedRequestBodyInput(
           [void Function(MalformedRequestBodyInputBuilder)? updates]) =>
       (new MalformedRequestBodyInputBuilder()..update(updates))._build();
 
-  _$MalformedRequestBodyInput._({this.int_, this.float}) : super._();
+  _$MalformedRequestBodyInput._({this.float, this.int_}) : super._();
 
   @override
   MalformedRequestBodyInput rebuild(
@@ -31,15 +31,15 @@ class _$MalformedRequestBodyInput extends MalformedRequestBodyInput {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is MalformedRequestBodyInput &&
-        int_ == other.int_ &&
-        float == other.float;
+        float == other.float &&
+        int_ == other.int_;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, int_.hashCode);
     _$hash = $jc(_$hash, float.hashCode);
+    _$hash = $jc(_$hash, int_.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -50,21 +50,23 @@ class MalformedRequestBodyInputBuilder
         Builder<MalformedRequestBodyInput, MalformedRequestBodyInputBuilder> {
   _$MalformedRequestBodyInput? _$v;
 
-  int? _int_;
-  int? get int_ => _$this._int_;
-  set int_(int? int_) => _$this._int_ = int_;
-
   double? _float;
   double? get float => _$this._float;
   set float(double? float) => _$this._float = float;
 
-  MalformedRequestBodyInputBuilder();
+  int? _int_;
+  int? get int_ => _$this._int_;
+  set int_(int? int_) => _$this._int_ = int_;
+
+  MalformedRequestBodyInputBuilder() {
+    MalformedRequestBodyInput._init(this);
+  }
 
   MalformedRequestBodyInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _int_ = $v.int_;
       _float = $v.float;
+      _int_ = $v.int_;
       _$v = null;
     }
     return this;
@@ -86,7 +88,7 @@ class MalformedRequestBodyInputBuilder
 
   _$MalformedRequestBodyInput _build() {
     final _$result =
-        _$v ?? new _$MalformedRequestBodyInput._(int_: int_, float: float);
+        _$v ?? new _$MalformedRequestBodyInput._(float: float, int_: int_);
     replace(_$result);
     return _$result;
   }

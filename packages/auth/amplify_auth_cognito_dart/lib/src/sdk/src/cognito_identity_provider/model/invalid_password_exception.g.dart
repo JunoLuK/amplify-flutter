@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'invalid_password_exception.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.invalid_password_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -55,7 +55,9 @@ class InvalidPasswordExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  InvalidPasswordExceptionBuilder();
+  InvalidPasswordExceptionBuilder() {
+    InvalidPasswordException._init(this);
+  }
 
   InvalidPasswordExceptionBuilder get _$this {
     final $v = _$v;

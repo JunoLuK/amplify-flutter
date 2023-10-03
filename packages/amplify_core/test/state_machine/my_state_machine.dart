@@ -5,14 +5,15 @@ import 'dart:async';
 
 import 'package:amplify_core/amplify_core.dart';
 
-final _builders = <StateMachineToken,
+final _builders = <
+    StateMachineToken,
     StateMachineBuilder<StateMachineEvent, StateMachineState,
         MyStateMachineManager>>{
   MyStateMachine.type: MyStateMachine.new,
   WorkerMachine.type: WorkerMachine.new,
 };
 
-enum MyType { initial, doWork, tryWork, delegateWork, failHard, success, error }
+enum MyType { initial, doWork, tryWork, delegateWork, success, error }
 
 class MyPreconditionException implements PreconditionException {
   const MyPreconditionException(this.precondition);
@@ -27,7 +28,7 @@ class MyPreconditionException implements PreconditionException {
   bool get shouldEmit => false;
 }
 
-final class MyEvent extends StateMachineEvent<MyType, MyType> {
+class MyEvent extends StateMachineEvent<MyType, MyType> {
   const MyEvent(this.type);
 
   @override
@@ -48,7 +49,7 @@ final class MyEvent extends StateMachineEvent<MyType, MyType> {
   String get runtimeTypeName => 'MyEvent';
 }
 
-final class MyState extends StateMachineState<MyType> {
+class MyState extends StateMachineState<MyType> {
   const MyState(this.type);
 
   @override
@@ -61,7 +62,7 @@ final class MyState extends StateMachineState<MyType> {
   String get runtimeTypeName => 'MyState';
 }
 
-final class MyErrorState extends MyState with ErrorState {
+class MyErrorState extends MyState with ErrorState {
   const MyErrorState(this.exception, this.stackTrace) : super(MyType.error);
 
   @override
@@ -100,13 +101,13 @@ class MyStateMachine extends StateMachine<MyEvent, MyState, StateMachineEvent,
         break;
       case MyType.doWork:
         await doWork(fail: false);
+        break;
       case MyType.tryWork:
         await doWork(fail: true);
+        break;
       case MyType.delegateWork:
         await manager.delegateWork();
         emit(const MyState(MyType.success));
-      case MyType.failHard:
-        await Future<void>.error(StateError('Worker crashed'));
     }
   }
 
@@ -124,7 +125,7 @@ class MyStateMachine extends StateMachine<MyEvent, MyState, StateMachineEvent,
 
 enum WorkType { initial, doWork, success, error }
 
-final class WorkerEvent extends StateMachineEvent<WorkType, WorkType> {
+class WorkerEvent extends StateMachineEvent<WorkType, WorkType> {
   const WorkerEvent(this.type);
 
   @override
@@ -145,7 +146,7 @@ final class WorkerEvent extends StateMachineEvent<WorkType, WorkType> {
   String get runtimeTypeName => 'WorkerEvent';
 }
 
-final class WorkerState extends StateMachineState<WorkType> {
+class WorkerState extends StateMachineState<WorkType> {
   const WorkerState(this.type);
 
   @override
@@ -158,7 +159,7 @@ final class WorkerState extends StateMachineState<WorkType> {
   String get runtimeTypeName => 'WorkerState';
 }
 
-final class WorkerErrorState extends WorkerState with ErrorState {
+class WorkerErrorState extends WorkerState with ErrorState {
   const WorkerErrorState(this.exception, this.stackTrace)
       : super(WorkType.error);
 
@@ -195,6 +196,7 @@ class WorkerMachine extends StateMachine<WorkerEvent, WorkerState,
       case WorkType.doWork:
         await Future<void>.delayed(Duration.zero);
         dispatch(const WorkerEvent(WorkType.success)).ignore();
+        break;
     }
   }
 
@@ -242,7 +244,4 @@ class MyStateMachineManager extends StateMachineManager<StateMachineEvent,
     }
     throw ArgumentError('Invalid event: $event');
   }
-
-  @override
-  String get runtimeTypeName => 'MyStateMachineManager';
 }

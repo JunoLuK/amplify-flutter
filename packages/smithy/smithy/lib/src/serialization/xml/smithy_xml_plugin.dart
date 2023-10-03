@@ -36,24 +36,21 @@ class SmithyXmlPlugin implements SerializerPlugin {
     final iterator = object.iterator..moveNext();
     final wireName = iterator.current as XmlElementName;
     final namespace = wireName.namespace;
-    builder.element(
-      wireName.name,
-      nest: () {
-        if (namespace != null) {
-          builder.namespace(namespace.uri, namespace.prefix);
+    builder.element(wireName.name, nest: () {
+      if (namespace != null) {
+        builder.namespace(namespace.uri, namespace.prefix);
+      }
+      while (iterator.moveNext()) {
+        final key = iterator.current;
+        if (key is XmlAttribute) {
+          builder.attribute(key.name.qualified, key.value);
+          continue;
         }
-        while (iterator.moveNext()) {
-          final key = iterator.current;
-          if (key is XmlAttribute) {
-            builder.attribute(key.name.qualified, key.value);
-            continue;
-          }
-          iterator.moveNext();
-          final value = iterator.current;
-          _nest(builder, key, value);
-        }
-      },
-    );
+        iterator.moveNext();
+        var value = iterator.current;
+        _nest(builder, key, value);
+      }
+    });
     return builder.buildDocument().rootElement;
   }
 
@@ -77,12 +74,10 @@ class SmithyXmlPlugin implements SerializerPlugin {
       final attributes = <XmlAttribute>[];
       if (key is XmlElementName) {
         if (key.namespace != null) {
-          attributes.add(
-            XmlAttribute(
-              key.namespace!.xmlName,
-              key.namespace!.uri,
-            ),
-          );
+          attributes.add(XmlAttribute(
+            key.namespace!.xmlName,
+            key.namespace!.uri,
+          ));
         }
         key = XmlName(key.name);
       } else {
@@ -97,17 +92,15 @@ class SmithyXmlPlugin implements SerializerPlugin {
       } else if (value is XmlElement) {
         value = value.children.map((child) => child.copy()).toList();
       }
-      res.add(
-        XmlElement(
-          key,
-          attributes,
-          value == null
-              ? const []
-              : value is List<XmlNode>
-                  ? value
-                  : [_toNode(value)],
-        ),
-      );
+      res.add(XmlElement(
+        key,
+        attributes,
+        value == null
+            ? const []
+            : value is List<XmlNode>
+                ? value
+                : [_toNode(value)],
+      ));
     }
     return res;
   }
@@ -133,7 +126,7 @@ class SmithyXmlPlugin implements SerializerPlugin {
       namespace = key.namespace;
     }
     final namespaces = <String, String>{
-      if (namespace != null) namespace.uri: namespace.prefix ?? '',
+      if (namespace != null) namespace.uri: namespace.prefix ?? ''
     };
 
     if (value is Iterable<XmlNode> || value is! Iterable<Object?>) {
@@ -186,9 +179,6 @@ class SmithyXmlPlugin implements SerializerPlugin {
       if (object is! String || !object.startsWith('<')) {
         return object;
       }
-      if (specifiedType == const FullType(String)) {
-        return object;
-      }
       try {
         object = XmlDocument.parse(object);
       } on XmlParserException {
@@ -220,19 +210,17 @@ class SmithyXmlPlugin implements SerializerPlugin {
         if (attr.isNamespace) {
           continue;
         } else {
-          els
-            ..add(attr.name.qualified)
-            ..add(attr.value);
+          els.add(attr.name.qualified);
+          els.add(attr.value);
         }
       }
       for (final el in node.childElements) {
-        els
-          ..add(el.name.qualified)
-          ..add(_deserialize(el));
+        els.add(el.name.qualified);
+        els.add(_deserialize(el));
       }
       return els;
     } else if (node is XmlText) {
-      return node.value;
+      return node.text;
     }
     throw ArgumentError('Invalid type: ${node.runtimeType}');
   }

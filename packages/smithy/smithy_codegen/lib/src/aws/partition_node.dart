@@ -156,8 +156,7 @@ class PartitionNodeServiceConfiguration
   });
 
   factory PartitionNodeServiceConfiguration.fromJson(
-    Map<String, Object?> json,
-  ) =>
+          Map<String, Object?> json) =>
       _$PartitionNodeServiceConfigurationFromJson(json);
 
   /// Default values to merge into each endpoint of the service.

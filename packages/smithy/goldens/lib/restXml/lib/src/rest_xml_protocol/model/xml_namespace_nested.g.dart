@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'xml_namespace_nested.dart';
+part of rest_xml_v1.rest_xml_protocol.model.xml_namespace_nested;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -58,7 +58,9 @@ class XmlNamespaceNestedBuilder
       _$this._values ??= new _i2.ListBuilder<String>();
   set values(_i2.ListBuilder<String>? values) => _$this._values = values;
 
-  XmlNamespaceNestedBuilder();
+  XmlNamespaceNestedBuilder() {
+    XmlNamespaceNested._init(this);
+  }
 
   XmlNamespaceNestedBuilder get _$this {
     final $v = _$v;

@@ -3,7 +3,6 @@
 
 import 'package:amplify_core/amplify_core.dart';
 
-/// {@category Auth}
 /// {@template amplify_core.update_password_options}
 /// The shared update password options among all Auth plugins.
 /// {@endtemplate}
@@ -26,7 +25,6 @@ class UpdatePasswordOptions
   @override
   String get runtimeTypeName => 'UpdatePasswordOptions';
 
-  /// @nodoc
   @Deprecated('Use toJson instead')
   Map<String, Object?> serializeAsMap() => toJson();
 
@@ -36,7 +34,6 @@ class UpdatePasswordOptions
       };
 }
 
-/// @nodoc
 /// {@template amplify_core.auth.update_password_plugin_options}
 /// Plugin-specific options for `Amplify.Auth.updatePassword`.
 /// {@endtemplate}

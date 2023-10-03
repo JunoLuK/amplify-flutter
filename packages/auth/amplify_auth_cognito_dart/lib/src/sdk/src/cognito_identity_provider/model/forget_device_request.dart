@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_auth_cognito_dart.cognito_identity_provider.model.forget_device_request; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -41,9 +40,12 @@ abstract class ForgetDeviceRequest
   }) =>
       payload;
 
-  static const List<_i1.SmithySerializer<ForgetDeviceRequest>> serializers = [
+  static const List<_i1.SmithySerializer> serializers = [
     ForgetDeviceRequestAwsJson11Serializer()
   ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ForgetDeviceRequestBuilder b) {}
 
   /// A valid access token that Amazon Cognito issued to the user whose registered device you want to forget.
   String? get accessToken;
@@ -59,15 +61,15 @@ abstract class ForgetDeviceRequest
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('ForgetDeviceRequest')
-      ..add(
-        'accessToken',
-        '***SENSITIVE***',
-      )
-      ..add(
-        'deviceKey',
-        deviceKey,
-      );
+    final helper = newBuiltValueToStringHelper('ForgetDeviceRequest');
+    helper.add(
+      'accessToken',
+      '***SENSITIVE***',
+    );
+    helper.add(
+      'deviceKey',
+      deviceKey,
+    );
     return helper.toString();
   }
 }
@@ -100,20 +102,21 @@ class ForgetDeviceRequestAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'AccessToken':
-          result.accessToken = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.accessToken = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'DeviceKey':
           result.deviceKey = (serializers.deserialize(
-            value,
+            value!,
             specifiedType: const FullType(String),
           ) as String);
+          break;
       }
     }
 
@@ -123,26 +126,25 @@ class ForgetDeviceRequestAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    ForgetDeviceRequest object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final ForgetDeviceRequest(:accessToken, :deviceKey) = object;
-    result$.addAll([
+    final payload = (object as ForgetDeviceRequest);
+    final result = <Object?>[
       'DeviceKey',
       serializers.serialize(
-        deviceKey,
+        payload.deviceKey,
         specifiedType: const FullType(String),
       ),
-    ]);
-    if (accessToken != null) {
-      result$
+    ];
+    if (payload.accessToken != null) {
+      result
         ..add('AccessToken')
         ..add(serializers.serialize(
-          accessToken,
+          payload.accessToken!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

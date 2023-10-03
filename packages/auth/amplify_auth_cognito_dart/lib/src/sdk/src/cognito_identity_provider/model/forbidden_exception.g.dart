@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'forbidden_exception.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.forbidden_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -54,7 +54,9 @@ class ForbiddenExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  ForbiddenExceptionBuilder();
+  ForbiddenExceptionBuilder() {
+    ForbiddenException._init(this);
+  }
 
   ForbiddenExceptionBuilder get _$this {
     final $v = _$v;

@@ -1,56 +1,52 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_storage_s3_dart.s3.model.list_objects_v2_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/common_prefix.dart';
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/encoding_type.dart';
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/object.dart';
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/request_charged.dart';
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/common_prefix.dart'
+    as _i2;
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/encoding_type.dart'
+    as _i4;
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/object.dart'
+    as _i3;
 import 'package:aws_common/aws_common.dart' as _i1;
-import 'package:built_collection/built_collection.dart' as _i3;
+import 'package:built_collection/built_collection.dart' as _i5;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i4;
-import 'package:smithy/smithy.dart' as _i2;
+import 'package:smithy/smithy.dart' as _i6;
 
 part 'list_objects_v2_output.g.dart';
 
 abstract class ListObjectsV2Output
     with _i1.AWSEquatable<ListObjectsV2Output>
-    implements
-        Built<ListObjectsV2Output, ListObjectsV2OutputBuilder>,
-        _i2.HasPayload<ListObjectsV2OutputPayload> {
+    implements Built<ListObjectsV2Output, ListObjectsV2OutputBuilder> {
   factory ListObjectsV2Output({
-    bool? isTruncated,
-    List<S3Object>? contents,
-    String? name,
-    String? prefix,
-    String? delimiter,
-    int? maxKeys,
-    List<CommonPrefix>? commonPrefixes,
-    EncodingType? encodingType,
-    int? keyCount,
+    List<_i2.CommonPrefix>? commonPrefixes,
+    List<_i3.S3Object>? contents,
     String? continuationToken,
+    String? delimiter,
+    _i4.EncodingType? encodingType,
+    bool? isTruncated,
+    int? keyCount,
+    int? maxKeys,
+    String? name,
     String? nextContinuationToken,
+    String? prefix,
     String? startAfter,
-    RequestCharged? requestCharged,
   }) {
     return _$ListObjectsV2Output._(
-      isTruncated: isTruncated,
-      contents: contents == null ? null : _i3.BuiltList(contents),
-      name: name,
-      prefix: prefix,
-      delimiter: delimiter,
-      maxKeys: maxKeys,
       commonPrefixes:
-          commonPrefixes == null ? null : _i3.BuiltList(commonPrefixes),
-      encodingType: encodingType,
-      keyCount: keyCount,
+          commonPrefixes == null ? null : _i5.BuiltList(commonPrefixes),
+      contents: contents == null ? null : _i5.BuiltList(contents),
       continuationToken: continuationToken,
+      delimiter: delimiter,
+      encodingType: encodingType,
+      isTruncated: isTruncated,
+      keyCount: keyCount,
+      maxKeys: maxKeys,
+      name: name,
       nextContinuationToken: nextContinuationToken,
+      prefix: prefix,
       startAfter: startAfter,
-      requestCharged: requestCharged,
     );
   }
 
@@ -62,56 +58,17 @@ abstract class ListObjectsV2Output
 
   /// Constructs a [ListObjectsV2Output] from a [payload] and [response].
   factory ListObjectsV2Output.fromResponse(
-    ListObjectsV2OutputPayload payload,
+    ListObjectsV2Output payload,
     _i1.AWSBaseHttpResponse response,
   ) =>
-      ListObjectsV2Output.build((b) {
-        if (payload.commonPrefixes != null) {
-          b.commonPrefixes.replace(payload.commonPrefixes!);
-        }
-        if (payload.contents != null) {
-          b.contents.replace(payload.contents!);
-        }
-        b.continuationToken = payload.continuationToken;
-        b.delimiter = payload.delimiter;
-        b.encodingType = payload.encodingType;
-        b.isTruncated = payload.isTruncated;
-        b.keyCount = payload.keyCount;
-        b.maxKeys = payload.maxKeys;
-        b.name = payload.name;
-        b.nextContinuationToken = payload.nextContinuationToken;
-        b.prefix = payload.prefix;
-        b.startAfter = payload.startAfter;
-        if (response.headers['x-amz-request-charged'] != null) {
-          b.requestCharged = RequestCharged.values
-              .byValue(response.headers['x-amz-request-charged']!);
-        }
-      });
+      payload;
 
-  static const List<_i2.SmithySerializer<ListObjectsV2OutputPayload>>
-      serializers = [ListObjectsV2OutputRestXmlSerializer()];
+  static const List<_i6.SmithySerializer> serializers = [
+    ListObjectsV2OutputRestXmlSerializer()
+  ];
 
-  /// Set to `false` if all of the results were returned. Set to `true` if more keys are available to return. If the number of results exceeds that specified by `MaxKeys`, all of the results might not be returned.
-  bool? get isTruncated;
-
-  /// Metadata about each object returned.
-  _i3.BuiltList<S3Object>? get contents;
-
-  /// The bucket name.
-  ///
-  /// When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form _AccessPointName_-_AccountId_.s3-accesspoint._Region_.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see [Using access points](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html) in the _Amazon S3 User Guide_.
-  ///
-  /// When you use this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form `_AccessPointName_-_AccountId_._outpostID_.s3-outposts._Region_.amazonaws.com`. When you use this action with S3 on Outposts through the Amazon Web Services SDKs, you provide the Outposts access point ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see [What is S3 on Outposts?](https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html) in the _Amazon S3 User Guide_.
-  String? get name;
-
-  /// Keys that begin with the indicated prefix.
-  String? get prefix;
-
-  /// Causes keys that contain the same string between the `prefix` and the first occurrence of the delimiter to be rolled up into a single result element in the `CommonPrefixes` collection. These rolled-up keys are not returned elsewhere in the response. Each rolled-up result counts as only one return against the `MaxKeys` value.
-  String? get delimiter;
-
-  /// Sets the maximum number of keys returned in the response. By default, the action returns up to 1,000 key names. The response might contain fewer keys but will never contain more.
-  int? get maxKeys;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ListObjectsV2OutputBuilder b) {}
 
   /// All of the keys (up to 1,000) rolled up into a common prefix count as a single return when calculating the number of returns.
   ///
@@ -122,175 +79,38 @@ abstract class ListObjectsV2Output
   /// `CommonPrefixes` lists keys that act like subdirectories in the directory specified by `Prefix`.
   ///
   /// For example, if the prefix is `notes/` and the delimiter is a slash (`/`) as in `notes/summer/july`, the common prefix is `notes/summer/`. All of the keys that roll up into a common prefix count as a single return when calculating the number of returns.
-  _i3.BuiltList<CommonPrefix>? get commonPrefixes;
-
-  /// Encoding type used by Amazon S3 to encode object key names in the XML response.
-  ///
-  /// If you specify the `encoding-type` request parameter, Amazon S3 includes this element in the response, and returns encoded key name values in the following response elements:
-  ///
-  /// `Delimiter, Prefix, Key,` and `StartAfter`.
-  EncodingType? get encodingType;
-
-  /// `KeyCount` is the number of keys returned with this request. `KeyCount` will always be less than or equal to the `MaxKeys` field. For example, if you ask for 50 keys, your result will include 50 keys or fewer.
-  int? get keyCount;
-
-  /// If `ContinuationToken` was sent with the request, it is included in the response.
-  String? get continuationToken;
-
-  /// `NextContinuationToken` is sent when `isTruncated` is true, which means there are more keys in the bucket that can be listed. The next list requests to Amazon S3 can be continued with this `NextContinuationToken`. `NextContinuationToken` is obfuscated and is not a real key
-  String? get nextContinuationToken;
-
-  /// If StartAfter was sent with the request, it is included in the response.
-  String? get startAfter;
-
-  /// If present, indicates that the requester was successfully charged for the request.
-  RequestCharged? get requestCharged;
-  @override
-  ListObjectsV2OutputPayload getPayload() => ListObjectsV2OutputPayload((b) {
-        if (commonPrefixes != null) {
-          b.commonPrefixes.replace(commonPrefixes!);
-        }
-        if (contents != null) {
-          b.contents.replace(contents!);
-        }
-        b.continuationToken = continuationToken;
-        b.delimiter = delimiter;
-        b.encodingType = encodingType;
-        b.isTruncated = isTruncated;
-        b.keyCount = keyCount;
-        b.maxKeys = maxKeys;
-        b.name = name;
-        b.nextContinuationToken = nextContinuationToken;
-        b.prefix = prefix;
-        b.startAfter = startAfter;
-      });
-  @override
-  List<Object?> get props => [
-        isTruncated,
-        contents,
-        name,
-        prefix,
-        delimiter,
-        maxKeys,
-        commonPrefixes,
-        encodingType,
-        keyCount,
-        continuationToken,
-        nextContinuationToken,
-        startAfter,
-        requestCharged,
-      ];
-  @override
-  String toString() {
-    final helper = newBuiltValueToStringHelper('ListObjectsV2Output')
-      ..add(
-        'isTruncated',
-        isTruncated,
-      )
-      ..add(
-        'contents',
-        contents,
-      )
-      ..add(
-        'name',
-        name,
-      )
-      ..add(
-        'prefix',
-        prefix,
-      )
-      ..add(
-        'delimiter',
-        delimiter,
-      )
-      ..add(
-        'maxKeys',
-        maxKeys,
-      )
-      ..add(
-        'commonPrefixes',
-        commonPrefixes,
-      )
-      ..add(
-        'encodingType',
-        encodingType,
-      )
-      ..add(
-        'keyCount',
-        keyCount,
-      )
-      ..add(
-        'continuationToken',
-        continuationToken,
-      )
-      ..add(
-        'nextContinuationToken',
-        nextContinuationToken,
-      )
-      ..add(
-        'startAfter',
-        startAfter,
-      )
-      ..add(
-        'requestCharged',
-        requestCharged,
-      );
-    return helper.toString();
-  }
-}
-
-@_i4.internal
-abstract class ListObjectsV2OutputPayload
-    with _i1.AWSEquatable<ListObjectsV2OutputPayload>
-    implements
-        Built<ListObjectsV2OutputPayload, ListObjectsV2OutputPayloadBuilder> {
-  factory ListObjectsV2OutputPayload(
-          [void Function(ListObjectsV2OutputPayloadBuilder) updates]) =
-      _$ListObjectsV2OutputPayload;
-
-  const ListObjectsV2OutputPayload._();
-
-  /// All of the keys (up to 1,000) rolled up into a common prefix count as a single return when calculating the number of returns.
-  ///
-  /// A response can contain `CommonPrefixes` only if you specify a delimiter.
-  ///
-  /// `CommonPrefixes` contains all (if there are any) keys between `Prefix` and the next occurrence of the string specified by a delimiter.
-  ///
-  /// `CommonPrefixes` lists keys that act like subdirectories in the directory specified by `Prefix`.
-  ///
-  /// For example, if the prefix is `notes/` and the delimiter is a slash (`/`) as in `notes/summer/july`, the common prefix is `notes/summer/`. All of the keys that roll up into a common prefix count as a single return when calculating the number of returns.
-  _i3.BuiltList<CommonPrefix>? get commonPrefixes;
+  _i5.BuiltList<_i2.CommonPrefix>? get commonPrefixes;
 
   /// Metadata about each object returned.
-  _i3.BuiltList<S3Object>? get contents;
+  _i5.BuiltList<_i3.S3Object>? get contents;
 
-  /// If `ContinuationToken` was sent with the request, it is included in the response.
+  /// If ContinuationToken was sent with the request, it is included in the response.
   String? get continuationToken;
 
-  /// Causes keys that contain the same string between the `prefix` and the first occurrence of the delimiter to be rolled up into a single result element in the `CommonPrefixes` collection. These rolled-up keys are not returned elsewhere in the response. Each rolled-up result counts as only one return against the `MaxKeys` value.
+  /// Causes keys that contain the same string between the prefix and the first occurrence of the delimiter to be rolled up into a single result element in the CommonPrefixes collection. These rolled-up keys are not returned elsewhere in the response. Each rolled-up result counts as only one return against the `MaxKeys` value.
   String? get delimiter;
 
   /// Encoding type used by Amazon S3 to encode object key names in the XML response.
   ///
-  /// If you specify the `encoding-type` request parameter, Amazon S3 includes this element in the response, and returns encoded key name values in the following response elements:
+  /// If you specify the encoding-type request parameter, Amazon S3 includes this element in the response, and returns encoded key name values in the following response elements:
   ///
   /// `Delimiter, Prefix, Key,` and `StartAfter`.
-  EncodingType? get encodingType;
+  _i4.EncodingType? get encodingType;
 
-  /// Set to `false` if all of the results were returned. Set to `true` if more keys are available to return. If the number of results exceeds that specified by `MaxKeys`, all of the results might not be returned.
+  /// Set to false if all of the results were returned. Set to true if more keys are available to return. If the number of results exceeds that specified by MaxKeys, all of the results might not be returned.
   bool? get isTruncated;
 
-  /// `KeyCount` is the number of keys returned with this request. `KeyCount` will always be less than or equal to the `MaxKeys` field. For example, if you ask for 50 keys, your result will include 50 keys or fewer.
+  /// KeyCount is the number of keys returned with this request. KeyCount will always be less than or equals to MaxKeys field. Say you ask for 50 keys, your result will include less than equals 50 keys
   int? get keyCount;
 
-  /// Sets the maximum number of keys returned in the response. By default, the action returns up to 1,000 key names. The response might contain fewer keys but will never contain more.
+  /// Sets the maximum number of keys returned in the response. By default the action returns up to 1,000 key names. The response might contain fewer keys but will never contain more.
   int? get maxKeys;
 
   /// The bucket name.
   ///
   /// When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form _AccessPointName_-_AccountId_.s3-accesspoint._Region_.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see [Using access points](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html) in the _Amazon S3 User Guide_.
   ///
-  /// When you use this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form `_AccessPointName_-_AccountId_._outpostID_.s3-outposts._Region_.amazonaws.com`. When you use this action with S3 on Outposts through the Amazon Web Services SDKs, you provide the Outposts access point ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see [What is S3 on Outposts?](https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html) in the _Amazon S3 User Guide_.
+  /// When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form `_AccessPointName_-_AccountId_._outpostID_.s3-outposts._Region_.amazonaws.com`. When using this action with S3 on Outposts through the Amazon Web Services SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see [Using Amazon S3 on Outposts](https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html) in the _Amazon S3 User Guide_.
   String? get name;
 
   /// `NextContinuationToken` is sent when `isTruncated` is true, which means there are more keys in the bucket that can be listed. The next list requests to Amazon S3 can be continued with this `NextContinuationToken`. `NextContinuationToken` is obfuscated and is not a real key
@@ -318,153 +138,184 @@ abstract class ListObjectsV2OutputPayload
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('ListObjectsV2OutputPayload')
-      ..add(
-        'commonPrefixes',
-        commonPrefixes,
-      )
-      ..add(
-        'contents',
-        contents,
-      )
-      ..add(
-        'continuationToken',
-        continuationToken,
-      )
-      ..add(
-        'delimiter',
-        delimiter,
-      )
-      ..add(
-        'encodingType',
-        encodingType,
-      )
-      ..add(
-        'isTruncated',
-        isTruncated,
-      )
-      ..add(
-        'keyCount',
-        keyCount,
-      )
-      ..add(
-        'maxKeys',
-        maxKeys,
-      )
-      ..add(
-        'name',
-        name,
-      )
-      ..add(
-        'nextContinuationToken',
-        nextContinuationToken,
-      )
-      ..add(
-        'prefix',
-        prefix,
-      )
-      ..add(
-        'startAfter',
-        startAfter,
-      );
+    final helper = newBuiltValueToStringHelper('ListObjectsV2Output');
+    helper.add(
+      'commonPrefixes',
+      commonPrefixes,
+    );
+    helper.add(
+      'contents',
+      contents,
+    );
+    helper.add(
+      'continuationToken',
+      continuationToken,
+    );
+    helper.add(
+      'delimiter',
+      delimiter,
+    );
+    helper.add(
+      'encodingType',
+      encodingType,
+    );
+    helper.add(
+      'isTruncated',
+      isTruncated,
+    );
+    helper.add(
+      'keyCount',
+      keyCount,
+    );
+    helper.add(
+      'maxKeys',
+      maxKeys,
+    );
+    helper.add(
+      'name',
+      name,
+    );
+    helper.add(
+      'nextContinuationToken',
+      nextContinuationToken,
+    );
+    helper.add(
+      'prefix',
+      prefix,
+    );
+    helper.add(
+      'startAfter',
+      startAfter,
+    );
     return helper.toString();
   }
 }
 
 class ListObjectsV2OutputRestXmlSerializer
-    extends _i2.StructuredSmithySerializer<ListObjectsV2OutputPayload> {
+    extends _i6.StructuredSmithySerializer<ListObjectsV2Output> {
   const ListObjectsV2OutputRestXmlSerializer() : super('ListObjectsV2Output');
 
   @override
   Iterable<Type> get types => const [
         ListObjectsV2Output,
         _$ListObjectsV2Output,
-        ListObjectsV2OutputPayload,
-        _$ListObjectsV2OutputPayload,
       ];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols => const [
-        _i2.ShapeId(
+  Iterable<_i6.ShapeId> get supportedProtocols => const [
+        _i6.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restXml',
         )
       ];
   @override
-  ListObjectsV2OutputPayload deserialize(
+  ListObjectsV2Output deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = ListObjectsV2OutputPayloadBuilder();
+    final result = ListObjectsV2OutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'CommonPrefixes':
-          result.commonPrefixes.add((serializers.deserialize(
-            value,
-            specifiedType: const FullType(CommonPrefix),
-          ) as CommonPrefix));
+          if (value != null) {
+            result.commonPrefixes.add((serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i2.CommonPrefix),
+            ) as _i2.CommonPrefix));
+          }
+          break;
         case 'Contents':
-          result.contents.add((serializers.deserialize(
-            value,
-            specifiedType: const FullType(S3Object),
-          ) as S3Object));
+          if (value != null) {
+            result.contents.add((serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i3.S3Object),
+            ) as _i3.S3Object));
+          }
+          break;
         case 'ContinuationToken':
-          result.continuationToken = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.continuationToken = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'Delimiter':
-          result.delimiter = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.delimiter = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'EncodingType':
-          result.encodingType = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(EncodingType),
-          ) as EncodingType);
+          if (value != null) {
+            result.encodingType = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i4.EncodingType),
+            ) as _i4.EncodingType);
+          }
+          break;
         case 'IsTruncated':
-          result.isTruncated = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool);
+          if (value != null) {
+            result.isTruncated = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(bool),
+            ) as bool);
+          }
+          break;
         case 'KeyCount':
-          result.keyCount = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int);
+          if (value != null) {
+            result.keyCount = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(int),
+            ) as int);
+          }
+          break;
         case 'MaxKeys':
-          result.maxKeys = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int);
+          if (value != null) {
+            result.maxKeys = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(int),
+            ) as int);
+          }
+          break;
         case 'Name':
-          result.name = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.name = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'NextContinuationToken':
-          result.nextContinuationToken = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.nextContinuationToken = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'Prefix':
-          result.prefix = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.prefix = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'StartAfter':
-          result.startAfter = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.startAfter = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -474,132 +325,119 @@ class ListObjectsV2OutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    ListObjectsV2OutputPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
-      const _i2.XmlElementName(
+    final payload = (object as ListObjectsV2Output);
+    final result = <Object?>[
+      const _i6.XmlElementName(
         'ListBucketResult',
-        _i2.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
+        _i6.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
       )
     ];
-    final ListObjectsV2OutputPayload(
-      :commonPrefixes,
-      :contents,
-      :continuationToken,
-      :delimiter,
-      :encodingType,
-      :isTruncated,
-      :keyCount,
-      :maxKeys,
-      :name,
-      :nextContinuationToken,
-      :prefix,
-      :startAfter
-    ) = object;
-    if (commonPrefixes != null) {
-      result$.addAll(
-          const _i2.XmlBuiltListSerializer(memberName: 'CommonPrefixes')
+    if (payload.commonPrefixes != null) {
+      result.addAll(
+          const _i6.XmlBuiltListSerializer(memberName: 'CommonPrefixes')
               .serialize(
         serializers,
-        commonPrefixes,
-        specifiedType: const FullType(
-          _i3.BuiltList,
-          [FullType(CommonPrefix)],
+        payload.commonPrefixes!,
+        specifiedType: const FullType.nullable(
+          _i5.BuiltList,
+          [FullType(_i2.CommonPrefix)],
         ),
       ));
     }
-    if (contents != null) {
-      result$.addAll(
-          const _i2.XmlBuiltListSerializer(memberName: 'Contents').serialize(
+    if (payload.contents != null) {
+      result.addAll(
+          const _i6.XmlBuiltListSerializer(memberName: 'Contents').serialize(
         serializers,
-        contents,
-        specifiedType: const FullType(
-          _i3.BuiltList,
-          [FullType(S3Object)],
+        payload.contents!,
+        specifiedType: const FullType.nullable(
+          _i5.BuiltList,
+          [FullType(_i3.S3Object)],
         ),
       ));
     }
-    if (continuationToken != null) {
-      result$
-        ..add(const _i2.XmlElementName('ContinuationToken'))
+    if (payload.continuationToken != null) {
+      result
+        ..add(const _i6.XmlElementName('ContinuationToken'))
         ..add(serializers.serialize(
-          continuationToken,
+          payload.continuationToken!,
           specifiedType: const FullType(String),
         ));
     }
-    if (delimiter != null) {
-      result$
-        ..add(const _i2.XmlElementName('Delimiter'))
+    if (payload.delimiter != null) {
+      result
+        ..add(const _i6.XmlElementName('Delimiter'))
         ..add(serializers.serialize(
-          delimiter,
+          payload.delimiter!,
           specifiedType: const FullType(String),
         ));
     }
-    if (encodingType != null) {
-      result$
-        ..add(const _i2.XmlElementName('EncodingType'))
+    if (payload.encodingType != null) {
+      result
+        ..add(const _i6.XmlElementName('EncodingType'))
         ..add(serializers.serialize(
-          encodingType,
-          specifiedType: const FullType(EncodingType),
+          payload.encodingType!,
+          specifiedType: const FullType.nullable(_i4.EncodingType),
         ));
     }
-    if (isTruncated != null) {
-      result$
-        ..add(const _i2.XmlElementName('IsTruncated'))
+    if (payload.isTruncated != null) {
+      result
+        ..add(const _i6.XmlElementName('IsTruncated'))
         ..add(serializers.serialize(
-          isTruncated,
-          specifiedType: const FullType(bool),
+          payload.isTruncated!,
+          specifiedType: const FullType.nullable(bool),
         ));
     }
-    if (keyCount != null) {
-      result$
-        ..add(const _i2.XmlElementName('KeyCount'))
+    if (payload.keyCount != null) {
+      result
+        ..add(const _i6.XmlElementName('KeyCount'))
         ..add(serializers.serialize(
-          keyCount,
-          specifiedType: const FullType(int),
+          payload.keyCount!,
+          specifiedType: const FullType.nullable(int),
         ));
     }
-    if (maxKeys != null) {
-      result$
-        ..add(const _i2.XmlElementName('MaxKeys'))
+    if (payload.maxKeys != null) {
+      result
+        ..add(const _i6.XmlElementName('MaxKeys'))
         ..add(serializers.serialize(
-          maxKeys,
-          specifiedType: const FullType(int),
+          payload.maxKeys!,
+          specifiedType: const FullType.nullable(int),
         ));
     }
-    if (name != null) {
-      result$
-        ..add(const _i2.XmlElementName('Name'))
+    if (payload.name != null) {
+      result
+        ..add(const _i6.XmlElementName('Name'))
         ..add(serializers.serialize(
-          name,
+          payload.name!,
           specifiedType: const FullType(String),
         ));
     }
-    if (nextContinuationToken != null) {
-      result$
-        ..add(const _i2.XmlElementName('NextContinuationToken'))
+    if (payload.nextContinuationToken != null) {
+      result
+        ..add(const _i6.XmlElementName('NextContinuationToken'))
         ..add(serializers.serialize(
-          nextContinuationToken,
+          payload.nextContinuationToken!,
           specifiedType: const FullType(String),
         ));
     }
-    if (prefix != null) {
-      result$
-        ..add(const _i2.XmlElementName('Prefix'))
+    if (payload.prefix != null) {
+      result
+        ..add(const _i6.XmlElementName('Prefix'))
         ..add(serializers.serialize(
-          prefix,
+          payload.prefix!,
           specifiedType: const FullType(String),
         ));
     }
-    if (startAfter != null) {
-      result$
-        ..add(const _i2.XmlElementName('StartAfter'))
+    if (payload.startAfter != null) {
+      result
+        ..add(const _i6.XmlElementName('StartAfter'))
         ..add(serializers.serialize(
-          startAfter,
+          payload.startAfter!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

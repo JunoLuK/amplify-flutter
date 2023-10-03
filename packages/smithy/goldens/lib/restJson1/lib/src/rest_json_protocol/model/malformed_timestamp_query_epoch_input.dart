@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.rest_json_protocol.model.malformed_timestamp_query_epoch_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -44,10 +43,12 @@ abstract class MalformedTimestampQueryEpochInput
         }
       });
 
-  static const List<
-          _i1.SmithySerializer<MalformedTimestampQueryEpochInputPayload>>
-      serializers = [MalformedTimestampQueryEpochInputRestJson1Serializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    MalformedTimestampQueryEpochInputRestJson1Serializer()
+  ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedTimestampQueryEpochInputBuilder b) {}
   DateTime get timestamp;
   @override
   MalformedTimestampQueryEpochInputPayload getPayload() =>
@@ -57,11 +58,11 @@ abstract class MalformedTimestampQueryEpochInput
   @override
   String toString() {
     final helper =
-        newBuiltValueToStringHelper('MalformedTimestampQueryEpochInput')
-          ..add(
-            'timestamp',
-            timestamp,
-          );
+        newBuiltValueToStringHelper('MalformedTimestampQueryEpochInput');
+    helper.add(
+      'timestamp',
+      timestamp,
+    );
     return helper.toString();
   }
 }
@@ -80,6 +81,8 @@ abstract class MalformedTimestampQueryEpochInputPayload
 
   const MalformedTimestampQueryEpochInputPayload._();
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedTimestampQueryEpochInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
   @override
@@ -121,7 +124,7 @@ class MalformedTimestampQueryEpochInputRestJson1Serializer extends _i1
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    MalformedTimestampQueryEpochInputPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) =>
       const <Object?>[];

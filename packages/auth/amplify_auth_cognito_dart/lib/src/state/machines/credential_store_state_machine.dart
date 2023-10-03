@@ -21,7 +21,7 @@ import 'package:meta/meta.dart';
 /// {@template amplify_auth_cognito.credential_store_state_machine}
 /// Manages the loading and storing of auth configuration data.
 /// {@endtemplate}
-final class CredentialStoreStateMachine
+class CredentialStoreStateMachine
     extends AuthStateMachine<CredentialStoreEvent, CredentialStoreState> {
   /// {@macro amplify_auth_cognito.credential_store_state_machine}
   CredentialStoreStateMachine(CognitoAuthStateMachine manager)
@@ -47,22 +47,26 @@ final class CredentialStoreStateMachine
 
   @override
   Future<void> resolve(CredentialStoreEvent event) async {
-    switch (event) {
-      case CredentialStoreLoadCredentialStore _:
-        if (currentState case final CredentialStoreSuccess success) {
-          emit(success);
-        } else {
-          emit(const CredentialStoreState.loadingStoredCredentials());
-          await onLoadCredentialStore(event);
-        }
-      case CredentialStoreStoreCredentials _:
+    switch (event.type) {
+      case CredentialStoreEventType.loadCredentialStore:
+        event as CredentialStoreLoadCredentialStore;
+        emit(const CredentialStoreState.loadingStoredCredentials());
+        await onLoadCredentialStore(event);
+        return;
+      case CredentialStoreEventType.storeCredentials:
+        event as CredentialStoreStoreCredentials;
         emit(const CredentialStoreState.storingCredentials());
         await onStoreCredentials(event);
-      case CredentialStoreClearCredentials _:
+        return;
+      case CredentialStoreEventType.clearCredentials:
+        event as CredentialStoreClearCredentials;
         emit(const CredentialStoreState.clearingCredentials());
         await onClearCredentials(event);
-      case CredentialStoreSucceeded _:
+        return;
+      case CredentialStoreEventType.succeeded:
+        event as CredentialStoreSucceeded;
         emit(CredentialStoreState.success(event.data));
+        return;
     }
   }
 

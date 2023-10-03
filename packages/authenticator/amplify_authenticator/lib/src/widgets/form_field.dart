@@ -3,11 +3,11 @@
 
 library authenticator.form_field;
 
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:amplify_authenticator/src/constants/authenticator_constants.dart';
 import 'package:amplify_authenticator/src/enums/enums.dart';
 import 'package:amplify_authenticator/src/keys.dart';
-import 'package:amplify_authenticator/src/l10n/instructions_resolver.dart';
 import 'package:amplify_authenticator/src/mixins/authenticator_date_field.dart';
 import 'package:amplify_authenticator/src/mixins/authenticator_phone_field.dart';
 import 'package:amplify_authenticator/src/mixins/authenticator_radio_field.dart';
@@ -17,6 +17,7 @@ import 'package:amplify_authenticator/src/models/username_input.dart';
 import 'package:amplify_authenticator/src/state/auth_state.dart';
 import 'package:amplify_authenticator/src/state/inherited_auth_bloc.dart';
 import 'package:amplify_authenticator/src/state/inherited_forms.dart';
+import 'package:amplify_authenticator/src/utils/country_code.dart';
 import 'package:amplify_authenticator/src/utils/validators.dart';
 import 'package:amplify_authenticator/src/widgets/authenticator_input_config.dart';
 import 'package:amplify_authenticator/src/widgets/component.dart';
@@ -24,17 +25,13 @@ import 'package:amplify_authenticator/src/widgets/form.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
 part 'form_fields/confirm_sign_in_form_field.dart';
 part 'form_fields/confirm_sign_up_form_field.dart';
-part 'form_fields/mfa_selection_form_field.dart';
 part 'form_fields/phone_number_field.dart';
 part 'form_fields/reset_password_form_field.dart';
 part 'form_fields/sign_in_form_field.dart';
 part 'form_fields/sign_up_form_field.dart';
-part 'form_fields/totp_setup_form_field.dart';
 part 'form_fields/verify_user_form_field.dart';
 
 /// {@template amplify_authenticator.authenticator_form_field}
@@ -45,7 +42,6 @@ part 'form_fields/verify_user_form_field.dart';
 /// - [SignUpFormField]
 /// - [ConfirmSignInFormField]
 /// - [ConfirmSignUpFormField]
-/// - [TotpSetupFormField]
 /// - [VerifyUserFormField]
 /// {@endtemplate}
 abstract class AuthenticatorFormField<FieldType extends Enum,
@@ -222,25 +218,31 @@ abstract class AuthenticatorFormFieldState<
     switch (state.currentStep) {
       case AuthenticatorStep.signUp:
         state.signUp();
+        break;
       case AuthenticatorStep.signIn:
         state.signIn();
+        break;
       case AuthenticatorStep.confirmSignUp:
         state.confirmSignUp();
+        break;
       case AuthenticatorStep.confirmSignInCustomAuth:
         state.confirmSignInCustomAuth();
+        break;
       case AuthenticatorStep.confirmSignInMfa:
         state.confirmSignInMFA();
+        break;
       case AuthenticatorStep.confirmSignInNewPassword:
         state.confirmSignInNewPassword();
-      case AuthenticatorStep.confirmSignInWithTotpMfaCode:
-      case AuthenticatorStep.continueSignInWithTotpSetup:
-        state.confirmTotp();
+        break;
       case AuthenticatorStep.resetPassword:
         state.resetPassword();
+        break;
       case AuthenticatorStep.confirmResetPassword:
         state.confirmResetPassword();
+        break;
       case AuthenticatorStep.verifyUser:
         state.verifyUser();
+        break;
       default:
         break;
     }

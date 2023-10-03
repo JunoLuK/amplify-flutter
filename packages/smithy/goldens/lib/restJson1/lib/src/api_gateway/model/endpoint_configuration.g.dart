@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'endpoint_configuration.dart';
+part of rest_json1_v1.api_gateway.model.endpoint_configuration;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,9 +8,9 @@ part of 'endpoint_configuration.dart';
 
 class _$EndpointConfiguration extends EndpointConfiguration {
   @override
-  final _i2.BuiltList<EndpointType>? types;
+  final _i3.BuiltList<_i2.EndpointType>? types;
   @override
-  final _i2.BuiltList<String>? vpcEndpointIds;
+  final _i3.BuiltList<String>? vpcEndpointIds;
 
   factory _$EndpointConfiguration(
           [void Function(EndpointConfigurationBuilder)? updates]) =>
@@ -49,18 +49,20 @@ class EndpointConfigurationBuilder
     implements Builder<EndpointConfiguration, EndpointConfigurationBuilder> {
   _$EndpointConfiguration? _$v;
 
-  _i2.ListBuilder<EndpointType>? _types;
-  _i2.ListBuilder<EndpointType> get types =>
-      _$this._types ??= new _i2.ListBuilder<EndpointType>();
-  set types(_i2.ListBuilder<EndpointType>? types) => _$this._types = types;
+  _i3.ListBuilder<_i2.EndpointType>? _types;
+  _i3.ListBuilder<_i2.EndpointType> get types =>
+      _$this._types ??= new _i3.ListBuilder<_i2.EndpointType>();
+  set types(_i3.ListBuilder<_i2.EndpointType>? types) => _$this._types = types;
 
-  _i2.ListBuilder<String>? _vpcEndpointIds;
-  _i2.ListBuilder<String> get vpcEndpointIds =>
-      _$this._vpcEndpointIds ??= new _i2.ListBuilder<String>();
-  set vpcEndpointIds(_i2.ListBuilder<String>? vpcEndpointIds) =>
+  _i3.ListBuilder<String>? _vpcEndpointIds;
+  _i3.ListBuilder<String> get vpcEndpointIds =>
+      _$this._vpcEndpointIds ??= new _i3.ListBuilder<String>();
+  set vpcEndpointIds(_i3.ListBuilder<String>? vpcEndpointIds) =>
       _$this._vpcEndpointIds = vpcEndpointIds;
 
-  EndpointConfigurationBuilder();
+  EndpointConfigurationBuilder() {
+    EndpointConfiguration._init(this);
+  }
 
   EndpointConfigurationBuilder get _$this {
     final $v = _$v;

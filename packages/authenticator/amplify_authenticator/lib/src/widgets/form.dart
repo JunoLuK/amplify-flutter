@@ -9,7 +9,6 @@ import 'package:amplify_authenticator/src/mixins/authenticator_username_field.da
 import 'package:amplify_authenticator/src/state/inherited_authenticator_state.dart';
 import 'package:amplify_authenticator/src/state/inherited_config.dart';
 import 'package:amplify_authenticator/src/utils/list.dart';
-import 'package:amplify_authenticator/src/widgets/button.dart';
 import 'package:amplify_authenticator/src/widgets/component.dart';
 import 'package:amplify_authenticator/src/widgets/form_field.dart';
 import 'package:amplify_authenticator/src/widgets/social/social_button.dart';
@@ -119,7 +118,7 @@ class AuthenticatorFormState<T extends AuthenticatorForm>
               ErrorDescription(
                 'If you are using prebuilt Form Field widgets to create a custom Authenticator UI, '
                 'ensure that they are a descendant of a AuthenticatorForm widget.',
-              ),
+              )
             ]),
           ),
         );
@@ -188,7 +187,7 @@ class AuthenticatorFormState<T extends AuthenticatorForm>
               if (runtimeActions.isNotEmpty) ...[
                 const Divider(),
                 ...runtimeActions,
-              ],
+              ]
             ].spacedBy(const SizedBox(height: 12)),
           ),
         ],
@@ -252,34 +251,9 @@ class SignUpForm extends AuthenticatorForm {
 class _SignUpFormState extends AuthenticatorFormState<SignUpForm> {
   _SignUpFormState() : super();
 
-  bool get isCustomForm => !widget._includeDefaultFields;
-
-  static final logger = AmplifyLogger().createChild('SignUpForm');
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // If a custom form is used, check for duplicate fields and log a warning.
-    if (isCustomForm) {
-      final fields = widget.fields.map((e) => e.field);
-      switch (selectedUsernameType) {
-        case UsernameType.email:
-          if (fields.contains(SignUpField.email)) {
-            logger.warn(_duplicateFieldLog('email', 'email()'));
-          }
-        case UsernameType.phoneNumber:
-          if (fields.contains(SignUpField.phoneNumber)) {
-            logger.warn(_duplicateFieldLog('phone number', 'phoneNumber()'));
-          }
-        case UsernameType.username:
-          break;
-      }
-    }
-  }
-
   @override
   List<AuthenticatorFormField> get allFields {
-    if (isCustomForm) {
+    if (!widget._includeDefaultFields) {
       return widget.fields;
     }
 
@@ -380,12 +354,6 @@ class _SignUpFormState extends AuthenticatorFormState<SignUpForm> {
 
     return runtimeFields;
   }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<bool>('isCustomForm', isCustomForm));
-  }
 }
 
 /// {@category Prebuilt Widgets}
@@ -453,7 +421,7 @@ class _SignInFormState extends AuthenticatorFormState<SignInForm> {
       } else if (b == SocialProvider.apple) {
         return 1;
       }
-      return a.name.compareTo(b.name);
+      return describeEnum(a).compareTo(describeEnum(b));
     });
 
     return [
@@ -545,8 +513,7 @@ class ConfirmSignInCustomAuthForm extends AuthenticatorForm {
 
 /// {@category Prebuilt Widgets}
 /// {@template amplify_authenticator.confirm_sign_in_mfa_form}
-/// A prebuilt form for completing the sign in process with an MFA code, from
-/// either SMS or TOTP.
+/// A prebuilt form for completing the sign in process with an MFA code.
 /// {@endtemplate}
 class ConfirmSignInMFAForm extends AuthenticatorForm {
   /// {@macro amplify_authenticator.confirm_sign_in_mfa_form}
@@ -604,51 +571,6 @@ class ConfirmSignInNewPasswordForm extends AuthenticatorForm {
 }
 
 /// {@category Prebuilt Widgets}
-/// {@template amplify_authenticator.continue_sign_in_with_mfa_selection_form}
-/// A prebuilt form for selecting MFA preference.
-/// {@endtemplate}
-class ContinueSignInWithMfaSelectionForm extends AuthenticatorForm {
-  /// {@macro amplify_authenticator.continue_sign_in_with_mfa_selection_form}
-  ContinueSignInWithMfaSelectionForm({super.key})
-      : super._(
-          fields: [
-            ConfirmSignInFormField.mfaSelection(),
-          ],
-          actions: const [
-            ContinueSignInMFASelectionButton(),
-            BackToSignInButton(),
-          ],
-        );
-
-  @override
-  AuthenticatorFormState<ContinueSignInWithMfaSelectionForm> createState() =>
-      AuthenticatorFormState<ContinueSignInWithMfaSelectionForm>();
-}
-
-/// {@category Prebuilt Widgets}
-/// {@template amplify_authenticator.continue_sign_in_with_totp_setup_form}
-/// A prebuilt form for completing the totp setup process.
-/// {@endtemplate}
-class ContinueSignInWithTotpSetupForm extends AuthenticatorForm {
-  /// {@macro amplify_authenticator.continue_sign_in_with_totp_setup_form}
-  ContinueSignInWithTotpSetupForm({
-    super.key,
-  }) : super._(
-          fields: [
-            TotpSetupFormField.totpSetup(),
-          ],
-          actions: const [
-            ConfirmSignInMFAButton(),
-            BackToSignInButton(),
-          ],
-        );
-
-  @override
-  AuthenticatorFormState<ContinueSignInWithTotpSetupForm> createState() =>
-      AuthenticatorFormState<ContinueSignInWithTotpSetupForm>();
-}
-
-/// {@category Prebuilt Widgets}
 /// {@template amplify_authenticator.send_code_form}
 /// A prebuilt form for initiating the reset password flow.
 /// {@endtemplate}
@@ -683,7 +605,7 @@ class ConfirmResetPasswordForm extends AuthenticatorForm {
           fields: const [
             ResetPasswordFormField.verificationCode(),
             ResetPasswordFormField.newPassword(),
-            ResetPasswordFormField.passwordConfirmation(),
+            ResetPasswordFormField.passwordConfirmation()
           ],
           actions: const [
             ConfirmResetPasswordButton(),
@@ -740,12 +662,4 @@ class ConfirmVerifyUserForm extends AuthenticatorForm {
   @override
   AuthenticatorFormState<ConfirmVerifyUserForm> createState() =>
       AuthenticatorFormState<ConfirmVerifyUserForm>();
-}
-
-String _duplicateFieldLog(String alias, String field) {
-  return 'SignUpForm contains `SignUpFormField.$field`, but Amplify Auth is '
-      'configured to use $alias as a username. This will result in duplicate '
-      '$alias fields. Consider removing `SignUpFormField.$field`, or changing '
-      'how users sign in. For more info, see: '
-      'https://pub.dev/documentation/amplify_authenticator/latest/amplify_authenticator/SignUpFormField/username.html';
 }

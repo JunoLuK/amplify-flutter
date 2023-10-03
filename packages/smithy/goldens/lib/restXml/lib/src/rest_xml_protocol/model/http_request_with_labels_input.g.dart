@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'http_request_with_labels_input.dart';
+part of rest_xml_v1.rest_xml_protocol.model.http_request_with_labels_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,19 +8,19 @@ part of 'http_request_with_labels_input.dart';
 
 class _$HttpRequestWithLabelsInput extends HttpRequestWithLabelsInput {
   @override
-  final String string;
+  final bool boolean;
   @override
-  final int short;
+  final double double_;
+  @override
+  final double float;
   @override
   final int integer;
   @override
   final _i3.Int64 long;
   @override
-  final double float;
+  final int short;
   @override
-  final double double_;
-  @override
-  final bool boolean;
+  final String string;
   @override
   final DateTime timestamp;
 
@@ -29,29 +29,29 @@ class _$HttpRequestWithLabelsInput extends HttpRequestWithLabelsInput {
       (new HttpRequestWithLabelsInputBuilder()..update(updates))._build();
 
   _$HttpRequestWithLabelsInput._(
-      {required this.string,
-      required this.short,
+      {required this.boolean,
+      required this.double_,
+      required this.float,
       required this.integer,
       required this.long,
-      required this.float,
-      required this.double_,
-      required this.boolean,
+      required this.short,
+      required this.string,
       required this.timestamp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        string, r'HttpRequestWithLabelsInput', 'string');
+        boolean, r'HttpRequestWithLabelsInput', 'boolean');
     BuiltValueNullFieldError.checkNotNull(
-        short, r'HttpRequestWithLabelsInput', 'short');
+        double_, r'HttpRequestWithLabelsInput', 'double_');
+    BuiltValueNullFieldError.checkNotNull(
+        float, r'HttpRequestWithLabelsInput', 'float');
     BuiltValueNullFieldError.checkNotNull(
         integer, r'HttpRequestWithLabelsInput', 'integer');
     BuiltValueNullFieldError.checkNotNull(
         long, r'HttpRequestWithLabelsInput', 'long');
     BuiltValueNullFieldError.checkNotNull(
-        float, r'HttpRequestWithLabelsInput', 'float');
+        short, r'HttpRequestWithLabelsInput', 'short');
     BuiltValueNullFieldError.checkNotNull(
-        double_, r'HttpRequestWithLabelsInput', 'double_');
-    BuiltValueNullFieldError.checkNotNull(
-        boolean, r'HttpRequestWithLabelsInput', 'boolean');
+        string, r'HttpRequestWithLabelsInput', 'string');
     BuiltValueNullFieldError.checkNotNull(
         timestamp, r'HttpRequestWithLabelsInput', 'timestamp');
   }
@@ -69,26 +69,26 @@ class _$HttpRequestWithLabelsInput extends HttpRequestWithLabelsInput {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is HttpRequestWithLabelsInput &&
-        string == other.string &&
-        short == other.short &&
+        boolean == other.boolean &&
+        double_ == other.double_ &&
+        float == other.float &&
         integer == other.integer &&
         long == other.long &&
-        float == other.float &&
-        double_ == other.double_ &&
-        boolean == other.boolean &&
+        short == other.short &&
+        string == other.string &&
         timestamp == other.timestamp;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, string.hashCode);
-    _$hash = $jc(_$hash, short.hashCode);
+    _$hash = $jc(_$hash, boolean.hashCode);
+    _$hash = $jc(_$hash, double_.hashCode);
+    _$hash = $jc(_$hash, float.hashCode);
     _$hash = $jc(_$hash, integer.hashCode);
     _$hash = $jc(_$hash, long.hashCode);
-    _$hash = $jc(_$hash, float.hashCode);
-    _$hash = $jc(_$hash, double_.hashCode);
-    _$hash = $jc(_$hash, boolean.hashCode);
+    _$hash = $jc(_$hash, short.hashCode);
+    _$hash = $jc(_$hash, string.hashCode);
     _$hash = $jc(_$hash, timestamp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -100,13 +100,17 @@ class HttpRequestWithLabelsInputBuilder
         Builder<HttpRequestWithLabelsInput, HttpRequestWithLabelsInputBuilder> {
   _$HttpRequestWithLabelsInput? _$v;
 
-  String? _string;
-  String? get string => _$this._string;
-  set string(String? string) => _$this._string = string;
+  bool? _boolean;
+  bool? get boolean => _$this._boolean;
+  set boolean(bool? boolean) => _$this._boolean = boolean;
 
-  int? _short;
-  int? get short => _$this._short;
-  set short(int? short) => _$this._short = short;
+  double? _double_;
+  double? get double_ => _$this._double_;
+  set double_(double? double_) => _$this._double_ = double_;
+
+  double? _float;
+  double? get float => _$this._float;
+  set float(double? float) => _$this._float = float;
 
   int? _integer;
   int? get integer => _$this._integer;
@@ -116,34 +120,32 @@ class HttpRequestWithLabelsInputBuilder
   _i3.Int64? get long => _$this._long;
   set long(_i3.Int64? long) => _$this._long = long;
 
-  double? _float;
-  double? get float => _$this._float;
-  set float(double? float) => _$this._float = float;
+  int? _short;
+  int? get short => _$this._short;
+  set short(int? short) => _$this._short = short;
 
-  double? _double_;
-  double? get double_ => _$this._double_;
-  set double_(double? double_) => _$this._double_ = double_;
-
-  bool? _boolean;
-  bool? get boolean => _$this._boolean;
-  set boolean(bool? boolean) => _$this._boolean = boolean;
+  String? _string;
+  String? get string => _$this._string;
+  set string(String? string) => _$this._string = string;
 
   DateTime? _timestamp;
   DateTime? get timestamp => _$this._timestamp;
   set timestamp(DateTime? timestamp) => _$this._timestamp = timestamp;
 
-  HttpRequestWithLabelsInputBuilder();
+  HttpRequestWithLabelsInputBuilder() {
+    HttpRequestWithLabelsInput._init(this);
+  }
 
   HttpRequestWithLabelsInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _string = $v.string;
-      _short = $v.short;
+      _boolean = $v.boolean;
+      _double_ = $v.double_;
+      _float = $v.float;
       _integer = $v.integer;
       _long = $v.long;
-      _float = $v.float;
-      _double_ = $v.double_;
-      _boolean = $v.boolean;
+      _short = $v.short;
+      _string = $v.string;
       _timestamp = $v.timestamp;
       _$v = null;
     }
@@ -167,20 +169,20 @@ class HttpRequestWithLabelsInputBuilder
   _$HttpRequestWithLabelsInput _build() {
     final _$result = _$v ??
         new _$HttpRequestWithLabelsInput._(
-            string: BuiltValueNullFieldError.checkNotNull(
-                string, r'HttpRequestWithLabelsInput', 'string'),
-            short: BuiltValueNullFieldError.checkNotNull(
-                short, r'HttpRequestWithLabelsInput', 'short'),
+            boolean: BuiltValueNullFieldError.checkNotNull(
+                boolean, r'HttpRequestWithLabelsInput', 'boolean'),
+            double_: BuiltValueNullFieldError.checkNotNull(
+                double_, r'HttpRequestWithLabelsInput', 'double_'),
+            float: BuiltValueNullFieldError.checkNotNull(
+                float, r'HttpRequestWithLabelsInput', 'float'),
             integer: BuiltValueNullFieldError.checkNotNull(
                 integer, r'HttpRequestWithLabelsInput', 'integer'),
             long: BuiltValueNullFieldError.checkNotNull(
                 long, r'HttpRequestWithLabelsInput', 'long'),
-            float: BuiltValueNullFieldError.checkNotNull(
-                float, r'HttpRequestWithLabelsInput', 'float'),
-            double_: BuiltValueNullFieldError.checkNotNull(
-                double_, r'HttpRequestWithLabelsInput', 'double_'),
-            boolean: BuiltValueNullFieldError.checkNotNull(
-                boolean, r'HttpRequestWithLabelsInput', 'boolean'),
+            short: BuiltValueNullFieldError.checkNotNull(
+                short, r'HttpRequestWithLabelsInput', 'short'),
+            string: BuiltValueNullFieldError.checkNotNull(
+                string, r'HttpRequestWithLabelsInput', 'string'),
             timestamp: BuiltValueNullFieldError.checkNotNull(
                 timestamp, r'HttpRequestWithLabelsInput', 'timestamp'));
     replace(_$result);
@@ -224,7 +226,9 @@ class HttpRequestWithLabelsInputPayloadBuilder
             HttpRequestWithLabelsInputPayloadBuilder> {
   _$HttpRequestWithLabelsInputPayload? _$v;
 
-  HttpRequestWithLabelsInputPayloadBuilder();
+  HttpRequestWithLabelsInputPayloadBuilder() {
+    HttpRequestWithLabelsInputPayload._init(this);
+  }
 
   @override
   void replace(HttpRequestWithLabelsInputPayload other) {

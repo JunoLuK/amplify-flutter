@@ -1,17 +1,5 @@
-/*
-* Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-*
-* Licensed under the Apache License, Version 2.0 (the "License").
-* You may not use this file except in compliance with the License.
-* A copy of the License is located at
-*
-*  http://aws.amazon.com/apache2.0
-*
-* or in the "license" file accompanying this file. This file is distributed
-* on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
-* express or implied. See the License for the specific language governing
-* permissions and limitations under the License.
-*/
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: Apache-2.0
 
 // NOTE: This file is generated and may not follow lint rules defined in your app
 // Generated files can be excluded from analysis in analysis_options.yaml
@@ -19,13 +7,14 @@
 
 // ignore_for_file: public_member_api_docs, annotate_overrides, dead_code, dead_codepublic_member_api_docs, depend_on_referenced_packages, file_names, library_private_types_in_public_api, no_leading_underscores_for_library_prefixes, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, null_check_on_nullable_type_parameter, prefer_adjacent_string_concatenation, prefer_const_constructors, prefer_if_null_operators, prefer_interpolation_to_compose_strings, slash_for_doc_comments, sort_child_properties_last, unnecessary_const, unnecessary_constructor_name, unnecessary_late, unnecessary_new, unnecessary_null_aware_assignments, unnecessary_nullable_for_final_variable_declarations, unnecessary_string_interpolations, use_build_context_synchronously
 
-import 'ModelProvider.dart';
-import 'package:amplify_core/amplify_core.dart' as amplify_core;
+import 'package:amplify_core/amplify_core.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 
-/** This is an auto generated class representing the ModelWithAppsyncScalarTypes type in your schema. */
-class ModelWithAppsyncScalarTypes extends amplify_core.Model {
-  static const classType = const _ModelWithAppsyncScalarTypesModelType();
+/// This is an auto generated class representing the ModelWithAppsyncScalarTypes type in your schema.
+@immutable
+class ModelWithAppsyncScalarTypes extends Model {
+  static const classType = _ModelWithAppsyncScalarTypesModelType();
   final String id;
   final String? _stringValue;
   final String? _altStringValue;
@@ -37,14 +26,14 @@ class ModelWithAppsyncScalarTypes extends amplify_core.Model {
   final List<double>? _listOfFloatValue;
   final bool? _booleanValue;
   final List<bool>? _listOfBooleanValue;
-  final amplify_core.TemporalDate? _awsDateValue;
-  final List<amplify_core.TemporalDate>? _listOfAWSDateValue;
-  final amplify_core.TemporalTime? _awsTimeValue;
-  final List<amplify_core.TemporalTime>? _listOfAWSTimeValue;
-  final amplify_core.TemporalDateTime? _awsDateTimeValue;
-  final List<amplify_core.TemporalDateTime>? _listOfAWSDateTimeValue;
-  final amplify_core.TemporalTimestamp? _awsTimestampValue;
-  final List<amplify_core.TemporalTimestamp>? _listOfAWSTimestampValue;
+  final TemporalDate? _awsDateValue;
+  final List<TemporalDate>? _listOfAWSDateValue;
+  final TemporalTime? _awsTimeValue;
+  final List<TemporalTime>? _listOfAWSTimeValue;
+  final TemporalDateTime? _awsDateTimeValue;
+  final List<TemporalDateTime>? _listOfAWSDateTimeValue;
+  final TemporalTimestamp? _awsTimestampValue;
+  final List<TemporalTimestamp>? _listOfAWSTimestampValue;
   final String? _awsEmailValue;
   final List<String>? _listOfAWSEmailValue;
   final String? _awsJsonValue;
@@ -55,8 +44,8 @@ class ModelWithAppsyncScalarTypes extends amplify_core.Model {
   final List<String>? _listOfAWSURLValue;
   final String? _awsIPAddressValue;
   final List<String>? _listOfAWSIPAddressValue;
-  final amplify_core.TemporalDateTime? _createdAt;
-  final amplify_core.TemporalDateTime? _updatedAt;
+  final TemporalDateTime? _createdAt;
+  final TemporalDateTime? _updatedAt;
 
   @override
   getInstanceType() => classType;
@@ -110,35 +99,35 @@ class ModelWithAppsyncScalarTypes extends amplify_core.Model {
     return _listOfBooleanValue;
   }
 
-  amplify_core.TemporalDate? get awsDateValue {
+  TemporalDate? get awsDateValue {
     return _awsDateValue;
   }
 
-  List<amplify_core.TemporalDate>? get listOfAWSDateValue {
+  List<TemporalDate>? get listOfAWSDateValue {
     return _listOfAWSDateValue;
   }
 
-  amplify_core.TemporalTime? get awsTimeValue {
+  TemporalTime? get awsTimeValue {
     return _awsTimeValue;
   }
 
-  List<amplify_core.TemporalTime>? get listOfAWSTimeValue {
+  List<TemporalTime>? get listOfAWSTimeValue {
     return _listOfAWSTimeValue;
   }
 
-  amplify_core.TemporalDateTime? get awsDateTimeValue {
+  TemporalDateTime? get awsDateTimeValue {
     return _awsDateTimeValue;
   }
 
-  List<amplify_core.TemporalDateTime>? get listOfAWSDateTimeValue {
+  List<TemporalDateTime>? get listOfAWSDateTimeValue {
     return _listOfAWSDateTimeValue;
   }
 
-  amplify_core.TemporalTimestamp? get awsTimestampValue {
+  TemporalTimestamp? get awsTimestampValue {
     return _awsTimestampValue;
   }
 
-  List<amplify_core.TemporalTimestamp>? get listOfAWSTimestampValue {
+  List<TemporalTimestamp>? get listOfAWSTimestampValue {
     return _listOfAWSTimestampValue;
   }
 
@@ -182,11 +171,11 @@ class ModelWithAppsyncScalarTypes extends amplify_core.Model {
     return _listOfAWSIPAddressValue;
   }
 
-  amplify_core.TemporalDateTime? get createdAt {
+  TemporalDateTime? get createdAt {
     return _createdAt;
   }
 
-  amplify_core.TemporalDateTime? get updatedAt {
+  TemporalDateTime? get updatedAt {
     return _updatedAt;
   }
 
@@ -265,14 +254,14 @@ class ModelWithAppsyncScalarTypes extends amplify_core.Model {
       List<double>? listOfFloatValue,
       bool? booleanValue,
       List<bool>? listOfBooleanValue,
-      amplify_core.TemporalDate? awsDateValue,
-      List<amplify_core.TemporalDate>? listOfAWSDateValue,
-      amplify_core.TemporalTime? awsTimeValue,
-      List<amplify_core.TemporalTime>? listOfAWSTimeValue,
-      amplify_core.TemporalDateTime? awsDateTimeValue,
-      List<amplify_core.TemporalDateTime>? listOfAWSDateTimeValue,
-      amplify_core.TemporalTimestamp? awsTimestampValue,
-      List<amplify_core.TemporalTimestamp>? listOfAWSTimestampValue,
+      TemporalDate? awsDateValue,
+      List<TemporalDate>? listOfAWSDateValue,
+      TemporalTime? awsTimeValue,
+      List<TemporalTime>? listOfAWSTimeValue,
+      TemporalDateTime? awsDateTimeValue,
+      List<TemporalDateTime>? listOfAWSDateTimeValue,
+      TemporalTimestamp? awsTimestampValue,
+      List<TemporalTimestamp>? listOfAWSTimestampValue,
       String? awsEmailValue,
       List<String>? listOfAWSEmailValue,
       String? awsJsonValue,
@@ -284,7 +273,7 @@ class ModelWithAppsyncScalarTypes extends amplify_core.Model {
       String? awsIPAddressValue,
       List<String>? listOfAWSIPAddressValue}) {
     return ModelWithAppsyncScalarTypes._internal(
-        id: id == null ? amplify_core.UUID.getUUID() : id,
+        id: id == null ? UUID.getUUID() : id,
         stringValue: stringValue,
         altStringValue: altStringValue,
         listOfStringValue: listOfStringValue != null
@@ -305,21 +294,19 @@ class ModelWithAppsyncScalarTypes extends amplify_core.Model {
             : listOfBooleanValue,
         awsDateValue: awsDateValue,
         listOfAWSDateValue: listOfAWSDateValue != null
-            ? List<amplify_core.TemporalDate>.unmodifiable(listOfAWSDateValue)
+            ? List<TemporalDate>.unmodifiable(listOfAWSDateValue)
             : listOfAWSDateValue,
         awsTimeValue: awsTimeValue,
         listOfAWSTimeValue: listOfAWSTimeValue != null
-            ? List<amplify_core.TemporalTime>.unmodifiable(listOfAWSTimeValue)
+            ? List<TemporalTime>.unmodifiable(listOfAWSTimeValue)
             : listOfAWSTimeValue,
         awsDateTimeValue: awsDateTimeValue,
         listOfAWSDateTimeValue: listOfAWSDateTimeValue != null
-            ? List<amplify_core.TemporalDateTime>.unmodifiable(
-                listOfAWSDateTimeValue)
+            ? List<TemporalDateTime>.unmodifiable(listOfAWSDateTimeValue)
             : listOfAWSDateTimeValue,
         awsTimestampValue: awsTimestampValue,
         listOfAWSTimestampValue: listOfAWSTimestampValue != null
-            ? List<amplify_core.TemporalTimestamp>.unmodifiable(
-                listOfAWSTimestampValue)
+            ? List<TemporalTimestamp>.unmodifiable(listOfAWSTimestampValue)
             : listOfAWSTimestampValue,
         awsEmailValue: awsEmailValue,
         listOfAWSEmailValue: listOfAWSEmailValue != null
@@ -400,7 +387,7 @@ class ModelWithAppsyncScalarTypes extends amplify_core.Model {
 
   @override
   String toString() {
-    var buffer = new StringBuffer();
+    var buffer = StringBuffer();
 
     buffer.write("ModelWithAppsyncScalarTypes {");
     buffer.write("id=" + "$id" + ", ");
@@ -513,14 +500,14 @@ class ModelWithAppsyncScalarTypes extends amplify_core.Model {
       List<double>? listOfFloatValue,
       bool? booleanValue,
       List<bool>? listOfBooleanValue,
-      amplify_core.TemporalDate? awsDateValue,
-      List<amplify_core.TemporalDate>? listOfAWSDateValue,
-      amplify_core.TemporalTime? awsTimeValue,
-      List<amplify_core.TemporalTime>? listOfAWSTimeValue,
-      amplify_core.TemporalDateTime? awsDateTimeValue,
-      List<amplify_core.TemporalDateTime>? listOfAWSDateTimeValue,
-      amplify_core.TemporalTimestamp? awsTimestampValue,
-      List<amplify_core.TemporalTimestamp>? listOfAWSTimestampValue,
+      TemporalDate? awsDateValue,
+      List<TemporalDate>? listOfAWSDateValue,
+      TemporalTime? awsTimeValue,
+      List<TemporalTime>? listOfAWSTimeValue,
+      TemporalDateTime? awsDateTimeValue,
+      List<TemporalDateTime>? listOfAWSDateTimeValue,
+      TemporalTimestamp? awsTimestampValue,
+      List<TemporalTimestamp>? listOfAWSTimestampValue,
       String? awsEmailValue,
       List<String>? listOfAWSEmailValue,
       String? awsJsonValue,
@@ -566,107 +553,6 @@ class ModelWithAppsyncScalarTypes extends amplify_core.Model {
             listOfAWSIPAddressValue ?? this.listOfAWSIPAddressValue);
   }
 
-  ModelWithAppsyncScalarTypes copyWithModelFieldValues(
-      {ModelFieldValue<String?>? stringValue,
-      ModelFieldValue<String?>? altStringValue,
-      ModelFieldValue<List<String>?>? listOfStringValue,
-      ModelFieldValue<int?>? intValue,
-      ModelFieldValue<int?>? altIntValue,
-      ModelFieldValue<List<int>?>? listOfIntValue,
-      ModelFieldValue<double?>? floatValue,
-      ModelFieldValue<List<double>?>? listOfFloatValue,
-      ModelFieldValue<bool?>? booleanValue,
-      ModelFieldValue<List<bool>?>? listOfBooleanValue,
-      ModelFieldValue<amplify_core.TemporalDate?>? awsDateValue,
-      ModelFieldValue<List<amplify_core.TemporalDate>?>? listOfAWSDateValue,
-      ModelFieldValue<amplify_core.TemporalTime?>? awsTimeValue,
-      ModelFieldValue<List<amplify_core.TemporalTime>?>? listOfAWSTimeValue,
-      ModelFieldValue<amplify_core.TemporalDateTime?>? awsDateTimeValue,
-      ModelFieldValue<List<amplify_core.TemporalDateTime>?>?
-          listOfAWSDateTimeValue,
-      ModelFieldValue<amplify_core.TemporalTimestamp?>? awsTimestampValue,
-      ModelFieldValue<List<amplify_core.TemporalTimestamp>?>?
-          listOfAWSTimestampValue,
-      ModelFieldValue<String?>? awsEmailValue,
-      ModelFieldValue<List<String>?>? listOfAWSEmailValue,
-      ModelFieldValue<String?>? awsJsonValue,
-      ModelFieldValue<List<String>?>? listOfAWSJsonValue,
-      ModelFieldValue<String?>? awsPhoneValue,
-      ModelFieldValue<List<String>?>? listOfAWSPhoneValue,
-      ModelFieldValue<String?>? awsURLValue,
-      ModelFieldValue<List<String>?>? listOfAWSURLValue,
-      ModelFieldValue<String?>? awsIPAddressValue,
-      ModelFieldValue<List<String>?>? listOfAWSIPAddressValue}) {
-    return ModelWithAppsyncScalarTypes._internal(
-        id: id,
-        stringValue: stringValue == null ? this.stringValue : stringValue.value,
-        altStringValue:
-            altStringValue == null ? this.altStringValue : altStringValue.value,
-        listOfStringValue: listOfStringValue == null
-            ? this.listOfStringValue
-            : listOfStringValue.value,
-        intValue: intValue == null ? this.intValue : intValue.value,
-        altIntValue: altIntValue == null ? this.altIntValue : altIntValue.value,
-        listOfIntValue:
-            listOfIntValue == null ? this.listOfIntValue : listOfIntValue.value,
-        floatValue: floatValue == null ? this.floatValue : floatValue.value,
-        listOfFloatValue: listOfFloatValue == null
-            ? this.listOfFloatValue
-            : listOfFloatValue.value,
-        booleanValue:
-            booleanValue == null ? this.booleanValue : booleanValue.value,
-        listOfBooleanValue: listOfBooleanValue == null
-            ? this.listOfBooleanValue
-            : listOfBooleanValue.value,
-        awsDateValue:
-            awsDateValue == null ? this.awsDateValue : awsDateValue.value,
-        listOfAWSDateValue: listOfAWSDateValue == null
-            ? this.listOfAWSDateValue
-            : listOfAWSDateValue.value,
-        awsTimeValue:
-            awsTimeValue == null ? this.awsTimeValue : awsTimeValue.value,
-        listOfAWSTimeValue: listOfAWSTimeValue == null
-            ? this.listOfAWSTimeValue
-            : listOfAWSTimeValue.value,
-        awsDateTimeValue: awsDateTimeValue == null
-            ? this.awsDateTimeValue
-            : awsDateTimeValue.value,
-        listOfAWSDateTimeValue: listOfAWSDateTimeValue == null
-            ? this.listOfAWSDateTimeValue
-            : listOfAWSDateTimeValue.value,
-        awsTimestampValue: awsTimestampValue == null
-            ? this.awsTimestampValue
-            : awsTimestampValue.value,
-        listOfAWSTimestampValue: listOfAWSTimestampValue == null
-            ? this.listOfAWSTimestampValue
-            : listOfAWSTimestampValue.value,
-        awsEmailValue:
-            awsEmailValue == null ? this.awsEmailValue : awsEmailValue.value,
-        listOfAWSEmailValue: listOfAWSEmailValue == null
-            ? this.listOfAWSEmailValue
-            : listOfAWSEmailValue.value,
-        awsJsonValue:
-            awsJsonValue == null ? this.awsJsonValue : awsJsonValue.value,
-        listOfAWSJsonValue: listOfAWSJsonValue == null
-            ? this.listOfAWSJsonValue
-            : listOfAWSJsonValue.value,
-        awsPhoneValue:
-            awsPhoneValue == null ? this.awsPhoneValue : awsPhoneValue.value,
-        listOfAWSPhoneValue: listOfAWSPhoneValue == null
-            ? this.listOfAWSPhoneValue
-            : listOfAWSPhoneValue.value,
-        awsURLValue: awsURLValue == null ? this.awsURLValue : awsURLValue.value,
-        listOfAWSURLValue: listOfAWSURLValue == null
-            ? this.listOfAWSURLValue
-            : listOfAWSURLValue.value,
-        awsIPAddressValue: awsIPAddressValue == null
-            ? this.awsIPAddressValue
-            : awsIPAddressValue.value,
-        listOfAWSIPAddressValue: listOfAWSIPAddressValue == null
-            ? this.listOfAWSIPAddressValue
-            : listOfAWSIPAddressValue.value);
-  }
-
   ModelWithAppsyncScalarTypes.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         _stringValue = json['stringValue'],
@@ -684,29 +570,28 @@ class ModelWithAppsyncScalarTypes extends amplify_core.Model {
         _booleanValue = json['booleanValue'],
         _listOfBooleanValue = json['listOfBooleanValue']?.cast<bool>(),
         _awsDateValue = json['awsDateValue'] != null
-            ? amplify_core.TemporalDate.fromString(json['awsDateValue'])
+            ? TemporalDate.fromString(json['awsDateValue'])
             : null,
         _listOfAWSDateValue = (json['listOfAWSDateValue'] as List?)
-            ?.map((e) => amplify_core.TemporalDate.fromString(e))
+            ?.map((e) => TemporalDate.fromString(e))
             .toList(),
         _awsTimeValue = json['awsTimeValue'] != null
-            ? amplify_core.TemporalTime.fromString(json['awsTimeValue'])
+            ? TemporalTime.fromString(json['awsTimeValue'])
             : null,
         _listOfAWSTimeValue = (json['listOfAWSTimeValue'] as List?)
-            ?.map((e) => amplify_core.TemporalTime.fromString(e))
+            ?.map((e) => TemporalTime.fromString(e))
             .toList(),
         _awsDateTimeValue = json['awsDateTimeValue'] != null
-            ? amplify_core.TemporalDateTime.fromString(json['awsDateTimeValue'])
+            ? TemporalDateTime.fromString(json['awsDateTimeValue'])
             : null,
         _listOfAWSDateTimeValue = (json['listOfAWSDateTimeValue'] as List?)
-            ?.map((e) => amplify_core.TemporalDateTime.fromString(e))
+            ?.map((e) => TemporalDateTime.fromString(e))
             .toList(),
         _awsTimestampValue = json['awsTimestampValue'] != null
-            ? amplify_core.TemporalTimestamp.fromSeconds(
-                json['awsTimestampValue'])
+            ? TemporalTimestamp.fromSeconds(json['awsTimestampValue'])
             : null,
         _listOfAWSTimestampValue = (json['listOfAWSTimestampValue'] as List?)
-            ?.map((e) => amplify_core.TemporalTimestamp.fromSeconds(e))
+            ?.map((e) => TemporalTimestamp.fromSeconds(e))
             .toList(),
         _awsEmailValue = json['awsEmailValue'],
         _listOfAWSEmailValue = json['listOfAWSEmailValue']?.cast<String>(),
@@ -720,10 +605,10 @@ class ModelWithAppsyncScalarTypes extends amplify_core.Model {
         _listOfAWSIPAddressValue =
             json['listOfAWSIPAddressValue']?.cast<String>(),
         _createdAt = json['createdAt'] != null
-            ? amplify_core.TemporalDateTime.fromString(json['createdAt'])
+            ? TemporalDateTime.fromString(json['createdAt'])
             : null,
         _updatedAt = json['updatedAt'] != null
-            ? amplify_core.TemporalDateTime.fromString(json['updatedAt'])
+            ? TemporalDateTime.fromString(json['updatedAt'])
             : null;
 
   Map<String, dynamic> toJson() => {
@@ -764,339 +649,262 @@ class ModelWithAppsyncScalarTypes extends amplify_core.Model {
         'updatedAt': _updatedAt?.format()
       };
 
-  Map<String, Object?> toMap() => {
-        'id': id,
-        'stringValue': _stringValue,
-        'altStringValue': _altStringValue,
-        'listOfStringValue': _listOfStringValue,
-        'intValue': _intValue,
-        'altIntValue': _altIntValue,
-        'listOfIntValue': _listOfIntValue,
-        'floatValue': _floatValue,
-        'listOfFloatValue': _listOfFloatValue,
-        'booleanValue': _booleanValue,
-        'listOfBooleanValue': _listOfBooleanValue,
-        'awsDateValue': _awsDateValue,
-        'listOfAWSDateValue': _listOfAWSDateValue,
-        'awsTimeValue': _awsTimeValue,
-        'listOfAWSTimeValue': _listOfAWSTimeValue,
-        'awsDateTimeValue': _awsDateTimeValue,
-        'listOfAWSDateTimeValue': _listOfAWSDateTimeValue,
-        'awsTimestampValue': _awsTimestampValue,
-        'listOfAWSTimestampValue': _listOfAWSTimestampValue,
-        'awsEmailValue': _awsEmailValue,
-        'listOfAWSEmailValue': _listOfAWSEmailValue,
-        'awsJsonValue': _awsJsonValue,
-        'listOfAWSJsonValue': _listOfAWSJsonValue,
-        'awsPhoneValue': _awsPhoneValue,
-        'listOfAWSPhoneValue': _listOfAWSPhoneValue,
-        'awsURLValue': _awsURLValue,
-        'listOfAWSURLValue': _listOfAWSURLValue,
-        'awsIPAddressValue': _awsIPAddressValue,
-        'listOfAWSIPAddressValue': _listOfAWSIPAddressValue,
-        'createdAt': _createdAt,
-        'updatedAt': _updatedAt
-      };
-
-  static final amplify_core
-      .QueryModelIdentifier<ModelWithAppsyncScalarTypesModelIdentifier>
-      MODEL_IDENTIFIER = amplify_core.QueryModelIdentifier<
-          ModelWithAppsyncScalarTypesModelIdentifier>();
-  static final ID = amplify_core.QueryField(fieldName: "id");
-  static final STRINGVALUE = amplify_core.QueryField(fieldName: "stringValue");
-  static final ALTSTRINGVALUE =
-      amplify_core.QueryField(fieldName: "altStringValue");
-  static final LISTOFSTRINGVALUE =
-      amplify_core.QueryField(fieldName: "listOfStringValue");
-  static final INTVALUE = amplify_core.QueryField(fieldName: "intValue");
-  static final ALTINTVALUE = amplify_core.QueryField(fieldName: "altIntValue");
-  static final LISTOFINTVALUE =
-      amplify_core.QueryField(fieldName: "listOfIntValue");
-  static final FLOATVALUE = amplify_core.QueryField(fieldName: "floatValue");
-  static final LISTOFFLOATVALUE =
-      amplify_core.QueryField(fieldName: "listOfFloatValue");
-  static final BOOLEANVALUE =
-      amplify_core.QueryField(fieldName: "booleanValue");
-  static final LISTOFBOOLEANVALUE =
-      amplify_core.QueryField(fieldName: "listOfBooleanValue");
-  static final AWSDATEVALUE =
-      amplify_core.QueryField(fieldName: "awsDateValue");
-  static final LISTOFAWSDATEVALUE =
-      amplify_core.QueryField(fieldName: "listOfAWSDateValue");
-  static final AWSTIMEVALUE =
-      amplify_core.QueryField(fieldName: "awsTimeValue");
-  static final LISTOFAWSTIMEVALUE =
-      amplify_core.QueryField(fieldName: "listOfAWSTimeValue");
-  static final AWSDATETIMEVALUE =
-      amplify_core.QueryField(fieldName: "awsDateTimeValue");
-  static final LISTOFAWSDATETIMEVALUE =
-      amplify_core.QueryField(fieldName: "listOfAWSDateTimeValue");
-  static final AWSTIMESTAMPVALUE =
-      amplify_core.QueryField(fieldName: "awsTimestampValue");
-  static final LISTOFAWSTIMESTAMPVALUE =
-      amplify_core.QueryField(fieldName: "listOfAWSTimestampValue");
-  static final AWSEMAILVALUE =
-      amplify_core.QueryField(fieldName: "awsEmailValue");
-  static final LISTOFAWSEMAILVALUE =
-      amplify_core.QueryField(fieldName: "listOfAWSEmailValue");
-  static final AWSJSONVALUE =
-      amplify_core.QueryField(fieldName: "awsJsonValue");
-  static final LISTOFAWSJSONVALUE =
-      amplify_core.QueryField(fieldName: "listOfAWSJsonValue");
-  static final AWSPHONEVALUE =
-      amplify_core.QueryField(fieldName: "awsPhoneValue");
-  static final LISTOFAWSPHONEVALUE =
-      amplify_core.QueryField(fieldName: "listOfAWSPhoneValue");
-  static final AWSURLVALUE = amplify_core.QueryField(fieldName: "awsURLValue");
-  static final LISTOFAWSURLVALUE =
-      amplify_core.QueryField(fieldName: "listOfAWSURLValue");
-  static final AWSIPADDRESSVALUE =
-      amplify_core.QueryField(fieldName: "awsIPAddressValue");
-  static final LISTOFAWSIPADDRESSVALUE =
-      amplify_core.QueryField(fieldName: "listOfAWSIPAddressValue");
-  static var schema = amplify_core.Model.defineSchema(
-      define: (amplify_core.ModelSchemaDefinition modelSchemaDefinition) {
+  static final QueryModelIdentifier<ModelWithAppsyncScalarTypesModelIdentifier>
+      MODEL_IDENTIFIER =
+      QueryModelIdentifier<ModelWithAppsyncScalarTypesModelIdentifier>();
+  static final QueryField ID = QueryField(fieldName: "id");
+  static final QueryField STRINGVALUE = QueryField(fieldName: "stringValue");
+  static final QueryField ALTSTRINGVALUE =
+      QueryField(fieldName: "altStringValue");
+  static final QueryField LISTOFSTRINGVALUE =
+      QueryField(fieldName: "listOfStringValue");
+  static final QueryField INTVALUE = QueryField(fieldName: "intValue");
+  static final QueryField ALTINTVALUE = QueryField(fieldName: "altIntValue");
+  static final QueryField LISTOFINTVALUE =
+      QueryField(fieldName: "listOfIntValue");
+  static final QueryField FLOATVALUE = QueryField(fieldName: "floatValue");
+  static final QueryField LISTOFFLOATVALUE =
+      QueryField(fieldName: "listOfFloatValue");
+  static final QueryField BOOLEANVALUE = QueryField(fieldName: "booleanValue");
+  static final QueryField LISTOFBOOLEANVALUE =
+      QueryField(fieldName: "listOfBooleanValue");
+  static final QueryField AWSDATEVALUE = QueryField(fieldName: "awsDateValue");
+  static final QueryField LISTOFAWSDATEVALUE =
+      QueryField(fieldName: "listOfAWSDateValue");
+  static final QueryField AWSTIMEVALUE = QueryField(fieldName: "awsTimeValue");
+  static final QueryField LISTOFAWSTIMEVALUE =
+      QueryField(fieldName: "listOfAWSTimeValue");
+  static final QueryField AWSDATETIMEVALUE =
+      QueryField(fieldName: "awsDateTimeValue");
+  static final QueryField LISTOFAWSDATETIMEVALUE =
+      QueryField(fieldName: "listOfAWSDateTimeValue");
+  static final QueryField AWSTIMESTAMPVALUE =
+      QueryField(fieldName: "awsTimestampValue");
+  static final QueryField LISTOFAWSTIMESTAMPVALUE =
+      QueryField(fieldName: "listOfAWSTimestampValue");
+  static final QueryField AWSEMAILVALUE =
+      QueryField(fieldName: "awsEmailValue");
+  static final QueryField LISTOFAWSEMAILVALUE =
+      QueryField(fieldName: "listOfAWSEmailValue");
+  static final QueryField AWSJSONVALUE = QueryField(fieldName: "awsJsonValue");
+  static final QueryField LISTOFAWSJSONVALUE =
+      QueryField(fieldName: "listOfAWSJsonValue");
+  static final QueryField AWSPHONEVALUE =
+      QueryField(fieldName: "awsPhoneValue");
+  static final QueryField LISTOFAWSPHONEVALUE =
+      QueryField(fieldName: "listOfAWSPhoneValue");
+  static final QueryField AWSURLVALUE = QueryField(fieldName: "awsURLValue");
+  static final QueryField LISTOFAWSURLVALUE =
+      QueryField(fieldName: "listOfAWSURLValue");
+  static final QueryField AWSIPADDRESSVALUE =
+      QueryField(fieldName: "awsIPAddressValue");
+  static final QueryField LISTOFAWSIPADDRESSVALUE =
+      QueryField(fieldName: "listOfAWSIPAddressValue");
+  static var schema =
+      Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "ModelWithAppsyncScalarTypes";
     modelSchemaDefinition.pluralName = "ModelWithAppsyncScalarTypes";
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.id());
+    modelSchemaDefinition.addField(ModelFieldDefinition.id());
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.STRINGVALUE,
         isRequired: false,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.string)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.string)));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.ALTSTRINGVALUE,
         isRequired: false,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.string)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.string)));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.LISTOFSTRINGVALUE,
         isRequired: false,
         isArray: true,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.collection,
-            ofModelName: amplify_core.ModelFieldTypeEnum.string.name)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.collection,
+            ofModelName: describeEnum(ModelFieldTypeEnum.string))));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.INTVALUE,
         isRequired: false,
-        ofType:
-            amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.int)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.int)));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.ALTINTVALUE,
         isRequired: false,
-        ofType:
-            amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.int)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.int)));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.LISTOFINTVALUE,
         isRequired: false,
         isArray: true,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.collection,
-            ofModelName: amplify_core.ModelFieldTypeEnum.int.name)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.collection,
+            ofModelName: describeEnum(ModelFieldTypeEnum.int))));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.FLOATVALUE,
         isRequired: false,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.double)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.double)));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.LISTOFFLOATVALUE,
         isRequired: false,
         isArray: true,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.collection,
-            ofModelName: amplify_core.ModelFieldTypeEnum.double.name)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.collection,
+            ofModelName: describeEnum(ModelFieldTypeEnum.double))));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.BOOLEANVALUE,
         isRequired: false,
-        ofType:
-            amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.bool)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.bool)));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.LISTOFBOOLEANVALUE,
         isRequired: false,
         isArray: true,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.collection,
-            ofModelName: amplify_core.ModelFieldTypeEnum.bool.name)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.collection,
+            ofModelName: describeEnum(ModelFieldTypeEnum.bool))));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.AWSDATEVALUE,
         isRequired: false,
-        ofType:
-            amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.date)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.date)));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.LISTOFAWSDATEVALUE,
         isRequired: false,
         isArray: true,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.collection,
-            ofModelName: amplify_core.ModelFieldTypeEnum.date.name)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.collection,
+            ofModelName: describeEnum(ModelFieldTypeEnum.date))));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.AWSTIMEVALUE,
         isRequired: false,
-        ofType:
-            amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.time)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.time)));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.LISTOFAWSTIMEVALUE,
         isRequired: false,
         isArray: true,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.collection,
-            ofModelName: amplify_core.ModelFieldTypeEnum.time.name)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.collection,
+            ofModelName: describeEnum(ModelFieldTypeEnum.time))));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.AWSDATETIMEVALUE,
         isRequired: false,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.dateTime)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.LISTOFAWSDATETIMEVALUE,
         isRequired: false,
         isArray: true,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.collection,
-            ofModelName: amplify_core.ModelFieldTypeEnum.dateTime.name)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.collection,
+            ofModelName: describeEnum(ModelFieldTypeEnum.dateTime))));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.AWSTIMESTAMPVALUE,
         isRequired: false,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.timestamp)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.timestamp)));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.LISTOFAWSTIMESTAMPVALUE,
         isRequired: false,
         isArray: true,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.collection,
-            ofModelName: amplify_core.ModelFieldTypeEnum.timestamp.name)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.collection,
+            ofModelName: describeEnum(ModelFieldTypeEnum.timestamp))));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.AWSEMAILVALUE,
         isRequired: false,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.string)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.string)));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.LISTOFAWSEMAILVALUE,
         isRequired: false,
         isArray: true,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.collection,
-            ofModelName: amplify_core.ModelFieldTypeEnum.string.name)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.collection,
+            ofModelName: describeEnum(ModelFieldTypeEnum.string))));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.AWSJSONVALUE,
         isRequired: false,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.string)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.string)));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.LISTOFAWSJSONVALUE,
         isRequired: false,
         isArray: true,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.collection,
-            ofModelName: amplify_core.ModelFieldTypeEnum.string.name)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.collection,
+            ofModelName: describeEnum(ModelFieldTypeEnum.string))));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.AWSPHONEVALUE,
         isRequired: false,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.string)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.string)));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.LISTOFAWSPHONEVALUE,
         isRequired: false,
         isArray: true,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.collection,
-            ofModelName: amplify_core.ModelFieldTypeEnum.string.name)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.collection,
+            ofModelName: describeEnum(ModelFieldTypeEnum.string))));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.AWSURLVALUE,
         isRequired: false,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.string)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.string)));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.LISTOFAWSURLVALUE,
         isRequired: false,
         isArray: true,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.collection,
-            ofModelName: amplify_core.ModelFieldTypeEnum.string.name)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.collection,
+            ofModelName: describeEnum(ModelFieldTypeEnum.string))));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.AWSIPADDRESSVALUE,
         isRequired: false,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.string)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.string)));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: ModelWithAppsyncScalarTypes.LISTOFAWSIPADDRESSVALUE,
         isRequired: false,
         isArray: true,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.collection,
-            ofModelName: amplify_core.ModelFieldTypeEnum.string.name)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.collection,
+            ofModelName: describeEnum(ModelFieldTypeEnum.string))));
 
-    modelSchemaDefinition.addField(
-        amplify_core.ModelFieldDefinition.nonQueryField(
-            fieldName: 'createdAt',
-            isRequired: false,
-            isReadOnly: true,
-            ofType: amplify_core.ModelFieldType(
-                amplify_core.ModelFieldTypeEnum.dateTime)));
+    modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(
+        fieldName: 'createdAt',
+        isRequired: false,
+        isReadOnly: true,
+        ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)));
 
-    modelSchemaDefinition.addField(
-        amplify_core.ModelFieldDefinition.nonQueryField(
-            fieldName: 'updatedAt',
-            isRequired: false,
-            isReadOnly: true,
-            ofType: amplify_core.ModelFieldType(
-                amplify_core.ModelFieldTypeEnum.dateTime)));
+    modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(
+        fieldName: 'updatedAt',
+        isRequired: false,
+        isReadOnly: true,
+        ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)));
   });
 }
 
 class _ModelWithAppsyncScalarTypesModelType
-    extends amplify_core.ModelType<ModelWithAppsyncScalarTypes> {
+    extends ModelType<ModelWithAppsyncScalarTypes> {
   const _ModelWithAppsyncScalarTypesModelType();
 
   @override
   ModelWithAppsyncScalarTypes fromJson(Map<String, dynamic> jsonData) {
     return ModelWithAppsyncScalarTypes.fromJson(jsonData);
   }
-
-  @override
-  String modelName() {
-    return 'ModelWithAppsyncScalarTypes';
-  }
 }
 
-/**
- * This is an auto generated class representing the model identifier
- * of [ModelWithAppsyncScalarTypes] in your schema.
- */
+/// This is an auto generated class representing the model identifier
+/// of [ModelWithAppsyncScalarTypes] in your schema.
+@immutable
 class ModelWithAppsyncScalarTypesModelIdentifier
-    implements amplify_core.ModelIdentifier<ModelWithAppsyncScalarTypes> {
+    implements ModelIdentifier<ModelWithAppsyncScalarTypes> {
   final String id;
 
-  /** Create an instance of ModelWithAppsyncScalarTypesModelIdentifier using [id] the primary key. */
+  /// Create an instance of ModelWithAppsyncScalarTypesModelIdentifier using [id] the primary key.
   const ModelWithAppsyncScalarTypesModelIdentifier({required this.id});
 
   @override

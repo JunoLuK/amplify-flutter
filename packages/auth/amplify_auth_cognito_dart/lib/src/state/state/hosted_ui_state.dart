@@ -1,7 +1,8 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-part of 'auth_state.dart';
+import 'package:amplify_auth_cognito_dart/src/state/state.dart';
+import 'package:amplify_core/amplify_core.dart';
 
 /// Discrete state types of the hosted UI state machine.
 enum HostedUiStateType {
@@ -28,7 +29,7 @@ enum HostedUiStateType {
 }
 
 /// Discrete states of the hosted UI state machine.
-sealed class HostedUiState extends AuthState<HostedUiStateType> {
+abstract class HostedUiState extends AuthState<HostedUiStateType> {
   const HostedUiState._();
 
   /// {@macro amplify_auth_cognito.hosted_ui_not_configured}
@@ -62,7 +63,7 @@ sealed class HostedUiState extends AuthState<HostedUiStateType> {
 /// {@template amplify_auth_cognito.hosted_ui_not_configured}
 /// The hosted UI flow is not configured and not ready for use.
 /// {@endtemplate}
-final class HostedUiNotConfigured extends HostedUiState {
+class HostedUiNotConfigured extends HostedUiState {
   /// {@macro amplify_auth_cognito.hosted_ui_not_configured}
   const HostedUiNotConfigured() : super._();
 
@@ -76,7 +77,7 @@ final class HostedUiNotConfigured extends HostedUiState {
 /// {@template amplify_auth_cognito.hosted_ui_configuring}
 /// The hosted UI flow is busy configuring.
 /// {@endtemplate}
-final class HostedUiConfiguring extends HostedUiState {
+class HostedUiConfiguring extends HostedUiState {
   /// {@macro amplify_auth_cognito.hosted_ui_configuring}
   const HostedUiConfiguring() : super._();
 
@@ -90,7 +91,7 @@ final class HostedUiConfiguring extends HostedUiState {
 /// {@template amplify_auth_cognito.hosted_ui_signing_in}
 /// The user is being signed in via the hosted UI flow.
 /// {@endtemplate}
-final class HostedUiSigningIn extends HostedUiState {
+class HostedUiSigningIn extends HostedUiState {
   /// {@macro amplify_auth_cognito.hosted_ui_signing_in}
   const HostedUiSigningIn() : super._();
 
@@ -104,7 +105,7 @@ final class HostedUiSigningIn extends HostedUiState {
 /// {@template amplify_auth_cognito.hosted_ui_signing_out}
 /// The user is being signed out via the hosted UI flow.
 /// {@endtemplate}
-final class HostedUiSigningOut extends HostedUiState {
+class HostedUiSigningOut extends HostedUiState {
   /// {@macro amplify_auth_cognito.hosted_ui_signing_out}
   const HostedUiSigningOut() : super._();
 
@@ -118,7 +119,7 @@ final class HostedUiSigningOut extends HostedUiState {
 /// {@template amplify_auth_cognito.hosted_ui_signed_out}
 /// The user is signed out via the hosted UI flow.
 /// {@endtemplate}
-final class HostedUiSignedOut extends HostedUiState {
+class HostedUiSignedOut extends HostedUiState {
   /// {@macro amplify_auth_cognito.hosted_ui_signed_out}
   const HostedUiSignedOut() : super._();
 
@@ -132,7 +133,7 @@ final class HostedUiSignedOut extends HostedUiState {
 /// {@template amplify_auth_cognito.hosted_ui_signed_in}
 /// The user is signed in via the hosted UI flow.
 /// {@endtemplate}
-final class HostedUiSignedIn extends HostedUiState with SuccessState {
+class HostedUiSignedIn extends HostedUiState with SuccessState {
   /// {@macro amplify_auth_cognito.hosted_ui_signed_in}
   const HostedUiSignedIn(this.user) : super._();
 
@@ -149,7 +150,7 @@ final class HostedUiSignedIn extends HostedUiState with SuccessState {
 /// {@template amplify_auth_cognito.hosted_ui_failure}
 /// The Hosted UI flow failed with an [exception].
 /// {@endtemplate}
-final class HostedUiFailure extends HostedUiState with ErrorState {
+class HostedUiFailure extends HostedUiState with ErrorState {
   /// {@macro amplify_auth_cognito.hosted_ui_failure}
   const HostedUiFailure(this.exception, this.stackTrace) : super._();
 

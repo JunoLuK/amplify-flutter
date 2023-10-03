@@ -3,12 +3,13 @@
 
 import 'package:amplify_core/amplify_core.dart';
 
+/// {@template amplify_auth_cognito.model.auth_result}
 /// The result of an Auth operation.
-typedef AuthResult<T extends Object?> = AWSResult<T, AuthException>;
+/// {@endtemplate}
+class AuthResult<T> extends AWSResult<T, AuthException> {
+  /// Creates a failed Auth result.
+  const AuthResult.error(super.exception, [super.stackTrace]) : super.error();
 
-/// A successful result to an Auth operation.
-typedef AuthSuccessResult<T extends Object?>
-    = AWSSuccessResult<T, AuthException>;
-
-/// A failed result to an Auth operation.
-typedef AuthErrorResult<T extends Object?> = AWSErrorResult<T, AuthException>;
+  /// Creates a successful Auth result.
+  const AuthResult.success(super.value) : super.success();
+}

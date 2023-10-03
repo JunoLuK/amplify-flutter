@@ -2,10 +2,6 @@ name: Dart (VM)
 on:
   workflow_call:
     inputs:
-      package-name:
-        description: The name of the package being tested
-        required: true
-        type: string
       working-directory:
         description: The working directory relative to the repo root
         required: true
@@ -22,12 +18,11 @@ jobs:
       matrix:
         sdk:
           # Minimum supported Dart version
-          - "3.0.1"
+          - '2.18.0'
           - stable
-          - beta
     steps:
       - name: Cache Pub dependencies
-        uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84 # 3.3.2
+        uses: actions/cache@9b0c1fce7a93df8e3bb8926b0d6e9d89e92f20a7 # 3.0.11
         with:
           path: |
             ~/.pub-cache/hosted
@@ -39,39 +34,28 @@ jobs:
             os:ubuntu-latest
 
       - name: Git Checkout
-        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # 3.6.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # 3.1.0
 
       - name: Git Submodules
         run: git submodule update --init
 
-      # Some Dart packages require Flutter to be available, for example `amplify_core`
-      # requires it for its `doc` package. Running this before "Setup Dart" means that
-      # the `dart` executable in PATH will always be the one setup by "Setup Dart".
-      #
-      # TODO(dnys1): Create mapping of Flutter->Dart versions so we can just use Dart
-      # vended by Flutter.
-      - name: Setup Flutter
-        uses: subosito/flutter-action@48cafc24713cca54bbe03cdc3a423187d413aafa # 2.10.0
-        with:
-          cache: true
-          channel: stable
-
       - name: Setup Dart
-        uses: dart-lang/setup-dart@e58aeb62aef51dcc4d0ba8eada7c08092aad5314 # main
+        uses: dart-lang/setup-dart@196f54580e9eee2797c57e85e289339f85e6779d # main
         with:
           sdk: ${{ matrix.sdk }}
 
-      - name: Dart Version
-        run: dart --version
-
       - name: Setup aft
         shell: bash # Run in bash regardless of platform
-        run: dart pub global activate -spath packages/aft
+        run: |
+          # Patch libgit2dart (see https://github.com/dart-lang/pub/issues/3563)
+          ( cd packages/aft/external/libgit2dart; git apply ../libgit2dart.patch )
+          dart pub global activate -spath packages/aft
+          ( cd packages/aft/external/libgit2dart; git reset --hard HEAD )
 
       - name: Bootstrap
         id: bootstrap
-        timeout-minutes: 20
-        run: aft bootstrap --fail-fast --include=${{ inputs.package-name }} --verbose
+        timeout-minutes: 10
+        run: aft bootstrap
 
       - name: Check Formatting
         if: "always() && steps.bootstrap.conclusion == 'success' && matrix.sdk == 'stable'"

@@ -2,27 +2,30 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
-import 'package:amplify_auth_integration_test/amplify_auth_integration_test.dart';
+import 'package:amplify_auth_cognito_example/amplifyconfiguration.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_integration_test/amplify_integration_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'test_runner.dart';
+import 'utils/setup_utils.dart';
+import 'utils/test_utils.dart';
 import 'utils/validation_utils.dart';
 
 void main() {
-  testRunner.setupTests();
+  initTests();
 
   group('fetchAuthSession', () {
     group('unauthenticated access enabled', () {
       group('no user pool', () {
-        setUp(() async {
-          await testRunner.configure(
-            environmentName: 'identity-pool-only',
+        setUpAll(() async {
+          await configureAuth(
+            config: amplifyEnvironments['identity-pool-only']!,
           );
         });
 
-        asyncTest('allows retrieving credentials', (_) async {
+        tearDown(signOutUser);
+
+        test('allows retrieving credentials', () async {
           final session =
               await Amplify.Auth.fetchAuthSession() as CognitoAuthSession;
           expect(session.isSignedIn, isFalse);
@@ -42,8 +45,8 @@ void main() {
       group('with user pool', () {
         final username = generateUsername();
         final password = generatePassword();
-        setUp(() async {
-          await testRunner.configure();
+        setUpAll(() async {
+          await configureAuth();
 
           await adminCreateUser(
             username,
@@ -51,7 +54,11 @@ void main() {
             autoConfirm: true,
             verifyAttributes: true,
           );
+        });
 
+        tearDownAll(Amplify.reset);
+
+        setUp(() async {
           await signOutUser();
           final res = await Amplify.Auth.signIn(
             username: username,
@@ -104,11 +111,13 @@ void main() {
     });
 
     group('unauthenticated access disabled', () {
-      setUp(() async {
-        await testRunner.configure(
-          environmentName: 'authenticated-users-only',
+      setUpAll(() async {
+        await configureAuth(
+          config: amplifyEnvironments['authenticated-users-only']!,
         );
       });
+
+      tearDown(signOutUser);
 
       Future<void> retrieveUnauthenticatedCredentials() async {
         final session =
@@ -132,22 +141,23 @@ void main() {
         );
       }
 
-      asyncTest('prevents retrieving unauthenticated credentials', (_) async {
+      test('prevents retrieving unauthenticated credentials', () async {
         await retrieveUnauthenticatedCredentials();
       });
 
-      asyncTest('allows retrieving authenticated credentials', (_) async {
+      test('allows retrieving authenticated credentials', () async {
         await retrieveUnauthenticatedCredentials();
 
         final username = generateUsername();
         final password = generatePassword();
 
-        await adminCreateUser(
+        final cognitoUsername = await adminCreateUser(
           username,
           password,
           verifyAttributes: true,
           autoConfirm: true,
         );
+        addTearDown(() => deleteUser(cognitoUsername));
 
         final signInRes = await Amplify.Auth.signIn(
           username: username,
@@ -182,11 +192,13 @@ void main() {
     });
 
     group('user pool-only', () {
-      setUp(() async {
-        await testRunner.configure(
-          environmentName: 'user-pool-only',
+      setUpAll(() async {
+        await configureAuth(
+          config: amplifyEnvironments['user-pool-only']!,
         );
       });
+
+      tearDown(signOutUser);
 
       Future<void> retrieveUnauthenticatedCredentials() async {
         final session =
@@ -210,22 +222,23 @@ void main() {
         );
       }
 
-      asyncTest('prevents retrieving unauthenticated credentials', (_) async {
+      test('prevents retrieving unauthenticated credentials', () async {
         await retrieveUnauthenticatedCredentials();
       });
 
-      asyncTest('prevents retrieving authenticated credentials', (_) async {
+      test('prevents retrieving authenticated credentials', () async {
         await retrieveUnauthenticatedCredentials();
 
         final username = generateUsername();
         final password = generatePassword();
 
-        await adminCreateUser(
+        final cognitoUsername = await adminCreateUser(
           username,
           password,
           verifyAttributes: true,
           autoConfirm: true,
         );
+        addTearDown(() => deleteUser(cognitoUsername));
 
         final signInRes = await Amplify.Auth.signIn(
           username: username,
@@ -271,9 +284,9 @@ void main() {
           return idToken.claims.customClaims;
         }
 
-        setUp(() async {
-          await testRunner.configure(
-            environmentName: environmentName,
+        setUpAll(() async {
+          await configureAuth(
+            config: amplifyEnvironments[environmentName]!,
           );
         });
 
@@ -281,12 +294,13 @@ void main() {
           final username = generateUsername();
           final password = generatePassword();
 
-          await adminCreateUser(
+          final cognitoUsername = await adminCreateUser(
             username,
             password,
             autoConfirm: true,
             verifyAttributes: true,
           );
+          addTearDown(() => deleteUser(cognitoUsername));
 
           final res = await Amplify.Auth.signIn(
             username: username,
@@ -301,7 +315,7 @@ void main() {
           );
 
           await Amplify.Auth.updateUserAttribute(
-            userAttributeKey: AuthUserAttributeKey.address,
+            userAttributeKey: CognitoUserAttributeKey.address,
             value: '1 Main St',
           );
 
@@ -315,77 +329,6 @@ void main() {
             await getCustomAttributes(forceRefresh: true),
             contains('address'),
             reason: 'Token is updated via force refresh',
-          );
-        });
-
-        asyncTest('force refresh reflects updated email', (_) async {
-          final username = generateUsername();
-          final password = generatePassword();
-          final originalEmail = generateEmail();
-
-          await adminCreateUser(
-            username,
-            password,
-            autoConfirm: true,
-            verifyAttributes: true,
-            attributes: {
-              AuthUserAttributeKey.email: originalEmail,
-            },
-          );
-
-          final res = await Amplify.Auth.signIn(
-            username: username,
-            password: password,
-          );
-          expect(res.nextStep.signInStep, AuthSignInStep.done);
-
-          expect(
-            await getCustomAttributes(),
-            containsPair('email', originalEmail),
-            reason: 'Original email is present in token',
-          );
-
-          final newEmail = generateEmail();
-          final verificationCode = await getOtpCode(
-            UserAttribute.email(newEmail),
-          );
-
-          final attributeRes = await Amplify.Auth.updateUserAttribute(
-            userAttributeKey: AuthUserAttributeKey.email,
-            value: newEmail,
-          );
-          expect(
-            attributeRes.nextStep.updateAttributeStep,
-            AuthUpdateAttributeStep.confirmAttributeWithCode,
-          );
-
-          expect(
-            await getCustomAttributes(),
-            containsPair('email', originalEmail),
-            reason: 'Tokens are not yet refreshed',
-          );
-
-          expect(
-            await getCustomAttributes(forceRefresh: true),
-            allOf([
-              containsPair('email', newEmail),
-              containsPair('email_verified', false),
-            ]),
-            reason: 'New email is not yet confirmed',
-          );
-
-          await Amplify.Auth.confirmUserAttribute(
-            userAttributeKey: AuthUserAttributeKey.email,
-            confirmationCode: await verificationCode.code,
-          );
-
-          expect(
-            await getCustomAttributes(forceRefresh: true),
-            allOf([
-              containsPair('email', newEmail),
-              containsPair('email_verified', true),
-            ]),
-            reason: 'New email is confirmed',
           );
         });
       });

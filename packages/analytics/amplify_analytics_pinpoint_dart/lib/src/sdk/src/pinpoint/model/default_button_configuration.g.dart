@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'default_button_configuration.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.default_button_configuration;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -10,9 +10,9 @@ class _$DefaultButtonConfiguration extends DefaultButtonConfiguration {
   @override
   final String? backgroundColor;
   @override
-  final int? borderRadius;
+  final int borderRadius;
   @override
-  final ButtonAction buttonAction;
+  final _i2.ButtonAction buttonAction;
   @override
   final String? link;
   @override
@@ -26,12 +26,14 @@ class _$DefaultButtonConfiguration extends DefaultButtonConfiguration {
 
   _$DefaultButtonConfiguration._(
       {this.backgroundColor,
-      this.borderRadius,
+      required this.borderRadius,
       required this.buttonAction,
       this.link,
       required this.text,
       this.textColor})
       : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        borderRadius, r'DefaultButtonConfiguration', 'borderRadius');
     BuiltValueNullFieldError.checkNotNull(
         buttonAction, r'DefaultButtonConfiguration', 'buttonAction');
     BuiltValueNullFieldError.checkNotNull(
@@ -87,9 +89,9 @@ class DefaultButtonConfigurationBuilder
   int? get borderRadius => _$this._borderRadius;
   set borderRadius(int? borderRadius) => _$this._borderRadius = borderRadius;
 
-  ButtonAction? _buttonAction;
-  ButtonAction? get buttonAction => _$this._buttonAction;
-  set buttonAction(ButtonAction? buttonAction) =>
+  _i2.ButtonAction? _buttonAction;
+  _i2.ButtonAction? get buttonAction => _$this._buttonAction;
+  set buttonAction(_i2.ButtonAction? buttonAction) =>
       _$this._buttonAction = buttonAction;
 
   String? _link;
@@ -104,7 +106,9 @@ class DefaultButtonConfigurationBuilder
   String? get textColor => _$this._textColor;
   set textColor(String? textColor) => _$this._textColor = textColor;
 
-  DefaultButtonConfigurationBuilder();
+  DefaultButtonConfigurationBuilder() {
+    DefaultButtonConfiguration._init(this);
+  }
 
   DefaultButtonConfigurationBuilder get _$this {
     final $v = _$v;
@@ -138,7 +142,8 @@ class DefaultButtonConfigurationBuilder
     final _$result = _$v ??
         new _$DefaultButtonConfiguration._(
             backgroundColor: backgroundColor,
-            borderRadius: borderRadius,
+            borderRadius: BuiltValueNullFieldError.checkNotNull(
+                borderRadius, r'DefaultButtonConfiguration', 'borderRadius'),
             buttonAction: BuiltValueNullFieldError.checkNotNull(
                 buttonAction, r'DefaultButtonConfiguration', 'buttonAction'),
             link: link,

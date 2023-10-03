@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'timestamp_format_headers_io.dart';
+part of rest_json1_v1.rest_json_protocol.model.timestamp_format_headers_io;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,32 +8,32 @@ part of 'timestamp_format_headers_io.dart';
 
 class _$TimestampFormatHeadersIo extends TimestampFormatHeadersIo {
   @override
+  final DateTime? defaultFormat;
+  @override
+  final DateTime? memberDateTime;
+  @override
   final DateTime? memberEpochSeconds;
   @override
   final DateTime? memberHttpDate;
   @override
-  final DateTime? memberDateTime;
-  @override
-  final DateTime? defaultFormat;
+  final DateTime? targetDateTime;
   @override
   final DateTime? targetEpochSeconds;
   @override
   final DateTime? targetHttpDate;
-  @override
-  final DateTime? targetDateTime;
 
   factory _$TimestampFormatHeadersIo(
           [void Function(TimestampFormatHeadersIoBuilder)? updates]) =>
       (new TimestampFormatHeadersIoBuilder()..update(updates))._build();
 
   _$TimestampFormatHeadersIo._(
-      {this.memberEpochSeconds,
-      this.memberHttpDate,
+      {this.defaultFormat,
       this.memberDateTime,
-      this.defaultFormat,
+      this.memberEpochSeconds,
+      this.memberHttpDate,
+      this.targetDateTime,
       this.targetEpochSeconds,
-      this.targetHttpDate,
-      this.targetDateTime})
+      this.targetHttpDate})
       : super._();
 
   @override
@@ -49,25 +49,25 @@ class _$TimestampFormatHeadersIo extends TimestampFormatHeadersIo {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is TimestampFormatHeadersIo &&
+        defaultFormat == other.defaultFormat &&
+        memberDateTime == other.memberDateTime &&
         memberEpochSeconds == other.memberEpochSeconds &&
         memberHttpDate == other.memberHttpDate &&
-        memberDateTime == other.memberDateTime &&
-        defaultFormat == other.defaultFormat &&
+        targetDateTime == other.targetDateTime &&
         targetEpochSeconds == other.targetEpochSeconds &&
-        targetHttpDate == other.targetHttpDate &&
-        targetDateTime == other.targetDateTime;
+        targetHttpDate == other.targetHttpDate;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, defaultFormat.hashCode);
+    _$hash = $jc(_$hash, memberDateTime.hashCode);
     _$hash = $jc(_$hash, memberEpochSeconds.hashCode);
     _$hash = $jc(_$hash, memberHttpDate.hashCode);
-    _$hash = $jc(_$hash, memberDateTime.hashCode);
-    _$hash = $jc(_$hash, defaultFormat.hashCode);
+    _$hash = $jc(_$hash, targetDateTime.hashCode);
     _$hash = $jc(_$hash, targetEpochSeconds.hashCode);
     _$hash = $jc(_$hash, targetHttpDate.hashCode);
-    _$hash = $jc(_$hash, targetDateTime.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -77,6 +77,16 @@ class TimestampFormatHeadersIoBuilder
     implements
         Builder<TimestampFormatHeadersIo, TimestampFormatHeadersIoBuilder> {
   _$TimestampFormatHeadersIo? _$v;
+
+  DateTime? _defaultFormat;
+  DateTime? get defaultFormat => _$this._defaultFormat;
+  set defaultFormat(DateTime? defaultFormat) =>
+      _$this._defaultFormat = defaultFormat;
+
+  DateTime? _memberDateTime;
+  DateTime? get memberDateTime => _$this._memberDateTime;
+  set memberDateTime(DateTime? memberDateTime) =>
+      _$this._memberDateTime = memberDateTime;
 
   DateTime? _memberEpochSeconds;
   DateTime? get memberEpochSeconds => _$this._memberEpochSeconds;
@@ -88,15 +98,10 @@ class TimestampFormatHeadersIoBuilder
   set memberHttpDate(DateTime? memberHttpDate) =>
       _$this._memberHttpDate = memberHttpDate;
 
-  DateTime? _memberDateTime;
-  DateTime? get memberDateTime => _$this._memberDateTime;
-  set memberDateTime(DateTime? memberDateTime) =>
-      _$this._memberDateTime = memberDateTime;
-
-  DateTime? _defaultFormat;
-  DateTime? get defaultFormat => _$this._defaultFormat;
-  set defaultFormat(DateTime? defaultFormat) =>
-      _$this._defaultFormat = defaultFormat;
+  DateTime? _targetDateTime;
+  DateTime? get targetDateTime => _$this._targetDateTime;
+  set targetDateTime(DateTime? targetDateTime) =>
+      _$this._targetDateTime = targetDateTime;
 
   DateTime? _targetEpochSeconds;
   DateTime? get targetEpochSeconds => _$this._targetEpochSeconds;
@@ -108,23 +113,20 @@ class TimestampFormatHeadersIoBuilder
   set targetHttpDate(DateTime? targetHttpDate) =>
       _$this._targetHttpDate = targetHttpDate;
 
-  DateTime? _targetDateTime;
-  DateTime? get targetDateTime => _$this._targetDateTime;
-  set targetDateTime(DateTime? targetDateTime) =>
-      _$this._targetDateTime = targetDateTime;
-
-  TimestampFormatHeadersIoBuilder();
+  TimestampFormatHeadersIoBuilder() {
+    TimestampFormatHeadersIo._init(this);
+  }
 
   TimestampFormatHeadersIoBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _defaultFormat = $v.defaultFormat;
+      _memberDateTime = $v.memberDateTime;
       _memberEpochSeconds = $v.memberEpochSeconds;
       _memberHttpDate = $v.memberHttpDate;
-      _memberDateTime = $v.memberDateTime;
-      _defaultFormat = $v.defaultFormat;
+      _targetDateTime = $v.targetDateTime;
       _targetEpochSeconds = $v.targetEpochSeconds;
       _targetHttpDate = $v.targetHttpDate;
-      _targetDateTime = $v.targetDateTime;
       _$v = null;
     }
     return this;
@@ -147,13 +149,13 @@ class TimestampFormatHeadersIoBuilder
   _$TimestampFormatHeadersIo _build() {
     final _$result = _$v ??
         new _$TimestampFormatHeadersIo._(
+            defaultFormat: defaultFormat,
+            memberDateTime: memberDateTime,
             memberEpochSeconds: memberEpochSeconds,
             memberHttpDate: memberHttpDate,
-            memberDateTime: memberDateTime,
-            defaultFormat: defaultFormat,
+            targetDateTime: targetDateTime,
             targetEpochSeconds: targetEpochSeconds,
-            targetHttpDate: targetHttpDate,
-            targetDateTime: targetDateTime);
+            targetHttpDate: targetHttpDate);
     replace(_$result);
     return _$result;
   }
@@ -194,7 +196,9 @@ class TimestampFormatHeadersIoPayloadBuilder
             TimestampFormatHeadersIoPayloadBuilder> {
   _$TimestampFormatHeadersIoPayload? _$v;
 
-  TimestampFormatHeadersIoPayloadBuilder();
+  TimestampFormatHeadersIoPayloadBuilder() {
+    TimestampFormatHeadersIoPayload._init(this);
+  }
 
   @override
   void replace(TimestampFormatHeadersIoPayload other) {

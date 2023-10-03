@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'host_label_input.dart';
+part of aws_json1_1_v1.json_protocol.model.host_label_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -48,7 +48,9 @@ class HostLabelInputBuilder
   String? get label => _$this._label;
   set label(String? label) => _$this._label = label;
 
-  HostLabelInputBuilder();
+  HostLabelInputBuilder() {
+    HostLabelInput._init(this);
+  }
 
   HostLabelInputBuilder get _$this {
     final $v = _$v;

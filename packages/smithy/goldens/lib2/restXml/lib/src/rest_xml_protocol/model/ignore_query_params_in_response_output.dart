@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v2.rest_xml_protocol.model.ignore_query_params_in_response_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -33,20 +32,23 @@ abstract class IgnoreQueryParamsInResponseOutput
   ) =>
       payload;
 
-  static const List<_i2.SmithySerializer<IgnoreQueryParamsInResponseOutput>>
-      serializers = [IgnoreQueryParamsInResponseOutputRestXmlSerializer()];
+  static const List<_i2.SmithySerializer> serializers = [
+    IgnoreQueryParamsInResponseOutputRestXmlSerializer()
+  ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(IgnoreQueryParamsInResponseOutputBuilder b) {}
   String? get baz;
   @override
   List<Object?> get props => [baz];
   @override
   String toString() {
     final helper =
-        newBuiltValueToStringHelper('IgnoreQueryParamsInResponseOutput')
-          ..add(
-            'baz',
-            baz,
-          );
+        newBuiltValueToStringHelper('IgnoreQueryParamsInResponseOutput');
+    helper.add(
+      'baz',
+      baz,
+    );
     return helper.toString();
   }
 }
@@ -77,18 +79,18 @@ class IgnoreQueryParamsInResponseOutputRestXmlSerializer
     final result = IgnoreQueryParamsInResponseOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'baz':
-          result.baz = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.baz = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -98,21 +100,21 @@ class IgnoreQueryParamsInResponseOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    IgnoreQueryParamsInResponseOutput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final payload = (object as IgnoreQueryParamsInResponseOutput);
+    final result = <Object?>[
       const _i2.XmlElementName('IgnoreQueryParamsInResponseOutput')
     ];
-    final IgnoreQueryParamsInResponseOutput(:baz) = object;
-    if (baz != null) {
-      result$
+    if (payload.baz != null) {
+      result
         ..add(const _i2.XmlElementName('baz'))
         ..add(serializers.serialize(
-          baz,
+          payload.baz!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

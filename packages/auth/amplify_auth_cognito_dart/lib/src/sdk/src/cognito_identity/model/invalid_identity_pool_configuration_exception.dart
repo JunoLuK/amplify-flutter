@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_auth_cognito_dart.cognito_identity.model.invalid_identity_pool_configuration_exception; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -39,11 +38,12 @@ abstract class InvalidIdentityPoolConfigurationException
         b.headers = response.headers;
       });
 
-  static const List<
-          _i2.SmithySerializer<InvalidIdentityPoolConfigurationException>>
-      serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     InvalidIdentityPoolConfigurationExceptionAwsJson11Serializer()
   ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(InvalidIdentityPoolConfigurationExceptionBuilder b) {}
 
   /// The message returned for an `InvalidIdentityPoolConfigurationException`
   @override
@@ -67,12 +67,12 @@ abstract class InvalidIdentityPoolConfigurationException
   List<Object?> get props => [message];
   @override
   String toString() {
-    final helper =
-        newBuiltValueToStringHelper('InvalidIdentityPoolConfigurationException')
-          ..add(
-            'message',
-            message,
-          );
+    final helper = newBuiltValueToStringHelper(
+        'InvalidIdentityPoolConfigurationException');
+    helper.add(
+      'message',
+      message,
+    );
     return helper.toString();
   }
 }
@@ -106,15 +106,15 @@ class InvalidIdentityPoolConfigurationExceptionAwsJson11Serializer extends _i2
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'message':
-          result.message = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.message = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -124,19 +124,19 @@ class InvalidIdentityPoolConfigurationExceptionAwsJson11Serializer extends _i2
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    InvalidIdentityPoolConfigurationException object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final InvalidIdentityPoolConfigurationException(:message) = object;
-    if (message != null) {
-      result$
+    final payload = (object as InvalidIdentityPoolConfigurationException);
+    final result = <Object?>[];
+    if (payload.message != null) {
+      result
         ..add('message')
         ..add(serializers.serialize(
-          message,
+          payload.message!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

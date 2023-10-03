@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'abort_multipart_upload_request.dart';
+part of amplify_storage_s3_dart.s3.model.abort_multipart_upload_request;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -10,13 +10,13 @@ class _$AbortMultipartUploadRequest extends AbortMultipartUploadRequest {
   @override
   final String bucket;
   @override
+  final String? expectedBucketOwner;
+  @override
   final String key;
   @override
+  final _i3.RequestPayer? requestPayer;
+  @override
   final String uploadId;
-  @override
-  final RequestPayer? requestPayer;
-  @override
-  final String? expectedBucketOwner;
 
   factory _$AbortMultipartUploadRequest(
           [void Function(AbortMultipartUploadRequestBuilder)? updates]) =>
@@ -24,10 +24,10 @@ class _$AbortMultipartUploadRequest extends AbortMultipartUploadRequest {
 
   _$AbortMultipartUploadRequest._(
       {required this.bucket,
+      this.expectedBucketOwner,
       required this.key,
-      required this.uploadId,
       this.requestPayer,
-      this.expectedBucketOwner})
+      required this.uploadId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         bucket, r'AbortMultipartUploadRequest', 'bucket');
@@ -51,20 +51,20 @@ class _$AbortMultipartUploadRequest extends AbortMultipartUploadRequest {
     if (identical(other, this)) return true;
     return other is AbortMultipartUploadRequest &&
         bucket == other.bucket &&
+        expectedBucketOwner == other.expectedBucketOwner &&
         key == other.key &&
-        uploadId == other.uploadId &&
         requestPayer == other.requestPayer &&
-        expectedBucketOwner == other.expectedBucketOwner;
+        uploadId == other.uploadId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, bucket.hashCode);
-    _$hash = $jc(_$hash, key.hashCode);
-    _$hash = $jc(_$hash, uploadId.hashCode);
-    _$hash = $jc(_$hash, requestPayer.hashCode);
     _$hash = $jc(_$hash, expectedBucketOwner.hashCode);
+    _$hash = $jc(_$hash, key.hashCode);
+    _$hash = $jc(_$hash, requestPayer.hashCode);
+    _$hash = $jc(_$hash, uploadId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -80,34 +80,36 @@ class AbortMultipartUploadRequestBuilder
   String? get bucket => _$this._bucket;
   set bucket(String? bucket) => _$this._bucket = bucket;
 
-  String? _key;
-  String? get key => _$this._key;
-  set key(String? key) => _$this._key = key;
-
-  String? _uploadId;
-  String? get uploadId => _$this._uploadId;
-  set uploadId(String? uploadId) => _$this._uploadId = uploadId;
-
-  RequestPayer? _requestPayer;
-  RequestPayer? get requestPayer => _$this._requestPayer;
-  set requestPayer(RequestPayer? requestPayer) =>
-      _$this._requestPayer = requestPayer;
-
   String? _expectedBucketOwner;
   String? get expectedBucketOwner => _$this._expectedBucketOwner;
   set expectedBucketOwner(String? expectedBucketOwner) =>
       _$this._expectedBucketOwner = expectedBucketOwner;
 
-  AbortMultipartUploadRequestBuilder();
+  String? _key;
+  String? get key => _$this._key;
+  set key(String? key) => _$this._key = key;
+
+  _i3.RequestPayer? _requestPayer;
+  _i3.RequestPayer? get requestPayer => _$this._requestPayer;
+  set requestPayer(_i3.RequestPayer? requestPayer) =>
+      _$this._requestPayer = requestPayer;
+
+  String? _uploadId;
+  String? get uploadId => _$this._uploadId;
+  set uploadId(String? uploadId) => _$this._uploadId = uploadId;
+
+  AbortMultipartUploadRequestBuilder() {
+    AbortMultipartUploadRequest._init(this);
+  }
 
   AbortMultipartUploadRequestBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _bucket = $v.bucket;
-      _key = $v.key;
-      _uploadId = $v.uploadId;
-      _requestPayer = $v.requestPayer;
       _expectedBucketOwner = $v.expectedBucketOwner;
+      _key = $v.key;
+      _requestPayer = $v.requestPayer;
+      _uploadId = $v.uploadId;
       _$v = null;
     }
     return this;
@@ -132,12 +134,12 @@ class AbortMultipartUploadRequestBuilder
         new _$AbortMultipartUploadRequest._(
             bucket: BuiltValueNullFieldError.checkNotNull(
                 bucket, r'AbortMultipartUploadRequest', 'bucket'),
+            expectedBucketOwner: expectedBucketOwner,
             key: BuiltValueNullFieldError.checkNotNull(
                 key, r'AbortMultipartUploadRequest', 'key'),
-            uploadId: BuiltValueNullFieldError.checkNotNull(
-                uploadId, r'AbortMultipartUploadRequest', 'uploadId'),
             requestPayer: requestPayer,
-            expectedBucketOwner: expectedBucketOwner);
+            uploadId: BuiltValueNullFieldError.checkNotNull(
+                uploadId, r'AbortMultipartUploadRequest', 'uploadId'));
     replace(_$result);
     return _$result;
   }
@@ -180,7 +182,9 @@ class AbortMultipartUploadRequestPayloadBuilder
             AbortMultipartUploadRequestPayloadBuilder> {
   _$AbortMultipartUploadRequestPayload? _$v;
 
-  AbortMultipartUploadRequestPayloadBuilder();
+  AbortMultipartUploadRequestPayloadBuilder() {
+    AbortMultipartUploadRequestPayload._init(this);
+  }
 
   @override
   void replace(AbortMultipartUploadRequestPayload other) {

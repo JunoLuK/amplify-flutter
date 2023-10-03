@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'too_many_requests_exception.dart';
+part of rest_json1_v2.api_gateway.model.too_many_requests_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,9 +8,9 @@ part of 'too_many_requests_exception.dart';
 
 class _$TooManyRequestsException extends TooManyRequestsException {
   @override
-  final String? retryAfterSeconds;
-  @override
   final String? message;
+  @override
+  final String? retryAfterSeconds;
   @override
   final Map<String, String>? headers;
 
@@ -19,7 +19,7 @@ class _$TooManyRequestsException extends TooManyRequestsException {
       (new TooManyRequestsExceptionBuilder()..update(updates))._build();
 
   _$TooManyRequestsException._(
-      {this.retryAfterSeconds, this.message, this.headers})
+      {this.message, this.retryAfterSeconds, this.headers})
       : super._();
 
   @override
@@ -35,15 +35,15 @@ class _$TooManyRequestsException extends TooManyRequestsException {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is TooManyRequestsException &&
-        retryAfterSeconds == other.retryAfterSeconds &&
-        message == other.message;
+        message == other.message &&
+        retryAfterSeconds == other.retryAfterSeconds;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, retryAfterSeconds.hashCode);
     _$hash = $jc(_$hash, message.hashCode);
+    _$hash = $jc(_$hash, retryAfterSeconds.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -54,26 +54,28 @@ class TooManyRequestsExceptionBuilder
         Builder<TooManyRequestsException, TooManyRequestsExceptionBuilder> {
   _$TooManyRequestsException? _$v;
 
+  String? _message;
+  String? get message => _$this._message;
+  set message(String? message) => _$this._message = message;
+
   String? _retryAfterSeconds;
   String? get retryAfterSeconds => _$this._retryAfterSeconds;
   set retryAfterSeconds(String? retryAfterSeconds) =>
       _$this._retryAfterSeconds = retryAfterSeconds;
 
-  String? _message;
-  String? get message => _$this._message;
-  set message(String? message) => _$this._message = message;
-
   Map<String, String>? _headers;
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  TooManyRequestsExceptionBuilder();
+  TooManyRequestsExceptionBuilder() {
+    TooManyRequestsException._init(this);
+  }
 
   TooManyRequestsExceptionBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _retryAfterSeconds = $v.retryAfterSeconds;
       _message = $v.message;
+      _retryAfterSeconds = $v.retryAfterSeconds;
       _headers = $v.headers;
       _$v = null;
     }
@@ -97,8 +99,8 @@ class TooManyRequestsExceptionBuilder
   _$TooManyRequestsException _build() {
     final _$result = _$v ??
         new _$TooManyRequestsException._(
-            retryAfterSeconds: retryAfterSeconds,
             message: message,
+            retryAfterSeconds: retryAfterSeconds,
             headers: headers);
     replace(_$result);
     return _$result;
@@ -150,7 +152,9 @@ class TooManyRequestsExceptionPayloadBuilder
   String? get message => _$this._message;
   set message(String? message) => _$this._message = message;
 
-  TooManyRequestsExceptionPayloadBuilder();
+  TooManyRequestsExceptionPayloadBuilder() {
+    TooManyRequestsExceptionPayload._init(this);
+  }
 
   TooManyRequestsExceptionPayloadBuilder get _$this {
     final $v = _$v;

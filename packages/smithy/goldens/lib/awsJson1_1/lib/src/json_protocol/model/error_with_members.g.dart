@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'error_with_members.dart';
+part of aws_json1_1_v1.json_protocol.model.error_with_members;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -10,13 +10,13 @@ class _$ErrorWithMembers extends ErrorWithMembers {
   @override
   final String? code;
   @override
-  final KitchenSink? complexData;
+  final _i3.KitchenSink? complexData;
   @override
   final int? integerField;
   @override
-  final _i3.BuiltList<String>? listField;
+  final _i4.BuiltList<String>? listField;
   @override
-  final _i3.BuiltMap<String, String>? mapField;
+  final _i4.BuiltMap<String, String>? mapField;
   @override
   final String? message;
   @override
@@ -86,26 +86,26 @@ class ErrorWithMembersBuilder
   String? get code => _$this._code;
   set code(String? code) => _$this._code = code;
 
-  KitchenSinkBuilder? _complexData;
-  KitchenSinkBuilder get complexData =>
-      _$this._complexData ??= new KitchenSinkBuilder();
-  set complexData(KitchenSinkBuilder? complexData) =>
+  _i3.KitchenSinkBuilder? _complexData;
+  _i3.KitchenSinkBuilder get complexData =>
+      _$this._complexData ??= new _i3.KitchenSinkBuilder();
+  set complexData(_i3.KitchenSinkBuilder? complexData) =>
       _$this._complexData = complexData;
 
   int? _integerField;
   int? get integerField => _$this._integerField;
   set integerField(int? integerField) => _$this._integerField = integerField;
 
-  _i3.ListBuilder<String>? _listField;
-  _i3.ListBuilder<String> get listField =>
-      _$this._listField ??= new _i3.ListBuilder<String>();
-  set listField(_i3.ListBuilder<String>? listField) =>
+  _i4.ListBuilder<String>? _listField;
+  _i4.ListBuilder<String> get listField =>
+      _$this._listField ??= new _i4.ListBuilder<String>();
+  set listField(_i4.ListBuilder<String>? listField) =>
       _$this._listField = listField;
 
-  _i3.MapBuilder<String, String>? _mapField;
-  _i3.MapBuilder<String, String> get mapField =>
-      _$this._mapField ??= new _i3.MapBuilder<String, String>();
-  set mapField(_i3.MapBuilder<String, String>? mapField) =>
+  _i4.MapBuilder<String, String>? _mapField;
+  _i4.MapBuilder<String, String> get mapField =>
+      _$this._mapField ??= new _i4.MapBuilder<String, String>();
+  set mapField(_i4.MapBuilder<String, String>? mapField) =>
       _$this._mapField = mapField;
 
   String? _message;
@@ -124,7 +124,9 @@ class ErrorWithMembersBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  ErrorWithMembersBuilder();
+  ErrorWithMembersBuilder() {
+    ErrorWithMembers._init(this);
+  }
 
   ErrorWithMembersBuilder get _$this {
     final $v = _$v;

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'put_and_get_inline_documents_input_output.dart';
+part of aws_json1_1_v1.json_protocol.model.put_and_get_inline_documents_input_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -55,7 +55,9 @@ class PutAndGetInlineDocumentsInputOutputBuilder
   set inlineDocument(_i3.JsonObject? inlineDocument) =>
       _$this._inlineDocument = inlineDocument;
 
-  PutAndGetInlineDocumentsInputOutputBuilder();
+  PutAndGetInlineDocumentsInputOutputBuilder() {
+    PutAndGetInlineDocumentsInputOutput._init(this);
+  }
 
   PutAndGetInlineDocumentsInputOutputBuilder get _$this {
     final $v = _$v;

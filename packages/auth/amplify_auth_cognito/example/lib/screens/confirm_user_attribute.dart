@@ -53,7 +53,7 @@ class _ConfirmUserAttributeScreenState
 
   Future<void> _resendCode() async {
     try {
-      final res = await Amplify.Auth.sendUserAttributeVerificationCode(
+      final res = await Amplify.Auth.resendUserAttributeConfirmationCode(
         userAttributeKey: widget.userAttributeKey,
       );
       _showInfo(

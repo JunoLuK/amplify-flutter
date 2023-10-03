@@ -50,8 +50,6 @@ const keyCodeConfirmSignUpFormField = Key('codeConfirmSignUpFormField');
 const keyCodeConfirmSignInFormField = Key('codeConfirmSignInFormField');
 const keyCustomChallengeConfirmSignInFormField =
     Key('customChallengeConfirmSignInFormField');
-const keyMfaMethodRadioConfirmSignInFormField =
-    Key('mfaMethodRadioConfirmSignInFormField');
 const keyUsernameConfirmSignInFormField = Key('usernameConfirmSignInFormField');
 const keyPasswordConfirmSignInFormField = Key('passwordConfirmSignInFormField');
 const keyNewPasswordConfirmSignInFormField =
@@ -105,8 +103,6 @@ const keyBackToSignInButton = Key('backToSignInButton');
 const keyGoToSignUpButton = Key('goToSignUpButton');
 const keyGoToSignInButton = Key('goToSignInButton');
 const keyConfirmSignInButton = Key('confirmSignInButton');
-const keyConfirmSignInMfaSelectionButton =
-    Key('confirmSignInMfaSelectionButton');
 const keyConfirmSignInCustomButton = Key('confirmSignInCustomButton');
 const keyLostCodeButton = Key('lostCodeButton');
 const keySendCodeButton = Key('sendCodeButton');
@@ -135,8 +131,3 @@ const keyInheritedAuthBloc = Key('inheritedAuthBloc');
 // Banner Keys
 
 const keyAuthenticatorBanner = Key('authenticatorBanner');
-
-// Totp setup form keys
-const keyQrCodeTotpSetupFormField = Key('qrCodeTotpSetupFormField');
-const keyCopyKeyTotpSetupFormField = Key('copyKeyTotpSetupFormField');
-const keyTotpSetupFormField = Key('totpSetupFormField');

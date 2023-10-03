@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'attribute_type.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.attribute_type;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -54,7 +54,9 @@ class AttributeTypeBuilder
   String? get value => _$this._value;
   set value(String? value) => _$this._value = value;
 
-  AttributeTypeBuilder();
+  AttributeTypeBuilder() {
+    AttributeType._init(this);
+  }
 
   AttributeTypeBuilder get _$this {
     final $v = _$v;

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'greeting_with_errors_output.dart';
+part of rest_json1_v2.rest_json_protocol.model.greeting_with_errors_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -49,7 +49,9 @@ class GreetingWithErrorsOutputBuilder
   String? get greeting => _$this._greeting;
   set greeting(String? greeting) => _$this._greeting = greeting;
 
-  GreetingWithErrorsOutputBuilder();
+  GreetingWithErrorsOutputBuilder() {
+    GreetingWithErrorsOutput._init(this);
+  }
 
   GreetingWithErrorsOutputBuilder get _$this {
     final $v = _$v;
@@ -117,7 +119,9 @@ class GreetingWithErrorsOutputPayloadBuilder
             GreetingWithErrorsOutputPayloadBuilder> {
   _$GreetingWithErrorsOutputPayload? _$v;
 
-  GreetingWithErrorsOutputPayloadBuilder();
+  GreetingWithErrorsOutputPayloadBuilder() {
+    GreetingWithErrorsOutputPayload._init(this);
+  }
 
   @override
   void replace(GreetingWithErrorsOutputPayload other) {

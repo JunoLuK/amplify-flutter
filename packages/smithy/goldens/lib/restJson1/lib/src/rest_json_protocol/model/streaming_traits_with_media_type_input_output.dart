@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.rest_json_protocol.model.streaming_traits_with_media_type_input_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -21,12 +20,12 @@ abstract class StreamingTraitsWithMediaTypeInputOutput
             StreamingTraitsWithMediaTypeInputOutputBuilder>,
         _i1.HasPayload<_i2.Stream<List<int>>> {
   factory StreamingTraitsWithMediaTypeInputOutput({
-    String? foo,
     _i2.Stream<List<int>>? blob,
+    String? foo,
   }) {
     return _$StreamingTraitsWithMediaTypeInputOutput._(
-      foo: foo,
       blob: blob,
+      foo: foo,
     );
   }
 
@@ -60,30 +59,33 @@ abstract class StreamingTraitsWithMediaTypeInputOutput
         }
       });
 
-  static const List<_i1.SmithySerializer<_i2.Stream<List<int>>?>> serializers =
-      [StreamingTraitsWithMediaTypeInputOutputRestJson1Serializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    StreamingTraitsWithMediaTypeInputOutputRestJson1Serializer()
+  ];
 
-  String? get foo;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(StreamingTraitsWithMediaTypeInputOutputBuilder b) {}
   _i2.Stream<List<int>>? get blob;
+  String? get foo;
   @override
   _i2.Stream<List<int>>? getPayload() => blob;
   @override
   List<Object?> get props => [
-        foo,
         blob,
+        foo,
       ];
   @override
   String toString() {
     final helper =
-        newBuiltValueToStringHelper('StreamingTraitsWithMediaTypeInputOutput')
-          ..add(
-            'foo',
-            foo,
-          )
-          ..add(
-            'blob',
-            blob,
-          );
+        newBuiltValueToStringHelper('StreamingTraitsWithMediaTypeInputOutput');
+    helper.add(
+      'blob',
+      blob,
+    );
+    helper.add(
+      'foo',
+      foo,
+    );
     return helper.toString();
   }
 }
@@ -128,11 +130,14 @@ class StreamingTraitsWithMediaTypeInputOutputRestJson1Serializer
   @override
   Object serialize(
     Serializers serializers,
-    _i2.Stream<List<int>> object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return serializers.serialize(
-      object,
+    final payload = object is StreamingTraitsWithMediaTypeInputOutput
+        ? object.getPayload()
+        : (object as _i2.Stream<List<int>>?);
+    return (serializers.serialize(
+      payload!,
       specifiedType: const FullType(
         _i2.Stream,
         [
@@ -142,6 +147,6 @@ class StreamingTraitsWithMediaTypeInputOutputRestJson1Serializer
           )
         ],
       ),
-    )!;
+    ) as Object);
   }
 }

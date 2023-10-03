@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'confirm_device_request.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.confirm_device_request;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -12,9 +12,9 @@ class _$ConfirmDeviceRequest extends ConfirmDeviceRequest {
   @override
   final String deviceKey;
   @override
-  final DeviceSecretVerifierConfigType? deviceSecretVerifierConfig;
-  @override
   final String? deviceName;
+  @override
+  final _i3.DeviceSecretVerifierConfigType? deviceSecretVerifierConfig;
 
   factory _$ConfirmDeviceRequest(
           [void Function(ConfirmDeviceRequestBuilder)? updates]) =>
@@ -23,8 +23,8 @@ class _$ConfirmDeviceRequest extends ConfirmDeviceRequest {
   _$ConfirmDeviceRequest._(
       {required this.accessToken,
       required this.deviceKey,
-      this.deviceSecretVerifierConfig,
-      this.deviceName})
+      this.deviceName,
+      this.deviceSecretVerifierConfig})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         accessToken, r'ConfirmDeviceRequest', 'accessToken');
@@ -47,8 +47,8 @@ class _$ConfirmDeviceRequest extends ConfirmDeviceRequest {
     return other is ConfirmDeviceRequest &&
         accessToken == other.accessToken &&
         deviceKey == other.deviceKey &&
-        deviceSecretVerifierConfig == other.deviceSecretVerifierConfig &&
-        deviceName == other.deviceName;
+        deviceName == other.deviceName &&
+        deviceSecretVerifierConfig == other.deviceSecretVerifierConfig;
   }
 
   @override
@@ -56,8 +56,8 @@ class _$ConfirmDeviceRequest extends ConfirmDeviceRequest {
     var _$hash = 0;
     _$hash = $jc(_$hash, accessToken.hashCode);
     _$hash = $jc(_$hash, deviceKey.hashCode);
-    _$hash = $jc(_$hash, deviceSecretVerifierConfig.hashCode);
     _$hash = $jc(_$hash, deviceName.hashCode);
+    _$hash = $jc(_$hash, deviceSecretVerifierConfig.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -75,27 +75,30 @@ class ConfirmDeviceRequestBuilder
   String? get deviceKey => _$this._deviceKey;
   set deviceKey(String? deviceKey) => _$this._deviceKey = deviceKey;
 
-  DeviceSecretVerifierConfigTypeBuilder? _deviceSecretVerifierConfig;
-  DeviceSecretVerifierConfigTypeBuilder get deviceSecretVerifierConfig =>
-      _$this._deviceSecretVerifierConfig ??=
-          new DeviceSecretVerifierConfigTypeBuilder();
-  set deviceSecretVerifierConfig(
-          DeviceSecretVerifierConfigTypeBuilder? deviceSecretVerifierConfig) =>
-      _$this._deviceSecretVerifierConfig = deviceSecretVerifierConfig;
-
   String? _deviceName;
   String? get deviceName => _$this._deviceName;
   set deviceName(String? deviceName) => _$this._deviceName = deviceName;
 
-  ConfirmDeviceRequestBuilder();
+  _i3.DeviceSecretVerifierConfigTypeBuilder? _deviceSecretVerifierConfig;
+  _i3.DeviceSecretVerifierConfigTypeBuilder get deviceSecretVerifierConfig =>
+      _$this._deviceSecretVerifierConfig ??=
+          new _i3.DeviceSecretVerifierConfigTypeBuilder();
+  set deviceSecretVerifierConfig(
+          _i3.DeviceSecretVerifierConfigTypeBuilder?
+              deviceSecretVerifierConfig) =>
+      _$this._deviceSecretVerifierConfig = deviceSecretVerifierConfig;
+
+  ConfirmDeviceRequestBuilder() {
+    ConfirmDeviceRequest._init(this);
+  }
 
   ConfirmDeviceRequestBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _accessToken = $v.accessToken;
       _deviceKey = $v.deviceKey;
-      _deviceSecretVerifierConfig = $v.deviceSecretVerifierConfig?.toBuilder();
       _deviceName = $v.deviceName;
+      _deviceSecretVerifierConfig = $v.deviceSecretVerifierConfig?.toBuilder();
       _$v = null;
     }
     return this;
@@ -124,8 +127,8 @@ class ConfirmDeviceRequestBuilder
                   accessToken, r'ConfirmDeviceRequest', 'accessToken'),
               deviceKey: BuiltValueNullFieldError.checkNotNull(
                   deviceKey, r'ConfirmDeviceRequest', 'deviceKey'),
-              deviceSecretVerifierConfig: _deviceSecretVerifierConfig?.build(),
-              deviceName: deviceName);
+              deviceName: deviceName,
+              deviceSecretVerifierConfig: _deviceSecretVerifierConfig?.build());
     } catch (_) {
       late String _$failedField;
       try {

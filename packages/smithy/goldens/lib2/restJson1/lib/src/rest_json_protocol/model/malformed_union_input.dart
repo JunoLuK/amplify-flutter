@@ -1,12 +1,12 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_protocol.model.malformed_union_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v2/src/rest_json_protocol/model/simple_union.dart';
+import 'package:rest_json1_v2/src/rest_json_protocol/model/simple_union.dart'
+    as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'malformed_union_input.g.dart';
@@ -16,7 +16,7 @@ abstract class MalformedUnionInput
         _i1.HttpInput<MalformedUnionInput>,
         _i2.AWSEquatable<MalformedUnionInput>
     implements Built<MalformedUnionInput, MalformedUnionInputBuilder> {
-  factory MalformedUnionInput({SimpleUnion? union}) {
+  factory MalformedUnionInput({_i3.SimpleUnion? union}) {
     return _$MalformedUnionInput._(union: union);
   }
 
@@ -33,22 +33,24 @@ abstract class MalformedUnionInput
   }) =>
       payload;
 
-  static const List<_i1.SmithySerializer<MalformedUnionInput>> serializers = [
+  static const List<_i1.SmithySerializer> serializers = [
     MalformedUnionInputRestJson1Serializer()
   ];
 
-  SimpleUnion? get union;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedUnionInputBuilder b) {}
+  _i3.SimpleUnion? get union;
   @override
   MalformedUnionInput getPayload() => this;
   @override
   List<Object?> get props => [union];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('MalformedUnionInput')
-      ..add(
-        'union',
-        union,
-      );
+    final helper = newBuiltValueToStringHelper('MalformedUnionInput');
+    helper.add(
+      'union',
+      union,
+    );
     return helper.toString();
   }
 }
@@ -81,15 +83,15 @@ class MalformedUnionInputRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'union':
-          result.union = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(SimpleUnion),
-          ) as SimpleUnion);
+          if (value != null) {
+            result.union = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i3.SimpleUnion),
+            ) as _i3.SimpleUnion);
+          }
+          break;
       }
     }
 
@@ -99,19 +101,19 @@ class MalformedUnionInputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    MalformedUnionInput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final MalformedUnionInput(:union) = object;
-    if (union != null) {
-      result$
+    final payload = (object as MalformedUnionInput);
+    final result = <Object?>[];
+    if (payload.union != null) {
+      result
         ..add('union')
         ..add(serializers.serialize(
-          union,
-          specifiedType: const FullType(SimpleUnion),
+          payload.union!,
+          specifiedType: const FullType(_i3.SimpleUnion),
         ));
     }
-    return result$;
+    return result;
   }
 }

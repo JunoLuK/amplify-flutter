@@ -2,12 +2,10 @@
 // SPDX-License-Identifier: Apache-2.0
 import 'package:amplify_core/amplify_core.dart';
 
-/// @nodoc
 /// {@macro amplify_core.auth.get_current_user_options}
 @Deprecated('Use GetCurrentUserOptions instead')
 typedef AuthUserOptions = GetCurrentUserOptions;
 
-/// {@category Auth}
 /// {@template amplify_core.auth.get_current_user_options}
 /// Options for `Amplify.Auth.getCurrentUser`.
 /// {@endtemplate}
@@ -30,7 +28,6 @@ class GetCurrentUserOptions
   @override
   String get runtimeTypeName => 'GetCurrentUserOptions';
 
-  /// @nodoc
   @Deprecated('Use toJson instead')
   Map<String, Object?> serializeAsMap() => toJson();
 
@@ -40,7 +37,6 @@ class GetCurrentUserOptions
       };
 }
 
-/// @nodoc
 /// {@template amplify_core.auth.get_current_user_plugin_options}
 /// Plugin-specific options for `Amplify.Auth.getCurrentUser`.
 /// {@endtemplate}

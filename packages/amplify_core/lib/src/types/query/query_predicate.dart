@@ -58,15 +58,9 @@ class QueryPredicateOperation extends QueryPredicate {
   @override
   bool evaluate(Model model) {
     final fieldName = getFieldName(field);
-    // TODO(Jordan-Nelson): Remove try/catch at next major version bump
-    try {
-      final value = model.toMap()[fieldName];
-      return queryFieldOperator.evaluate(value);
-    } on UnimplementedError {
-      final value = model.toJson()[fieldName];
-      // ignore: deprecated_member_use_from_same_package
-      return queryFieldOperator.evaluateSerialized(value);
-    }
+    //ignore:implicit_dynamic_variable
+    final value = model.toJson()[fieldName];
+    return queryFieldOperator.evaluate(value);
   }
 
   @override
@@ -148,7 +142,7 @@ class QueryPredicateGroup extends QueryPredicate {
       'queryPredicateGroup': <String, dynamic>{
         'type': type.name,
         'predicates':
-            predicates.map((predicate) => predicate.serializeAsMap()).toList(),
+            predicates.map((predicate) => predicate.serializeAsMap()).toList()
       },
     };
   }

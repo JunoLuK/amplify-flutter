@@ -1,17 +1,5 @@
-/*
-* Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-*
-* Licensed under the Apache License, Version 2.0 (the "License").
-* You may not use this file except in compliance with the License.
-* A copy of the License is located at
-*
-*  http://aws.amazon.com/apache2.0
-*
-* or in the "license" file accompanying this file. This file is distributed
-* on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
-* express or implied. See the License for the specific language governing
-* permissions and limitations under the License.
-*/
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: Apache-2.0
 
 // NOTE: This file is generated and may not follow lint rules defined in your app
 // Generated files can be excluded from analysis in analysis_options.yaml
@@ -19,17 +7,18 @@
 
 // ignore_for_file: public_member_api_docs, annotate_overrides, dead_code, dead_codepublic_member_api_docs, depend_on_referenced_packages, file_names, library_private_types_in_public_api, no_leading_underscores_for_library_prefixes, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, null_check_on_nullable_type_parameter, prefer_adjacent_string_concatenation, prefer_const_constructors, prefer_if_null_operators, prefer_interpolation_to_compose_strings, slash_for_doc_comments, sort_child_properties_last, unnecessary_const, unnecessary_constructor_name, unnecessary_late, unnecessary_new, unnecessary_null_aware_assignments, unnecessary_nullable_for_final_variable_declarations, unnecessary_string_interpolations, use_build_context_synchronously
 
-import 'ModelProvider.dart';
-import 'package:amplify_core/amplify_core.dart' as amplify_core;
+import 'package:amplify_core/amplify_core.dart';
+import 'package:flutter/foundation.dart';
 
-/** This is an auto generated class representing the HasManyChildExplicit type in your schema. */
-class HasManyChildExplicit extends amplify_core.Model {
-  static const classType = const _HasManyChildExplicitModelType();
+/// This is an auto generated class representing the HasManyChildExplicit type in your schema.
+@immutable
+class HasManyChildExplicit extends Model {
+  static const classType = _HasManyChildExplicitModelType();
   final String id;
   final String? _name;
   final String? _hasManyParentID;
-  final amplify_core.TemporalDateTime? _createdAt;
-  final amplify_core.TemporalDateTime? _updatedAt;
+  final TemporalDateTime? _createdAt;
+  final TemporalDateTime? _updatedAt;
 
   @override
   getInstanceType() => classType;
@@ -51,20 +40,20 @@ class HasManyChildExplicit extends amplify_core.Model {
     try {
       return _hasManyParentID!;
     } catch (e) {
-      throw amplify_core.AmplifyCodeGenModelException(
-          amplify_core.AmplifyExceptionMessages
+      throw AmplifyCodeGenModelException(
+          AmplifyExceptionMessages
               .codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion: amplify_core.AmplifyExceptionMessages
+          recoverySuggestion: AmplifyExceptionMessages
               .codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString());
     }
   }
 
-  amplify_core.TemporalDateTime? get createdAt {
+  TemporalDateTime? get createdAt {
     return _createdAt;
   }
 
-  amplify_core.TemporalDateTime? get updatedAt {
+  TemporalDateTime? get updatedAt {
     return _updatedAt;
   }
 
@@ -78,7 +67,7 @@ class HasManyChildExplicit extends amplify_core.Model {
   factory HasManyChildExplicit(
       {String? id, String? name, required String hasManyParentID}) {
     return HasManyChildExplicit._internal(
-        id: id == null ? amplify_core.UUID.getUUID() : id,
+        id: id == null ? UUID.getUUID() : id,
         name: name,
         hasManyParentID: hasManyParentID);
   }
@@ -101,7 +90,7 @@ class HasManyChildExplicit extends amplify_core.Model {
 
   @override
   String toString() {
-    var buffer = new StringBuffer();
+    var buffer = StringBuffer();
 
     buffer.write("HasManyChildExplicit {");
     buffer.write("id=" + "$id" + ", ");
@@ -124,26 +113,15 @@ class HasManyChildExplicit extends amplify_core.Model {
         hasManyParentID: hasManyParentID ?? this.hasManyParentID);
   }
 
-  HasManyChildExplicit copyWithModelFieldValues(
-      {ModelFieldValue<String?>? name,
-      ModelFieldValue<String>? hasManyParentID}) {
-    return HasManyChildExplicit._internal(
-        id: id,
-        name: name == null ? this.name : name.value,
-        hasManyParentID: hasManyParentID == null
-            ? this.hasManyParentID
-            : hasManyParentID.value);
-  }
-
   HasManyChildExplicit.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         _name = json['name'],
         _hasManyParentID = json['hasManyParentID'],
         _createdAt = json['createdAt'] != null
-            ? amplify_core.TemporalDateTime.fromString(json['createdAt'])
+            ? TemporalDateTime.fromString(json['createdAt'])
             : null,
         _updatedAt = json['updatedAt'] != null
-            ? amplify_core.TemporalDateTime.fromString(json['updatedAt'])
+            ? TemporalDateTime.fromString(json['updatedAt'])
             : null;
 
   Map<String, dynamic> toJson() => {
@@ -154,88 +132,66 @@ class HasManyChildExplicit extends amplify_core.Model {
         'updatedAt': _updatedAt?.format()
       };
 
-  Map<String, Object?> toMap() => {
-        'id': id,
-        'name': _name,
-        'hasManyParentID': _hasManyParentID,
-        'createdAt': _createdAt,
-        'updatedAt': _updatedAt
-      };
-
-  static final amplify_core
-      .QueryModelIdentifier<HasManyChildExplicitModelIdentifier>
+  static final QueryModelIdentifier<HasManyChildExplicitModelIdentifier>
       MODEL_IDENTIFIER =
-      amplify_core.QueryModelIdentifier<HasManyChildExplicitModelIdentifier>();
-  static final ID = amplify_core.QueryField(fieldName: "id");
-  static final NAME = amplify_core.QueryField(fieldName: "name");
-  static final HASMANYPARENTID =
-      amplify_core.QueryField(fieldName: "hasManyParentID");
-  static var schema = amplify_core.Model.defineSchema(
-      define: (amplify_core.ModelSchemaDefinition modelSchemaDefinition) {
+      QueryModelIdentifier<HasManyChildExplicitModelIdentifier>();
+  static final QueryField ID = QueryField(fieldName: "id");
+  static final QueryField NAME = QueryField(fieldName: "name");
+  static final QueryField HASMANYPARENTID =
+      QueryField(fieldName: "hasManyParentID");
+  static var schema =
+      Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "HasManyChildExplicit";
     modelSchemaDefinition.pluralName = "HasManyChildExplicits";
 
     modelSchemaDefinition.indexes = [
-      amplify_core.ModelIndex(
+      ModelIndex(
           fields: const ["hasManyParentID", "name"], name: "byHasManyParent")
     ];
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.id());
+    modelSchemaDefinition.addField(ModelFieldDefinition.id());
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: HasManyChildExplicit.NAME,
         isRequired: false,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.string)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.string)));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
         key: HasManyChildExplicit.HASMANYPARENTID,
         isRequired: true,
-        ofType: amplify_core.ModelFieldType(
-            amplify_core.ModelFieldTypeEnum.string)));
+        ofType: ModelFieldType(ModelFieldTypeEnum.string)));
 
-    modelSchemaDefinition.addField(
-        amplify_core.ModelFieldDefinition.nonQueryField(
-            fieldName: 'createdAt',
-            isRequired: false,
-            isReadOnly: true,
-            ofType: amplify_core.ModelFieldType(
-                amplify_core.ModelFieldTypeEnum.dateTime)));
+    modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(
+        fieldName: 'createdAt',
+        isRequired: false,
+        isReadOnly: true,
+        ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)));
 
-    modelSchemaDefinition.addField(
-        amplify_core.ModelFieldDefinition.nonQueryField(
-            fieldName: 'updatedAt',
-            isRequired: false,
-            isReadOnly: true,
-            ofType: amplify_core.ModelFieldType(
-                amplify_core.ModelFieldTypeEnum.dateTime)));
+    modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(
+        fieldName: 'updatedAt',
+        isRequired: false,
+        isReadOnly: true,
+        ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)));
   });
 }
 
-class _HasManyChildExplicitModelType
-    extends amplify_core.ModelType<HasManyChildExplicit> {
+class _HasManyChildExplicitModelType extends ModelType<HasManyChildExplicit> {
   const _HasManyChildExplicitModelType();
 
   @override
   HasManyChildExplicit fromJson(Map<String, dynamic> jsonData) {
     return HasManyChildExplicit.fromJson(jsonData);
   }
-
-  @override
-  String modelName() {
-    return 'HasManyChildExplicit';
-  }
 }
 
-/**
- * This is an auto generated class representing the model identifier
- * of [HasManyChildExplicit] in your schema.
- */
+/// This is an auto generated class representing the model identifier
+/// of [HasManyChildExplicit] in your schema.
+@immutable
 class HasManyChildExplicitModelIdentifier
-    implements amplify_core.ModelIdentifier<HasManyChildExplicit> {
+    implements ModelIdentifier<HasManyChildExplicit> {
   final String id;
 
-  /** Create an instance of HasManyChildExplicitModelIdentifier using [id] the primary key. */
+  /// Create an instance of HasManyChildExplicitModelIdentifier using [id] the primary key.
   const HasManyChildExplicitModelIdentifier({required this.id});
 
   @override

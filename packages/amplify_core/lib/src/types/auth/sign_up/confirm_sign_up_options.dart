@@ -3,7 +3,6 @@
 
 import 'package:amplify_core/amplify_core.dart';
 
-/// {@category Auth}
 /// {@template amplify_core.types.auth.confirm_sign_up_options}
 /// Options passed to `Amplify.Auth.confirmSignUp`.
 /// {@endtemplate}
@@ -26,7 +25,6 @@ class ConfirmSignUpOptions
   @override
   String get runtimeTypeName => 'ConfirmSignUpOptions';
 
-  /// @nodoc
   @Deprecated('Use toJson instead')
   Map<String, Object?> serializeAsMap() => toJson();
 
@@ -36,7 +34,6 @@ class ConfirmSignUpOptions
       };
 }
 
-/// @nodoc
 /// {@template amplify_core.auth.confirm_sign_up_plugin_options}
 /// Plugin-specific options for `Amplify.Auth.confirmSignUp`.
 /// {@endtemplate}

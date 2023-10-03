@@ -10,16 +10,15 @@ import 'package:amplify_auth_cognito/src/flows/hosted_ui/hosted_ui_platform_flut
 import 'package:amplify_auth_cognito/src/native_auth_plugin.g.dart';
 import 'package:amplify_auth_cognito_dart/src/state/state.dart';
 import 'package:amplify_auth_cognito_test/amplify_auth_cognito_test.dart';
-import 'package:amplify_auth_integration_test/amplify_auth_integration_test.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 
-import 'test_runner.dart';
+import 'utils/setup_utils.dart';
 
 void main() {
-  testRunner.setupTests();
+  initTests();
 
   group(
     'NativeAuthBridge',
@@ -42,9 +41,11 @@ void main() {
         platform = HostedUiPlatformImpl(dependencyManager);
       });
 
-      asyncTest('signInWithUrl', (_) async {
+      tearDown(Amplify.reset);
+
+      test('signInWithUrl', () async {
         const options = CognitoSignInWithWebUIPluginOptions(
-          isPreferPrivateSession: false,
+          isPreferPrivateSession: true,
           browserPackageName: browserPackage,
         );
         dependencyManager
@@ -58,7 +59,7 @@ void main() {
               ) async {
                 expect(argUrl, contains(hostedUiConfig.webDomain));
                 expect(argCallbackurlscheme, testUrlScheme);
-                expect(argPreferprivatesession, isFalse);
+                expect(argPreferprivatesession, isTrue);
                 expect(argBrowserpackagename, browserPackage);
                 return {'code': 'code', 'state': 'state'};
               }),
@@ -70,9 +71,9 @@ void main() {
         await platform.signIn(options: options);
       });
 
-      asyncTest('signOutWithUrl', (_) async {
+      test('signOutWithUrl', () async {
         const options = CognitoSignInWithWebUIPluginOptions(
-          isPreferPrivateSession: false,
+          isPreferPrivateSession: true,
           browserPackageName: browserPackage,
         );
         dependencyManager
@@ -86,7 +87,7 @@ void main() {
               ) async {
                 expect(argUrl, contains(hostedUiConfig.webDomain));
                 expect(argCallbackurlscheme, testUrlScheme);
-                expect(argPreferprivatesession, isFalse);
+                expect(argPreferprivatesession, isTrue);
                 expect(argBrowserpackagename, browserPackage);
               }),
             ),
@@ -118,6 +119,9 @@ class MockNativeAuthBridge extends Fake implements NativeAuthBridge {
 
   final SignInOutFn<Map<String?, String?>>? _signInWithUrl;
   final SignInOutFn<void>? _signOutWithUrl;
+
+  @override
+  Future<void> addPlugin() async {}
 
   @override
   Future<Map<String?, String?>> signInWithUrl(

@@ -13,9 +13,8 @@ abstract class MapShape implements Shape, Built<MapShape, MapShapeBuilder> {
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MapShapeBuilder b) {
-    b
-      ..shapeId = ShapeId.empty
-      ..traits = TraitMap.empty();
+    b.shapeId = ShapeId.empty;
+    b.traits = TraitMap.empty();
   }
 
   ShapeRef get key;

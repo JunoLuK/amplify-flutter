@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v1.rest_xml_protocol.model.xml_attributes_input_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -18,12 +17,12 @@ abstract class XmlAttributesInputOutput
     implements
         Built<XmlAttributesInputOutput, XmlAttributesInputOutputBuilder> {
   factory XmlAttributesInputOutput({
-    String? foo,
     String? attr,
+    String? foo,
   }) {
     return _$XmlAttributesInputOutput._(
-      foo: foo,
       attr: attr,
+      foo: foo,
     );
   }
 
@@ -47,29 +46,32 @@ abstract class XmlAttributesInputOutput
   ) =>
       payload;
 
-  static const List<_i1.SmithySerializer<XmlAttributesInputOutput>>
-      serializers = [XmlAttributesInputOutputRestXmlSerializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    XmlAttributesInputOutputRestXmlSerializer()
+  ];
 
-  String? get foo;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(XmlAttributesInputOutputBuilder b) {}
   String? get attr;
+  String? get foo;
   @override
   XmlAttributesInputOutput getPayload() => this;
   @override
   List<Object?> get props => [
-        foo,
         attr,
+        foo,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('XmlAttributesInputOutput')
-      ..add(
-        'foo',
-        foo,
-      )
-      ..add(
-        'attr',
-        attr,
-      );
+    final helper = newBuiltValueToStringHelper('XmlAttributesInputOutput');
+    helper.add(
+      'attr',
+      attr,
+    );
+    helper.add(
+      'foo',
+      foo,
+    );
     return helper.toString();
   }
 }
@@ -100,23 +102,26 @@ class XmlAttributesInputOutputRestXmlSerializer
     final result = XmlAttributesInputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'test':
-          result.attr = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.attr = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'foo':
-          result.foo = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.foo = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -126,30 +131,30 @@ class XmlAttributesInputOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    XmlAttributesInputOutput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final payload = (object as XmlAttributesInputOutput);
+    final result = <Object?>[
       const _i1.XmlElementName('XmlAttributesInputOutput')
     ];
-    final XmlAttributesInputOutput(:attr, :foo) = object;
-    if (attr != null) {
-      result$.add(_i3.XmlAttribute(
+    if (payload.attr != null) {
+      result.add(_i3.XmlAttribute(
         _i3.XmlName('test'),
         (serializers.serialize(
-          attr,
+          payload.attr!,
           specifiedType: const FullType(String),
         ) as String),
       ));
     }
-    if (foo != null) {
-      result$
+    if (payload.foo != null) {
+      result
         ..add(const _i1.XmlElementName('foo'))
         ..add(serializers.serialize(
-          foo,
+          payload.foo!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

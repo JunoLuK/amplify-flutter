@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'sign_up_request.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.sign_up_request;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,44 +8,44 @@ part of 'sign_up_request.dart';
 
 class _$SignUpRequest extends SignUpRequest {
   @override
+  final _i3.AnalyticsMetadataType? analyticsMetadata;
+  @override
   final String clientId;
   @override
-  final String? secretHash;
-  @override
-  final String username;
+  final _i6.BuiltMap<String, String>? clientMetadata;
   @override
   final String password;
   @override
-  final _i3.BuiltList<AttributeType>? userAttributes;
+  final String? secretHash;
   @override
-  final _i3.BuiltList<AttributeType>? validationData;
+  final _i6.BuiltList<_i4.AttributeType>? userAttributes;
   @override
-  final AnalyticsMetadataType? analyticsMetadata;
+  final _i5.UserContextDataType? userContextData;
   @override
-  final UserContextDataType? userContextData;
+  final String username;
   @override
-  final _i3.BuiltMap<String, String>? clientMetadata;
+  final _i6.BuiltList<_i4.AttributeType>? validationData;
 
   factory _$SignUpRequest([void Function(SignUpRequestBuilder)? updates]) =>
       (new SignUpRequestBuilder()..update(updates))._build();
 
   _$SignUpRequest._(
-      {required this.clientId,
-      this.secretHash,
-      required this.username,
+      {this.analyticsMetadata,
+      required this.clientId,
+      this.clientMetadata,
       required this.password,
+      this.secretHash,
       this.userAttributes,
-      this.validationData,
-      this.analyticsMetadata,
       this.userContextData,
-      this.clientMetadata})
+      required this.username,
+      this.validationData})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         clientId, r'SignUpRequest', 'clientId');
     BuiltValueNullFieldError.checkNotNull(
-        username, r'SignUpRequest', 'username');
-    BuiltValueNullFieldError.checkNotNull(
         password, r'SignUpRequest', 'password');
+    BuiltValueNullFieldError.checkNotNull(
+        username, r'SignUpRequest', 'username');
   }
 
   @override
@@ -59,29 +59,29 @@ class _$SignUpRequest extends SignUpRequest {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is SignUpRequest &&
-        clientId == other.clientId &&
-        secretHash == other.secretHash &&
-        username == other.username &&
-        password == other.password &&
-        userAttributes == other.userAttributes &&
-        validationData == other.validationData &&
         analyticsMetadata == other.analyticsMetadata &&
+        clientId == other.clientId &&
+        clientMetadata == other.clientMetadata &&
+        password == other.password &&
+        secretHash == other.secretHash &&
+        userAttributes == other.userAttributes &&
         userContextData == other.userContextData &&
-        clientMetadata == other.clientMetadata;
+        username == other.username &&
+        validationData == other.validationData;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, clientId.hashCode);
-    _$hash = $jc(_$hash, secretHash.hashCode);
-    _$hash = $jc(_$hash, username.hashCode);
-    _$hash = $jc(_$hash, password.hashCode);
-    _$hash = $jc(_$hash, userAttributes.hashCode);
-    _$hash = $jc(_$hash, validationData.hashCode);
     _$hash = $jc(_$hash, analyticsMetadata.hashCode);
-    _$hash = $jc(_$hash, userContextData.hashCode);
+    _$hash = $jc(_$hash, clientId.hashCode);
     _$hash = $jc(_$hash, clientMetadata.hashCode);
+    _$hash = $jc(_$hash, password.hashCode);
+    _$hash = $jc(_$hash, secretHash.hashCode);
+    _$hash = $jc(_$hash, userAttributes.hashCode);
+    _$hash = $jc(_$hash, userContextData.hashCode);
+    _$hash = $jc(_$hash, username.hashCode);
+    _$hash = $jc(_$hash, validationData.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -91,66 +91,68 @@ class SignUpRequestBuilder
     implements Builder<SignUpRequest, SignUpRequestBuilder> {
   _$SignUpRequest? _$v;
 
+  _i3.AnalyticsMetadataTypeBuilder? _analyticsMetadata;
+  _i3.AnalyticsMetadataTypeBuilder get analyticsMetadata =>
+      _$this._analyticsMetadata ??= new _i3.AnalyticsMetadataTypeBuilder();
+  set analyticsMetadata(_i3.AnalyticsMetadataTypeBuilder? analyticsMetadata) =>
+      _$this._analyticsMetadata = analyticsMetadata;
+
   String? _clientId;
   String? get clientId => _$this._clientId;
   set clientId(String? clientId) => _$this._clientId = clientId;
 
-  String? _secretHash;
-  String? get secretHash => _$this._secretHash;
-  set secretHash(String? secretHash) => _$this._secretHash = secretHash;
-
-  String? _username;
-  String? get username => _$this._username;
-  set username(String? username) => _$this._username = username;
+  _i6.MapBuilder<String, String>? _clientMetadata;
+  _i6.MapBuilder<String, String> get clientMetadata =>
+      _$this._clientMetadata ??= new _i6.MapBuilder<String, String>();
+  set clientMetadata(_i6.MapBuilder<String, String>? clientMetadata) =>
+      _$this._clientMetadata = clientMetadata;
 
   String? _password;
   String? get password => _$this._password;
   set password(String? password) => _$this._password = password;
 
-  _i3.ListBuilder<AttributeType>? _userAttributes;
-  _i3.ListBuilder<AttributeType> get userAttributes =>
-      _$this._userAttributes ??= new _i3.ListBuilder<AttributeType>();
-  set userAttributes(_i3.ListBuilder<AttributeType>? userAttributes) =>
+  String? _secretHash;
+  String? get secretHash => _$this._secretHash;
+  set secretHash(String? secretHash) => _$this._secretHash = secretHash;
+
+  _i6.ListBuilder<_i4.AttributeType>? _userAttributes;
+  _i6.ListBuilder<_i4.AttributeType> get userAttributes =>
+      _$this._userAttributes ??= new _i6.ListBuilder<_i4.AttributeType>();
+  set userAttributes(_i6.ListBuilder<_i4.AttributeType>? userAttributes) =>
       _$this._userAttributes = userAttributes;
 
-  _i3.ListBuilder<AttributeType>? _validationData;
-  _i3.ListBuilder<AttributeType> get validationData =>
-      _$this._validationData ??= new _i3.ListBuilder<AttributeType>();
-  set validationData(_i3.ListBuilder<AttributeType>? validationData) =>
-      _$this._validationData = validationData;
-
-  AnalyticsMetadataTypeBuilder? _analyticsMetadata;
-  AnalyticsMetadataTypeBuilder get analyticsMetadata =>
-      _$this._analyticsMetadata ??= new AnalyticsMetadataTypeBuilder();
-  set analyticsMetadata(AnalyticsMetadataTypeBuilder? analyticsMetadata) =>
-      _$this._analyticsMetadata = analyticsMetadata;
-
-  UserContextDataTypeBuilder? _userContextData;
-  UserContextDataTypeBuilder get userContextData =>
-      _$this._userContextData ??= new UserContextDataTypeBuilder();
-  set userContextData(UserContextDataTypeBuilder? userContextData) =>
+  _i5.UserContextDataTypeBuilder? _userContextData;
+  _i5.UserContextDataTypeBuilder get userContextData =>
+      _$this._userContextData ??= new _i5.UserContextDataTypeBuilder();
+  set userContextData(_i5.UserContextDataTypeBuilder? userContextData) =>
       _$this._userContextData = userContextData;
 
-  _i3.MapBuilder<String, String>? _clientMetadata;
-  _i3.MapBuilder<String, String> get clientMetadata =>
-      _$this._clientMetadata ??= new _i3.MapBuilder<String, String>();
-  set clientMetadata(_i3.MapBuilder<String, String>? clientMetadata) =>
-      _$this._clientMetadata = clientMetadata;
+  String? _username;
+  String? get username => _$this._username;
+  set username(String? username) => _$this._username = username;
 
-  SignUpRequestBuilder();
+  _i6.ListBuilder<_i4.AttributeType>? _validationData;
+  _i6.ListBuilder<_i4.AttributeType> get validationData =>
+      _$this._validationData ??= new _i6.ListBuilder<_i4.AttributeType>();
+  set validationData(_i6.ListBuilder<_i4.AttributeType>? validationData) =>
+      _$this._validationData = validationData;
+
+  SignUpRequestBuilder() {
+    SignUpRequest._init(this);
+  }
 
   SignUpRequestBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _clientId = $v.clientId;
-      _secretHash = $v.secretHash;
-      _username = $v.username;
-      _password = $v.password;
-      _userAttributes = $v.userAttributes?.toBuilder();
-      _validationData = $v.validationData?.toBuilder();
       _analyticsMetadata = $v.analyticsMetadata?.toBuilder();
-      _userContextData = $v.userContextData?.toBuilder();
+      _clientId = $v.clientId;
       _clientMetadata = $v.clientMetadata?.toBuilder();
+      _password = $v.password;
+      _secretHash = $v.secretHash;
+      _userAttributes = $v.userAttributes?.toBuilder();
+      _userContextData = $v.userContextData?.toBuilder();
+      _username = $v.username;
+      _validationData = $v.validationData?.toBuilder();
       _$v = null;
     }
     return this;
@@ -175,31 +177,34 @@ class SignUpRequestBuilder
     try {
       _$result = _$v ??
           new _$SignUpRequest._(
+              analyticsMetadata: _analyticsMetadata?.build(),
               clientId: BuiltValueNullFieldError.checkNotNull(
                   clientId, r'SignUpRequest', 'clientId'),
-              secretHash: secretHash,
-              username: BuiltValueNullFieldError.checkNotNull(
-                  username, r'SignUpRequest', 'username'),
+              clientMetadata: _clientMetadata?.build(),
               password: BuiltValueNullFieldError.checkNotNull(
                   password, r'SignUpRequest', 'password'),
+              secretHash: secretHash,
               userAttributes: _userAttributes?.build(),
-              validationData: _validationData?.build(),
-              analyticsMetadata: _analyticsMetadata?.build(),
               userContextData: _userContextData?.build(),
-              clientMetadata: _clientMetadata?.build());
+              username: BuiltValueNullFieldError.checkNotNull(
+                  username, r'SignUpRequest', 'username'),
+              validationData: _validationData?.build());
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'userAttributes';
-        _userAttributes?.build();
-        _$failedField = 'validationData';
-        _validationData?.build();
         _$failedField = 'analyticsMetadata';
         _analyticsMetadata?.build();
-        _$failedField = 'userContextData';
-        _userContextData?.build();
+
         _$failedField = 'clientMetadata';
         _clientMetadata?.build();
+
+        _$failedField = 'userAttributes';
+        _userAttributes?.build();
+        _$failedField = 'userContextData';
+        _userContextData?.build();
+
+        _$failedField = 'validationData';
+        _validationData?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'SignUpRequest', _$failedField, e.toString());

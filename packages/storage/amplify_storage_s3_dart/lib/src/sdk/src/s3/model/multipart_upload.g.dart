@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'multipart_upload.dart';
+part of amplify_storage_s3_dart.s3.model.multipart_upload;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,31 +8,31 @@ part of 'multipart_upload.dart';
 
 class _$MultipartUpload extends MultipartUpload {
   @override
-  final String? uploadId;
-  @override
-  final String? key;
+  final _i2.ChecksumAlgorithm? checksumAlgorithm;
   @override
   final DateTime? initiated;
   @override
-  final StorageClass? storageClass;
+  final _i3.Initiator? initiator;
   @override
-  final Owner? owner;
+  final String? key;
   @override
-  final Initiator? initiator;
+  final _i4.Owner? owner;
   @override
-  final ChecksumAlgorithm? checksumAlgorithm;
+  final _i5.StorageClass? storageClass;
+  @override
+  final String? uploadId;
 
   factory _$MultipartUpload([void Function(MultipartUploadBuilder)? updates]) =>
       (new MultipartUploadBuilder()..update(updates))._build();
 
   _$MultipartUpload._(
-      {this.uploadId,
-      this.key,
+      {this.checksumAlgorithm,
       this.initiated,
-      this.storageClass,
-      this.owner,
       this.initiator,
-      this.checksumAlgorithm})
+      this.key,
+      this.owner,
+      this.storageClass,
+      this.uploadId})
       : super._();
 
   @override
@@ -47,25 +47,25 @@ class _$MultipartUpload extends MultipartUpload {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is MultipartUpload &&
-        uploadId == other.uploadId &&
-        key == other.key &&
+        checksumAlgorithm == other.checksumAlgorithm &&
         initiated == other.initiated &&
-        storageClass == other.storageClass &&
-        owner == other.owner &&
         initiator == other.initiator &&
-        checksumAlgorithm == other.checksumAlgorithm;
+        key == other.key &&
+        owner == other.owner &&
+        storageClass == other.storageClass &&
+        uploadId == other.uploadId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, uploadId.hashCode);
-    _$hash = $jc(_$hash, key.hashCode);
-    _$hash = $jc(_$hash, initiated.hashCode);
-    _$hash = $jc(_$hash, storageClass.hashCode);
-    _$hash = $jc(_$hash, owner.hashCode);
-    _$hash = $jc(_$hash, initiator.hashCode);
     _$hash = $jc(_$hash, checksumAlgorithm.hashCode);
+    _$hash = $jc(_$hash, initiated.hashCode);
+    _$hash = $jc(_$hash, initiator.hashCode);
+    _$hash = $jc(_$hash, key.hashCode);
+    _$hash = $jc(_$hash, owner.hashCode);
+    _$hash = $jc(_$hash, storageClass.hashCode);
+    _$hash = $jc(_$hash, uploadId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -75,49 +75,52 @@ class MultipartUploadBuilder
     implements Builder<MultipartUpload, MultipartUploadBuilder> {
   _$MultipartUpload? _$v;
 
-  String? _uploadId;
-  String? get uploadId => _$this._uploadId;
-  set uploadId(String? uploadId) => _$this._uploadId = uploadId;
-
-  String? _key;
-  String? get key => _$this._key;
-  set key(String? key) => _$this._key = key;
+  _i2.ChecksumAlgorithm? _checksumAlgorithm;
+  _i2.ChecksumAlgorithm? get checksumAlgorithm => _$this._checksumAlgorithm;
+  set checksumAlgorithm(_i2.ChecksumAlgorithm? checksumAlgorithm) =>
+      _$this._checksumAlgorithm = checksumAlgorithm;
 
   DateTime? _initiated;
   DateTime? get initiated => _$this._initiated;
   set initiated(DateTime? initiated) => _$this._initiated = initiated;
 
-  StorageClass? _storageClass;
-  StorageClass? get storageClass => _$this._storageClass;
-  set storageClass(StorageClass? storageClass) =>
+  _i3.InitiatorBuilder? _initiator;
+  _i3.InitiatorBuilder get initiator =>
+      _$this._initiator ??= new _i3.InitiatorBuilder();
+  set initiator(_i3.InitiatorBuilder? initiator) =>
+      _$this._initiator = initiator;
+
+  String? _key;
+  String? get key => _$this._key;
+  set key(String? key) => _$this._key = key;
+
+  _i4.OwnerBuilder? _owner;
+  _i4.OwnerBuilder get owner => _$this._owner ??= new _i4.OwnerBuilder();
+  set owner(_i4.OwnerBuilder? owner) => _$this._owner = owner;
+
+  _i5.StorageClass? _storageClass;
+  _i5.StorageClass? get storageClass => _$this._storageClass;
+  set storageClass(_i5.StorageClass? storageClass) =>
       _$this._storageClass = storageClass;
 
-  OwnerBuilder? _owner;
-  OwnerBuilder get owner => _$this._owner ??= new OwnerBuilder();
-  set owner(OwnerBuilder? owner) => _$this._owner = owner;
+  String? _uploadId;
+  String? get uploadId => _$this._uploadId;
+  set uploadId(String? uploadId) => _$this._uploadId = uploadId;
 
-  InitiatorBuilder? _initiator;
-  InitiatorBuilder get initiator =>
-      _$this._initiator ??= new InitiatorBuilder();
-  set initiator(InitiatorBuilder? initiator) => _$this._initiator = initiator;
-
-  ChecksumAlgorithm? _checksumAlgorithm;
-  ChecksumAlgorithm? get checksumAlgorithm => _$this._checksumAlgorithm;
-  set checksumAlgorithm(ChecksumAlgorithm? checksumAlgorithm) =>
-      _$this._checksumAlgorithm = checksumAlgorithm;
-
-  MultipartUploadBuilder();
+  MultipartUploadBuilder() {
+    MultipartUpload._init(this);
+  }
 
   MultipartUploadBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _uploadId = $v.uploadId;
-      _key = $v.key;
-      _initiated = $v.initiated;
-      _storageClass = $v.storageClass;
-      _owner = $v.owner?.toBuilder();
-      _initiator = $v.initiator?.toBuilder();
       _checksumAlgorithm = $v.checksumAlgorithm;
+      _initiated = $v.initiated;
+      _initiator = $v.initiator?.toBuilder();
+      _key = $v.key;
+      _owner = $v.owner?.toBuilder();
+      _storageClass = $v.storageClass;
+      _uploadId = $v.uploadId;
       _$v = null;
     }
     return this;
@@ -142,20 +145,21 @@ class MultipartUploadBuilder
     try {
       _$result = _$v ??
           new _$MultipartUpload._(
-              uploadId: uploadId,
-              key: key,
+              checksumAlgorithm: checksumAlgorithm,
               initiated: initiated,
-              storageClass: storageClass,
-              owner: _owner?.build(),
               initiator: _initiator?.build(),
-              checksumAlgorithm: checksumAlgorithm);
+              key: key,
+              owner: _owner?.build(),
+              storageClass: storageClass,
+              uploadId: uploadId);
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'owner';
-        _owner?.build();
         _$failedField = 'initiator';
         _initiator?.build();
+
+        _$failedField = 'owner';
+        _owner?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'MultipartUpload', _$failedField, e.toString());

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'malformed_boolean_input.dart';
+part of rest_json1_v2.rest_json_protocol.model.malformed_boolean_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -10,11 +10,11 @@ class _$MalformedBooleanInput extends MalformedBooleanInput {
   @override
   final bool? booleanInBody;
   @override
+  final bool? booleanInHeader;
+  @override
   final bool booleanInPath;
   @override
   final bool? booleanInQuery;
-  @override
-  final bool? booleanInHeader;
 
   factory _$MalformedBooleanInput(
           [void Function(MalformedBooleanInputBuilder)? updates]) =>
@@ -22,9 +22,9 @@ class _$MalformedBooleanInput extends MalformedBooleanInput {
 
   _$MalformedBooleanInput._(
       {this.booleanInBody,
+      this.booleanInHeader,
       required this.booleanInPath,
-      this.booleanInQuery,
-      this.booleanInHeader})
+      this.booleanInQuery})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         booleanInPath, r'MalformedBooleanInput', 'booleanInPath');
@@ -44,18 +44,18 @@ class _$MalformedBooleanInput extends MalformedBooleanInput {
     if (identical(other, this)) return true;
     return other is MalformedBooleanInput &&
         booleanInBody == other.booleanInBody &&
+        booleanInHeader == other.booleanInHeader &&
         booleanInPath == other.booleanInPath &&
-        booleanInQuery == other.booleanInQuery &&
-        booleanInHeader == other.booleanInHeader;
+        booleanInQuery == other.booleanInQuery;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, booleanInBody.hashCode);
+    _$hash = $jc(_$hash, booleanInHeader.hashCode);
     _$hash = $jc(_$hash, booleanInPath.hashCode);
     _$hash = $jc(_$hash, booleanInQuery.hashCode);
-    _$hash = $jc(_$hash, booleanInHeader.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -70,6 +70,11 @@ class MalformedBooleanInputBuilder
   set booleanInBody(bool? booleanInBody) =>
       _$this._booleanInBody = booleanInBody;
 
+  bool? _booleanInHeader;
+  bool? get booleanInHeader => _$this._booleanInHeader;
+  set booleanInHeader(bool? booleanInHeader) =>
+      _$this._booleanInHeader = booleanInHeader;
+
   bool? _booleanInPath;
   bool? get booleanInPath => _$this._booleanInPath;
   set booleanInPath(bool? booleanInPath) =>
@@ -80,20 +85,17 @@ class MalformedBooleanInputBuilder
   set booleanInQuery(bool? booleanInQuery) =>
       _$this._booleanInQuery = booleanInQuery;
 
-  bool? _booleanInHeader;
-  bool? get booleanInHeader => _$this._booleanInHeader;
-  set booleanInHeader(bool? booleanInHeader) =>
-      _$this._booleanInHeader = booleanInHeader;
-
-  MalformedBooleanInputBuilder();
+  MalformedBooleanInputBuilder() {
+    MalformedBooleanInput._init(this);
+  }
 
   MalformedBooleanInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _booleanInBody = $v.booleanInBody;
+      _booleanInHeader = $v.booleanInHeader;
       _booleanInPath = $v.booleanInPath;
       _booleanInQuery = $v.booleanInQuery;
-      _booleanInHeader = $v.booleanInHeader;
       _$v = null;
     }
     return this;
@@ -117,10 +119,10 @@ class MalformedBooleanInputBuilder
     final _$result = _$v ??
         new _$MalformedBooleanInput._(
             booleanInBody: booleanInBody,
+            booleanInHeader: booleanInHeader,
             booleanInPath: BuiltValueNullFieldError.checkNotNull(
                 booleanInPath, r'MalformedBooleanInput', 'booleanInPath'),
-            booleanInQuery: booleanInQuery,
-            booleanInHeader: booleanInHeader);
+            booleanInQuery: booleanInQuery);
     replace(_$result);
     return _$result;
   }
@@ -172,7 +174,9 @@ class MalformedBooleanInputPayloadBuilder
   set booleanInBody(bool? booleanInBody) =>
       _$this._booleanInBody = booleanInBody;
 
-  MalformedBooleanInputPayloadBuilder();
+  MalformedBooleanInputPayloadBuilder() {
+    MalformedBooleanInputPayload._init(this);
+  }
 
   MalformedBooleanInputPayloadBuilder get _$this {
     final $v = _$v;

@@ -4,13 +4,13 @@ homepage: https://github.com/aws-amplify/amplify-flutter
 publish_to: none
 
 environment:
-  sdk: ^3.0.0
+  sdk: ">=2.18.0 <4.0.0"
 
 dependencies:
-  amplify_core: any
-  aws_common: any
+  amplify_core: ">=1.0.0-next.8 <1.0.0-next.9"
+  aws_common: ">=0.4.0 <0.5.0"
   collection: ^1.15.0
   meta: ^1.8.0
 
 dev_dependencies:
-  amplify_lints: any
+  amplify_lints: ^2.0.0

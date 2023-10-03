@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.glacier.model.missing_parameter_value_exception; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -18,14 +17,14 @@ abstract class MissingParameterValueException
             MissingParameterValueExceptionBuilder>,
         _i2.SmithyHttpException {
   factory MissingParameterValueException({
-    String? type,
     String? code,
     String? message,
+    String? type,
   }) {
     return _$MissingParameterValueException._(
-      type: type,
       code: code,
       message: message,
+      type: type,
     );
   }
 
@@ -44,13 +43,16 @@ abstract class MissingParameterValueException
         b.headers = response.headers;
       });
 
-  static const List<_i2.SmithySerializer<MissingParameterValueException>>
-      serializers = [MissingParameterValueExceptionRestJson1Serializer()];
+  static const List<_i2.SmithySerializer> serializers = [
+    MissingParameterValueExceptionRestJson1Serializer()
+  ];
 
-  String? get type;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MissingParameterValueExceptionBuilder b) {}
   String? get code;
   @override
   String? get message;
+  String? get type;
   @override
   _i2.ShapeId get shapeId => const _i2.ShapeId(
         namespace: 'com.amazonaws.glacier',
@@ -68,25 +70,26 @@ abstract class MissingParameterValueException
   Exception? get underlyingException => null;
   @override
   List<Object?> get props => [
-        type,
         code,
         message,
+        type,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('MissingParameterValueException')
-      ..add(
-        'type',
-        type,
-      )
-      ..add(
-        'code',
-        code,
-      )
-      ..add(
-        'message',
-        message,
-      );
+    final helper =
+        newBuiltValueToStringHelper('MissingParameterValueException');
+    helper.add(
+      'code',
+      code,
+    );
+    helper.add(
+      'message',
+      message,
+    );
+    helper.add(
+      'type',
+      type,
+    );
     return helper.toString();
   }
 }
@@ -120,25 +123,31 @@ class MissingParameterValueExceptionRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'code':
-          result.code = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.code = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'message':
-          result.message = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.message = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'type':
-          result.type = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.type = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -148,35 +157,35 @@ class MissingParameterValueExceptionRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    MissingParameterValueException object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final MissingParameterValueException(:code, :message, :type) = object;
-    if (code != null) {
-      result$
+    final payload = (object as MissingParameterValueException);
+    final result = <Object?>[];
+    if (payload.code != null) {
+      result
         ..add('code')
         ..add(serializers.serialize(
-          code,
+          payload.code!,
           specifiedType: const FullType(String),
         ));
     }
-    if (message != null) {
-      result$
+    if (payload.message != null) {
+      result
         ..add('message')
         ..add(serializers.serialize(
-          message,
+          payload.message!,
           specifiedType: const FullType(String),
         ));
     }
-    if (type != null) {
-      result$
+    if (payload.type != null) {
+      result
         ..add('type')
         ..add(serializers.serialize(
-          type,
+          payload.type!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

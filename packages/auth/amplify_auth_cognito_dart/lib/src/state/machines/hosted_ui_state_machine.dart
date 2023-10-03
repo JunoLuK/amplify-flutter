@@ -16,7 +16,7 @@ import 'package:amplify_secure_storage_dart/amplify_secure_storage_dart.dart';
 /// {@template amplify_auth_cognito.hosted_ui_state_machine}
 /// Manages the Hosted UI lifecycle and OIDC flow.
 /// {@endtemplate}
-final class HostedUiStateMachine
+class HostedUiStateMachine
     extends AuthStateMachine<HostedUiEvent, HostedUiState> {
   /// {@macro amplify_auth_cognito.hosted_ui_state_machine}
   HostedUiStateMachine(CognitoAuthStateMachine manager) : super(manager, type);
@@ -36,32 +36,42 @@ final class HostedUiStateMachine
   SecureStorageInterface get _secureStorage => getOrCreate();
 
   /// The platform-specific behavior.
-  HostedUiPlatform get _platform => getOrCreate();
-
-  /// The configured identity pool.
-  CognitoIdentityCredentialsProvider? get _identityPoolConfig => get();
+  late final HostedUiPlatform _platform = getOrCreate();
 
   @override
   Future<void> resolve(HostedUiEvent event) async {
-    switch (event) {
-      case HostedUiConfigure _:
+    switch (event.type) {
+      case HostedUiEventType.configure:
+        event as HostedUiConfigure;
         emit(const HostedUiState.configuring());
         await onConfigure(event);
-      case HostedUiFoundState _:
+        break;
+      case HostedUiEventType.foundState:
+        event as HostedUiFoundState;
         await onFoundState(event);
-      case HostedUiExchange _:
+        break;
+      case HostedUiEventType.exchange:
+        event as HostedUiExchange;
         emit(const HostedUiState.signingIn());
         await onExchange(event);
-      case HostedUiSignIn _:
+        break;
+      case HostedUiEventType.signIn:
+        event as HostedUiSignIn;
         emit(const HostedUiState.signingIn());
         await onSignIn(event);
-      case HostedUiCancelSignIn _:
-        await onCancelSignIn(event);
-      case HostedUiSignOut _:
+        break;
+      case HostedUiEventType.cancelSignIn:
+        await onCancelSignIn(event.cast());
+        break;
+      case HostedUiEventType.signOut:
+        event as HostedUiSignOut;
         emit(const HostedUiState.signingOut());
         await onSignOut(event);
-      case HostedUiSucceeded _:
+        break;
+      case HostedUiEventType.succeeded:
+        event as HostedUiSucceeded;
         await onSucceeded(event);
+        break;
     }
   }
 
@@ -76,8 +86,9 @@ final class HostedUiStateMachine
   /// State machine callback for the [HostedUiConfigure] event.
   Future<void> onConfigure(HostedUiConfigure event) async {
     final result = await manager.loadCredentials();
-    if (result.userPoolTokens case CognitoUserPoolTokens(:final signInMethod)
-        when signInMethod == CognitoSignInMethod.hostedUi) {
+    final userPoolTokens = result.userPoolTokens;
+    if (userPoolTokens != null &&
+        userPoolTokens.signInMethod == CognitoSignInMethod.hostedUi) {
       emit(HostedUiState.signedIn(result.authUser));
       return;
     }
@@ -128,14 +139,9 @@ final class HostedUiStateMachine
     } else {
       await _secureStorage.delete(key: _keys[HostedUiKey.provider]);
     }
-    unawaited(
-      // Unblock the state machine to accept new events but ensure
-      // that [onCancelSignIn] is called if any error occurs.
-      _platform.signIn(options: event.options, provider: provider).onError(
-            (error, stackTrace) => dispatch(
-              HostedUiEvent.cancelSignIn(error, stackTrace),
-            ),
-          ),
+    await _platform.signIn(
+      options: event.options,
+      provider: provider,
     );
   }
 
@@ -143,10 +149,7 @@ final class HostedUiStateMachine
   Future<void> onCancelSignIn(HostedUiCancelSignIn event) async {
     await _platform.cancelSignIn();
     await manager.clearCredentials(_keys);
-    Error.throwWithStackTrace(
-      event.error,
-      event.stackTrace ?? StackTrace.current,
-    );
+    throw const UserCancelledException('The user cancelled the sign-in flow');
   }
 
   /// State machine callback for the [HostedUiExchange] event.
@@ -189,16 +192,6 @@ final class HostedUiStateMachine
         signInDetails: signInDetails,
       ),
     );
-
-    // Clear anonymous credentials, if there were any, and fetch authenticated
-    // credentials.
-    if (_identityPoolConfig != null) {
-      await manager.clearCredentials(
-        CognitoIdentityPoolKeys(_identityPoolConfig!),
-      );
-
-      await manager.loadSession();
-    }
 
     final idToken = event.tokens.idToken;
     final userId = idToken.userId;

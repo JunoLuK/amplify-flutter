@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.rest_json_protocol.model.query_precedence_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -21,12 +20,12 @@ abstract class QueryPrecedenceInput
         _i1.EmptyPayload,
         _i1.HasPayload<QueryPrecedenceInputPayload> {
   factory QueryPrecedenceInput({
-    String? foo,
     Map<String, String>? baz,
+    String? foo,
   }) {
     return _$QueryPrecedenceInput._(
-      foo: foo,
       baz: baz == null ? null : _i3.BuiltMap(baz),
+      foo: foo,
     );
   }
 
@@ -47,29 +46,32 @@ abstract class QueryPrecedenceInput
         }
       });
 
-  static const List<_i1.SmithySerializer<QueryPrecedenceInputPayload>>
-      serializers = [QueryPrecedenceInputRestJson1Serializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    QueryPrecedenceInputRestJson1Serializer()
+  ];
 
-  String? get foo;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(QueryPrecedenceInputBuilder b) {}
   _i3.BuiltMap<String, String>? get baz;
+  String? get foo;
   @override
   QueryPrecedenceInputPayload getPayload() => QueryPrecedenceInputPayload();
   @override
   List<Object?> get props => [
-        foo,
         baz,
+        foo,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('QueryPrecedenceInput')
-      ..add(
-        'foo',
-        foo,
-      )
-      ..add(
-        'baz',
-        baz,
-      );
+    final helper = newBuiltValueToStringHelper('QueryPrecedenceInput');
+    helper.add(
+      'baz',
+      baz,
+    );
+    helper.add(
+      'foo',
+      foo,
+    );
     return helper.toString();
   }
 }
@@ -86,6 +88,8 @@ abstract class QueryPrecedenceInputPayload
 
   const QueryPrecedenceInputPayload._();
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(QueryPrecedenceInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
   @override
@@ -126,7 +130,7 @@ class QueryPrecedenceInputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    QueryPrecedenceInputPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) =>
       const <Object?>[];

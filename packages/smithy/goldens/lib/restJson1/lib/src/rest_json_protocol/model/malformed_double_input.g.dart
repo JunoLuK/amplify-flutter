@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'malformed_double_input.dart';
+part of rest_json1_v1.rest_json_protocol.model.malformed_double_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -10,11 +10,11 @@ class _$MalformedDoubleInput extends MalformedDoubleInput {
   @override
   final double? doubleInBody;
   @override
+  final double? doubleInHeader;
+  @override
   final double doubleInPath;
   @override
   final double? doubleInQuery;
-  @override
-  final double? doubleInHeader;
 
   factory _$MalformedDoubleInput(
           [void Function(MalformedDoubleInputBuilder)? updates]) =>
@@ -22,9 +22,9 @@ class _$MalformedDoubleInput extends MalformedDoubleInput {
 
   _$MalformedDoubleInput._(
       {this.doubleInBody,
+      this.doubleInHeader,
       required this.doubleInPath,
-      this.doubleInQuery,
-      this.doubleInHeader})
+      this.doubleInQuery})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         doubleInPath, r'MalformedDoubleInput', 'doubleInPath');
@@ -44,18 +44,18 @@ class _$MalformedDoubleInput extends MalformedDoubleInput {
     if (identical(other, this)) return true;
     return other is MalformedDoubleInput &&
         doubleInBody == other.doubleInBody &&
+        doubleInHeader == other.doubleInHeader &&
         doubleInPath == other.doubleInPath &&
-        doubleInQuery == other.doubleInQuery &&
-        doubleInHeader == other.doubleInHeader;
+        doubleInQuery == other.doubleInQuery;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, doubleInBody.hashCode);
+    _$hash = $jc(_$hash, doubleInHeader.hashCode);
     _$hash = $jc(_$hash, doubleInPath.hashCode);
     _$hash = $jc(_$hash, doubleInQuery.hashCode);
-    _$hash = $jc(_$hash, doubleInHeader.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -69,6 +69,11 @@ class MalformedDoubleInputBuilder
   double? get doubleInBody => _$this._doubleInBody;
   set doubleInBody(double? doubleInBody) => _$this._doubleInBody = doubleInBody;
 
+  double? _doubleInHeader;
+  double? get doubleInHeader => _$this._doubleInHeader;
+  set doubleInHeader(double? doubleInHeader) =>
+      _$this._doubleInHeader = doubleInHeader;
+
   double? _doubleInPath;
   double? get doubleInPath => _$this._doubleInPath;
   set doubleInPath(double? doubleInPath) => _$this._doubleInPath = doubleInPath;
@@ -78,20 +83,17 @@ class MalformedDoubleInputBuilder
   set doubleInQuery(double? doubleInQuery) =>
       _$this._doubleInQuery = doubleInQuery;
 
-  double? _doubleInHeader;
-  double? get doubleInHeader => _$this._doubleInHeader;
-  set doubleInHeader(double? doubleInHeader) =>
-      _$this._doubleInHeader = doubleInHeader;
-
-  MalformedDoubleInputBuilder();
+  MalformedDoubleInputBuilder() {
+    MalformedDoubleInput._init(this);
+  }
 
   MalformedDoubleInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _doubleInBody = $v.doubleInBody;
+      _doubleInHeader = $v.doubleInHeader;
       _doubleInPath = $v.doubleInPath;
       _doubleInQuery = $v.doubleInQuery;
-      _doubleInHeader = $v.doubleInHeader;
       _$v = null;
     }
     return this;
@@ -115,10 +117,10 @@ class MalformedDoubleInputBuilder
     final _$result = _$v ??
         new _$MalformedDoubleInput._(
             doubleInBody: doubleInBody,
+            doubleInHeader: doubleInHeader,
             doubleInPath: BuiltValueNullFieldError.checkNotNull(
                 doubleInPath, r'MalformedDoubleInput', 'doubleInPath'),
-            doubleInQuery: doubleInQuery,
-            doubleInHeader: doubleInHeader);
+            doubleInQuery: doubleInQuery);
     replace(_$result);
     return _$result;
   }
@@ -169,7 +171,9 @@ class MalformedDoubleInputPayloadBuilder
   double? get doubleInBody => _$this._doubleInBody;
   set doubleInBody(double? doubleInBody) => _$this._doubleInBody = doubleInBody;
 
-  MalformedDoubleInputPayloadBuilder();
+  MalformedDoubleInputPayloadBuilder() {
+    MalformedDoubleInputPayload._init(this);
+  }
 
   MalformedDoubleInputPayloadBuilder get _$this {
     final $v = _$v;

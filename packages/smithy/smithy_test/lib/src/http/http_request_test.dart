@@ -158,6 +158,7 @@ Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
               bytes = utf8.encode(expectedBody);
             }
             expectBytes(bytes);
+            break;
           case 'application/json':
             final expectedJsonBody = jsonDecode(expectedBody);
             Object? jsonBody;
@@ -171,6 +172,7 @@ Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
               }
             }
             expect(jsonBody, equals(expectedJsonBody));
+            break;
           case 'application/xml':
             final expectedXmlBody = expectedBody.isEmpty
                 ? const <Object?>[]
@@ -180,6 +182,7 @@ Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
                 ? const <Object?>[]
                 : XmlDocument.parse(body).toEquatable();
             expect(xmlBody, orderedEquals(expectedXmlBody));
+            break;
           default:
             expectBytes(expectedBody.codeUnits);
             break;

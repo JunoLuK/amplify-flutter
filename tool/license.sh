@@ -8,10 +8,9 @@
 # Use `-check` option to verify header presence.
 #
 
-set -o pipefail
+set -eo pipefail
 
-ADDLICENSE=$(command -v addlicense)
-if [[ $? -ne 0 ]] ; then
+if ! command -v addlicense &>/dev/null ; then
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         OS=Linux
     elif [[ "$OSTYPE" == "darwin"* ]]; then
@@ -21,10 +20,7 @@ if [[ $? -ne 0 ]] ; then
         exit 1
     fi
 
-    TMP_DIR=$(mktemp -d)
-    pushd $TMP_DIR
-
-    VERSION=1.1.1
+    VERSION=1.1.0
     FILENAME=addlicense_${VERSION}_${OS}_x86_64.tar.gz
     CHECKSUMS=checksums.txt
     curl -L -o ${FILENAME} https://github.com/google/addlicense/releases/download/v${VERSION}/${FILENAME}
@@ -33,12 +29,10 @@ if [[ $? -ne 0 ]] ; then
 
     tar -xzf ${FILENAME}
     chmod +x addlicense
-    ADDLICENSE=$TMP_DIR/addlicense
-
-    popd
+    mv addlicense /usr/local/bin
 fi
 
-$ADDLICENSE -l apache \
+addlicense -l apache \
     -c "Amazon.com, Inc. or its affiliates. All Rights Reserved." \
     -s=only \
     -y="" \
@@ -73,7 +67,4 @@ $ADDLICENSE -l apache \
     -ignore "**/windows/runner/**" \
     -ignore "**/windows/flutter/**" \
     -ignore "**/amplify/**" \
-    -ignore "**/*-Bridging-Header.h" \
-    -ignore "**/*Plugin.h" \
-    -ignore "**/*Plugin.m" \
     $@ $PWD

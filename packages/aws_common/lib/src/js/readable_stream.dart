@@ -1,6 +1,9 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+@JS()
+library aws_common.js.readable_stream;
+
 import 'dart:async';
 import 'dart:typed_data';
 
@@ -9,6 +12,7 @@ import 'package:aws_common/src/js/common.dart';
 import 'package:aws_common/src/js/promise.dart';
 import 'package:js/js.dart';
 import 'package:js/js_util.dart' as js_util;
+import 'package:meta/meta.dart';
 
 /// {@template aws_common.js.readable_stream}
 /// An object containing methods and properties that define how the constructed
@@ -16,8 +20,7 @@ import 'package:js/js_util.dart' as js_util;
 /// {@endtemplate}
 @JS()
 @anonymous
-@staticInterop
-abstract class UnderlyingSource {
+class UnderlyingSource {
   /// {@macro aws_common.js.readable_stream}
   factory UnderlyingSource({
     /// This is a method, called immediately when the object is constructed.
@@ -58,7 +61,8 @@ abstract class UnderlyingSource {
     FutureOr<void> Function([
       String? reason,
       ReadableStreamController? controller,
-    ])? cancel,
+    ])?
+        cancel,
 
     /// This property controls what type of readable stream is being dealt with.
     ReadableStreamType type = ReadableStreamType.default$,
@@ -72,39 +76,12 @@ abstract class UnderlyingSource {
     /// consumer can also use a default reader.
     int? autoAllocateChunkSize,
   }) {
-    final startFn = start == null
-        ? undefined
-        : start is Future<void> Function(ReadableStreamController)
-            ? allowInterop((ReadableStreamController controller) {
-                return Promise.fromFuture(start(controller));
-              })
-            : allowInterop(start);
-    final pullFn = pull == null
-        ? undefined
-        : pull is Future<void> Function(ReadableStreamController)
-            ? allowInterop((ReadableStreamController controller) {
-                return Promise.fromFuture(pull(controller));
-              })
-            : allowInterop(pull);
-    final cancelFn = cancel == null
-        ? undefined
-        : cancel is Future<void> Function([
-            String? reason,
-            ReadableStreamController? controller,
-          ])
-            ? allowInterop((
-                String? reason,
-                ReadableStreamController? controller,
-              ) {
-                return Promise.fromFuture(cancel(reason, controller));
-              })
-            : allowInterop(cancel);
-    return UnderlyingSource._(
-      start: startFn,
-      pull: pullFn,
-      cancel: cancelFn,
-      type: type.jsValue,
-      autoAllocateChunkSize: autoAllocateChunkSize ?? undefined,
+    return createUnderlyingSource(
+      start: start,
+      pull: pull,
+      cancel: cancel,
+      type: type,
+      autoAllocateChunkSize: autoAllocateChunkSize,
     );
   }
 
@@ -115,6 +92,57 @@ abstract class UnderlyingSource {
     String? type,
     int? autoAllocateChunkSize,
   });
+}
+
+/// Factory for [UnderlyingSource].
+///
+// TODO(dnys1): Remove when fixed https://github.com/dart-lang/sdk/issues/49778.
+@internal
+UnderlyingSource createUnderlyingSource({
+  FutureOr<void> Function(ReadableStreamController controller)? start,
+  FutureOr<void> Function(ReadableStreamController controller)? pull,
+  FutureOr<void> Function([
+    String? reason,
+    ReadableStreamController? controller,
+  ])?
+      cancel,
+  ReadableStreamType type = ReadableStreamType.default$,
+  int? autoAllocateChunkSize,
+}) {
+  final startFn = start == null
+      ? undefined
+      : start is Future<void> Function(ReadableStreamController)
+          ? allowInterop((ReadableStreamController controller) {
+              return createPromiseFromFuture(start(controller));
+            })
+          : allowInterop(start);
+  final pullFn = pull == null
+      ? undefined
+      : pull is Future<void> Function(ReadableStreamController)
+          ? allowInterop((ReadableStreamController controller) {
+              return createPromiseFromFuture(pull(controller));
+            })
+          : allowInterop(pull);
+  final cancelFn = cancel == null
+      ? undefined
+      : cancel is Future<void> Function([
+          String? reason,
+          ReadableStreamController? controller,
+        ])
+          ? allowInterop((
+              String? reason,
+              ReadableStreamController? controller,
+            ) {
+              return Promise.fromFuture(cancel(reason, controller));
+            })
+          : allowInterop(cancel);
+  return UnderlyingSource._(
+    start: startFn,
+    pull: pullFn,
+    cancel: cancelFn,
+    type: type.jsValue,
+    autoAllocateChunkSize: autoAllocateChunkSize ?? undefined,
+  );
 }
 
 /// The type of [ReadableStream] and its associated [ReadableStreamController].
@@ -133,12 +161,7 @@ enum ReadableStreamType with JSEnum {
 /// Similar to a Dart [StreamController].
 /// {@endtemplate}
 @JS()
-@anonymous
-@staticInterop
-abstract class ReadableStreamController {}
-
-/// {@macro aws_common.js.readable_stream_controller}
-extension PropsReadableStreamController on ReadableStreamController {
+abstract class ReadableStreamController {
   /// The desired size required to fill the stream's internal queue.
   external int get desiredSize;
 
@@ -149,15 +172,18 @@ extension PropsReadableStreamController on ReadableStreamController {
   external void enqueue(Uint8List chunk);
 }
 
+/// {@macro aws_common.js.readable_stream_controller}
+extension PropsReadableStreamController on ReadableStreamController {
+  // TODO(dnys1): Move methods here when staticInterop is enabled.
+}
+
 /// {@template aws_common.js.readable_stream_default_controller}
 /// A default [ReadableStreamController], for [ReadableStream]s which are not
 /// byte streams.
 /// {@endtemplate}
 @JS()
 @anonymous
-@staticInterop
-abstract class ReadableStreamDefaultController
-    extends ReadableStreamController {}
+class ReadableStreamDefaultController extends ReadableStreamController {}
 
 /// {@template aws_common.js.readable_byte_stream_controller}
 /// A [ReadableStreamController] for [ReadableStream]s which are not
@@ -165,15 +191,13 @@ abstract class ReadableStreamDefaultController
 /// {@endtemplate}
 @JS()
 @anonymous
-@staticInterop
-abstract class ReadableByteStreamController extends ReadableStreamController {}
+class ReadableByteStreamController extends ReadableStreamController {}
 
 /// {@template aws_common.js.readable_stream}
 /// Represents a readable stream of byte data.
 /// {@endtemplate}
 @JS()
-@staticInterop
-abstract class ReadableStream {
+class ReadableStream {
   /// {@macro aws_common.js.readable_stream}
   external factory ReadableStream([UnderlyingSource? underlyingSource]);
 }
@@ -218,7 +242,6 @@ extension PropsReadableStream on ReadableStream {
 /// {@endtemplate}
 @JS()
 @anonymous
-@staticInterop
 abstract class ReadableStreamReader {}
 
 /// {@macro aws_common.js.readable_stream_reader}
@@ -252,8 +275,7 @@ extension PropsReadableStreamReader on ReadableStreamReader {
 /// {@endtemplate}
 @JS()
 @anonymous
-@staticInterop
-abstract class ReadableStreamBYOBReader extends ReadableStreamReader {}
+class ReadableStreamBYOBReader extends ReadableStreamReader {}
 
 /// {@template aws_common.js.readable_stream_default_reader}
 /// A default reader that can be used to read stream data supplied from a
@@ -261,8 +283,7 @@ abstract class ReadableStreamBYOBReader extends ReadableStreamReader {}
 /// {@endtemplate}
 @JS()
 @anonymous
-@staticInterop
-abstract class ReadableStreamDefaultReader extends ReadableStreamReader {}
+class ReadableStreamDefaultReader extends ReadableStreamReader {}
 
 /// {@macro aws_common.js.readable_stream_default_reader}
 extension PropsReadableStreamDefaultReader on ReadableStreamDefaultReader {
@@ -289,7 +310,6 @@ enum ReadableStreamReaderMode with JSEnum {
 /// {@endtemplate}
 @JS()
 @anonymous
-@staticInterop
 abstract class ReadableStreamChunk {}
 
 /// {@macro aws_common.js.readable_stream_chunk}
@@ -306,7 +326,7 @@ extension PropsReadableStreamChunk on ReadableStreamChunk {
 /// {@template aws_common.js.readable_stream_view}
 /// Wraps a [ReadableStream] as a Dart [Stream].
 /// {@endtemplate}
-final class ReadableStreamView extends StreamView<List<int>> {
+class ReadableStreamView extends StreamView<List<int>> {
   /// {@macro aws_common.js.readable_stream_view}
   factory ReadableStreamView(ReadableStream stream) {
     // False positives. These are closed in `_pipeFrom`.
@@ -369,7 +389,7 @@ extension StreamToReadableStream on Stream<List<int>> {
   }) {
     final queue = StreamQueue(this);
     return ReadableStream(
-      UnderlyingSource(
+      createUnderlyingSource(
         pull: (controller) async {
           if (!await queue.hasNext) {
             await queue.cancel();

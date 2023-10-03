@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_analytics_pinpoint_dart.pinpoint.model.forbidden_exception; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -43,9 +42,12 @@ abstract class ForbiddenException
         b.headers = response.headers;
       });
 
-  static const List<_i2.SmithySerializer<ForbiddenException>> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     ForbiddenExceptionRestJson1Serializer()
   ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ForbiddenExceptionBuilder b) {}
 
   /// The message that's returned from the API.
   @override
@@ -75,15 +77,15 @@ abstract class ForbiddenException
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('ForbiddenException')
-      ..add(
-        'message',
-        message,
-      )
-      ..add(
-        'requestId',
-        requestId,
-      );
+    final helper = newBuiltValueToStringHelper('ForbiddenException');
+    helper.add(
+      'message',
+      message,
+    );
+    helper.add(
+      'requestId',
+      requestId,
+    );
     return helper.toString();
   }
 }
@@ -116,20 +118,23 @@ class ForbiddenExceptionRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'Message':
-          result.message = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.message = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'RequestID':
-          result.requestId = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.requestId = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -139,27 +144,27 @@ class ForbiddenExceptionRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    ForbiddenException object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final ForbiddenException(:message, :requestId) = object;
-    if (message != null) {
-      result$
+    final payload = (object as ForbiddenException);
+    final result = <Object?>[];
+    if (payload.message != null) {
+      result
         ..add('Message')
         ..add(serializers.serialize(
-          message,
+          payload.message!,
           specifiedType: const FullType(String),
         ));
     }
-    if (requestId != null) {
-      result$
+    if (payload.requestId != null) {
+      result
         ..add('RequestID')
         ..add(serializers.serialize(
-          requestId,
+          payload.requestId!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

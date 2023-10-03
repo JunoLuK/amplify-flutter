@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'end_event.dart';
+part of amplify_storage_s3_dart.s3.model.end_event;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -34,7 +34,9 @@ class _$EndEvent extends EndEvent {
 class EndEventBuilder implements Builder<EndEvent, EndEventBuilder> {
   _$EndEvent? _$v;
 
-  EndEventBuilder();
+  EndEventBuilder() {
+    EndEvent._init(this);
+  }
 
   @override
   void replace(EndEvent other) {

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'internal_server_exception.dart';
+part of aws_json1_1_v2.machine_learning.model.internal_server_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,9 +8,9 @@ part of 'internal_server_exception.dart';
 
 class _$InternalServerException extends InternalServerException {
   @override
-  final String? message;
-  @override
   final int? code;
+  @override
+  final String? message;
   @override
   final Map<String, String>? headers;
 
@@ -18,7 +18,7 @@ class _$InternalServerException extends InternalServerException {
           [void Function(InternalServerExceptionBuilder)? updates]) =>
       (new InternalServerExceptionBuilder()..update(updates))._build();
 
-  _$InternalServerException._({this.message, this.code, this.headers})
+  _$InternalServerException._({this.code, this.message, this.headers})
       : super._();
 
   @override
@@ -34,15 +34,15 @@ class _$InternalServerException extends InternalServerException {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is InternalServerException &&
-        message == other.message &&
-        code == other.code;
+        code == other.code &&
+        message == other.message;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, message.hashCode);
     _$hash = $jc(_$hash, code.hashCode);
+    _$hash = $jc(_$hash, message.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -53,25 +53,27 @@ class InternalServerExceptionBuilder
         Builder<InternalServerException, InternalServerExceptionBuilder> {
   _$InternalServerException? _$v;
 
-  String? _message;
-  String? get message => _$this._message;
-  set message(String? message) => _$this._message = message;
-
   int? _code;
   int? get code => _$this._code;
   set code(int? code) => _$this._code = code;
+
+  String? _message;
+  String? get message => _$this._message;
+  set message(String? message) => _$this._message = message;
 
   Map<String, String>? _headers;
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  InternalServerExceptionBuilder();
+  InternalServerExceptionBuilder() {
+    InternalServerException._init(this);
+  }
 
   InternalServerExceptionBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _message = $v.message;
       _code = $v.code;
+      _message = $v.message;
       _headers = $v.headers;
       _$v = null;
     }
@@ -95,7 +97,7 @@ class InternalServerExceptionBuilder
   _$InternalServerException _build() {
     final _$result = _$v ??
         new _$InternalServerException._(
-            message: message, code: code, headers: headers);
+            code: code, message: message, headers: headers);
     replace(_$result);
     return _$result;
   }

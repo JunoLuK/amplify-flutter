@@ -14,7 +14,7 @@ import 'package:meta/meta.dart';
 /// credentials directly.
 /// {@endtemplate}
 @internal
-final class CognitoIamAuthProvider extends AWSIamAmplifyAuthProvider {
+class CognitoIamAuthProvider extends AWSIamAmplifyAuthProvider {
   /// {@macro amplify_auth_cognito_dart.cognito_iam_auth_provider}
   const CognitoIamAuthProvider();
 
@@ -72,7 +72,4 @@ final class CognitoIamAuthProvider extends AWSIamAmplifyAuthProvider {
           serviceConfiguration ?? const BaseServiceConfiguration(),
     );
   }
-
-  @override
-  String get runtimeTypeName => 'CognitoIamAuthProvider';
 }

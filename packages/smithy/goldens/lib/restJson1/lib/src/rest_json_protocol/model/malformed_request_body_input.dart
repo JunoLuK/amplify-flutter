@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.rest_json_protocol.model.malformed_request_body_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -17,12 +16,12 @@ abstract class MalformedRequestBodyInput
     implements
         Built<MalformedRequestBodyInput, MalformedRequestBodyInputBuilder> {
   factory MalformedRequestBodyInput({
-    int? int_,
     double? float,
+    int? int_,
   }) {
     return _$MalformedRequestBodyInput._(
-      int_: int_,
       float: float,
+      int_: int_,
     );
   }
 
@@ -39,29 +38,32 @@ abstract class MalformedRequestBodyInput
   }) =>
       payload;
 
-  static const List<_i1.SmithySerializer<MalformedRequestBodyInput>>
-      serializers = [MalformedRequestBodyInputRestJson1Serializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    MalformedRequestBodyInputRestJson1Serializer()
+  ];
 
-  int? get int_;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedRequestBodyInputBuilder b) {}
   double? get float;
+  int? get int_;
   @override
   MalformedRequestBodyInput getPayload() => this;
   @override
   List<Object?> get props => [
-        int_,
         float,
+        int_,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('MalformedRequestBodyInput')
-      ..add(
-        'int_',
-        int_,
-      )
-      ..add(
-        'float',
-        float,
-      );
+    final helper = newBuiltValueToStringHelper('MalformedRequestBodyInput');
+    helper.add(
+      'float',
+      float,
+    );
+    helper.add(
+      'int_',
+      int_,
+    );
     return helper.toString();
   }
 }
@@ -95,20 +97,23 @@ class MalformedRequestBodyInputRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'float':
-          result.float = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(double),
-          ) as double);
+          if (value != null) {
+            result.float = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(double),
+            ) as double);
+          }
+          break;
         case 'int':
-          result.int_ = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int);
+          if (value != null) {
+            result.int_ = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(int),
+            ) as int);
+          }
+          break;
       }
     }
 
@@ -118,27 +123,27 @@ class MalformedRequestBodyInputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    MalformedRequestBodyInput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final MalformedRequestBodyInput(:float, :int_) = object;
-    if (float != null) {
-      result$
+    final payload = (object as MalformedRequestBodyInput);
+    final result = <Object?>[];
+    if (payload.float != null) {
+      result
         ..add('float')
         ..add(serializers.serialize(
-          float,
+          payload.float!,
           specifiedType: const FullType(double),
         ));
     }
-    if (int_ != null) {
-      result$
+    if (payload.int_ != null) {
+      result
         ..add('int')
         ..add(serializers.serialize(
-          int_,
+          payload.int_!,
           specifiedType: const FullType(int),
         ));
     }
-    return result$;
+    return result;
   }
 }

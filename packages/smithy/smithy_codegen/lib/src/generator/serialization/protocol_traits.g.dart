@@ -408,7 +408,7 @@ class HttpPrefixHeadersBuilder
   }
 }
 
-abstract mixin class HttpTraitsBuilder {
+abstract class HttpTraitsBuilder {
   void replace(HttpTraits other);
   void update(void Function(HttpTraitsBuilder) updates);
   MapBuilder<String, MemberShape> get httpHeaders;
@@ -753,8 +753,6 @@ class _$HttpErrorTraits extends HttpErrorTraits {
   @override
   final Reference symbol;
   @override
-  final Reference? payloadSymbol;
-  @override
   final RetryConfig? retryConfig;
   @override
   final int? statusCode;
@@ -770,7 +768,6 @@ class _$HttpErrorTraits extends HttpErrorTraits {
       {required this.shapeId,
       required this.kind,
       required this.symbol,
-      this.payloadSymbol,
       this.retryConfig,
       this.statusCode,
       required this.httpHeaders,
@@ -799,7 +796,6 @@ class _$HttpErrorTraits extends HttpErrorTraits {
         shapeId == other.shapeId &&
         kind == other.kind &&
         symbol == other.symbol &&
-        payloadSymbol == other.payloadSymbol &&
         retryConfig == other.retryConfig &&
         statusCode == other.statusCode &&
         httpHeaders == other.httpHeaders &&
@@ -812,7 +808,6 @@ class _$HttpErrorTraits extends HttpErrorTraits {
     _$hash = $jc(_$hash, shapeId.hashCode);
     _$hash = $jc(_$hash, kind.hashCode);
     _$hash = $jc(_$hash, symbol.hashCode);
-    _$hash = $jc(_$hash, payloadSymbol.hashCode);
     _$hash = $jc(_$hash, retryConfig.hashCode);
     _$hash = $jc(_$hash, statusCode.hashCode);
     _$hash = $jc(_$hash, httpHeaders.hashCode);
@@ -827,7 +822,6 @@ class _$HttpErrorTraits extends HttpErrorTraits {
           ..add('shapeId', shapeId)
           ..add('kind', kind)
           ..add('symbol', symbol)
-          ..add('payloadSymbol', payloadSymbol)
           ..add('retryConfig', retryConfig)
           ..add('statusCode', statusCode)
           ..add('httpHeaders', httpHeaders)
@@ -853,11 +847,6 @@ class HttpErrorTraitsBuilder
   Reference? _symbol;
   Reference? get symbol => _$this._symbol;
   set symbol(covariant Reference? symbol) => _$this._symbol = symbol;
-
-  Reference? _payloadSymbol;
-  Reference? get payloadSymbol => _$this._payloadSymbol;
-  set payloadSymbol(covariant Reference? payloadSymbol) =>
-      _$this._payloadSymbol = payloadSymbol;
 
   RetryConfig? _retryConfig;
   RetryConfig? get retryConfig => _$this._retryConfig;
@@ -889,7 +878,6 @@ class HttpErrorTraitsBuilder
       _shapeId = $v.shapeId;
       _kind = $v.kind;
       _symbol = $v.symbol;
-      _payloadSymbol = $v.payloadSymbol;
       _retryConfig = $v.retryConfig;
       _statusCode = $v.statusCode;
       _httpHeaders = $v.httpHeaders.toBuilder();
@@ -924,7 +912,6 @@ class HttpErrorTraitsBuilder
                   kind, r'HttpErrorTraits', 'kind'),
               symbol: BuiltValueNullFieldError.checkNotNull(
                   symbol, r'HttpErrorTraits', 'symbol'),
-              payloadSymbol: payloadSymbol,
               retryConfig: retryConfig,
               statusCode: statusCode,
               httpHeaders: httpHeaders.build(),

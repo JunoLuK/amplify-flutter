@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_with_namespace_v1.rest_xml_protocol_namespace.model.nested_with_namespace; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -24,20 +23,22 @@ abstract class NestedWithNamespace
 
   const NestedWithNamespace._();
 
-  static const List<_i2.SmithySerializer<NestedWithNamespace>> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     NestedWithNamespaceRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(NestedWithNamespaceBuilder b) {}
   String? get attrField;
   @override
   List<Object?> get props => [attrField];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('NestedWithNamespace')
-      ..add(
-        'attrField',
-        attrField,
-      );
+    final helper = newBuiltValueToStringHelper('NestedWithNamespace');
+    helper.add(
+      'attrField',
+      attrField,
+    );
     return helper.toString();
   }
 }
@@ -67,18 +68,18 @@ class NestedWithNamespaceRestXmlSerializer
     final result = NestedWithNamespaceBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'xsi:someName':
-          result.attrField = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.attrField = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -88,25 +89,25 @@ class NestedWithNamespaceRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    NestedWithNamespace object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final payload = (object as NestedWithNamespace);
+    final result = <Object?>[
       const _i2.XmlElementName(
         'NestedWithNamespace',
         _i2.XmlNamespace('https://example.com'),
       )
     ];
-    final NestedWithNamespace(:attrField) = object;
-    if (attrField != null) {
-      result$.add(_i3.XmlAttribute(
+    if (payload.attrField != null) {
+      result.add(_i3.XmlAttribute(
         _i3.XmlName('xsi:someName'),
         (serializers.serialize(
-          attrField,
+          payload.attrField!,
           specifiedType: const FullType(String),
         ) as String),
       ));
     }
-    return result$;
+    return result;
   }
 }

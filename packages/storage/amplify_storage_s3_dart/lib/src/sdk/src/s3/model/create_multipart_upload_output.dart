@@ -1,15 +1,17 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_storage_s3_dart.s3.model.create_multipart_upload_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/checksum_algorithm.dart';
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/request_charged.dart';
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/server_side_encryption.dart';
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/checksum_algorithm.dart'
+    as _i3;
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/request_charged.dart'
+    as _i4;
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/server_side_encryption.dart'
+    as _i5;
 import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i3;
+import 'package:meta/meta.dart' as _i6;
 import 'package:smithy/smithy.dart' as _i2;
 
 part 'create_multipart_upload_output.g.dart';
@@ -23,31 +25,31 @@ abstract class CreateMultipartUploadOutput
     DateTime? abortDate,
     String? abortRuleId,
     String? bucket,
+    bool? bucketKeyEnabled,
+    _i3.ChecksumAlgorithm? checksumAlgorithm,
     String? key,
-    String? uploadId,
-    ServerSideEncryption? serverSideEncryption,
+    _i4.RequestCharged? requestCharged,
+    _i5.ServerSideEncryption? serverSideEncryption,
     String? sseCustomerAlgorithm,
     String? sseCustomerKeyMd5,
-    String? ssekmsKeyId,
     String? ssekmsEncryptionContext,
-    bool? bucketKeyEnabled,
-    RequestCharged? requestCharged,
-    ChecksumAlgorithm? checksumAlgorithm,
+    String? ssekmsKeyId,
+    String? uploadId,
   }) {
     return _$CreateMultipartUploadOutput._(
       abortDate: abortDate,
       abortRuleId: abortRuleId,
       bucket: bucket,
+      bucketKeyEnabled: bucketKeyEnabled,
+      checksumAlgorithm: checksumAlgorithm,
       key: key,
-      uploadId: uploadId,
+      requestCharged: requestCharged,
       serverSideEncryption: serverSideEncryption,
       sseCustomerAlgorithm: sseCustomerAlgorithm,
       sseCustomerKeyMd5: sseCustomerKeyMd5,
-      ssekmsKeyId: ssekmsKeyId,
       ssekmsEncryptionContext: ssekmsEncryptionContext,
-      bucketKeyEnabled: bucketKeyEnabled,
-      requestCharged: requestCharged,
-      checksumAlgorithm: checksumAlgorithm,
+      ssekmsKeyId: ssekmsKeyId,
+      uploadId: uploadId,
     );
   }
 
@@ -76,7 +78,7 @@ abstract class CreateMultipartUploadOutput
           b.abortRuleId = response.headers['x-amz-abort-rule-id']!;
         }
         if (response.headers['x-amz-server-side-encryption'] != null) {
-          b.serverSideEncryption = ServerSideEncryption.values
+          b.serverSideEncryption = _i5.ServerSideEncryption.values
               .byValue(response.headers['x-amz-server-side-encryption']!);
         }
         if (response
@@ -107,19 +109,23 @@ abstract class CreateMultipartUploadOutput
               'true';
         }
         if (response.headers['x-amz-request-charged'] != null) {
-          b.requestCharged = RequestCharged.values
+          b.requestCharged = _i4.RequestCharged.values
               .byValue(response.headers['x-amz-request-charged']!);
         }
         if (response.headers['x-amz-checksum-algorithm'] != null) {
-          b.checksumAlgorithm = ChecksumAlgorithm.values
+          b.checksumAlgorithm = _i3.ChecksumAlgorithm.values
               .byValue(response.headers['x-amz-checksum-algorithm']!);
         }
       });
 
-  static const List<_i2.SmithySerializer<CreateMultipartUploadOutputPayload>>
-      serializers = [CreateMultipartUploadOutputRestXmlSerializer()];
+  static const List<_i2.SmithySerializer> serializers = [
+    CreateMultipartUploadOutputRestXmlSerializer()
+  ];
 
-  /// If the bucket has a lifecycle rule configured with an action to abort incomplete multipart uploads and the prefix in the lifecycle rule matches the object name in the request, the response includes this header. The header indicates when the initiated multipart upload becomes eligible for an abort operation. For more information, see [Aborting Incomplete Multipart Uploads Using a Bucket Lifecycle Configuration](https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config).
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(CreateMultipartUploadOutputBuilder b) {}
+
+  /// If the bucket has a lifecycle rule configured with an action to abort incomplete multipart uploads and the prefix in the lifecycle rule matches the object name in the request, the response includes this header. The header indicates when the initiated multipart upload becomes eligible for an abort operation. For more information, see [Aborting Incomplete Multipart Uploads Using a Bucket Lifecycle Policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config).
   ///
   /// The response also includes the `x-amz-abort-rule-id` header that provides the ID of the lifecycle configuration rule that defines this action.
   DateTime? get abortDate;
@@ -131,17 +137,23 @@ abstract class CreateMultipartUploadOutput
   ///
   /// When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form _AccessPointName_-_AccountId_.s3-accesspoint._Region_.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see [Using access points](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html) in the _Amazon S3 User Guide_.
   ///
-  /// When you use this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form `_AccessPointName_-_AccountId_._outpostID_.s3-outposts._Region_.amazonaws.com`. When you use this action with S3 on Outposts through the Amazon Web Services SDKs, you provide the Outposts access point ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see [What is S3 on Outposts?](https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html) in the _Amazon S3 User Guide_.
+  /// When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form `_AccessPointName_-_AccountId_._outpostID_.s3-outposts._Region_.amazonaws.com`. When using this action with S3 on Outposts through the Amazon Web Services SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see [Using Amazon S3 on Outposts](https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html) in the _Amazon S3 User Guide_.
   String? get bucket;
+
+  /// Indicates whether the multipart upload uses an S3 Bucket Key for server-side encryption with Amazon Web Services KMS (SSE-KMS).
+  bool? get bucketKeyEnabled;
+
+  /// The algorithm that was used to create a checksum of the object.
+  _i3.ChecksumAlgorithm? get checksumAlgorithm;
 
   /// Object key for which the multipart upload was initiated.
   String? get key;
 
-  /// ID for the initiated multipart upload.
-  String? get uploadId;
+  /// If present, indicates that the requester was successfully charged for the request.
+  _i4.RequestCharged? get requestCharged;
 
-  /// The server-side encryption algorithm used when storing this object in Amazon S3 (for example, `AES256`, `aws:kms`).
-  ServerSideEncryption? get serverSideEncryption;
+  /// The server-side encryption algorithm used when storing this object in Amazon S3 (for example, AES256, aws:kms).
+  _i5.ServerSideEncryption? get serverSideEncryption;
 
   /// If server-side encryption with a customer-provided encryption key was requested, the response will include this header confirming the encryption algorithm used.
   String? get sseCustomerAlgorithm;
@@ -149,20 +161,14 @@ abstract class CreateMultipartUploadOutput
   /// If server-side encryption with a customer-provided encryption key was requested, the response will include this header to provide round-trip message integrity verification of the customer-provided encryption key.
   String? get sseCustomerKeyMd5;
 
-  /// If present, specifies the ID of the Key Management Service (KMS) symmetric encryption customer managed key that was used for the object.
-  String? get ssekmsKeyId;
-
   /// If present, specifies the Amazon Web Services KMS Encryption Context to use for object encryption. The value of this header is a base64-encoded UTF-8 string holding JSON with the encryption context key-value pairs.
   String? get ssekmsEncryptionContext;
 
-  /// Indicates whether the multipart upload uses an S3 Bucket Key for server-side encryption with Key Management Service (KMS) keys (SSE-KMS).
-  bool? get bucketKeyEnabled;
+  /// If present, specifies the ID of the Amazon Web Services Key Management Service (Amazon Web Services KMS) symmetric customer managed key that was used for the object.
+  String? get ssekmsKeyId;
 
-  /// If present, indicates that the requester was successfully charged for the request.
-  RequestCharged? get requestCharged;
-
-  /// The algorithm that was used to create a checksum of the object.
-  ChecksumAlgorithm? get checksumAlgorithm;
+  /// ID for the initiated multipart upload.
+  String? get uploadId;
   @override
   CreateMultipartUploadOutputPayload getPayload() =>
       CreateMultipartUploadOutputPayload((b) {
@@ -175,77 +181,77 @@ abstract class CreateMultipartUploadOutput
         abortDate,
         abortRuleId,
         bucket,
+        bucketKeyEnabled,
+        checksumAlgorithm,
         key,
-        uploadId,
+        requestCharged,
         serverSideEncryption,
         sseCustomerAlgorithm,
         sseCustomerKeyMd5,
-        ssekmsKeyId,
         ssekmsEncryptionContext,
-        bucketKeyEnabled,
-        requestCharged,
-        checksumAlgorithm,
+        ssekmsKeyId,
+        uploadId,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('CreateMultipartUploadOutput')
-      ..add(
-        'abortDate',
-        abortDate,
-      )
-      ..add(
-        'abortRuleId',
-        abortRuleId,
-      )
-      ..add(
-        'bucket',
-        bucket,
-      )
-      ..add(
-        'key',
-        key,
-      )
-      ..add(
-        'uploadId',
-        uploadId,
-      )
-      ..add(
-        'serverSideEncryption',
-        serverSideEncryption,
-      )
-      ..add(
-        'sseCustomerAlgorithm',
-        sseCustomerAlgorithm,
-      )
-      ..add(
-        'sseCustomerKeyMd5',
-        sseCustomerKeyMd5,
-      )
-      ..add(
-        'ssekmsKeyId',
-        '***SENSITIVE***',
-      )
-      ..add(
-        'ssekmsEncryptionContext',
-        '***SENSITIVE***',
-      )
-      ..add(
-        'bucketKeyEnabled',
-        bucketKeyEnabled,
-      )
-      ..add(
-        'requestCharged',
-        requestCharged,
-      )
-      ..add(
-        'checksumAlgorithm',
-        checksumAlgorithm,
-      );
+    final helper = newBuiltValueToStringHelper('CreateMultipartUploadOutput');
+    helper.add(
+      'abortDate',
+      abortDate,
+    );
+    helper.add(
+      'abortRuleId',
+      abortRuleId,
+    );
+    helper.add(
+      'bucket',
+      bucket,
+    );
+    helper.add(
+      'bucketKeyEnabled',
+      bucketKeyEnabled,
+    );
+    helper.add(
+      'checksumAlgorithm',
+      checksumAlgorithm,
+    );
+    helper.add(
+      'key',
+      key,
+    );
+    helper.add(
+      'requestCharged',
+      requestCharged,
+    );
+    helper.add(
+      'serverSideEncryption',
+      serverSideEncryption,
+    );
+    helper.add(
+      'sseCustomerAlgorithm',
+      sseCustomerAlgorithm,
+    );
+    helper.add(
+      'sseCustomerKeyMd5',
+      sseCustomerKeyMd5,
+    );
+    helper.add(
+      'ssekmsEncryptionContext',
+      '***SENSITIVE***',
+    );
+    helper.add(
+      'ssekmsKeyId',
+      '***SENSITIVE***',
+    );
+    helper.add(
+      'uploadId',
+      uploadId,
+    );
     return helper.toString();
   }
 }
 
-@_i3.internal
+@_i6.internal
 abstract class CreateMultipartUploadOutputPayload
     with
         _i1.AWSEquatable<CreateMultipartUploadOutputPayload>
@@ -258,11 +264,14 @@ abstract class CreateMultipartUploadOutputPayload
 
   const CreateMultipartUploadOutputPayload._();
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(CreateMultipartUploadOutputPayloadBuilder b) {}
+
   /// The name of the bucket to which the multipart upload was initiated. Does not return the access point ARN or access point alias if used.
   ///
   /// When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form _AccessPointName_-_AccountId_.s3-accesspoint._Region_.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see [Using access points](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html) in the _Amazon S3 User Guide_.
   ///
-  /// When you use this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form `_AccessPointName_-_AccountId_._outpostID_.s3-outposts._Region_.amazonaws.com`. When you use this action with S3 on Outposts through the Amazon Web Services SDKs, you provide the Outposts access point ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see [What is S3 on Outposts?](https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html) in the _Amazon S3 User Guide_.
+  /// When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form `_AccessPointName_-_AccountId_._outpostID_.s3-outposts._Region_.amazonaws.com`. When using this action with S3 on Outposts through the Amazon Web Services SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see [Using Amazon S3 on Outposts](https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html) in the _Amazon S3 User Guide_.
   String? get bucket;
 
   /// Object key for which the multipart upload was initiated.
@@ -279,19 +288,19 @@ abstract class CreateMultipartUploadOutputPayload
   @override
   String toString() {
     final helper =
-        newBuiltValueToStringHelper('CreateMultipartUploadOutputPayload')
-          ..add(
-            'bucket',
-            bucket,
-          )
-          ..add(
-            'key',
-            key,
-          )
-          ..add(
-            'uploadId',
-            uploadId,
-          );
+        newBuiltValueToStringHelper('CreateMultipartUploadOutputPayload');
+    helper.add(
+      'bucket',
+      bucket,
+    );
+    helper.add(
+      'key',
+      key,
+    );
+    helper.add(
+      'uploadId',
+      uploadId,
+    );
     return helper.toString();
   }
 }
@@ -324,28 +333,34 @@ class CreateMultipartUploadOutputRestXmlSerializer
     final result = CreateMultipartUploadOutputPayloadBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'Bucket':
-          result.bucket = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.bucket = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'Key':
-          result.key = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.key = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'UploadId':
-          result.uploadId = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.uploadId = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -355,40 +370,42 @@ class CreateMultipartUploadOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    CreateMultipartUploadOutputPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final payload = object is CreateMultipartUploadOutput
+        ? object.getPayload()
+        : (object as CreateMultipartUploadOutputPayload);
+    final result = <Object?>[
       const _i2.XmlElementName(
         'InitiateMultipartUploadResult',
         _i2.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
       )
     ];
-    final CreateMultipartUploadOutputPayload(:bucket, :key, :uploadId) = object;
-    if (bucket != null) {
-      result$
+    if (payload.bucket != null) {
+      result
         ..add(const _i2.XmlElementName('Bucket'))
         ..add(serializers.serialize(
-          bucket,
+          payload.bucket!,
           specifiedType: const FullType(String),
         ));
     }
-    if (key != null) {
-      result$
+    if (payload.key != null) {
+      result
         ..add(const _i2.XmlElementName('Key'))
         ..add(serializers.serialize(
-          key,
+          payload.key!,
           specifiedType: const FullType(String),
         ));
     }
-    if (uploadId != null) {
-      result$
+    if (payload.uploadId != null) {
+      result
         ..add(const _i2.XmlElementName('UploadId'))
         ..add(serializers.serialize(
-          uploadId,
+          payload.uploadId!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

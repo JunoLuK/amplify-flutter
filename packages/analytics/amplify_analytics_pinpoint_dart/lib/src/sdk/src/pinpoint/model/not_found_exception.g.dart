@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'not_found_exception.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.not_found_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -63,7 +63,9 @@ class NotFoundExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  NotFoundExceptionBuilder();
+  NotFoundExceptionBuilder() {
+    NotFoundException._init(this);
+  }
 
   NotFoundExceptionBuilder get _$this {
     final $v = _$v;

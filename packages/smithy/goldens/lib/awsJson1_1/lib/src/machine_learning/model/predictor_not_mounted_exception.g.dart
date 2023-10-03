@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'predictor_not_mounted_exception.dart';
+part of aws_json1_1_v1.machine_learning.model.predictor_not_mounted_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -56,7 +56,9 @@ class PredictorNotMountedExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  PredictorNotMountedExceptionBuilder();
+  PredictorNotMountedExceptionBuilder() {
+    PredictorNotMountedException._init(this);
+  }
 
   PredictorNotMountedExceptionBuilder get _$this {
     final $v = _$v;

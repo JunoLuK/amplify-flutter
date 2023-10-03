@@ -3,7 +3,6 @@
 
 import 'package:amplify_secure_storage_dart/amplify_secure_storage_dart.dart';
 import 'package:amplify_secure_storage_test/amplify_secure_storage_test.dart';
-import 'package:aws_common/aws_common.dart';
 import 'package:test/test.dart';
 
 AmplifySecureStorageDart storageFactory({
@@ -21,8 +20,6 @@ AmplifySecureStorageInterface remoteStorageFactory({
 }
 
 void main() {
-  AWSLogger().logLevel = LogLevel.verbose;
-
   group('local', () => runTests(storageFactory));
   group('remote', () => runTests(remoteStorageFactory));
 }

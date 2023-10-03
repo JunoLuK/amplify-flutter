@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_analytics_pinpoint_dart.pinpoint.model.metric_dimension; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -17,8 +16,9 @@ abstract class MetricDimension
   /// Specifies metric-based criteria for including or excluding endpoints from a segment. These criteria derive from custom metrics that you define for endpoints.
   factory MetricDimension({
     required String comparisonOperator,
-    required double value,
+    double? value,
   }) {
+    value ??= 0;
     return _$MetricDimension._(
       comparisonOperator: comparisonOperator,
       value: value,
@@ -31,9 +31,14 @@ abstract class MetricDimension
 
   const MetricDimension._();
 
-  static const List<_i2.SmithySerializer<MetricDimension>> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     MetricDimensionRestJson1Serializer()
   ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MetricDimensionBuilder b) {
+    b.value = 0;
+  }
 
   /// The operator to use when comparing metric values. Valid values are: GREATER\_THAN, LESS\_THAN, GREATER\_THAN\_OR\_EQUAL, LESS\_THAN\_OR\_EQUAL, and EQUAL.
   String get comparisonOperator;
@@ -47,15 +52,15 @@ abstract class MetricDimension
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('MetricDimension')
-      ..add(
-        'comparisonOperator',
-        comparisonOperator,
-      )
-      ..add(
-        'value',
-        value,
-      );
+    final helper = newBuiltValueToStringHelper('MetricDimension');
+    helper.add(
+      'comparisonOperator',
+      comparisonOperator,
+    );
+    helper.add(
+      'value',
+      value,
+    );
     return helper.toString();
   }
 }
@@ -88,20 +93,19 @@ class MetricDimensionRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'ComparisonOperator':
           result.comparisonOperator = (serializers.deserialize(
-            value,
+            value!,
             specifiedType: const FullType(String),
           ) as String);
+          break;
         case 'Value':
           result.value = (serializers.deserialize(
-            value,
+            value!,
             specifiedType: const FullType(double),
           ) as double);
+          break;
       }
     }
 
@@ -111,23 +115,22 @@ class MetricDimensionRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    MetricDimension object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final MetricDimension(:comparisonOperator, :value) = object;
-    result$.addAll([
+    final payload = (object as MetricDimension);
+    final result = <Object?>[
       'ComparisonOperator',
       serializers.serialize(
-        comparisonOperator,
+        payload.comparisonOperator,
         specifiedType: const FullType(String),
       ),
       'Value',
       serializers.serialize(
-        value,
+        payload.value,
         specifiedType: const FullType(double),
       ),
-    ]);
-    return result$;
+    ];
+    return result;
   }
 }

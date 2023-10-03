@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_storage_s3_dart.s3.model.parquet_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -25,10 +24,12 @@ abstract class ParquetInput
 
   const ParquetInput._();
 
-  static const List<_i2.SmithySerializer<ParquetInput>> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     ParquetInputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ParquetInputBuilder b) {}
   @override
   List<Object?> get props => [];
   @override
@@ -66,16 +67,15 @@ class ParquetInputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    ParquetInput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final result = <Object?>[
       const _i2.XmlElementName(
         'ParquetInput',
         _i2.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
       )
     ];
-
-    return result$;
+    return result;
   }
 }

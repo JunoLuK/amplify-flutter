@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'xml_attributes_on_payload_input_output.dart';
+part of rest_xml_v1.rest_xml_protocol.model.xml_attributes_on_payload_input_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -9,7 +9,7 @@ part of 'xml_attributes_on_payload_input_output.dart';
 class _$XmlAttributesOnPayloadInputOutput
     extends XmlAttributesOnPayloadInputOutput {
   @override
-  final XmlAttributesInputOutput? payload;
+  final _i2.XmlAttributesInputOutput? payload;
 
   factory _$XmlAttributesOnPayloadInputOutput(
           [void Function(XmlAttributesOnPayloadInputOutputBuilder)? updates]) =>
@@ -49,13 +49,15 @@ class XmlAttributesOnPayloadInputOutputBuilder
             XmlAttributesOnPayloadInputOutputBuilder> {
   _$XmlAttributesOnPayloadInputOutput? _$v;
 
-  XmlAttributesInputOutputBuilder? _payload;
-  XmlAttributesInputOutputBuilder get payload =>
-      _$this._payload ??= new XmlAttributesInputOutputBuilder();
-  set payload(XmlAttributesInputOutputBuilder? payload) =>
+  _i2.XmlAttributesInputOutputBuilder? _payload;
+  _i2.XmlAttributesInputOutputBuilder get payload =>
+      _$this._payload ??= new _i2.XmlAttributesInputOutputBuilder();
+  set payload(_i2.XmlAttributesInputOutputBuilder? payload) =>
       _$this._payload = payload;
 
-  XmlAttributesOnPayloadInputOutputBuilder();
+  XmlAttributesOnPayloadInputOutputBuilder() {
+    XmlAttributesOnPayloadInputOutput._init(this);
+  }
 
   XmlAttributesOnPayloadInputOutputBuilder get _$this {
     final $v = _$v;

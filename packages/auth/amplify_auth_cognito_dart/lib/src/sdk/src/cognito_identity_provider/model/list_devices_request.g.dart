@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'list_devices_request.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.list_devices_request;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -71,7 +71,9 @@ class ListDevicesRequestBuilder
   set paginationToken(String? paginationToken) =>
       _$this._paginationToken = paginationToken;
 
-  ListDevicesRequestBuilder();
+  ListDevicesRequestBuilder() {
+    ListDevicesRequest._init(this);
+  }
 
   ListDevicesRequestBuilder get _$this {
     final $v = _$v;

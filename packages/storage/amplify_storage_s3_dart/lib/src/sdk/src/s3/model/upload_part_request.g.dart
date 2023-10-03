@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'upload_part_request.dart';
+part of amplify_storage_s3_dart.s3.model.upload_part_request;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,15 +8,11 @@ part of 'upload_part_request.dart';
 
 class _$UploadPartRequest extends UploadPartRequest {
   @override
-  final _i2.Stream<List<int>> body;
+  final _i2.Stream<List<int>>? body;
   @override
   final String bucket;
   @override
-  final _i4.Int64? contentLength;
-  @override
-  final String? contentMd5;
-  @override
-  final ChecksumAlgorithm? checksumAlgorithm;
+  final _i4.ChecksumAlgorithm? checksumAlgorithm;
   @override
   final String? checksumCrc32;
   @override
@@ -26,11 +22,17 @@ class _$UploadPartRequest extends UploadPartRequest {
   @override
   final String? checksumSha256;
   @override
+  final _i5.Int64? contentLength;
+  @override
+  final String? contentMd5;
+  @override
+  final String? expectedBucketOwner;
+  @override
   final String key;
   @override
-  final int? partNumber;
+  final int partNumber;
   @override
-  final String uploadId;
+  final _i6.RequestPayer? requestPayer;
   @override
   final String? sseCustomerAlgorithm;
   @override
@@ -38,37 +40,36 @@ class _$UploadPartRequest extends UploadPartRequest {
   @override
   final String? sseCustomerKeyMd5;
   @override
-  final RequestPayer? requestPayer;
-  @override
-  final String? expectedBucketOwner;
+  final String uploadId;
 
   factory _$UploadPartRequest(
           [void Function(UploadPartRequestBuilder)? updates]) =>
       (new UploadPartRequestBuilder()..update(updates))._build();
 
   _$UploadPartRequest._(
-      {required this.body,
+      {this.body,
       required this.bucket,
-      this.contentLength,
-      this.contentMd5,
       this.checksumAlgorithm,
       this.checksumCrc32,
       this.checksumCrc32C,
       this.checksumSha1,
       this.checksumSha256,
+      this.contentLength,
+      this.contentMd5,
+      this.expectedBucketOwner,
       required this.key,
-      this.partNumber,
-      required this.uploadId,
+      required this.partNumber,
+      this.requestPayer,
       this.sseCustomerAlgorithm,
       this.sseCustomerKey,
       this.sseCustomerKeyMd5,
-      this.requestPayer,
-      this.expectedBucketOwner})
+      required this.uploadId})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(body, r'UploadPartRequest', 'body');
     BuiltValueNullFieldError.checkNotNull(
         bucket, r'UploadPartRequest', 'bucket');
     BuiltValueNullFieldError.checkNotNull(key, r'UploadPartRequest', 'key');
+    BuiltValueNullFieldError.checkNotNull(
+        partNumber, r'UploadPartRequest', 'partNumber');
     BuiltValueNullFieldError.checkNotNull(
         uploadId, r'UploadPartRequest', 'uploadId');
   }
@@ -87,21 +88,21 @@ class _$UploadPartRequest extends UploadPartRequest {
     return other is UploadPartRequest &&
         body == other.body &&
         bucket == other.bucket &&
-        contentLength == other.contentLength &&
-        contentMd5 == other.contentMd5 &&
         checksumAlgorithm == other.checksumAlgorithm &&
         checksumCrc32 == other.checksumCrc32 &&
         checksumCrc32C == other.checksumCrc32C &&
         checksumSha1 == other.checksumSha1 &&
         checksumSha256 == other.checksumSha256 &&
+        contentLength == other.contentLength &&
+        contentMd5 == other.contentMd5 &&
+        expectedBucketOwner == other.expectedBucketOwner &&
         key == other.key &&
         partNumber == other.partNumber &&
-        uploadId == other.uploadId &&
+        requestPayer == other.requestPayer &&
         sseCustomerAlgorithm == other.sseCustomerAlgorithm &&
         sseCustomerKey == other.sseCustomerKey &&
         sseCustomerKeyMd5 == other.sseCustomerKeyMd5 &&
-        requestPayer == other.requestPayer &&
-        expectedBucketOwner == other.expectedBucketOwner;
+        uploadId == other.uploadId;
   }
 
   @override
@@ -109,21 +110,21 @@ class _$UploadPartRequest extends UploadPartRequest {
     var _$hash = 0;
     _$hash = $jc(_$hash, body.hashCode);
     _$hash = $jc(_$hash, bucket.hashCode);
-    _$hash = $jc(_$hash, contentLength.hashCode);
-    _$hash = $jc(_$hash, contentMd5.hashCode);
     _$hash = $jc(_$hash, checksumAlgorithm.hashCode);
     _$hash = $jc(_$hash, checksumCrc32.hashCode);
     _$hash = $jc(_$hash, checksumCrc32C.hashCode);
     _$hash = $jc(_$hash, checksumSha1.hashCode);
     _$hash = $jc(_$hash, checksumSha256.hashCode);
+    _$hash = $jc(_$hash, contentLength.hashCode);
+    _$hash = $jc(_$hash, contentMd5.hashCode);
+    _$hash = $jc(_$hash, expectedBucketOwner.hashCode);
     _$hash = $jc(_$hash, key.hashCode);
     _$hash = $jc(_$hash, partNumber.hashCode);
-    _$hash = $jc(_$hash, uploadId.hashCode);
+    _$hash = $jc(_$hash, requestPayer.hashCode);
     _$hash = $jc(_$hash, sseCustomerAlgorithm.hashCode);
     _$hash = $jc(_$hash, sseCustomerKey.hashCode);
     _$hash = $jc(_$hash, sseCustomerKeyMd5.hashCode);
-    _$hash = $jc(_$hash, requestPayer.hashCode);
-    _$hash = $jc(_$hash, expectedBucketOwner.hashCode);
+    _$hash = $jc(_$hash, uploadId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -141,18 +142,9 @@ class UploadPartRequestBuilder
   String? get bucket => _$this._bucket;
   set bucket(String? bucket) => _$this._bucket = bucket;
 
-  _i4.Int64? _contentLength;
-  _i4.Int64? get contentLength => _$this._contentLength;
-  set contentLength(_i4.Int64? contentLength) =>
-      _$this._contentLength = contentLength;
-
-  String? _contentMd5;
-  String? get contentMd5 => _$this._contentMd5;
-  set contentMd5(String? contentMd5) => _$this._contentMd5 = contentMd5;
-
-  ChecksumAlgorithm? _checksumAlgorithm;
-  ChecksumAlgorithm? get checksumAlgorithm => _$this._checksumAlgorithm;
-  set checksumAlgorithm(ChecksumAlgorithm? checksumAlgorithm) =>
+  _i4.ChecksumAlgorithm? _checksumAlgorithm;
+  _i4.ChecksumAlgorithm? get checksumAlgorithm => _$this._checksumAlgorithm;
+  set checksumAlgorithm(_i4.ChecksumAlgorithm? checksumAlgorithm) =>
       _$this._checksumAlgorithm = checksumAlgorithm;
 
   String? _checksumCrc32;
@@ -174,6 +166,20 @@ class UploadPartRequestBuilder
   set checksumSha256(String? checksumSha256) =>
       _$this._checksumSha256 = checksumSha256;
 
+  _i5.Int64? _contentLength;
+  _i5.Int64? get contentLength => _$this._contentLength;
+  set contentLength(_i5.Int64? contentLength) =>
+      _$this._contentLength = contentLength;
+
+  String? _contentMd5;
+  String? get contentMd5 => _$this._contentMd5;
+  set contentMd5(String? contentMd5) => _$this._contentMd5 = contentMd5;
+
+  String? _expectedBucketOwner;
+  String? get expectedBucketOwner => _$this._expectedBucketOwner;
+  set expectedBucketOwner(String? expectedBucketOwner) =>
+      _$this._expectedBucketOwner = expectedBucketOwner;
+
   String? _key;
   String? get key => _$this._key;
   set key(String? key) => _$this._key = key;
@@ -182,9 +188,10 @@ class UploadPartRequestBuilder
   int? get partNumber => _$this._partNumber;
   set partNumber(int? partNumber) => _$this._partNumber = partNumber;
 
-  String? _uploadId;
-  String? get uploadId => _$this._uploadId;
-  set uploadId(String? uploadId) => _$this._uploadId = uploadId;
+  _i6.RequestPayer? _requestPayer;
+  _i6.RequestPayer? get requestPayer => _$this._requestPayer;
+  set requestPayer(_i6.RequestPayer? requestPayer) =>
+      _$this._requestPayer = requestPayer;
 
   String? _sseCustomerAlgorithm;
   String? get sseCustomerAlgorithm => _$this._sseCustomerAlgorithm;
@@ -201,15 +208,9 @@ class UploadPartRequestBuilder
   set sseCustomerKeyMd5(String? sseCustomerKeyMd5) =>
       _$this._sseCustomerKeyMd5 = sseCustomerKeyMd5;
 
-  RequestPayer? _requestPayer;
-  RequestPayer? get requestPayer => _$this._requestPayer;
-  set requestPayer(RequestPayer? requestPayer) =>
-      _$this._requestPayer = requestPayer;
-
-  String? _expectedBucketOwner;
-  String? get expectedBucketOwner => _$this._expectedBucketOwner;
-  set expectedBucketOwner(String? expectedBucketOwner) =>
-      _$this._expectedBucketOwner = expectedBucketOwner;
+  String? _uploadId;
+  String? get uploadId => _$this._uploadId;
+  set uploadId(String? uploadId) => _$this._uploadId = uploadId;
 
   UploadPartRequestBuilder() {
     UploadPartRequest._init(this);
@@ -220,21 +221,21 @@ class UploadPartRequestBuilder
     if ($v != null) {
       _body = $v.body;
       _bucket = $v.bucket;
-      _contentLength = $v.contentLength;
-      _contentMd5 = $v.contentMd5;
       _checksumAlgorithm = $v.checksumAlgorithm;
       _checksumCrc32 = $v.checksumCrc32;
       _checksumCrc32C = $v.checksumCrc32C;
       _checksumSha1 = $v.checksumSha1;
       _checksumSha256 = $v.checksumSha256;
+      _contentLength = $v.contentLength;
+      _contentMd5 = $v.contentMd5;
+      _expectedBucketOwner = $v.expectedBucketOwner;
       _key = $v.key;
       _partNumber = $v.partNumber;
-      _uploadId = $v.uploadId;
+      _requestPayer = $v.requestPayer;
       _sseCustomerAlgorithm = $v.sseCustomerAlgorithm;
       _sseCustomerKey = $v.sseCustomerKey;
       _sseCustomerKeyMd5 = $v.sseCustomerKeyMd5;
-      _requestPayer = $v.requestPayer;
-      _expectedBucketOwner = $v.expectedBucketOwner;
+      _uploadId = $v.uploadId;
       _$v = null;
     }
     return this;
@@ -257,27 +258,27 @@ class UploadPartRequestBuilder
   _$UploadPartRequest _build() {
     final _$result = _$v ??
         new _$UploadPartRequest._(
-            body: BuiltValueNullFieldError.checkNotNull(
-                body, r'UploadPartRequest', 'body'),
+            body: body,
             bucket: BuiltValueNullFieldError.checkNotNull(
                 bucket, r'UploadPartRequest', 'bucket'),
-            contentLength: contentLength,
-            contentMd5: contentMd5,
             checksumAlgorithm: checksumAlgorithm,
             checksumCrc32: checksumCrc32,
             checksumCrc32C: checksumCrc32C,
             checksumSha1: checksumSha1,
             checksumSha256: checksumSha256,
+            contentLength: contentLength,
+            contentMd5: contentMd5,
+            expectedBucketOwner: expectedBucketOwner,
             key: BuiltValueNullFieldError.checkNotNull(
                 key, r'UploadPartRequest', 'key'),
-            partNumber: partNumber,
-            uploadId: BuiltValueNullFieldError.checkNotNull(
-                uploadId, r'UploadPartRequest', 'uploadId'),
+            partNumber: BuiltValueNullFieldError.checkNotNull(
+                partNumber, r'UploadPartRequest', 'partNumber'),
+            requestPayer: requestPayer,
             sseCustomerAlgorithm: sseCustomerAlgorithm,
             sseCustomerKey: sseCustomerKey,
             sseCustomerKeyMd5: sseCustomerKeyMd5,
-            requestPayer: requestPayer,
-            expectedBucketOwner: expectedBucketOwner);
+            uploadId: BuiltValueNullFieldError.checkNotNull(
+                uploadId, r'UploadPartRequest', 'uploadId'));
     replace(_$result);
     return _$result;
   }

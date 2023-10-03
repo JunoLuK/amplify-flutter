@@ -21,11 +21,13 @@ enum TestType { request, response, error }
 class OperationTestGenerator extends LibraryGenerator<OperationShape>
     with OperationGenerationContext {
   OperationTestGenerator(
-    super.shape,
+    OperationShape shape,
     CodegenContext context, {
-    super.smithyLibrary,
+    SmithyLibrary? smithyLibrary,
   }) : super(
+          shape,
           context: context,
+          smithyLibrary: smithyLibrary,
         );
 
   /// Test cases which should be skipped right now and the reasons why.
@@ -34,14 +36,6 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
         'bool.fromEnvironment is not working in tests for some reason',
     'QueryIdempotencyTokenAutoFill':
         'bool.fromEnvironment is not working in tests for some reason',
-    'QueryProtocolIdempotencyTokenAutoFill':
-        'bool.fromEnvironment is not working in tests for some reason',
-    'Ec2ProtocolIdempotencyTokenAutoFill':
-        'bool.fromEnvironment is not working in tests for some reason',
-    'Ec2ProtocolIdempotencyTokenAutoFillIsSet':
-        'bool.fromEnvironment is not working in tests for some reason',
-    'EmptyQueryLists': 'Unclear how to reconcile with QueryEmptyQueryMaps',
-    'Ec2EmptyQueryLists': 'Unclear how to reconcile with QueryEmptyQueryMaps',
     'RestJsonSerializesSparseSetMap':
         'Cannot handle this at the moment (empty vs. null).',
     'RestJsonSerializesDenseSetMap':
@@ -53,28 +47,6 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
     'GlacierMultipartChecksums': 'Glacier is not supported yet',
     'GlacierAccountId': 'Glacier is not supported yet',
     'MachinelearningPredictEndpoint': 'ML Predict is not supported yet',
-
-    // Compression tests: Not yet supported
-    'SDKAppliedContentEncoding_awsJson1_0':
-        'Request compression not supported yet',
-    'SDKAppendsGzipAndIgnoresHttpProvidedEncoding_awsJson1_0':
-        'Request compression not supported yet',
-    'SDKAppliedContentEncoding_awsJson1_1':
-        'Request compression not supported yet',
-    'SDKAppendsGzipAndIgnoresHttpProvidedEncoding_awsJson1_1':
-        'Request compression not supported yet',
-    'SDKAppliedContentEncoding_awsQuery':
-        'Request compression not supported yet',
-    'SDKAppendsGzipAndIgnoresHttpProvidedEncoding_awsQuery':
-        'Request compression not supported yet',
-    'SDKAppliedContentEncoding_restJson1':
-        'Request compression not supported yet',
-    'SDKAppendedGzipAfterProvidedEncoding_restJson1':
-        'Request compression not supported yet',
-    'SDKAppliedContentEncoding_restXml':
-        'Request compression not supported yet',
-    'SDKAppendedGzipAfterProvidedEncoding_restXml':
-        'Request compression not supported yet',
   };
 
   /// Test values for required operation inputs.
@@ -109,7 +81,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
               literalString('https://${testCase.host ?? 'example.com'}'),
             ])
           else if (_testValues.containsKey(param.name))
-            param.name: _testValues[param.name]!,
+            param.name: _testValues[param.name]!
       });
 
   /// Tests to skip on Web. To be filled in during codegen since it depends
@@ -146,10 +118,8 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
         .expand((el) => el)
         .map((t) => t.protocol),
   }
-      .map(
-        (protocol) =>
-            context.serviceProtocols.firstWhere((p) => p.shapeId == protocol),
-      )
+      .map((protocol) =>
+          context.serviceProtocols.firstWhere((p) => p.shapeId == protocol))
       .toList();
 
   /// When deserializing the `params` of a test case, we need to consider not
@@ -229,7 +199,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
             ).generate(),
             ..._collectSerializers(errorShape, protocol),
           ],
-      },
+      }
   };
 
   static const _vendorProtocol = GenericJsonProtocolDefinitionTrait();
@@ -243,17 +213,15 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
           .whereType<ShapeId>()
           .map(context.shapeFor)
           .cast<StructureShape>()
-          .expand(
-            (shape) => [
-              StructureSerializerGenerator(
-                shape,
-                context,
-                _vendorProtocol,
-                config: const SerializerConfig.test(),
-              ).generate(),
-              ..._collectSerializers(shape, _vendorProtocol),
-            ],
-          )
+          .expand((shape) => [
+                StructureSerializerGenerator(
+                  shape,
+                  context,
+                  _vendorProtocol,
+                  config: const SerializerConfig.test(),
+                ).generate(),
+                ..._collectSerializers(shape, _vendorProtocol),
+              ])
           .whereType<Class>()
           .toList();
 
@@ -284,15 +252,12 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
         (b) => b
           ..name = 'main'
           ..body = Block.of([
-            if (vendorSerializers.isNotEmpty)
-              Code.scope(
-                (allocate) => '''
+            if (vendorSerializers.isNotEmpty) Code.scope((allocate) => '''
   final vendorSerializers = (${allocate(DartTypes.smithyTest.testSerializers)}.toBuilder()..addAll(const [
     ${_uniqueSerializers(vendorSerializers).map((serializer) => '${serializer.name}(),').join()}
     ${_vendorEnums.map((e) => '...${allocate(e)}.serializers,').join()}
   ])).build();
-            ''',
-              ),
+            '''),
             Block.of(allTests),
           ]),
       ),
@@ -309,7 +274,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
 
   /// HTTP request tests.
   Iterable<Code> get _httpRequestTests sync* {
-    for (final testCase in httpRequestTestCases) {
+    for (var testCase in httpRequestTestCases) {
       final serializers = inputSerializers[testCase.protocol] ?? const [];
       final testCall = DartTypes.smithyTest.httpRequestTest.call([], {
         'operation': _operationInstance(testCase),
@@ -327,8 +292,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
               testCase.vendorParamsShape?.constructed ?? literalNull,
           'vendorParams': literal(testCase.vendorParams),
           'headers': literal(
-            _escapeParams(testCase, testCase.headers).cast<String, String>(),
-          ),
+              _escapeParams(testCase, testCase.headers).cast<String, String>()),
           'forbidHeaders': literal(testCase.forbidHeaders),
           'requireHeaders': literal(testCase.requireHeaders),
           'tags': literal(testCase.tags),
@@ -346,7 +310,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
         }),
         'inputSerializers': literalConstList([
           for (final serializer in _uniqueSerializers(serializers))
-            refer(serializer.name).constInstance([]),
+            refer(serializer.name).constInstance([])
         ]),
       });
       yield _buildTest(testCase, testCall, type: TestType.request);
@@ -357,14 +321,14 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
   ///
   /// https://awslabs.github.io/smithy/1.0/spec/http-protocol-compliance-tests.html#httpresponsetests
   Iterable<Code> get _httpResponseTests sync* {
-    for (final testCase in httpResponseTestCases) {
+    for (var testCase in httpResponseTestCases) {
       final serializers = outputSerializers[testCase.protocol] ?? const [];
       final testCall = DartTypes.smithyTest.httpResponseTest.call([], {
         'operation': _operationInstance(testCase),
         'testCase': _buildResponseTestCase(testCase),
         'outputSerializers': literalConstList([
           for (final serializer in _uniqueSerializers(serializers))
-            refer(serializer.name).constInstance([]),
+            refer(serializer.name).constInstance([])
         ]),
       });
       yield _buildTest(testCase, testCall, type: TestType.response);
@@ -377,7 +341,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
   Iterable<Code> get _httpErrorResponseTests sync* {
     for (final errorShape in errorShapes) {
       final testCases = httpErrorResponseTestCases[errorShape]!;
-      for (final testCase in testCases) {
+      for (var testCase in testCases) {
         final serializers =
             errorSerializers[errorShape]![testCase.protocol] ?? const [];
         final testCall = DartTypes.smithyTest.httpErrorResponseTest.call([], {
@@ -385,7 +349,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
           'testCase': _buildResponseTestCase(testCase),
           'errorSerializers': literalConstList([
             for (final serializer in _uniqueSerializers(serializers))
-              refer(serializer.name).constInstance([]),
+              refer(serializer.name).constInstance([])
           ]),
         }, [
           inputPayload.symbol,
@@ -411,13 +375,12 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
     if (testCase.vendorParamsShape != null) {
       final vendorParamsSymbol = context.symbolFor(testCase.vendorParamsShape!);
       initBlock.addExpression(
-        declareFinal('config').assign(
-          refer('vendorSerializers').property('deserialize').call([
-            literalMap(testCase.vendorParams),
-          ], {
-            'specifiedType': vendorParamsSymbol.fullType(),
-          }).asA(vendorParamsSymbol),
-        ),
+        declareFinal('config')
+            .assign(refer('vendorSerializers').property('deserialize').call([
+          literalMap(testCase.vendorParams)
+        ], {
+          'specifiedType': vendorParamsSymbol.fullType(),
+        }).asA(vendorParamsSymbol)),
       );
     }
     if (context.service?.resolvedService?.sdkId == 'S3') {
@@ -430,60 +393,47 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
                   .nullSafeProperty('operation')
                   .nullSafeProperty('s3')
                   .nullSafeProperty('useAccelerateEndpoint')
-                  .ifNullThen(
-                    refer('config')
-                        .property('scopedConfig')
-                        .nullSafeProperty('client')
-                        .nullSafeProperty('s3')
-                        .nullSafeProperty('useAccelerateEndpoint'),
-                  )
+                  .ifNullThen(refer('config')
+                      .property('scopedConfig')
+                      .nullSafeProperty('client')
+                      .nullSafeProperty('s3')
+                      .nullSafeProperty('useAccelerateEndpoint'))
                   .ifNullThen(literalFalse),
               'useDualStack': refer('config')
                   .property('scopedConfig')
                   .nullSafeProperty('operation')
                   .nullSafeProperty('s3')
                   .nullSafeProperty('useDualstackEndpoint')
-                  .ifNullThen(
-                    refer('config')
+                  .ifNullThen(refer('config')
+                      .property('scopedConfig')
+                      .nullSafeProperty('client')
+                      .nullSafeProperty('s3')
+                      .nullSafeProperty('useDualstackEndpoint'))
+                  .ifNullThen(literalFalse),
+              'usePathStyle': CodeExpression(Block.of([
+                const Code('('),
+                refer('config')
+                    .property('scopedConfig')
+                    .nullSafeProperty('operation')
+                    .nullSafeProperty('s3')
+                    .nullSafeProperty('addressingStyle')
+                    .ifNullThen(refer('config')
                         .property('scopedConfig')
                         .nullSafeProperty('client')
                         .nullSafeProperty('s3')
-                        .nullSafeProperty('useDualstackEndpoint'),
-                  )
-                  .ifNullThen(literalFalse),
-              'usePathStyle': CodeExpression(
-                Block.of([
-                  const Code('('),
-                  refer('config')
-                      .property('scopedConfig')
-                      .nullSafeProperty('operation')
-                      .nullSafeProperty('s3')
-                      .nullSafeProperty('addressingStyle')
-                      .ifNullThen(
-                        refer('config')
-                            .property('scopedConfig')
-                            .nullSafeProperty('client')
-                            .nullSafeProperty('s3')
-                            .nullSafeProperty('addressingStyle'),
-                      )
-                      .code,
-                  const Code(')'),
-                ]),
-              ).equalTo(
-                context
-                    .symbolFor(
-                      const ShapeId(
-                        namespace: 'aws.protocoltests.config',
-                        shape: 'S3AddressingStyle',
-                      ),
-                    )
-                    .property('path'),
-              ),
+                        .nullSafeProperty('addressingStyle'))
+                    .code,
+                const Code(')'),
+              ])).equalTo(context
+                  .symbolFor(const ShapeId(
+                      namespace: 'aws.protocoltests.config',
+                      shape: 'S3AddressingStyle'))
+                  .property('path')),
               'signerConfiguration':
                   DartTypes.awsSigV4.s3ServiceConfiguration.newInstance([], {
                 'signPayload': literalFalse,
                 'chunked': literalFalse,
-              }),
+              })
             }),
           ),
         );
@@ -496,10 +446,8 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
       }
     }
     return Block.of([
-      Code.scope(
-        (allocate) => '${allocate(DartTypes.test.test)}'
-            "('${testCase.id} (${type.name})', () async {",
-      ),
+      Code.scope((allocate) => '${allocate(DartTypes.test.test)}'
+          "('${testCase.id} (${type.name})', () async {"),
       initBlock.build(),
       testCall.awaited.statement,
       const Code('},'),
@@ -529,8 +477,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
             testCase.vendorParamsShape?.constructed ?? literalNull,
         'vendorParams': literal(testCase.vendorParams),
         'headers': literal(
-          _escapeParams(testCase, testCase.headers).cast<String, String>(),
-        ),
+            _escapeParams(testCase, testCase.headers).cast<String, String>()),
         'forbidHeaders': literal(testCase.forbidHeaders),
         'requireHeaders': literal(testCase.requireHeaders),
         'tags': literal(testCase.tags),
@@ -542,10 +489,10 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
 
   /// Create strings which are safe for printing in Dart code.
   String _escapeBody(String body) => body
-      .replaceAll(r'\', r'\\')
-      .replaceAll(r'$', r'\$')
-      .replaceAll('\r', r'\r')
-      .replaceAll('\n', r'\n');
+      .replaceAll('\\', '\\\\')
+      .replaceAll('\$', '\\\$')
+      .replaceAll('\r', '\\r')
+      .replaceAll('\n', '\\n');
 
   Object? _escapeLiteral(HttpMessageTestCase testCase, Object? value) {
     // Use String values for Longs which cannot be represented in JS, so

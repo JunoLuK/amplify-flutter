@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'quiet_time.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.quiet_time;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -51,7 +51,9 @@ class QuietTimeBuilder implements Builder<QuietTime, QuietTimeBuilder> {
   String? get start => _$this._start;
   set start(String? start) => _$this._start = start;
 
-  QuietTimeBuilder();
+  QuietTimeBuilder() {
+    QuietTime._init(this);
+  }
 
   QuietTimeBuilder get _$this {
     final $v = _$v;

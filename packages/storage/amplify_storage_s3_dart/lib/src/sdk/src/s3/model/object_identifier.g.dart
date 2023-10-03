@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'object_identifier.dart';
+part of amplify_storage_s3_dart.s3.model.object_identifier;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -58,7 +58,9 @@ class ObjectIdentifierBuilder
   String? get versionId => _$this._versionId;
   set versionId(String? versionId) => _$this._versionId = versionId;
 
-  ObjectIdentifierBuilder();
+  ObjectIdentifierBuilder() {
+    ObjectIdentifier._init(this);
+  }
 
   ObjectIdentifierBuilder get _$this {
     final $v = _$v;

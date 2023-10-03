@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'http_checksum_really_required_input.dart';
+part of custom_v2.custom.model.http_checksum_really_required_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -9,7 +9,7 @@ part of 'http_checksum_really_required_input.dart';
 class _$HttpChecksumReallyRequiredInput
     extends HttpChecksumReallyRequiredInput {
   @override
-  final ChecksumAlgorithm? checksumAlgorithm;
+  final _i4.ChecksumAlgorithm? checksumAlgorithm;
   @override
   final _i2.Uint8List? content;
 
@@ -53,16 +53,18 @@ class HttpChecksumReallyRequiredInputBuilder
             HttpChecksumReallyRequiredInputBuilder> {
   _$HttpChecksumReallyRequiredInput? _$v;
 
-  ChecksumAlgorithm? _checksumAlgorithm;
-  ChecksumAlgorithm? get checksumAlgorithm => _$this._checksumAlgorithm;
-  set checksumAlgorithm(ChecksumAlgorithm? checksumAlgorithm) =>
+  _i4.ChecksumAlgorithm? _checksumAlgorithm;
+  _i4.ChecksumAlgorithm? get checksumAlgorithm => _$this._checksumAlgorithm;
+  set checksumAlgorithm(_i4.ChecksumAlgorithm? checksumAlgorithm) =>
       _$this._checksumAlgorithm = checksumAlgorithm;
 
   _i2.Uint8List? _content;
   _i2.Uint8List? get content => _$this._content;
   set content(_i2.Uint8List? content) => _$this._content = content;
 
-  HttpChecksumReallyRequiredInputBuilder();
+  HttpChecksumReallyRequiredInputBuilder() {
+    HttpChecksumReallyRequiredInput._init(this);
+  }
 
   HttpChecksumReallyRequiredInputBuilder get _$this {
     final $v = _$v;

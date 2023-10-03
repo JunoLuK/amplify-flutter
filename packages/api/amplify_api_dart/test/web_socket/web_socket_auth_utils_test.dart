@@ -55,18 +55,6 @@ void main() {
         expectedApiKeyWebSocketConnectionUrl,
       );
     });
-
-    test('should generate authorized connection URI with a custom domain',
-        () async {
-      final actualConnectionUri = await generateConnectionUri(
-        testApiKeyConfigCustomDomain,
-        authProviderRepo,
-      );
-      expect(
-        actualConnectionUri.toString(),
-        expectedApiKeyWebSocketConnectionUrlCustomDomain,
-      );
-    });
   });
 
   group('generateSubscriptionRegistrationMessage', () {

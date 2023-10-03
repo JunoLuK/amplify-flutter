@@ -3,7 +3,6 @@
 
 import 'package:amplify_core/amplify_core.dart';
 
-/// {@category Auth}
 class AuthUser with AWSSerializable<Map<String, Object?>>, AWSDebuggable {
   const AuthUser({
     required this.userId,

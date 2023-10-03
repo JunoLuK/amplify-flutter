@@ -1,13 +1,14 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 // ignore_for_file: unused_element
 library rest_json1_v2.rest_json_protocol.test.endpoint_with_host_label_operation_test_test; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v2/src/rest_json_protocol/model/host_label_input.dart';
-import 'package:rest_json1_v2/src/rest_json_protocol/operation/endpoint_with_host_label_operation.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:rest_json1_v2/src/rest_json_protocol/model/host_label_input.dart'
+    as _i5;
+import 'package:rest_json1_v2/src/rest_json_protocol/operation/endpoint_with_host_label_operation.dart'
+    as _i3;
+import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
@@ -16,7 +17,7 @@ void main() {
     'RestJsonEndpointTraitWithHostLabel (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: EndpointWithHostLabelOperation(
+        operation: _i3.EndpointWithHostLabelOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
@@ -24,7 +25,7 @@ void main() {
           id: 'RestJsonEndpointTraitWithHostLabel',
           documentation:
               'Operations can prepend to the given host if they define the\nendpoint trait, and can use the host label trait to define\nfurther customization based on user input.',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -54,39 +55,37 @@ void main() {
 }
 
 class HostLabelInputRestJson1Serializer
-    extends _i3.StructuredSmithySerializer<HostLabelInput> {
+    extends _i4.StructuredSmithySerializer<_i5.HostLabelInput> {
   const HostLabelInputRestJson1Serializer() : super('HostLabelInput');
 
   @override
-  Iterable<Type> get types => const [HostLabelInput];
+  Iterable<Type> get types => const [_i5.HostLabelInput];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
       ];
   @override
-  HostLabelInput deserialize(
+  _i5.HostLabelInput deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = HostLabelInputBuilder();
+    final result = _i5.HostLabelInputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'label':
           result.label = (serializers.deserialize(
-            value,
+            value!,
             specifiedType: const FullType(String),
           ) as String);
+          break;
       }
     }
 
@@ -96,7 +95,7 @@ class HostLabelInputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    HostLabelInput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');

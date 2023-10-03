@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_protocol.model.malformed_boolean_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -20,15 +19,16 @@ abstract class MalformedBooleanInput
         _i1.HasPayload<MalformedBooleanInputPayload> {
   factory MalformedBooleanInput({
     bool? booleanInBody,
-    required bool booleanInPath,
-    bool? booleanInQuery,
     bool? booleanInHeader,
+    bool? booleanInPath,
+    bool? booleanInQuery,
   }) {
+    booleanInPath ??= false;
     return _$MalformedBooleanInput._(
       booleanInBody: booleanInBody,
+      booleanInHeader: booleanInHeader,
       booleanInPath: booleanInPath,
       booleanInQuery: booleanInQuery,
-      booleanInHeader: booleanInHeader,
     );
   }
 
@@ -57,13 +57,19 @@ abstract class MalformedBooleanInput
         }
       });
 
-  static const List<_i1.SmithySerializer<MalformedBooleanInputPayload>>
-      serializers = [MalformedBooleanInputRestJson1Serializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    MalformedBooleanInputRestJson1Serializer()
+  ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedBooleanInputBuilder b) {
+    b.booleanInPath = false;
+  }
 
   bool? get booleanInBody;
+  bool? get booleanInHeader;
   bool get booleanInPath;
   bool? get booleanInQuery;
-  bool? get booleanInHeader;
   @override
   String labelFor(String key) {
     switch (key) {
@@ -84,29 +90,29 @@ abstract class MalformedBooleanInput
   @override
   List<Object?> get props => [
         booleanInBody,
+        booleanInHeader,
         booleanInPath,
         booleanInQuery,
-        booleanInHeader,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('MalformedBooleanInput')
-      ..add(
-        'booleanInBody',
-        booleanInBody,
-      )
-      ..add(
-        'booleanInPath',
-        booleanInPath,
-      )
-      ..add(
-        'booleanInQuery',
-        booleanInQuery,
-      )
-      ..add(
-        'booleanInHeader',
-        booleanInHeader,
-      );
+    final helper = newBuiltValueToStringHelper('MalformedBooleanInput');
+    helper.add(
+      'booleanInBody',
+      booleanInBody,
+    );
+    helper.add(
+      'booleanInHeader',
+      booleanInHeader,
+    );
+    helper.add(
+      'booleanInPath',
+      booleanInPath,
+    );
+    helper.add(
+      'booleanInQuery',
+      booleanInQuery,
+    );
     return helper.toString();
   }
 }
@@ -124,16 +130,18 @@ abstract class MalformedBooleanInputPayload
 
   const MalformedBooleanInputPayload._();
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedBooleanInputPayloadBuilder b) {}
   bool? get booleanInBody;
   @override
   List<Object?> get props => [booleanInBody];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('MalformedBooleanInputPayload')
-      ..add(
-        'booleanInBody',
-        booleanInBody,
-      );
+    final helper = newBuiltValueToStringHelper('MalformedBooleanInputPayload');
+    helper.add(
+      'booleanInBody',
+      booleanInBody,
+    );
     return helper.toString();
   }
 }
@@ -169,15 +177,15 @@ class MalformedBooleanInputRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'booleanInBody':
-          result.booleanInBody = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool);
+          if (value != null) {
+            result.booleanInBody = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(bool),
+            ) as bool);
+          }
+          break;
       }
     }
 
@@ -187,19 +195,21 @@ class MalformedBooleanInputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    MalformedBooleanInputPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final MalformedBooleanInputPayload(:booleanInBody) = object;
-    if (booleanInBody != null) {
-      result$
+    final payload = object is MalformedBooleanInput
+        ? object.getPayload()
+        : (object as MalformedBooleanInputPayload);
+    final result = <Object?>[];
+    if (payload.booleanInBody != null) {
+      result
         ..add('booleanInBody')
         ..add(serializers.serialize(
-          booleanInBody,
+          payload.booleanInBody!,
           specifiedType: const FullType(bool),
         ));
     }
-    return result$;
+    return result;
   }
 }

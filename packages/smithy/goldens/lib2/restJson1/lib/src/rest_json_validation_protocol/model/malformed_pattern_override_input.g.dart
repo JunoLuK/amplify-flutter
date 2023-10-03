@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'malformed_pattern_override_input.dart';
+part of rest_json1_v2.rest_json_validation_protocol.model.malformed_pattern_override_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,20 +8,20 @@ part of 'malformed_pattern_override_input.dart';
 
 class _$MalformedPatternOverrideInput extends MalformedPatternOverrideInput {
   @override
+  final _i4.BuiltList<String>? list;
+  @override
+  final _i4.BuiltMap<String, String>? map;
+  @override
   final String? string;
   @override
-  final _i3.BuiltList<String>? list;
-  @override
-  final _i3.BuiltMap<String, String>? map;
-  @override
-  final PatternUnionOverride? union;
+  final _i3.PatternUnionOverride? union;
 
   factory _$MalformedPatternOverrideInput(
           [void Function(MalformedPatternOverrideInputBuilder)? updates]) =>
       (new MalformedPatternOverrideInputBuilder()..update(updates))._build();
 
   _$MalformedPatternOverrideInput._(
-      {this.string, this.list, this.map, this.union})
+      {this.list, this.map, this.string, this.union})
       : super._();
 
   @override
@@ -37,18 +37,18 @@ class _$MalformedPatternOverrideInput extends MalformedPatternOverrideInput {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is MalformedPatternOverrideInput &&
-        string == other.string &&
         list == other.list &&
         map == other.map &&
+        string == other.string &&
         union == other.union;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, string.hashCode);
     _$hash = $jc(_$hash, list.hashCode);
     _$hash = $jc(_$hash, map.hashCode);
+    _$hash = $jc(_$hash, string.hashCode);
     _$hash = $jc(_$hash, union.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -61,32 +61,34 @@ class MalformedPatternOverrideInputBuilder
             MalformedPatternOverrideInputBuilder> {
   _$MalformedPatternOverrideInput? _$v;
 
+  _i4.ListBuilder<String>? _list;
+  _i4.ListBuilder<String> get list =>
+      _$this._list ??= new _i4.ListBuilder<String>();
+  set list(_i4.ListBuilder<String>? list) => _$this._list = list;
+
+  _i4.MapBuilder<String, String>? _map;
+  _i4.MapBuilder<String, String> get map =>
+      _$this._map ??= new _i4.MapBuilder<String, String>();
+  set map(_i4.MapBuilder<String, String>? map) => _$this._map = map;
+
   String? _string;
   String? get string => _$this._string;
   set string(String? string) => _$this._string = string;
 
-  _i3.ListBuilder<String>? _list;
-  _i3.ListBuilder<String> get list =>
-      _$this._list ??= new _i3.ListBuilder<String>();
-  set list(_i3.ListBuilder<String>? list) => _$this._list = list;
+  _i3.PatternUnionOverride? _union;
+  _i3.PatternUnionOverride? get union => _$this._union;
+  set union(_i3.PatternUnionOverride? union) => _$this._union = union;
 
-  _i3.MapBuilder<String, String>? _map;
-  _i3.MapBuilder<String, String> get map =>
-      _$this._map ??= new _i3.MapBuilder<String, String>();
-  set map(_i3.MapBuilder<String, String>? map) => _$this._map = map;
-
-  PatternUnionOverride? _union;
-  PatternUnionOverride? get union => _$this._union;
-  set union(PatternUnionOverride? union) => _$this._union = union;
-
-  MalformedPatternOverrideInputBuilder();
+  MalformedPatternOverrideInputBuilder() {
+    MalformedPatternOverrideInput._init(this);
+  }
 
   MalformedPatternOverrideInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _string = $v.string;
       _list = $v.list?.toBuilder();
       _map = $v.map?.toBuilder();
+      _string = $v.string;
       _union = $v.union;
       _$v = null;
     }
@@ -112,9 +114,9 @@ class MalformedPatternOverrideInputBuilder
     try {
       _$result = _$v ??
           new _$MalformedPatternOverrideInput._(
-              string: string,
               list: _list?.build(),
               map: _map?.build(),
+              string: string,
               union: union);
     } catch (_) {
       late String _$failedField;

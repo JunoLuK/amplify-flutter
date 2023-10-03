@@ -1,12 +1,14 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library aws_json1_1_v2.machine_learning.machine_learning_client; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i1;
-import 'package:aws_json1_1_v2/src/machine_learning/model/predict_input.dart';
-import 'package:aws_json1_1_v2/src/machine_learning/model/predict_output.dart';
-import 'package:aws_json1_1_v2/src/machine_learning/operation/predict_operation.dart';
+import 'package:aws_json1_1_v2/src/machine_learning/model/predict_input.dart'
+    as _i5;
+import 'package:aws_json1_1_v2/src/machine_learning/model/predict_output.dart'
+    as _i4;
+import 'package:aws_json1_1_v2/src/machine_learning/operation/predict_operation.dart'
+    as _i6;
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i3;
 
@@ -16,7 +18,7 @@ class MachineLearningClient {
     required String region,
     Uri? baseUri,
     _i2.AWSCredentialsProvider credentialsProvider =
-        const _i2.AWSCredentialsProvider.defaultChain(),
+        const _i2.AWSCredentialsProvider.environment(),
     List<_i3.HttpRequestInterceptor> requestInterceptors = const [],
     List<_i3.HttpResponseInterceptor> responseInterceptors = const [],
   })  : _client = client,
@@ -38,12 +40,12 @@ class MachineLearningClient {
 
   final List<_i3.HttpResponseInterceptor> _responseInterceptors;
 
-  _i3.SmithyOperation<PredictOutput> predict(
-    PredictInput input, {
+  _i3.SmithyOperation<_i4.PredictOutput> predict(
+    _i5.PredictInput input, {
     _i1.AWSHttpClient? client,
     _i2.AWSCredentialsProvider? credentialsProvider,
   }) {
-    return PredictOperation(
+    return _i6.PredictOperation(
       region: _region,
       baseUri: _baseUri,
       credentialsProvider: credentialsProvider ?? _credentialsProvider,

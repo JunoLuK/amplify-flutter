@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.rest_json_validation_protocol.model.sensitive_validation_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -33,9 +32,12 @@ abstract class SensitiveValidationInput
   }) =>
       payload;
 
-  static const List<_i1.SmithySerializer<SensitiveValidationInput>>
-      serializers = [SensitiveValidationInputRestJson1Serializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    SensitiveValidationInputRestJson1Serializer()
+  ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(SensitiveValidationInputBuilder b) {}
   String? get string;
   @override
   SensitiveValidationInput getPayload() => this;
@@ -43,11 +45,11 @@ abstract class SensitiveValidationInput
   List<Object?> get props => [string];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('SensitiveValidationInput')
-      ..add(
-        'string',
-        '***SENSITIVE***',
-      );
+    final helper = newBuiltValueToStringHelper('SensitiveValidationInput');
+    helper.add(
+      'string',
+      '***SENSITIVE***',
+    );
     return helper.toString();
   }
 }
@@ -81,15 +83,15 @@ class SensitiveValidationInputRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'string':
-          result.string = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.string = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -99,19 +101,19 @@ class SensitiveValidationInputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    SensitiveValidationInput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final SensitiveValidationInput(:string) = object;
-    if (string != null) {
-      result$
+    final payload = (object as SensitiveValidationInput);
+    final result = <Object?>[];
+    if (payload.string != null) {
+      result
         ..add('string')
         ..add(serializers.serialize(
-          string,
+          payload.string!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

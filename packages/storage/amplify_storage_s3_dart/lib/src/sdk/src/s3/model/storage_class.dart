@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_storage_s3_dart.s3.model.storage_class; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -7,12 +6,16 @@ import 'package:smithy/smithy.dart' as _i1;
 
 class StorageClass extends _i1.SmithyEnum<StorageClass> {
   const StorageClass._(
-    super.index,
-    super.name,
-    super.value,
-  );
+    int index,
+    String name,
+    String value,
+  ) : super(
+          index,
+          name,
+          value,
+        );
 
-  const StorageClass._sdkUnknown(super.value) : super.sdkUnknown();
+  const StorageClass._sdkUnknown(String value) : super.sdkUnknown(value);
 
   static const deepArchive = StorageClass._(
     0,
@@ -56,20 +59,14 @@ class StorageClass extends _i1.SmithyEnum<StorageClass> {
     'REDUCED_REDUNDANCY',
   );
 
-  static const snow = StorageClass._(
-    7,
-    'SNOW',
-    'SNOW',
-  );
-
   static const standard = StorageClass._(
-    8,
+    7,
     'STANDARD',
     'STANDARD',
   );
 
   static const standardIa = StorageClass._(
-    9,
+    8,
     'STANDARD_IA',
     'STANDARD_IA',
   );
@@ -83,7 +80,6 @@ class StorageClass extends _i1.SmithyEnum<StorageClass> {
     StorageClass.onezoneIa,
     StorageClass.outposts,
     StorageClass.reducedRedundancy,
-    StorageClass.snow,
     StorageClass.standard,
     StorageClass.standardIa,
   ];

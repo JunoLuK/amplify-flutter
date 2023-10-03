@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'nested_payload.dart';
+part of rest_json1_v1.rest_json_protocol.model.nested_payload;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -54,7 +54,9 @@ class NestedPayloadBuilder
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
-  NestedPayloadBuilder();
+  NestedPayloadBuilder() {
+    NestedPayload._init(this);
+  }
 
   NestedPayloadBuilder get _$this {
     final $v = _$v;

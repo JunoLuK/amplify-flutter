@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'test_payload_structure_input_output.dart';
+part of rest_json1_v2.rest_json_protocol.model.test_payload_structure_input_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -9,15 +9,15 @@ part of 'test_payload_structure_input_output.dart';
 class _$TestPayloadStructureInputOutput
     extends TestPayloadStructureInputOutput {
   @override
-  final String? testId;
+  final _i2.PayloadConfig? payloadConfig;
   @override
-  final PayloadConfig? payloadConfig;
+  final String? testId;
 
   factory _$TestPayloadStructureInputOutput(
           [void Function(TestPayloadStructureInputOutputBuilder)? updates]) =>
       (new TestPayloadStructureInputOutputBuilder()..update(updates))._build();
 
-  _$TestPayloadStructureInputOutput._({this.testId, this.payloadConfig})
+  _$TestPayloadStructureInputOutput._({this.payloadConfig, this.testId})
       : super._();
 
   @override
@@ -33,15 +33,15 @@ class _$TestPayloadStructureInputOutput
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is TestPayloadStructureInputOutput &&
-        testId == other.testId &&
-        payloadConfig == other.payloadConfig;
+        payloadConfig == other.payloadConfig &&
+        testId == other.testId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, testId.hashCode);
     _$hash = $jc(_$hash, payloadConfig.hashCode);
+    _$hash = $jc(_$hash, testId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -53,23 +53,25 @@ class TestPayloadStructureInputOutputBuilder
             TestPayloadStructureInputOutputBuilder> {
   _$TestPayloadStructureInputOutput? _$v;
 
+  _i2.PayloadConfigBuilder? _payloadConfig;
+  _i2.PayloadConfigBuilder get payloadConfig =>
+      _$this._payloadConfig ??= new _i2.PayloadConfigBuilder();
+  set payloadConfig(_i2.PayloadConfigBuilder? payloadConfig) =>
+      _$this._payloadConfig = payloadConfig;
+
   String? _testId;
   String? get testId => _$this._testId;
   set testId(String? testId) => _$this._testId = testId;
 
-  PayloadConfigBuilder? _payloadConfig;
-  PayloadConfigBuilder get payloadConfig =>
-      _$this._payloadConfig ??= new PayloadConfigBuilder();
-  set payloadConfig(PayloadConfigBuilder? payloadConfig) =>
-      _$this._payloadConfig = payloadConfig;
-
-  TestPayloadStructureInputOutputBuilder();
+  TestPayloadStructureInputOutputBuilder() {
+    TestPayloadStructureInputOutput._init(this);
+  }
 
   TestPayloadStructureInputOutputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _testId = $v.testId;
       _payloadConfig = $v.payloadConfig?.toBuilder();
+      _testId = $v.testId;
       _$v = null;
     }
     return this;
@@ -94,7 +96,7 @@ class TestPayloadStructureInputOutputBuilder
     try {
       _$result = _$v ??
           new _$TestPayloadStructureInputOutput._(
-              testId: testId, payloadConfig: _payloadConfig?.build());
+              payloadConfig: _payloadConfig?.build(), testId: testId);
     } catch (_) {
       late String _$failedField;
       try {

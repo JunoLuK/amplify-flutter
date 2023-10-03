@@ -1,16 +1,18 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_storage_s3_dart.s3.model.multipart_upload; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/checksum_algorithm.dart';
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/initiator.dart';
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/owner.dart';
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/storage_class.dart';
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/checksum_algorithm.dart'
+    as _i2;
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/initiator.dart'
+    as _i3;
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/owner.dart' as _i4;
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/storage_class.dart'
+    as _i5;
 import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i2;
+import 'package:smithy/smithy.dart' as _i6;
 
 part 'multipart_upload.g.dart';
 
@@ -20,22 +22,22 @@ abstract class MultipartUpload
     implements Built<MultipartUpload, MultipartUploadBuilder> {
   /// Container for the `MultipartUpload` for the Amazon S3 object.
   factory MultipartUpload({
-    String? uploadId,
-    String? key,
+    _i2.ChecksumAlgorithm? checksumAlgorithm,
     DateTime? initiated,
-    StorageClass? storageClass,
-    Owner? owner,
-    Initiator? initiator,
-    ChecksumAlgorithm? checksumAlgorithm,
+    _i3.Initiator? initiator,
+    String? key,
+    _i4.Owner? owner,
+    _i5.StorageClass? storageClass,
+    String? uploadId,
   }) {
     return _$MultipartUpload._(
-      uploadId: uploadId,
-      key: key,
-      initiated: initiated,
-      storageClass: storageClass,
-      owner: owner,
-      initiator: initiator,
       checksumAlgorithm: checksumAlgorithm,
+      initiated: initiated,
+      initiator: initiator,
+      key: key,
+      owner: owner,
+      storageClass: storageClass,
+      uploadId: uploadId,
     );
   }
 
@@ -45,77 +47,80 @@ abstract class MultipartUpload
 
   const MultipartUpload._();
 
-  static const List<_i2.SmithySerializer<MultipartUpload>> serializers = [
+  static const List<_i6.SmithySerializer> serializers = [
     MultipartUploadRestXmlSerializer()
   ];
 
-  /// Upload ID that identifies the multipart upload.
-  String? get uploadId;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MultipartUploadBuilder b) {}
 
-  /// Key of the object for which the multipart upload was initiated.
-  String? get key;
+  /// The algorithm that was used to create a checksum of the object.
+  _i2.ChecksumAlgorithm? get checksumAlgorithm;
 
   /// Date and time at which the multipart upload was initiated.
   DateTime? get initiated;
 
-  /// The class of storage used to store the object.
-  StorageClass? get storageClass;
+  /// Identifies who initiated the multipart upload.
+  _i3.Initiator? get initiator;
+
+  /// Key of the object for which the multipart upload was initiated.
+  String? get key;
 
   /// Specifies the owner of the object that is part of the multipart upload.
-  Owner? get owner;
+  _i4.Owner? get owner;
 
-  /// Identifies who initiated the multipart upload.
-  Initiator? get initiator;
+  /// The class of storage used to store the object.
+  _i5.StorageClass? get storageClass;
 
-  /// The algorithm that was used to create a checksum of the object.
-  ChecksumAlgorithm? get checksumAlgorithm;
+  /// Upload ID that identifies the multipart upload.
+  String? get uploadId;
   @override
   List<Object?> get props => [
-        uploadId,
-        key,
-        initiated,
-        storageClass,
-        owner,
-        initiator,
         checksumAlgorithm,
+        initiated,
+        initiator,
+        key,
+        owner,
+        storageClass,
+        uploadId,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('MultipartUpload')
-      ..add(
-        'uploadId',
-        uploadId,
-      )
-      ..add(
-        'key',
-        key,
-      )
-      ..add(
-        'initiated',
-        initiated,
-      )
-      ..add(
-        'storageClass',
-        storageClass,
-      )
-      ..add(
-        'owner',
-        owner,
-      )
-      ..add(
-        'initiator',
-        initiator,
-      )
-      ..add(
-        'checksumAlgorithm',
-        checksumAlgorithm,
-      );
+    final helper = newBuiltValueToStringHelper('MultipartUpload');
+    helper.add(
+      'checksumAlgorithm',
+      checksumAlgorithm,
+    );
+    helper.add(
+      'initiated',
+      initiated,
+    );
+    helper.add(
+      'initiator',
+      initiator,
+    );
+    helper.add(
+      'key',
+      key,
+    );
+    helper.add(
+      'owner',
+      owner,
+    );
+    helper.add(
+      'storageClass',
+      storageClass,
+    );
+    helper.add(
+      'uploadId',
+      uploadId,
+    );
     return helper.toString();
   }
 }
 
 class MultipartUploadRestXmlSerializer
-    extends _i2.StructuredSmithySerializer<MultipartUpload> {
+    extends _i6.StructuredSmithySerializer<MultipartUpload> {
   const MultipartUploadRestXmlSerializer() : super('MultipartUpload');
 
   @override
@@ -124,8 +129,8 @@ class MultipartUploadRestXmlSerializer
         _$MultipartUpload,
       ];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols => const [
-        _i2.ShapeId(
+  Iterable<_i6.ShapeId> get supportedProtocols => const [
+        _i6.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restXml',
         )
@@ -139,48 +144,66 @@ class MultipartUploadRestXmlSerializer
     final result = MultipartUploadBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'ChecksumAlgorithm':
-          result.checksumAlgorithm = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(ChecksumAlgorithm),
-          ) as ChecksumAlgorithm);
+          if (value != null) {
+            result.checksumAlgorithm = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i2.ChecksumAlgorithm),
+            ) as _i2.ChecksumAlgorithm);
+          }
+          break;
         case 'Initiated':
-          result.initiated = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime);
+          if (value != null) {
+            result.initiated = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(DateTime),
+            ) as DateTime);
+          }
+          break;
         case 'Initiator':
-          result.initiator.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(Initiator),
-          ) as Initiator));
+          if (value != null) {
+            result.initiator.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i3.Initiator),
+            ) as _i3.Initiator));
+          }
+          break;
         case 'Key':
-          result.key = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.key = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'Owner':
-          result.owner.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(Owner),
-          ) as Owner));
+          if (value != null) {
+            result.owner.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i4.Owner),
+            ) as _i4.Owner));
+          }
+          break;
         case 'StorageClass':
-          result.storageClass = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(StorageClass),
-          ) as StorageClass);
+          if (value != null) {
+            result.storageClass = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i5.StorageClass),
+            ) as _i5.StorageClass);
+          }
+          break;
         case 'UploadId':
-          result.uploadId = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.uploadId = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -190,80 +213,72 @@ class MultipartUploadRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    MultipartUpload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
-      const _i2.XmlElementName(
+    final payload = (object as MultipartUpload);
+    final result = <Object?>[
+      const _i6.XmlElementName(
         'MultipartUpload',
-        _i2.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
+        _i6.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
       )
     ];
-    final MultipartUpload(
-      :checksumAlgorithm,
-      :initiated,
-      :initiator,
-      :key,
-      :owner,
-      :storageClass,
-      :uploadId
-    ) = object;
-    if (checksumAlgorithm != null) {
-      result$
-        ..add(const _i2.XmlElementName('ChecksumAlgorithm'))
+    if (payload.checksumAlgorithm != null) {
+      result
+        ..add(const _i6.XmlElementName('ChecksumAlgorithm'))
         ..add(serializers.serialize(
-          checksumAlgorithm,
-          specifiedType: const FullType(ChecksumAlgorithm),
+          payload.checksumAlgorithm!,
+          specifiedType: const FullType.nullable(_i2.ChecksumAlgorithm),
         ));
     }
-    if (initiated != null) {
-      result$
-        ..add(const _i2.XmlElementName('Initiated'))
+    if (payload.initiated != null) {
+      result
+        ..add(const _i6.XmlElementName('Initiated'))
         ..add(serializers.serialize(
-          initiated,
-          specifiedType: const FullType(DateTime),
+          payload.initiated!,
+          specifiedType: const FullType.nullable(DateTime),
         ));
     }
-    if (initiator != null) {
-      result$
-        ..add(const _i2.XmlElementName('Initiator'))
+    if (payload.initiator != null) {
+      result
+        ..add(const _i6.XmlElementName('Initiator'))
         ..add(serializers.serialize(
-          initiator,
-          specifiedType: const FullType(Initiator),
+          payload.initiator!,
+          specifiedType: const FullType(_i3.Initiator),
         ));
     }
-    if (key != null) {
-      result$
-        ..add(const _i2.XmlElementName('Key'))
+    if (payload.key != null) {
+      result
+        ..add(const _i6.XmlElementName('Key'))
         ..add(serializers.serialize(
-          key,
+          payload.key!,
           specifiedType: const FullType(String),
         ));
     }
-    if (owner != null) {
-      result$
-        ..add(const _i2.XmlElementName('Owner'))
+    if (payload.owner != null) {
+      result
+        ..add(const _i6.XmlElementName('Owner'))
         ..add(serializers.serialize(
-          owner,
-          specifiedType: const FullType(Owner),
+          payload.owner!,
+          specifiedType: const FullType(_i4.Owner),
         ));
     }
-    if (storageClass != null) {
-      result$
-        ..add(const _i2.XmlElementName('StorageClass'))
+    if (payload.storageClass != null) {
+      result
+        ..add(const _i6.XmlElementName('StorageClass'))
         ..add(serializers.serialize(
-          storageClass,
-          specifiedType: const FullType(StorageClass),
+          payload.storageClass!,
+          specifiedType: const FullType.nullable(_i5.StorageClass),
         ));
     }
-    if (uploadId != null) {
-      result$
-        ..add(const _i2.XmlElementName('UploadId'))
+    if (payload.uploadId != null) {
+      result
+        ..add(const _i6.XmlElementName('UploadId'))
         ..add(serializers.serialize(
-          uploadId,
+          payload.uploadId!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

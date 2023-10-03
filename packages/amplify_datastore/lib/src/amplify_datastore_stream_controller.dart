@@ -37,59 +37,49 @@ _onListen() {
       switch (eventName) {
         case 'ready':
           {
-            _rebroadcast(DataStoreHubEventType.ready);
+            _rebroadcast(eventName);
           }
           break;
         case 'networkStatus':
           {
-            _rebroadcast(DataStoreHubEventType.networkStatus,
-                payload: NetworkStatusEvent(map));
+            _rebroadcast(eventName, payload: NetworkStatusEvent(map));
           }
           break;
         case 'subscriptionsEstablished':
           {
-            _rebroadcast(DataStoreHubEventType.subscriptionsEstablished);
+            _rebroadcast(eventName);
           }
           break;
         case 'syncQueriesStarted':
           {
-            _rebroadcast(DataStoreHubEventType.syncQueriesStarted,
-                payload: SyncQueriesStartedEvent(map));
+            _rebroadcast(eventName, payload: SyncQueriesStartedEvent(map));
           }
           break;
         case 'modelSynced':
           {
-            _rebroadcast(DataStoreHubEventType.modelSynced,
-                payload: ModelSyncedEvent(map));
+            _rebroadcast(eventName, payload: ModelSyncedEvent(map));
           }
           break;
         case 'syncQueriesReady':
           {
-            _rebroadcast(DataStoreHubEventType.syncQueriesReady);
+            _rebroadcast(eventName);
           }
           break;
         case 'outboxMutationEnqueued':
           {
-            _rebroadcast(DataStoreHubEventType.outboxMutationEnqueued,
+            _rebroadcast(eventName,
                 payload: OutboxMutationEvent(map, modelProvider, eventName));
           }
           break;
         case 'outboxMutationProcessed':
           {
-            _rebroadcast(DataStoreHubEventType.outboxMutationProcessed,
-                payload: OutboxMutationEvent(map, modelProvider, eventName));
-          }
-          break;
-        case 'outboxMutationFailed':
-          {
-            _rebroadcast(DataStoreHubEventType.outboxMutationFailed,
+            _rebroadcast(eventName,
                 payload: OutboxMutationEvent(map, modelProvider, eventName));
           }
           break;
         case 'outboxStatus':
           {
-            _rebroadcast(DataStoreHubEventType.outboxStatus,
-                payload: OutboxStatusEvent(map));
+            _rebroadcast(eventName, payload: OutboxStatusEvent(map));
           }
           break;
         // event name in amplify-android
@@ -98,7 +88,7 @@ _onListen() {
         case 'syncReceived':
           {
             _rebroadcast(
-              DataStoreHubEventType.subscriptionDataProcessed,
+              'subscriptionDataProcessed',
               payload: SubscriptionDataProcessedEvent(
                 map,
                 modelProvider,
@@ -113,9 +103,9 @@ _onListen() {
   }
 }
 
-_rebroadcast(DataStoreHubEventType type, {DataStoreHubEventPayload? payload}) {
+_rebroadcast(String eventName, {DataStoreHubEventPayload? payload}) {
   try {
-    _controller.add(DataStoreHubEvent(type.name, type: type, payload: payload));
+    _controller.add(DataStoreHubEvent(eventName, payload: payload));
   } catch (e) {
     print(e);
   }

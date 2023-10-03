@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'endpoint_demographic.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.endpoint_demographic;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -115,7 +115,9 @@ class EndpointDemographicBuilder
   String? get timezone => _$this._timezone;
   set timezone(String? timezone) => _$this._timezone = timezone;
 
-  EndpointDemographicBuilder();
+  EndpointDemographicBuilder() {
+    EndpointDemographic._init(this);
+  }
 
   EndpointDemographicBuilder get _$this {
     final $v = _$v;

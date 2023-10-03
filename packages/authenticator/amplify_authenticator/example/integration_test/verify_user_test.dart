@@ -5,20 +5,26 @@ import 'package:amplify_authenticator_test/amplify_authenticator_test.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_integration_test/amplify_integration_test.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:integration_test/integration_test.dart';
 
-import 'test_runner.dart';
+import 'config.dart';
 import 'utils/test_utils.dart';
 
 void main() {
-  testRunner.setupTests();
+  AWSLogger().logLevel = LogLevel.verbose;
+  final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  // resolves issue on iOS. See: https://github.com/flutter/flutter/issues/89651
+  binding.deferFirstFrame();
 
   group('verify-user', () {
     // Given I'm running the example "ui/components/authenticator/verify-user"
-    setUp(() async {
-      await testRunner.configure(
+    setUpAll(() async {
+      await loadConfiguration(
         environmentName: 'sign-in-with-email',
       );
     });
+
+    tearDown(deleteTestUser);
 
     // Scenario: Redirect to "Verify" page
     testWidgets('Redirect to "Verify" page', (tester) async {
@@ -38,14 +44,18 @@ void main() {
       final username = generateEmail();
       final password = generatePassword();
 
-      await adminCreateUser(
+      final cognitoUsername = await adminCreateUser(
         username,
         password,
         autoConfirm: true,
-        attributes: {
-          AuthUserAttributeKey.email: username,
-        },
+        attributes: [
+          AuthUserAttribute(
+            userAttributeKey: CognitoUserAttributeKey.email,
+            value: username,
+          ),
+        ],
       );
+      addTearDown(() => deleteUser(cognitoUsername));
 
       // When I type my "email" with status "UNVERIFIED"
       await signInPage.enterUsername(username);
@@ -76,8 +86,8 @@ void main() {
             (state) => state.unverifiedAttributeKeys,
             'unverifiedAttributeKeys',
             unorderedEquals([
-              AuthUserAttributeKey.email,
-              AuthUserAttributeKey.phoneNumber,
+              CognitoUserAttributeKey.email,
+              CognitoUserAttributeKey.phoneNumber,
             ]),
           ),
           isA<AuthenticatedState>(),
@@ -88,14 +98,18 @@ void main() {
       final username = generateEmail();
       final password = generatePassword();
 
-      await adminCreateUser(
+      final cognitoUsername = await adminCreateUser(
         username,
         password,
         autoConfirm: true,
-        attributes: {
-          AuthUserAttributeKey.email: username,
-        },
+        attributes: [
+          AuthUserAttribute(
+            userAttributeKey: CognitoUserAttributeKey.email,
+            value: username,
+          ),
+        ],
       );
+      addTearDown(() => deleteUser(cognitoUsername));
 
       // When I type my "email" with status "UNVERIFIED"
       await signInPage.enterUsername(username);
@@ -132,14 +146,14 @@ void main() {
             (state) => state.unverifiedAttributeKeys,
             'unverifiedAttributeKeys',
             unorderedEquals([
-              AuthUserAttributeKey.email,
-              AuthUserAttributeKey.phoneNumber,
+              CognitoUserAttributeKey.email,
+              CognitoUserAttributeKey.phoneNumber,
             ]),
           ),
           isA<AttributeVerificationSent>().having(
             (state) => state.userAttributeKey,
             'userAttributeKey',
-            AuthUserAttributeKey.email,
+            CognitoUserAttributeKey.email,
           ),
           isA<AuthenticatedState>(),
           emitsDone,
@@ -149,14 +163,18 @@ void main() {
       final username = generateEmail();
       final password = generatePassword();
 
-      await adminCreateUser(
+      final cognitoUsername = await adminCreateUser(
         username,
         password,
         autoConfirm: true,
-        attributes: {
-          AuthUserAttributeKey.email: username,
-        },
+        attributes: [
+          AuthUserAttribute(
+            userAttributeKey: CognitoUserAttributeKey.email,
+            value: username,
+          ),
+        ],
       );
+      addTearDown(() => deleteUser(cognitoUsername));
 
       // When I type my "email" with status "UNVERIFIED"
       await signInPage.enterUsername(username);
@@ -208,14 +226,14 @@ void main() {
             (state) => state.unverifiedAttributeKeys,
             'unverifiedAttributeKeys',
             unorderedEquals([
-              AuthUserAttributeKey.email,
-              AuthUserAttributeKey.phoneNumber,
+              CognitoUserAttributeKey.email,
+              CognitoUserAttributeKey.phoneNumber,
             ]),
           ),
           isA<AttributeVerificationSent>().having(
             (state) => state.userAttributeKey,
             'userAttributeKey',
-            AuthUserAttributeKey.phoneNumber,
+            CognitoUserAttributeKey.phoneNumber,
           ),
           isA<AuthenticatedState>(),
           emitsDone,
@@ -226,15 +244,22 @@ void main() {
       final phoneNumber = generateUSPhoneNumber();
       final password = generatePassword();
 
-      await adminCreateUser(
+      final cognitoUsername = await adminCreateUser(
         username,
         password,
         autoConfirm: true,
-        attributes: {
-          AuthUserAttributeKey.email: username,
-          AuthUserAttributeKey.phoneNumber: phoneNumber.toE164(),
-        },
+        attributes: [
+          AuthUserAttribute(
+            userAttributeKey: CognitoUserAttributeKey.email,
+            value: username,
+          ),
+          AuthUserAttribute(
+            userAttributeKey: CognitoUserAttributeKey.phoneNumber,
+            value: phoneNumber.toE164(),
+          ),
+        ],
       );
+      addTearDown(() => deleteUser(cognitoUsername));
 
       // When I type my "email" with status "UNVERIFIED"
       await signInPage.enterUsername(username);
@@ -289,14 +314,18 @@ void main() {
       final username = generateEmail();
       final password = generatePassword();
 
-      await adminCreateUser(
+      final cognitoUsername = await adminCreateUser(
         username,
         password,
         autoConfirm: true,
-        attributes: {
-          AuthUserAttributeKey.email: username,
-        },
+        attributes: [
+          AuthUserAttribute(
+            userAttributeKey: CognitoUserAttributeKey.email,
+            value: username,
+          ),
+        ],
       );
+      addTearDown(() => deleteUser(cognitoUsername));
 
       // When I sign in with username and password.
       await Amplify.Auth.signIn(username: username, password: password);

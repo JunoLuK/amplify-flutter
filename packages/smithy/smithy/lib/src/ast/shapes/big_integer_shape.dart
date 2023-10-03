@@ -15,9 +15,8 @@ abstract class BigIntegerShape
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(BigIntegerShapeBuilder b) {
-    b
-      ..shapeId = id
-      ..traits = TraitMap.empty();
+    b.shapeId = id;
+    b.traits = TraitMap.empty();
   }
 
   static const id = ShapeId.core('BigInteger');

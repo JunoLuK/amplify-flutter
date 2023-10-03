@@ -22,7 +22,7 @@ class SmithyPattern with AWSEquatable<SmithyPattern> {
   }
 
   void _checkForDuplicateLabels() {
-    final labels = <String>{};
+    final Set<String> labels = {};
     for (final segment in segments) {
       if (segment.isLabel && !labels.add(segment.content.toLowerCase())) {
         throw InvalidPatternError(

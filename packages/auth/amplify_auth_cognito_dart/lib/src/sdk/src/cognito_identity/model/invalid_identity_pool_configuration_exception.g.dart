@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'invalid_identity_pool_configuration_exception.dart';
+part of amplify_auth_cognito_dart.cognito_identity.model.invalid_identity_pool_configuration_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -62,7 +62,9 @@ class InvalidIdentityPoolConfigurationExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  InvalidIdentityPoolConfigurationExceptionBuilder();
+  InvalidIdentityPoolConfigurationExceptionBuilder() {
+    InvalidIdentityPoolConfigurationException._init(this);
+  }
 
   InvalidIdentityPoolConfigurationExceptionBuilder get _$this {
     final $v = _$v;

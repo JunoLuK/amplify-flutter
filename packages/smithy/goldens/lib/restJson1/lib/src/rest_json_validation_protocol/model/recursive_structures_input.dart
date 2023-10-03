@@ -1,12 +1,12 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.rest_json_validation_protocol.model.recursive_structures_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v1/src/rest_json_validation_protocol/model/recursive_union_one.dart';
+import 'package:rest_json1_v1/src/rest_json_validation_protocol/model/recursive_union_one.dart'
+    as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'recursive_structures_input.g.dart';
@@ -17,7 +17,7 @@ abstract class RecursiveStructuresInput
         _i2.AWSEquatable<RecursiveStructuresInput>
     implements
         Built<RecursiveStructuresInput, RecursiveStructuresInputBuilder> {
-  factory RecursiveStructuresInput({RecursiveUnionOne? union}) {
+  factory RecursiveStructuresInput({_i3.RecursiveUnionOne? union}) {
     return _$RecursiveStructuresInput._(union: union);
   }
 
@@ -34,21 +34,24 @@ abstract class RecursiveStructuresInput
   }) =>
       payload;
 
-  static const List<_i1.SmithySerializer<RecursiveStructuresInput>>
-      serializers = [RecursiveStructuresInputRestJson1Serializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    RecursiveStructuresInputRestJson1Serializer()
+  ];
 
-  RecursiveUnionOne? get union;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(RecursiveStructuresInputBuilder b) {}
+  _i3.RecursiveUnionOne? get union;
   @override
   RecursiveStructuresInput getPayload() => this;
   @override
   List<Object?> get props => [union];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('RecursiveStructuresInput')
-      ..add(
-        'union',
-        union,
-      );
+    final helper = newBuiltValueToStringHelper('RecursiveStructuresInput');
+    helper.add(
+      'union',
+      union,
+    );
     return helper.toString();
   }
 }
@@ -82,15 +85,15 @@ class RecursiveStructuresInputRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'union':
-          result.union = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(RecursiveUnionOne),
-          ) as RecursiveUnionOne);
+          if (value != null) {
+            result.union = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i3.RecursiveUnionOne),
+            ) as _i3.RecursiveUnionOne);
+          }
+          break;
       }
     }
 
@@ -100,19 +103,19 @@ class RecursiveStructuresInputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    RecursiveStructuresInput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final RecursiveStructuresInput(:union) = object;
-    if (union != null) {
-      result$
+    final payload = (object as RecursiveStructuresInput);
+    final result = <Object?>[];
+    if (payload.union != null) {
+      result
         ..add('union')
         ..add(serializers.serialize(
-          union,
-          specifiedType: const FullType(RecursiveUnionOne),
+          payload.union!,
+          specifiedType: const FullType(_i3.RecursiveUnionOne),
         ));
     }
-    return result$;
+    return result;
   }
 }

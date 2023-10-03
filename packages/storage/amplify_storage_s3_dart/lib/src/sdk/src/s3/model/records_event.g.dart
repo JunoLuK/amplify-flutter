@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'records_event.dart';
+part of amplify_storage_s3_dart.s3.model.records_event;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -45,7 +45,9 @@ class RecordsEventBuilder
   _i2.Uint8List? get payload => _$this._payload;
   set payload(_i2.Uint8List? payload) => _$this._payload = payload;
 
-  RecordsEventBuilder();
+  RecordsEventBuilder() {
+    RecordsEvent._init(this);
+  }
 
   RecordsEventBuilder get _$this {
     final $v = _$v;

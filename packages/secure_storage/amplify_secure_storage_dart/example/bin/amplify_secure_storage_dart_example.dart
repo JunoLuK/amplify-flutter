@@ -39,10 +39,13 @@ Future<void> main() async {
   switch (inputMode) {
     case InputMode.read:
       await _read();
+      break;
     case InputMode.write:
       await _write();
+      break;
     case InputMode.delete:
       await _delete();
+      break;
   }
 }
 

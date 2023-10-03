@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_auth_cognito_dart.cognito_identity_provider.model.get_user_request; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -32,9 +31,12 @@ abstract class GetUserRequest
   }) =>
       payload;
 
-  static const List<_i1.SmithySerializer<GetUserRequest>> serializers = [
+  static const List<_i1.SmithySerializer> serializers = [
     GetUserRequestAwsJson11Serializer()
   ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(GetUserRequestBuilder b) {}
 
   /// A non-expired access token for the user whose information you want to query.
   String get accessToken;
@@ -44,11 +46,11 @@ abstract class GetUserRequest
   List<Object?> get props => [accessToken];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('GetUserRequest')
-      ..add(
-        'accessToken',
-        '***SENSITIVE***',
-      );
+    final helper = newBuiltValueToStringHelper('GetUserRequest');
+    helper.add(
+      'accessToken',
+      '***SENSITIVE***',
+    );
     return helper.toString();
   }
 }
@@ -81,15 +83,13 @@ class GetUserRequestAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'AccessToken':
           result.accessToken = (serializers.deserialize(
-            value,
+            value!,
             specifiedType: const FullType(String),
           ) as String);
+          break;
       }
     }
 
@@ -99,18 +99,17 @@ class GetUserRequestAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    GetUserRequest object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final GetUserRequest(:accessToken) = object;
-    result$.addAll([
+    final payload = (object as GetUserRequest);
+    final result = <Object?>[
       'AccessToken',
       serializers.serialize(
-        accessToken,
+        payload.accessToken,
         specifiedType: const FullType(String),
       ),
-    ]);
-    return result$;
+    ];
+    return result;
   }
 }

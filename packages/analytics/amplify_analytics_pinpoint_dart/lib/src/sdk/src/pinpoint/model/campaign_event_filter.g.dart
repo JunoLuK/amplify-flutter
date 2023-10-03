@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'campaign_event_filter.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.campaign_event_filter;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,9 +8,9 @@ part of 'campaign_event_filter.dart';
 
 class _$CampaignEventFilter extends CampaignEventFilter {
   @override
-  final EventDimensions dimensions;
+  final _i2.EventDimensions dimensions;
   @override
-  final FilterType filterType;
+  final _i3.FilterType filterType;
 
   factory _$CampaignEventFilter(
           [void Function(CampaignEventFilterBuilder)? updates]) =>
@@ -55,17 +55,19 @@ class CampaignEventFilterBuilder
     implements Builder<CampaignEventFilter, CampaignEventFilterBuilder> {
   _$CampaignEventFilter? _$v;
 
-  EventDimensionsBuilder? _dimensions;
-  EventDimensionsBuilder get dimensions =>
-      _$this._dimensions ??= new EventDimensionsBuilder();
-  set dimensions(EventDimensionsBuilder? dimensions) =>
+  _i2.EventDimensionsBuilder? _dimensions;
+  _i2.EventDimensionsBuilder get dimensions =>
+      _$this._dimensions ??= new _i2.EventDimensionsBuilder();
+  set dimensions(_i2.EventDimensionsBuilder? dimensions) =>
       _$this._dimensions = dimensions;
 
-  FilterType? _filterType;
-  FilterType? get filterType => _$this._filterType;
-  set filterType(FilterType? filterType) => _$this._filterType = filterType;
+  _i3.FilterType? _filterType;
+  _i3.FilterType? get filterType => _$this._filterType;
+  set filterType(_i3.FilterType? filterType) => _$this._filterType = filterType;
 
-  CampaignEventFilterBuilder();
+  CampaignEventFilterBuilder() {
+    CampaignEventFilter._init(this);
+  }
 
   CampaignEventFilterBuilder get _$this {
     final $v = _$v;

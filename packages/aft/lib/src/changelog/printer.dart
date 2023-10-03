@@ -22,6 +22,7 @@ class _MarkdownRenderer implements NodeVisitor {
     switch (element.type) {
       case ElementType.ul:
         _builder.writeln();
+        break;
       default:
         break;
     }
@@ -41,8 +42,10 @@ class _MarkdownRenderer implements NodeVisitor {
         if (headerNum < 3) {
           _builder.writeln();
         }
+        break;
       case ElementType.li:
         _builder.writeln('- ${element.textContent}');
+        break;
       case ElementType.ul:
       case ElementType.unknown:
         break;

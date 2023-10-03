@@ -11,7 +11,6 @@ export 'src/format/format_stub.dart'
 export 'src/generate.dart';
 export 'src/generator/context.dart';
 export 'src/generator/generated_library.dart';
-export 'src/generator/shape_overrides.dart';
 export 'src/model/smithy_library.dart';
 export 'src/parse.dart';
 export 'src/service/codegen.pb.dart';

@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_auth_cognito_dart.cognito_identity.model.resource_conflict_exception; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -37,8 +36,12 @@ abstract class ResourceConflictException
         b.headers = response.headers;
       });
 
-  static const List<_i2.SmithySerializer<ResourceConflictException>>
-      serializers = [ResourceConflictExceptionAwsJson11Serializer()];
+  static const List<_i2.SmithySerializer> serializers = [
+    ResourceConflictExceptionAwsJson11Serializer()
+  ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ResourceConflictExceptionBuilder b) {}
 
   /// The message returned by a ResourceConflictException.
   @override
@@ -62,11 +65,11 @@ abstract class ResourceConflictException
   List<Object?> get props => [message];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('ResourceConflictException')
-      ..add(
-        'message',
-        message,
-      );
+    final helper = newBuiltValueToStringHelper('ResourceConflictException');
+    helper.add(
+      'message',
+      message,
+    );
     return helper.toString();
   }
 }
@@ -100,15 +103,15 @@ class ResourceConflictExceptionAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'message':
-          result.message = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.message = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -118,19 +121,19 @@ class ResourceConflictExceptionAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    ResourceConflictException object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final ResourceConflictException(:message) = object;
-    if (message != null) {
-      result$
+    final payload = (object as ResourceConflictException);
+    final result = <Object?>[];
+    if (payload.message != null) {
+      result
         ..add('message')
         ..add(serializers.serialize(
-          message,
+          payload.message!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

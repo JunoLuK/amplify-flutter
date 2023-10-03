@@ -14,16 +14,18 @@ import 'package:smithy_codegen/src/util/shape_ext.dart';
 /// Generates enums for [StringShape] types.
 class EnumGenerator extends LibraryGenerator<EnumShape> {
   EnumGenerator(
-    super.enumShape,
+    EnumShape enumShape,
     CodegenContext context, {
-    super.smithyLibrary,
+    SmithyLibrary? smithyLibrary,
   }) : super(
+          enumShape,
           context: context,
+          smithyLibrary: smithyLibrary,
         );
 
   late final List<MemberShape> sortedDefinitions = shape.enumValues.toList()
     ..sort((a, b) {
-      return a.enumVariantName.compareTo(b.enumVariantName);
+      return a.variantName.compareTo(b.variantName);
     });
 
   late final List<EnumValueTrait> sortedEnumValues = sortedDefinitions
@@ -79,22 +81,21 @@ class EnumGenerator extends LibraryGenerator<EnumShape> {
           ..constant = true
           ..name = '_'
           ..requiredParameters.addAll([
-            Parameter(
-              (p) => p
-                ..toSuper = true
-                ..name = 'index',
-            ),
-            Parameter(
-              (p) => p
-                ..toSuper = true
-                ..name = 'name',
-            ),
-            Parameter(
-              (p) => p
-                ..toSuper = true
-                ..name = 'value',
-            ),
-          ]),
+            Parameter((p) => p
+              ..name = 'index'
+              ..type = DartTypes.core.int),
+            Parameter((p) => p
+              ..name = 'name'
+              ..type = DartTypes.core.string),
+            Parameter((p) => p
+              ..name = 'value'
+              ..type = valueType),
+          ])
+          ..initializers.add(refer('super').call([
+            refer('index'),
+            refer('name'),
+            refer('value'),
+          ]).code),
       );
 
   /// The `sdkUnknown` constructor for values which do not match the
@@ -107,16 +108,12 @@ class EnumGenerator extends LibraryGenerator<EnumShape> {
         (c) => c
           ..constant = true
           ..name = '_sdkUnknown'
-          ..requiredParameters.add(
-            Parameter(
-              (p) => p
-                ..toSuper = true
-                ..name = 'value',
-            ),
-          )
-          ..initializers.add(
-            refer('super').property('sdkUnknown').call([]).code,
-          ),
+          ..requiredParameters.add(Parameter((p) => p
+            ..name = 'value'
+            ..type = valueType))
+          ..initializers.add(refer('super').property('sdkUnknown').call([
+            refer('value'),
+          ]).code),
       );
 
   /// Enumerated value fields, as `static const` properties.
@@ -131,7 +128,7 @@ class EnumGenerator extends LibraryGenerator<EnumShape> {
           f
             ..static = true
             ..modifier = FieldModifier.constant
-            ..name = definition.enumVariantName
+            ..name = definition.variantName
             ..assignment = symbol.newInstanceNamed('_', [
               literalNum(index),
               literalString(definition.memberName),
@@ -148,7 +145,7 @@ class EnumGenerator extends LibraryGenerator<EnumShape> {
           ..name = 'values'
           ..docs.add('/// All values of [$className].')
           ..assignment = literalList(
-            sortedDefinitions.map((e) => symbol.property(e.enumVariantName)),
+            sortedDefinitions.map((e) => symbol.property(e.variantName)),
             symbol,
           ).code,
       );
@@ -158,102 +155,85 @@ class EnumGenerator extends LibraryGenerator<EnumShape> {
     final serializerType = shape is StringEnumShape
         ? DartTypes.smithy.smithyEnumSerializer
         : DartTypes.smithy.smithyIntEnumSerializer;
-    return Field(
-      (f) => f
-        ..static = true
-        ..modifier = FieldModifier.constant
-        ..type = DartTypes.core.list(DartTypes.smithy.smithySerializer(symbol))
-        ..name = 'serializers'
-        ..assignment = literalConstList([
-          serializerType.constInstance([
-            literalString(shape.shapeId.shape),
-          ], {
-            'values': refer('values'),
-            'sdkUnknown': symbol.property('_sdkUnknown'),
-            'supportedProtocols': literalConstList([
-              for (final protocol in context.serviceProtocols)
-                if (!protocol.isSynthetic) protocol.shapeId.constructed,
-            ]),
-          }),
-        ]).code,
-    );
+    return Field((f) => f
+      ..static = true
+      ..modifier = FieldModifier.constant
+      ..type = DartTypes.core.list(DartTypes.smithy.smithySerializer(symbol))
+      ..name = 'serializers'
+      ..assignment = literalConstList([
+        serializerType.constInstance([
+          literalString(shape.shapeId.shape),
+        ], {
+          'values': refer('values'),
+          'sdkUnknown': symbol.property('_sdkUnknown'),
+          'supportedProtocols': literalConstList([
+            for (final protocol in context.serviceProtocols)
+              if (!protocol.isSynthetic) protocol.shapeId.constructed,
+          ])
+        })
+      ]).code);
   }
 
   /// Adds helper functions `byName` and `byValue` via an extension.
-  Extension get _helperExtension => Extension(
-        (e) => e
-          ..name = '${className}Helpers'
-          ..on = DartTypes.core.list(symbol)
-          ..methods.addAll([
-            // The `byName` method
+  Extension get _helperExtension => Extension((e) => e
+    ..name = '${className}Helpers'
+    ..on = DartTypes.core.list(symbol)
+    ..methods.addAll([
+      // The `byName` method
+      Method(
+        (m) => m
+          ..returns = symbol
+          ..name = 'byName'
+          ..docs.addAll([
+            '/// Returns the value of [$className] whose name matches [name].',
+            '/// ',
+            '/// Throws a `StateError` if no matching value is found.',
+          ])
+          ..requiredParameters.add(Parameter((p) => p
+            ..type = DartTypes.core.string
+            ..name = 'name'))
+          ..lambda = true
+          ..body = refer('firstWhere').call([
             Method(
-              (m) => m
-                ..returns = symbol
-                ..name = 'byName'
-                ..docs.addAll([
-                  '/// Returns the value of [$className] whose name matches [name].',
-                  '/// ',
-                  '/// Throws a `StateError` if no matching value is found.',
-                ])
-                ..requiredParameters.add(
-                  Parameter(
-                    (p) => p
-                      ..type = DartTypes.core.string
-                      ..name = 'name',
-                  ),
-                )
+              (c) => c
                 ..lambda = true
-                ..body = refer('firstWhere').call([
-                  Method(
-                    (c) => c
-                      ..lambda = true
-                      ..requiredParameters.add(Parameter((p) => p..name = 'el'))
-                      ..body = refer('el')
-                          .property('name')
-                          .property('toLowerCase')
-                          .call([])
-                          .equalTo(
-                            refer('name').property('toLowerCase').call([]),
-                          )
-                          .code,
-                  ).closure,
-                ]).code,
-            ),
+                ..requiredParameters.add(Parameter((p) => p..name = 'el'))
+                ..body = refer('el')
+                    .property('name')
+                    .property('toLowerCase')
+                    .call([])
+                    .equalTo(refer('name').property('toLowerCase').call([]))
+                    .code,
+            ).closure,
+          ]).code,
+      ),
 
-            // The `byValue` method
+      // The `byValue` method
+      Method(
+        (m) => m
+          ..returns = symbol
+          ..name = 'byValue'
+          ..docs.addAll([
+            '/// Returns the value of [$className] whose value matches [value].'
+          ])
+          ..requiredParameters.add(Parameter((p) => p
+            ..type = valueType
+            ..name = 'value'))
+          ..lambda = true
+          ..body = refer('firstWhere').call([
             Method(
-              (m) => m
-                ..returns = symbol
-                ..name = 'byValue'
-                ..docs.addAll([
-                  '/// Returns the value of [$className] whose value matches [value].',
-                ])
-                ..requiredParameters.add(
-                  Parameter(
-                    (p) => p
-                      ..type = valueType
-                      ..name = 'value',
-                  ),
-                )
+              (c) => c
                 ..lambda = true
-                ..body = refer('firstWhere').call([
-                  Method(
-                    (c) => c
-                      ..lambda = true
-                      ..requiredParameters.add(Parameter((p) => p..name = 'el'))
-                      ..body = refer('el')
-                          .property('value')
-                          .equalTo(refer('value'))
-                          .code,
-                  ).closure,
-                ]).code,
-            ),
-          ]),
-      );
+                ..requiredParameters.add(Parameter((p) => p..name = 'el'))
+                ..body =
+                    refer('el').property('value').equalTo(refer('value')).code,
+            ).closure,
+          ]).code,
+      ),
+    ]));
 }
 
 extension EnumVariantName on MemberShape {
   /// The name of the enum variant.
-  String get enumVariantName =>
-      memberName.camelCase.nameEscaped(ShapeType.enum_);
+  String get variantName => memberName.camelCase.nameEscaped(ShapeType.enum_);
 }

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'resend_confirmation_code_response.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.resend_confirmation_code_response;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of 'resend_confirmation_code_response.dart';
 
 class _$ResendConfirmationCodeResponse extends ResendConfirmationCodeResponse {
   @override
-  final CodeDeliveryDetailsType? codeDeliveryDetails;
+  final _i2.CodeDeliveryDetailsType? codeDeliveryDetails;
 
   factory _$ResendConfirmationCodeResponse(
           [void Function(ResendConfirmationCodeResponseBuilder)? updates]) =>
@@ -47,14 +47,16 @@ class ResendConfirmationCodeResponseBuilder
             ResendConfirmationCodeResponseBuilder> {
   _$ResendConfirmationCodeResponse? _$v;
 
-  CodeDeliveryDetailsTypeBuilder? _codeDeliveryDetails;
-  CodeDeliveryDetailsTypeBuilder get codeDeliveryDetails =>
-      _$this._codeDeliveryDetails ??= new CodeDeliveryDetailsTypeBuilder();
+  _i2.CodeDeliveryDetailsTypeBuilder? _codeDeliveryDetails;
+  _i2.CodeDeliveryDetailsTypeBuilder get codeDeliveryDetails =>
+      _$this._codeDeliveryDetails ??= new _i2.CodeDeliveryDetailsTypeBuilder();
   set codeDeliveryDetails(
-          CodeDeliveryDetailsTypeBuilder? codeDeliveryDetails) =>
+          _i2.CodeDeliveryDetailsTypeBuilder? codeDeliveryDetails) =>
       _$this._codeDeliveryDetails = codeDeliveryDetails;
 
-  ResendConfirmationCodeResponseBuilder();
+  ResendConfirmationCodeResponseBuilder() {
+    ResendConfirmationCodeResponse._init(this);
+  }
 
   ResendConfirmationCodeResponseBuilder get _$this {
     final $v = _$v;

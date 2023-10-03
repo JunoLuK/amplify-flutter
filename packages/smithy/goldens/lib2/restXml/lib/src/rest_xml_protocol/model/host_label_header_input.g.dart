@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'host_label_header_input.dart';
+part of rest_xml_v2.rest_xml_protocol.model.host_label_header_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -51,7 +51,9 @@ class HostLabelHeaderInputBuilder
   String? get accountId => _$this._accountId;
   set accountId(String? accountId) => _$this._accountId = accountId;
 
-  HostLabelHeaderInputBuilder();
+  HostLabelHeaderInputBuilder() {
+    HostLabelHeaderInput._init(this);
+  }
 
   HostLabelHeaderInputBuilder get _$this {
     final $v = _$v;
@@ -120,7 +122,9 @@ class HostLabelHeaderInputPayloadBuilder
             HostLabelHeaderInputPayloadBuilder> {
   _$HostLabelHeaderInputPayload? _$v;
 
-  HostLabelHeaderInputPayloadBuilder();
+  HostLabelHeaderInputPayloadBuilder() {
+    HostLabelHeaderInputPayload._init(this);
+  }
 
   @override
   void replace(HostLabelHeaderInputPayload other) {

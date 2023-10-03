@@ -38,8 +38,10 @@ Future<void> _handleSignUpResult(SignUpResult result) async {
     case AuthSignUpStep.confirmSignUp:
       final codeDeliveryDetails = result.nextStep.codeDeliveryDetails!;
       _handleCodeDelivery(codeDeliveryDetails);
+      break;
     case AuthSignUpStep.done:
       safePrint('Sign up is complete');
+      break;
   }
 }
 // #enddocregion handle-signup
@@ -104,40 +106,27 @@ Future<void> resendSignUpCode(String username) async {
 }
 // #enddocregion resend-signup-code
 
-// #docregion handle-signin, handle-confirm-signin-sms, handle-confirm-signin-new-password, handle-confirm-signin-custom-challenge, handle-confirm-signin-reset-password, handle-confirm-signin-confirm-signup, handle-confirm-signin-done, handle-confirm-signin-mfa-selection, handle-confirm-signin-totp-setup, handle-confirm-signin-totp-code
+// #docregion handle-signin, handle-confirm-signin-sms, handle-confirm-signin-new-password, handle-confirm-signin-custom-challenge, handle-confirm-signin-reset-password, handle-confirm-signin-confirm-signup, handle-confirm-signin-done
 Future<void> _handleSignInResult(SignInResult result) async {
   switch (result.nextStep.signInStep) {
-    // #enddocregion handle-signin, handle-confirm-signin-sms, handle-confirm-signin-new-password, handle-confirm-signin-custom-challenge, handle-confirm-signin-reset-password, handle-confirm-signin-confirm-signup, handle-confirm-signin-done, handle-confirm-signin-mfa-selection, handle-confirm-signin-totp-setup, handle-confirm-signin-totp-code
-    // #docregion handle-confirm-signin-mfa-selection
-    case AuthSignInStep.continueSignInWithMfaSelection:
-      final allowedMfaTypes = result.nextStep.allowedMfaTypes!;
-      final selection = await _promptUserPreference(allowedMfaTypes);
-      return _handleMfaSelection(selection);
-    // #enddocregion handle-confirm-signin-mfa-selection
-    // #docregion handle-confirm-signin-totp-setup
-    case AuthSignInStep.continueSignInWithTotpSetup:
-      final totpSetupDetails = result.nextStep.totpSetupDetails!;
-      final setupUri = totpSetupDetails.getSetupUri(appName: 'MyApp');
-      safePrint('Open URI to complete setup: $setupUri');
-    // #enddocregion handle-confirm-signin-totp-setup
-    // #docregion handle-confirm-signin-totp-code
-    case AuthSignInStep.confirmSignInWithTotpMfaCode:
-      safePrint('Enter a one-time code from your registered Authenticator app');
-    // #enddocregion handle-confirm-signin-totp-code
+    // #enddocregion handle-signin, handle-confirm-signin-sms, handle-confirm-signin-new-password, handle-confirm-signin-custom-challenge, handle-confirm-signin-reset-password, handle-confirm-signin-confirm-signup, handle-confirm-signin-done
     // #docregion handle-confirm-signin-sms
     case AuthSignInStep.confirmSignInWithSmsMfaCode:
       final codeDeliveryDetails = result.nextStep.codeDeliveryDetails!;
       _handleCodeDelivery(codeDeliveryDetails);
+      break;
     // #enddocregion handle-confirm-signin-sms
     // #docregion handle-confirm-signin-new-password
     case AuthSignInStep.confirmSignInWithNewPassword:
       safePrint('Enter a new password to continue signing in');
+      break;
     // #enddocregion handle-confirm-signin-new-password
     // #docregion handle-confirm-signin-custom-challenge
     case AuthSignInStep.confirmSignInWithCustomChallenge:
       final parameters = result.nextStep.additionalInfo;
       final prompt = parameters['prompt']!;
       safePrint(prompt);
+      break;
     // #enddocregion handle-confirm-signin-custom-challenge
     // #docregion handle-confirm-signin-reset-password
     case AuthSignInStep.resetPassword:
@@ -145,6 +134,7 @@ Future<void> _handleSignInResult(SignInResult result) async {
         username: username,
       );
       await _handleResetPasswordResult(resetResult);
+      break;
     // #enddocregion handle-confirm-signin-reset-password
     // #docregion handle-confirm-signin-confirm-signup
     case AuthSignInStep.confirmSignUp:
@@ -153,15 +143,17 @@ Future<void> _handleSignInResult(SignInResult result) async {
         username: username,
       );
       _handleCodeDelivery(resendResult.codeDeliveryDetails);
+      break;
     // #enddocregion handle-confirm-signin-confirm-signup
     // #docregion handle-confirm-signin-done
     case AuthSignInStep.done:
       safePrint('Sign in is complete');
+      break;
     // #enddocregion handle-confirm-signin-done
-    // #docregion handle-signin, handle-confirm-signin-sms, handle-confirm-signin-new-password, handle-confirm-signin-custom-challenge, handle-confirm-signin-reset-password, handle-confirm-signin-confirm-signup, handle-confirm-signin-done, handle-confirm-signin-mfa-selection, handle-confirm-signin-totp-setup, handle-confirm-signin-totp-code
+    // #docregion handle-signin, handle-confirm-signin-sms, handle-confirm-signin-new-password, handle-confirm-signin-custom-challenge, handle-confirm-signin-reset-password, handle-confirm-signin-confirm-signup, handle-confirm-signin-done
   }
 }
-// #enddocregion handle-signin, handle-confirm-signin-sms, handle-confirm-signin-new-password, handle-confirm-signin-custom-challenge, handle-confirm-signin-reset-password, handle-confirm-signin-confirm-signup, handle-confirm-signin-done, handle-confirm-signin-mfa-selection, handle-confirm-signin-totp-setup, handle-confirm-signin-totp-code
+// #enddocregion handle-signin, handle-confirm-signin-sms, handle-confirm-signin-new-password, handle-confirm-signin-custom-challenge, handle-confirm-signin-reset-password, handle-confirm-signin-confirm-signup, handle-confirm-signin-done
 
 // #docregion signin
 Future<void> signInUser(String username, String password) async {
@@ -196,8 +188,10 @@ Future<void> _handleResetPasswordResult(ResetPasswordResult result) async {
     case AuthResetPasswordStep.confirmResetPasswordWithCode:
       final codeDeliveryDetails = result.nextStep.codeDeliveryDetails!;
       _handleCodeDelivery(codeDeliveryDetails);
+      break;
     case AuthResetPasswordStep.done:
       safePrint('Successfully reset password');
+      break;
   }
 }
 // #enddocregion handle-reset-password
@@ -214,27 +208,6 @@ Future<void> confirmMfaUser(String mfaCode) async {
   }
 }
 // #enddocregion confirm-signin
-
-// #docregion prompt-user-preference
-Future<MfaType> _promptUserPreference(Set<MfaType> allowedTypes) async {
-  // #enddocregion prompt-user-preference
-  throw UnimplementedError();
-  // #docregion prompt-user-preference
-}
-// #enddocregion prompt-user-preference
-
-// #docregion handle-mfa-selection
-Future<void> _handleMfaSelection(MfaType selection) async {
-  try {
-    final result = await Amplify.Auth.confirmSignIn(
-      confirmationValue: selection.confirmationValue,
-    );
-    return _handleSignInResult(result);
-  } on AuthException catch (e) {
-    safePrint('Error resending code: ${e.message}');
-  }
-}
-// #enddocregion handle-mfa-selection
 
 // #docregion signout
 Future<void> signOutCurrentUser() async {
@@ -371,8 +344,10 @@ void _handleUpdateUserAttributeResult(
     case AuthUpdateAttributeStep.confirmAttributeWithCode:
       final codeDeliveryDetails = result.nextStep.codeDeliveryDetails!;
       _handleCodeDelivery(codeDeliveryDetails);
+      break;
     case AuthUpdateAttributeStep.done:
       safePrint('Successfully updated attribute');
+      break;
   }
 }
 // #enddocregion handle-update-user-attribute
@@ -414,8 +389,10 @@ Future<void> updateUserAttributes() async {
         case AuthUpdateAttributeStep.confirmAttributeWithCode:
           final destination = value.nextStep.codeDeliveryDetails?.destination;
           safePrint('Confirmation code sent to $destination for $key');
+          break;
         case AuthUpdateAttributeStep.done:
           safePrint('Update completed for $key');
+          break;
       }
     });
   } on AuthException catch (e) {
@@ -437,10 +414,10 @@ Future<void> verifyAttributeUpdate() async {
 }
 // #enddocregion confirm-user-attribute
 
-// #docregion send-user-attribute-verification-code
+// #docregion resend-user-attribute-code
 Future<void> resendVerificationCode() async {
   try {
-    final result = await Amplify.Auth.sendUserAttributeVerificationCode(
+    final result = await Amplify.Auth.resendUserAttributeConfirmationCode(
       userAttributeKey: AuthUserAttributeKey.email,
     );
     _handleCodeDelivery(result.codeDeliveryDetails);
@@ -448,7 +425,7 @@ Future<void> resendVerificationCode() async {
     safePrint('Error resending code: ${e.message}');
   }
 }
-// #enddocregion send-user-attribute-verification-code
+// #enddocregion resend-user-attribute-code
 
 // #docregion remember-device
 Future<void> rememberCurrentDevice() async {

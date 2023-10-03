@@ -25,7 +25,7 @@ dependencies {
 }
 
 kotlin {
-   jvmToolchain(17)
+   jvmToolchain(8)
 }
 
 application {

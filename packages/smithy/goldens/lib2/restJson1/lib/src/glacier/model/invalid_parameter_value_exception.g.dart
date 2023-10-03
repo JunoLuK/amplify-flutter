@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'invalid_parameter_value_exception.dart';
+part of rest_json1_v2.glacier.model.invalid_parameter_value_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,11 +8,11 @@ part of 'invalid_parameter_value_exception.dart';
 
 class _$InvalidParameterValueException extends InvalidParameterValueException {
   @override
-  final String? type;
-  @override
   final String? code;
   @override
   final String? message;
+  @override
+  final String? type;
   @override
   final Map<String, String>? headers;
 
@@ -21,7 +21,7 @@ class _$InvalidParameterValueException extends InvalidParameterValueException {
       (new InvalidParameterValueExceptionBuilder()..update(updates))._build();
 
   _$InvalidParameterValueException._(
-      {this.type, this.code, this.message, this.headers})
+      {this.code, this.message, this.type, this.headers})
       : super._();
 
   @override
@@ -37,17 +37,17 @@ class _$InvalidParameterValueException extends InvalidParameterValueException {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is InvalidParameterValueException &&
-        type == other.type &&
         code == other.code &&
-        message == other.message;
+        message == other.message &&
+        type == other.type;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jc(_$hash, code.hashCode);
     _$hash = $jc(_$hash, message.hashCode);
+    _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -59,10 +59,6 @@ class InvalidParameterValueExceptionBuilder
             InvalidParameterValueExceptionBuilder> {
   _$InvalidParameterValueException? _$v;
 
-  String? _type;
-  String? get type => _$this._type;
-  set type(String? type) => _$this._type = type;
-
   String? _code;
   String? get code => _$this._code;
   set code(String? code) => _$this._code = code;
@@ -71,18 +67,24 @@ class InvalidParameterValueExceptionBuilder
   String? get message => _$this._message;
   set message(String? message) => _$this._message = message;
 
+  String? _type;
+  String? get type => _$this._type;
+  set type(String? type) => _$this._type = type;
+
   Map<String, String>? _headers;
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  InvalidParameterValueExceptionBuilder();
+  InvalidParameterValueExceptionBuilder() {
+    InvalidParameterValueException._init(this);
+  }
 
   InvalidParameterValueExceptionBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _type = $v.type;
       _code = $v.code;
       _message = $v.message;
+      _type = $v.type;
       _headers = $v.headers;
       _$v = null;
     }
@@ -106,7 +108,7 @@ class InvalidParameterValueExceptionBuilder
   _$InvalidParameterValueException _build() {
     final _$result = _$v ??
         new _$InvalidParameterValueException._(
-            type: type, code: code, message: message, headers: headers);
+            code: code, message: message, type: type, headers: headers);
     replace(_$result);
     return _$result;
   }

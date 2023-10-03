@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'aws_config.dart';
+part of rest_xml_v1.rest_xml_protocol.model.aws_config;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -10,7 +10,7 @@ class _$AwsConfig extends AwsConfig {
   @override
   final DateTime? clockTime;
   @override
-  final ScopedConfig? scopedConfig;
+  final _i2.ScopedConfig? scopedConfig;
 
   factory _$AwsConfig([void Function(AwsConfigBuilder)? updates]) =>
       (new AwsConfigBuilder()..update(updates))._build();
@@ -49,13 +49,15 @@ class AwsConfigBuilder implements Builder<AwsConfig, AwsConfigBuilder> {
   DateTime? get clockTime => _$this._clockTime;
   set clockTime(DateTime? clockTime) => _$this._clockTime = clockTime;
 
-  ScopedConfigBuilder? _scopedConfig;
-  ScopedConfigBuilder get scopedConfig =>
-      _$this._scopedConfig ??= new ScopedConfigBuilder();
-  set scopedConfig(ScopedConfigBuilder? scopedConfig) =>
+  _i2.ScopedConfigBuilder? _scopedConfig;
+  _i2.ScopedConfigBuilder get scopedConfig =>
+      _$this._scopedConfig ??= new _i2.ScopedConfigBuilder();
+  set scopedConfig(_i2.ScopedConfigBuilder? scopedConfig) =>
       _$this._scopedConfig = scopedConfig;
 
-  AwsConfigBuilder();
+  AwsConfigBuilder() {
+    AwsConfig._init(this);
+  }
 
   AwsConfigBuilder get _$this {
     final $v = _$v;

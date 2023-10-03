@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library aws_json1_1_v1.json_protocol.model.struct_with_json_name; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -23,20 +22,22 @@ abstract class StructWithJsonName
 
   const StructWithJsonName._();
 
-  static const List<_i2.SmithySerializer<StructWithJsonName>> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     StructWithJsonNameAwsJson11Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(StructWithJsonNameBuilder b) {}
   String? get value;
   @override
   List<Object?> get props => [value];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('StructWithJsonName')
-      ..add(
-        'value',
-        value,
-      );
+    final helper = newBuiltValueToStringHelper('StructWithJsonName');
+    helper.add(
+      'value',
+      value,
+    );
     return helper.toString();
   }
 }
@@ -69,15 +70,15 @@ class StructWithJsonNameAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'Value':
-          result.value = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.value = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -87,19 +88,19 @@ class StructWithJsonNameAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    StructWithJsonName object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final StructWithJsonName(:value) = object;
-    if (value != null) {
-      result$
+    final payload = (object as StructWithJsonName);
+    final result = <Object?>[];
+    if (payload.value != null) {
+      result
         ..add('Value')
         ..add(serializers.serialize(
-          value,
+          payload.value!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'simple_struct.dart';
+part of aws_json1_1_v1.json_protocol.model.simple_struct;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -45,7 +45,9 @@ class SimpleStructBuilder
   String? get value => _$this._value;
   set value(String? value) => _$this._value = value;
 
-  SimpleStructBuilder();
+  SimpleStructBuilder() {
+    SimpleStruct._init(this);
+  }
 
   SimpleStructBuilder get _$this {
     final $v = _$v;

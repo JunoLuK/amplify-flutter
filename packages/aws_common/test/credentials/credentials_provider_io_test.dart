@@ -6,7 +6,6 @@
 import 'dart:io';
 
 import 'package:aws_common/aws_common.dart';
-import 'package:aws_common/src/config/aws_path_provider.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -15,7 +14,7 @@ void main() {
   const sessionToken = 'sessionToken';
 
   group('AWSCredentialsProvider', () {
-    Future<String> setUpProfile() async {
+    test('profile', () async {
       final tempDir = await Directory.systemTemp.createTemp();
       final awsDir =
           await Directory.fromUri(tempDir.uri.resolve('.aws')).create();
@@ -28,14 +27,10 @@ aws_secret_access_key = $secretAccessKey
 aws_session_token = $sessionToken
 ''',
       );
-      return tempDir.path;
-    }
 
-    test('profile', () async {
-      final path = await setUpProfile();
       const credentialsProvider = AWSCredentialsProvider.profile();
       final credentials = await overrideEnvironment(
-        {'HOME': path},
+        {'HOME': tempDir.path},
         credentialsProvider.retrieve,
       );
       expect(
@@ -46,42 +41,6 @@ aws_session_token = $sessionToken
           sessionToken,
         ),
       );
-    });
-
-    group('defaultChain', () {
-      const credentialsProvider = AWSCredentialsProvider.defaultChain();
-
-      test('succeeds with profile creds', () async {
-        final path = await setUpProfile();
-        await expectLater(
-          () => const AWSCredentialsProvider.environment().retrieve(),
-          throwsA(isA<InvalidCredentialsException>()),
-        );
-        final credentials = await overrideEnvironment(
-          {'HOME': path},
-          credentialsProvider.retrieve,
-        );
-        expect(
-          credentials,
-          const AWSCredentials(
-            accessKeyId,
-            secretAccessKey,
-            sessionToken,
-          ),
-          reason: 'Should fall back to profile when no environment '
-              'credentials are present',
-        );
-      });
-
-      test('fails when no credentials are available', () async {
-        await expectLater(
-          overrideEnvironment(
-            {'HOME': Directory.systemTemp.createTempSync('no_creds').path},
-            credentialsProvider.retrieve,
-          ),
-          throwsA(isA<InvalidCredentialsException>()),
-        );
-      });
     });
   });
 }

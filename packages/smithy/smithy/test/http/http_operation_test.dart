@@ -24,11 +24,9 @@ void main() {
         fail('Should be cancelled');
       });
       final op = operation.run(const Unit(), client: client);
-      unawaited(
-        shouldCancel.future.then((_) {
-          op.cancel();
-        }),
-      );
+      shouldCancel.future.then((_) {
+        op.cancel();
+      });
       expect(op.requestProgress, emitsThrough(emitsDone));
       expect(op.responseProgress, emitsDone);
       await expectLater(op.result, throwsA(isA<CancellationException>()));
@@ -61,18 +59,6 @@ void main() {
         emitsInOrder([5, emitsDone]),
       );
       expect(op.result, throwsA(isA<DeserializationError>()));
-    });
-
-    test('can handle unknown smithy errors', () async {
-      final operation = TestOp();
-      final client = MockAWSHttpClient((req, isCancelled) async {
-        return AWSStreamedHttpResponse(
-          statusCode: 500,
-          body: const Stream.empty(),
-        );
-      });
-      final op = operation.run(const Unit(), client: client);
-      expect(op.result, throwsA(isA<SmithyHttpException>()));
     });
 
     test('can transform request/response', () async {
@@ -108,16 +94,14 @@ class TransformingClient extends AWSBaseHttpClient {
 
   @override
   Future<AWSBaseHttpRequest> transformRequest(
-    AWSBaseHttpRequest request,
-  ) async {
+      AWSBaseHttpRequest request) async {
     await onRequest?.call(request);
     return request;
   }
 
   @override
   Future<AWSBaseHttpResponse> transformResponse(
-    AWSBaseHttpResponse response,
-  ) async {
+      AWSBaseHttpResponse response) async {
     response = await super.transformResponse(response);
     await onResponse?.call(response);
     return response;
@@ -144,9 +128,8 @@ class TestOp extends HttpOperation<Unit, Unit, Unit, Unit> {
 
   @override
   HttpRequest buildRequest(Unit input) => HttpRequest((b) {
-        b
-          ..method = 'GET'
-          ..path = '/';
+        b.method = 'GET';
+        b.path = '/';
       });
 
   @override
@@ -181,22 +164,4 @@ class TestOp extends HttpOperation<Unit, Unit, Unit, Unit> {
 
   @override
   String get runtimeTypeName => 'TestOp';
-
-  @override
-  SmithyOperation<Unit> run(
-    Unit input, {
-    AWSHttpClient? client,
-    ShapeId? useProtocol,
-  }) {
-    return runZoned(
-      () => super.run(
-        input,
-        client: client,
-        useProtocol: useProtocol,
-      ),
-      zoneValues: {
-        AWSHeaders.sdkInvocationId: uuid(secure: true),
-      },
-    );
-  }
 }

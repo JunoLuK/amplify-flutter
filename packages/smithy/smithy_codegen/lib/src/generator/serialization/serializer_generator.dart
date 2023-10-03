@@ -4,6 +4,7 @@
 import 'package:aws_common/aws_common.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy/ast.dart';
+import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generation_context.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/serialization/serializer_config.dart';
@@ -16,11 +17,11 @@ import 'package:smithy_codegen/src/util/symbol_ext.dart';
 abstract class SerializerGenerator<S extends NamedMembersShape>
     extends ShapeGenerator<S, Class?> with NamedMembersGenerationContext {
   SerializerGenerator(
-    super.shape,
-    super.context,
+    S shape,
+    CodegenContext context,
     this.protocol, {
     SerializerConfig? config,
-  }) {
+  }) : super(shape, context) {
     this.config = config ?? protocol.serializerConfig;
   }
 
@@ -64,20 +65,6 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
           ..body = literalConstList([protocol.shapeId.constructed]).code,
       );
 
-  /// Destructures [members] from [variable] (of type [symbol]) to local final variables.
-  Code destructure(
-    Reference symbol,
-    Iterable<MemberShape> members,
-    Reference variable,
-  ) {
-    if (members.isEmpty) return const Code('');
-    return Code.scope(
-      (ref) =>
-          'final ${ref(symbol)}(${members.map((m) => ':${m.dartName(shape.getType())}').join(', ')}) '
-          '= ${ref(variable)};',
-    );
-  }
-
   /// The deserialize method.
   Method get deserialize => Method(
         (m) => m
@@ -85,28 +72,22 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
           ..returns = serializedSymbol
           ..name = 'deserialize'
           ..requiredParameters.addAll([
-            Parameter(
-              (p) => p
-                ..type = DartTypes.builtValue.serializers
-                ..name = 'serializers',
-            ),
-            Parameter(
-              (p) => p
-                ..type = isStructuredSerializer
-                    ? DartTypes.core.iterable(DartTypes.core.object.boxed)
-                    : DartTypes.core.object
-                ..name = 'serialized',
-            ),
+            Parameter((p) => p
+              ..type = DartTypes.builtValue.serializers
+              ..name = 'serializers'),
+            Parameter((p) => p
+              ..type = isStructuredSerializer
+                  ? DartTypes.core.iterable(DartTypes.core.object.boxed)
+                  : DartTypes.core.object
+              ..name = 'serialized'),
           ])
           ..optionalParameters.add(
-            Parameter(
-              (p) => p
-                ..type = DartTypes.builtValue.fullType
-                ..named = true
-                ..name = 'specifiedType'
-                ..defaultTo =
-                    DartTypes.builtValue.fullType.property('unspecified').code,
-            ),
+            Parameter((p) => p
+              ..type = DartTypes.builtValue.fullType
+              ..named = true
+              ..name = 'specifiedType'
+              ..defaultTo =
+                  DartTypes.builtValue.fullType.property('unspecified').code),
           )
           ..body = deserializeCode,
       );
@@ -123,26 +104,20 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
               : DartTypes.core.object
           ..name = 'serialize'
           ..requiredParameters.addAll([
-            Parameter(
-              (p) => p
-                ..type = DartTypes.builtValue.serializers
-                ..name = 'serializers',
-            ),
-            Parameter(
-              (p) => p
-                ..type = serializedSymbol
-                ..name = 'object',
-            ),
+            Parameter((p) => p
+              ..type = DartTypes.builtValue.serializers
+              ..name = 'serializers'),
+            Parameter((p) => p
+              ..type = DartTypes.core.object.boxed
+              ..name = 'object'),
           ])
           ..optionalParameters.add(
-            Parameter(
-              (p) => p
-                ..type = DartTypes.builtValue.fullType
-                ..named = true
-                ..name = 'specifiedType'
-                ..defaultTo =
-                    DartTypes.builtValue.fullType.property('unspecified').code,
-            ),
+            Parameter((p) => p
+              ..type = DartTypes.builtValue.fullType
+              ..named = true
+              ..name = 'specifiedType'
+              ..defaultTo =
+                  DartTypes.builtValue.fullType.property('unspecified').code),
           )
           ..body = serializeCode,
       );
@@ -236,3 +211,5 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
     }).asA(memberSymbol);
   }
 }
+
+extension on Expression {}

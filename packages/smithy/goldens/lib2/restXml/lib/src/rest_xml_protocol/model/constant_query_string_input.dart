@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v2.rest_xml_protocol.model.constant_query_string_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -40,9 +39,12 @@ abstract class ConstantQueryStringInput
         }
       });
 
-  static const List<_i1.SmithySerializer<ConstantQueryStringInputPayload>>
-      serializers = [ConstantQueryStringInputRestXmlSerializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    ConstantQueryStringInputRestXmlSerializer()
+  ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ConstantQueryStringInputBuilder b) {}
   String get hello;
   @override
   String labelFor(String key) {
@@ -63,11 +65,11 @@ abstract class ConstantQueryStringInput
   List<Object?> get props => [hello];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('ConstantQueryStringInput')
-      ..add(
-        'hello',
-        hello,
-      );
+    final helper = newBuiltValueToStringHelper('ConstantQueryStringInput');
+    helper.add(
+      'hello',
+      hello,
+    );
     return helper.toString();
   }
 }
@@ -86,6 +88,8 @@ abstract class ConstantQueryStringInputPayload
 
   const ConstantQueryStringInputPayload._();
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ConstantQueryStringInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
   @override
@@ -127,13 +131,12 @@ class ConstantQueryStringInputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    ConstantQueryStringInputPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final result = <Object?>[
       const _i1.XmlElementName('ConstantQueryStringInput')
     ];
-
-    return result$;
+    return result;
   }
 }

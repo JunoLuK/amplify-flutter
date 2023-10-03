@@ -1,12 +1,12 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v1.rest_xml_protocol.model.body_with_xml_name_input_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_xml_v1/src/rest_xml_protocol/model/payload_with_xml_name.dart';
+import 'package:rest_xml_v1/src/rest_xml_protocol/model/payload_with_xml_name.dart'
+    as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'body_with_xml_name_input_output.g.dart';
@@ -17,7 +17,7 @@ abstract class BodyWithXmlNameInputOutput
         _i2.AWSEquatable<BodyWithXmlNameInputOutput>
     implements
         Built<BodyWithXmlNameInputOutput, BodyWithXmlNameInputOutputBuilder> {
-  factory BodyWithXmlNameInputOutput({PayloadWithXmlName? nested}) {
+  factory BodyWithXmlNameInputOutput({_i3.PayloadWithXmlName? nested}) {
     return _$BodyWithXmlNameInputOutput._(nested: nested);
   }
 
@@ -41,21 +41,24 @@ abstract class BodyWithXmlNameInputOutput
   ) =>
       payload;
 
-  static const List<_i1.SmithySerializer<BodyWithXmlNameInputOutput>>
-      serializers = [BodyWithXmlNameInputOutputRestXmlSerializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    BodyWithXmlNameInputOutputRestXmlSerializer()
+  ];
 
-  PayloadWithXmlName? get nested;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(BodyWithXmlNameInputOutputBuilder b) {}
+  _i3.PayloadWithXmlName? get nested;
   @override
   BodyWithXmlNameInputOutput getPayload() => this;
   @override
   List<Object?> get props => [nested];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('BodyWithXmlNameInputOutput')
-      ..add(
-        'nested',
-        nested,
-      );
+    final helper = newBuiltValueToStringHelper('BodyWithXmlNameInputOutput');
+    helper.add(
+      'nested',
+      nested,
+    );
     return helper.toString();
   }
 }
@@ -86,18 +89,18 @@ class BodyWithXmlNameInputOutputRestXmlSerializer
     final result = BodyWithXmlNameInputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'nested':
-          result.nested.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(PayloadWithXmlName),
-          ) as PayloadWithXmlName));
+          if (value != null) {
+            result.nested.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i3.PayloadWithXmlName),
+            ) as _i3.PayloadWithXmlName));
+          }
+          break;
       }
     }
 
@@ -107,19 +110,19 @@ class BodyWithXmlNameInputOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    BodyWithXmlNameInputOutput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[const _i1.XmlElementName('Ahoy')];
-    final BodyWithXmlNameInputOutput(:nested) = object;
-    if (nested != null) {
-      result$
+    final payload = (object as BodyWithXmlNameInputOutput);
+    final result = <Object?>[const _i1.XmlElementName('Ahoy')];
+    if (payload.nested != null) {
+      result
         ..add(const _i1.XmlElementName('nested'))
         ..add(serializers.serialize(
-          nested,
-          specifiedType: const FullType(PayloadWithXmlName),
+          payload.nested!,
+          specifiedType: const FullType(_i3.PayloadWithXmlName),
         ));
     }
-    return result$;
+    return result;
   }
 }

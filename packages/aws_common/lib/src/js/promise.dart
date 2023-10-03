@@ -1,10 +1,13 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+library aws_http.js.promise;
+
 import 'dart:async';
 
 import 'package:js/js.dart';
 import 'package:js/js_util.dart' as js_util;
+import 'package:meta/meta.dart';
 
 /// A [Promise] executor callback.
 typedef Executor<T> = void Function(
@@ -18,9 +21,9 @@ typedef Executor<T> = void Function(
 /// {@endtemplate}
 @JS()
 @staticInterop
-abstract class Promise<T> {
+class Promise<T> {
   /// Creates a JS Promise.
-  factory Promise(Executor<T> executor) => Promise._(allowInterop(executor));
+  factory Promise(Executor<T> executor) => createPromise(executor);
 
   external factory Promise._(Executor<T> executor);
 
@@ -34,16 +37,34 @@ abstract class Promise<T> {
     Future<T> future, {
     bool captureError = false,
   }) =>
-      Promise((resolve, reject) async {
-        try {
-          resolve(await future);
-        } on Object catch (e) {
-          reject(e);
-          if (!captureError) {
-            rethrow;
-          }
-        }
-      });
+      createPromiseFromFuture(future, captureError: captureError);
+}
+
+/// Factory for [Promise].
+///
+// TODO(dnys1): Remove when fixed https://github.com/dart-lang/sdk/issues/49778.
+@internal
+Promise<T> createPromise<T>(Executor<T> executor) =>
+    Promise._(allowInterop(executor));
+
+/// Factory for [Promise.fromFuture].
+///
+// TODO(dnys1): Remove when fixed https://github.com/dart-lang/sdk/issues/49778.
+@internal
+Promise<T> createPromiseFromFuture<T>(
+  Future<T> future, {
+  bool captureError = false,
+}) {
+  return createPromise((resolve, reject) async {
+    try {
+      resolve(await future);
+    } on Object catch (e) {
+      reject(e);
+      if (!captureError) {
+        rethrow;
+      }
+    }
+  });
 }
 
 /// {@macro aws_common.js.promise}

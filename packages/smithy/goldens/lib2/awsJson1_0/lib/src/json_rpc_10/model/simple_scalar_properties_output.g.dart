@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'simple_scalar_properties_output.dart';
+part of aws_json1_0_v2.json_rpc_10.model.simple_scalar_properties_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,15 +8,15 @@ part of 'simple_scalar_properties_output.dart';
 
 class _$SimpleScalarPropertiesOutput extends SimpleScalarPropertiesOutput {
   @override
-  final double? floatValue;
-  @override
   final double? doubleValue;
+  @override
+  final double? floatValue;
 
   factory _$SimpleScalarPropertiesOutput(
           [void Function(SimpleScalarPropertiesOutputBuilder)? updates]) =>
       (new SimpleScalarPropertiesOutputBuilder()..update(updates))._build();
 
-  _$SimpleScalarPropertiesOutput._({this.floatValue, this.doubleValue})
+  _$SimpleScalarPropertiesOutput._({this.doubleValue, this.floatValue})
       : super._();
 
   @override
@@ -32,15 +32,15 @@ class _$SimpleScalarPropertiesOutput extends SimpleScalarPropertiesOutput {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is SimpleScalarPropertiesOutput &&
-        floatValue == other.floatValue &&
-        doubleValue == other.doubleValue;
+        doubleValue == other.doubleValue &&
+        floatValue == other.floatValue;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, floatValue.hashCode);
     _$hash = $jc(_$hash, doubleValue.hashCode);
+    _$hash = $jc(_$hash, floatValue.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -52,21 +52,23 @@ class SimpleScalarPropertiesOutputBuilder
             SimpleScalarPropertiesOutputBuilder> {
   _$SimpleScalarPropertiesOutput? _$v;
 
-  double? _floatValue;
-  double? get floatValue => _$this._floatValue;
-  set floatValue(double? floatValue) => _$this._floatValue = floatValue;
-
   double? _doubleValue;
   double? get doubleValue => _$this._doubleValue;
   set doubleValue(double? doubleValue) => _$this._doubleValue = doubleValue;
 
-  SimpleScalarPropertiesOutputBuilder();
+  double? _floatValue;
+  double? get floatValue => _$this._floatValue;
+  set floatValue(double? floatValue) => _$this._floatValue = floatValue;
+
+  SimpleScalarPropertiesOutputBuilder() {
+    SimpleScalarPropertiesOutput._init(this);
+  }
 
   SimpleScalarPropertiesOutputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _floatValue = $v.floatValue;
       _doubleValue = $v.doubleValue;
+      _floatValue = $v.floatValue;
       _$v = null;
     }
     return this;
@@ -89,7 +91,7 @@ class SimpleScalarPropertiesOutputBuilder
   _$SimpleScalarPropertiesOutput _build() {
     final _$result = _$v ??
         new _$SimpleScalarPropertiesOutput._(
-            floatValue: floatValue, doubleValue: doubleValue);
+            doubleValue: doubleValue, floatValue: floatValue);
     replace(_$result);
     return _$result;
   }

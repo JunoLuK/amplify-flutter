@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'media_type_header_input.dart';
+part of rest_json1_v1.rest_json_protocol.model.media_type_header_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -48,7 +48,9 @@ class MediaTypeHeaderInputBuilder
   _i3.JsonObject? get json => _$this._json;
   set json(_i3.JsonObject? json) => _$this._json = json;
 
-  MediaTypeHeaderInputBuilder();
+  MediaTypeHeaderInputBuilder() {
+    MediaTypeHeaderInput._init(this);
+  }
 
   MediaTypeHeaderInputBuilder get _$this {
     final $v = _$v;
@@ -114,7 +116,9 @@ class MediaTypeHeaderInputPayloadBuilder
             MediaTypeHeaderInputPayloadBuilder> {
   _$MediaTypeHeaderInputPayload? _$v;
 
-  MediaTypeHeaderInputPayloadBuilder();
+  MediaTypeHeaderInputPayloadBuilder() {
+    MediaTypeHeaderInputPayload._init(this);
+  }
 
   @override
   void replace(MediaTypeHeaderInputPayload other) {

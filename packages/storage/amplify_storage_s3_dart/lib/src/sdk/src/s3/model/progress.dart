@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_storage_s3_dart.s3.model.progress; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -17,14 +16,14 @@ abstract class Progress
     implements Built<Progress, ProgressBuilder> {
   /// This data type contains information about progress of an operation.
   factory Progress({
-    _i2.Int64? bytesScanned,
     _i2.Int64? bytesProcessed,
     _i2.Int64? bytesReturned,
+    _i2.Int64? bytesScanned,
   }) {
     return _$Progress._(
-      bytesScanned: bytesScanned,
       bytesProcessed: bytesProcessed,
       bytesReturned: bytesReturned,
+      bytesScanned: bytesScanned,
     );
   }
 
@@ -33,39 +32,42 @@ abstract class Progress
 
   const Progress._();
 
-  static const List<_i3.SmithySerializer<Progress>> serializers = [
+  static const List<_i3.SmithySerializer> serializers = [
     ProgressRestXmlSerializer()
   ];
 
-  /// The current number of object bytes scanned.
-  _i2.Int64? get bytesScanned;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ProgressBuilder b) {}
 
   /// The current number of uncompressed object bytes processed.
   _i2.Int64? get bytesProcessed;
 
   /// The current number of bytes of records payload data returned.
   _i2.Int64? get bytesReturned;
+
+  /// The current number of object bytes scanned.
+  _i2.Int64? get bytesScanned;
   @override
   List<Object?> get props => [
-        bytesScanned,
         bytesProcessed,
         bytesReturned,
+        bytesScanned,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('Progress')
-      ..add(
-        'bytesScanned',
-        bytesScanned,
-      )
-      ..add(
-        'bytesProcessed',
-        bytesProcessed,
-      )
-      ..add(
-        'bytesReturned',
-        bytesReturned,
-      );
+    final helper = newBuiltValueToStringHelper('Progress');
+    helper.add(
+      'bytesProcessed',
+      bytesProcessed,
+    );
+    helper.add(
+      'bytesReturned',
+      bytesReturned,
+    );
+    helper.add(
+      'bytesScanned',
+      bytesScanned,
+    );
     return helper.toString();
   }
 }
@@ -95,28 +97,34 @@ class ProgressRestXmlSerializer
     final result = ProgressBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'BytesProcessed':
-          result.bytesProcessed = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(_i2.Int64),
-          ) as _i2.Int64);
+          if (value != null) {
+            result.bytesProcessed = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i2.Int64),
+            ) as _i2.Int64);
+          }
+          break;
         case 'BytesReturned':
-          result.bytesReturned = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(_i2.Int64),
-          ) as _i2.Int64);
+          if (value != null) {
+            result.bytesReturned = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i2.Int64),
+            ) as _i2.Int64);
+          }
+          break;
         case 'BytesScanned':
-          result.bytesScanned = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(_i2.Int64),
-          ) as _i2.Int64);
+          if (value != null) {
+            result.bytesScanned = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i2.Int64),
+            ) as _i2.Int64);
+          }
+          break;
       }
     }
 
@@ -126,40 +134,40 @@ class ProgressRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Progress object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final payload = (object as Progress);
+    final result = <Object?>[
       const _i3.XmlElementName(
         'Progress',
         _i3.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
       )
     ];
-    final Progress(:bytesProcessed, :bytesReturned, :bytesScanned) = object;
-    if (bytesProcessed != null) {
-      result$
+    if (payload.bytesProcessed != null) {
+      result
         ..add(const _i3.XmlElementName('BytesProcessed'))
         ..add(serializers.serialize(
-          bytesProcessed,
-          specifiedType: const FullType(_i2.Int64),
+          payload.bytesProcessed!,
+          specifiedType: const FullType.nullable(_i2.Int64),
         ));
     }
-    if (bytesReturned != null) {
-      result$
+    if (payload.bytesReturned != null) {
+      result
         ..add(const _i3.XmlElementName('BytesReturned'))
         ..add(serializers.serialize(
-          bytesReturned,
-          specifiedType: const FullType(_i2.Int64),
+          payload.bytesReturned!,
+          specifiedType: const FullType.nullable(_i2.Int64),
         ));
     }
-    if (bytesScanned != null) {
-      result$
+    if (payload.bytesScanned != null) {
+      result
         ..add(const _i3.XmlElementName('BytesScanned'))
         ..add(serializers.serialize(
-          bytesScanned,
-          specifiedType: const FullType(_i2.Int64),
+          payload.bytesScanned!,
+          specifiedType: const FullType.nullable(_i2.Int64),
         ));
     }
-    return result$;
+    return result;
   }
 }

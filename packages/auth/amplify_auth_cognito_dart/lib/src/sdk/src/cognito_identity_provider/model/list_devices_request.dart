@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_auth_cognito_dart.cognito_identity_provider.model.list_devices_request; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -41,9 +40,12 @@ abstract class ListDevicesRequest
   }) =>
       payload;
 
-  static const List<_i1.SmithySerializer<ListDevicesRequest>> serializers = [
+  static const List<_i1.SmithySerializer> serializers = [
     ListDevicesRequestAwsJson11Serializer()
   ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ListDevicesRequestBuilder b) {}
 
   /// A valid access token that Amazon Cognito issued to the user whose list of devices you want to view.
   String get accessToken;
@@ -63,19 +65,19 @@ abstract class ListDevicesRequest
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('ListDevicesRequest')
-      ..add(
-        'accessToken',
-        '***SENSITIVE***',
-      )
-      ..add(
-        'limit',
-        limit,
-      )
-      ..add(
-        'paginationToken',
-        paginationToken,
-      );
+    final helper = newBuiltValueToStringHelper('ListDevicesRequest');
+    helper.add(
+      'accessToken',
+      '***SENSITIVE***',
+    );
+    helper.add(
+      'limit',
+      limit,
+    );
+    helper.add(
+      'paginationToken',
+      paginationToken,
+    );
     return helper.toString();
   }
 }
@@ -108,25 +110,29 @@ class ListDevicesRequestAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'AccessToken':
           result.accessToken = (serializers.deserialize(
-            value,
+            value!,
             specifiedType: const FullType(String),
           ) as String);
+          break;
         case 'Limit':
-          result.limit = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int);
+          if (value != null) {
+            result.limit = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(int),
+            ) as int);
+          }
+          break;
         case 'PaginationToken':
-          result.paginationToken = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.paginationToken = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -136,34 +142,33 @@ class ListDevicesRequestAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    ListDevicesRequest object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final ListDevicesRequest(:accessToken, :limit, :paginationToken) = object;
-    result$.addAll([
+    final payload = (object as ListDevicesRequest);
+    final result = <Object?>[
       'AccessToken',
       serializers.serialize(
-        accessToken,
+        payload.accessToken,
         specifiedType: const FullType(String),
       ),
-    ]);
-    if (limit != null) {
-      result$
+    ];
+    if (payload.limit != null) {
+      result
         ..add('Limit')
         ..add(serializers.serialize(
-          limit,
+          payload.limit!,
           specifiedType: const FullType(int),
         ));
     }
-    if (paginationToken != null) {
-      result$
+    if (payload.paginationToken != null) {
+      result
         ..add('PaginationToken')
         ..add(serializers.serialize(
-          paginationToken,
+          payload.paginationToken!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

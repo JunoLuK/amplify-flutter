@@ -1,6 +1,8 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import 'dart:io';
+
 import 'package:amplify_api/amplify_api.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_auth_cognito_example/screens/confirm_user_attribute.dart';
@@ -17,7 +19,7 @@ import 'amplifyconfiguration.dart';
 final AmplifyLogger _logger = AmplifyLogger('MyApp');
 
 void main() {
-  AmplifyLogger().logLevel = LogLevel.verbose;
+  AmplifyLogger().logLevel = LogLevel.debug;
   runApp(const MyApp());
 }
 
@@ -77,8 +79,10 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> _configure() async {
     try {
-      await Amplify.addPlugins([
-        AmplifyAPI(),
+      if (!zIsWeb && (Platform.isAndroid || Platform.isIOS)) {
+        await Amplify.addPlugin(AmplifyAPI());
+      }
+      await Amplify.addPlugin(
         AmplifyAuthCognito(
           // FIXME: In your app, make sure to remove this line and set up
           /// Keychain Sharing in Xcode as described in the docs:
@@ -89,7 +93,7 @@ class _MyAppState extends State<MyApp> {
                 MacOSSecureStorageOptions(useDataProtection: false),
           ),
         ),
-      ]);
+      );
 
       // Uncomment this block, and comment out the one above to change how
       // credentials are persisted.
@@ -125,8 +129,9 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp.router(
         title: 'Flutter Demo',
         builder: Authenticator.builder(),
-        theme: ThemeData.light(useMaterial3: true),
-        darkTheme: ThemeData.dark(useMaterial3: true),
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
         routeInformationParser: _router.routeInformationParser,
         routerDelegate: _router.routerDelegate,
         debugShowCheckedModeBanner: false,

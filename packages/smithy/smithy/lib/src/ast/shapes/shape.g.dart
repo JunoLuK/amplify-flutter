@@ -6,7 +6,7 @@ part of 'shape.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-abstract mixin class ShapeBuilder {
+abstract class ShapeBuilder {
   void replace(Shape other);
   void update(void Function(ShapeBuilder) updates);
   ShapeId? get shapeId;

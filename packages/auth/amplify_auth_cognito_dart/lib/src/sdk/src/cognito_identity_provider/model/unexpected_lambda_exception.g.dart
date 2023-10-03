@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'unexpected_lambda_exception.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.unexpected_lambda_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -55,7 +55,9 @@ class UnexpectedLambdaExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  UnexpectedLambdaExceptionBuilder();
+  UnexpectedLambdaExceptionBuilder() {
+    UnexpectedLambdaException._init(this);
+  }
 
   UnexpectedLambdaExceptionBuilder get _$this {
     final $v = _$v;

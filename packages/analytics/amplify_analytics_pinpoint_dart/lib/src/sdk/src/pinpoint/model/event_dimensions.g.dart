@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'event_dimensions.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.event_dimensions;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,11 +8,11 @@ part of 'event_dimensions.dart';
 
 class _$EventDimensions extends EventDimensions {
   @override
-  final _i2.BuiltMap<String, AttributeDimension>? attributes;
+  final _i5.BuiltMap<String, _i2.AttributeDimension>? attributes;
   @override
-  final SetDimension? eventType;
+  final _i3.SetDimension? eventType;
   @override
-  final _i2.BuiltMap<String, MetricDimension>? metrics;
+  final _i5.BuiltMap<String, _i4.MetricDimension>? metrics;
 
   factory _$EventDimensions([void Function(EventDimensionsBuilder)? updates]) =>
       (new EventDimensionsBuilder()..update(updates))._build();
@@ -52,25 +52,28 @@ class EventDimensionsBuilder
     implements Builder<EventDimensions, EventDimensionsBuilder> {
   _$EventDimensions? _$v;
 
-  _i2.MapBuilder<String, AttributeDimension>? _attributes;
-  _i2.MapBuilder<String, AttributeDimension> get attributes =>
-      _$this._attributes ??= new _i2.MapBuilder<String, AttributeDimension>();
-  set attributes(_i2.MapBuilder<String, AttributeDimension>? attributes) =>
+  _i5.MapBuilder<String, _i2.AttributeDimension>? _attributes;
+  _i5.MapBuilder<String, _i2.AttributeDimension> get attributes =>
+      _$this._attributes ??=
+          new _i5.MapBuilder<String, _i2.AttributeDimension>();
+  set attributes(_i5.MapBuilder<String, _i2.AttributeDimension>? attributes) =>
       _$this._attributes = attributes;
 
-  SetDimensionBuilder? _eventType;
-  SetDimensionBuilder get eventType =>
-      _$this._eventType ??= new SetDimensionBuilder();
-  set eventType(SetDimensionBuilder? eventType) =>
+  _i3.SetDimensionBuilder? _eventType;
+  _i3.SetDimensionBuilder get eventType =>
+      _$this._eventType ??= new _i3.SetDimensionBuilder();
+  set eventType(_i3.SetDimensionBuilder? eventType) =>
       _$this._eventType = eventType;
 
-  _i2.MapBuilder<String, MetricDimension>? _metrics;
-  _i2.MapBuilder<String, MetricDimension> get metrics =>
-      _$this._metrics ??= new _i2.MapBuilder<String, MetricDimension>();
-  set metrics(_i2.MapBuilder<String, MetricDimension>? metrics) =>
+  _i5.MapBuilder<String, _i4.MetricDimension>? _metrics;
+  _i5.MapBuilder<String, _i4.MetricDimension> get metrics =>
+      _$this._metrics ??= new _i5.MapBuilder<String, _i4.MetricDimension>();
+  set metrics(_i5.MapBuilder<String, _i4.MetricDimension>? metrics) =>
       _$this._metrics = metrics;
 
-  EventDimensionsBuilder();
+  EventDimensionsBuilder() {
+    EventDimensions._init(this);
+  }
 
   EventDimensionsBuilder get _$this {
     final $v = _$v;

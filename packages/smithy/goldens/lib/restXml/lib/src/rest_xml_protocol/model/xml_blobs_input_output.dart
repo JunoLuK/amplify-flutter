@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v1.rest_xml_protocol.model.xml_blobs_input_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -41,10 +40,12 @@ abstract class XmlBlobsInputOutput
   ) =>
       payload;
 
-  static const List<_i1.SmithySerializer<XmlBlobsInputOutput>> serializers = [
+  static const List<_i1.SmithySerializer> serializers = [
     XmlBlobsInputOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(XmlBlobsInputOutputBuilder b) {}
   _i3.Uint8List? get data;
   @override
   XmlBlobsInputOutput getPayload() => this;
@@ -52,11 +53,11 @@ abstract class XmlBlobsInputOutput
   List<Object?> get props => [data];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('XmlBlobsInputOutput')
-      ..add(
-        'data',
-        data,
-      );
+    final helper = newBuiltValueToStringHelper('XmlBlobsInputOutput');
+    helper.add(
+      'data',
+      data,
+    );
     return helper.toString();
   }
 }
@@ -86,18 +87,18 @@ class XmlBlobsInputOutputRestXmlSerializer
     final result = XmlBlobsInputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'data':
-          result.data = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(_i3.Uint8List),
-          ) as _i3.Uint8List);
+          if (value != null) {
+            result.data = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i3.Uint8List),
+            ) as _i3.Uint8List);
+          }
+          break;
       }
     }
 
@@ -107,19 +108,19 @@ class XmlBlobsInputOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    XmlBlobsInputOutput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[const _i1.XmlElementName('XmlBlobsInputOutput')];
-    final XmlBlobsInputOutput(:data) = object;
-    if (data != null) {
-      result$
+    final payload = (object as XmlBlobsInputOutput);
+    final result = <Object?>[const _i1.XmlElementName('XmlBlobsInputOutput')];
+    if (payload.data != null) {
+      result
         ..add(const _i1.XmlElementName('data'))
         ..add(serializers.serialize(
-          data,
+          payload.data!,
           specifiedType: const FullType.nullable(_i3.Uint8List),
         ));
     }
-    return result$;
+    return result;
   }
 }

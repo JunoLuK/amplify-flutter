@@ -3,14 +3,14 @@ name: Dart (Native)
 on:
   workflow_call:
     inputs:
-      package-name:
-        description: The name of the package being tested
-        required: true
-        type: string
       working-directory:
         description: The working directory relative to the repo root
         required: true
         type: string
+      skip-on-windows:
+        description: Whether the current package cannot be tested on Windows
+        required: true
+        type: boolean
 
 jobs:
   native_test:
@@ -26,7 +26,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Cache Pub dependencies
-        uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84 # 3.3.2
+        uses: actions/cache@9b0c1fce7a93df8e3bb8926b0d6e9d89e92f20a7 # 3.0.11
         with:
           path: |
             ~/.pub-cache/hosted
@@ -42,38 +42,28 @@ jobs:
         run: git config --system core.longpaths true
 
       - name: Git Checkout
-        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # 3.6.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # 3.1.0
 
       - name: Git Submodules
         run: git submodule update --init
 
       - name: Setup Dart
-        uses: dart-lang/setup-dart@e58aeb62aef51dcc4d0ba8eada7c08092aad5314 # main
+        uses: dart-lang/setup-dart@196f54580e9eee2797c57e85e289339f85e6779d # main
         with:
           sdk: stable
 
       - name: Setup aft
         shell: bash # Run in bash regardless of platform
-        run: dart pub global activate -spath packages/aft
-
-      # This is needed to support running tests which depend on db_common.
-      - name: Install SQLite
-        if: runner.os == 'Windows'
         run: |
-          # Should match `packages/common/amplify_db_common/windows/CMakeLists.txt`
-          $uri = "https://www.sqlite.org/2022/sqlite-dll-win64-x64-3400000.zip"
-          $outFile = "sqlite.zip"
-          $out = ".\sqlite"
-          Invoke-WebRequest -Uri $uri -OutFile $outFile
-          Expand-Archive -LiteralPath $outFile -DestinationPath $out
-          $absoluteOut = Resolve-Path -Path $out
-          Add-Content $env:GITHUB_PATH $absoluteOut
-          Get-Content $env:GITHUB_PATH
+          # Patch libgit2dart (see https://github.com/dart-lang/pub/issues/3563)
+          ( cd packages/aft/external/libgit2dart; git apply ../libgit2dart.patch )
+          dart pub global activate -spath packages/aft
+          ( cd packages/aft/external/libgit2dart; git reset --hard HEAD )
 
       - name: Bootstrap
         id: bootstrap
-        timeout-minutes: 20
-        run: aft bootstrap --fail-fast --include=${{ inputs.package-name }} --verbose
+        timeout-minutes: 20 # macOS needs extra time
+        run: aft bootstrap
 
       - name: Setup Package
         if: "always() && steps.bootstrap.conclusion == 'success'"
@@ -85,6 +75,6 @@ jobs:
           fi
 
       - name: Run Tests
-        if: "always() && steps.bootstrap.conclusion == 'success'"
+        if: "always() && steps.bootstrap.conclusion == 'success' && (runner.os != 'Windows' || !inputs.skip-on-windows)"
         run: dart test --exclude-tags=build
         working-directory: ${{ inputs.working-directory }}

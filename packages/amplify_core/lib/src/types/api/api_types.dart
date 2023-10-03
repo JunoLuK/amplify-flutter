@@ -4,14 +4,10 @@
 // Packages
 export 'package:retry/retry.dart' show RetryOptions;
 
-/// Exception Types.
-export '../exception/amplify_exception.dart'
-    show
-        ApiException,
-        ApiOperationException,
-        HttpStatusException,
-        NetworkException,
-        UnknownException;
+/// Exceptions
+export '../exception/api/api_exception.dart';
+export '../exception/api/http_status_exception.dart';
+export '../exception/api/operation_exception.dart';
 // API Authorization
 export 'auth/api_auth_provider.dart';
 export 'auth/api_authorization_type.dart';

@@ -1,15 +1,17 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 // ignore_for_file: unused_element
 library rest_json1_v1.rest_json_protocol.test.json_maps_operation_test_test; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:built_collection/built_collection.dart' as _i4;
+import 'package:built_collection/built_collection.dart' as _i6;
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v1/src/rest_json_protocol/model/greeting_struct.dart';
-import 'package:rest_json1_v1/src/rest_json_protocol/model/json_maps_input_output.dart';
-import 'package:rest_json1_v1/src/rest_json_protocol/operation/json_maps_operation.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:rest_json1_v1/src/rest_json_protocol/model/greeting_struct.dart'
+    as _i7;
+import 'package:rest_json1_v1/src/rest_json_protocol/model/json_maps_input_output.dart'
+    as _i5;
+import 'package:rest_json1_v1/src/rest_json_protocol/operation/json_maps_operation.dart'
+    as _i3;
+import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
@@ -18,14 +20,14 @@ void main() {
     'RestJsonJsonMaps (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: JsonMapsOperation(
+        operation: _i3.JsonMapsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'RestJsonJsonMaps',
           documentation: 'Serializes JSON maps',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -69,14 +71,14 @@ void main() {
     'RestJsonSerializesNullMapValues (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: JsonMapsOperation(
+        operation: _i3.JsonMapsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'RestJsonSerializesNullMapValues',
           documentation: 'Serializes JSON map values in sparse maps',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -116,7 +118,7 @@ void main() {
     'RestJsonSerializesZeroValuesInMaps (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: JsonMapsOperation(
+        operation: _i3.JsonMapsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
@@ -124,7 +126,7 @@ void main() {
           id: 'RestJsonSerializesZeroValuesInMaps',
           documentation:
               'Ensure that 0 and false are sent over the wire in all maps and lists',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -162,14 +164,14 @@ void main() {
   );
   _i1.test('RestJsonSerializesSparseSetMap (request)', () async {
     await _i2.httpRequestTest(
-      operation: JsonMapsOperation(
+      operation: _i3.JsonMapsOperation(
         region: 'us-east-1',
         baseUri: Uri.parse('https://example.com'),
       ),
       testCase: const _i2.HttpRequestTestCase(
         id: 'RestJsonSerializesSparseSetMap',
         documentation: 'A request that contains a sparse map of sets',
-        protocol: _i3.ShapeId(
+        protocol: _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         ),
@@ -209,14 +211,14 @@ void main() {
   }, skip: 'Cannot handle this at the moment (empty vs. null).');
   _i1.test('RestJsonSerializesDenseSetMap (request)', () async {
     await _i2.httpRequestTest(
-      operation: JsonMapsOperation(
+      operation: _i3.JsonMapsOperation(
         region: 'us-east-1',
         baseUri: Uri.parse('https://example.com'),
       ),
       testCase: const _i2.HttpRequestTestCase(
         id: 'RestJsonSerializesDenseSetMap',
         documentation: 'A request that contains a dense map of sets.',
-        protocol: _i3.ShapeId(
+        protocol: _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         ),
@@ -256,14 +258,14 @@ void main() {
   }, skip: 'Cannot handle this at the moment (empty vs. null).');
   _i1.test('RestJsonSerializesSparseSetMapAndRetainsNull (request)', () async {
     await _i2.httpRequestTest(
-      operation: JsonMapsOperation(
+      operation: _i3.JsonMapsOperation(
         region: 'us-east-1',
         baseUri: Uri.parse('https://example.com'),
       ),
       testCase: const _i2.HttpRequestTestCase(
         id: 'RestJsonSerializesSparseSetMapAndRetainsNull',
         documentation: 'A request that contains a sparse map of sets.',
-        protocol: _i3.ShapeId(
+        protocol: _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         ),
@@ -306,14 +308,14 @@ void main() {
     'RestJsonJsonMaps (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: JsonMapsOperation(
+        operation: _i3.JsonMapsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'RestJsonJsonMaps',
           documentation: 'Deserializes JSON maps',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -351,14 +353,14 @@ void main() {
     'RestJsonDeserializesNullMapValues (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: JsonMapsOperation(
+        operation: _i3.JsonMapsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'RestJsonDeserializesNullMapValues',
           documentation: 'Deserializes null JSON map values',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -392,7 +394,7 @@ void main() {
     'RestJsonDeserializesZeroValuesInMaps (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: JsonMapsOperation(
+        operation: _i3.JsonMapsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
@@ -400,7 +402,7 @@ void main() {
           id: 'RestJsonDeserializesZeroValuesInMaps',
           documentation:
               'Ensure that 0 and false are sent over the wire in all maps and lists',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -434,14 +436,14 @@ void main() {
     'RestJsonDeserializesSparseSetMap (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: JsonMapsOperation(
+        operation: _i3.JsonMapsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'RestJsonDeserializesSparseSetMap',
           documentation: 'A response that contains a sparse map of sets',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -478,14 +480,14 @@ void main() {
     'RestJsonDeserializesDenseSetMap (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: JsonMapsOperation(
+        operation: _i3.JsonMapsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'RestJsonDeserializesDenseSetMap',
           documentation: 'A response that contains a dense map of sets.',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -522,14 +524,14 @@ void main() {
     'RestJsonDeserializesSparseSetMapAndRetainsNull (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: JsonMapsOperation(
+        operation: _i3.JsonMapsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'RestJsonDeserializesSparseSetMapAndRetainsNull',
           documentation: 'A response that contains a sparse map of sets.',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -567,7 +569,7 @@ void main() {
     'RestJsonDeserializesDenseSetMapAndSkipsNull (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: JsonMapsOperation(
+        operation: _i3.JsonMapsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
@@ -575,7 +577,7 @@ void main() {
           id: 'RestJsonDeserializesDenseSetMapAndSkipsNull',
           documentation:
               'Clients SHOULD tolerate seeing a null value in a dense map, and they SHOULD\ndrop the null key-value pair.',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -611,144 +613,171 @@ void main() {
 }
 
 class JsonMapsInputOutputRestJson1Serializer
-    extends _i3.StructuredSmithySerializer<JsonMapsInputOutput> {
+    extends _i4.StructuredSmithySerializer<_i5.JsonMapsInputOutput> {
   const JsonMapsInputOutputRestJson1Serializer() : super('JsonMapsInputOutput');
 
   @override
-  Iterable<Type> get types => const [JsonMapsInputOutput];
+  Iterable<Type> get types => const [_i5.JsonMapsInputOutput];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
       ];
   @override
-  JsonMapsInputOutput deserialize(
+  _i5.JsonMapsInputOutput deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = JsonMapsInputOutputBuilder();
+    final result = _i5.JsonMapsInputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
-        case 'denseStructMap':
-          result.denseStructMap.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i4.BuiltMap,
-              [
-                FullType(String),
-                FullType(GreetingStruct),
-              ],
-            ),
-          ) as _i4.BuiltMap<String, GreetingStruct>));
-        case 'sparseStructMap':
-          result.sparseStructMap.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i4.BuiltMap,
-              [
-                FullType(String),
-                FullType.nullable(GreetingStruct),
-              ],
-            ),
-          ) as _i4.BuiltMap<String, GreetingStruct?>));
-        case 'denseNumberMap':
-          result.denseNumberMap.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i4.BuiltMap,
-              [
-                FullType(String),
-                FullType(int),
-              ],
-            ),
-          ) as _i4.BuiltMap<String, int>));
         case 'denseBooleanMap':
-          result.denseBooleanMap.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i4.BuiltMap,
-              [
-                FullType(String),
-                FullType(bool),
-              ],
-            ),
-          ) as _i4.BuiltMap<String, bool>));
-        case 'denseStringMap':
-          result.denseStringMap.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i4.BuiltMap,
-              [
-                FullType(String),
-                FullType(String),
-              ],
-            ),
-          ) as _i4.BuiltMap<String, String>));
-        case 'sparseNumberMap':
-          result.sparseNumberMap.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i4.BuiltMap,
-              [
-                FullType(String),
-                FullType.nullable(int),
-              ],
-            ),
-          ) as _i4.BuiltMap<String, int?>));
-        case 'sparseBooleanMap':
-          result.sparseBooleanMap.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i4.BuiltMap,
-              [
-                FullType(String),
-                FullType.nullable(bool),
-              ],
-            ),
-          ) as _i4.BuiltMap<String, bool?>));
-        case 'sparseStringMap':
-          result.sparseStringMap.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i4.BuiltMap,
-              [
-                FullType(String),
-                FullType.nullable(String),
-              ],
-            ),
-          ) as _i4.BuiltMap<String, String?>));
+          if (value != null) {
+            result.denseBooleanMap.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltMap,
+                [
+                  FullType(String),
+                  FullType(bool),
+                ],
+              ),
+            ) as _i6.BuiltMap<String, bool>));
+          }
+          break;
+        case 'denseNumberMap':
+          if (value != null) {
+            result.denseNumberMap.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltMap,
+                [
+                  FullType(String),
+                  FullType(int),
+                ],
+              ),
+            ) as _i6.BuiltMap<String, int>));
+          }
+          break;
         case 'denseSetMap':
-          result.denseSetMap.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i4.BuiltSetMultimap,
-              [
-                FullType(String),
-                FullType(String),
-              ],
-            ),
-          ) as _i4.BuiltSetMultimap<String, String>));
+          if (value != null) {
+            result.denseSetMap.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltSetMultimap,
+                [
+                  FullType(String),
+                  FullType(String),
+                ],
+              ),
+            ) as _i6.BuiltSetMultimap<String, String>));
+          }
+          break;
+        case 'denseStringMap':
+          if (value != null) {
+            result.denseStringMap.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltMap,
+                [
+                  FullType(String),
+                  FullType(String),
+                ],
+              ),
+            ) as _i6.BuiltMap<String, String>));
+          }
+          break;
+        case 'denseStructMap':
+          if (value != null) {
+            result.denseStructMap.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltMap,
+                [
+                  FullType(String),
+                  FullType(_i7.GreetingStruct),
+                ],
+              ),
+            ) as _i6.BuiltMap<String, _i7.GreetingStruct>));
+          }
+          break;
+        case 'sparseBooleanMap':
+          if (value != null) {
+            result.sparseBooleanMap.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltMap,
+                [
+                  FullType(String),
+                  FullType.nullable(bool),
+                ],
+              ),
+            ) as _i6.BuiltMap<String, bool?>));
+          }
+          break;
+        case 'sparseNumberMap':
+          if (value != null) {
+            result.sparseNumberMap.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltMap,
+                [
+                  FullType(String),
+                  FullType.nullable(int),
+                ],
+              ),
+            ) as _i6.BuiltMap<String, int?>));
+          }
+          break;
         case 'sparseSetMap':
-          result.sparseSetMap.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i4.BuiltSetMultimap,
-              [
-                FullType(String),
-                FullType(String),
-              ],
-            ),
-          ) as _i4.BuiltSetMultimap<String, String>));
+          if (value != null) {
+            result.sparseSetMap.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltSetMultimap,
+                [
+                  FullType(String),
+                  FullType(String),
+                ],
+              ),
+            ) as _i6.BuiltSetMultimap<String, String>));
+          }
+          break;
+        case 'sparseStringMap':
+          if (value != null) {
+            result.sparseStringMap.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltMap,
+                [
+                  FullType(String),
+                  FullType.nullable(String),
+                ],
+              ),
+            ) as _i6.BuiltMap<String, String?>));
+          }
+          break;
+        case 'sparseStructMap':
+          if (value != null) {
+            result.sparseStructMap.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltMap,
+                [
+                  FullType(String),
+                  FullType.nullable(_i7.GreetingStruct),
+                ],
+              ),
+            ) as _i6.BuiltMap<String, _i7.GreetingStruct?>));
+          }
+          break;
       }
     }
 
@@ -758,7 +787,7 @@ class JsonMapsInputOutputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    JsonMapsInputOutput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
@@ -766,39 +795,39 @@ class JsonMapsInputOutputRestJson1Serializer
 }
 
 class GreetingStructRestJson1Serializer
-    extends _i3.StructuredSmithySerializer<GreetingStruct> {
+    extends _i4.StructuredSmithySerializer<_i7.GreetingStruct> {
   const GreetingStructRestJson1Serializer() : super('GreetingStruct');
 
   @override
-  Iterable<Type> get types => const [GreetingStruct];
+  Iterable<Type> get types => const [_i7.GreetingStruct];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
       ];
   @override
-  GreetingStruct deserialize(
+  _i7.GreetingStruct deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = GreetingStructBuilder();
+    final result = _i7.GreetingStructBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'hi':
-          result.hi = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.hi = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -808,7 +837,7 @@ class GreetingStructRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    GreetingStruct object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');

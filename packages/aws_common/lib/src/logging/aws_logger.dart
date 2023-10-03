@@ -5,7 +5,6 @@ import 'dart:async';
 
 import 'package:aws_common/aws_common.dart';
 import 'package:aws_common/src/logging/logging_ext.dart';
-import 'package:collection/collection.dart';
 import 'package:logging/logging.dart';
 import 'package:meta/meta.dart';
 
@@ -23,7 +22,7 @@ const zDefaultLogLevel = LogLevel.info;
 ///
 /// By default, a [SimpleLogPrinter] is registered on the root [AWSLogger]
 /// which impacts all child loggers.
-class AWSLogger with AWSDebuggable implements Closeable {
+class AWSLogger implements Closeable {
   /// Creates a top-level [AWSLogger].
   ///
   /// {@macro aws_common.logging.aws_logger}
@@ -41,7 +40,6 @@ class AWSLogger with AWSDebuggable implements Closeable {
   @protected
   AWSLogger.protected(String namespace) : _logger = Logger(namespace) {
     _init(this);
-    _parent?._children.add(this);
   }
 
   static bool _initialized = false;
@@ -65,24 +63,6 @@ class AWSLogger with AWSDebuggable implements Closeable {
 
   final Logger _logger;
 
-  /// Parent of this logger in the logger hierarchy.
-  AWSLogger? get _parent {
-    return activeLoggers[_logger.parent?.fullName];
-  }
-
-  /// Children of this logger in the logger hierarchy.
-  final List<AWSLogger> _children = [];
-
-  Never _pluginAlreadyRegistered(String pluginType) {
-    final loggerInstance = '$runtimeTypeName($namespace)';
-    throw StateError(
-      'A plugin of type "$pluginType" is already registered to'
-      ' "$loggerInstance" in the same logging hierarchy. Unregister the'
-      ' existing plugin from "$loggerInstance" first and then register the'
-      ' new plugin.',
-    );
-  }
-
   /// The namespace of this logger.
   String get namespace => _logger.fullName;
 
@@ -92,31 +72,10 @@ class AWSLogger with AWSDebuggable implements Closeable {
     return AWSLogger('$namespace.$name');
   }
 
-  /// Returns a plugin of type [Plugin] registered to this
-  /// logger hierarchy or `null`.
-  Plugin? getPlugin<Plugin extends AWSLoggerPlugin>() {
-    final registeredPlugin = _subscriptions.keys
-            .firstWhereOrNull((element) => element.runtimeType == Plugin)
-        as Plugin?;
-    return registeredPlugin ?? _parent?.getPlugin<Plugin>();
-  }
-
   /// Registers an [AWSLoggerPlugin] to handle logs emitted by this logger
   /// instance.
-  ///
-  /// Throws [StateError] if a plugin with same type is registered to this
-  /// logger hierarchy.
-  void registerPlugin<T extends AWSLoggerPlugin>(
-    T plugin,
-  ) {
-    bool hasPlugin(AWSLogger logger) =>
-        logger._subscriptions.keys.any((element) => element.runtimeType == T) ||
-        logger._children.any(hasPlugin);
-
-    if (getPlugin<T>() != null || _children.any(hasPlugin)) {
-      _pluginAlreadyRegistered(T.toString());
-    }
-
+  void registerPlugin(AWSLoggerPlugin plugin) {
+    unregisterPlugin(plugin);
     _subscriptions[plugin] = _logger.onRecord
         .map((record) => record.toLogEntry())
         .listen(plugin.handleLogEntry);
@@ -182,10 +141,6 @@ class AWSLogger with AWSDebuggable implements Closeable {
 
   @override
   void close() => unregisterAllPlugins();
-
-  @override
-  @mustBeOverridden
-  String get runtimeTypeName => 'AWSLogger';
 }
 
 /// {@template aws_common.logging.aws_logger_plugin}

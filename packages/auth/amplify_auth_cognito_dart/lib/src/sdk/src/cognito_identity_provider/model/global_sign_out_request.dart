@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_auth_cognito_dart.cognito_identity_provider.model.global_sign_out_request; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -35,9 +34,12 @@ abstract class GlobalSignOutRequest
   }) =>
       payload;
 
-  static const List<_i1.SmithySerializer<GlobalSignOutRequest>> serializers = [
+  static const List<_i1.SmithySerializer> serializers = [
     GlobalSignOutRequestAwsJson11Serializer()
   ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(GlobalSignOutRequestBuilder b) {}
 
   /// A valid access token that Amazon Cognito issued to the user who you want to sign out.
   String get accessToken;
@@ -47,11 +49,11 @@ abstract class GlobalSignOutRequest
   List<Object?> get props => [accessToken];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('GlobalSignOutRequest')
-      ..add(
-        'accessToken',
-        '***SENSITIVE***',
-      );
+    final helper = newBuiltValueToStringHelper('GlobalSignOutRequest');
+    helper.add(
+      'accessToken',
+      '***SENSITIVE***',
+    );
     return helper.toString();
   }
 }
@@ -85,15 +87,13 @@ class GlobalSignOutRequestAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'AccessToken':
           result.accessToken = (serializers.deserialize(
-            value,
+            value!,
             specifiedType: const FullType(String),
           ) as String);
+          break;
       }
     }
 
@@ -103,18 +103,17 @@ class GlobalSignOutRequestAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    GlobalSignOutRequest object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final GlobalSignOutRequest(:accessToken) = object;
-    result$.addAll([
+    final payload = (object as GlobalSignOutRequest);
+    final result = <Object?>[
       'AccessToken',
       serializers.serialize(
-        accessToken,
+        payload.accessToken,
         specifiedType: const FullType(String),
       ),
-    ]);
-    return result$;
+    ];
+    return result;
   }
 }

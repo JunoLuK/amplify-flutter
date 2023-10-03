@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'bad_request_exception.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.bad_request_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -64,7 +64,9 @@ class BadRequestExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  BadRequestExceptionBuilder();
+  BadRequestExceptionBuilder() {
+    BadRequestException._init(this);
+  }
 
   BadRequestExceptionBuilder get _$this {
     final $v = _$v;

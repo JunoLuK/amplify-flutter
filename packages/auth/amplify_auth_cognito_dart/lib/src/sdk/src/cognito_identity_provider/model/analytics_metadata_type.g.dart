@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'analytics_metadata_type.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.analytics_metadata_type;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -50,7 +50,9 @@ class AnalyticsMetadataTypeBuilder
   set analyticsEndpointId(String? analyticsEndpointId) =>
       _$this._analyticsEndpointId = analyticsEndpointId;
 
-  AnalyticsMetadataTypeBuilder();
+  AnalyticsMetadataTypeBuilder() {
+    AnalyticsMetadataType._init(this);
+  }
 
   AnalyticsMetadataTypeBuilder get _$this {
     final $v = _$v;

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'input_serialization.dart';
+part of amplify_storage_s3_dart.s3.model.input_serialization;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,20 +8,20 @@ part of 'input_serialization.dart';
 
 class _$InputSerialization extends InputSerialization {
   @override
-  final CsvInput? csv;
+  final _i2.CompressionType? compressionType;
   @override
-  final CompressionType? compressionType;
+  final _i3.CsvInput? csv;
   @override
-  final JsonInput? json;
+  final _i4.JsonInput? json;
   @override
-  final ParquetInput? parquet;
+  final _i5.ParquetInput? parquet;
 
   factory _$InputSerialization(
           [void Function(InputSerializationBuilder)? updates]) =>
       (new InputSerializationBuilder()..update(updates))._build();
 
   _$InputSerialization._(
-      {this.csv, this.compressionType, this.json, this.parquet})
+      {this.compressionType, this.csv, this.json, this.parquet})
       : super._();
 
   @override
@@ -37,8 +37,8 @@ class _$InputSerialization extends InputSerialization {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is InputSerialization &&
-        csv == other.csv &&
         compressionType == other.compressionType &&
+        csv == other.csv &&
         json == other.json &&
         parquet == other.parquet;
   }
@@ -46,8 +46,8 @@ class _$InputSerialization extends InputSerialization {
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, csv.hashCode);
     _$hash = $jc(_$hash, compressionType.hashCode);
+    _$hash = $jc(_$hash, csv.hashCode);
     _$hash = $jc(_$hash, json.hashCode);
     _$hash = $jc(_$hash, parquet.hashCode);
     _$hash = $jf(_$hash);
@@ -59,31 +59,33 @@ class InputSerializationBuilder
     implements Builder<InputSerialization, InputSerializationBuilder> {
   _$InputSerialization? _$v;
 
-  CsvInputBuilder? _csv;
-  CsvInputBuilder get csv => _$this._csv ??= new CsvInputBuilder();
-  set csv(CsvInputBuilder? csv) => _$this._csv = csv;
-
-  CompressionType? _compressionType;
-  CompressionType? get compressionType => _$this._compressionType;
-  set compressionType(CompressionType? compressionType) =>
+  _i2.CompressionType? _compressionType;
+  _i2.CompressionType? get compressionType => _$this._compressionType;
+  set compressionType(_i2.CompressionType? compressionType) =>
       _$this._compressionType = compressionType;
 
-  JsonInputBuilder? _json;
-  JsonInputBuilder get json => _$this._json ??= new JsonInputBuilder();
-  set json(JsonInputBuilder? json) => _$this._json = json;
+  _i3.CsvInputBuilder? _csv;
+  _i3.CsvInputBuilder get csv => _$this._csv ??= new _i3.CsvInputBuilder();
+  set csv(_i3.CsvInputBuilder? csv) => _$this._csv = csv;
 
-  ParquetInputBuilder? _parquet;
-  ParquetInputBuilder get parquet =>
-      _$this._parquet ??= new ParquetInputBuilder();
-  set parquet(ParquetInputBuilder? parquet) => _$this._parquet = parquet;
+  _i4.JsonInputBuilder? _json;
+  _i4.JsonInputBuilder get json => _$this._json ??= new _i4.JsonInputBuilder();
+  set json(_i4.JsonInputBuilder? json) => _$this._json = json;
 
-  InputSerializationBuilder();
+  _i5.ParquetInputBuilder? _parquet;
+  _i5.ParquetInputBuilder get parquet =>
+      _$this._parquet ??= new _i5.ParquetInputBuilder();
+  set parquet(_i5.ParquetInputBuilder? parquet) => _$this._parquet = parquet;
+
+  InputSerializationBuilder() {
+    InputSerialization._init(this);
+  }
 
   InputSerializationBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _csv = $v.csv?.toBuilder();
       _compressionType = $v.compressionType;
+      _csv = $v.csv?.toBuilder();
       _json = $v.json?.toBuilder();
       _parquet = $v.parquet?.toBuilder();
       _$v = null;
@@ -110,8 +112,8 @@ class InputSerializationBuilder
     try {
       _$result = _$v ??
           new _$InputSerialization._(
-              csv: _csv?.build(),
               compressionType: compressionType,
+              csv: _csv?.build(),
               json: _json?.build(),
               parquet: _parquet?.build());
     } catch (_) {
@@ -119,7 +121,6 @@ class InputSerializationBuilder
       try {
         _$failedField = 'csv';
         _csv?.build();
-
         _$failedField = 'json';
         _json?.build();
         _$failedField = 'parquet';

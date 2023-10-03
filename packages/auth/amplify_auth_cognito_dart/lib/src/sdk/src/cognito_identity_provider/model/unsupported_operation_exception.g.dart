@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'unsupported_operation_exception.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.unsupported_operation_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -56,7 +56,9 @@ class UnsupportedOperationExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  UnsupportedOperationExceptionBuilder();
+  UnsupportedOperationExceptionBuilder() {
+    UnsupportedOperationException._init(this);
+  }
 
   UnsupportedOperationExceptionBuilder get _$this {
     final $v = _$v;

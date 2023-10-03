@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'no_such_upload.dart';
+part of amplify_storage_s3_dart.s3.model.no_such_upload;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -48,7 +48,9 @@ class NoSuchUploadBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  NoSuchUploadBuilder();
+  NoSuchUploadBuilder() {
+    NoSuchUpload._init(this);
+  }
 
   NoSuchUploadBuilder get _$this {
     final $v = _$v;

@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_auth_cognito_dart.cognito_identity_provider.model.invalid_password_exception; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -37,8 +36,12 @@ abstract class InvalidPasswordException
         b.headers = response.headers;
       });
 
-  static const List<_i2.SmithySerializer<InvalidPasswordException>>
-      serializers = [InvalidPasswordExceptionAwsJson11Serializer()];
+  static const List<_i2.SmithySerializer> serializers = [
+    InvalidPasswordExceptionAwsJson11Serializer()
+  ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(InvalidPasswordExceptionBuilder b) {}
 
   /// The message returned when Amazon Cognito throws an invalid user password exception.
   @override
@@ -62,11 +65,11 @@ abstract class InvalidPasswordException
   List<Object?> get props => [message];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('InvalidPasswordException')
-      ..add(
-        'message',
-        message,
-      );
+    final helper = newBuiltValueToStringHelper('InvalidPasswordException');
+    helper.add(
+      'message',
+      message,
+    );
     return helper.toString();
   }
 }
@@ -100,15 +103,15 @@ class InvalidPasswordExceptionAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'message':
-          result.message = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.message = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -118,19 +121,19 @@ class InvalidPasswordExceptionAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    InvalidPasswordException object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final InvalidPasswordException(:message) = object;
-    if (message != null) {
-      result$
+    final payload = (object as InvalidPasswordException);
+    final result = <Object?>[];
+    if (payload.message != null) {
+      result
         ..add('message')
         ..add(serializers.serialize(
-          message,
+          payload.message!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

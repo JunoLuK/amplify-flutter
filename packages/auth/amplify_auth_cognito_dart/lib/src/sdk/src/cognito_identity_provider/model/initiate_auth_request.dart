@@ -1,13 +1,15 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_auth_cognito_dart.cognito_identity_provider.model.initiate_auth_request; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:amplify_auth_cognito_dart/src/sdk/src/cognito_identity_provider/model/analytics_metadata_type.dart';
-import 'package:amplify_auth_cognito_dart/src/sdk/src/cognito_identity_provider/model/auth_flow_type.dart';
-import 'package:amplify_auth_cognito_dart/src/sdk/src/cognito_identity_provider/model/user_context_data_type.dart';
+import 'package:amplify_auth_cognito_dart/src/sdk/src/cognito_identity_provider/model/analytics_metadata_type.dart'
+    as _i3;
+import 'package:amplify_auth_cognito_dart/src/sdk/src/cognito_identity_provider/model/auth_flow_type.dart'
+    as _i4;
+import 'package:amplify_auth_cognito_dart/src/sdk/src/cognito_identity_provider/model/user_context_data_type.dart'
+    as _i5;
 import 'package:aws_common/aws_common.dart' as _i2;
-import 'package:built_collection/built_collection.dart' as _i3;
+import 'package:built_collection/built_collection.dart' as _i6;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -22,21 +24,21 @@ abstract class InitiateAuthRequest
     implements Built<InitiateAuthRequest, InitiateAuthRequestBuilder> {
   /// Initiates the authentication request.
   factory InitiateAuthRequest({
-    required AuthFlowType authFlow,
+    _i3.AnalyticsMetadataType? analyticsMetadata,
+    required _i4.AuthFlowType authFlow,
     Map<String, String>? authParameters,
-    Map<String, String>? clientMetadata,
     required String clientId,
-    AnalyticsMetadataType? analyticsMetadata,
-    UserContextDataType? userContextData,
+    Map<String, String>? clientMetadata,
+    _i5.UserContextDataType? userContextData,
   }) {
     return _$InitiateAuthRequest._(
+      analyticsMetadata: analyticsMetadata,
       authFlow: authFlow,
       authParameters:
-          authParameters == null ? null : _i3.BuiltMap(authParameters),
-      clientMetadata:
-          clientMetadata == null ? null : _i3.BuiltMap(clientMetadata),
+          authParameters == null ? null : _i6.BuiltMap(authParameters),
       clientId: clientId,
-      analyticsMetadata: analyticsMetadata,
+      clientMetadata:
+          clientMetadata == null ? null : _i6.BuiltMap(clientMetadata),
       userContextData: userContextData,
     );
   }
@@ -55,9 +57,15 @@ abstract class InitiateAuthRequest
   }) =>
       payload;
 
-  static const List<_i1.SmithySerializer<InitiateAuthRequest>> serializers = [
+  static const List<_i1.SmithySerializer> serializers = [
     InitiateAuthRequestAwsJson11Serializer()
   ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(InitiateAuthRequestBuilder b) {}
+
+  /// The Amazon Pinpoint analytics metadata that contributes to your metrics for `InitiateAuth` calls.
+  _i3.AnalyticsMetadataType? get analyticsMetadata;
 
   /// The authentication flow for this call to run. The API action will depend on this value. For example:
   ///
@@ -80,21 +88,19 @@ abstract class InitiateAuthRequest
   ///
   ///
   /// `ADMIN\_NO\_SRP_AUTH` isn't a valid value.
-  AuthFlowType get authFlow;
+  _i4.AuthFlowType get authFlow;
 
   /// The authentication parameters. These are inputs corresponding to the `AuthFlow` that you're invoking. The required values depend on the value of `AuthFlow`:
   ///
   /// *   For `USER\_SRP\_AUTH`: `USERNAME` (required), `SRP_A` (required), `SECRET_HASH` (required if the app client is configured with a client secret), `DEVICE_KEY`.
   ///
-  /// *   For `USER\_PASSWORD\_AUTH`: `USERNAME` (required), `PASSWORD` (required), `SECRET_HASH` (required if the app client is configured with a client secret), `DEVICE_KEY`.
-  ///
   /// *   For `REFRESH\_TOKEN\_AUTH/REFRESH_TOKEN`: `REFRESH_TOKEN` (required), `SECRET_HASH` (required if the app client is configured with a client secret), `DEVICE_KEY`.
   ///
   /// *   For `CUSTOM_AUTH`: `USERNAME` (required), `SECRET_HASH` (if app client is configured with client secret), `DEVICE_KEY`. To start the authentication flow with password verification, include `ChallengeName: SRP_A` and `SRP\_A: (The SRP\_A Value)`.
-  ///
-  ///
-  /// For more information about `SECRET_HASH`, see [Computing secret hash values](https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash). For information about `DEVICE_KEY`, see [Working with user devices in your user pool](https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html).
-  _i3.BuiltMap<String, String>? get authParameters;
+  _i6.BuiltMap<String, String>? get authParameters;
+
+  /// The app client ID.
+  String get clientId;
 
   /// A map of custom key-value pairs that you can provide as input for certain custom workflows that this action triggers.
   ///
@@ -133,54 +139,48 @@ abstract class InitiateAuthRequest
   /// *   Validate the ClientMetadata value.
   ///
   /// *   Encrypt the ClientMetadata value. Don't use Amazon Cognito to provide sensitive information.
-  _i3.BuiltMap<String, String>? get clientMetadata;
-
-  /// The app client ID.
-  String get clientId;
-
-  /// The Amazon Pinpoint analytics metadata that contributes to your metrics for `InitiateAuth` calls.
-  AnalyticsMetadataType? get analyticsMetadata;
+  _i6.BuiltMap<String, String>? get clientMetadata;
 
   /// Contextual data about your user session, such as the device fingerprint, IP address, or location. Amazon Cognito advanced security evaluates the risk of an authentication event based on the context that your app generates and passes to Amazon Cognito when it makes API requests.
-  UserContextDataType? get userContextData;
+  _i5.UserContextDataType? get userContextData;
   @override
   InitiateAuthRequest getPayload() => this;
   @override
   List<Object?> get props => [
+        analyticsMetadata,
         authFlow,
         authParameters,
-        clientMetadata,
         clientId,
-        analyticsMetadata,
+        clientMetadata,
         userContextData,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('InitiateAuthRequest')
-      ..add(
-        'authFlow',
-        authFlow,
-      )
-      ..add(
-        'authParameters',
-        '***SENSITIVE***',
-      )
-      ..add(
-        'clientMetadata',
-        clientMetadata,
-      )
-      ..add(
-        'clientId',
-        '***SENSITIVE***',
-      )
-      ..add(
-        'analyticsMetadata',
-        analyticsMetadata,
-      )
-      ..add(
-        'userContextData',
-        '***SENSITIVE***',
-      );
+    final helper = newBuiltValueToStringHelper('InitiateAuthRequest');
+    helper.add(
+      'analyticsMetadata',
+      analyticsMetadata,
+    );
+    helper.add(
+      'authFlow',
+      authFlow,
+    );
+    helper.add(
+      'authParameters',
+      '***SENSITIVE***',
+    );
+    helper.add(
+      'clientId',
+      '***SENSITIVE***',
+    );
+    helper.add(
+      'clientMetadata',
+      clientMetadata,
+    );
+    helper.add(
+      'userContextData',
+      userContextData,
+    );
     return helper.toString();
   }
 }
@@ -213,52 +213,63 @@ class InitiateAuthRequestAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
+        case 'AnalyticsMetadata':
+          if (value != null) {
+            result.analyticsMetadata.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i3.AnalyticsMetadataType),
+            ) as _i3.AnalyticsMetadataType));
+          }
+          break;
         case 'AuthFlow':
           result.authFlow = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(AuthFlowType),
-          ) as AuthFlowType);
+            value!,
+            specifiedType: const FullType(_i4.AuthFlowType),
+          ) as _i4.AuthFlowType);
+          break;
         case 'AuthParameters':
-          result.authParameters.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i3.BuiltMap,
-              [
-                FullType(String),
-                FullType(String),
-              ],
-            ),
-          ) as _i3.BuiltMap<String, String>));
-        case 'ClientMetadata':
-          result.clientMetadata.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i3.BuiltMap,
-              [
-                FullType(String),
-                FullType(String),
-              ],
-            ),
-          ) as _i3.BuiltMap<String, String>));
+          if (value != null) {
+            result.authParameters.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltMap,
+                [
+                  FullType(String),
+                  FullType(String),
+                ],
+              ),
+            ) as _i6.BuiltMap<String, String>));
+          }
+          break;
         case 'ClientId':
           result.clientId = (serializers.deserialize(
-            value,
+            value!,
             specifiedType: const FullType(String),
           ) as String);
-        case 'AnalyticsMetadata':
-          result.analyticsMetadata.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(AnalyticsMetadataType),
-          ) as AnalyticsMetadataType));
+          break;
+        case 'ClientMetadata':
+          if (value != null) {
+            result.clientMetadata.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltMap,
+                [
+                  FullType(String),
+                  FullType(String),
+                ],
+              ),
+            ) as _i6.BuiltMap<String, String>));
+          }
+          break;
         case 'UserContextData':
-          result.userContextData.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(UserContextDataType),
-          ) as UserContextDataType));
+          if (value != null) {
+            result.userContextData.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i5.UserContextDataType),
+            ) as _i5.UserContextDataType));
+          }
+          break;
       }
     }
 
@@ -268,74 +279,66 @@ class InitiateAuthRequestAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    InitiateAuthRequest object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final InitiateAuthRequest(
-      :authFlow,
-      :authParameters,
-      :clientMetadata,
-      :clientId,
-      :analyticsMetadata,
-      :userContextData
-    ) = object;
-    result$.addAll([
+    final payload = (object as InitiateAuthRequest);
+    final result = <Object?>[
       'AuthFlow',
       serializers.serialize(
-        authFlow,
-        specifiedType: const FullType(AuthFlowType),
+        payload.authFlow,
+        specifiedType: const FullType(_i4.AuthFlowType),
       ),
       'ClientId',
       serializers.serialize(
-        clientId,
+        payload.clientId,
         specifiedType: const FullType(String),
       ),
-    ]);
-    if (authParameters != null) {
-      result$
-        ..add('AuthParameters')
-        ..add(serializers.serialize(
-          authParameters,
-          specifiedType: const FullType(
-            _i3.BuiltMap,
-            [
-              FullType(String),
-              FullType(String),
-            ],
-          ),
-        ));
-    }
-    if (clientMetadata != null) {
-      result$
-        ..add('ClientMetadata')
-        ..add(serializers.serialize(
-          clientMetadata,
-          specifiedType: const FullType(
-            _i3.BuiltMap,
-            [
-              FullType(String),
-              FullType(String),
-            ],
-          ),
-        ));
-    }
-    if (analyticsMetadata != null) {
-      result$
+    ];
+    if (payload.analyticsMetadata != null) {
+      result
         ..add('AnalyticsMetadata')
         ..add(serializers.serialize(
-          analyticsMetadata,
-          specifiedType: const FullType(AnalyticsMetadataType),
+          payload.analyticsMetadata!,
+          specifiedType: const FullType(_i3.AnalyticsMetadataType),
         ));
     }
-    if (userContextData != null) {
-      result$
+    if (payload.authParameters != null) {
+      result
+        ..add('AuthParameters')
+        ..add(serializers.serialize(
+          payload.authParameters!,
+          specifiedType: const FullType(
+            _i6.BuiltMap,
+            [
+              FullType(String),
+              FullType(String),
+            ],
+          ),
+        ));
+    }
+    if (payload.clientMetadata != null) {
+      result
+        ..add('ClientMetadata')
+        ..add(serializers.serialize(
+          payload.clientMetadata!,
+          specifiedType: const FullType(
+            _i6.BuiltMap,
+            [
+              FullType(String),
+              FullType(String),
+            ],
+          ),
+        ));
+    }
+    if (payload.userContextData != null) {
+      result
         ..add('UserContextData')
         ..add(serializers.serialize(
-          userContextData,
-          specifiedType: const FullType(UserContextDataType),
+          payload.userContextData!,
+          specifiedType: const FullType(_i5.UserContextDataType),
         ));
     }
-    return result$;
+    return result;
   }
 }

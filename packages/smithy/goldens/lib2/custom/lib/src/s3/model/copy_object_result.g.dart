@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'copy_object_result.dart';
+part of custom_v2.s3.model.copy_object_result;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -47,7 +47,9 @@ class CopyObjectResultBuilder
   String? get eTag => _$this._eTag;
   set eTag(String? eTag) => _$this._eTag = eTag;
 
-  CopyObjectResultBuilder();
+  CopyObjectResultBuilder() {
+    CopyObjectResult._init(this);
+  }
 
   CopyObjectResultBuilder get _$this {
     final $v = _$v;

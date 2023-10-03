@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'message_body.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.message_body;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -53,7 +53,9 @@ class MessageBodyBuilder implements Builder<MessageBody, MessageBodyBuilder> {
   String? get requestId => _$this._requestId;
   set requestId(String? requestId) => _$this._requestId = requestId;
 
-  MessageBodyBuilder();
+  MessageBodyBuilder() {
+    MessageBody._init(this);
+  }
 
   MessageBodyBuilder get _$this {
     final $v = _$v;

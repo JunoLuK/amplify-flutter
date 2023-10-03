@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v1.s3.model.owner; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -27,10 +26,12 @@ abstract class Owner
 
   const Owner._();
 
-  static const List<_i2.SmithySerializer<Owner>> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     OwnerRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(OwnerBuilder b) {}
   String? get displayName;
   String? get id;
   @override
@@ -40,15 +41,15 @@ abstract class Owner
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('Owner')
-      ..add(
-        'displayName',
-        displayName,
-      )
-      ..add(
-        'id',
-        id,
-      );
+    final helper = newBuiltValueToStringHelper('Owner');
+    helper.add(
+      'displayName',
+      displayName,
+    );
+    helper.add(
+      'id',
+      id,
+    );
     return helper.toString();
   }
 }
@@ -77,23 +78,26 @@ class OwnerRestXmlSerializer extends _i2.StructuredSmithySerializer<Owner> {
     final result = OwnerBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'DisplayName':
-          result.displayName = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.displayName = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'ID':
-          result.id = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.id = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -103,32 +107,32 @@ class OwnerRestXmlSerializer extends _i2.StructuredSmithySerializer<Owner> {
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Owner object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final payload = (object as Owner);
+    final result = <Object?>[
       const _i2.XmlElementName(
         'Owner',
         _i2.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
       )
     ];
-    final Owner(:displayName, :id) = object;
-    if (displayName != null) {
-      result$
+    if (payload.displayName != null) {
+      result
         ..add(const _i2.XmlElementName('DisplayName'))
         ..add(serializers.serialize(
-          displayName,
+          payload.displayName!,
           specifiedType: const FullType(String),
         ));
     }
-    if (id != null) {
-      result$
+    if (payload.id != null) {
+      result
         ..add(const _i2.XmlElementName('ID'))
         ..add(serializers.serialize(
-          id,
+          payload.id!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

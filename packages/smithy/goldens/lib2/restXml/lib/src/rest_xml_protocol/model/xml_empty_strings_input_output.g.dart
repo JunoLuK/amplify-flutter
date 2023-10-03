@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'xml_empty_strings_input_output.dart';
+part of rest_xml_v2.rest_xml_protocol.model.xml_empty_strings_input_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -50,7 +50,9 @@ class XmlEmptyStringsInputOutputBuilder
   String? get emptyString => _$this._emptyString;
   set emptyString(String? emptyString) => _$this._emptyString = emptyString;
 
-  XmlEmptyStringsInputOutputBuilder();
+  XmlEmptyStringsInputOutputBuilder() {
+    XmlEmptyStringsInputOutput._init(this);
+  }
 
   XmlEmptyStringsInputOutputBuilder get _$this {
     final $v = _$v;

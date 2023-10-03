@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v1.rest_xml_protocol.model.xml_int_enums_input_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -21,16 +20,16 @@ abstract class XmlIntEnumsInputOutput
     int? intEnum2,
     int? intEnum3,
     List<int>? intEnumList,
-    Set<int>? intEnumSet,
     Map<String, int>? intEnumMap,
+    Set<int>? intEnumSet,
   }) {
     return _$XmlIntEnumsInputOutput._(
       intEnum1: intEnum1,
       intEnum2: intEnum2,
       intEnum3: intEnum3,
       intEnumList: intEnumList == null ? null : _i3.BuiltList(intEnumList),
-      intEnumSet: intEnumSet == null ? null : _i3.BuiltSet(intEnumSet),
       intEnumMap: intEnumMap == null ? null : _i3.BuiltMap(intEnumMap),
+      intEnumSet: intEnumSet == null ? null : _i3.BuiltSet(intEnumSet),
     );
   }
 
@@ -54,15 +53,18 @@ abstract class XmlIntEnumsInputOutput
   ) =>
       payload;
 
-  static const List<_i1.SmithySerializer<XmlIntEnumsInputOutput>> serializers =
-      [XmlIntEnumsInputOutputRestXmlSerializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    XmlIntEnumsInputOutputRestXmlSerializer()
+  ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(XmlIntEnumsInputOutputBuilder b) {}
   int? get intEnum1;
   int? get intEnum2;
   int? get intEnum3;
   _i3.BuiltList<int>? get intEnumList;
-  _i3.BuiltSet<int>? get intEnumSet;
   _i3.BuiltMap<String, int>? get intEnumMap;
+  _i3.BuiltSet<int>? get intEnumSet;
   @override
   XmlIntEnumsInputOutput getPayload() => this;
   @override
@@ -71,36 +73,36 @@ abstract class XmlIntEnumsInputOutput
         intEnum2,
         intEnum3,
         intEnumList,
-        intEnumSet,
         intEnumMap,
+        intEnumSet,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('XmlIntEnumsInputOutput')
-      ..add(
-        'intEnum1',
-        intEnum1,
-      )
-      ..add(
-        'intEnum2',
-        intEnum2,
-      )
-      ..add(
-        'intEnum3',
-        intEnum3,
-      )
-      ..add(
-        'intEnumList',
-        intEnumList,
-      )
-      ..add(
-        'intEnumSet',
-        intEnumSet,
-      )
-      ..add(
-        'intEnumMap',
-        intEnumMap,
-      );
+    final helper = newBuiltValueToStringHelper('XmlIntEnumsInputOutput');
+    helper.add(
+      'intEnum1',
+      intEnum1,
+    );
+    helper.add(
+      'intEnum2',
+      intEnum2,
+    );
+    helper.add(
+      'intEnum3',
+      intEnum3,
+    );
+    helper.add(
+      'intEnumList',
+      intEnumList,
+    );
+    helper.add(
+      'intEnumMap',
+      intEnumMap,
+    );
+    helper.add(
+      'intEnumSet',
+      intEnumSet,
+    );
     return helper.toString();
   }
 }
@@ -131,61 +133,76 @@ class XmlIntEnumsInputOutputRestXmlSerializer
     final result = XmlIntEnumsInputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'intEnum1':
-          result.intEnum1 = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int);
+          if (value != null) {
+            result.intEnum1 = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(int),
+            ) as int);
+          }
+          break;
         case 'intEnum2':
-          result.intEnum2 = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int);
+          if (value != null) {
+            result.intEnum2 = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(int),
+            ) as int);
+          }
+          break;
         case 'intEnum3':
-          result.intEnum3 = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int);
+          if (value != null) {
+            result.intEnum3 = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(int),
+            ) as int);
+          }
+          break;
         case 'intEnumList':
-          result.intEnumList
-              .replace((const _i1.XmlBuiltListSerializer().deserialize(
-            serializers,
-            value is String ? const [] : (value as Iterable<Object?>),
-            specifiedType: const FullType(
-              _i3.BuiltList,
-              [FullType(int)],
-            ),
-          ) as _i3.BuiltList<int>));
+          if (value != null) {
+            result.intEnumList
+                .replace((const _i1.XmlBuiltListSerializer().deserialize(
+              serializers,
+              (value as Iterable<Object?>),
+              specifiedType: const FullType(
+                _i3.BuiltList,
+                [FullType(int)],
+              ),
+            ) as _i3.BuiltList<int>));
+          }
+          break;
         case 'intEnumMap':
-          result.intEnumMap
-              .replace(const _i1.XmlBuiltMapSerializer().deserialize(
-            serializers,
-            value is String ? const [] : (value as Iterable<Object?>),
-            specifiedType: const FullType(
-              _i3.BuiltMap,
-              [
-                FullType(String),
-                FullType(int),
-              ],
-            ),
-          ));
+          if (value != null) {
+            result.intEnumMap
+                .replace(const _i1.XmlBuiltMapSerializer().deserialize(
+              serializers,
+              (value as Iterable<Object?>),
+              specifiedType: const FullType(
+                _i3.BuiltMap,
+                [
+                  FullType(String),
+                  FullType(int),
+                ],
+              ),
+            ));
+          }
+          break;
         case 'intEnumSet':
-          result.intEnumSet
-              .replace((const _i1.XmlBuiltSetSerializer().deserialize(
-            serializers,
-            value is String ? const [] : (value as Iterable<Object?>),
-            specifiedType: const FullType(
-              _i3.BuiltSet,
-              [FullType(int)],
-            ),
-          ) as _i3.BuiltSet<int>));
+          if (value != null) {
+            result.intEnumSet
+                .replace((const _i1.XmlBuiltSetSerializer().deserialize(
+              serializers,
+              (value as Iterable<Object?>),
+              specifiedType: const FullType(
+                _i3.BuiltSet,
+                [FullType(int)],
+              ),
+            ) as _i3.BuiltSet<int>));
+          }
+          break;
       }
     }
 
@@ -195,62 +212,55 @@ class XmlIntEnumsInputOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    XmlIntEnumsInputOutput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final payload = (object as XmlIntEnumsInputOutput);
+    final result = <Object?>[
       const _i1.XmlElementName('XmlIntEnumsInputOutput')
     ];
-    final XmlIntEnumsInputOutput(
-      :intEnum1,
-      :intEnum2,
-      :intEnum3,
-      :intEnumList,
-      :intEnumMap,
-      :intEnumSet
-    ) = object;
-    if (intEnum1 != null) {
-      result$
+    if (payload.intEnum1 != null) {
+      result
         ..add(const _i1.XmlElementName('intEnum1'))
         ..add(serializers.serialize(
-          intEnum1,
+          payload.intEnum1!,
           specifiedType: const FullType.nullable(int),
         ));
     }
-    if (intEnum2 != null) {
-      result$
+    if (payload.intEnum2 != null) {
+      result
         ..add(const _i1.XmlElementName('intEnum2'))
         ..add(serializers.serialize(
-          intEnum2,
+          payload.intEnum2!,
           specifiedType: const FullType.nullable(int),
         ));
     }
-    if (intEnum3 != null) {
-      result$
+    if (payload.intEnum3 != null) {
+      result
         ..add(const _i1.XmlElementName('intEnum3'))
         ..add(serializers.serialize(
-          intEnum3,
+          payload.intEnum3!,
           specifiedType: const FullType.nullable(int),
         ));
     }
-    if (intEnumList != null) {
-      result$
+    if (payload.intEnumList != null) {
+      result
         ..add(const _i1.XmlElementName('intEnumList'))
         ..add(const _i1.XmlBuiltListSerializer().serialize(
           serializers,
-          intEnumList,
+          payload.intEnumList!,
           specifiedType: const FullType.nullable(
             _i3.BuiltList,
             [FullType(int)],
           ),
         ));
     }
-    if (intEnumMap != null) {
-      result$
+    if (payload.intEnumMap != null) {
+      result
         ..add(const _i1.XmlElementName('intEnumMap'))
         ..add(const _i1.XmlBuiltMapSerializer().serialize(
           serializers,
-          intEnumMap,
+          payload.intEnumMap!,
           specifiedType: const FullType.nullable(
             _i3.BuiltMap,
             [
@@ -260,18 +270,18 @@ class XmlIntEnumsInputOutputRestXmlSerializer
           ),
         ));
     }
-    if (intEnumSet != null) {
-      result$
+    if (payload.intEnumSet != null) {
+      result
         ..add(const _i1.XmlElementName('intEnumSet'))
         ..add(const _i1.XmlBuiltSetSerializer().serialize(
           serializers,
-          intEnumSet,
+          payload.intEnumSet!,
           specifiedType: const FullType.nullable(
             _i3.BuiltSet,
             [FullType(int)],
           ),
         ));
     }
-    return result$;
+    return result;
   }
 }

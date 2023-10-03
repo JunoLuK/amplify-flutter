@@ -1,12 +1,12 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v2.rest_xml_protocol.model.xml_namespaces_input_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_xml_v2/src/rest_xml_protocol/model/xml_namespace_nested.dart';
+import 'package:rest_xml_v2/src/rest_xml_protocol/model/xml_namespace_nested.dart'
+    as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'xml_namespaces_input_output.g.dart';
@@ -17,7 +17,7 @@ abstract class XmlNamespacesInputOutput
         _i2.AWSEquatable<XmlNamespacesInputOutput>
     implements
         Built<XmlNamespacesInputOutput, XmlNamespacesInputOutputBuilder> {
-  factory XmlNamespacesInputOutput({XmlNamespaceNested? nested}) {
+  factory XmlNamespacesInputOutput({_i3.XmlNamespaceNested? nested}) {
     return _$XmlNamespacesInputOutput._(nested: nested);
   }
 
@@ -41,21 +41,24 @@ abstract class XmlNamespacesInputOutput
   ) =>
       payload;
 
-  static const List<_i1.SmithySerializer<XmlNamespacesInputOutput>>
-      serializers = [XmlNamespacesInputOutputRestXmlSerializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    XmlNamespacesInputOutputRestXmlSerializer()
+  ];
 
-  XmlNamespaceNested? get nested;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(XmlNamespacesInputOutputBuilder b) {}
+  _i3.XmlNamespaceNested? get nested;
   @override
   XmlNamespacesInputOutput getPayload() => this;
   @override
   List<Object?> get props => [nested];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('XmlNamespacesInputOutput')
-      ..add(
-        'nested',
-        nested,
-      );
+    final helper = newBuiltValueToStringHelper('XmlNamespacesInputOutput');
+    helper.add(
+      'nested',
+      nested,
+    );
     return helper.toString();
   }
 }
@@ -86,18 +89,18 @@ class XmlNamespacesInputOutputRestXmlSerializer
     final result = XmlNamespacesInputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'nested':
-          result.nested.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(XmlNamespaceNested),
-          ) as XmlNamespaceNested));
+          if (value != null) {
+            result.nested.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i3.XmlNamespaceNested),
+            ) as _i3.XmlNamespaceNested));
+          }
+          break;
       }
     }
 
@@ -107,24 +110,24 @@ class XmlNamespacesInputOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    XmlNamespacesInputOutput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final payload = (object as XmlNamespacesInputOutput);
+    final result = <Object?>[
       const _i1.XmlElementName(
         'XmlNamespacesInputOutput',
         _i1.XmlNamespace('http://foo.com'),
       )
     ];
-    final XmlNamespacesInputOutput(:nested) = object;
-    if (nested != null) {
-      result$
+    if (payload.nested != null) {
+      result
         ..add(const _i1.XmlElementName('nested'))
         ..add(serializers.serialize(
-          nested,
-          specifiedType: const FullType(XmlNamespaceNested),
+          payload.nested!,
+          specifiedType: const FullType(_i3.XmlNamespaceNested),
         ));
     }
-    return result$;
+    return result;
   }
 }

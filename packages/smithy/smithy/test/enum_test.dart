@@ -5,9 +5,10 @@ import 'package:smithy/smithy.dart';
 import 'package:test/test.dart';
 
 class _MyEnum extends SmithyEnum<_MyEnum> {
-  const _MyEnum._(super.index, super.name, super.value);
+  const _MyEnum._(int index, String name, String value)
+      : super(index, name, value);
 
-  const _MyEnum._sdkUnknown(super.value) : super.sdkUnknown();
+  const _MyEnum._sdkUnknown(String value) : super.sdkUnknown(value);
 
   static const bar = _MyEnum._(0, 'BAR', 'Bar');
 
@@ -29,7 +30,7 @@ class _MyEnum extends SmithyEnum<_MyEnum> {
       values: values,
       sdkUnknown: _MyEnum._sdkUnknown,
       supportedProtocols: [],
-    ),
+    )
   ];
 }
 

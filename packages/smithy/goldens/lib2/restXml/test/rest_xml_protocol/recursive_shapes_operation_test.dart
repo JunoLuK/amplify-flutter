@@ -1,15 +1,18 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 // ignore_for_file: unused_element
 library rest_xml_v2.rest_xml_protocol.test.recursive_shapes_operation_test_test; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:built_value/serializer.dart';
-import 'package:rest_xml_v2/src/rest_xml_protocol/model/recursive_shapes_input_output.dart';
-import 'package:rest_xml_v2/src/rest_xml_protocol/model/recursive_shapes_input_output_nested1.dart';
-import 'package:rest_xml_v2/src/rest_xml_protocol/model/recursive_shapes_input_output_nested2.dart';
-import 'package:rest_xml_v2/src/rest_xml_protocol/operation/recursive_shapes_operation.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:rest_xml_v2/src/rest_xml_protocol/model/recursive_shapes_input_output.dart'
+    as _i5;
+import 'package:rest_xml_v2/src/rest_xml_protocol/model/recursive_shapes_input_output_nested1.dart'
+    as _i6;
+import 'package:rest_xml_v2/src/rest_xml_protocol/model/recursive_shapes_input_output_nested2.dart'
+    as _i7;
+import 'package:rest_xml_v2/src/rest_xml_protocol/operation/recursive_shapes_operation.dart'
+    as _i3;
+import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
@@ -18,14 +21,14 @@ void main() {
     'RecursiveShapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: RecursiveShapesOperation(
+        operation: _i3.RecursiveShapesOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'RecursiveShapes',
           documentation: 'Serializes recursive structures',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restXml',
           ),
@@ -72,14 +75,14 @@ void main() {
     'RecursiveShapes (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: RecursiveShapesOperation(
+        operation: _i3.RecursiveShapesOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'RecursiveShapes',
           documentation: 'Serializes recursive structures',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restXml',
           ),
@@ -119,40 +122,41 @@ void main() {
 }
 
 class RecursiveShapesInputOutputRestXmlSerializer
-    extends _i3.StructuredSmithySerializer<RecursiveShapesInputOutput> {
+    extends _i4.StructuredSmithySerializer<_i5.RecursiveShapesInputOutput> {
   const RecursiveShapesInputOutputRestXmlSerializer()
       : super('RecursiveShapesInputOutput');
 
   @override
-  Iterable<Type> get types => const [RecursiveShapesInputOutput];
+  Iterable<Type> get types => const [_i5.RecursiveShapesInputOutput];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restXml',
         )
       ];
   @override
-  RecursiveShapesInputOutput deserialize(
+  _i5.RecursiveShapesInputOutput deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = RecursiveShapesInputOutputBuilder();
+    final result = _i5.RecursiveShapesInputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'nested':
-          result.nested.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(RecursiveShapesInputOutputNested1),
-          ) as RecursiveShapesInputOutputNested1));
+          if (value != null) {
+            result.nested.replace((serializers.deserialize(
+              value,
+              specifiedType:
+                  const FullType(_i6.RecursiveShapesInputOutputNested1),
+            ) as _i6.RecursiveShapesInputOutputNested1));
+          }
+          break;
       }
     }
 
@@ -162,53 +166,57 @@ class RecursiveShapesInputOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    RecursiveShapesInputOutput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
   }
 }
 
-class RecursiveShapesInputOutputNested1RestXmlSerializer
-    extends _i3.StructuredSmithySerializer<RecursiveShapesInputOutputNested1> {
+class RecursiveShapesInputOutputNested1RestXmlSerializer extends _i4
+    .StructuredSmithySerializer<_i6.RecursiveShapesInputOutputNested1> {
   const RecursiveShapesInputOutputNested1RestXmlSerializer()
       : super('RecursiveShapesInputOutputNested1');
 
   @override
-  Iterable<Type> get types => const [RecursiveShapesInputOutputNested1];
+  Iterable<Type> get types => const [_i6.RecursiveShapesInputOutputNested1];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restXml',
         )
       ];
   @override
-  RecursiveShapesInputOutputNested1 deserialize(
+  _i6.RecursiveShapesInputOutputNested1 deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = RecursiveShapesInputOutputNested1Builder();
+    final result = _i6.RecursiveShapesInputOutputNested1Builder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'foo':
-          result.foo = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.foo = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'nested':
-          result.nested.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(RecursiveShapesInputOutputNested2),
-          ) as RecursiveShapesInputOutputNested2));
+          if (value != null) {
+            result.nested.replace((serializers.deserialize(
+              value,
+              specifiedType:
+                  const FullType(_i7.RecursiveShapesInputOutputNested2),
+            ) as _i7.RecursiveShapesInputOutputNested2));
+          }
+          break;
       }
     }
 
@@ -218,53 +226,57 @@ class RecursiveShapesInputOutputNested1RestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    RecursiveShapesInputOutputNested1 object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
   }
 }
 
-class RecursiveShapesInputOutputNested2RestXmlSerializer
-    extends _i3.StructuredSmithySerializer<RecursiveShapesInputOutputNested2> {
+class RecursiveShapesInputOutputNested2RestXmlSerializer extends _i4
+    .StructuredSmithySerializer<_i7.RecursiveShapesInputOutputNested2> {
   const RecursiveShapesInputOutputNested2RestXmlSerializer()
       : super('RecursiveShapesInputOutputNested2');
 
   @override
-  Iterable<Type> get types => const [RecursiveShapesInputOutputNested2];
+  Iterable<Type> get types => const [_i7.RecursiveShapesInputOutputNested2];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restXml',
         )
       ];
   @override
-  RecursiveShapesInputOutputNested2 deserialize(
+  _i7.RecursiveShapesInputOutputNested2 deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = RecursiveShapesInputOutputNested2Builder();
+    final result = _i7.RecursiveShapesInputOutputNested2Builder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'bar':
-          result.bar = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.bar = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'recursiveMember':
-          result.recursiveMember.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(RecursiveShapesInputOutputNested1),
-          ) as RecursiveShapesInputOutputNested1));
+          if (value != null) {
+            result.recursiveMember.replace((serializers.deserialize(
+              value,
+              specifiedType:
+                  const FullType(_i6.RecursiveShapesInputOutputNested1),
+            ) as _i6.RecursiveShapesInputOutputNested1));
+          }
+          break;
       }
     }
 
@@ -274,7 +286,7 @@ class RecursiveShapesInputOutputNested2RestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    RecursiveShapesInputOutputNested2 object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');

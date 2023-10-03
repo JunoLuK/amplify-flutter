@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'parquet_input.dart';
+part of amplify_storage_s3_dart.s3.model.parquet_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -35,7 +35,9 @@ class ParquetInputBuilder
     implements Builder<ParquetInput, ParquetInputBuilder> {
   _$ParquetInput? _$v;
 
-  ParquetInputBuilder();
+  ParquetInputBuilder() {
+    ParquetInput._init(this);
+  }
 
   @override
   void replace(ParquetInput other) {

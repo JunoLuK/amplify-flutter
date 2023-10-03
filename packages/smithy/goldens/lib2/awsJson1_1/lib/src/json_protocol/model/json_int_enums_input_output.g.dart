@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'json_int_enums_input_output.dart';
+part of aws_json1_1_v2.json_protocol.model.json_int_enums_input_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,17 +8,17 @@ part of 'json_int_enums_input_output.dart';
 
 class _$JsonIntEnumsInputOutput extends JsonIntEnumsInputOutput {
   @override
-  final IntegerEnum? intEnum1;
+  final _i3.IntegerEnum? intEnum1;
   @override
-  final IntegerEnum? intEnum2;
+  final _i3.IntegerEnum? intEnum2;
   @override
-  final IntegerEnum? intEnum3;
+  final _i3.IntegerEnum? intEnum3;
   @override
-  final _i3.BuiltList<IntegerEnum>? intEnumList;
+  final _i4.BuiltList<_i3.IntegerEnum>? intEnumList;
   @override
-  final _i3.BuiltSet<IntegerEnum>? intEnumSet;
+  final _i4.BuiltMap<String, _i3.IntegerEnum>? intEnumMap;
   @override
-  final _i3.BuiltMap<String, IntegerEnum>? intEnumMap;
+  final _i4.BuiltSet<_i3.IntegerEnum>? intEnumSet;
 
   factory _$JsonIntEnumsInputOutput(
           [void Function(JsonIntEnumsInputOutputBuilder)? updates]) =>
@@ -29,8 +29,8 @@ class _$JsonIntEnumsInputOutput extends JsonIntEnumsInputOutput {
       this.intEnum2,
       this.intEnum3,
       this.intEnumList,
-      this.intEnumSet,
-      this.intEnumMap})
+      this.intEnumMap,
+      this.intEnumSet})
       : super._();
 
   @override
@@ -50,8 +50,8 @@ class _$JsonIntEnumsInputOutput extends JsonIntEnumsInputOutput {
         intEnum2 == other.intEnum2 &&
         intEnum3 == other.intEnum3 &&
         intEnumList == other.intEnumList &&
-        intEnumSet == other.intEnumSet &&
-        intEnumMap == other.intEnumMap;
+        intEnumMap == other.intEnumMap &&
+        intEnumSet == other.intEnumSet;
   }
 
   @override
@@ -61,8 +61,8 @@ class _$JsonIntEnumsInputOutput extends JsonIntEnumsInputOutput {
     _$hash = $jc(_$hash, intEnum2.hashCode);
     _$hash = $jc(_$hash, intEnum3.hashCode);
     _$hash = $jc(_$hash, intEnumList.hashCode);
-    _$hash = $jc(_$hash, intEnumSet.hashCode);
     _$hash = $jc(_$hash, intEnumMap.hashCode);
+    _$hash = $jc(_$hash, intEnumSet.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -73,37 +73,39 @@ class JsonIntEnumsInputOutputBuilder
         Builder<JsonIntEnumsInputOutput, JsonIntEnumsInputOutputBuilder> {
   _$JsonIntEnumsInputOutput? _$v;
 
-  IntegerEnum? _intEnum1;
-  IntegerEnum? get intEnum1 => _$this._intEnum1;
-  set intEnum1(IntegerEnum? intEnum1) => _$this._intEnum1 = intEnum1;
+  _i3.IntegerEnum? _intEnum1;
+  _i3.IntegerEnum? get intEnum1 => _$this._intEnum1;
+  set intEnum1(_i3.IntegerEnum? intEnum1) => _$this._intEnum1 = intEnum1;
 
-  IntegerEnum? _intEnum2;
-  IntegerEnum? get intEnum2 => _$this._intEnum2;
-  set intEnum2(IntegerEnum? intEnum2) => _$this._intEnum2 = intEnum2;
+  _i3.IntegerEnum? _intEnum2;
+  _i3.IntegerEnum? get intEnum2 => _$this._intEnum2;
+  set intEnum2(_i3.IntegerEnum? intEnum2) => _$this._intEnum2 = intEnum2;
 
-  IntegerEnum? _intEnum3;
-  IntegerEnum? get intEnum3 => _$this._intEnum3;
-  set intEnum3(IntegerEnum? intEnum3) => _$this._intEnum3 = intEnum3;
+  _i3.IntegerEnum? _intEnum3;
+  _i3.IntegerEnum? get intEnum3 => _$this._intEnum3;
+  set intEnum3(_i3.IntegerEnum? intEnum3) => _$this._intEnum3 = intEnum3;
 
-  _i3.ListBuilder<IntegerEnum>? _intEnumList;
-  _i3.ListBuilder<IntegerEnum> get intEnumList =>
-      _$this._intEnumList ??= new _i3.ListBuilder<IntegerEnum>();
-  set intEnumList(_i3.ListBuilder<IntegerEnum>? intEnumList) =>
+  _i4.ListBuilder<_i3.IntegerEnum>? _intEnumList;
+  _i4.ListBuilder<_i3.IntegerEnum> get intEnumList =>
+      _$this._intEnumList ??= new _i4.ListBuilder<_i3.IntegerEnum>();
+  set intEnumList(_i4.ListBuilder<_i3.IntegerEnum>? intEnumList) =>
       _$this._intEnumList = intEnumList;
 
-  _i3.SetBuilder<IntegerEnum>? _intEnumSet;
-  _i3.SetBuilder<IntegerEnum> get intEnumSet =>
-      _$this._intEnumSet ??= new _i3.SetBuilder<IntegerEnum>();
-  set intEnumSet(_i3.SetBuilder<IntegerEnum>? intEnumSet) =>
-      _$this._intEnumSet = intEnumSet;
-
-  _i3.MapBuilder<String, IntegerEnum>? _intEnumMap;
-  _i3.MapBuilder<String, IntegerEnum> get intEnumMap =>
-      _$this._intEnumMap ??= new _i3.MapBuilder<String, IntegerEnum>();
-  set intEnumMap(_i3.MapBuilder<String, IntegerEnum>? intEnumMap) =>
+  _i4.MapBuilder<String, _i3.IntegerEnum>? _intEnumMap;
+  _i4.MapBuilder<String, _i3.IntegerEnum> get intEnumMap =>
+      _$this._intEnumMap ??= new _i4.MapBuilder<String, _i3.IntegerEnum>();
+  set intEnumMap(_i4.MapBuilder<String, _i3.IntegerEnum>? intEnumMap) =>
       _$this._intEnumMap = intEnumMap;
 
-  JsonIntEnumsInputOutputBuilder();
+  _i4.SetBuilder<_i3.IntegerEnum>? _intEnumSet;
+  _i4.SetBuilder<_i3.IntegerEnum> get intEnumSet =>
+      _$this._intEnumSet ??= new _i4.SetBuilder<_i3.IntegerEnum>();
+  set intEnumSet(_i4.SetBuilder<_i3.IntegerEnum>? intEnumSet) =>
+      _$this._intEnumSet = intEnumSet;
+
+  JsonIntEnumsInputOutputBuilder() {
+    JsonIntEnumsInputOutput._init(this);
+  }
 
   JsonIntEnumsInputOutputBuilder get _$this {
     final $v = _$v;
@@ -112,8 +114,8 @@ class JsonIntEnumsInputOutputBuilder
       _intEnum2 = $v.intEnum2;
       _intEnum3 = $v.intEnum3;
       _intEnumList = $v.intEnumList?.toBuilder();
-      _intEnumSet = $v.intEnumSet?.toBuilder();
       _intEnumMap = $v.intEnumMap?.toBuilder();
+      _intEnumSet = $v.intEnumSet?.toBuilder();
       _$v = null;
     }
     return this;
@@ -142,17 +144,17 @@ class JsonIntEnumsInputOutputBuilder
               intEnum2: intEnum2,
               intEnum3: intEnum3,
               intEnumList: _intEnumList?.build(),
-              intEnumSet: _intEnumSet?.build(),
-              intEnumMap: _intEnumMap?.build());
+              intEnumMap: _intEnumMap?.build(),
+              intEnumSet: _intEnumSet?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'intEnumList';
         _intEnumList?.build();
-        _$failedField = 'intEnumSet';
-        _intEnumSet?.build();
         _$failedField = 'intEnumMap';
         _intEnumMap?.build();
+        _$failedField = 'intEnumSet';
+        _intEnumSet?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'JsonIntEnumsInputOutput', _$failedField, e.toString());

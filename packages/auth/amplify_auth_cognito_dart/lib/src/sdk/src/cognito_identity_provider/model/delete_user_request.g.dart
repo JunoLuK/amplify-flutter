@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'delete_user_request.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.delete_user_request;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -50,7 +50,9 @@ class DeleteUserRequestBuilder
   String? get accessToken => _$this._accessToken;
   set accessToken(String? accessToken) => _$this._accessToken = accessToken;
 
-  DeleteUserRequestBuilder();
+  DeleteUserRequestBuilder() {
+    DeleteUserRequest._init(this);
+  }
 
   DeleteUserRequestBuilder get _$this {
     final $v = _$v;

@@ -8,7 +8,7 @@ import 'dart:io';
 import 'package:amplify_auth_cognito_dart/amplify_auth_cognito_dart.dart';
 import 'package:amplify_auth_cognito_dart/src/flows/hosted_ui/hosted_ui_platform.dart';
 import 'package:amplify_auth_cognito_dart/src/model/hosted_ui/oauth_parameters.dart';
-import 'package:amplify_auth_cognito_dart/src/state/event/auth_event.dart';
+import 'package:amplify_auth_cognito_dart/src/state/event/hosted_ui_event.dart';
 import 'package:amplify_core/amplify_core.dart';
 import 'package:meta/meta.dart';
 
@@ -156,7 +156,8 @@ class HostedUiPlatformImpl extends HostedUiPlatform {
   /// of the ports may be blocked.
   @visibleForTesting
   Future<LocalServer> localConnect(Iterable<Uri> uris) async {
-    if (_localServer case final localServer?) {
+    final localServer = _localServer;
+    if (localServer != null) {
       return localServer;
     }
 
@@ -181,7 +182,7 @@ class HostedUiPlatformImpl extends HostedUiPlatform {
             'All ports were blocked: [${uris.map((uri) => uri.port).join(',')}]',
       );
     }
-    return _localServer = LocalServer(server, selectedUri);
+    return LocalServer(server, selectedUri);
   }
 
   Future<void> _respond(
@@ -211,16 +212,20 @@ class HostedUiPlatformImpl extends HostedUiPlatform {
       _noSuitableRedirect(signIn: true);
     }
 
-    final localServer = await localConnect(signInUris);
+    _localServer = await localConnect(signInUris);
     try {
       final signInUrl = (await getSignInUri(
         provider: provider,
-        redirectUri: localServer.uri,
+        redirectUri: _localServer!.uri,
       ))
           .toString();
       await launchUrl(signInUrl);
 
-      await for (final request in localServer.server) {
+      final server = _localServer?.server;
+      if (server == null) {
+        return;
+      }
+      await for (final request in server) {
         final method = request.method;
         if (method != 'GET') {
           await _respond(
@@ -245,13 +250,13 @@ class HostedUiPlatformImpl extends HostedUiPlatform {
           );
           continue;
         }
-        dispatcher
-            .dispatch(
-              HostedUiEvent.exchange(
-                OAuthParameters.fromJson(queryParams),
-              ),
-            )
-            .ignore();
+        unawaited(
+          dispatcher.dispatchAndComplete(
+            HostedUiEvent.exchange(
+              OAuthParameters.fromJson(queryParams),
+            ),
+          ),
+        );
         await _respond(
           request,
           HttpStatus.ok,
@@ -263,7 +268,7 @@ class HostedUiPlatformImpl extends HostedUiPlatform {
         break;
       }
     } finally {
-      close().ignore();
+      unawaited(close());
     }
   }
 
@@ -283,12 +288,17 @@ class HostedUiPlatformImpl extends HostedUiPlatform {
       _noSuitableRedirect(signIn: false);
     }
 
-    final localServer = await localConnect(signOutUris);
+    _localServer = await localConnect(signOutUris);
     try {
-      final signOutUri = getSignOutUri(redirectUri: localServer.uri).toString();
+      final signOutUri =
+          getSignOutUri(redirectUri: _localServer!.uri).toString();
       await launchUrl(signOutUri);
 
-      await for (final request in localServer.server) {
+      final server = _localServer?.server;
+      if (server == null) {
+        return;
+      }
+      await for (final request in server) {
         final method = request.method;
         if (method != 'GET') {
           await _respond(
@@ -314,16 +324,15 @@ class HostedUiPlatformImpl extends HostedUiPlatform {
         break;
       }
     } finally {
-      close().ignore();
+      unawaited(close());
     }
   }
 
   /// Closes the open server, if any.
   @override
   Future<void> close() async {
-    final localServer = _localServer;
+    await _localServer?.server.close();
     _localServer = null;
-    await localServer?.server.close();
   }
 }
 

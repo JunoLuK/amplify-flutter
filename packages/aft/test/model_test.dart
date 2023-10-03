@@ -12,13 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'dart:io';
-
 import 'package:aft/src/models.dart';
 import 'package:pub_semver/pub_semver.dart';
 import 'package:test/test.dart';
-
-import 'helpers/descriptors.dart' as d;
 
 void main() {
   group('AmplifyVersion', () {
@@ -28,11 +24,11 @@ void main() {
       final version = Version(0, 1, 0);
 
       final patch = version.nextAmplifyVersion(VersionBumpType.patch);
-      expect(patch, Version(0, 1, 1));
+      expect(patch, Version(0, 1, 0, build: '1'));
       expect(proagation.propagateToComponent(version, patch), false);
 
       final nextPatch = patch.nextAmplifyVersion(VersionBumpType.patch);
-      expect(nextPatch, Version(0, 1, 2));
+      expect(nextPatch, Version(0, 1, 0, build: '2'));
       expect(proagation.propagateToComponent(version, nextPatch), false);
 
       final nonBreaking =
@@ -112,29 +108,6 @@ void main() {
       final breaking = version.nextAmplifyVersion(VersionBumpType.breaking);
       expect(breaking, Version(2, 0, 0));
       expect(proagation.propagateToComponent(version, breaking), true);
-    });
-  });
-
-  group('PackageInfo', () {
-    test('compatibleWithActiveSdk', () async {
-      final currentDartVersion = Version.parse(
-        Platform.version.split(RegExp(r'\s+')).first,
-      );
-      final stablePackage = await d.package('stable_pkg').create();
-      final previewPackage = await d
-          .package(
-            'preview_pkg',
-            sdkConstraint: '^3.2.0-0',
-          )
-          .create();
-      expect(
-        stablePackage.compatibleWithActiveSdk,
-        isTrue,
-      );
-      expect(
-        previewPackage.compatibleWithActiveSdk,
-        currentDartVersion.isPreRelease,
-      );
     });
   });
 }

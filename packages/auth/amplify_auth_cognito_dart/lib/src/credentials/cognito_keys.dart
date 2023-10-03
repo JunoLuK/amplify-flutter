@@ -34,9 +34,6 @@ enum CognitoUserPoolKey {
 
   /// The [AuthFlowType] passed to `signIn`.
   authFlowType,
-
-  /// The advanced security feature (ASF) device identifier.
-  asfDeviceId,
 }
 
 /// Discrete keys stored for Cognito User Pool device tracking operations in
@@ -97,11 +94,6 @@ enum HostedUiKey {
   codeVerifier,
 
   /// The OIDC nonce value.
-  @Deprecated(
-    'This value should no longer be used except for removing existing usages. '
-    'The library used to support nonce verification of the OIDC tokens but no '
-    'longer does.',
-  )
   nonce,
 
   /// The [CognitoSignInWithWebUIPluginOptions] passed to `signInWithWebUI`.
@@ -115,8 +107,7 @@ enum HostedUiKey {
 /// Enumerates and iterates over the keys stored in secure storage by
 /// Cognito Identity Pool operations.
 /// {@endtemplate}
-final class CognitoIdentityPoolKeys
-    extends CognitoKeys<CognitoIdentityPoolKey> {
+class CognitoIdentityPoolKeys extends CognitoKeys<CognitoIdentityPoolKey> {
   /// {@macro amplify_auth_cognito.cognito_identity_pool_keys}
   const CognitoIdentityPoolKeys(this.config);
 
@@ -135,7 +126,7 @@ final class CognitoIdentityPoolKeys
 /// Enumerates and iterates over the keys stored in secure storage by
 /// Cognito User Pool operations.
 /// {@endtemplate}
-final class CognitoUserPoolKeys extends CognitoKeys<CognitoUserPoolKey> {
+class CognitoUserPoolKeys extends CognitoKeys<CognitoUserPoolKey> {
   /// {@macro amplify_auth_cognito.cognito_user_pool_keys}
   const CognitoUserPoolKeys(this.config);
 
@@ -153,7 +144,7 @@ final class CognitoUserPoolKeys extends CognitoKeys<CognitoUserPoolKey> {
 /// Enumerates and iterates over the keys stored in secure storage by
 /// Cognito User Pool device tracking operations.
 /// {@endtemplate}
-final class CognitoDeviceKeys extends CognitoKeys<CognitoDeviceKey> {
+class CognitoDeviceKeys extends CognitoKeys<CognitoDeviceKey> {
   /// {@macro amplify_auth_cognito.cognito_user_pool_keys}
   const CognitoDeviceKeys(this.config, this.username);
 
@@ -174,7 +165,7 @@ final class CognitoDeviceKeys extends CognitoKeys<CognitoDeviceKey> {
 /// Enumerates and iterates over the keys stored in secure storage by
 /// Cognito Hosted UI operations.
 /// {@endtemplate}
-final class HostedUiKeys extends CognitoKeys<HostedUiKey> {
+class HostedUiKeys extends CognitoKeys<HostedUiKey> {
   /// {@macro amplify_auth_cognito.hosted_ui_keys}
   const HostedUiKeys(this.config);
 
@@ -191,7 +182,7 @@ final class HostedUiKeys extends CognitoKeys<HostedUiKey> {
 /// {@template amplify_auth_cognito.cognito_keys}
 /// Iterable secure storage keys.
 /// {@endtemplate}
-abstract base class CognitoKeys<Key extends Enum> extends IterableBase<String> {
+abstract class CognitoKeys<Key extends Enum> extends IterableBase<String> {
   /// {@macro amplify_auth_cognito.cognito_keys}
   const CognitoKeys();
 
@@ -208,7 +199,7 @@ abstract base class CognitoKeys<Key extends Enum> extends IterableBase<String> {
   Iterator<String> get iterator => _CognitoKeysIterator(this);
 }
 
-final class _CognitoKeysIterator<Key extends Enum> implements Iterator<String> {
+class _CognitoKeysIterator<Key extends Enum> implements Iterator<String> {
   _CognitoKeysIterator(this._keys);
 
   final CognitoKeys<Key> _keys;

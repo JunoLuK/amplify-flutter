@@ -11,7 +11,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 var syncQueriesStartedEvent = DataStoreHubEvent(
   'syncQueriesStarted',
-  type: DataStoreHubEventType.syncQueriesStarted,
   payload: SyncQueriesStartedEvent({
     "models": "[\"Blog\"]",
   }),
@@ -19,7 +18,6 @@ var syncQueriesStartedEvent = DataStoreHubEvent(
 
 var modelSyncEvent = DataStoreHubEvent(
   'modelSynced',
-  type: DataStoreHubEventType.modelSynced,
   payload: ModelSyncedEvent({
     "model": "Blog",
     "isFullSync": true,

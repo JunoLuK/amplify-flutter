@@ -79,11 +79,11 @@ abstract class _SmithyEnumSerializer<T extends _SmithyEnumBase<T, Value>,
         Value extends Object> extends SmithySerializer<T>
     implements PrimitiveSerializer<T> {
   const _SmithyEnumSerializer(
-    super.wireName, {
+    String wireName, {
     required this.values,
     required this.sdkUnknown,
     required this.supportedProtocols,
-  });
+  }) : super(wireName);
 
   /// All enum values.
   final List<T> values;
@@ -146,13 +146,15 @@ class SmithyIntEnumSerializer<T extends SmithyIntEnum<T>>
 
   @override
   int parse(Object serialized) {
-    return switch (serialized) {
-      num _ => serialized.toInt(),
-      String _ => num.parse(serialized).toInt(),
-      _ => throw ArgumentError(
-          'Invalid serialized value: $serialized (${serialized.runtimeType}). '
-          'Expected int or String.',
-        ),
-    };
+    if (serialized is num) {
+      return serialized.toInt();
+    }
+    if (serialized is String) {
+      return num.parse(serialized).toInt();
+    }
+    throw ArgumentError(
+      'Invalid serialized value: $serialized (${serialized.runtimeType}). '
+      'Expected int or String.',
+    );
   }
 }

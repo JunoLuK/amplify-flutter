@@ -59,8 +59,6 @@ abstract class PushNotificationsFlutterApi {
 
 @HostApi()
 abstract class PushNotificationsHostApi {
-  void requestInitialToken();
-
   @async
   GetPermissionStatusResult getPermissionStatus();
 

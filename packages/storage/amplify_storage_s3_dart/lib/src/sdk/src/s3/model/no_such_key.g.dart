@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'no_such_key.dart';
+part of amplify_storage_s3_dart.s3.model.no_such_key;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -47,7 +47,9 @@ class NoSuchKeyBuilder implements Builder<NoSuchKey, NoSuchKeyBuilder> {
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  NoSuchKeyBuilder();
+  NoSuchKeyBuilder() {
+    NoSuchKey._init(this);
+  }
 
   NoSuchKeyBuilder get _$this {
     final $v = _$v;

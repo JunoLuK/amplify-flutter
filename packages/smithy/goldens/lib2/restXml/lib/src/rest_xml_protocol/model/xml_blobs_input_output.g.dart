@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'xml_blobs_input_output.dart';
+part of rest_xml_v2.rest_xml_protocol.model.xml_blobs_input_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -48,7 +48,9 @@ class XmlBlobsInputOutputBuilder
   _i3.Uint8List? get data => _$this._data;
   set data(_i3.Uint8List? data) => _$this._data = data;
 
-  XmlBlobsInputOutputBuilder();
+  XmlBlobsInputOutputBuilder() {
+    XmlBlobsInputOutput._init(this);
+  }
 
   XmlBlobsInputOutputBuilder get _$this {
     final $v = _$v;

@@ -1,6 +1,8 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import 'dart:convert';
+
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_flutter/src/amplify_impl.dart';
 
@@ -12,8 +14,34 @@ class AmplifyHybridImpl extends AmplifyClassImpl {
   /// {@macro amplify_flutter.amplify_hybrid_impl}
   AmplifyHybridImpl() : super.protected();
 
+  final _methodChannelAmplify = MethodChannelAmplify();
+
   @override
-  Future<void> addPluginPlatform(AmplifyPluginInterface plugin) async {
+  Future<void> configurePlatform(String config) async {
+    final amplifyConfig = AmplifyConfig.fromJson(
+      (jsonDecode(config) as Map<Object?, Object?>).cast(),
+    );
+    await Future.wait(
+      [
+        ...API.plugins,
+        ...Auth.plugins,
+        ...Notifications.Push.plugins,
+        ...Analytics.plugins,
+        ...Storage.plugins,
+        ...DataStore.plugins,
+      ].map(
+        (p) => p.configure(
+          config: amplifyConfig,
+          authProviderRepo: authProviderRepo,
+        ),
+      ),
+      eagerError: true,
+    );
+    await _methodChannelAmplify.configurePlatform(config);
+  }
+
+  @override
+  Future<void> addPlugin(AmplifyPluginInterface plugin) async {
     if (isConfigured) {
       throw const AmplifyAlreadyConfiguredException(
         'Amplify has already been configured and adding plugins after configure is not supported.',

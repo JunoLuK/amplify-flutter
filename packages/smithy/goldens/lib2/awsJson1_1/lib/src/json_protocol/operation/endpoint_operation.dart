@@ -1,13 +1,14 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library aws_json1_1_v2.json_protocol.operation.endpoint_operation; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'dart:async' as _i5;
+import 'dart:async' as _i7;
 
-import 'package:aws_common/aws_common.dart' as _i4;
-import 'package:aws_json1_1_v2/src/json_protocol/common/endpoint_resolver.dart';
-import 'package:aws_json1_1_v2/src/json_protocol/common/serializers.dart';
+import 'package:aws_common/aws_common.dart' as _i5;
+import 'package:aws_json1_1_v2/src/json_protocol/common/endpoint_resolver.dart'
+    as _i6;
+import 'package:aws_json1_1_v2/src/json_protocol/common/serializers.dart'
+    as _i4;
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
@@ -18,7 +19,7 @@ class EndpointOperation
     required String region,
     Uri? baseUri,
     _i2.AWSCredentialsProvider credentialsProvider =
-        const _i2.AWSCredentialsProvider.defaultChain(),
+        const _i2.AWSCredentialsProvider.environment(),
     List<_i1.HttpRequestInterceptor> requestInterceptors = const [],
     List<_i1.HttpResponseInterceptor> responseInterceptors = const [],
   })  : _region = region,
@@ -31,8 +32,8 @@ class EndpointOperation
   late final List<_i1.HttpProtocol<_i1.Unit, _i1.Unit, _i1.Unit, _i1.Unit>>
       protocols = [
     _i3.AwsJson1_1Protocol(
-      serializers: serializers,
-      builderFactories: builderFactories,
+      serializers: _i4.serializers,
+      builderFactories: _i4.builderFactories,
       requestInterceptors: <_i1.HttpRequestInterceptor>[
             const _i1.WithHost(),
             const _i1.WithHeader(
@@ -41,7 +42,7 @@ class EndpointOperation
             ),
             _i3.WithSigV4(
               region: _region,
-              service: _i4.AWSService.iam,
+              service: _i5.AWSService.iam,
               credentialsProvider: _credentialsProvider,
             ),
             const _i1.WithUserAgent('aws-sdk-dart/0.3.1'),
@@ -54,8 +55,8 @@ class EndpointOperation
     )
   ];
 
-  late final _i3.AWSEndpoint _awsEndpoint = endpointResolver.resolve(
-    sdkId,
+  late final _i3.AWSEndpoint _awsEndpoint = _i6.endpointResolver.resolve(
+    _i6.sdkId,
     _region,
   );
 
@@ -80,7 +81,7 @@ class EndpointOperation
   @override
   _i1.Unit buildOutput(
     _i1.Unit payload,
-    _i4.AWSBaseHttpResponse response,
+    _i5.AWSBaseHttpResponse response,
   ) =>
       payload;
   @override
@@ -96,10 +97,10 @@ class EndpointOperation
   @override
   _i1.SmithyOperation<_i1.Unit> run(
     _i1.Unit input, {
-    _i4.AWSHttpClient? client,
+    _i5.AWSHttpClient? client,
     _i1.ShapeId? useProtocol,
   }) {
-    return _i5.runZoned(
+    return _i7.runZoned(
       () => super.run(
         input,
         client: client,
@@ -107,7 +108,7 @@ class EndpointOperation
       ),
       zoneValues: {
         ...?_awsEndpoint.credentialScope?.zoneValues,
-        ...{_i4.AWSHeaders.sdkInvocationId: _i4.uuid(secure: true)},
+        ...{_i5.AWSHeaders.sdkInvocationId: _i5.uuid(secure: true)}
       },
     );
   }

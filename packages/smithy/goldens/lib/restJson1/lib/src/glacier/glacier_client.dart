@@ -1,16 +1,21 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.glacier.glacier_client; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i2;
-import 'package:rest_json1_v1/src/glacier/model/archive_creation_output.dart';
-import 'package:rest_json1_v1/src/glacier/model/upload_archive_input.dart';
-import 'package:rest_json1_v1/src/glacier/model/upload_multipart_part_input.dart';
-import 'package:rest_json1_v1/src/glacier/model/upload_multipart_part_output.dart';
-import 'package:rest_json1_v1/src/glacier/operation/upload_archive_operation.dart';
-import 'package:rest_json1_v1/src/glacier/operation/upload_multipart_part_operation.dart';
+import 'package:rest_json1_v1/src/glacier/model/archive_creation_output.dart'
+    as _i4;
+import 'package:rest_json1_v1/src/glacier/model/upload_archive_input.dart'
+    as _i5;
+import 'package:rest_json1_v1/src/glacier/model/upload_multipart_part_input.dart'
+    as _i8;
+import 'package:rest_json1_v1/src/glacier/model/upload_multipart_part_output.dart'
+    as _i7;
+import 'package:rest_json1_v1/src/glacier/operation/upload_archive_operation.dart'
+    as _i6;
+import 'package:rest_json1_v1/src/glacier/operation/upload_multipart_part_operation.dart'
+    as _i9;
 import 'package:smithy/smithy.dart' as _i3;
 
 class GlacierClient {
@@ -19,7 +24,7 @@ class GlacierClient {
     required String region,
     Uri? baseUri,
     _i2.AWSCredentialsProvider credentialsProvider =
-        const _i2.AWSCredentialsProvider.defaultChain(),
+        const _i2.AWSCredentialsProvider.environment(),
     List<_i3.HttpRequestInterceptor> requestInterceptors = const [],
     List<_i3.HttpResponseInterceptor> responseInterceptors = const [],
   })  : _client = client,
@@ -41,12 +46,12 @@ class GlacierClient {
 
   final List<_i3.HttpResponseInterceptor> _responseInterceptors;
 
-  _i3.SmithyOperation<ArchiveCreationOutput> uploadArchive(
-    UploadArchiveInput input, {
+  _i3.SmithyOperation<_i4.ArchiveCreationOutput> uploadArchive(
+    _i5.UploadArchiveInput input, {
     _i1.AWSHttpClient? client,
     _i2.AWSCredentialsProvider? credentialsProvider,
   }) {
-    return UploadArchiveOperation(
+    return _i6.UploadArchiveOperation(
       region: _region,
       baseUri: _baseUri,
       credentialsProvider: credentialsProvider ?? _credentialsProvider,
@@ -58,12 +63,12 @@ class GlacierClient {
     );
   }
 
-  _i3.SmithyOperation<UploadMultipartPartOutput> uploadMultipartPart(
-    UploadMultipartPartInput input, {
+  _i3.SmithyOperation<_i7.UploadMultipartPartOutput> uploadMultipartPart(
+    _i8.UploadMultipartPartInput input, {
     _i1.AWSHttpClient? client,
     _i2.AWSCredentialsProvider? credentialsProvider,
   }) {
-    return UploadMultipartPartOperation(
+    return _i9.UploadMultipartPartOperation(
       region: _region,
       baseUri: _baseUri,
       credentialsProvider: credentialsProvider ?? _credentialsProvider,

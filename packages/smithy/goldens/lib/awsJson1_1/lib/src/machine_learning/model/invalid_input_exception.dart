@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library aws_json1_1_v1.machine_learning.model.invalid_input_exception; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -16,12 +15,12 @@ abstract class InvalidInputException
         Built<InvalidInputException, InvalidInputExceptionBuilder>,
         _i2.SmithyHttpException {
   factory InvalidInputException({
-    String? message,
     int? code,
+    String? message,
   }) {
     return _$InvalidInputException._(
-      message: message,
       code: code,
+      message: message,
     );
   }
 
@@ -40,13 +39,15 @@ abstract class InvalidInputException
         b.headers = response.headers;
       });
 
-  static const List<_i2.SmithySerializer<InvalidInputException>> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     InvalidInputExceptionAwsJson11Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(InvalidInputExceptionBuilder b) {}
+  int? get code;
   @override
   String? get message;
-  int? get code;
   @override
   _i2.ShapeId get shapeId => const _i2.ShapeId(
         namespace: 'com.amazonaws.machinelearning',
@@ -64,20 +65,20 @@ abstract class InvalidInputException
   Exception? get underlyingException => null;
   @override
   List<Object?> get props => [
-        message,
         code,
+        message,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('InvalidInputException')
-      ..add(
-        'message',
-        message,
-      )
-      ..add(
-        'code',
-        code,
-      );
+    final helper = newBuiltValueToStringHelper('InvalidInputException');
+    helper.add(
+      'code',
+      code,
+    );
+    helper.add(
+      'message',
+      message,
+    );
     return helper.toString();
   }
 }
@@ -111,20 +112,23 @@ class InvalidInputExceptionAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
-        case 'message':
-          result.message = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
         case 'code':
-          result.code = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int);
+          if (value != null) {
+            result.code = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(int),
+            ) as int);
+          }
+          break;
+        case 'message':
+          if (value != null) {
+            result.message = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -134,27 +138,27 @@ class InvalidInputExceptionAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    InvalidInputException object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final InvalidInputException(:message, :code) = object;
-    if (message != null) {
-      result$
-        ..add('message')
-        ..add(serializers.serialize(
-          message,
-          specifiedType: const FullType(String),
-        ));
-    }
-    if (code != null) {
-      result$
+    final payload = (object as InvalidInputException);
+    final result = <Object?>[];
+    if (payload.code != null) {
+      result
         ..add('code')
         ..add(serializers.serialize(
-          code,
+          payload.code!,
           specifiedType: const FullType(int),
         ));
     }
-    return result$;
+    if (payload.message != null) {
+      result
+        ..add('message')
+        ..add(serializers.serialize(
+          payload.message!,
+          specifiedType: const FullType(String),
+        ));
+    }
+    return result;
   }
 }

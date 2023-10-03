@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'upload_multipart_part_input.dart';
+part of rest_json1_v2.glacier.model.upload_multipart_part_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -10,15 +10,15 @@ class _$UploadMultipartPartInput extends UploadMultipartPartInput {
   @override
   final String accountId;
   @override
-  final String vaultName;
-  @override
-  final String uploadId;
+  final _i2.Stream<List<int>>? body;
   @override
   final String? checksum;
   @override
   final String? range;
   @override
-  final _i2.Stream<List<int>> body;
+  final String uploadId;
+  @override
+  final String vaultName;
 
   factory _$UploadMultipartPartInput(
           [void Function(UploadMultipartPartInputBuilder)? updates]) =>
@@ -26,20 +26,18 @@ class _$UploadMultipartPartInput extends UploadMultipartPartInput {
 
   _$UploadMultipartPartInput._(
       {required this.accountId,
-      required this.vaultName,
-      required this.uploadId,
+      this.body,
       this.checksum,
       this.range,
-      required this.body})
+      required this.uploadId,
+      required this.vaultName})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         accountId, r'UploadMultipartPartInput', 'accountId');
     BuiltValueNullFieldError.checkNotNull(
-        vaultName, r'UploadMultipartPartInput', 'vaultName');
-    BuiltValueNullFieldError.checkNotNull(
         uploadId, r'UploadMultipartPartInput', 'uploadId');
     BuiltValueNullFieldError.checkNotNull(
-        body, r'UploadMultipartPartInput', 'body');
+        vaultName, r'UploadMultipartPartInput', 'vaultName');
   }
 
   @override
@@ -56,22 +54,22 @@ class _$UploadMultipartPartInput extends UploadMultipartPartInput {
     if (identical(other, this)) return true;
     return other is UploadMultipartPartInput &&
         accountId == other.accountId &&
-        vaultName == other.vaultName &&
-        uploadId == other.uploadId &&
+        body == other.body &&
         checksum == other.checksum &&
         range == other.range &&
-        body == other.body;
+        uploadId == other.uploadId &&
+        vaultName == other.vaultName;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, accountId.hashCode);
-    _$hash = $jc(_$hash, vaultName.hashCode);
-    _$hash = $jc(_$hash, uploadId.hashCode);
+    _$hash = $jc(_$hash, body.hashCode);
     _$hash = $jc(_$hash, checksum.hashCode);
     _$hash = $jc(_$hash, range.hashCode);
-    _$hash = $jc(_$hash, body.hashCode);
+    _$hash = $jc(_$hash, uploadId.hashCode);
+    _$hash = $jc(_$hash, vaultName.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -86,13 +84,9 @@ class UploadMultipartPartInputBuilder
   String? get accountId => _$this._accountId;
   set accountId(String? accountId) => _$this._accountId = accountId;
 
-  String? _vaultName;
-  String? get vaultName => _$this._vaultName;
-  set vaultName(String? vaultName) => _$this._vaultName = vaultName;
-
-  String? _uploadId;
-  String? get uploadId => _$this._uploadId;
-  set uploadId(String? uploadId) => _$this._uploadId = uploadId;
+  _i2.Stream<List<int>>? _body;
+  _i2.Stream<List<int>>? get body => _$this._body;
+  set body(_i2.Stream<List<int>>? body) => _$this._body = body;
 
   String? _checksum;
   String? get checksum => _$this._checksum;
@@ -102,9 +96,13 @@ class UploadMultipartPartInputBuilder
   String? get range => _$this._range;
   set range(String? range) => _$this._range = range;
 
-  _i2.Stream<List<int>>? _body;
-  _i2.Stream<List<int>>? get body => _$this._body;
-  set body(_i2.Stream<List<int>>? body) => _$this._body = body;
+  String? _uploadId;
+  String? get uploadId => _$this._uploadId;
+  set uploadId(String? uploadId) => _$this._uploadId = uploadId;
+
+  String? _vaultName;
+  String? get vaultName => _$this._vaultName;
+  set vaultName(String? vaultName) => _$this._vaultName = vaultName;
 
   UploadMultipartPartInputBuilder() {
     UploadMultipartPartInput._init(this);
@@ -114,11 +112,11 @@ class UploadMultipartPartInputBuilder
     final $v = _$v;
     if ($v != null) {
       _accountId = $v.accountId;
-      _vaultName = $v.vaultName;
-      _uploadId = $v.uploadId;
+      _body = $v.body;
       _checksum = $v.checksum;
       _range = $v.range;
-      _body = $v.body;
+      _uploadId = $v.uploadId;
+      _vaultName = $v.vaultName;
       _$v = null;
     }
     return this;
@@ -143,14 +141,13 @@ class UploadMultipartPartInputBuilder
         new _$UploadMultipartPartInput._(
             accountId: BuiltValueNullFieldError.checkNotNull(
                 accountId, r'UploadMultipartPartInput', 'accountId'),
-            vaultName: BuiltValueNullFieldError.checkNotNull(
-                vaultName, r'UploadMultipartPartInput', 'vaultName'),
-            uploadId: BuiltValueNullFieldError.checkNotNull(
-                uploadId, r'UploadMultipartPartInput', 'uploadId'),
+            body: body,
             checksum: checksum,
             range: range,
-            body: BuiltValueNullFieldError.checkNotNull(
-                body, r'UploadMultipartPartInput', 'body'));
+            uploadId: BuiltValueNullFieldError.checkNotNull(
+                uploadId, r'UploadMultipartPartInput', 'uploadId'),
+            vaultName: BuiltValueNullFieldError.checkNotNull(
+                vaultName, r'UploadMultipartPartInput', 'vaultName'));
     replace(_$result);
     return _$result;
   }

@@ -1,9 +1,9 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import * as cognito_identity from "@aws-cdk/aws-cognito-identitypool-alpha";
 import * as apigw from "aws-cdk-lib/aws-apigateway";
 import * as acm from "aws-cdk-lib/aws-certificatemanager";
+import * as cognito from "aws-cdk-lib/aws-cognito";
 import * as iam from "aws-cdk-lib/aws-iam";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as lambda_nodejs from "aws-cdk-lib/aws-lambda-nodejs";
@@ -117,24 +117,55 @@ export class CustomAuthorizerIamStackEnvironment extends IntegrationTestStackEnv
 
     // Create the Cognito Identity Pool with permissions to invoke the API.
 
-    const identityPool = new cognito_identity.IdentityPool(this, "IdentityPool", {
+    const identityPool = new cognito.CfnIdentityPool(this, "IdentityPool", {
       identityPoolName: this.name,
       allowUnauthenticatedIdentities: true,
     });
 
-    const apiGwStatement = new iam.PolicyStatement({
-      effect: iam.Effect.ALLOW,
-      actions: ["execute-api:Invoke"],
-      resources: [apiGateway.arnForExecuteApi()],
+    const unauthenticatedRole = new iam.Role(this, "UnauthenticatedRole", {
+      description: "Default role for anonymous users",
+      assumedBy: new iam.FederatedPrincipal(
+        "cognito-identity.amazonaws.com",
+        {
+          StringEquals: {
+            "cognito-identity.amazonaws.com:aud": identityPool.ref,
+          },
+          "ForAnyValue:StringLike": {
+            "cognito-identity.amazonaws.com:amr": "unauthenticated",
+          },
+        },
+        "sts:AssumeRoleWithWebIdentity"
+      ),
+      inlinePolicies: {
+        "api-gateway-invoke": new iam.PolicyDocument({
+          statements: [
+            new iam.PolicyStatement({
+              effect: iam.Effect.ALLOW,
+              actions: ["execute-api:Invoke"],
+              resources: [apiGateway.arnForExecuteApi()],
+            }),
+          ],
+        }),
+      },
     });
-    identityPool.unauthenticatedRole.addToPrincipalPolicy(apiGwStatement);
+
+    new cognito.CfnIdentityPoolRoleAttachment(
+      this,
+      "IdentityPoolRoleAttachment",
+      {
+        identityPoolId: identityPool.ref,
+        roles: {
+          unauthenticated: unauthenticatedRole.roleArn,
+        },
+      }
+    );
 
     let domainName = apiGateway.url;
     if (apiGateway.domainName?.domainName) {
       domainName = `https://${apiGateway.domainName?.domainName}/prod/`;
     }
 
-    this.saveConfig({
+    this.config = {
       apiConfig: {
         apis: {
           [apiGateway.restApiName]: {
@@ -146,9 +177,9 @@ export class CustomAuthorizerIamStackEnvironment extends IntegrationTestStackEnv
       },
       authConfig: {
         identityPoolConfig: {
-          identityPoolId: identityPool.identityPoolId,
+          identityPoolId: identityPool.ref,
         },
       },
-    });
+    };
   }
 }

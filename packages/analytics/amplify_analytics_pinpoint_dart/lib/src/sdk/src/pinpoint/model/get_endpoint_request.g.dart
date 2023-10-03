@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'get_endpoint_request.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.get_endpoint_request;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -65,7 +65,9 @@ class GetEndpointRequestBuilder
   String? get endpointId => _$this._endpointId;
   set endpointId(String? endpointId) => _$this._endpointId = endpointId;
 
-  GetEndpointRequestBuilder();
+  GetEndpointRequestBuilder() {
+    GetEndpointRequest._init(this);
+  }
 
   GetEndpointRequestBuilder get _$this {
     final $v = _$v;
@@ -136,7 +138,9 @@ class GetEndpointRequestPayloadBuilder
         Builder<GetEndpointRequestPayload, GetEndpointRequestPayloadBuilder> {
   _$GetEndpointRequestPayload? _$v;
 
-  GetEndpointRequestPayloadBuilder();
+  GetEndpointRequestPayloadBuilder() {
+    GetEndpointRequestPayload._init(this);
+  }
 
   @override
   void replace(GetEndpointRequestPayload other) {

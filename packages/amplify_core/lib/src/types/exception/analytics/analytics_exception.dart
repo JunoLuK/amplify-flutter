@@ -1,10 +1,10 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-part of '../amplify_exception.dart';
+import 'package:amplify_core/amplify_core.dart';
 
 /// Base Class for Analytics Exceptions.
-sealed class AnalyticsException extends AmplifyException {
+abstract class AnalyticsException extends AmplifyException {
   const AnalyticsException(
     super.message, {
     super.recoverySuggestion,

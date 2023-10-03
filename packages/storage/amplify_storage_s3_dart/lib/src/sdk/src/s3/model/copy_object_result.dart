@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_storage_s3_dart.s3.model.copy_object_result; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -16,20 +15,20 @@ abstract class CopyObjectResult
     implements Built<CopyObjectResult, CopyObjectResultBuilder> {
   /// Container for all response elements.
   factory CopyObjectResult({
-    String? eTag,
-    DateTime? lastModified,
     String? checksumCrc32,
     String? checksumCrc32C,
     String? checksumSha1,
     String? checksumSha256,
+    String? eTag,
+    DateTime? lastModified,
   }) {
     return _$CopyObjectResult._(
-      eTag: eTag,
-      lastModified: lastModified,
       checksumCrc32: checksumCrc32,
       checksumCrc32C: checksumCrc32C,
       checksumSha1: checksumSha1,
       checksumSha256: checksumSha256,
+      eTag: eTag,
+      lastModified: lastModified,
     );
   }
 
@@ -39,15 +38,12 @@ abstract class CopyObjectResult
 
   const CopyObjectResult._();
 
-  static const List<_i2.SmithySerializer<CopyObjectResult>> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     CopyObjectResultRestXmlSerializer()
   ];
 
-  /// Returns the ETag of the new object. The ETag reflects only changes to the contents of an object, not its metadata.
-  String? get eTag;
-
-  /// Creation date of the object.
-  DateTime? get lastModified;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(CopyObjectResultBuilder b) {}
 
   /// The base64-encoded, 32-bit CRC32 checksum of the object. This will only be present if it was uploaded with the object. With multipart uploads, this may not be a checksum value of the object. For more information about how checksums are calculated with multipart uploads, see [Checking object integrity](https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums) in the _Amazon S3 User Guide_.
   String? get checksumCrc32;
@@ -60,42 +56,48 @@ abstract class CopyObjectResult
 
   /// The base64-encoded, 256-bit SHA-256 digest of the object. This will only be present if it was uploaded with the object. With multipart uploads, this may not be a checksum value of the object. For more information about how checksums are calculated with multipart uploads, see [Checking object integrity](https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums) in the _Amazon S3 User Guide_.
   String? get checksumSha256;
+
+  /// Returns the ETag of the new object. The ETag reflects only changes to the contents of an object, not its metadata.
+  String? get eTag;
+
+  /// Creation date of the object.
+  DateTime? get lastModified;
   @override
   List<Object?> get props => [
-        eTag,
-        lastModified,
         checksumCrc32,
         checksumCrc32C,
         checksumSha1,
         checksumSha256,
+        eTag,
+        lastModified,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('CopyObjectResult')
-      ..add(
-        'eTag',
-        eTag,
-      )
-      ..add(
-        'lastModified',
-        lastModified,
-      )
-      ..add(
-        'checksumCrc32',
-        checksumCrc32,
-      )
-      ..add(
-        'checksumCrc32C',
-        checksumCrc32C,
-      )
-      ..add(
-        'checksumSha1',
-        checksumSha1,
-      )
-      ..add(
-        'checksumSha256',
-        checksumSha256,
-      );
+    final helper = newBuiltValueToStringHelper('CopyObjectResult');
+    helper.add(
+      'checksumCrc32',
+      checksumCrc32,
+    );
+    helper.add(
+      'checksumCrc32C',
+      checksumCrc32C,
+    );
+    helper.add(
+      'checksumSha1',
+      checksumSha1,
+    );
+    helper.add(
+      'checksumSha256',
+      checksumSha256,
+    );
+    helper.add(
+      'eTag',
+      eTag,
+    );
+    helper.add(
+      'lastModified',
+      lastModified,
+    );
     return helper.toString();
   }
 }
@@ -125,43 +127,58 @@ class CopyObjectResultRestXmlSerializer
     final result = CopyObjectResultBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'ChecksumCRC32':
-          result.checksumCrc32 = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.checksumCrc32 = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'ChecksumCRC32C':
-          result.checksumCrc32C = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.checksumCrc32C = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'ChecksumSHA1':
-          result.checksumSha1 = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.checksumSha1 = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'ChecksumSHA256':
-          result.checksumSha256 = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.checksumSha256 = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'ETag':
-          result.eTag = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.eTag = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'LastModified':
-          result.lastModified = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime);
+          if (value != null) {
+            result.lastModified = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(DateTime),
+            ) as DateTime);
+          }
+          break;
       }
     }
 
@@ -171,71 +188,64 @@ class CopyObjectResultRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    CopyObjectResult object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final payload = (object as CopyObjectResult);
+    final result = <Object?>[
       const _i2.XmlElementName(
         'CopyObjectResult',
         _i2.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
       )
     ];
-    final CopyObjectResult(
-      :checksumCrc32,
-      :checksumCrc32C,
-      :checksumSha1,
-      :checksumSha256,
-      :eTag,
-      :lastModified
-    ) = object;
-    if (checksumCrc32 != null) {
-      result$
+    if (payload.checksumCrc32 != null) {
+      result
         ..add(const _i2.XmlElementName('ChecksumCRC32'))
         ..add(serializers.serialize(
-          checksumCrc32,
+          payload.checksumCrc32!,
           specifiedType: const FullType(String),
         ));
     }
-    if (checksumCrc32C != null) {
-      result$
+    if (payload.checksumCrc32C != null) {
+      result
         ..add(const _i2.XmlElementName('ChecksumCRC32C'))
         ..add(serializers.serialize(
-          checksumCrc32C,
+          payload.checksumCrc32C!,
           specifiedType: const FullType(String),
         ));
     }
-    if (checksumSha1 != null) {
-      result$
+    if (payload.checksumSha1 != null) {
+      result
         ..add(const _i2.XmlElementName('ChecksumSHA1'))
         ..add(serializers.serialize(
-          checksumSha1,
+          payload.checksumSha1!,
           specifiedType: const FullType(String),
         ));
     }
-    if (checksumSha256 != null) {
-      result$
+    if (payload.checksumSha256 != null) {
+      result
         ..add(const _i2.XmlElementName('ChecksumSHA256'))
         ..add(serializers.serialize(
-          checksumSha256,
+          payload.checksumSha256!,
           specifiedType: const FullType(String),
         ));
     }
-    if (eTag != null) {
-      result$
+    if (payload.eTag != null) {
+      result
         ..add(const _i2.XmlElementName('ETag'))
         ..add(serializers.serialize(
-          eTag,
+          payload.eTag!,
           specifiedType: const FullType(String),
         ));
     }
-    if (lastModified != null) {
-      result$
+    if (payload.lastModified != null) {
+      result
         ..add(const _i2.XmlElementName('LastModified'))
         ..add(serializers.serialize(
-          lastModified,
-          specifiedType: const FullType(DateTime),
+          payload.lastModified!,
+          specifiedType: const FullType.nullable(DateTime),
         ));
     }
-    return result$;
+    return result;
   }
 }

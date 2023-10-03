@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'foo_error.dart';
+part of aws_json1_0_v1.json_rpc_10.model.foo_error;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -47,7 +47,9 @@ class FooErrorBuilder implements Builder<FooError, FooErrorBuilder> {
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  FooErrorBuilder();
+  FooErrorBuilder() {
+    FooError._init(this);
+  }
 
   FooErrorBuilder get _$this {
     final $v = _$v;

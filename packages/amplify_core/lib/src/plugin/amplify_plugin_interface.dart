@@ -46,7 +46,7 @@ abstract /* base */ class AmplifyPluginInterface {
   /// to [T].
   @protected
   T reifyPluginOptions<T extends AWSDebuggable>({
-    required Object? pluginOptions,
+    Object? pluginOptions,
     required T defaultPluginOptions,
   }) {
     if (pluginOptions == null) {

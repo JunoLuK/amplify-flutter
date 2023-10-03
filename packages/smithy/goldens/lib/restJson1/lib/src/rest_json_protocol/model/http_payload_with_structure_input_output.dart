@@ -1,25 +1,25 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.rest_json_protocol.model.http_payload_with_structure_input_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v1/src/rest_json_protocol/model/nested_payload.dart';
+import 'package:rest_json1_v1/src/rest_json_protocol/model/nested_payload.dart'
+    as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'http_payload_with_structure_input_output.g.dart';
 
 abstract class HttpPayloadWithStructureInputOutput
     with
-        _i1.HttpInput<NestedPayload>,
-        _i2.AWSEquatable<HttpPayloadWithStructureInputOutput>
+        _i1.HttpInput<_i2.NestedPayload>,
+        _i3.AWSEquatable<HttpPayloadWithStructureInputOutput>
     implements
         Built<HttpPayloadWithStructureInputOutput,
             HttpPayloadWithStructureInputOutputBuilder>,
-        _i1.HasPayload<NestedPayload> {
-  factory HttpPayloadWithStructureInputOutput({NestedPayload? nested}) {
+        _i1.HasPayload<_i2.NestedPayload> {
+  factory HttpPayloadWithStructureInputOutput({_i2.NestedPayload? nested}) {
     return _$HttpPayloadWithStructureInputOutput._(nested: nested);
   }
 
@@ -30,8 +30,8 @@ abstract class HttpPayloadWithStructureInputOutput
   const HttpPayloadWithStructureInputOutput._();
 
   factory HttpPayloadWithStructureInputOutput.fromRequest(
-    NestedPayload? payload,
-    _i2.AWSBaseHttpRequest request, {
+    _i2.NestedPayload? payload,
+    _i3.AWSBaseHttpRequest request, {
     Map<String, String> labels = const {},
   }) =>
       HttpPayloadWithStructureInputOutput.build((b) {
@@ -42,8 +42,8 @@ abstract class HttpPayloadWithStructureInputOutput
 
   /// Constructs a [HttpPayloadWithStructureInputOutput] from a [payload] and [response].
   factory HttpPayloadWithStructureInputOutput.fromResponse(
-    NestedPayload? payload,
-    _i2.AWSBaseHttpResponse response,
+    _i2.NestedPayload? payload,
+    _i3.AWSBaseHttpResponse response,
   ) =>
       HttpPayloadWithStructureInputOutput.build((b) {
         if (payload != null) {
@@ -51,29 +51,31 @@ abstract class HttpPayloadWithStructureInputOutput
         }
       });
 
-  static const List<_i1.SmithySerializer<NestedPayload?>> serializers = [
+  static const List<_i1.SmithySerializer> serializers = [
     HttpPayloadWithStructureInputOutputRestJson1Serializer()
   ];
 
-  NestedPayload? get nested;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HttpPayloadWithStructureInputOutputBuilder b) {}
+  _i2.NestedPayload? get nested;
   @override
-  NestedPayload? getPayload() => nested ?? NestedPayload();
+  _i2.NestedPayload? getPayload() => nested ?? _i2.NestedPayload();
   @override
   List<Object?> get props => [nested];
   @override
   String toString() {
     final helper =
-        newBuiltValueToStringHelper('HttpPayloadWithStructureInputOutput')
-          ..add(
-            'nested',
-            nested,
-          );
+        newBuiltValueToStringHelper('HttpPayloadWithStructureInputOutput');
+    helper.add(
+      'nested',
+      nested,
+    );
     return helper.toString();
   }
 }
 
 class HttpPayloadWithStructureInputOutputRestJson1Serializer
-    extends _i1.PrimitiveSmithySerializer<NestedPayload> {
+    extends _i1.PrimitiveSmithySerializer<_i2.NestedPayload> {
   const HttpPayloadWithStructureInputOutputRestJson1Serializer()
       : super('HttpPayloadWithStructureInputOutput');
 
@@ -90,26 +92,29 @@ class HttpPayloadWithStructureInputOutputRestJson1Serializer
         )
       ];
   @override
-  NestedPayload deserialize(
+  _i2.NestedPayload deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return (serializers.deserialize(
       serialized,
-      specifiedType: const FullType(NestedPayload),
-    ) as NestedPayload);
+      specifiedType: const FullType(_i2.NestedPayload),
+    ) as _i2.NestedPayload);
   }
 
   @override
   Object serialize(
     Serializers serializers,
-    NestedPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return serializers.serialize(
-      object,
-      specifiedType: const FullType(NestedPayload),
-    )!;
+    final payload = object is HttpPayloadWithStructureInputOutput
+        ? object.getPayload()
+        : (object as _i2.NestedPayload?);
+    return (serializers.serialize(
+      payload!,
+      specifiedType: const FullType(_i2.NestedPayload),
+    ) as Object);
   }
 }

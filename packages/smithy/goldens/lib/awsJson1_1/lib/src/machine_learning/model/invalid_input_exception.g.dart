@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'invalid_input_exception.dart';
+part of aws_json1_1_v1.machine_learning.model.invalid_input_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,9 +8,9 @@ part of 'invalid_input_exception.dart';
 
 class _$InvalidInputException extends InvalidInputException {
   @override
-  final String? message;
-  @override
   final int? code;
+  @override
+  final String? message;
   @override
   final Map<String, String>? headers;
 
@@ -18,7 +18,7 @@ class _$InvalidInputException extends InvalidInputException {
           [void Function(InvalidInputExceptionBuilder)? updates]) =>
       (new InvalidInputExceptionBuilder()..update(updates))._build();
 
-  _$InvalidInputException._({this.message, this.code, this.headers})
+  _$InvalidInputException._({this.code, this.message, this.headers})
       : super._();
 
   @override
@@ -34,15 +34,15 @@ class _$InvalidInputException extends InvalidInputException {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is InvalidInputException &&
-        message == other.message &&
-        code == other.code;
+        code == other.code &&
+        message == other.message;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, message.hashCode);
     _$hash = $jc(_$hash, code.hashCode);
+    _$hash = $jc(_$hash, message.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -52,25 +52,27 @@ class InvalidInputExceptionBuilder
     implements Builder<InvalidInputException, InvalidInputExceptionBuilder> {
   _$InvalidInputException? _$v;
 
-  String? _message;
-  String? get message => _$this._message;
-  set message(String? message) => _$this._message = message;
-
   int? _code;
   int? get code => _$this._code;
   set code(int? code) => _$this._code = code;
+
+  String? _message;
+  String? get message => _$this._message;
+  set message(String? message) => _$this._message = message;
 
   Map<String, String>? _headers;
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  InvalidInputExceptionBuilder();
+  InvalidInputExceptionBuilder() {
+    InvalidInputException._init(this);
+  }
 
   InvalidInputExceptionBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _message = $v.message;
       _code = $v.code;
+      _message = $v.message;
       _headers = $v.headers;
       _$v = null;
     }
@@ -94,7 +96,7 @@ class InvalidInputExceptionBuilder
   _$InvalidInputException _build() {
     final _$result = _$v ??
         new _$InvalidInputException._(
-            message: message, code: code, headers: headers);
+            code: code, message: message, headers: headers);
     replace(_$result);
     return _$result;
   }

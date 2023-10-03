@@ -18,7 +18,7 @@ class Retryer {
     return exception is SmithyException && exception.retryConfig != null;
   }
 
-  /// Performs [fn], retryng with exponential back-off according to [_options]
+  /// Performs [f], retryng with exponential back-off according to [options]
   /// if [isRetryable] returns `true`.
   ///
   /// Provide [onRetry] to do work on every retry attempt.

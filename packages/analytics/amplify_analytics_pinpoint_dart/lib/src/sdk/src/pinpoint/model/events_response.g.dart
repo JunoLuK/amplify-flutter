@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'events_response.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.events_response;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of 'events_response.dart';
 
 class _$EventsResponse extends EventsResponse {
   @override
-  final _i2.BuiltMap<String, ItemResponse>? results;
+  final _i3.BuiltMap<String, _i2.ItemResponse>? results;
 
   factory _$EventsResponse([void Function(EventsResponseBuilder)? updates]) =>
       (new EventsResponseBuilder()..update(updates))._build();
@@ -42,13 +42,15 @@ class EventsResponseBuilder
     implements Builder<EventsResponse, EventsResponseBuilder> {
   _$EventsResponse? _$v;
 
-  _i2.MapBuilder<String, ItemResponse>? _results;
-  _i2.MapBuilder<String, ItemResponse> get results =>
-      _$this._results ??= new _i2.MapBuilder<String, ItemResponse>();
-  set results(_i2.MapBuilder<String, ItemResponse>? results) =>
+  _i3.MapBuilder<String, _i2.ItemResponse>? _results;
+  _i3.MapBuilder<String, _i2.ItemResponse> get results =>
+      _$this._results ??= new _i3.MapBuilder<String, _i2.ItemResponse>();
+  set results(_i3.MapBuilder<String, _i2.ItemResponse>? results) =>
       _$this._results = results;
 
-  EventsResponseBuilder();
+  EventsResponseBuilder() {
+    EventsResponse._init(this);
+  }
 
   EventsResponseBuilder get _$this {
     final $v = _$v;

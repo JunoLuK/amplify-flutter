@@ -1,4 +1,5 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 /// A REST XML service that sends XML requests and responses.
 library rest_xml_v1.rest_xml_protocol;
@@ -65,6 +66,8 @@ export 'package:rest_xml_v1/src/rest_xml_protocol/model/operation_config.dart';
 export 'package:rest_xml_v1/src/rest_xml_protocol/model/payload_with_xml_name.dart';
 export 'package:rest_xml_v1/src/rest_xml_protocol/model/payload_with_xml_namespace.dart';
 export 'package:rest_xml_v1/src/rest_xml_protocol/model/payload_with_xml_namespace_and_prefix.dart';
+export 'package:rest_xml_v1/src/rest_xml_protocol/model/put_with_content_encoding_input.dart'
+    hide PutWithContentEncodingInputPayload;
 export 'package:rest_xml_v1/src/rest_xml_protocol/model/query_idempotency_token_auto_fill_input.dart'
     hide QueryIdempotencyTokenAutoFillInputPayload;
 export 'package:rest_xml_v1/src/rest_xml_protocol/model/query_params_as_string_list_map_input.dart'

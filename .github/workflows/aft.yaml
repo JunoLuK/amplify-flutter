@@ -6,10 +6,10 @@ on:
       - stable
       - next
     paths:
-      - 'packages/aft/**/*.dart'
+      - "packages/aft/**/*.dart"
   pull_request:
     paths:
-      - 'packages/aft/**/*.dart'
+      - "packages/aft/**/*.dart"
   schedule:
     - cron: "0 0 * * 0" # Every Sunday at 00:00
 defaults:
@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Git Checkout
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # 3.1.0
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # 3.6.0
         with:
           submodules: true
 
@@ -34,18 +34,13 @@ jobs:
           git config --global user.name "Amplify Flutter"
 
       - name: Setup Dart
-        uses: dart-lang/setup-dart@196f54580e9eee2797c57e85e289339f85e6779d # main
+        uses: dart-lang/setup-dart@e58aeb62aef51dcc4d0ba8eada7c08092aad5314 # main
         with:
           sdk: stable
 
       - name: Get Packages
         working-directory: packages/aft
-        run: |
-          # Patch libgit2dart (see https://github.com/dart-lang/pub/issues/3563)
-          ( cd external/libgit2dart; git apply ../libgit2dart.patch )
-          dart pub upgrade
-          mkdir linux
-          cp external/libgit2dart/linux/*.so linux
+        run: dart pub upgrade
 
       - name: Save Repo State
         working-directory: packages/aft

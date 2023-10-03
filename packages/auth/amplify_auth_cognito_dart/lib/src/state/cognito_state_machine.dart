@@ -24,6 +24,7 @@ final stateMachineBuilders = <StateMachineToken,
   SignInStateMachine.type: SignInStateMachine.new,
   SignOutStateMachine.type: SignOutStateMachine.new,
   SignUpStateMachine.type: SignUpStateMachine.new,
+  TotpSetupStateMachine.type: TotpSetupStateMachine.new,
 };
 
 /// Default defaultDependencies for [CognitoAuthStateMachine].
@@ -35,6 +36,8 @@ final defaultDependencies = <Token, DependencyBuilder>{
       AuthPluginCredentialsProviderImpl.new,
   const Token<DeviceMetadataRepository>():
       DeviceMetadataRepository.fromDependencies,
+  const Token<ASFDeviceInfoCollector>(): (_) => ASFDeviceInfoCollector(),
+  const Token<ASFContextDataProvider>(): ASFContextDataProvider.new,
 };
 
 /// {@template amplify_auth_cognito.cognito_auth_state_machine}
@@ -56,22 +59,16 @@ class CognitoAuthStateMachine
 
   @override
   StateMachineToken mapEventToMachine(AuthEvent event) {
-    if (event is ConfigurationEvent) {
-      return ConfigurationStateMachine.type;
-    } else if (event is CredentialStoreEvent) {
-      return CredentialStoreStateMachine.type;
-    } else if (event is FetchAuthSessionEvent) {
-      return FetchAuthSessionStateMachine.type;
-    } else if (event is HostedUiEvent) {
-      return HostedUiStateMachine.type;
-    } else if (event is SignInEvent) {
-      return SignInStateMachine.type;
-    } else if (event is SignOutEvent) {
-      return SignOutStateMachine.type;
-    } else if (event is SignUpEvent) {
-      return SignUpStateMachine.type;
-    }
-    throw StateError('Unhandled event: $event');
+    return switch (event) {
+      ConfigurationEvent _ => ConfigurationStateMachine.type,
+      CredentialStoreEvent _ => CredentialStoreStateMachine.type,
+      FetchAuthSessionEvent _ => FetchAuthSessionStateMachine.type,
+      HostedUiEvent _ => HostedUiStateMachine.type,
+      SignInEvent _ => SignInStateMachine.type,
+      SignOutEvent _ => SignOutStateMachine.type,
+      SignUpEvent _ => SignUpStateMachine.type,
+      TotpSetupEvent _ => TotpSetupStateMachine.type,
+    } as StateMachineToken;
   }
 
   /// Loads credentials from the credential store (which may be
@@ -130,4 +127,7 @@ class CognitoAuthStateMachine
     final authSession = await loadSession();
     return authSession.userPoolTokensResult.value;
   }
+
+  @override
+  String get runtimeTypeName => 'CognitoAuthStateMachine';
 }

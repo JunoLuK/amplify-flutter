@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_analytics_pinpoint_dart.pinpoint.model.put_events_response;
+part of 'put_events_response.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of amplify_analytics_pinpoint_dart.pinpoint.model.put_events_response;
 
 class _$PutEventsResponse extends PutEventsResponse {
   @override
-  final _i3.EventsResponse eventsResponse;
+  final EventsResponse eventsResponse;
 
   factory _$PutEventsResponse(
           [void Function(PutEventsResponseBuilder)? updates]) =>
@@ -46,15 +46,13 @@ class PutEventsResponseBuilder
     implements Builder<PutEventsResponse, PutEventsResponseBuilder> {
   _$PutEventsResponse? _$v;
 
-  _i3.EventsResponseBuilder? _eventsResponse;
-  _i3.EventsResponseBuilder get eventsResponse =>
-      _$this._eventsResponse ??= new _i3.EventsResponseBuilder();
-  set eventsResponse(_i3.EventsResponseBuilder? eventsResponse) =>
+  EventsResponseBuilder? _eventsResponse;
+  EventsResponseBuilder get eventsResponse =>
+      _$this._eventsResponse ??= new EventsResponseBuilder();
+  set eventsResponse(EventsResponseBuilder? eventsResponse) =>
       _$this._eventsResponse = eventsResponse;
 
-  PutEventsResponseBuilder() {
-    PutEventsResponse._init(this);
-  }
+  PutEventsResponseBuilder();
 
   PutEventsResponseBuilder get _$this {
     final $v = _$v;

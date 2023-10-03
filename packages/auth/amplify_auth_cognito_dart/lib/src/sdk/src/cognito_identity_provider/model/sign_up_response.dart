@@ -1,13 +1,13 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_auth_cognito_dart.cognito_identity_provider.model.sign_up_response; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:amplify_auth_cognito_dart/src/sdk/src/cognito_identity_provider/model/code_delivery_details_type.dart'
-    as _i2;
+import 'package:amplify_auth_cognito_dart/src/sdk/src/cognito_identity_provider/model/code_delivery_details_type.dart';
 import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'sign_up_response.g.dart';
 
@@ -17,14 +17,14 @@ abstract class SignUpResponse
     implements Built<SignUpResponse, SignUpResponseBuilder> {
   /// The response from the server for a registration request.
   factory SignUpResponse({
-    _i2.CodeDeliveryDetailsType? codeDeliveryDetails,
     bool? userConfirmed,
+    CodeDeliveryDetailsType? codeDeliveryDetails,
     required String userSub,
   }) {
     userConfirmed ??= false;
     return _$SignUpResponse._(
-      codeDeliveryDetails: codeDeliveryDetails,
       userConfirmed: userConfirmed,
+      codeDeliveryDetails: codeDeliveryDetails,
       userSub: userSub,
     );
   }
@@ -42,7 +42,7 @@ abstract class SignUpResponse
   ) =>
       payload;
 
-  static const List<_i3.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer<SignUpResponse>> serializers = [
     SignUpResponseAwsJson11Serializer()
   ];
 
@@ -51,41 +51,41 @@ abstract class SignUpResponse
     b.userConfirmed = false;
   }
 
-  /// The code delivery details returned by the server response to the user registration request.
-  _i2.CodeDeliveryDetailsType? get codeDeliveryDetails;
-
   /// A response from the server indicating that a user registration has been confirmed.
   bool get userConfirmed;
+
+  /// The code delivery details returned by the server response to the user registration request.
+  CodeDeliveryDetailsType? get codeDeliveryDetails;
 
   /// The UUID of the authenticated user. This isn't the same as `username`.
   String get userSub;
   @override
   List<Object?> get props => [
-        codeDeliveryDetails,
         userConfirmed,
+        codeDeliveryDetails,
         userSub,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('SignUpResponse');
-    helper.add(
-      'codeDeliveryDetails',
-      codeDeliveryDetails,
-    );
-    helper.add(
-      'userConfirmed',
-      userConfirmed,
-    );
-    helper.add(
-      'userSub',
-      userSub,
-    );
+    final helper = newBuiltValueToStringHelper('SignUpResponse')
+      ..add(
+        'userConfirmed',
+        userConfirmed,
+      )
+      ..add(
+        'codeDeliveryDetails',
+        codeDeliveryDetails,
+      )
+      ..add(
+        'userSub',
+        userSub,
+      );
     return helper.toString();
   }
 }
 
 class SignUpResponseAwsJson11Serializer
-    extends _i3.StructuredSmithySerializer<SignUpResponse> {
+    extends _i2.StructuredSmithySerializer<SignUpResponse> {
   const SignUpResponseAwsJson11Serializer() : super('SignUpResponse');
 
   @override
@@ -94,8 +94,8 @@ class SignUpResponseAwsJson11Serializer
         _$SignUpResponse,
       ];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i2.ShapeId> get supportedProtocols => const [
+        _i2.ShapeId(
           namespace: 'aws.protocols',
           shape: 'awsJson1_1',
         )
@@ -112,27 +112,25 @@ class SignUpResponseAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
-        case 'CodeDeliveryDetails':
-          if (value != null) {
-            result.codeDeliveryDetails.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i2.CodeDeliveryDetailsType),
-            ) as _i2.CodeDeliveryDetailsType));
-          }
-          break;
         case 'UserConfirmed':
           result.userConfirmed = (serializers.deserialize(
-            value!,
+            value,
             specifiedType: const FullType(bool),
           ) as bool);
-          break;
+        case 'CodeDeliveryDetails':
+          result.codeDeliveryDetails.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(CodeDeliveryDetailsType),
+          ) as CodeDeliveryDetailsType));
         case 'UserSub':
           result.userSub = (serializers.deserialize(
-            value!,
+            value,
             specifiedType: const FullType(String),
           ) as String);
-          break;
       }
     }
 
@@ -142,30 +140,32 @@ class SignUpResponseAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    SignUpResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as SignUpResponse);
-    final result = <Object?>[
+    final result$ = <Object?>[];
+    final SignUpResponse(:userConfirmed, :codeDeliveryDetails, :userSub) =
+        object;
+    result$.addAll([
       'UserConfirmed',
       serializers.serialize(
-        payload.userConfirmed,
+        userConfirmed,
         specifiedType: const FullType(bool),
       ),
       'UserSub',
       serializers.serialize(
-        payload.userSub,
+        userSub,
         specifiedType: const FullType(String),
       ),
-    ];
-    if (payload.codeDeliveryDetails != null) {
-      result
+    ]);
+    if (codeDeliveryDetails != null) {
+      result$
         ..add('CodeDeliveryDetails')
         ..add(serializers.serialize(
-          payload.codeDeliveryDetails!,
-          specifiedType: const FullType(_i2.CodeDeliveryDetailsType),
+          codeDeliveryDetails,
+          specifiedType: const FullType(CodeDeliveryDetailsType),
         ));
     }
-    return result;
+    return result$;
   }
 }

@@ -1,16 +1,14 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 // ignore_for_file: unused_element
 library rest_json1_v2.rest_json_protocol.test.test_payload_structure_operation_test_test; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v2/src/rest_json_protocol/model/payload_config.dart'
-    as _i6;
-import 'package:rest_json1_v2/src/rest_json_protocol/model/test_payload_structure_input_output.dart'
-    as _i5;
-import 'package:rest_json1_v2/src/rest_json_protocol/operation/test_payload_structure_operation.dart'
-    as _i3;
-import 'package:smithy/smithy.dart' as _i4;
+import 'package:rest_json1_v2/src/rest_json_protocol/model/payload_config.dart';
+import 'package:rest_json1_v2/src/rest_json_protocol/model/test_payload_structure_input_output.dart';
+import 'package:rest_json1_v2/src/rest_json_protocol/operation/test_payload_structure_operation.dart';
+import 'package:smithy/smithy.dart' as _i3;
 import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
@@ -19,14 +17,14 @@ void main() {
     'RestJsonHttpWithEmptyStructurePayload (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: _i3.TestPayloadStructureOperation(
+        operation: TestPayloadStructureOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'RestJsonHttpWithEmptyStructurePayload',
           documentation: 'Serializes a payload targeting an empty structure',
-          protocol: _i4.ShapeId(
+          protocol: _i3.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -60,14 +58,14 @@ void main() {
     'RestJsonTestPayloadStructure (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: _i3.TestPayloadStructureOperation(
+        operation: TestPayloadStructureOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'RestJsonTestPayloadStructure',
           documentation: 'Serializes a payload targeting a structure',
-          protocol: _i4.ShapeId(
+          protocol: _i3.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -103,7 +101,7 @@ void main() {
     'RestJsonHttpWithHeadersButNoPayload (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: _i3.TestPayloadStructureOperation(
+        operation: TestPayloadStructureOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
@@ -111,7 +109,7 @@ void main() {
           id: 'RestJsonHttpWithHeadersButNoPayload',
           documentation:
               'Serializes an request with header members but no payload',
-          protocol: _i4.ShapeId(
+          protocol: _i3.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -146,49 +144,46 @@ void main() {
   );
 }
 
-class TestPayloadStructureInputOutputRestJson1Serializer extends _i4
-    .StructuredSmithySerializer<_i5.TestPayloadStructureInputOutput> {
+class TestPayloadStructureInputOutputRestJson1Serializer
+    extends _i3.StructuredSmithySerializer<TestPayloadStructureInputOutput> {
   const TestPayloadStructureInputOutputRestJson1Serializer()
       : super('TestPayloadStructureInputOutput');
 
   @override
-  Iterable<Type> get types => const [_i5.TestPayloadStructureInputOutput];
+  Iterable<Type> get types => const [TestPayloadStructureInputOutput];
   @override
-  Iterable<_i4.ShapeId> get supportedProtocols => const [
-        _i4.ShapeId(
+  Iterable<_i3.ShapeId> get supportedProtocols => const [
+        _i3.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
       ];
   @override
-  _i5.TestPayloadStructureInputOutput deserialize(
+  TestPayloadStructureInputOutput deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = _i5.TestPayloadStructureInputOutputBuilder();
+    final result = TestPayloadStructureInputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
-        case 'payloadConfig':
-          if (value != null) {
-            result.payloadConfig.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i6.PayloadConfig),
-            ) as _i6.PayloadConfig));
-          }
-          break;
         case 'testId':
-          if (value != null) {
-            result.testId = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.testId = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
+        case 'payloadConfig':
+          result.payloadConfig.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(PayloadConfig),
+          ) as PayloadConfig));
       }
     }
 
@@ -198,7 +193,7 @@ class TestPayloadStructureInputOutputRestJson1Serializer extends _i4
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    TestPayloadStructureInputOutput object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
@@ -206,39 +201,39 @@ class TestPayloadStructureInputOutputRestJson1Serializer extends _i4
 }
 
 class PayloadConfigRestJson1Serializer
-    extends _i4.StructuredSmithySerializer<_i6.PayloadConfig> {
+    extends _i3.StructuredSmithySerializer<PayloadConfig> {
   const PayloadConfigRestJson1Serializer() : super('PayloadConfig');
 
   @override
-  Iterable<Type> get types => const [_i6.PayloadConfig];
+  Iterable<Type> get types => const [PayloadConfig];
   @override
-  Iterable<_i4.ShapeId> get supportedProtocols => const [
-        _i4.ShapeId(
+  Iterable<_i3.ShapeId> get supportedProtocols => const [
+        _i3.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
       ];
   @override
-  _i6.PayloadConfig deserialize(
+  PayloadConfig deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = _i6.PayloadConfigBuilder();
+    final result = PayloadConfigBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'data':
-          if (value != null) {
-            result.data = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(int),
-            ) as int);
-          }
-          break;
+          result.data = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int);
       }
     }
 
@@ -248,7 +243,7 @@ class PayloadConfigRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    PayloadConfig object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity_provider.model.device_secret_verifier_config_type;
+part of 'device_secret_verifier_config_type.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -61,9 +61,7 @@ class DeviceSecretVerifierConfigTypeBuilder
   String? get salt => _$this._salt;
   set salt(String? salt) => _$this._salt = salt;
 
-  DeviceSecretVerifierConfigTypeBuilder() {
-    DeviceSecretVerifierConfigType._init(this);
-  }
+  DeviceSecretVerifierConfigTypeBuilder();
 
   DeviceSecretVerifierConfigTypeBuilder get _$this {
     final $v = _$v;

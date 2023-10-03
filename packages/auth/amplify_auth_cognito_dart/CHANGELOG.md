@@ -1,3 +1,74 @@
+## 0.10.4
+
+- Minor bug fixes and improvements
+
+## 0.10.3+1
+
+### Fixes
+- fix(auth): Crash with EXC_BAD_ACCESS ([#3657](https://github.com/aws-amplify/amplify-flutter/pull/3657))
+- fix(auth): Custom auth with device tracking, no SRP ([#3652](https://github.com/aws-amplify/amplify-flutter/pull/3652))
+- fix(auth): Uncaught Hosted UI cancellation ([#3686](https://github.com/aws-amplify/amplify-flutter/pull/3686))
+
+## 0.10.3
+
+### Fixes
+- fix(auth): SDK exception mapping
+
+### Features
+- feat(auth): TOTP MFA
+
+## 0.10.2+3
+
+### Fixes
+- fix(auth): Pass `deviceKey` in custom auth challenge
+
+## 0.10.2+2
+
+- Minor bug fixes and improvements
+
+## 0.10.2+1
+
+### Fixes
+- fix(auth): Remove `nonce` usage ([#3321](https://github.com/aws-amplify/amplify-flutter/pull/3321))
+- perf(auth): Fetch auth session ([#3510](https://github.com/aws-amplify/amplify-flutter/pull/3510))
+
+## 0.10.2
+
+### Features
+- feat(auth): Enable ASF
+
+### Fixes
+- fix(codegen): Mark Cognito map as sparse ([#3386](https://github.com/aws-amplify/amplify-flutter/pull/3386))
+
+## 0.10.1+1
+
+- Minor bug fixes and improvements
+
+## 0.10.1
+
+### Fixes
+- fix(auth): `signOut` after user deletion ([#3162](https://github.com/aws-amplify/amplify-flutter/pull/3162))
+
+## 0.10.0+1
+
+### Fixes
+- fix(auth): User attribute serialization
+
+## 0.10.0
+
+### Features
+- Dart 3 support (must update Dart SDK constraint to `^3.0.0`)
+
+### Fixes
+- fix(auth): Fetch AWS credentials after Hosted UI login ([#2956](https://github.com/aws-amplify/amplify-flutter/pull/2956))
+- fix(auth): Transform network exceptions ([#2967](https://github.com/aws-amplify/amplify-flutter/pull/2967))
+
+## 0.9.0+3
+
+### Fixes
+- fix(repo): Flutter 3.3 support
+- fix: convert AuthUserAttributeKey in updateUserAttributes
+
 ## 0.9.0+2
 
 - Minor bug fixes and improvements

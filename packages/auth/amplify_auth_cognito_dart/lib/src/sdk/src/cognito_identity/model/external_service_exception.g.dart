@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity.model.external_service_exception;
+part of 'external_service_exception.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -55,9 +55,7 @@ class ExternalServiceExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  ExternalServiceExceptionBuilder() {
-    ExternalServiceException._init(this);
-  }
+  ExternalServiceExceptionBuilder();
 
   ExternalServiceExceptionBuilder get _$this {
     final $v = _$v;

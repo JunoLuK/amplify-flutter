@@ -1,12 +1,12 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v1.rest_xml_protocol.model.xml_unions_input_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_xml_v1/src/rest_xml_protocol/model/xml_union_shape.dart'
-    as _i3;
+import 'package:rest_xml_v1/src/rest_xml_protocol/model/xml_union_shape.dart';
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'xml_unions_input_output.g.dart';
@@ -16,7 +16,7 @@ abstract class XmlUnionsInputOutput
         _i1.HttpInput<XmlUnionsInputOutput>,
         _i2.AWSEquatable<XmlUnionsInputOutput>
     implements Built<XmlUnionsInputOutput, XmlUnionsInputOutputBuilder> {
-  factory XmlUnionsInputOutput({_i3.XmlUnionShape? unionValue}) {
+  factory XmlUnionsInputOutput({XmlUnionShape? unionValue}) {
     return _$XmlUnionsInputOutput._(unionValue: unionValue);
   }
 
@@ -40,24 +40,22 @@ abstract class XmlUnionsInputOutput
   ) =>
       payload;
 
-  static const List<_i1.SmithySerializer> serializers = [
+  static const List<_i1.SmithySerializer<XmlUnionsInputOutput>> serializers = [
     XmlUnionsInputOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(XmlUnionsInputOutputBuilder b) {}
-  _i3.XmlUnionShape? get unionValue;
+  XmlUnionShape? get unionValue;
   @override
   XmlUnionsInputOutput getPayload() => this;
   @override
   List<Object?> get props => [unionValue];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('XmlUnionsInputOutput');
-    helper.add(
-      'unionValue',
-      unionValue,
-    );
+    final helper = newBuiltValueToStringHelper('XmlUnionsInputOutput')
+      ..add(
+        'unionValue',
+        unionValue,
+      );
     return helper.toString();
   }
 }
@@ -87,18 +85,18 @@ class XmlUnionsInputOutputRestXmlSerializer
     final result = XmlUnionsInputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current;
+      final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      switch (key as String) {
+      if (value == null) {
+        continue;
+      }
+      switch (key) {
         case 'unionValue':
-          if (value != null) {
-            result.unionValue = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i3.XmlUnionShape),
-            ) as _i3.XmlUnionShape);
-          }
-          break;
+          result.unionValue = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(XmlUnionShape),
+          ) as XmlUnionShape);
       }
     }
 
@@ -108,19 +106,19 @@ class XmlUnionsInputOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    XmlUnionsInputOutput object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as XmlUnionsInputOutput);
-    final result = <Object?>[const _i1.XmlElementName('XmlUnionsInputOutput')];
-    if (payload.unionValue != null) {
-      result
+    final result$ = <Object?>[const _i1.XmlElementName('XmlUnionsInputOutput')];
+    final XmlUnionsInputOutput(:unionValue) = object;
+    if (unionValue != null) {
+      result$
         ..add(const _i1.XmlElementName('unionValue'))
         ..add(serializers.serialize(
-          payload.unionValue!,
-          specifiedType: const FullType(_i3.XmlUnionShape),
+          unionValue,
+          specifiedType: const FullType(XmlUnionShape),
         ));
     }
-    return result;
+    return result$;
   }
 }

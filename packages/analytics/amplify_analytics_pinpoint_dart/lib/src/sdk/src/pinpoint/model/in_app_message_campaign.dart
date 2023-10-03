@@ -1,15 +1,14 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_analytics_pinpoint_dart.pinpoint.model.in_app_message_campaign; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/in_app_campaign_schedule.dart'
-    as _i3;
-import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/in_app_message.dart'
-    as _i2;
+import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/in_app_campaign_schedule.dart';
+import 'package:amplify_analytics_pinpoint_dart/src/sdk/src/pinpoint/model/in_app_message.dart';
 import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i4;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'in_app_message_campaign.g.dart';
 
@@ -21,17 +20,13 @@ abstract class InAppMessageCampaign
   factory InAppMessageCampaign({
     String? campaignId,
     int? dailyCap,
-    _i2.InAppMessage? inAppMessage,
+    InAppMessage? inAppMessage,
     int? priority,
-    _i3.InAppCampaignSchedule? schedule,
+    InAppCampaignSchedule? schedule,
     int? sessionCap,
     int? totalCap,
     String? treatmentId,
   }) {
-    dailyCap ??= 0;
-    priority ??= 0;
-    sessionCap ??= 0;
-    totalCap ??= 0;
     return _$InAppMessageCampaign._(
       campaignId: campaignId,
       dailyCap: dailyCap,
@@ -51,38 +46,30 @@ abstract class InAppMessageCampaign
 
   const InAppMessageCampaign._();
 
-  static const List<_i4.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer<InAppMessageCampaign>> serializers = [
     InAppMessageCampaignRestJson1Serializer()
   ];
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(InAppMessageCampaignBuilder b) {
-    b.dailyCap = 0;
-    b.priority = 0;
-    b.sessionCap = 0;
-    b.totalCap = 0;
-  }
 
   /// Campaign id of the corresponding campaign.
   String? get campaignId;
 
   /// Daily cap which controls the number of times any in-app messages can be shown to the endpoint during a day.
-  int get dailyCap;
+  int? get dailyCap;
 
   /// In-app message content with all fields required for rendering an in-app message.
-  _i2.InAppMessage? get inAppMessage;
+  InAppMessage? get inAppMessage;
 
   /// Priority of the in-app message.
-  int get priority;
+  int? get priority;
 
   /// Schedule of the campaign.
-  _i3.InAppCampaignSchedule? get schedule;
+  InAppCampaignSchedule? get schedule;
 
   /// Session cap which controls the number of times an in-app message can be shown to the endpoint during an application session.
-  int get sessionCap;
+  int? get sessionCap;
 
   /// Total cap which controls the number of times an in-app message can be shown to the endpoint.
-  int get totalCap;
+  int? get totalCap;
 
   /// Treatment id of the campaign.
   String? get treatmentId;
@@ -99,45 +86,45 @@ abstract class InAppMessageCampaign
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('InAppMessageCampaign');
-    helper.add(
-      'campaignId',
-      campaignId,
-    );
-    helper.add(
-      'dailyCap',
-      dailyCap,
-    );
-    helper.add(
-      'inAppMessage',
-      inAppMessage,
-    );
-    helper.add(
-      'priority',
-      priority,
-    );
-    helper.add(
-      'schedule',
-      schedule,
-    );
-    helper.add(
-      'sessionCap',
-      sessionCap,
-    );
-    helper.add(
-      'totalCap',
-      totalCap,
-    );
-    helper.add(
-      'treatmentId',
-      treatmentId,
-    );
+    final helper = newBuiltValueToStringHelper('InAppMessageCampaign')
+      ..add(
+        'campaignId',
+        campaignId,
+      )
+      ..add(
+        'dailyCap',
+        dailyCap,
+      )
+      ..add(
+        'inAppMessage',
+        inAppMessage,
+      )
+      ..add(
+        'priority',
+        priority,
+      )
+      ..add(
+        'schedule',
+        schedule,
+      )
+      ..add(
+        'sessionCap',
+        sessionCap,
+      )
+      ..add(
+        'totalCap',
+        totalCap,
+      )
+      ..add(
+        'treatmentId',
+        treatmentId,
+      );
     return helper.toString();
   }
 }
 
 class InAppMessageCampaignRestJson1Serializer
-    extends _i4.StructuredSmithySerializer<InAppMessageCampaign> {
+    extends _i2.StructuredSmithySerializer<InAppMessageCampaign> {
   const InAppMessageCampaignRestJson1Serializer()
       : super('InAppMessageCampaign');
 
@@ -147,8 +134,8 @@ class InAppMessageCampaignRestJson1Serializer
         _$InAppMessageCampaign,
       ];
   @override
-  Iterable<_i4.ShapeId> get supportedProtocols => const [
-        _i4.ShapeId(
+  Iterable<_i2.ShapeId> get supportedProtocols => const [
+        _i2.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
@@ -165,63 +152,50 @@ class InAppMessageCampaignRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'CampaignId':
-          if (value != null) {
-            result.campaignId = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.campaignId = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
         case 'DailyCap':
           result.dailyCap = (serializers.deserialize(
-            value!,
+            value,
             specifiedType: const FullType(int),
           ) as int);
-          break;
         case 'InAppMessage':
-          if (value != null) {
-            result.inAppMessage.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i2.InAppMessage),
-            ) as _i2.InAppMessage));
-          }
-          break;
+          result.inAppMessage.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(InAppMessage),
+          ) as InAppMessage));
         case 'Priority':
           result.priority = (serializers.deserialize(
-            value!,
+            value,
             specifiedType: const FullType(int),
           ) as int);
-          break;
         case 'Schedule':
-          if (value != null) {
-            result.schedule.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i3.InAppCampaignSchedule),
-            ) as _i3.InAppCampaignSchedule));
-          }
-          break;
+          result.schedule.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(InAppCampaignSchedule),
+          ) as InAppCampaignSchedule));
         case 'SessionCap':
           result.sessionCap = (serializers.deserialize(
-            value!,
+            value,
             specifiedType: const FullType(int),
           ) as int);
-          break;
         case 'TotalCap':
           result.totalCap = (serializers.deserialize(
-            value!,
+            value,
             specifiedType: const FullType(int),
           ) as int);
-          break;
         case 'TreatmentId':
-          if (value != null) {
-            result.treatmentId = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.treatmentId = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
       }
     }
 
@@ -231,64 +205,84 @@ class InAppMessageCampaignRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    InAppMessageCampaign object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as InAppMessageCampaign);
-    final result = <Object?>[
-      'DailyCap',
-      serializers.serialize(
-        payload.dailyCap,
-        specifiedType: const FullType(int),
-      ),
-      'Priority',
-      serializers.serialize(
-        payload.priority,
-        specifiedType: const FullType(int),
-      ),
-      'SessionCap',
-      serializers.serialize(
-        payload.sessionCap,
-        specifiedType: const FullType(int),
-      ),
-      'TotalCap',
-      serializers.serialize(
-        payload.totalCap,
-        specifiedType: const FullType(int),
-      ),
-    ];
-    if (payload.campaignId != null) {
-      result
+    final result$ = <Object?>[];
+    final InAppMessageCampaign(
+      :campaignId,
+      :dailyCap,
+      :inAppMessage,
+      :priority,
+      :schedule,
+      :sessionCap,
+      :totalCap,
+      :treatmentId
+    ) = object;
+    if (campaignId != null) {
+      result$
         ..add('CampaignId')
         ..add(serializers.serialize(
-          payload.campaignId!,
+          campaignId,
           specifiedType: const FullType(String),
         ));
     }
-    if (payload.inAppMessage != null) {
-      result
+    if (dailyCap != null) {
+      result$
+        ..add('DailyCap')
+        ..add(serializers.serialize(
+          dailyCap,
+          specifiedType: const FullType(int),
+        ));
+    }
+    if (inAppMessage != null) {
+      result$
         ..add('InAppMessage')
         ..add(serializers.serialize(
-          payload.inAppMessage!,
-          specifiedType: const FullType(_i2.InAppMessage),
+          inAppMessage,
+          specifiedType: const FullType(InAppMessage),
         ));
     }
-    if (payload.schedule != null) {
-      result
+    if (priority != null) {
+      result$
+        ..add('Priority')
+        ..add(serializers.serialize(
+          priority,
+          specifiedType: const FullType(int),
+        ));
+    }
+    if (schedule != null) {
+      result$
         ..add('Schedule')
         ..add(serializers.serialize(
-          payload.schedule!,
-          specifiedType: const FullType(_i3.InAppCampaignSchedule),
+          schedule,
+          specifiedType: const FullType(InAppCampaignSchedule),
         ));
     }
-    if (payload.treatmentId != null) {
-      result
+    if (sessionCap != null) {
+      result$
+        ..add('SessionCap')
+        ..add(serializers.serialize(
+          sessionCap,
+          specifiedType: const FullType(int),
+        ));
+    }
+    if (totalCap != null) {
+      result$
+        ..add('TotalCap')
+        ..add(serializers.serialize(
+          totalCap,
+          specifiedType: const FullType(int),
+        ));
+    }
+    if (treatmentId != null) {
+      result$
         ..add('TreatmentId')
         ..add(serializers.serialize(
-          payload.treatmentId!,
+          treatmentId,
           specifiedType: const FullType(String),
         ));
     }
-    return result;
+    return result$;
   }
 }

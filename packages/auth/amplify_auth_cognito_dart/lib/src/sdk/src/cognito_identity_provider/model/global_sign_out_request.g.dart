@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity_provider.model.global_sign_out_request;
+part of 'global_sign_out_request.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -51,9 +51,7 @@ class GlobalSignOutRequestBuilder
   String? get accessToken => _$this._accessToken;
   set accessToken(String? accessToken) => _$this._accessToken = accessToken;
 
-  GlobalSignOutRequestBuilder() {
-    GlobalSignOutRequest._init(this);
-  }
+  GlobalSignOutRequestBuilder();
 
   GlobalSignOutRequestBuilder get _$this {
     final $v = _$v;

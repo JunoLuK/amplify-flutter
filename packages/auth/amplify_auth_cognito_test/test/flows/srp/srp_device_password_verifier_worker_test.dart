@@ -1,15 +1,11 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-// TODO(dnys1): Investigate DDC failures
-@Tags(['no-ddc'])
-
 import 'dart:async';
 
 import 'package:amplify_auth_cognito_dart/src/flows/constants.dart';
 import 'package:amplify_auth_cognito_dart/src/flows/srp/srp_device_password_verifier_worker.dart';
 import 'package:amplify_auth_cognito_dart/src/model/cognito_device_secrets.dart';
-import 'package:amplify_auth_cognito_dart/src/model/sign_in_parameters.dart';
 import 'package:amplify_auth_cognito_dart/src/sdk/src/cognito_identity_provider/model/respond_to_auth_challenge_request.dart';
 import 'package:amplify_auth_cognito_test/common/mock_config.dart'
     hide username;
@@ -40,11 +36,6 @@ void main() {
               ..deviceKey = deviceKey
               ..deviceGroupKey = deviceGroupKey
               ..devicePassword = devicePassword,
-          )
-          ..parameters = SignInParameters(
-            (p) => p
-              ..username = srpUsername
-              ..password = srpPassword,
           )
           ..challengeParameters = BuiltMap({
             CognitoConstants.challengeParamUsername: srpUsername,
@@ -85,11 +76,7 @@ void main() {
               ..deviceGroupKey = deviceGroupKey
               ..devicePassword = devicePassword,
           )
-          ..parameters = SignInParameters(
-            (p) => p
-              ..username = srpUsername
-              ..password = srpPassword,
-          )
+          // No challenge parameters
           ..challengeParameters = BuiltMap(<String, String>{}),
       );
       worker.add(message);

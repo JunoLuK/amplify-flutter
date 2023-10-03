@@ -21,12 +21,12 @@ abstract class ConfirmAttributeComponent extends StatefulComponent {
   }
 
   void _resendCode() {
-    resendUserAttributeConfirmationCode(
+    sendUserAttributeVerificationCode(
       key: key,
-      options: const ResendUserAttributeConfirmationCodeOptions(
-        pluginOptions: CognitoResendUserAttributeConfirmationCodePluginOptions(
+      options: const SendUserAttributeVerificationCodeOptions(
+        pluginOptions: CognitoSendUserAttributeVerificationCodePluginOptions(
           clientMetadata: {
-            'method': 'resendUserAttributeConfirmationCode',
+            'method': 'sendUserAttributeVerificationCode',
           },
         ),
       ),
@@ -67,13 +67,13 @@ abstract class ConfirmAttributeComponent extends StatefulComponent {
                   onChanged: (value) {
                     _confirmationCode = value ?? '';
                   },
-                )
+                ),
               ],
             ),
           ],
         ),
         ButtonComponent(innerHtml: 'Confirm', onClick: _confirm),
-        ButtonComponent(innerHtml: 'Resend code', onClick: _resendCode)
+        ButtonComponent(innerHtml: 'Resend code', onClick: _resendCode),
       ],
     );
   }

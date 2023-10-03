@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity_provider.model.respond_to_auth_challenge_request;
+part of 'respond_to_auth_challenge_request.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,37 +8,37 @@ part of amplify_auth_cognito_dart.cognito_identity_provider.model.respond_to_aut
 
 class _$RespondToAuthChallengeRequest extends RespondToAuthChallengeRequest {
   @override
-  final _i3.AnalyticsMetadataType? analyticsMetadata;
-  @override
-  final _i4.ChallengeNameType challengeName;
-  @override
-  final _i6.BuiltMap<String, String>? challengeResponses;
-  @override
   final String clientId;
   @override
-  final _i6.BuiltMap<String, String>? clientMetadata;
+  final ChallengeNameType challengeName;
   @override
   final String? session;
   @override
-  final _i5.UserContextDataType? userContextData;
+  final _i3.BuiltMap<String, String>? challengeResponses;
+  @override
+  final AnalyticsMetadataType? analyticsMetadata;
+  @override
+  final UserContextDataType? userContextData;
+  @override
+  final _i3.BuiltMap<String, String>? clientMetadata;
 
   factory _$RespondToAuthChallengeRequest(
           [void Function(RespondToAuthChallengeRequestBuilder)? updates]) =>
       (new RespondToAuthChallengeRequestBuilder()..update(updates))._build();
 
   _$RespondToAuthChallengeRequest._(
-      {this.analyticsMetadata,
+      {required this.clientId,
       required this.challengeName,
-      this.challengeResponses,
-      required this.clientId,
-      this.clientMetadata,
       this.session,
-      this.userContextData})
+      this.challengeResponses,
+      this.analyticsMetadata,
+      this.userContextData,
+      this.clientMetadata})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        challengeName, r'RespondToAuthChallengeRequest', 'challengeName');
-    BuiltValueNullFieldError.checkNotNull(
         clientId, r'RespondToAuthChallengeRequest', 'clientId');
+    BuiltValueNullFieldError.checkNotNull(
+        challengeName, r'RespondToAuthChallengeRequest', 'challengeName');
   }
 
   @override
@@ -54,25 +54,25 @@ class _$RespondToAuthChallengeRequest extends RespondToAuthChallengeRequest {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is RespondToAuthChallengeRequest &&
-        analyticsMetadata == other.analyticsMetadata &&
-        challengeName == other.challengeName &&
-        challengeResponses == other.challengeResponses &&
         clientId == other.clientId &&
-        clientMetadata == other.clientMetadata &&
+        challengeName == other.challengeName &&
         session == other.session &&
-        userContextData == other.userContextData;
+        challengeResponses == other.challengeResponses &&
+        analyticsMetadata == other.analyticsMetadata &&
+        userContextData == other.userContextData &&
+        clientMetadata == other.clientMetadata;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, analyticsMetadata.hashCode);
-    _$hash = $jc(_$hash, challengeName.hashCode);
-    _$hash = $jc(_$hash, challengeResponses.hashCode);
     _$hash = $jc(_$hash, clientId.hashCode);
-    _$hash = $jc(_$hash, clientMetadata.hashCode);
+    _$hash = $jc(_$hash, challengeName.hashCode);
     _$hash = $jc(_$hash, session.hashCode);
+    _$hash = $jc(_$hash, challengeResponses.hashCode);
+    _$hash = $jc(_$hash, analyticsMetadata.hashCode);
     _$hash = $jc(_$hash, userContextData.hashCode);
+    _$hash = $jc(_$hash, clientMetadata.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -84,57 +84,55 @@ class RespondToAuthChallengeRequestBuilder
             RespondToAuthChallengeRequestBuilder> {
   _$RespondToAuthChallengeRequest? _$v;
 
-  _i3.AnalyticsMetadataTypeBuilder? _analyticsMetadata;
-  _i3.AnalyticsMetadataTypeBuilder get analyticsMetadata =>
-      _$this._analyticsMetadata ??= new _i3.AnalyticsMetadataTypeBuilder();
-  set analyticsMetadata(_i3.AnalyticsMetadataTypeBuilder? analyticsMetadata) =>
-      _$this._analyticsMetadata = analyticsMetadata;
-
-  _i4.ChallengeNameType? _challengeName;
-  _i4.ChallengeNameType? get challengeName => _$this._challengeName;
-  set challengeName(_i4.ChallengeNameType? challengeName) =>
-      _$this._challengeName = challengeName;
-
-  _i6.MapBuilder<String, String>? _challengeResponses;
-  _i6.MapBuilder<String, String> get challengeResponses =>
-      _$this._challengeResponses ??= new _i6.MapBuilder<String, String>();
-  set challengeResponses(_i6.MapBuilder<String, String>? challengeResponses) =>
-      _$this._challengeResponses = challengeResponses;
-
   String? _clientId;
   String? get clientId => _$this._clientId;
   set clientId(String? clientId) => _$this._clientId = clientId;
 
-  _i6.MapBuilder<String, String>? _clientMetadata;
-  _i6.MapBuilder<String, String> get clientMetadata =>
-      _$this._clientMetadata ??= new _i6.MapBuilder<String, String>();
-  set clientMetadata(_i6.MapBuilder<String, String>? clientMetadata) =>
-      _$this._clientMetadata = clientMetadata;
+  ChallengeNameType? _challengeName;
+  ChallengeNameType? get challengeName => _$this._challengeName;
+  set challengeName(ChallengeNameType? challengeName) =>
+      _$this._challengeName = challengeName;
 
   String? _session;
   String? get session => _$this._session;
   set session(String? session) => _$this._session = session;
 
-  _i5.UserContextDataTypeBuilder? _userContextData;
-  _i5.UserContextDataTypeBuilder get userContextData =>
-      _$this._userContextData ??= new _i5.UserContextDataTypeBuilder();
-  set userContextData(_i5.UserContextDataTypeBuilder? userContextData) =>
+  _i3.MapBuilder<String, String>? _challengeResponses;
+  _i3.MapBuilder<String, String> get challengeResponses =>
+      _$this._challengeResponses ??= new _i3.MapBuilder<String, String>();
+  set challengeResponses(_i3.MapBuilder<String, String>? challengeResponses) =>
+      _$this._challengeResponses = challengeResponses;
+
+  AnalyticsMetadataTypeBuilder? _analyticsMetadata;
+  AnalyticsMetadataTypeBuilder get analyticsMetadata =>
+      _$this._analyticsMetadata ??= new AnalyticsMetadataTypeBuilder();
+  set analyticsMetadata(AnalyticsMetadataTypeBuilder? analyticsMetadata) =>
+      _$this._analyticsMetadata = analyticsMetadata;
+
+  UserContextDataTypeBuilder? _userContextData;
+  UserContextDataTypeBuilder get userContextData =>
+      _$this._userContextData ??= new UserContextDataTypeBuilder();
+  set userContextData(UserContextDataTypeBuilder? userContextData) =>
       _$this._userContextData = userContextData;
 
-  RespondToAuthChallengeRequestBuilder() {
-    RespondToAuthChallengeRequest._init(this);
-  }
+  _i3.MapBuilder<String, String>? _clientMetadata;
+  _i3.MapBuilder<String, String> get clientMetadata =>
+      _$this._clientMetadata ??= new _i3.MapBuilder<String, String>();
+  set clientMetadata(_i3.MapBuilder<String, String>? clientMetadata) =>
+      _$this._clientMetadata = clientMetadata;
+
+  RespondToAuthChallengeRequestBuilder();
 
   RespondToAuthChallengeRequestBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _analyticsMetadata = $v.analyticsMetadata?.toBuilder();
-      _challengeName = $v.challengeName;
-      _challengeResponses = $v.challengeResponses?.toBuilder();
       _clientId = $v.clientId;
-      _clientMetadata = $v.clientMetadata?.toBuilder();
+      _challengeName = $v.challengeName;
       _session = $v.session;
+      _challengeResponses = $v.challengeResponses?.toBuilder();
+      _analyticsMetadata = $v.analyticsMetadata?.toBuilder();
       _userContextData = $v.userContextData?.toBuilder();
+      _clientMetadata = $v.clientMetadata?.toBuilder();
       _$v = null;
     }
     return this;
@@ -159,31 +157,28 @@ class RespondToAuthChallengeRequestBuilder
     try {
       _$result = _$v ??
           new _$RespondToAuthChallengeRequest._(
-              analyticsMetadata: _analyticsMetadata?.build(),
+              clientId: BuiltValueNullFieldError.checkNotNull(
+                  clientId, r'RespondToAuthChallengeRequest', 'clientId'),
               challengeName: BuiltValueNullFieldError.checkNotNull(
                   challengeName,
                   r'RespondToAuthChallengeRequest',
                   'challengeName'),
-              challengeResponses: _challengeResponses?.build(),
-              clientId: BuiltValueNullFieldError.checkNotNull(
-                  clientId, r'RespondToAuthChallengeRequest', 'clientId'),
-              clientMetadata: _clientMetadata?.build(),
               session: session,
-              userContextData: _userContextData?.build());
+              challengeResponses: _challengeResponses?.build(),
+              analyticsMetadata: _analyticsMetadata?.build(),
+              userContextData: _userContextData?.build(),
+              clientMetadata: _clientMetadata?.build());
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'analyticsMetadata';
-        _analyticsMetadata?.build();
-
         _$failedField = 'challengeResponses';
         _challengeResponses?.build();
-
-        _$failedField = 'clientMetadata';
-        _clientMetadata?.build();
-
+        _$failedField = 'analyticsMetadata';
+        _analyticsMetadata?.build();
         _$failedField = 'userContextData';
         _userContextData?.build();
+        _$failedField = 'clientMetadata';
+        _clientMetadata?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'RespondToAuthChallengeRequest', _$failedField, e.toString());

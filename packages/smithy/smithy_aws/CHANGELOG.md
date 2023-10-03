@@ -1,3 +1,35 @@
+## 0.5.1
+
+### Features
+- feat(smithy): `ec2Query` protocol
+
+## 0.5.0+4
+
+- Minor bug fixes and improvements
+
+## 0.5.0+3
+
+- Minor bug fixes and improvements
+
+## 0.5.0+2
+
+- Minor bug fixes and improvements
+
+## 0.5.0+1
+
+- Minor bug fixes and improvements
+
+## 0.5.0
+
+### Features
+- Dart 3 support (must update Dart SDK constraint to `^3.0.0`)
+- feat(smithy): `awsQuery` protocol support
+
+## 0.4.1+5
+
+### Fixes
+- fix(repo): Flutter 3.3 support
+
 ## 0.4.1+4
 
 - Minor bug fixes and improvements

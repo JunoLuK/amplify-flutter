@@ -1,12 +1,12 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_protocol.model.post_union_with_json_name_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v2/src/rest_json_protocol/model/union_with_json_name.dart'
-    as _i3;
+import 'package:rest_json1_v2/src/rest_json_protocol/model/union_with_json_name.dart';
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'post_union_with_json_name_input.g.dart';
@@ -17,7 +17,7 @@ abstract class PostUnionWithJsonNameInput
         _i2.AWSEquatable<PostUnionWithJsonNameInput>
     implements
         Built<PostUnionWithJsonNameInput, PostUnionWithJsonNameInputBuilder> {
-  factory PostUnionWithJsonNameInput({_i3.UnionWithJsonName? value}) {
+  factory PostUnionWithJsonNameInput({UnionWithJsonName? value}) {
     return _$PostUnionWithJsonNameInput._(value: value);
   }
 
@@ -34,24 +34,21 @@ abstract class PostUnionWithJsonNameInput
   }) =>
       payload;
 
-  static const List<_i1.SmithySerializer> serializers = [
-    PostUnionWithJsonNameInputRestJson1Serializer()
-  ];
+  static const List<_i1.SmithySerializer<PostUnionWithJsonNameInput>>
+      serializers = [PostUnionWithJsonNameInputRestJson1Serializer()];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(PostUnionWithJsonNameInputBuilder b) {}
-  _i3.UnionWithJsonName? get value;
+  UnionWithJsonName? get value;
   @override
   PostUnionWithJsonNameInput getPayload() => this;
   @override
   List<Object?> get props => [value];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('PostUnionWithJsonNameInput');
-    helper.add(
-      'value',
-      value,
-    );
+    final helper = newBuiltValueToStringHelper('PostUnionWithJsonNameInput')
+      ..add(
+        'value',
+        value,
+      );
     return helper.toString();
   }
 }
@@ -85,15 +82,15 @@ class PostUnionWithJsonNameInputRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'value':
-          if (value != null) {
-            result.value = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i3.UnionWithJsonName),
-            ) as _i3.UnionWithJsonName);
-          }
-          break;
+          result.value = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(UnionWithJsonName),
+          ) as UnionWithJsonName);
       }
     }
 
@@ -103,19 +100,19 @@ class PostUnionWithJsonNameInputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    PostUnionWithJsonNameInput object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as PostUnionWithJsonNameInput);
-    final result = <Object?>[];
-    if (payload.value != null) {
-      result
+    final result$ = <Object?>[];
+    final PostUnionWithJsonNameInput(:value) = object;
+    if (value != null) {
+      result$
         ..add('value')
         ..add(serializers.serialize(
-          payload.value!,
-          specifiedType: const FullType(_i3.UnionWithJsonName),
+          value,
+          specifiedType: const FullType(UnionWithJsonName),
         ));
     }
-    return result;
+    return result$;
   }
 }

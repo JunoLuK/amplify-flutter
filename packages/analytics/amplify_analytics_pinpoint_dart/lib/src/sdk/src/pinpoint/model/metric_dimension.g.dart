@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_analytics_pinpoint_dart.pinpoint.model.metric_dimension;
+part of 'metric_dimension.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -61,9 +61,7 @@ class MetricDimensionBuilder
   double? get value => _$this._value;
   set value(double? value) => _$this._value = value;
 
-  MetricDimensionBuilder() {
-    MetricDimension._init(this);
-  }
+  MetricDimensionBuilder();
 
   MetricDimensionBuilder get _$this {
     final $v = _$v;

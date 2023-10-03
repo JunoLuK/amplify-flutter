@@ -153,7 +153,8 @@ abstract class AuthPluginInterface extends AmplifyPluginInterface {
     );
   }
 
-  /// {@macro amplify_core.amplify_auth_category.resend_user_attribute_confirmation_code}
+  /// {@macro amplify_core.amplify_auth_category.send_attribute_verification_code}
+  @Deprecated('Use sendUserAttributeVerificationCode instead.')
   Future<ResendUserAttributeConfirmationCodeResult>
       resendUserAttributeConfirmationCode({
     required AuthUserAttributeKey userAttributeKey,
@@ -162,6 +163,32 @@ abstract class AuthPluginInterface extends AmplifyPluginInterface {
     throw UnimplementedError(
       'resendUserAttributeConfirmationCode() has not been implemented.',
     );
+  }
+
+  /// {@macro amplify_core.amplify_auth_category.send_attribute_verification_code}
+  Future<SendUserAttributeVerificationCodeResult>
+      sendUserAttributeVerificationCode({
+    required AuthUserAttributeKey userAttributeKey,
+    SendUserAttributeVerificationCodeOptions? options,
+  }) {
+    throw UnimplementedError(
+      'sendUserAttributeVerificationCode() has not been implemented.',
+    );
+  }
+
+  /// {@macro amplify_core.amplify_auth_category.set_up_totp}
+  Future<TotpSetupDetails> setUpTotp({
+    TotpSetupOptions? options,
+  }) {
+    throw UnimplementedError('setUpTotp() has not been implemented.');
+  }
+
+  /// {@macro amplify_core.amplify_auth_category.verify_totp_setup}
+  Future<void> verifyTotpSetup(
+    String totpCode, {
+    VerifyTotpSetupOptions? options,
+  }) {
+    throw UnimplementedError('verifyTotpSetup() has not been implemented.');
   }
 
   /// {@macro amplify_core.amplify_auth_category.remember_device}

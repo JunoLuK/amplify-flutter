@@ -1,0 +1,18 @@
+name: Launch Android emulator
+description: Launches an Android emulator and caches it for further action runs
+inputs:
+  api-level:
+    description: "API level of the platform and system image - e.g. 23 for Android Marshmallow, 29 for Android 10"
+    default: "33"
+  target:
+    description: "target of the system image - default, google_apis, google_apis_playstore, aosp_atd, google_atd, android-wear, android-wear-cn, android-tv or google-tv"
+    default: google_apis
+  abi:
+    description: "ABI of the Android system image - x86, x86_64 or arm64-v8a. Defaults to the host architecture."
+  # TODO(dnys1): Can this be removed so we can use a separate step?
+  script:
+    required: true
+    description: The script to run once the emulator is booted.
+runs:
+  using: "node16"
+  main: "dist/index.mjs"

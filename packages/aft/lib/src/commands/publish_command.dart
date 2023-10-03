@@ -5,43 +5,66 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:aft/aft.dart';
+import 'package:aft/src/constraints_checker.dart';
 import 'package:aft/src/options/glob_options.dart';
 import 'package:aws_common/aws_common.dart';
+import 'package:collection/collection.dart';
 import 'package:graphs/graphs.dart';
 import 'package:path/path.dart' as p;
 
-/// Command to publish all Dart/Flutter packages in the repo.
-class PublishCommand extends AmplifyCommand with GlobOptions {
-  PublishCommand() {
-    argParser
-      ..addFlag(
-        'force',
-        abbr: 'f',
-        help: 'Ignores errors in pre-publishing commands and publishes '
-            'without prompt',
-        negatable: false,
-      )
-      ..addFlag(
-        'dry-run',
-        help: 'Passes `--dry-run` flag to `dart` or `flutter` publish command',
-        negatable: false,
+/// Helpers for commands which publish packages to `pub.dev`.
+mixin PublishHelpers on AmplifyCommand {
+  bool get dryRun;
+  bool get force;
+
+  /// Gathers the subset of packages which are publishable and whose latest
+  /// version is not already available on `pub.dev`.
+  Future<List<PackageInfo>> unpublishedPackages(
+    List<PackageInfo> publishablePackages,
+  ) async {
+    final unpublishedPackages = (await Future.wait([
+      for (final package in publishablePackages) checkPublishable(package),
+    ]))
+        .whereType<PackageInfo>()
+        .toList();
+
+    final constraintsChecker = PublishConstraintsChecker(
+      dryRun ? ConstraintsAction.update : ConstraintsAction.check,
+      repo.getPackageGraph(includeDevDependencies: true),
+    );
+    for (final package in unpublishedPackages) {
+      constraintsChecker.checkConstraints(package);
+    }
+    final mismatchedDependencies = constraintsChecker.mismatchedDependencies;
+    if (mismatchedDependencies.isNotEmpty) {
+      for (final mismatched in mismatchedDependencies) {
+        final (:package, :dependencyName, :message) = mismatched;
+        logger.error(
+          '${package.path}\n'
+          'Mismatched `$dependencyName`:\n'
+          '$message\n',
+        );
+      }
+      exit(1);
+    }
+
+    try {
+      sortPackagesTopologically<PackageInfo>(
+        unpublishedPackages,
+        (pkg) => pkg.pubspecInfo.pubspec,
       );
+    } on CycleException<dynamic> {
+      if (!force) {
+        exitError('Cannot sort packages with inter-dependencies.');
+      }
+    }
+
+    return unpublishedPackages;
   }
-
-  late final bool force = argResults!['force'] as bool;
-  late final bool dryRun = argResults!['dry-run'] as bool;
-
-  @override
-  String get description =>
-      'Publishes all packages in the Amplify Flutter repo which '
-      'need publishing.';
-
-  @override
-  String get name => 'publish';
 
   /// Checks if [package] can be published based on whether the local version
   /// is newer than the one published to `pub.dev`.
-  Future<PackageInfo?> _checkPublishable(PackageInfo package) async {
+  Future<PackageInfo?> checkPublishable(PackageInfo package) async {
     final publishTo = package.pubspecInfo.pubspec.publishTo;
     if (publishTo == 'none') {
       return null;
@@ -57,8 +80,14 @@ class PublishCommand extends AmplifyCommand with GlobOptions {
 
     try {
       final versionInfo = await resolveVersionInfo(package.name);
-      final publishedVersion =
-          versionInfo?.latestPrerelease ?? versionInfo?.latestVersion;
+      final publishedVersion = maxBy(
+        [
+          if (versionInfo?.latestPrerelease != null)
+            versionInfo!.latestPrerelease!,
+          if (versionInfo?.latestVersion != null) versionInfo!.latestVersion!,
+        ],
+        (v) => v,
+      );
       if (publishedVersion == null) {
         logger.info('No published info for package ${package.name}');
         return package;
@@ -78,7 +107,7 @@ class PublishCommand extends AmplifyCommand with GlobOptions {
 
   /// Runs pre-publish operations for [package], most importantly any necessary
   /// `build_runner` tasks.
-  Future<void> _prePublish(PackageInfo package) async {
+  Future<void> prePublish(PackageInfo package) async {
     logger.info('Running pre-publish checks for ${package.name}...');
     if (!dryRun) {
       // Remove any overrides so that `pub` commands resolve against
@@ -120,10 +149,16 @@ class PublishCommand extends AmplifyCommand with GlobOptions {
   static final _validationPreReleaseRegex = RegExp(
     r'\* Packages dependent on a pre-release of another package should themselves be published as a pre-release version\.',
   );
+  static final _validationPreReleaseSdkRegex = RegExp(
+    r'\* Packages with an SDK constraint on a pre-release of the Dart SDK should themselves be published as a pre-release version\.',
+  );
+  static final _validationNonDevOverridesRegex = RegExp(
+    r'\* Non-dev dependencies are overridden in pubspec_overrides\.yaml\.',
+  );
   static final _validationErrorRegex = RegExp(r'^\s*\*');
 
   /// Publishes the package using `pub`.
-  Future<void> _publish(PackageInfo package) async {
+  Future<void> publish(PackageInfo package) async {
     logger.info('Publishing ${package.name}${dryRun ? ' (dry run)' : ''}...');
     final publishCmd = await Process.start(
       package.flavor.entrypoint,
@@ -154,7 +189,9 @@ class PublishCommand extends AmplifyCommand with GlobOptions {
           .where(_validationErrorRegex.hasMatch)
           .where((line) => !_validationConstraintRegex.hasMatch(line))
           .where((line) => !_validationPreReleaseRegex.hasMatch(line))
-          .where((line) => !_validationCheckedInFilesRegex.hasMatch(line));
+          .where((line) => !_validationCheckedInFilesRegex.hasMatch(line))
+          .where((line) => !_validationNonDevOverridesRegex.hasMatch(line))
+          .where((line) => !_validationPreReleaseSdkRegex.hasMatch(line));
       if (failures.isNotEmpty) {
         logger
           ..error(
@@ -166,21 +203,49 @@ class PublishCommand extends AmplifyCommand with GlobOptions {
       }
     }
   }
+}
+
+/// Command to publish all Dart/Flutter packages in the repo.
+class PublishCommand extends AmplifyCommand with GlobOptions, PublishHelpers {
+  PublishCommand() {
+    argParser
+      ..addFlag(
+        'force',
+        abbr: 'f',
+        help: 'Ignores errors in pre-publishing commands and publishes '
+            'without prompt',
+        negatable: false,
+      )
+      ..addFlag(
+        'dry-run',
+        help: 'Passes `--dry-run` flag to `dart` or `flutter` publish command',
+        negatable: false,
+      );
+  }
+
+  @override
+  late final bool force = argResults!['force'] as bool;
+
+  @override
+  late final bool dryRun = argResults!['dry-run'] as bool;
+
+  @override
+  String get description =>
+      'Publishes all packages in the Amplify Flutter repo which '
+      'need publishing.';
+
+  @override
+  String get name => 'publish';
 
   @override
   Future<void> run() async {
     await super.run();
     // Gather packages which can be published.
-    final publishablePackages = repo
-        .publishablePackages(commandPackages)
-        .where((pkg) => pkg.pubspecInfo.pubspec.publishTo != 'none');
+    final publishablePackages = repo.publishablePackages(commandPackages);
 
     // Gather packages which need to be published.
-    final packagesNeedingPublish = (await Future.wait([
-      for (final package in publishablePackages) _checkPublishable(package),
-    ]))
-        .whereType<PackageInfo>()
-        .toList();
+    final packagesNeedingPublish =
+        await unpublishedPackages(publishablePackages);
 
     // Publishable packages which are being held back.
     final unpublishablePackages = publishablePackages.where(
@@ -190,17 +255,6 @@ class PublishCommand extends AmplifyCommand with GlobOptions {
     if (packagesNeedingPublish.isEmpty) {
       logger.info('No packages need publishing!');
       return;
-    }
-
-    try {
-      sortPackagesTopologically<PackageInfo>(
-        packagesNeedingPublish,
-        (pkg) => pkg.pubspecInfo.pubspec,
-      );
-    } on CycleException<dynamic> {
-      if (!force) {
-        exitError('Cannot sort packages with inter-dependencies.');
-      }
     }
 
     stdout
@@ -232,8 +286,8 @@ class PublishCommand extends AmplifyCommand with GlobOptions {
     // some packages will not be published, it also means that the command
     // can be re-run to pick up where it left off.
     for (final package in packagesNeedingPublish) {
-      await _prePublish(package);
-      await _publish(package);
+      await prePublish(package);
+      await publish(package);
     }
 
     stdout.writeln(
@@ -249,11 +303,19 @@ Future<void> runBuildRunner(
   PackageInfo package, {
   required AWSLogger logger,
   required bool verbose,
+  bool force = false,
 }) async {
-  if (!package.needsBuildRunner) {
+  if (!package.needsBuildRunner && !force) {
     return;
   }
-  logger.info('Running build_runner for ${package.name}...');
+  // Run `pub get` to ensure `build_runner` is available.
+  await runPub(
+    package.flavor,
+    ['get'],
+    package,
+    verbose: verbose,
+  );
+  logger.debug('Running build_runner for ${package.name}...');
   final buildRunnerCmd = await Process.start(
     package.flavor.entrypoint,
     [
@@ -261,9 +323,9 @@ Future<void> runBuildRunner(
       'run',
       'build_runner',
       'build',
-      if (verbose) '--verbose',
       '--delete-conflicting-outputs',
     ],
+    runInShell: true,
     workingDirectory: package.path,
   );
   final output = StringBuffer();

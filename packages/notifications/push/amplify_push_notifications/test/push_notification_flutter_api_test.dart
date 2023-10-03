@@ -9,14 +9,16 @@ import 'package:mockito/mockito.dart';
 import 'package:os_detect/override.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'amplify_push_noitfications_impl_test.mocks.dart';
+import 'amplify_push_notifications_impl_test.mocks.dart';
 import 'test_data/fake_notification_messges.dart';
 import 'test_data/test_amplify_push_notifications_impl.dart';
 
 void testGlobalCallbackFunction(PushNotificationMessage pushMessage) {
   expect(
     pushMessage.title,
-    PushNotificationMessage.fromJson(standardAndroidPushMessage).title,
+    PushNotificationMessage.fromJson(
+      standardAndroidPushMessage.cast(),
+    ).title,
   );
 }
 
@@ -31,13 +33,16 @@ void main() {
   });
 
   test('should queue events when the serviceClient is not ready', () {
-    flutterApi.onNotificationReceivedInBackground(standardAndroidPushMessage);
+    flutterApi.onNotificationReceivedInBackground(
+      standardAndroidPushMessage.cast(),
+    );
     expect(flutterApi.eventQueue.length, 1);
   });
 
   test('should flush events when the serviceClient is ready', () async {
-    await flutterApi
-        .onNotificationReceivedInBackground(standardAndroidPushMessage);
+    await flutterApi.onNotificationReceivedInBackground(
+      standardAndroidPushMessage.cast(),
+    );
     expect(flutterApi.eventQueue.length, 1);
     final mockServiceClient = MockServiceProviderClient();
     when(
@@ -57,15 +62,18 @@ void main() {
     void externalCallback(PushNotificationMessage pushMessage) {
       expect(
         pushMessage.title,
-        PushNotificationMessage.fromJson(standardAndroidPushMessage).title,
+        PushNotificationMessage.fromJson(
+          standardAndroidPushMessage.cast(),
+        ).title,
       );
     }
 
     flutterApi.registerOnReceivedInBackgroundCallback(
       expectAsync1(externalCallback),
     );
-    await flutterApi
-        .onNotificationReceivedInBackground(standardAndroidPushMessage);
+    await flutterApi.onNotificationReceivedInBackground(
+      standardAndroidPushMessage.cast(),
+    );
   });
 
   test(
@@ -86,8 +94,9 @@ void main() {
         await Future.delayed(const Duration(microseconds: 1), () {});
         expect(pref.containsKey(externalHandleKey), true);
 
-        await flutterApi
-            .onNotificationReceivedInBackground(standardAndroidPushMessage);
+        await flutterApi.onNotificationReceivedInBackground(
+          standardAndroidPushMessage.cast(),
+        );
       },
     );
   });

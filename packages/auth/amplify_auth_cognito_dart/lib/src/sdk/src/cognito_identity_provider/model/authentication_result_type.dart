@@ -1,13 +1,13 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_auth_cognito_dart.cognito_identity_provider.model.authentication_result_type; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:amplify_auth_cognito_dart/src/sdk/src/cognito_identity_provider/model/new_device_metadata_type.dart'
-    as _i2;
+import 'package:amplify_auth_cognito_dart/src/sdk/src/cognito_identity_provider/model/new_device_metadata_type.dart';
 import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'authentication_result_type.g.dart';
 
@@ -20,19 +20,19 @@ abstract class AuthenticationResultType
   factory AuthenticationResultType({
     String? accessToken,
     int? expiresIn,
-    String? idToken,
-    _i2.NewDeviceMetadataType? newDeviceMetadata,
-    String? refreshToken,
     String? tokenType,
+    String? refreshToken,
+    String? idToken,
+    NewDeviceMetadataType? newDeviceMetadata,
   }) {
     expiresIn ??= 0;
     return _$AuthenticationResultType._(
       accessToken: accessToken,
       expiresIn: expiresIn,
+      tokenType: tokenType,
+      refreshToken: refreshToken,
       idToken: idToken,
       newDeviceMetadata: newDeviceMetadata,
-      refreshToken: refreshToken,
-      tokenType: tokenType,
     );
   }
 
@@ -43,9 +43,8 @@ abstract class AuthenticationResultType
 
   const AuthenticationResultType._();
 
-  static const List<_i3.SmithySerializer> serializers = [
-    AuthenticationResultTypeAwsJson11Serializer()
-  ];
+  static const List<_i2.SmithySerializer<AuthenticationResultType>>
+      serializers = [AuthenticationResultTypeAwsJson11Serializer()];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(AuthenticationResultTypeBuilder b) {
@@ -58,59 +57,59 @@ abstract class AuthenticationResultType
   /// The expiration period of the authentication result in seconds.
   int get expiresIn;
 
-  /// The ID token.
-  String? get idToken;
-
-  /// The new device metadata from an authentication result.
-  _i2.NewDeviceMetadataType? get newDeviceMetadata;
+  /// The token type.
+  String? get tokenType;
 
   /// The refresh token.
   String? get refreshToken;
 
-  /// The token type.
-  String? get tokenType;
+  /// The ID token.
+  String? get idToken;
+
+  /// The new device metadata from an authentication result.
+  NewDeviceMetadataType? get newDeviceMetadata;
   @override
   List<Object?> get props => [
         accessToken,
         expiresIn,
+        tokenType,
+        refreshToken,
         idToken,
         newDeviceMetadata,
-        refreshToken,
-        tokenType,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('AuthenticationResultType');
-    helper.add(
-      'accessToken',
-      '***SENSITIVE***',
-    );
-    helper.add(
-      'expiresIn',
-      expiresIn,
-    );
-    helper.add(
-      'idToken',
-      '***SENSITIVE***',
-    );
-    helper.add(
-      'newDeviceMetadata',
-      newDeviceMetadata,
-    );
-    helper.add(
-      'refreshToken',
-      '***SENSITIVE***',
-    );
-    helper.add(
-      'tokenType',
-      tokenType,
-    );
+    final helper = newBuiltValueToStringHelper('AuthenticationResultType')
+      ..add(
+        'accessToken',
+        '***SENSITIVE***',
+      )
+      ..add(
+        'expiresIn',
+        expiresIn,
+      )
+      ..add(
+        'tokenType',
+        tokenType,
+      )
+      ..add(
+        'refreshToken',
+        '***SENSITIVE***',
+      )
+      ..add(
+        'idToken',
+        '***SENSITIVE***',
+      )
+      ..add(
+        'newDeviceMetadata',
+        newDeviceMetadata,
+      );
     return helper.toString();
   }
 }
 
 class AuthenticationResultTypeAwsJson11Serializer
-    extends _i3.StructuredSmithySerializer<AuthenticationResultType> {
+    extends _i2.StructuredSmithySerializer<AuthenticationResultType> {
   const AuthenticationResultTypeAwsJson11Serializer()
       : super('AuthenticationResultType');
 
@@ -120,8 +119,8 @@ class AuthenticationResultTypeAwsJson11Serializer
         _$AuthenticationResultType,
       ];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i2.ShapeId> get supportedProtocols => const [
+        _i2.ShapeId(
           namespace: 'aws.protocols',
           shape: 'awsJson1_1',
         )
@@ -138,53 +137,40 @@ class AuthenticationResultTypeAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'AccessToken':
-          if (value != null) {
-            result.accessToken = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.accessToken = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
         case 'ExpiresIn':
           result.expiresIn = (serializers.deserialize(
-            value!,
+            value,
             specifiedType: const FullType(int),
           ) as int);
-          break;
-        case 'IdToken':
-          if (value != null) {
-            result.idToken = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
-        case 'NewDeviceMetadata':
-          if (value != null) {
-            result.newDeviceMetadata.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i2.NewDeviceMetadataType),
-            ) as _i2.NewDeviceMetadataType));
-          }
-          break;
-        case 'RefreshToken':
-          if (value != null) {
-            result.refreshToken = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
         case 'TokenType':
-          if (value != null) {
-            result.tokenType = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.tokenType = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
+        case 'RefreshToken':
+          result.refreshToken = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
+        case 'IdToken':
+          result.idToken = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
+        case 'NewDeviceMetadata':
+          result.newDeviceMetadata.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(NewDeviceMetadataType),
+          ) as NewDeviceMetadataType));
       }
     }
 
@@ -194,57 +180,65 @@ class AuthenticationResultTypeAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    AuthenticationResultType object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as AuthenticationResultType);
-    final result = <Object?>[
+    final result$ = <Object?>[];
+    final AuthenticationResultType(
+      :accessToken,
+      :expiresIn,
+      :tokenType,
+      :refreshToken,
+      :idToken,
+      :newDeviceMetadata
+    ) = object;
+    result$.addAll([
       'ExpiresIn',
       serializers.serialize(
-        payload.expiresIn,
+        expiresIn,
         specifiedType: const FullType(int),
       ),
-    ];
-    if (payload.accessToken != null) {
-      result
+    ]);
+    if (accessToken != null) {
+      result$
         ..add('AccessToken')
         ..add(serializers.serialize(
-          payload.accessToken!,
+          accessToken,
           specifiedType: const FullType(String),
         ));
     }
-    if (payload.idToken != null) {
-      result
-        ..add('IdToken')
-        ..add(serializers.serialize(
-          payload.idToken!,
-          specifiedType: const FullType(String),
-        ));
-    }
-    if (payload.newDeviceMetadata != null) {
-      result
-        ..add('NewDeviceMetadata')
-        ..add(serializers.serialize(
-          payload.newDeviceMetadata!,
-          specifiedType: const FullType(_i2.NewDeviceMetadataType),
-        ));
-    }
-    if (payload.refreshToken != null) {
-      result
-        ..add('RefreshToken')
-        ..add(serializers.serialize(
-          payload.refreshToken!,
-          specifiedType: const FullType(String),
-        ));
-    }
-    if (payload.tokenType != null) {
-      result
+    if (tokenType != null) {
+      result$
         ..add('TokenType')
         ..add(serializers.serialize(
-          payload.tokenType!,
+          tokenType,
           specifiedType: const FullType(String),
         ));
     }
-    return result;
+    if (refreshToken != null) {
+      result$
+        ..add('RefreshToken')
+        ..add(serializers.serialize(
+          refreshToken,
+          specifiedType: const FullType(String),
+        ));
+    }
+    if (idToken != null) {
+      result$
+        ..add('IdToken')
+        ..add(serializers.serialize(
+          idToken,
+          specifiedType: const FullType(String),
+        ));
+    }
+    if (newDeviceMetadata != null) {
+      result$
+        ..add('NewDeviceMetadata')
+        ..add(serializers.serialize(
+          newDeviceMetadata,
+          specifiedType: const FullType(NewDeviceMetadataType),
+        ));
+    }
+    return result$;
   }
 }

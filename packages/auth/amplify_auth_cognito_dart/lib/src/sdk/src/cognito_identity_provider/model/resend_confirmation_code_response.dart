@@ -1,13 +1,13 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_auth_cognito_dart.cognito_identity_provider.model.resend_confirmation_code_response; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:amplify_auth_cognito_dart/src/sdk/src/cognito_identity_provider/model/code_delivery_details_type.dart'
-    as _i2;
+import 'package:amplify_auth_cognito_dart/src/sdk/src/cognito_identity_provider/model/code_delivery_details_type.dart';
 import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'resend_confirmation_code_response.g.dart';
 
@@ -20,7 +20,7 @@ abstract class ResendConfirmationCodeResponse
             ResendConfirmationCodeResponseBuilder> {
   /// The response from the server when Amazon Cognito makes the request to resend a confirmation code.
   factory ResendConfirmationCodeResponse(
-      {_i2.CodeDeliveryDetailsType? codeDeliveryDetails}) {
+      {CodeDeliveryDetailsType? codeDeliveryDetails}) {
     return _$ResendConfirmationCodeResponse._(
         codeDeliveryDetails: codeDeliveryDetails);
   }
@@ -39,31 +39,26 @@ abstract class ResendConfirmationCodeResponse
   ) =>
       payload;
 
-  static const List<_i3.SmithySerializer> serializers = [
-    ResendConfirmationCodeResponseAwsJson11Serializer()
-  ];
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(ResendConfirmationCodeResponseBuilder b) {}
+  static const List<_i2.SmithySerializer<ResendConfirmationCodeResponse>>
+      serializers = [ResendConfirmationCodeResponseAwsJson11Serializer()];
 
   /// The code delivery details returned by the server in response to the request to resend the confirmation code.
-  _i2.CodeDeliveryDetailsType? get codeDeliveryDetails;
+  CodeDeliveryDetailsType? get codeDeliveryDetails;
   @override
   List<Object?> get props => [codeDeliveryDetails];
   @override
   String toString() {
-    final helper =
-        newBuiltValueToStringHelper('ResendConfirmationCodeResponse');
-    helper.add(
-      'codeDeliveryDetails',
-      codeDeliveryDetails,
-    );
+    final helper = newBuiltValueToStringHelper('ResendConfirmationCodeResponse')
+      ..add(
+        'codeDeliveryDetails',
+        codeDeliveryDetails,
+      );
     return helper.toString();
   }
 }
 
 class ResendConfirmationCodeResponseAwsJson11Serializer
-    extends _i3.StructuredSmithySerializer<ResendConfirmationCodeResponse> {
+    extends _i2.StructuredSmithySerializer<ResendConfirmationCodeResponse> {
   const ResendConfirmationCodeResponseAwsJson11Serializer()
       : super('ResendConfirmationCodeResponse');
 
@@ -73,8 +68,8 @@ class ResendConfirmationCodeResponseAwsJson11Serializer
         _$ResendConfirmationCodeResponse,
       ];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i2.ShapeId> get supportedProtocols => const [
+        _i2.ShapeId(
           namespace: 'aws.protocols',
           shape: 'awsJson1_1',
         )
@@ -91,15 +86,15 @@ class ResendConfirmationCodeResponseAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'CodeDeliveryDetails':
-          if (value != null) {
-            result.codeDeliveryDetails.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i2.CodeDeliveryDetailsType),
-            ) as _i2.CodeDeliveryDetailsType));
-          }
-          break;
+          result.codeDeliveryDetails.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(CodeDeliveryDetailsType),
+          ) as CodeDeliveryDetailsType));
       }
     }
 
@@ -109,19 +104,19 @@ class ResendConfirmationCodeResponseAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    ResendConfirmationCodeResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as ResendConfirmationCodeResponse);
-    final result = <Object?>[];
-    if (payload.codeDeliveryDetails != null) {
-      result
+    final result$ = <Object?>[];
+    final ResendConfirmationCodeResponse(:codeDeliveryDetails) = object;
+    if (codeDeliveryDetails != null) {
+      result$
         ..add('CodeDeliveryDetails')
         ..add(serializers.serialize(
-          payload.codeDeliveryDetails!,
-          specifiedType: const FullType(_i2.CodeDeliveryDetailsType),
+          codeDeliveryDetails,
+          specifiedType: const FullType(CodeDeliveryDetailsType),
         ));
     }
-    return result;
+    return result$;
   }
 }

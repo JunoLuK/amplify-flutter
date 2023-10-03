@@ -1,12 +1,13 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library aws_json1_0_v1.json_rpc_10.model.operation_config; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i1;
-import 'package:aws_json1_0_v1/src/json_rpc_10/model/s3_config.dart' as _i2;
+import 'package:aws_json1_0_v1/src/json_rpc_10/model/s3_config.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'operation_config.g.dart';
 
@@ -15,7 +16,7 @@ abstract class OperationConfig
     with _i1.AWSEquatable<OperationConfig>
     implements Built<OperationConfig, OperationConfigBuilder> {
   /// Configuration that is set for the scope of a single operation.
-  factory OperationConfig({_i2.S3Config? s3}) {
+  factory OperationConfig({S3Config? s3}) {
     return _$OperationConfig._(s3: s3);
   }
 
@@ -25,30 +26,27 @@ abstract class OperationConfig
 
   const OperationConfig._();
 
-  static const List<_i3.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer<OperationConfig>> serializers = [
     OperationConfigAwsJson10Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(OperationConfigBuilder b) {}
-
   /// Configuration specific to S3.
-  _i2.S3Config? get s3;
+  S3Config? get s3;
   @override
   List<Object?> get props => [s3];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('OperationConfig');
-    helper.add(
-      's3',
-      s3,
-    );
+    final helper = newBuiltValueToStringHelper('OperationConfig')
+      ..add(
+        's3',
+        s3,
+      );
     return helper.toString();
   }
 }
 
 class OperationConfigAwsJson10Serializer
-    extends _i3.StructuredSmithySerializer<OperationConfig> {
+    extends _i2.StructuredSmithySerializer<OperationConfig> {
   const OperationConfigAwsJson10Serializer() : super('OperationConfig');
 
   @override
@@ -57,8 +55,8 @@ class OperationConfigAwsJson10Serializer
         _$OperationConfig,
       ];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i2.ShapeId> get supportedProtocols => const [
+        _i2.ShapeId(
           namespace: 'aws.protocols',
           shape: 'awsJson1_0',
         )
@@ -75,15 +73,15 @@ class OperationConfigAwsJson10Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 's3':
-          if (value != null) {
-            result.s3.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i2.S3Config),
-            ) as _i2.S3Config));
-          }
-          break;
+          result.s3.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(S3Config),
+          ) as S3Config));
       }
     }
 
@@ -93,19 +91,19 @@ class OperationConfigAwsJson10Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    OperationConfig object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as OperationConfig);
-    final result = <Object?>[];
-    if (payload.s3 != null) {
-      result
+    final result$ = <Object?>[];
+    final OperationConfig(:s3) = object;
+    if (s3 != null) {
+      result$
         ..add('s3')
         ..add(serializers.serialize(
-          payload.s3!,
-          specifiedType: const FullType(_i2.S3Config),
+          s3,
+          specifiedType: const FullType(S3Config),
         ));
     }
-    return result;
+    return result$;
   }
 }

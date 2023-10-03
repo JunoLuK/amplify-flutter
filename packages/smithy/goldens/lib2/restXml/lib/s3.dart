@@ -1,4 +1,5 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 /// # Amazon Simple Storage Service
 library rest_xml_v2.s3;
@@ -7,6 +8,10 @@ export 'package:rest_xml_v2/src/s3/model/aws_config.dart';
 export 'package:rest_xml_v2/src/s3/model/bucket_location_constraint.dart';
 export 'package:rest_xml_v2/src/s3/model/client_config.dart';
 export 'package:rest_xml_v2/src/s3/model/common_prefix.dart';
+export 'package:rest_xml_v2/src/s3/model/delete_object_tagging_output.dart'
+    hide DeleteObjectTaggingOutputPayload;
+export 'package:rest_xml_v2/src/s3/model/delete_object_tagging_request.dart'
+    hide DeleteObjectTaggingRequestPayload;
 export 'package:rest_xml_v2/src/s3/model/encoding_type.dart';
 export 'package:rest_xml_v2/src/s3/model/environment_config.dart';
 export 'package:rest_xml_v2/src/s3/model/file_config_settings.dart';

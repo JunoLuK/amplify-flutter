@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity.model.get_id_input;
+part of 'get_id_input.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -67,9 +67,7 @@ class GetIdInputBuilder implements Builder<GetIdInput, GetIdInputBuilder> {
       _$this._logins ??= new _i3.MapBuilder<String, String>();
   set logins(_i3.MapBuilder<String, String>? logins) => _$this._logins = logins;
 
-  GetIdInputBuilder() {
-    GetIdInput._init(this);
-  }
+  GetIdInputBuilder();
 
   GetIdInputBuilder get _$this {
     final $v = _$v;

@@ -1,15 +1,12 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import 'package:amplify_authenticator/src/l10n/button_resolver.dart';
-import 'package:amplify_authenticator/src/l10n/country_resolver.dart';
-import 'package:amplify_authenticator/src/l10n/input_resolver.dart';
-import 'package:amplify_authenticator/src/l10n/message_resolver.dart';
-import 'package:amplify_authenticator/src/l10n/title_resolver.dart';
+import 'package:amplify_authenticator/amplify_authenticator.dart';
+import 'package:amplify_authenticator/src/l10n/instructions_resolver.dart';
 import 'package:flutter/material.dart';
 
 export 'button_resolver.dart';
-export 'country_resolver.dart';
+export 'dial_code_resolver.dart';
 export 'input_resolver.dart';
 export 'message_resolver.dart';
 export 'title_resolver.dart';
@@ -25,21 +22,29 @@ class AuthStringResolver {
   /// {@macro amplify_authenticator.auth_string_resolver}
   const AuthStringResolver({
     ButtonResolver? buttons,
-    CountryResolver? countries,
+    // ignore: deprecated_member_use_from_same_package
+    @Deprecated('Use dialCodes instead') CountryResolver? countries,
+    DialCodeResolver? dialCodes,
     InputResolver? inputs,
     MessageResolver? messages,
     TitleResolver? titles,
+    InstructionsResolver? instructions,
   })  : buttons = buttons ?? const ButtonResolver(),
-        countries = countries ?? const CountryResolver(),
+        dialCodes = dialCodes ?? countries ?? const DialCodeResolver(),
         inputs = inputs ?? const InputResolver(),
         titles = titles ?? const TitleResolver(),
-        messages = messages ?? const MessageResolver();
+        messages = messages ?? const MessageResolver(),
+        instruction = instructions ?? const InstructionsResolver();
 
   /// The resolver class for shared button Widgets
   final ButtonResolver buttons;
 
-  /// The resolver class for countries
-  final CountryResolver countries;
+  /// The resolver class for area codes
+  final DialCodeResolver dialCodes;
+
+  /// The resolver class for area codes
+  @Deprecated('Use dialCodes instead')
+  DialCodeResolver get countries => dialCodes;
 
   /// The resolver class for shared input Widgets
   final InputResolver inputs;
@@ -47,14 +52,17 @@ class AuthStringResolver {
   /// The resolver class for titles
   final TitleResolver titles;
 
-  /// The resolver class for titles
+  /// The resolver class for messages
   final MessageResolver messages;
+
+  /// The resolver class for instructions
+  final InstructionsResolver instruction;
 
   @override
   bool operator ==(Object other) =>
       other is AuthStringResolver &&
       buttons == other.buttons &&
-      countries == other.countries &&
+      dialCodes == other.dialCodes &&
       inputs == other.inputs &&
       titles == other.titles;
 

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity_provider.model.username_exists_exception;
+part of 'username_exists_exception.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -55,9 +55,7 @@ class UsernameExistsExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  UsernameExistsExceptionBuilder() {
-    UsernameExistsException._init(this);
-  }
+  UsernameExistsExceptionBuilder();
 
   UsernameExistsExceptionBuilder get _$this {
     final $v = _$v;

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity_provider.model.too_many_failed_attempts_exception;
+part of 'too_many_failed_attempts_exception.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -56,9 +56,7 @@ class TooManyFailedAttemptsExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  TooManyFailedAttemptsExceptionBuilder() {
-    TooManyFailedAttemptsException._init(this);
-  }
+  TooManyFailedAttemptsExceptionBuilder();
 
   TooManyFailedAttemptsExceptionBuilder get _$this {
     final $v = _$v;

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of rest_json1_v1.rest_json_protocol.model.recursive_shapes_input_output_nested2;
+part of 'recursive_shapes_input_output_nested2.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -11,7 +11,7 @@ class _$RecursiveShapesInputOutputNested2
   @override
   final String? bar;
   @override
-  final _i2.RecursiveShapesInputOutputNested1? recursiveMember;
+  final RecursiveShapesInputOutputNested1? recursiveMember;
 
   factory _$RecursiveShapesInputOutputNested2(
           [void Function(RecursiveShapesInputOutputNested2Builder)? updates]) =>
@@ -58,17 +58,15 @@ class RecursiveShapesInputOutputNested2Builder
   String? get bar => _$this._bar;
   set bar(String? bar) => _$this._bar = bar;
 
-  _i2.RecursiveShapesInputOutputNested1Builder? _recursiveMember;
-  _i2.RecursiveShapesInputOutputNested1Builder get recursiveMember =>
+  RecursiveShapesInputOutputNested1Builder? _recursiveMember;
+  RecursiveShapesInputOutputNested1Builder get recursiveMember =>
       _$this._recursiveMember ??=
-          new _i2.RecursiveShapesInputOutputNested1Builder();
+          new RecursiveShapesInputOutputNested1Builder();
   set recursiveMember(
-          _i2.RecursiveShapesInputOutputNested1Builder? recursiveMember) =>
+          RecursiveShapesInputOutputNested1Builder? recursiveMember) =>
       _$this._recursiveMember = recursiveMember;
 
-  RecursiveShapesInputOutputNested2Builder() {
-    RecursiveShapesInputOutputNested2._init(this);
-  }
+  RecursiveShapesInputOutputNested2Builder();
 
   RecursiveShapesInputOutputNested2Builder get _$this {
     final $v = _$v;

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_analytics_pinpoint_dart.pinpoint.model.get_endpoint_response;
+part of 'get_endpoint_response.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of amplify_analytics_pinpoint_dart.pinpoint.model.get_endpoint_response;
 
 class _$GetEndpointResponse extends GetEndpointResponse {
   @override
-  final _i3.EndpointResponse endpointResponse;
+  final EndpointResponse endpointResponse;
 
   factory _$GetEndpointResponse(
           [void Function(GetEndpointResponseBuilder)? updates]) =>
@@ -48,15 +48,13 @@ class GetEndpointResponseBuilder
     implements Builder<GetEndpointResponse, GetEndpointResponseBuilder> {
   _$GetEndpointResponse? _$v;
 
-  _i3.EndpointResponseBuilder? _endpointResponse;
-  _i3.EndpointResponseBuilder get endpointResponse =>
-      _$this._endpointResponse ??= new _i3.EndpointResponseBuilder();
-  set endpointResponse(_i3.EndpointResponseBuilder? endpointResponse) =>
+  EndpointResponseBuilder? _endpointResponse;
+  EndpointResponseBuilder get endpointResponse =>
+      _$this._endpointResponse ??= new EndpointResponseBuilder();
+  set endpointResponse(EndpointResponseBuilder? endpointResponse) =>
       _$this._endpointResponse = endpointResponse;
 
-  GetEndpointResponseBuilder() {
-    GetEndpointResponse._init(this);
-  }
+  GetEndpointResponseBuilder();
 
   GetEndpointResponseBuilder get _$this {
     final $v = _$v;

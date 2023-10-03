@@ -1,4 +1,5 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library aws_json1_0_v2.json_rpc_10;
 
@@ -25,6 +26,7 @@ export 'package:aws_json1_0_v2/src/json_rpc_10/model/json_unions_output.dart';
 export 'package:aws_json1_0_v2/src/json_rpc_10/model/my_union.dart';
 export 'package:aws_json1_0_v2/src/json_rpc_10/model/no_input_and_output_output.dart';
 export 'package:aws_json1_0_v2/src/json_rpc_10/model/operation_config.dart';
+export 'package:aws_json1_0_v2/src/json_rpc_10/model/put_with_content_encoding_input.dart';
 export 'package:aws_json1_0_v2/src/json_rpc_10/model/retry_config.dart';
 export 'package:aws_json1_0_v2/src/json_rpc_10/model/retry_mode.dart';
 export 'package:aws_json1_0_v2/src/json_rpc_10/model/s3_addressing_style.dart';

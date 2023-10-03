@@ -1,4 +1,5 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.rest_json_protocol.model.fractional_seconds_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -12,14 +13,8 @@ part 'fractional_seconds_output.g.dart';
 abstract class FractionalSecondsOutput
     with _i1.AWSEquatable<FractionalSecondsOutput>
     implements Built<FractionalSecondsOutput, FractionalSecondsOutputBuilder> {
-  factory FractionalSecondsOutput({
-    DateTime? datetime,
-    DateTime? httpdate,
-  }) {
-    return _$FractionalSecondsOutput._(
-      datetime: datetime,
-      httpdate: httpdate,
-    );
+  factory FractionalSecondsOutput({DateTime? datetime}) {
+    return _$FractionalSecondsOutput._(datetime: datetime);
   }
 
   factory FractionalSecondsOutput.build(
@@ -35,30 +30,19 @@ abstract class FractionalSecondsOutput
   ) =>
       payload;
 
-  static const List<_i2.SmithySerializer> serializers = [
-    FractionalSecondsOutputRestJson1Serializer()
-  ];
+  static const List<_i2.SmithySerializer<FractionalSecondsOutput>> serializers =
+      [FractionalSecondsOutputRestJson1Serializer()];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(FractionalSecondsOutputBuilder b) {}
   DateTime? get datetime;
-  DateTime? get httpdate;
   @override
-  List<Object?> get props => [
-        datetime,
-        httpdate,
-      ];
+  List<Object?> get props => [datetime];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('FractionalSecondsOutput');
-    helper.add(
-      'datetime',
-      datetime,
-    );
-    helper.add(
-      'httpdate',
-      httpdate,
-    );
+    final helper = newBuiltValueToStringHelper('FractionalSecondsOutput')
+      ..add(
+        'datetime',
+        datetime,
+      );
     return helper.toString();
   }
 }
@@ -92,23 +76,15 @@ class FractionalSecondsOutputRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'datetime':
-          if (value != null) {
-            result.datetime = _i2.TimestampSerializer.dateTime.deserialize(
-              serializers,
-              value,
-            );
-          }
-          break;
-        case 'httpdate':
-          if (value != null) {
-            result.httpdate = _i2.TimestampSerializer.httpDate.deserialize(
-              serializers,
-              value,
-            );
-          }
-          break;
+          result.datetime = _i2.TimestampSerializer.dateTime.deserialize(
+            serializers,
+            value,
+          );
       }
     }
 
@@ -118,27 +94,19 @@ class FractionalSecondsOutputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    FractionalSecondsOutput object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as FractionalSecondsOutput);
-    final result = <Object?>[];
-    if (payload.datetime != null) {
-      result
+    final result$ = <Object?>[];
+    final FractionalSecondsOutput(:datetime) = object;
+    if (datetime != null) {
+      result$
         ..add('datetime')
         ..add(_i2.TimestampSerializer.dateTime.serialize(
           serializers,
-          payload.datetime!,
+          datetime,
         ));
     }
-    if (payload.httpdate != null) {
-      result
-        ..add('httpdate')
-        ..add(_i2.TimestampSerializer.httpDate.serialize(
-          serializers,
-          payload.httpdate!,
-        ));
-    }
-    return result;
+    return result$;
   }
 }

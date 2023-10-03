@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_analytics_pinpoint_dart.pinpoint.model.in_app_message_campaign;
+part of 'in_app_message_campaign.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -10,17 +10,17 @@ class _$InAppMessageCampaign extends InAppMessageCampaign {
   @override
   final String? campaignId;
   @override
-  final int dailyCap;
+  final int? dailyCap;
   @override
-  final _i2.InAppMessage? inAppMessage;
+  final InAppMessage? inAppMessage;
   @override
-  final int priority;
+  final int? priority;
   @override
-  final _i3.InAppCampaignSchedule? schedule;
+  final InAppCampaignSchedule? schedule;
   @override
-  final int sessionCap;
+  final int? sessionCap;
   @override
-  final int totalCap;
+  final int? totalCap;
   @override
   final String? treatmentId;
 
@@ -30,23 +30,14 @@ class _$InAppMessageCampaign extends InAppMessageCampaign {
 
   _$InAppMessageCampaign._(
       {this.campaignId,
-      required this.dailyCap,
+      this.dailyCap,
       this.inAppMessage,
-      required this.priority,
+      this.priority,
       this.schedule,
-      required this.sessionCap,
-      required this.totalCap,
+      this.sessionCap,
+      this.totalCap,
       this.treatmentId})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        dailyCap, r'InAppMessageCampaign', 'dailyCap');
-    BuiltValueNullFieldError.checkNotNull(
-        priority, r'InAppMessageCampaign', 'priority');
-    BuiltValueNullFieldError.checkNotNull(
-        sessionCap, r'InAppMessageCampaign', 'sessionCap');
-    BuiltValueNullFieldError.checkNotNull(
-        totalCap, r'InAppMessageCampaign', 'totalCap');
-  }
+      : super._();
 
   @override
   InAppMessageCampaign rebuild(
@@ -99,20 +90,20 @@ class InAppMessageCampaignBuilder
   int? get dailyCap => _$this._dailyCap;
   set dailyCap(int? dailyCap) => _$this._dailyCap = dailyCap;
 
-  _i2.InAppMessageBuilder? _inAppMessage;
-  _i2.InAppMessageBuilder get inAppMessage =>
-      _$this._inAppMessage ??= new _i2.InAppMessageBuilder();
-  set inAppMessage(_i2.InAppMessageBuilder? inAppMessage) =>
+  InAppMessageBuilder? _inAppMessage;
+  InAppMessageBuilder get inAppMessage =>
+      _$this._inAppMessage ??= new InAppMessageBuilder();
+  set inAppMessage(InAppMessageBuilder? inAppMessage) =>
       _$this._inAppMessage = inAppMessage;
 
   int? _priority;
   int? get priority => _$this._priority;
   set priority(int? priority) => _$this._priority = priority;
 
-  _i3.InAppCampaignScheduleBuilder? _schedule;
-  _i3.InAppCampaignScheduleBuilder get schedule =>
-      _$this._schedule ??= new _i3.InAppCampaignScheduleBuilder();
-  set schedule(_i3.InAppCampaignScheduleBuilder? schedule) =>
+  InAppCampaignScheduleBuilder? _schedule;
+  InAppCampaignScheduleBuilder get schedule =>
+      _$this._schedule ??= new InAppCampaignScheduleBuilder();
+  set schedule(InAppCampaignScheduleBuilder? schedule) =>
       _$this._schedule = schedule;
 
   int? _sessionCap;
@@ -127,9 +118,7 @@ class InAppMessageCampaignBuilder
   String? get treatmentId => _$this._treatmentId;
   set treatmentId(String? treatmentId) => _$this._treatmentId = treatmentId;
 
-  InAppMessageCampaignBuilder() {
-    InAppMessageCampaign._init(this);
-  }
+  InAppMessageCampaignBuilder();
 
   InAppMessageCampaignBuilder get _$this {
     final $v = _$v;
@@ -167,16 +156,12 @@ class InAppMessageCampaignBuilder
       _$result = _$v ??
           new _$InAppMessageCampaign._(
               campaignId: campaignId,
-              dailyCap: BuiltValueNullFieldError.checkNotNull(
-                  dailyCap, r'InAppMessageCampaign', 'dailyCap'),
+              dailyCap: dailyCap,
               inAppMessage: _inAppMessage?.build(),
-              priority: BuiltValueNullFieldError.checkNotNull(
-                  priority, r'InAppMessageCampaign', 'priority'),
+              priority: priority,
               schedule: _schedule?.build(),
-              sessionCap: BuiltValueNullFieldError.checkNotNull(
-                  sessionCap, r'InAppMessageCampaign', 'sessionCap'),
-              totalCap: BuiltValueNullFieldError.checkNotNull(
-                  totalCap, r'InAppMessageCampaign', 'totalCap'),
+              sessionCap: sessionCap,
+              totalCap: totalCap,
               treatmentId: treatmentId);
     } catch (_) {
       late String _$failedField;

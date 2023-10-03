@@ -1,3 +1,41 @@
+## 0.6.1
+
+- Minor bug fixes and improvements
+
+## 0.6.0
+
+### Breaking Changes
+- feat(aws_common)!: Add credentials provider chain
+
+## 0.5.1
+
+### Features
+- feat(aft): Generate AWS config ([#3424](https://github.com/aws-amplify/amplify-flutter/pull/3424))
+- feat(logging): logger can register one plugin per type in a logger hierarchy ([#3173](https://github.com/aws-amplify/amplify-flutter/pull/3173))
+
+## 0.5.0+3
+
+- Minor bug fixes and improvements
+
+## 0.5.0+2
+
+### Fixes
+- fix(core): Disallowed JS tearoff ([#3150](https://github.com/aws-amplify/amplify-flutter/pull/3150))
+
+## 0.5.0+1
+
+- Minor bug fixes and improvements
+
+## 0.5.0
+
+### Features
+- Dart 3 support (must update Dart SDK constraint to `^3.0.0`)
+
+## 0.4.2+5
+
+### Fixes
+- fix(repo): Flutter 3.3 support
+
 ## 0.4.2+4
 
 - Minor bug fixes and improvements

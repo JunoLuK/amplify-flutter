@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of rest_json1_v2.rest_json_protocol.model.malformed_union_input;
+part of 'malformed_union_input.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of rest_json1_v2.rest_json_protocol.model.malformed_union_input;
 
 class _$MalformedUnionInput extends MalformedUnionInput {
   @override
-  final _i3.SimpleUnion? union;
+  final SimpleUnion? union;
 
   factory _$MalformedUnionInput(
           [void Function(MalformedUnionInputBuilder)? updates]) =>
@@ -44,13 +44,11 @@ class MalformedUnionInputBuilder
     implements Builder<MalformedUnionInput, MalformedUnionInputBuilder> {
   _$MalformedUnionInput? _$v;
 
-  _i3.SimpleUnion? _union;
-  _i3.SimpleUnion? get union => _$this._union;
-  set union(_i3.SimpleUnion? union) => _$this._union = union;
+  SimpleUnion? _union;
+  SimpleUnion? get union => _$this._union;
+  set union(SimpleUnion? union) => _$this._union = union;
 
-  MalformedUnionInputBuilder() {
-    MalformedUnionInput._init(this);
-  }
+  MalformedUnionInputBuilder();
 
   MalformedUnionInputBuilder get _$this {
     final $v = _$v;

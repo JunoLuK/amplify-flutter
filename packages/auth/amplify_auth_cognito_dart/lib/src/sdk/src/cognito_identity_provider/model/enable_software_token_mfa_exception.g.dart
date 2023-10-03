@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity_provider.model.enable_software_token_mfa_exception;
+part of 'enable_software_token_mfa_exception.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -57,9 +57,7 @@ class EnableSoftwareTokenMfaExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  EnableSoftwareTokenMfaExceptionBuilder() {
-    EnableSoftwareTokenMfaException._init(this);
-  }
+  EnableSoftwareTokenMfaExceptionBuilder();
 
   EnableSoftwareTokenMfaExceptionBuilder get _$this {
     final $v = _$v;

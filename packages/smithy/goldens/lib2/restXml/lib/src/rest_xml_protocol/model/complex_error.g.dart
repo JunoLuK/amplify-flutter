@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of rest_xml_v2.rest_xml_protocol.model.complex_error;
+part of 'complex_error.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -10,16 +10,16 @@ class _$ComplexError extends ComplexError {
   @override
   final String? header;
   @override
-  final _i3.ComplexNestedErrorData? nested;
-  @override
   final String? topLevel;
+  @override
+  final ComplexNestedErrorData? nested;
   @override
   final Map<String, String>? headers;
 
   factory _$ComplexError([void Function(ComplexErrorBuilder)? updates]) =>
       (new ComplexErrorBuilder()..update(updates))._build();
 
-  _$ComplexError._({this.header, this.nested, this.topLevel, this.headers})
+  _$ComplexError._({this.header, this.topLevel, this.nested, this.headers})
       : super._();
 
   @override
@@ -34,16 +34,16 @@ class _$ComplexError extends ComplexError {
     if (identical(other, this)) return true;
     return other is ComplexError &&
         header == other.header &&
-        nested == other.nested &&
-        topLevel == other.topLevel;
+        topLevel == other.topLevel &&
+        nested == other.nested;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, header.hashCode);
-    _$hash = $jc(_$hash, nested.hashCode);
     _$hash = $jc(_$hash, topLevel.hashCode);
+    _$hash = $jc(_$hash, nested.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -57,30 +57,27 @@ class ComplexErrorBuilder
   String? get header => _$this._header;
   set header(String? header) => _$this._header = header;
 
-  _i3.ComplexNestedErrorDataBuilder? _nested;
-  _i3.ComplexNestedErrorDataBuilder get nested =>
-      _$this._nested ??= new _i3.ComplexNestedErrorDataBuilder();
-  set nested(_i3.ComplexNestedErrorDataBuilder? nested) =>
-      _$this._nested = nested;
-
   String? _topLevel;
   String? get topLevel => _$this._topLevel;
   set topLevel(String? topLevel) => _$this._topLevel = topLevel;
+
+  ComplexNestedErrorDataBuilder? _nested;
+  ComplexNestedErrorDataBuilder get nested =>
+      _$this._nested ??= new ComplexNestedErrorDataBuilder();
+  set nested(ComplexNestedErrorDataBuilder? nested) => _$this._nested = nested;
 
   Map<String, String>? _headers;
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  ComplexErrorBuilder() {
-    ComplexError._init(this);
-  }
+  ComplexErrorBuilder();
 
   ComplexErrorBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _header = $v.header;
-      _nested = $v.nested?.toBuilder();
       _topLevel = $v.topLevel;
+      _nested = $v.nested?.toBuilder();
       _headers = $v.headers;
       _$v = null;
     }
@@ -107,8 +104,8 @@ class ComplexErrorBuilder
       _$result = _$v ??
           new _$ComplexError._(
               header: header,
-              nested: _nested?.build(),
               topLevel: topLevel,
+              nested: _nested?.build(),
               headers: headers);
     } catch (_) {
       late String _$failedField;
@@ -128,7 +125,7 @@ class ComplexErrorBuilder
 
 class _$ComplexErrorPayload extends ComplexErrorPayload {
   @override
-  final _i3.ComplexNestedErrorData? nested;
+  final ComplexNestedErrorData? nested;
   @override
   final String? topLevel;
 
@@ -169,19 +166,16 @@ class ComplexErrorPayloadBuilder
     implements Builder<ComplexErrorPayload, ComplexErrorPayloadBuilder> {
   _$ComplexErrorPayload? _$v;
 
-  _i3.ComplexNestedErrorDataBuilder? _nested;
-  _i3.ComplexNestedErrorDataBuilder get nested =>
-      _$this._nested ??= new _i3.ComplexNestedErrorDataBuilder();
-  set nested(_i3.ComplexNestedErrorDataBuilder? nested) =>
-      _$this._nested = nested;
+  ComplexNestedErrorDataBuilder? _nested;
+  ComplexNestedErrorDataBuilder get nested =>
+      _$this._nested ??= new ComplexNestedErrorDataBuilder();
+  set nested(ComplexNestedErrorDataBuilder? nested) => _$this._nested = nested;
 
   String? _topLevel;
   String? get topLevel => _$this._topLevel;
   set topLevel(String? topLevel) => _$this._topLevel = topLevel;
 
-  ComplexErrorPayloadBuilder() {
-    ComplexErrorPayload._init(this);
-  }
+  ComplexErrorPayloadBuilder();
 
   ComplexErrorPayloadBuilder get _$this {
     final $v = _$v;

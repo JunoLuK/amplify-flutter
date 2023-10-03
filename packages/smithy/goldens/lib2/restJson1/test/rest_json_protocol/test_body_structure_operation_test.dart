@@ -1,16 +1,14 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 // ignore_for_file: unused_element
 library rest_json1_v2.rest_json_protocol.test.test_body_structure_operation_test_test; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v2/src/rest_json_protocol/model/test_body_structure_input_output.dart'
-    as _i5;
-import 'package:rest_json1_v2/src/rest_json_protocol/model/test_config.dart'
-    as _i6;
-import 'package:rest_json1_v2/src/rest_json_protocol/operation/test_body_structure_operation.dart'
-    as _i3;
-import 'package:smithy/smithy.dart' as _i4;
+import 'package:rest_json1_v2/src/rest_json_protocol/model/test_body_structure_input_output.dart';
+import 'package:rest_json1_v2/src/rest_json_protocol/model/test_config.dart';
+import 'package:rest_json1_v2/src/rest_json_protocol/operation/test_body_structure_operation.dart';
+import 'package:smithy/smithy.dart' as _i3;
 import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
@@ -19,14 +17,14 @@ void main() {
     'RestJsonTestBodyStructure (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: _i3.TestBodyStructureOperation(
+        operation: TestBodyStructureOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'RestJsonTestBodyStructure',
           documentation: 'Serializes a structure',
-          protocol: _i4.ShapeId(
+          protocol: _i3.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -62,14 +60,14 @@ void main() {
     'RestJsonHttpWithEmptyBody (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: _i3.TestBodyStructureOperation(
+        operation: TestBodyStructureOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'RestJsonHttpWithEmptyBody',
           documentation: 'Serializes an empty structure in the body',
-          protocol: _i4.ShapeId(
+          protocol: _i3.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -102,48 +100,45 @@ void main() {
 }
 
 class TestBodyStructureInputOutputRestJson1Serializer
-    extends _i4.StructuredSmithySerializer<_i5.TestBodyStructureInputOutput> {
+    extends _i3.StructuredSmithySerializer<TestBodyStructureInputOutput> {
   const TestBodyStructureInputOutputRestJson1Serializer()
       : super('TestBodyStructureInputOutput');
 
   @override
-  Iterable<Type> get types => const [_i5.TestBodyStructureInputOutput];
+  Iterable<Type> get types => const [TestBodyStructureInputOutput];
   @override
-  Iterable<_i4.ShapeId> get supportedProtocols => const [
-        _i4.ShapeId(
+  Iterable<_i3.ShapeId> get supportedProtocols => const [
+        _i3.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
       ];
   @override
-  _i5.TestBodyStructureInputOutput deserialize(
+  TestBodyStructureInputOutput deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = _i5.TestBodyStructureInputOutputBuilder();
+    final result = TestBodyStructureInputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
-        case 'testConfig':
-          if (value != null) {
-            result.testConfig.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i6.TestConfig),
-            ) as _i6.TestConfig));
-          }
-          break;
         case 'testId':
-          if (value != null) {
-            result.testId = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.testId = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
+        case 'testConfig':
+          result.testConfig.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(TestConfig),
+          ) as TestConfig));
       }
     }
 
@@ -153,7 +148,7 @@ class TestBodyStructureInputOutputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    TestBodyStructureInputOutput object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
@@ -161,39 +156,39 @@ class TestBodyStructureInputOutputRestJson1Serializer
 }
 
 class TestConfigRestJson1Serializer
-    extends _i4.StructuredSmithySerializer<_i6.TestConfig> {
+    extends _i3.StructuredSmithySerializer<TestConfig> {
   const TestConfigRestJson1Serializer() : super('TestConfig');
 
   @override
-  Iterable<Type> get types => const [_i6.TestConfig];
+  Iterable<Type> get types => const [TestConfig];
   @override
-  Iterable<_i4.ShapeId> get supportedProtocols => const [
-        _i4.ShapeId(
+  Iterable<_i3.ShapeId> get supportedProtocols => const [
+        _i3.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
       ];
   @override
-  _i6.TestConfig deserialize(
+  TestConfig deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = _i6.TestConfigBuilder();
+    final result = TestConfigBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'timeout':
-          if (value != null) {
-            result.timeout = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(int),
-            ) as int);
-          }
-          break;
+          result.timeout = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int);
       }
     }
 
@@ -203,7 +198,7 @@ class TestConfigRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    TestConfig object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');

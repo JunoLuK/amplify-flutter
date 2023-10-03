@@ -1,13 +1,13 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_storage_s3_dart.s3.model.json_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/json_type.dart'
-    as _i2;
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/json_type.dart';
 import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'json_input.g.dart';
 
@@ -16,7 +16,7 @@ abstract class JsonInput
     with _i1.AWSEquatable<JsonInput>
     implements Built<JsonInput, JsonInputBuilder> {
   /// Specifies JSON as object's input serialization format.
-  factory JsonInput({_i2.JsonType? type}) {
+  factory JsonInput({JsonType? type}) {
     return _$JsonInput._(type: type);
   }
 
@@ -26,30 +26,27 @@ abstract class JsonInput
 
   const JsonInput._();
 
-  static const List<_i3.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer<JsonInput>> serializers = [
     JsonInputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(JsonInputBuilder b) {}
-
   /// The type of JSON. Valid values: Document, Lines.
-  _i2.JsonType? get type;
+  JsonType? get type;
   @override
   List<Object?> get props => [type];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('JsonInput');
-    helper.add(
-      'type',
-      type,
-    );
+    final helper = newBuiltValueToStringHelper('JsonInput')
+      ..add(
+        'type',
+        type,
+      );
     return helper.toString();
   }
 }
 
 class JsonInputRestXmlSerializer
-    extends _i3.StructuredSmithySerializer<JsonInput> {
+    extends _i2.StructuredSmithySerializer<JsonInput> {
   const JsonInputRestXmlSerializer() : super('JsonInput');
 
   @override
@@ -58,8 +55,8 @@ class JsonInputRestXmlSerializer
         _$JsonInput,
       ];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i2.ShapeId> get supportedProtocols => const [
+        _i2.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restXml',
         )
@@ -73,18 +70,18 @@ class JsonInputRestXmlSerializer
     final result = JsonInputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current;
+      final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      switch (key as String) {
+      if (value == null) {
+        continue;
+      }
+      switch (key) {
         case 'Type':
-          if (value != null) {
-            result.type = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i2.JsonType),
-            ) as _i2.JsonType);
-          }
-          break;
+          result.type = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonType),
+          ) as JsonType);
       }
     }
 
@@ -94,24 +91,24 @@ class JsonInputRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    JsonInput object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as JsonInput);
-    final result = <Object?>[
-      const _i3.XmlElementName(
+    final result$ = <Object?>[
+      const _i2.XmlElementName(
         'JsonInput',
-        _i3.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
+        _i2.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
       )
     ];
-    if (payload.type != null) {
-      result
-        ..add(const _i3.XmlElementName('Type'))
+    final JsonInput(:type) = object;
+    if (type != null) {
+      result$
+        ..add(const _i2.XmlElementName('Type'))
         ..add(serializers.serialize(
-          payload.type!,
-          specifiedType: const FullType.nullable(_i2.JsonType),
+          type,
+          specifiedType: const FullType(JsonType),
         ));
     }
-    return result;
+    return result$;
   }
 }

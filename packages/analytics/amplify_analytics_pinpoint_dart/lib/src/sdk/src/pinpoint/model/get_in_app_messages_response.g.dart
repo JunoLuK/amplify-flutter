@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_analytics_pinpoint_dart.pinpoint.model.get_in_app_messages_response;
+part of 'get_in_app_messages_response.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of amplify_analytics_pinpoint_dart.pinpoint.model.get_in_app_messages_respo
 
 class _$GetInAppMessagesResponse extends GetInAppMessagesResponse {
   @override
-  final _i3.InAppMessagesResponse inAppMessagesResponse;
+  final InAppMessagesResponse inAppMessagesResponse;
 
   factory _$GetInAppMessagesResponse(
           [void Function(GetInAppMessagesResponseBuilder)? updates]) =>
@@ -50,16 +50,14 @@ class GetInAppMessagesResponseBuilder
         Builder<GetInAppMessagesResponse, GetInAppMessagesResponseBuilder> {
   _$GetInAppMessagesResponse? _$v;
 
-  _i3.InAppMessagesResponseBuilder? _inAppMessagesResponse;
-  _i3.InAppMessagesResponseBuilder get inAppMessagesResponse =>
-      _$this._inAppMessagesResponse ??= new _i3.InAppMessagesResponseBuilder();
+  InAppMessagesResponseBuilder? _inAppMessagesResponse;
+  InAppMessagesResponseBuilder get inAppMessagesResponse =>
+      _$this._inAppMessagesResponse ??= new InAppMessagesResponseBuilder();
   set inAppMessagesResponse(
-          _i3.InAppMessagesResponseBuilder? inAppMessagesResponse) =>
+          InAppMessagesResponseBuilder? inAppMessagesResponse) =>
       _$this._inAppMessagesResponse = inAppMessagesResponse;
 
-  GetInAppMessagesResponseBuilder() {
-    GetInAppMessagesResponse._init(this);
-  }
+  GetInAppMessagesResponseBuilder();
 
   GetInAppMessagesResponseBuilder get _$this {
     final $v = _$v;

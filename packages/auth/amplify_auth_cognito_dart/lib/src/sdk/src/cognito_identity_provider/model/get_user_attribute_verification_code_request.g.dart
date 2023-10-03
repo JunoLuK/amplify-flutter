@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity_provider.model.get_user_attribute_verification_code_request;
+part of 'get_user_attribute_verification_code_request.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -83,9 +83,7 @@ class GetUserAttributeVerificationCodeRequestBuilder
   set clientMetadata(_i3.MapBuilder<String, String>? clientMetadata) =>
       _$this._clientMetadata = clientMetadata;
 
-  GetUserAttributeVerificationCodeRequestBuilder() {
-    GetUserAttributeVerificationCodeRequest._init(this);
-  }
+  GetUserAttributeVerificationCodeRequestBuilder();
 
   GetUserAttributeVerificationCodeRequestBuilder get _$this {
     final $v = _$v;

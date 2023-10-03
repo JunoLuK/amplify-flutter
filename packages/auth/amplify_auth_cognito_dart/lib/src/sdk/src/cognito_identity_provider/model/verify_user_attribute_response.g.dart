@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity_provider.model.verify_user_attribute_response;
+part of 'verify_user_attribute_response.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -40,9 +40,7 @@ class VerifyUserAttributeResponseBuilder
             VerifyUserAttributeResponseBuilder> {
   _$VerifyUserAttributeResponse? _$v;
 
-  VerifyUserAttributeResponseBuilder() {
-    VerifyUserAttributeResponse._init(this);
-  }
+  VerifyUserAttributeResponseBuilder();
 
   @override
   void replace(VerifyUserAttributeResponse other) {

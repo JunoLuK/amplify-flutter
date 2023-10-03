@@ -5,6 +5,7 @@ import 'package:amplify_core/amplify_core.dart';
 
 part 'auth_code_delivery_details.g.dart';
 
+/// {@category Auth}
 /// The medium to which an item (e.g., confirmation code) was delivered.
 enum DeliveryMedium {
   /// The item was delivered to a registered email.
@@ -16,10 +17,14 @@ enum DeliveryMedium {
   /// The item was delivered to a registered phone number via SMS.
   sms,
 
+  /// The item was delivered to a registered OTP authenticator.
+  totp,
+
   /// The item was delivered to an unknown destination.
   unknown,
 }
 
+/// {@category Auth}
 /// {@template amplify_core.auth.auth_code_delivery_details}
 /// Details on where a confirmation code has been delivered.
 /// {@endtemplate}

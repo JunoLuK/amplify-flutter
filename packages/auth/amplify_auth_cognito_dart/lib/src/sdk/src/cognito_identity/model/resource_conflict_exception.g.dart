@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity.model.resource_conflict_exception;
+part of 'resource_conflict_exception.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -55,9 +55,7 @@ class ResourceConflictExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  ResourceConflictExceptionBuilder() {
-    ResourceConflictException._init(this);
-  }
+  ResourceConflictExceptionBuilder();
 
   ResourceConflictExceptionBuilder get _$this {
     final $v = _$v;

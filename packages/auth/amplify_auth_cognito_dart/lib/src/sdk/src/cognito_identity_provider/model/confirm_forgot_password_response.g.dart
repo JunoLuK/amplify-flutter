@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_auth_cognito_dart.cognito_identity_provider.model.confirm_forgot_password_response;
+part of 'confirm_forgot_password_response.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -40,9 +40,7 @@ class ConfirmForgotPasswordResponseBuilder
             ConfirmForgotPasswordResponseBuilder> {
   _$ConfirmForgotPasswordResponse? _$v;
 
-  ConfirmForgotPasswordResponseBuilder() {
-    ConfirmForgotPasswordResponse._init(this);
-  }
+  ConfirmForgotPasswordResponseBuilder();
 
   @override
   void replace(ConfirmForgotPasswordResponse other) {

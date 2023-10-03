@@ -1,4 +1,5 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_analytics_pinpoint_dart.pinpoint.model.not_found_exception; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -41,12 +42,9 @@ abstract class NotFoundException
         b.headers = response.headers;
       });
 
-  static const List<_i2.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer<NotFoundException>> serializers = [
     NotFoundExceptionRestJson1Serializer()
   ];
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(NotFoundExceptionBuilder b) {}
 
   /// The message that's returned from the API.
   @override
@@ -76,15 +74,15 @@ abstract class NotFoundException
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('NotFoundException');
-    helper.add(
-      'message',
-      message,
-    );
-    helper.add(
-      'requestId',
-      requestId,
-    );
+    final helper = newBuiltValueToStringHelper('NotFoundException')
+      ..add(
+        'message',
+        message,
+      )
+      ..add(
+        'requestId',
+        requestId,
+      );
     return helper.toString();
   }
 }
@@ -117,23 +115,20 @@ class NotFoundExceptionRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'Message':
-          if (value != null) {
-            result.message = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.message = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
         case 'RequestID':
-          if (value != null) {
-            result.requestId = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.requestId = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
       }
     }
 
@@ -143,27 +138,27 @@ class NotFoundExceptionRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    NotFoundException object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as NotFoundException);
-    final result = <Object?>[];
-    if (payload.message != null) {
-      result
+    final result$ = <Object?>[];
+    final NotFoundException(:message, :requestId) = object;
+    if (message != null) {
+      result$
         ..add('Message')
         ..add(serializers.serialize(
-          payload.message!,
+          message,
           specifiedType: const FullType(String),
         ));
     }
-    if (payload.requestId != null) {
-      result
+    if (requestId != null) {
+      result$
         ..add('RequestID')
         ..add(serializers.serialize(
-          payload.requestId!,
+          requestId,
           specifiedType: const FullType(String),
         ));
     }
-    return result;
+    return result$;
   }
 }

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_analytics_pinpoint_dart.pinpoint.model.too_many_requests_exception;
+part of 'too_many_requests_exception.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -65,9 +65,7 @@ class TooManyRequestsExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  TooManyRequestsExceptionBuilder() {
-    TooManyRequestsException._init(this);
-  }
+  TooManyRequestsExceptionBuilder();
 
   TooManyRequestsExceptionBuilder get _$this {
     final $v = _$v;

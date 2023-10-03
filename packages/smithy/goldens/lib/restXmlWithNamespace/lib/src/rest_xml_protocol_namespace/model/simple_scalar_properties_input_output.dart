@@ -1,4 +1,5 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_with_namespace_v1.rest_xml_protocol_namespace.model.simple_scalar_properties_input_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -6,9 +7,8 @@ import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:fixnum/fixnum.dart' as _i3;
-import 'package:meta/meta.dart' as _i5;
-import 'package:rest_xml_with_namespace_v1/src/rest_xml_protocol_namespace/model/nested_with_namespace.dart'
-    as _i4;
+import 'package:meta/meta.dart' as _i4;
+import 'package:rest_xml_with_namespace_v1/src/rest_xml_protocol_namespace/model/nested_with_namespace.dart';
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'simple_scalar_properties_input_output.g.dart';
@@ -22,30 +22,30 @@ abstract class SimpleScalarPropertiesInputOutput
             SimpleScalarPropertiesInputOutputBuilder>,
         _i1.HasPayload<SimpleScalarPropertiesInputOutputPayload> {
   factory SimpleScalarPropertiesInputOutput({
-    int? byteValue,
-    double? doubleValue,
-    bool? falseBooleanValue,
-    double? floatValue,
     String? foo,
-    int? integerValue,
-    _i3.Int64? longValue,
-    _i4.NestedWithNamespace? nested,
-    int? shortValue,
     String? stringValue,
     bool? trueBooleanValue,
+    bool? falseBooleanValue,
+    int? byteValue,
+    int? shortValue,
+    int? integerValue,
+    _i3.Int64? longValue,
+    double? floatValue,
+    NestedWithNamespace? nested,
+    double? doubleValue,
   }) {
     return _$SimpleScalarPropertiesInputOutput._(
-      byteValue: byteValue,
-      doubleValue: doubleValue,
-      falseBooleanValue: falseBooleanValue,
-      floatValue: floatValue,
       foo: foo,
-      integerValue: integerValue,
-      longValue: longValue,
-      nested: nested,
-      shortValue: shortValue,
       stringValue: stringValue,
       trueBooleanValue: trueBooleanValue,
+      falseBooleanValue: falseBooleanValue,
+      byteValue: byteValue,
+      shortValue: shortValue,
+      integerValue: integerValue,
+      longValue: longValue,
+      floatValue: floatValue,
+      nested: nested,
+      doubleValue: doubleValue,
     );
   }
 
@@ -101,23 +101,21 @@ abstract class SimpleScalarPropertiesInputOutput
         }
       });
 
-  static const List<_i1.SmithySerializer> serializers = [
-    SimpleScalarPropertiesInputOutputRestXmlSerializer()
-  ];
+  static const List<
+          _i1.SmithySerializer<SimpleScalarPropertiesInputOutputPayload>>
+      serializers = [SimpleScalarPropertiesInputOutputRestXmlSerializer()];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(SimpleScalarPropertiesInputOutputBuilder b) {}
-  int? get byteValue;
-  double? get doubleValue;
-  bool? get falseBooleanValue;
-  double? get floatValue;
   String? get foo;
-  int? get integerValue;
-  _i3.Int64? get longValue;
-  _i4.NestedWithNamespace? get nested;
-  int? get shortValue;
   String? get stringValue;
   bool? get trueBooleanValue;
+  bool? get falseBooleanValue;
+  int? get byteValue;
+  int? get shortValue;
+  int? get integerValue;
+  _i3.Int64? get longValue;
+  double? get floatValue;
+  NestedWithNamespace? get nested;
+  double? get doubleValue;
   @override
   SimpleScalarPropertiesInputOutputPayload getPayload() =>
       SimpleScalarPropertiesInputOutputPayload((b) {
@@ -136,71 +134,71 @@ abstract class SimpleScalarPropertiesInputOutput
       });
   @override
   List<Object?> get props => [
-        byteValue,
-        doubleValue,
-        falseBooleanValue,
-        floatValue,
         foo,
-        integerValue,
-        longValue,
-        nested,
-        shortValue,
         stringValue,
         trueBooleanValue,
+        falseBooleanValue,
+        byteValue,
+        shortValue,
+        integerValue,
+        longValue,
+        floatValue,
+        nested,
+        doubleValue,
       ];
   @override
   String toString() {
     final helper =
-        newBuiltValueToStringHelper('SimpleScalarPropertiesInputOutput');
-    helper.add(
-      'byteValue',
-      byteValue,
-    );
-    helper.add(
-      'doubleValue',
-      doubleValue,
-    );
-    helper.add(
-      'falseBooleanValue',
-      falseBooleanValue,
-    );
-    helper.add(
-      'floatValue',
-      floatValue,
-    );
-    helper.add(
-      'foo',
-      foo,
-    );
-    helper.add(
-      'integerValue',
-      integerValue,
-    );
-    helper.add(
-      'longValue',
-      longValue,
-    );
-    helper.add(
-      'nested',
-      nested,
-    );
-    helper.add(
-      'shortValue',
-      shortValue,
-    );
-    helper.add(
-      'stringValue',
-      stringValue,
-    );
-    helper.add(
-      'trueBooleanValue',
-      trueBooleanValue,
-    );
+        newBuiltValueToStringHelper('SimpleScalarPropertiesInputOutput')
+          ..add(
+            'foo',
+            foo,
+          )
+          ..add(
+            'stringValue',
+            stringValue,
+          )
+          ..add(
+            'trueBooleanValue',
+            trueBooleanValue,
+          )
+          ..add(
+            'falseBooleanValue',
+            falseBooleanValue,
+          )
+          ..add(
+            'byteValue',
+            byteValue,
+          )
+          ..add(
+            'shortValue',
+            shortValue,
+          )
+          ..add(
+            'integerValue',
+            integerValue,
+          )
+          ..add(
+            'longValue',
+            longValue,
+          )
+          ..add(
+            'floatValue',
+            floatValue,
+          )
+          ..add(
+            'nested',
+            nested,
+          )
+          ..add(
+            'doubleValue',
+            doubleValue,
+          );
     return helper.toString();
   }
 }
 
-@_i5.internal
+@_i4.internal
 abstract class SimpleScalarPropertiesInputOutputPayload
     with
         _i2.AWSEquatable<SimpleScalarPropertiesInputOutputPayload>
@@ -213,15 +211,13 @@ abstract class SimpleScalarPropertiesInputOutputPayload
 
   const SimpleScalarPropertiesInputOutputPayload._();
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(SimpleScalarPropertiesInputOutputPayloadBuilder b) {}
   int? get byteValue;
   double? get doubleValue;
   bool? get falseBooleanValue;
   double? get floatValue;
   int? get integerValue;
   _i3.Int64? get longValue;
-  _i4.NestedWithNamespace? get nested;
+  NestedWithNamespace? get nested;
   int? get shortValue;
   String? get stringValue;
   bool? get trueBooleanValue;
@@ -241,47 +237,47 @@ abstract class SimpleScalarPropertiesInputOutputPayload
   @override
   String toString() {
     final helper =
-        newBuiltValueToStringHelper('SimpleScalarPropertiesInputOutputPayload');
-    helper.add(
-      'byteValue',
-      byteValue,
-    );
-    helper.add(
-      'doubleValue',
-      doubleValue,
-    );
-    helper.add(
-      'falseBooleanValue',
-      falseBooleanValue,
-    );
-    helper.add(
-      'floatValue',
-      floatValue,
-    );
-    helper.add(
-      'integerValue',
-      integerValue,
-    );
-    helper.add(
-      'longValue',
-      longValue,
-    );
-    helper.add(
-      'nested',
-      nested,
-    );
-    helper.add(
-      'shortValue',
-      shortValue,
-    );
-    helper.add(
-      'stringValue',
-      stringValue,
-    );
-    helper.add(
-      'trueBooleanValue',
-      trueBooleanValue,
-    );
+        newBuiltValueToStringHelper('SimpleScalarPropertiesInputOutputPayload')
+          ..add(
+            'byteValue',
+            byteValue,
+          )
+          ..add(
+            'doubleValue',
+            doubleValue,
+          )
+          ..add(
+            'falseBooleanValue',
+            falseBooleanValue,
+          )
+          ..add(
+            'floatValue',
+            floatValue,
+          )
+          ..add(
+            'integerValue',
+            integerValue,
+          )
+          ..add(
+            'longValue',
+            longValue,
+          )
+          ..add(
+            'nested',
+            nested,
+          )
+          ..add(
+            'shortValue',
+            shortValue,
+          )
+          ..add(
+            'stringValue',
+            stringValue,
+          )
+          ..add(
+            'trueBooleanValue',
+            trueBooleanValue,
+          );
     return helper.toString();
   }
 }
@@ -314,90 +310,63 @@ class SimpleScalarPropertiesInputOutputRestXmlSerializer extends _i1
     final result = SimpleScalarPropertiesInputOutputPayloadBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current;
+      final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      switch (key as String) {
+      if (value == null) {
+        continue;
+      }
+      switch (key) {
         case 'byteValue':
-          if (value != null) {
-            result.byteValue = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(int),
-            ) as int);
-          }
-          break;
+          result.byteValue = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int);
         case 'DoubleDribble':
-          if (value != null) {
-            result.doubleValue = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(double),
-            ) as double);
-          }
-          break;
+          result.doubleValue = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(double),
+          ) as double);
         case 'falseBooleanValue':
-          if (value != null) {
-            result.falseBooleanValue = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(bool),
-            ) as bool);
-          }
-          break;
+          result.falseBooleanValue = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool);
         case 'floatValue':
-          if (value != null) {
-            result.floatValue = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(double),
-            ) as double);
-          }
-          break;
+          result.floatValue = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(double),
+          ) as double);
         case 'integerValue':
-          if (value != null) {
-            result.integerValue = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(int),
-            ) as int);
-          }
-          break;
+          result.integerValue = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int);
         case 'longValue':
-          if (value != null) {
-            result.longValue = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i3.Int64),
-            ) as _i3.Int64);
-          }
-          break;
+          result.longValue = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(_i3.Int64),
+          ) as _i3.Int64);
         case 'Nested':
-          if (value != null) {
-            result.nested.replace((serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i4.NestedWithNamespace),
-            ) as _i4.NestedWithNamespace));
-          }
-          break;
+          result.nested.replace((serializers.deserialize(
+            value,
+            specifiedType: const FullType(NestedWithNamespace),
+          ) as NestedWithNamespace));
         case 'shortValue':
-          if (value != null) {
-            result.shortValue = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(int),
-            ) as int);
-          }
-          break;
+          result.shortValue = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int);
         case 'stringValue':
-          if (value != null) {
-            result.stringValue = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.stringValue = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
         case 'trueBooleanValue':
-          if (value != null) {
-            result.trueBooleanValue = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(bool),
-            ) as bool);
-          }
-          break;
+          result.trueBooleanValue = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool);
       }
     }
 
@@ -407,68 +376,77 @@ class SimpleScalarPropertiesInputOutputRestXmlSerializer extends _i1
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    SimpleScalarPropertiesInputOutputPayload object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = object is SimpleScalarPropertiesInputOutput
-        ? object.getPayload()
-        : (object as SimpleScalarPropertiesInputOutputPayload);
-    final result = <Object?>[
+    final result$ = <Object?>[
       const _i1.XmlElementName(
         'SimpleScalarPropertiesInputOutput',
         _i1.XmlNamespace('https://example.com'),
       )
     ];
-    if (payload.byteValue != null) {
-      result
+    final SimpleScalarPropertiesInputOutputPayload(
+      :byteValue,
+      :doubleValue,
+      :falseBooleanValue,
+      :floatValue,
+      :integerValue,
+      :longValue,
+      :nested,
+      :shortValue,
+      :stringValue,
+      :trueBooleanValue
+    ) = object;
+    if (byteValue != null) {
+      result$
         ..add(const _i1.XmlElementName('byteValue'))
         ..add(serializers.serialize(
-          payload.byteValue!,
+          byteValue,
           specifiedType: const FullType.nullable(int),
         ));
     }
-    if (payload.doubleValue != null) {
-      result
+    if (doubleValue != null) {
+      result$
         ..add(const _i1.XmlElementName('DoubleDribble'))
         ..add(serializers.serialize(
-          payload.doubleValue!,
+          doubleValue,
           specifiedType: const FullType.nullable(double),
         ));
     }
-    if (payload.falseBooleanValue != null) {
-      result
+    if (falseBooleanValue != null) {
+      result$
         ..add(const _i1.XmlElementName('falseBooleanValue'))
         ..add(serializers.serialize(
-          payload.falseBooleanValue!,
+          falseBooleanValue,
           specifiedType: const FullType.nullable(bool),
         ));
     }
-    if (payload.floatValue != null) {
-      result
+    if (floatValue != null) {
+      result$
         ..add(const _i1.XmlElementName('floatValue'))
         ..add(serializers.serialize(
-          payload.floatValue!,
+          floatValue,
           specifiedType: const FullType.nullable(double),
         ));
     }
-    if (payload.integerValue != null) {
-      result
+    if (integerValue != null) {
+      result$
         ..add(const _i1.XmlElementName('integerValue'))
         ..add(serializers.serialize(
-          payload.integerValue!,
+          integerValue,
           specifiedType: const FullType.nullable(int),
         ));
     }
-    if (payload.longValue != null) {
-      result
+    if (longValue != null) {
+      result$
         ..add(const _i1.XmlElementName('longValue'))
         ..add(serializers.serialize(
-          payload.longValue!,
+          longValue,
           specifiedType: const FullType.nullable(_i3.Int64),
         ));
     }
-    if (payload.nested != null) {
-      result
+    if (nested != null) {
+      result$
         ..add(const _i1.XmlElementName(
           'Nested',
           _i1.XmlNamespace(
@@ -477,34 +455,34 @@ class SimpleScalarPropertiesInputOutputRestXmlSerializer extends _i1
           ),
         ))
         ..add(serializers.serialize(
-          payload.nested!,
-          specifiedType: const FullType(_i4.NestedWithNamespace),
+          nested,
+          specifiedType: const FullType(NestedWithNamespace),
         ));
     }
-    if (payload.shortValue != null) {
-      result
+    if (shortValue != null) {
+      result$
         ..add(const _i1.XmlElementName('shortValue'))
         ..add(serializers.serialize(
-          payload.shortValue!,
+          shortValue,
           specifiedType: const FullType.nullable(int),
         ));
     }
-    if (payload.stringValue != null) {
-      result
+    if (stringValue != null) {
+      result$
         ..add(const _i1.XmlElementName('stringValue'))
         ..add(serializers.serialize(
-          payload.stringValue!,
+          stringValue,
           specifiedType: const FullType(String),
         ));
     }
-    if (payload.trueBooleanValue != null) {
-      result
+    if (trueBooleanValue != null) {
+      result$
         ..add(const _i1.XmlElementName('trueBooleanValue'))
         ..add(serializers.serialize(
-          payload.trueBooleanValue!,
+          trueBooleanValue,
           specifiedType: const FullType.nullable(bool),
         ));
     }
-    return result;
+    return result$;
   }
 }

@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.0'
+        classpath 'com.android.tools.build:gradle:8.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -43,8 +43,10 @@ android {
     defaultConfig {
         minSdkVersion 16
     }
+
+    namespace 'com.amazonaws.amplify.amplify_native_legacy_wrapper'
 }
 dependencies {
-    implementation 'com.amazonaws:aws-android-sdk-mobile-client:2.65.0'
-    implementation 'com.amazonaws:aws-android-sdk-cognitoauth:2.65.0'
+    implementation 'com.amazonaws:aws-android-sdk-mobile-client:2.73.0'
+    implementation 'com.amazonaws:aws-android-sdk-cognitoauth:2.73.0'
 }

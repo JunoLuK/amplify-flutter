@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of rest_json1_v1.api_gateway.model.s3_config;
+part of 's3_config.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of rest_json1_v1.api_gateway.model.s3_config;
 
 class _$S3Config extends S3Config {
   @override
-  final _i2.S3AddressingStyle? addressingStyle;
+  final S3AddressingStyle? addressingStyle;
   @override
   final bool? useAccelerateEndpoint;
   @override
@@ -53,9 +53,9 @@ class _$S3Config extends S3Config {
 class S3ConfigBuilder implements Builder<S3Config, S3ConfigBuilder> {
   _$S3Config? _$v;
 
-  _i2.S3AddressingStyle? _addressingStyle;
-  _i2.S3AddressingStyle? get addressingStyle => _$this._addressingStyle;
-  set addressingStyle(_i2.S3AddressingStyle? addressingStyle) =>
+  S3AddressingStyle? _addressingStyle;
+  S3AddressingStyle? get addressingStyle => _$this._addressingStyle;
+  set addressingStyle(S3AddressingStyle? addressingStyle) =>
       _$this._addressingStyle = addressingStyle;
 
   bool? _useAccelerateEndpoint;
@@ -68,9 +68,7 @@ class S3ConfigBuilder implements Builder<S3Config, S3ConfigBuilder> {
   set useDualstackEndpoint(bool? useDualstackEndpoint) =>
       _$this._useDualstackEndpoint = useDualstackEndpoint;
 
-  S3ConfigBuilder() {
-    S3Config._init(this);
-  }
+  S3ConfigBuilder();
 
   S3ConfigBuilder get _$this {
     final $v = _$v;

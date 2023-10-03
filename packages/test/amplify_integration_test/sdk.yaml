@@ -1,0 +1,3 @@
+apis:
+  com.amazonaws.cognitoidentityprovider:
+    - AdminListUserAuthEvents

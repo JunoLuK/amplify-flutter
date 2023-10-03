@@ -1,4 +1,5 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library aws_json1_1_v1.json_protocol.model.greeting_struct; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -21,22 +22,20 @@ abstract class GreetingStruct
 
   const GreetingStruct._();
 
-  static const List<_i2.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer<GreetingStruct>> serializers = [
     GreetingStructAwsJson11Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(GreetingStructBuilder b) {}
   String? get hi;
   @override
   List<Object?> get props => [hi];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('GreetingStruct');
-    helper.add(
-      'hi',
-      hi,
-    );
+    final helper = newBuiltValueToStringHelper('GreetingStruct')
+      ..add(
+        'hi',
+        hi,
+      );
     return helper.toString();
   }
 }
@@ -69,15 +68,15 @@ class GreetingStructAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'hi':
-          if (value != null) {
-            result.hi = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.hi = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
       }
     }
 
@@ -87,19 +86,19 @@ class GreetingStructAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    GreetingStruct object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as GreetingStruct);
-    final result = <Object?>[];
-    if (payload.hi != null) {
-      result
+    final result$ = <Object?>[];
+    final GreetingStruct(:hi) = object;
+    if (hi != null) {
+      result$
         ..add('hi')
         ..add(serializers.serialize(
-          payload.hi!,
+          hi,
           specifiedType: const FullType(String),
         ));
     }
-    return result;
+    return result$;
   }
 }

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of custom_v2.custom.model.http_checksum_not_required_with_member_input;
+part of 'http_checksum_not_required_with_member_input.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -9,7 +9,7 @@ part of custom_v2.custom.model.http_checksum_not_required_with_member_input;
 class _$HttpChecksumNotRequiredWithMemberInput
     extends HttpChecksumNotRequiredWithMemberInput {
   @override
-  final _i4.ChecksumAlgorithm? checksumAlgorithm;
+  final ChecksumAlgorithm? checksumAlgorithm;
   @override
   final _i2.Uint8List? content;
 
@@ -57,18 +57,16 @@ class HttpChecksumNotRequiredWithMemberInputBuilder
             HttpChecksumNotRequiredWithMemberInputBuilder> {
   _$HttpChecksumNotRequiredWithMemberInput? _$v;
 
-  _i4.ChecksumAlgorithm? _checksumAlgorithm;
-  _i4.ChecksumAlgorithm? get checksumAlgorithm => _$this._checksumAlgorithm;
-  set checksumAlgorithm(_i4.ChecksumAlgorithm? checksumAlgorithm) =>
+  ChecksumAlgorithm? _checksumAlgorithm;
+  ChecksumAlgorithm? get checksumAlgorithm => _$this._checksumAlgorithm;
+  set checksumAlgorithm(ChecksumAlgorithm? checksumAlgorithm) =>
       _$this._checksumAlgorithm = checksumAlgorithm;
 
   _i2.Uint8List? _content;
   _i2.Uint8List? get content => _$this._content;
   set content(_i2.Uint8List? content) => _$this._content = content;
 
-  HttpChecksumNotRequiredWithMemberInputBuilder() {
-    HttpChecksumNotRequiredWithMemberInput._init(this);
-  }
+  HttpChecksumNotRequiredWithMemberInputBuilder();
 
   HttpChecksumNotRequiredWithMemberInputBuilder get _$this {
     final $v = _$v;

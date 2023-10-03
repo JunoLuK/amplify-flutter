@@ -6,6 +6,9 @@ library amplify_auth_cognito_dart;
 
 export 'package:amplify_core/src/types/auth/auth_types.dart';
 
+export 'src/asf/asf_context_data.dart';
+export 'src/asf/asf_context_data_provider.dart';
+export 'src/asf/asf_device_info_collector.dart' show ASFDeviceInfoCollector;
 export 'src/auth_plugin_impl.dart';
 export 'src/exception/device_not_tracked_exception.dart';
 export 'src/exception/invalid_account_type_exception.dart';
@@ -13,8 +16,8 @@ export 'src/jwt/src/cognito.dart';
 export 'src/jwt/src/token.dart';
 export 'src/model/attribute/cognito_confirm_user_attribute_plugin_options.dart';
 export 'src/model/attribute/cognito_fetch_user_attributes_plugin_options.dart';
-export 'src/model/attribute/cognito_resend_user_attribute_confirmation_code_options.dart';
-export 'src/model/attribute/cognito_resend_user_attribute_confirmation_code_plugin_options.dart';
+export 'src/model/attribute/cognito_send_user_attribute_verification_code_options.dart';
+export 'src/model/attribute/cognito_send_user_attribute_verification_code_plugin_options.dart';
 export 'src/model/attribute/cognito_update_user_attribute_options.dart';
 export 'src/model/attribute/cognito_update_user_attribute_plugin_options.dart';
 export 'src/model/attribute/cognito_update_user_attribute_step.dart';
@@ -22,6 +25,7 @@ export 'src/model/attribute/cognito_update_user_attributes_options.dart';
 export 'src/model/attribute/cognito_update_user_attributes_plugin_options.dart';
 export 'src/model/auth_result.dart';
 export 'src/model/device/cognito_device.dart';
+export 'src/model/mfa/cognito_verify_totp_setup_plugin_options.dart';
 export 'src/model/password/cognito_confirm_reset_password_options.dart';
 export 'src/model/password/cognito_confirm_reset_password_plugin_options.dart';
 export 'src/model/password/cognito_reset_password_options.dart';

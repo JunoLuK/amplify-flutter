@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of rest_xml_v2.rest_xml_protocol.model.http_payload_with_xml_name_input_output;
+part of 'http_payload_with_xml_name_input_output.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -9,7 +9,7 @@ part of rest_xml_v2.rest_xml_protocol.model.http_payload_with_xml_name_input_out
 class _$HttpPayloadWithXmlNameInputOutput
     extends HttpPayloadWithXmlNameInputOutput {
   @override
-  final _i2.PayloadWithXmlName? nested;
+  final PayloadWithXmlName? nested;
 
   factory _$HttpPayloadWithXmlNameInputOutput(
           [void Function(HttpPayloadWithXmlNameInputOutputBuilder)? updates]) =>
@@ -48,14 +48,12 @@ class HttpPayloadWithXmlNameInputOutputBuilder
             HttpPayloadWithXmlNameInputOutputBuilder> {
   _$HttpPayloadWithXmlNameInputOutput? _$v;
 
-  _i2.PayloadWithXmlNameBuilder? _nested;
-  _i2.PayloadWithXmlNameBuilder get nested =>
-      _$this._nested ??= new _i2.PayloadWithXmlNameBuilder();
-  set nested(_i2.PayloadWithXmlNameBuilder? nested) => _$this._nested = nested;
+  PayloadWithXmlNameBuilder? _nested;
+  PayloadWithXmlNameBuilder get nested =>
+      _$this._nested ??= new PayloadWithXmlNameBuilder();
+  set nested(PayloadWithXmlNameBuilder? nested) => _$this._nested = nested;
 
-  HttpPayloadWithXmlNameInputOutputBuilder() {
-    HttpPayloadWithXmlNameInputOutput._init(this);
-  }
+  HttpPayloadWithXmlNameInputOutputBuilder();
 
   HttpPayloadWithXmlNameInputOutputBuilder get _$this {
     final $v = _$v;

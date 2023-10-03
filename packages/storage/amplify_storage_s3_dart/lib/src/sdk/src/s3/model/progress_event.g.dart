@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of amplify_storage_s3_dart.s3.model.progress_event;
+part of 'progress_event.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of amplify_storage_s3_dart.s3.model.progress_event;
 
 class _$ProgressEvent extends ProgressEvent {
   @override
-  final _i2.Progress? details;
+  final Progress? details;
 
   factory _$ProgressEvent([void Function(ProgressEventBuilder)? updates]) =>
       (new ProgressEventBuilder()..update(updates))._build();
@@ -41,14 +41,11 @@ class ProgressEventBuilder
     implements Builder<ProgressEvent, ProgressEventBuilder> {
   _$ProgressEvent? _$v;
 
-  _i2.ProgressBuilder? _details;
-  _i2.ProgressBuilder get details =>
-      _$this._details ??= new _i2.ProgressBuilder();
-  set details(_i2.ProgressBuilder? details) => _$this._details = details;
+  ProgressBuilder? _details;
+  ProgressBuilder get details => _$this._details ??= new ProgressBuilder();
+  set details(ProgressBuilder? details) => _$this._details = details;
 
-  ProgressEventBuilder() {
-    ProgressEvent._init(this);
-  }
+  ProgressEventBuilder();
 
   ProgressEventBuilder get _$this {
     final $v = _$v;

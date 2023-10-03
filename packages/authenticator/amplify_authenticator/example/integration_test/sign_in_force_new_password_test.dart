@@ -7,48 +7,37 @@ import 'package:amplify_authenticator_test/amplify_authenticator_test.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_integration_test/amplify_integration_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:integration_test/integration_test.dart';
 
-import 'config.dart';
+import 'test_runner.dart';
 import 'utils/test_utils.dart';
 
 // This test follows the Amplify UI feature "sign-in-force-new-password"
 // https://github.com/aws-amplify/amplify-ui/blob/main/packages/e2e/features/ui/components/authenticator/sign-in-force-new-password.feature
 
 void main() {
-  AWSLogger().logLevel = LogLevel.verbose;
-  final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-  // resolves issue on iOS. See: https://github.com/flutter/flutter/issues/89651
-  binding.deferFirstFrame();
+  testRunner.setupTests();
 
   group('Sign In with Force New Password flow', () {
     late PhoneNumber phoneNumber;
     late String password;
 
-    // Background
-    setUpAll(() async {
+    setUp(() async {
       // Given I'm running the example
       // "ui/components/authenticator/sign-in-with-phone"
-      await loadConfiguration(
+      await testRunner.configure(
         environmentName: 'sign-in-with-phone',
       );
-    });
 
-    setUp(() async {
       phoneNumber = generateUSPhoneNumber();
       password = generatePassword();
-      final cognitoUsername = await adminCreateUser(
+      await adminCreateUser(
         phoneNumber.toE164(),
         password,
         verifyAttributes: true,
-        attributes: [
-          AuthUserAttribute(
-            userAttributeKey: CognitoUserAttributeKey.phoneNumber,
-            value: phoneNumber.toE164(),
-          ),
-        ],
+        attributes: {
+          AuthUserAttributeKey.phoneNumber: phoneNumber.toE164(),
+        },
       );
-      addTearDown(() => deleteUser(cognitoUsername));
     });
 
     // Scenario: Sign in using a valid phone number and password and user is in

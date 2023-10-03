@@ -1,12 +1,12 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.rest_json_protocol.model.union_input_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v1/src/rest_json_protocol/model/my_union.dart'
-    as _i3;
+import 'package:rest_json1_v1/src/rest_json_protocol/model/my_union.dart';
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'union_input_output.g.dart';
@@ -16,7 +16,7 @@ abstract class UnionInputOutput
     with _i1.HttpInput<UnionInputOutput>, _i2.AWSEquatable<UnionInputOutput>
     implements Built<UnionInputOutput, UnionInputOutputBuilder> {
   /// A shared structure that contains a single union member.
-  factory UnionInputOutput({_i3.MyUnion? contents}) {
+  factory UnionInputOutput({MyUnion? contents}) {
     return _$UnionInputOutput._(contents: contents);
   }
 
@@ -40,26 +40,23 @@ abstract class UnionInputOutput
   ) =>
       payload;
 
-  static const List<_i1.SmithySerializer> serializers = [
+  static const List<_i1.SmithySerializer<UnionInputOutput>> serializers = [
     UnionInputOutputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(UnionInputOutputBuilder b) {}
-
   /// A union with a representative set of types for members.
-  _i3.MyUnion? get contents;
+  MyUnion? get contents;
   @override
   UnionInputOutput getPayload() => this;
   @override
   List<Object?> get props => [contents];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('UnionInputOutput');
-    helper.add(
-      'contents',
-      contents,
-    );
+    final helper = newBuiltValueToStringHelper('UnionInputOutput')
+      ..add(
+        'contents',
+        contents,
+      );
     return helper.toString();
   }
 }
@@ -92,15 +89,15 @@ class UnionInputOutputRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'contents':
-          if (value != null) {
-            result.contents = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(_i3.MyUnion),
-            ) as _i3.MyUnion);
-          }
-          break;
+          result.contents = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(MyUnion),
+          ) as MyUnion);
       }
     }
 
@@ -110,19 +107,19 @@ class UnionInputOutputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    UnionInputOutput object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as UnionInputOutput);
-    final result = <Object?>[];
-    if (payload.contents != null) {
-      result
+    final result$ = <Object?>[];
+    final UnionInputOutput(:contents) = object;
+    if (contents != null) {
+      result$
         ..add('contents')
         ..add(serializers.serialize(
-          payload.contents!,
-          specifiedType: const FullType(_i3.MyUnion),
+          contents,
+          specifiedType: const FullType(MyUnion),
         ));
     }
-    return result;
+    return result$;
   }
 }

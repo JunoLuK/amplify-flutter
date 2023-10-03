@@ -2,7 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import 'package:amplify_auth_cognito_dart/amplify_auth_cognito_dart.dart';
-import 'package:amplify_auth_cognito_dart/src/sdk/cognito_identity_provider.dart';
+import 'package:amplify_auth_cognito_dart/src/sdk/cognito_identity_provider.dart'
+    hide UserNotFoundException;
 import 'package:amplify_auth_cognito_dart/src/state/cognito_state_machine.dart';
 import 'package:amplify_auth_cognito_dart/src/state/state.dart';
 import 'package:amplify_core/amplify_core.dart';
@@ -10,7 +11,8 @@ import 'package:amplify_core/amplify_core.dart';
 /// {@template amplify_auth_cognito.sign_out_state_machine}
 /// Manages signing out a user and clearing credentials from the local store.
 /// {@endtemplate}
-class SignOutStateMachine extends AuthStateMachine<SignOutEvent, SignOutState> {
+final class SignOutStateMachine
+    extends AuthStateMachine<SignOutEvent, SignOutState> {
   /// {@macro amplify_auth_cognito.sign_out_state_machine}
   SignOutStateMachine(CognitoAuthStateMachine manager) : super(manager, type);
 
@@ -23,11 +25,9 @@ class SignOutStateMachine extends AuthStateMachine<SignOutEvent, SignOutState> {
 
   @override
   Future<void> resolve(SignOutEvent event) async {
-    switch (event.type) {
-      case SignOutEventType.initiate:
-        event as SignOutInitiate;
+    switch (event) {
+      case SignOutInitiate _:
         await _onInitiate(event);
-        break;
     }
   }
 
@@ -59,6 +59,12 @@ class SignOutStateMachine extends AuthStateMachine<SignOutEvent, SignOutState> {
       tokens = await manager.getUserPoolTokens();
     } on SignedOutException {
       return emit(const SignOutState.success());
+    } on UserNotFoundException {
+      // If a user has been deleted and credentials are expired, a UserNotFoundException
+      // can be thrown. In this case, the token refresh will fail and we should make sure
+      // to clear the credentials associated with the non-existent user.
+      await manager.clearCredentials();
+      return emit(const SignOutState.success());
     }
 
     // Capture results of individual steps to determine overall success.
@@ -70,14 +76,11 @@ class SignOutStateMachine extends AuthStateMachine<SignOutEvent, SignOutState> {
     Future<void> signOutHostedUi() async {
       if (tokens.signInMethod == CognitoSignInMethod.hostedUi) {
         final hostedUiResult = await manager.signOutHostedUI();
-        if (hostedUiResult is HostedUiFailure) {
-          final exception = hostedUiResult.exception;
+        if (hostedUiResult case HostedUiFailure(:final exception)) {
           if (exception is UserCancelledException) {
             throw exception;
           }
-          hostedUiException = HostedUiException(
-            underlyingException: hostedUiResult.exception,
-          );
+          hostedUiException = HostedUiException(underlyingException: exception);
         }
       }
     }

@@ -1,40 +1,33 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 // ignore_for_file: unused_element
 library rest_json1_v2.glacier.test.upload_archive_operation_test_test; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'dart:async' as _i7;
+import 'dart:async' as _i5;
 
-import 'package:aws_signature_v4/aws_signature_v4.dart' as _i4;
+import 'package:aws_signature_v4/aws_signature_v4.dart' as _i3;
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v2/src/glacier/model/archive_creation_output.dart'
-    as _i8;
-import 'package:rest_json1_v2/src/glacier/model/invalid_parameter_value_exception.dart'
-    as _i9;
-import 'package:rest_json1_v2/src/glacier/model/missing_parameter_value_exception.dart'
-    as _i10;
-import 'package:rest_json1_v2/src/glacier/model/request_timeout_exception.dart'
-    as _i11;
-import 'package:rest_json1_v2/src/glacier/model/resource_not_found_exception.dart'
-    as _i12;
-import 'package:rest_json1_v2/src/glacier/model/service_unavailable_exception.dart'
-    as _i13;
-import 'package:rest_json1_v2/src/glacier/model/upload_archive_input.dart'
-    as _i6;
-import 'package:rest_json1_v2/src/glacier/operation/upload_archive_operation.dart'
-    as _i3;
-import 'package:smithy/smithy.dart' as _i5;
+import 'package:rest_json1_v2/src/glacier/model/archive_creation_output.dart';
+import 'package:rest_json1_v2/src/glacier/model/invalid_parameter_value_exception.dart';
+import 'package:rest_json1_v2/src/glacier/model/missing_parameter_value_exception.dart';
+import 'package:rest_json1_v2/src/glacier/model/request_timeout_exception.dart';
+import 'package:rest_json1_v2/src/glacier/model/resource_not_found_exception.dart';
+import 'package:rest_json1_v2/src/glacier/model/service_unavailable_exception.dart';
+import 'package:rest_json1_v2/src/glacier/model/upload_archive_input.dart';
+import 'package:rest_json1_v2/src/glacier/operation/upload_archive_operation.dart';
+import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
   _i1.test('GlacierVersionHeader (request)', () async {
     await _i2.httpRequestTest(
-      operation: _i3.UploadArchiveOperation(
+      operation: UploadArchiveOperation(
         region: 'us-east-1',
         baseUri: Uri.parse('https://example.com'),
         credentialsProvider:
-            const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
+            const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
           'DUMMY-ACCESS-KEY-ID',
           'DUMMY-SECRET-ACCESS-KEY',
         )),
@@ -43,7 +36,7 @@ void main() {
         id: 'GlacierVersionHeader',
         documentation:
             'Glacier requires that a version header be set on all requests.',
-        protocol: _i5.ShapeId(
+        protocol: _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         ),
@@ -74,11 +67,11 @@ void main() {
   }, skip: 'Glacier is not supported yet');
   _i1.test('GlacierChecksums (request)', () async {
     await _i2.httpRequestTest(
-      operation: _i3.UploadArchiveOperation(
+      operation: UploadArchiveOperation(
         region: 'us-east-1',
         baseUri: Uri.parse('https://example.com'),
         credentialsProvider:
-            const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
+            const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
           'DUMMY-ACCESS-KEY-ID',
           'DUMMY-SECRET-ACCESS-KEY',
         )),
@@ -87,7 +80,7 @@ void main() {
         id: 'GlacierChecksums',
         documentation:
             'Glacier requires checksum headers that are cumbersome to provide.',
-        protocol: _i5.ShapeId(
+        protocol: _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         ),
@@ -125,11 +118,11 @@ void main() {
   }, skip: 'Glacier is not supported yet');
   _i1.test('GlacierAccountId (request)', () async {
     await _i2.httpRequestTest(
-      operation: _i3.UploadArchiveOperation(
+      operation: UploadArchiveOperation(
         region: 'us-east-1',
         baseUri: Uri.parse('https://example.com'),
         credentialsProvider:
-            const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
+            const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
           'DUMMY-ACCESS-KEY-ID',
           'DUMMY-SECRET-ACCESS-KEY',
         )),
@@ -138,7 +131,7 @@ void main() {
         id: 'GlacierAccountId',
         documentation:
             'Glacier requires that the account id be set, but you can just use a\nhyphen (-) to indicate the current account. This should be default\nbehavior if the customer provides a null or empty string.',
-        protocol: _i5.ShapeId(
+        protocol: _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         ),
@@ -170,86 +163,78 @@ void main() {
 }
 
 class UploadArchiveInputRestJson1Serializer
-    extends _i5.StructuredSmithySerializer<_i6.UploadArchiveInput> {
+    extends _i4.StructuredSmithySerializer<UploadArchiveInput> {
   const UploadArchiveInputRestJson1Serializer() : super('UploadArchiveInput');
 
   @override
-  Iterable<Type> get types => const [_i6.UploadArchiveInput];
+  Iterable<Type> get types => const [UploadArchiveInput];
   @override
-  Iterable<_i5.ShapeId> get supportedProtocols => const [
-        _i5.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
       ];
   @override
-  _i6.UploadArchiveInput deserialize(
+  UploadArchiveInput deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = _i6.UploadArchiveInputBuilder();
+    final result = UploadArchiveInputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
-        case 'accountId':
-          result.accountId = (serializers.deserialize(
-            value!,
-            specifiedType: const FullType(String),
-          ) as String);
-          break;
-        case 'archiveDescription':
-          if (value != null) {
-            result.archiveDescription = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
-        case 'body':
-          if (value != null) {
-            result.body = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(
-                _i7.Stream,
-                [
-                  FullType(
-                    List,
-                    [FullType(int)],
-                  )
-                ],
-              ),
-            ) as _i7.Stream<List<int>>);
-          }
-          break;
-        case 'checksum':
-          if (value != null) {
-            result.checksum = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
         case 'vaultName':
           result.vaultName = (serializers.deserialize(
-            value!,
+            value,
             specifiedType: const FullType(String),
           ) as String);
-          break;
+        case 'accountId':
+          result.accountId = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
+        case 'archiveDescription':
+          result.archiveDescription = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
+        case 'checksum':
+          result.checksum = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
+        case 'body':
+          result.body = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(
+              _i5.Stream,
+              [
+                FullType(
+                  List,
+                  [FullType(int)],
+                )
+              ],
+            ),
+          ) as _i5.Stream<List<int>>);
       }
     }
 
-    result.body ??= const _i7.Stream.empty();
+    result.body ??= const _i5.Stream.empty();
     return result.build();
   }
 
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    UploadArchiveInput object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
@@ -257,56 +242,50 @@ class UploadArchiveInputRestJson1Serializer
 }
 
 class ArchiveCreationOutputRestJson1Serializer
-    extends _i5.StructuredSmithySerializer<_i8.ArchiveCreationOutput> {
+    extends _i4.StructuredSmithySerializer<ArchiveCreationOutput> {
   const ArchiveCreationOutputRestJson1Serializer()
       : super('ArchiveCreationOutput');
 
   @override
-  Iterable<Type> get types => const [_i8.ArchiveCreationOutput];
+  Iterable<Type> get types => const [ArchiveCreationOutput];
   @override
-  Iterable<_i5.ShapeId> get supportedProtocols => const [
-        _i5.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
       ];
   @override
-  _i8.ArchiveCreationOutput deserialize(
+  ArchiveCreationOutput deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = _i8.ArchiveCreationOutputBuilder();
+    final result = ArchiveCreationOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
-        case 'archiveId':
-          if (value != null) {
-            result.archiveId = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
-        case 'checksum':
-          if (value != null) {
-            result.checksum = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
         case 'location':
-          if (value != null) {
-            result.location = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.location = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
+        case 'checksum':
+          result.checksum = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
+        case 'archiveId':
+          result.archiveId = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
       }
     }
 
@@ -316,7 +295,7 @@ class ArchiveCreationOutputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    ArchiveCreationOutput object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
@@ -324,56 +303,50 @@ class ArchiveCreationOutputRestJson1Serializer
 }
 
 class InvalidParameterValueExceptionRestJson1Serializer
-    extends _i5.StructuredSmithySerializer<_i9.InvalidParameterValueException> {
+    extends _i4.StructuredSmithySerializer<InvalidParameterValueException> {
   const InvalidParameterValueExceptionRestJson1Serializer()
       : super('InvalidParameterValueException');
 
   @override
-  Iterable<Type> get types => const [_i9.InvalidParameterValueException];
+  Iterable<Type> get types => const [InvalidParameterValueException];
   @override
-  Iterable<_i5.ShapeId> get supportedProtocols => const [
-        _i5.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
       ];
   @override
-  _i9.InvalidParameterValueException deserialize(
+  InvalidParameterValueException deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = _i9.InvalidParameterValueExceptionBuilder();
+    final result = InvalidParameterValueExceptionBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
-        case 'code':
-          if (value != null) {
-            result.code = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
-        case 'message':
-          if (value != null) {
-            result.message = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
         case 'type':
-          if (value != null) {
-            result.type = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.type = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
+        case 'code':
+          result.code = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
+        case 'message':
+          result.message = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
       }
     }
 
@@ -383,64 +356,58 @@ class InvalidParameterValueExceptionRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    InvalidParameterValueException object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
   }
 }
 
-class MissingParameterValueExceptionRestJson1Serializer extends _i5
-    .StructuredSmithySerializer<_i10.MissingParameterValueException> {
+class MissingParameterValueExceptionRestJson1Serializer
+    extends _i4.StructuredSmithySerializer<MissingParameterValueException> {
   const MissingParameterValueExceptionRestJson1Serializer()
       : super('MissingParameterValueException');
 
   @override
-  Iterable<Type> get types => const [_i10.MissingParameterValueException];
+  Iterable<Type> get types => const [MissingParameterValueException];
   @override
-  Iterable<_i5.ShapeId> get supportedProtocols => const [
-        _i5.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
       ];
   @override
-  _i10.MissingParameterValueException deserialize(
+  MissingParameterValueException deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = _i10.MissingParameterValueExceptionBuilder();
+    final result = MissingParameterValueExceptionBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
-        case 'code':
-          if (value != null) {
-            result.code = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
-        case 'message':
-          if (value != null) {
-            result.message = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
         case 'type':
-          if (value != null) {
-            result.type = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.type = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
+        case 'code':
+          result.code = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
+        case 'message':
+          result.message = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
       }
     }
 
@@ -450,7 +417,7 @@ class MissingParameterValueExceptionRestJson1Serializer extends _i5
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    MissingParameterValueException object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
@@ -458,56 +425,50 @@ class MissingParameterValueExceptionRestJson1Serializer extends _i5
 }
 
 class RequestTimeoutExceptionRestJson1Serializer
-    extends _i5.StructuredSmithySerializer<_i11.RequestTimeoutException> {
+    extends _i4.StructuredSmithySerializer<RequestTimeoutException> {
   const RequestTimeoutExceptionRestJson1Serializer()
       : super('RequestTimeoutException');
 
   @override
-  Iterable<Type> get types => const [_i11.RequestTimeoutException];
+  Iterable<Type> get types => const [RequestTimeoutException];
   @override
-  Iterable<_i5.ShapeId> get supportedProtocols => const [
-        _i5.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
       ];
   @override
-  _i11.RequestTimeoutException deserialize(
+  RequestTimeoutException deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = _i11.RequestTimeoutExceptionBuilder();
+    final result = RequestTimeoutExceptionBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
-        case 'code':
-          if (value != null) {
-            result.code = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
-        case 'message':
-          if (value != null) {
-            result.message = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
         case 'type':
-          if (value != null) {
-            result.type = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.type = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
+        case 'code':
+          result.code = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
+        case 'message':
+          result.message = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
       }
     }
 
@@ -517,7 +478,7 @@ class RequestTimeoutExceptionRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    RequestTimeoutException object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
@@ -525,56 +486,50 @@ class RequestTimeoutExceptionRestJson1Serializer
 }
 
 class ResourceNotFoundExceptionRestJson1Serializer
-    extends _i5.StructuredSmithySerializer<_i12.ResourceNotFoundException> {
+    extends _i4.StructuredSmithySerializer<ResourceNotFoundException> {
   const ResourceNotFoundExceptionRestJson1Serializer()
       : super('ResourceNotFoundException');
 
   @override
-  Iterable<Type> get types => const [_i12.ResourceNotFoundException];
+  Iterable<Type> get types => const [ResourceNotFoundException];
   @override
-  Iterable<_i5.ShapeId> get supportedProtocols => const [
-        _i5.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
       ];
   @override
-  _i12.ResourceNotFoundException deserialize(
+  ResourceNotFoundException deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = _i12.ResourceNotFoundExceptionBuilder();
+    final result = ResourceNotFoundExceptionBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
-        case 'code':
-          if (value != null) {
-            result.code = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
-        case 'message':
-          if (value != null) {
-            result.message = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
         case 'type':
-          if (value != null) {
-            result.type = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.type = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
+        case 'code':
+          result.code = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
+        case 'message':
+          result.message = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
       }
     }
 
@@ -584,7 +539,7 @@ class ResourceNotFoundExceptionRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    ResourceNotFoundException object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
@@ -592,56 +547,50 @@ class ResourceNotFoundExceptionRestJson1Serializer
 }
 
 class ServiceUnavailableExceptionRestJson1Serializer
-    extends _i5.StructuredSmithySerializer<_i13.ServiceUnavailableException> {
+    extends _i4.StructuredSmithySerializer<ServiceUnavailableException> {
   const ServiceUnavailableExceptionRestJson1Serializer()
       : super('ServiceUnavailableException');
 
   @override
-  Iterable<Type> get types => const [_i13.ServiceUnavailableException];
+  Iterable<Type> get types => const [ServiceUnavailableException];
   @override
-  Iterable<_i5.ShapeId> get supportedProtocols => const [
-        _i5.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
       ];
   @override
-  _i13.ServiceUnavailableException deserialize(
+  ServiceUnavailableException deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = _i13.ServiceUnavailableExceptionBuilder();
+    final result = ServiceUnavailableExceptionBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
-        case 'code':
-          if (value != null) {
-            result.code = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
-        case 'message':
-          if (value != null) {
-            result.message = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
         case 'type':
-          if (value != null) {
-            result.type = (serializers.deserialize(
-              value,
-              specifiedType: const FullType(String),
-            ) as String);
-          }
-          break;
+          result.type = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
+        case 'code':
+          result.code = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
+        case 'message':
+          result.message = (serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String);
       }
     }
 
@@ -651,7 +600,7 @@ class ServiceUnavailableExceptionRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    ServiceUnavailableException object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');

@@ -1,13 +1,13 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
+// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_protocol.model.post_union_with_json_name_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v2/src/rest_json_protocol/model/union_with_json_name.dart'
-    as _i2;
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:rest_json1_v2/src/rest_json_protocol/model/union_with_json_name.dart';
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'post_union_with_json_name_output.g.dart';
 
@@ -15,7 +15,7 @@ abstract class PostUnionWithJsonNameOutput
     with _i1.AWSEquatable<PostUnionWithJsonNameOutput>
     implements
         Built<PostUnionWithJsonNameOutput, PostUnionWithJsonNameOutputBuilder> {
-  factory PostUnionWithJsonNameOutput({required _i2.UnionWithJsonName value}) {
+  factory PostUnionWithJsonNameOutput({required UnionWithJsonName value}) {
     return _$PostUnionWithJsonNameOutput._(value: value);
   }
 
@@ -32,28 +32,25 @@ abstract class PostUnionWithJsonNameOutput
   ) =>
       payload;
 
-  static const List<_i3.SmithySerializer> serializers = [
-    PostUnionWithJsonNameOutputRestJson1Serializer()
-  ];
+  static const List<_i2.SmithySerializer<PostUnionWithJsonNameOutput>>
+      serializers = [PostUnionWithJsonNameOutputRestJson1Serializer()];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(PostUnionWithJsonNameOutputBuilder b) {}
-  _i2.UnionWithJsonName get value;
+  UnionWithJsonName get value;
   @override
   List<Object?> get props => [value];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('PostUnionWithJsonNameOutput');
-    helper.add(
-      'value',
-      value,
-    );
+    final helper = newBuiltValueToStringHelper('PostUnionWithJsonNameOutput')
+      ..add(
+        'value',
+        value,
+      );
     return helper.toString();
   }
 }
 
 class PostUnionWithJsonNameOutputRestJson1Serializer
-    extends _i3.StructuredSmithySerializer<PostUnionWithJsonNameOutput> {
+    extends _i2.StructuredSmithySerializer<PostUnionWithJsonNameOutput> {
   const PostUnionWithJsonNameOutputRestJson1Serializer()
       : super('PostUnionWithJsonNameOutput');
 
@@ -63,8 +60,8 @@ class PostUnionWithJsonNameOutputRestJson1Serializer
         _$PostUnionWithJsonNameOutput,
       ];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i2.ShapeId> get supportedProtocols => const [
+        _i2.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
@@ -81,13 +78,15 @@ class PostUnionWithJsonNameOutputRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
+      if (value == null) {
+        continue;
+      }
       switch (key) {
         case 'value':
           result.value = (serializers.deserialize(
-            value!,
-            specifiedType: const FullType(_i2.UnionWithJsonName),
-          ) as _i2.UnionWithJsonName);
-          break;
+            value,
+            specifiedType: const FullType(UnionWithJsonName),
+          ) as UnionWithJsonName);
       }
     }
 
@@ -97,17 +96,18 @@ class PostUnionWithJsonNameOutputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    Object? object, {
+    PostUnionWithJsonNameOutput object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final payload = (object as PostUnionWithJsonNameOutput);
-    final result = <Object?>[
+    final result$ = <Object?>[];
+    final PostUnionWithJsonNameOutput(:value) = object;
+    result$.addAll([
       'value',
       serializers.serialize(
-        payload.value,
-        specifiedType: const FullType(_i2.UnionWithJsonName),
+        value,
+        specifiedType: const FullType(UnionWithJsonName),
       ),
-    ];
-    return result;
+    ]);
+    return result$;
   }
 }

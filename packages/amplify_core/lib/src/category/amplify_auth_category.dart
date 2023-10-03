@@ -348,6 +348,78 @@ class AuthCategory extends AmplifyCategory<AuthPluginInterface> {
   /// }
   /// ```
   ///
+  /// If TOTP MFA is enabled, prompt the user to visit their registered authenticator app
+  /// for a one-time code.
+  ///
+  /// <?code-excerpt "doc/lib/auth.dart" region="handle-confirm-signin-totp-code"?>
+  /// ```dart
+  /// Future<void> _handleSignInResult(SignInResult result) async {
+  ///   switch (result.nextStep.signInStep) {
+  ///     // ···
+  ///     case AuthSignInStep.confirmSignInWithTotpMfaCode:
+  ///       safePrint('Enter a one-time code from your registered Authenticator app');
+  ///     // ···
+  ///   }
+  /// }
+  /// ```
+  ///
+  /// If TOTP MFA is enabled but the user has not configured it yet, prompt them to
+  /// install an authenticator app capable of generating one-time passcodes (e.g.
+  /// Google Authenticator or Microsoft Authenticator), then use the returned [TotpSetupDetails]
+  /// to generate and display a URI for setup.
+  ///
+  /// <?code-excerpt "doc/lib/auth.dart" region="handle-confirm-signin-totp-setup"?>
+  /// ```dart
+  /// Future<void> _handleSignInResult(SignInResult result) async {
+  ///   switch (result.nextStep.signInStep) {
+  ///     // ···
+  ///     case AuthSignInStep.continueSignInWithTotpSetup:
+  ///       final totpSetupDetails = result.nextStep.totpSetupDetails!;
+  ///       final setupUri = totpSetupDetails.getSetupUri(appName: 'MyApp');
+  ///       safePrint('Open URI to complete setup: $setupUri');
+  ///     // ···
+  ///   }
+  /// }
+  /// ```
+  ///
+  /// If both SMS MFA and TOTP MFA are enabled and configured for the user, they will be
+  /// given the choice of which mechanism they'd like to use to continue signing in.
+  ///
+  /// <?code-excerpt "doc/lib/auth.dart" region="prompt-user-preference"?>
+  /// ```dart
+  /// Future<MfaType> _promptUserPreference(Set<MfaType> allowedTypes) async {
+  ///   // ···
+  /// }
+  /// ```
+  ///
+  /// <?code-excerpt "doc/lib/auth.dart" region="handle-mfa-selection"?>
+  /// ```dart
+  /// Future<void> _handleMfaSelection(MfaType selection) async {
+  ///   try {
+  ///     final result = await Amplify.Auth.confirmSignIn(
+  ///       confirmationValue: selection.confirmationValue,
+  ///     );
+  ///     return _handleSignInResult(result);
+  ///   } on AuthException catch (e) {
+  ///     safePrint('Error resending code: ${e.message}');
+  ///   }
+  /// }
+  /// ```
+  ///
+  /// <?code-excerpt "doc/lib/auth.dart" region="handle-confirm-signin-mfa-selection"?>
+  /// ```dart
+  /// Future<void> _handleSignInResult(SignInResult result) async {
+  ///   switch (result.nextStep.signInStep) {
+  ///     // ···
+  ///     case AuthSignInStep.continueSignInWithMfaSelection:
+  ///       final allowedMfaTypes = result.nextStep.allowedMfaTypes!;
+  ///       final selection = await _promptUserPreference(allowedMfaTypes);
+  ///       return _handleMfaSelection(selection);
+  ///     // ···
+  ///   }
+  /// }
+  /// ```
+  ///
   /// If the user was created by an administrator, a new password will be required.
   /// Prompt the user to choose a new password and pass the value to [confirmSignIn].
   ///
@@ -1161,18 +1233,15 @@ class AuthCategory extends AmplifyCategory<AuthPluginInterface> {
         ),
       );
 
-  /// {@template amplify_core.amplify_auth_category.resend_user_attribute_confirmation_code}
-  /// Resends a confirmation code for the given [userAttributeKey], if required, while
-  /// updating the attribute.
+  /// {@template amplify_core.amplify_auth_category.send_attribute_verification_code}
+  /// Sends a confirmation code for the existing value for the given
+  /// [userAttributeKey].
   ///
-  /// If a confirmation code sent as the result of a [updateUserAttribute] or [updateUserAttributes]
-  /// call expires, you can use this API to request a new one.
+  /// This API can be used to confirm an attribute that was not confirmed during
+  /// the sign up flow.
   ///
   /// Optionally accepts plugin [options] which allow customizing provider-specific
   /// behavior, e.g. the Cognito User Pool.
-  ///
-  /// For more information, see the
-  /// [Amplify docs](https://docs.amplify.aws/lib/auth/user-attributes/q/platform/flutter/#resend-verification-code).
   ///
   /// ## Examples
   ///
@@ -1182,11 +1251,11 @@ class AuthCategory extends AmplifyCategory<AuthPluginInterface> {
   /// import 'package:amplify_flutter/amplify_flutter.dart';
   /// ```
   ///
-  /// <?code-excerpt "doc/lib/auth.dart" region="resend-user-attribute-code"?>
+  /// <?code-excerpt "doc/lib/auth.dart" region="send-user-attribute-verification-code"?>
   /// ```dart
   /// Future<void> resendVerificationCode() async {
   ///   try {
-  ///     final result = await Amplify.Auth.resendUserAttributeConfirmationCode(
+  ///     final result = await Amplify.Auth.sendUserAttributeVerificationCode(
   ///       userAttributeKey: AuthUserAttributeKey.email,
   ///     );
   ///     _handleCodeDelivery(result.codeDeliveryDetails);
@@ -1197,7 +1266,7 @@ class AuthCategory extends AmplifyCategory<AuthPluginInterface> {
   /// ```
   ///
   /// The details of where the code will be delivered are returned in the result's
-  /// [ResendUserAttributeConfirmationCodeResult.codeDeliveryDetails] property
+  /// [SendUserAttributeVerificationCodeResult.codeDeliveryDetails] property
   /// and should be used to prompt the user on where to look for the code.
   ///
   /// <?code-excerpt "doc/lib/auth.dart" region="handle-code"?>
@@ -1210,18 +1279,65 @@ class AuthCategory extends AmplifyCategory<AuthPluginInterface> {
   /// }
   /// ```
   /// {@endtemplate}
+  Future<SendUserAttributeVerificationCodeResult>
+      sendUserAttributeVerificationCode({
+    required AuthUserAttributeKey userAttributeKey,
+    SendUserAttributeVerificationCodeOptions? options,
+  }) =>
+          identifyCall(
+            AuthCategoryMethod.sendUserAttributeVerificationCode,
+            () => defaultPlugin.sendUserAttributeVerificationCode(
+              userAttributeKey: userAttributeKey,
+              options: options,
+            ),
+          );
+
+  /// {@macro amplify_core.amplify_auth_category.send_attribute_verification_code}
+  @Deprecated('Use sendUserAttributeVerificationCode.')
   Future<ResendUserAttributeConfirmationCodeResult>
       resendUserAttributeConfirmationCode({
     required AuthUserAttributeKey userAttributeKey,
     ResendUserAttributeConfirmationCodeOptions? options,
   }) =>
           identifyCall(
-            AuthCategoryMethod.resendUserAttributeConfirmationCode,
-            () => defaultPlugin.resendUserAttributeConfirmationCode(
+            AuthCategoryMethod.sendUserAttributeVerificationCode,
+            () => defaultPlugin.sendUserAttributeVerificationCode(
               userAttributeKey: userAttributeKey,
               options: options,
             ),
           );
+
+  /// {@template amplify_core.amplify_auth_category.set_up_totp}
+  /// Initiates setup of a time-based one-time passcode (TOTP) MFA method for the
+  /// current user.
+  ///
+  /// **NOTE**: Your backend must be set up with TOTP MFA enabled prior to calling this method.
+  ///
+  /// The [TotpSetupDetails] returned contains a [TotpSetupDetails.getSetupUri]
+  /// method for retrieving the setup URI. This can be used to build a QR code or
+  /// a button which opens the user's installed authenticator app. After setup is
+  /// complete on the user's end, call [verifyTotpSetup] with a one-time code to
+  /// complete registration.
+  /// {@endtemplate}
+  Future<TotpSetupDetails> setUpTotp({
+    TotpSetupOptions? options,
+  }) =>
+      defaultPlugin.setUpTotp(options: options);
+
+  /// {@template amplify_core.amplify_auth_category.verify_totp_setup}
+  /// Completes setup of a TOTP MFA application.
+  ///
+  /// Call this method with the one-time code generated by the user's authenticator
+  /// app with the URI given by [setUpTotp].
+  /// {@endtemplate}
+  Future<void> verifyTotpSetup(
+    String totpCode, {
+    VerifyTotpSetupOptions? options,
+  }) =>
+      defaultPlugin.verifyTotpSetup(
+        totpCode,
+        options: options,
+      );
 
   /// {@template amplify_core.amplify_auth_category.remember_device}
   /// Remembers the current device.

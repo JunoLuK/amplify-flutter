@@ -10,7 +10,6 @@ import 'package:amplify_integration_test/src/sdk/src/cognito_identity_provider/c
 import 'package:built_value/iso_8601_date_time_serializer.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart';
-import 'package:collection/collection.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'package:test/scaffolding.dart';
 
@@ -89,6 +88,30 @@ query ListAuthEvents($username: String!) {
   return events;
 }
 
+/// Enables SMS MFA for [username] using Cognito's `SetUserMFAPreference` API.
+Future<void> adminEnableSmsMfa(String username) async {
+  final result = await _graphQL(
+    r'''
+mutation EnableSmsMfa($username: String!) {
+  enableSmsMfa(username: $username) {
+    error
+    success
+  }
+}''',
+    variables: <String, dynamic>{
+      'username': username,
+    },
+  );
+  _logger.debug('Got enableSmsMfa result: $result');
+
+  final enableMfaError = (result['enableSmsMfa'] as Map?)?['error'];
+  if (enableMfaError != null) {
+    throw Exception(enableMfaError);
+  }
+
+  _logger.debug('Successfully enabled SMS MFA for user "$username"');
+}
+
 /// Deletes a Cognito user in backend infrastructure.
 ///
 /// This method differs from the Auth.deleteUser API in that
@@ -161,38 +184,40 @@ Future<String> adminCreateUser(
   bool enableMfa = false,
   bool verifyAttributes = false,
   bool autoFillAttributes = true,
-  List<AuthUserAttribute> attributes = const [],
+  Map<AuthUserAttributeKey, String> attributes = const {},
 }) async {
   final createUserParams = <String, dynamic>{
     'autoConfirm': autoConfirm,
-    'email': attributes
-            .firstWhereOrNull(
-              (el) => el.userAttributeKey == AuthUserAttributeKey.email,
-            )
-            ?.value ??
-        (autoFillAttributes ? generateEmail() : null),
     'enableMFA': enableMfa,
-    'givenName': attributes
-            .firstWhereOrNull(
-              (el) => el.userAttributeKey == AuthUserAttributeKey.givenName,
-            )
-            ?.value ??
-        (autoFillAttributes ? 'default_given_name' : null),
-    'name': attributes
-            .firstWhereOrNull(
-              (el) => el.userAttributeKey == AuthUserAttributeKey.name,
-            )
-            ?.value ??
-        (autoFillAttributes ? 'default_name' : null),
-    'phoneNumber': attributes
-            .firstWhereOrNull(
-              (el) => el.userAttributeKey == AuthUserAttributeKey.phoneNumber,
-            )
-            ?.value ??
-        (autoFillAttributes ? generatePhoneNumber() : null),
     'username': username,
     'verifyAttributes': verifyAttributes,
   };
+
+  final attributeMap = attributes.map(
+    (name, value) => MapEntry(name.key, value),
+  );
+  final email = attributeMap.remove(AuthUserAttributeKey.email.key) ??
+      (autoFillAttributes ? generateEmail() : null);
+  if (email != null) {
+    createUserParams['email'] = email;
+  }
+  final phoneNumber =
+      attributeMap.remove(AuthUserAttributeKey.phoneNumber.key) ??
+          (autoFillAttributes ? generatePhoneNumber() : null);
+  if (phoneNumber != null) {
+    createUserParams['phoneNumber'] = phoneNumber;
+  }
+  final name = attributeMap.remove(AuthUserAttributeKey.name.key) ??
+      (autoFillAttributes ? 'default_name' : null);
+  if (name != null) {
+    createUserParams['name'] = name;
+  }
+  final givenName = attributeMap.remove(AuthUserAttributeKey.givenName.key) ??
+      (autoFillAttributes ? 'default_given_name' : null);
+  if (givenName != null) {
+    createUserParams['givenName'] = name;
+  }
+  assert(attributeMap.isEmpty, 'Unsupported attributes: $attributeMap');
 
   _logger.debug('Creating user "$username" with values: $createUserParams');
   final result = await _graphQL(
@@ -226,8 +251,8 @@ Future<String> adminCreateUser(
     try {
       await _oneOf([
         // TODO(dnys1): Cognito cannot always delete a user by `cognitoUsername`. Why?
-        adminDeleteUser(username),
-        adminDeleteUser(cognitoUsername),
+        () => adminDeleteUser(username),
+        () => adminDeleteUser(cognitoUsername),
       ]);
     } on Exception catch (e) {
       _logger.debug('Error deleting user ($username / $cognitoUsername):', e);
@@ -235,6 +260,10 @@ Future<String> adminCreateUser(
   });
 
   _logger.debug('Successfully created user "$username"');
+
+  // Prevent eventual consistency issues caused by authenticating a user
+  // too quickly after creation.
+  await Future<void>.delayed(const Duration(milliseconds: 500));
 
   return cognitoUsername;
 }
@@ -346,19 +375,18 @@ Stream<CreateMFACodeResponse> getOtpCodes({void Function()? onEstablished}) {
 /// Completes if one of the [futures] completes successfully.
 ///
 /// Otherwise, throws with the combined errors of all of them.
-Future<void> _oneOf(List<Future<Object?>> futures) async {
+Future<void> _oneOf(List<Future<Object?> Function()> futures) async {
   var success = false;
-  final errors = List<Object?>.filled(futures.length, null);
-  await Future.wait(
-    futures.mapIndexed(
-      (index, fut) => fut.then((_) {
-        success = true;
-      }).onError((e, _) {
-        errors[index] = e;
-      }),
-    ),
-  );
+  Exception? error;
+  for (final future in futures) {
+    try {
+      await future();
+      success = true;
+    } on Exception catch (e) {
+      error = e;
+    }
+  }
   if (!success) {
-    throw Exception(errors);
+    throw error!;
   }
 }

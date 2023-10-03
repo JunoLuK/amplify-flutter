@@ -1,15 +1,17 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import 'dart:async';
 import 'dart:io';
 
 import 'package:aft/aft.dart';
 import 'package:aft/src/changelog/changelog.dart';
 import 'package:aft/src/changelog/commit_message.dart';
+import 'package:aft/src/git.dart';
 import 'package:aws_common/aws_common.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:collection/collection.dart';
-import 'package:libgit2dart/libgit2dart.dart';
+import 'package:git/git.dart';
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 
@@ -17,9 +19,20 @@ import 'package:pub_semver/pub_semver.dart';
 /// management.
 class Repo {
   Repo(
-    this.aftConfig, {
+    this.aftConfig,
+    this.git, {
     AWSLogger? logger,
   }) : logger = logger ?? AWSLogger().createChild('Repo');
+
+  static Future<Repo> open(
+    AftConfig aftConfig, {
+    AWSLogger? logger,
+  }) async {
+    final gitDir = await GitDir.fromExisting(
+      aftConfig.rootDirectory.toFilePath(),
+    );
+    return Repo(aftConfig, gitDir, logger: logger);
+  }
 
   final AftConfig aftConfig;
 
@@ -36,6 +49,10 @@ class Repo {
 
   final AWSLogger logger;
 
+  final GitDir git;
+
+  PackageInfo operator [](String packageName) => allPackages[packageName]!;
+
   /// All packages which can be published to `pub.dev`.
   List<PackageInfo> publishablePackages([
     Map<String, PackageInfo>? allPackages,
@@ -47,16 +64,13 @@ class Repo {
             .toList(),
       );
 
-  /// The libgit repository.
-  late final Repository repo = Repository.open(rootDir.path);
-
   /// Returns the latest version bump commit for [package], or `null` if no such
   /// commit exists.
   ///
   /// This is the marker of the last time [package] was released and is used as
   /// the base git reference for calculating changes relevant to this version
   /// bump.
-  String? latestBumpRef(PackageInfo package) {
+  Future<String?> latestBumpRef(PackageInfo package) async {
     final packageName = package.name;
     final component = components[packageName]?.name ??
         components.values
@@ -67,14 +81,9 @@ class Repo {
             )
             ?.name ??
         packageName;
-    var commit = Commit.lookup(repo: repo, oid: repo.head.target);
+    var (sha, commit) = await git.head;
     while (commit.parents.isNotEmpty) {
-      final commitMessage = CommitMessage.parse(
-        commit.oid.sha,
-        commit.summary,
-        body: commit.body,
-        commitTimeSecs: commit.time,
-      );
+      final commitMessage = CommitMessage.fromCommitRef((sha, commit));
       if (commitMessage is VersionCommitMessage &&
           // Check both the component and the package since the definition of
           // components can change over time.
@@ -83,7 +92,7 @@ class Repo {
               commitMessage.updatedComponents.isEmpty)) {
         return commitMessage.sha;
       }
-      commit = commit.parent(0);
+      (sha, commit) = await git.commitRef(commit.parents.first);
     }
     return null;
   }
@@ -137,38 +146,18 @@ class Repo {
     return UnmodifiableMapView(reversedPackageGraph);
   }
 
-  /// The git diff between [oldTree] and [newTree].
-  ///
-  /// **NOTE**: This is an expensive operation and its result should be cached.
-  Diff diffTrees(Tree oldTree, Tree newTree) => Diff.treeToTree(
-        repo: repo,
-        oldTree: oldTree,
-        newTree: newTree,
-      );
-
   final _changesCache = <_DiffMarker, GitChanges>{};
 
   /// Collect all the packages which have changed between [baseRef]..[headRef]
   /// and the commits which changed them.
-  GitChanges changes(String baseRef, String headRef) {
-    // TODO(dnys1): Diff with index if headRef is null to include uncommitted
-    // changes?
-    final baseTree = RevParse.single(
-      repo: repo,
-      spec: '$baseRef^{tree}',
-    ) as Tree;
-    final headTree = RevParse.single(
-      repo: repo,
-      spec: '$headRef^{tree}',
-    ) as Tree;
-    final diffMarker = _DiffMarker(baseTree, headTree);
+  Future<GitChanges> changes(String baseRef, String headRef) async {
+    final baseTree = (await git.commitFromRevision(baseRef)).treeSha;
+    final headTree = (await git.commitFromRevision(headRef)).treeSha;
+    final diffMarker = (baseTree, headTree);
     if (_changesCache.containsKey(diffMarker)) {
       return _changesCache[diffMarker]!;
     }
-    final diff = diffTrees(baseTree, headTree);
-    final changedPaths = diff.deltas.expand(
-      (delta) => [delta.oldFile.path, delta.newFile.path],
-    );
+    final changedPaths = await git.diffTrees(baseTree, headTree);
     final changedPackages = <PackageInfo>{};
     for (final changedPath in changedPaths) {
       final changedPackage = allPackages.values.firstWhereOrNull(
@@ -189,32 +178,24 @@ class Repo {
     final commitsByPackage = SetMultimapBuilder<PackageInfo, CommitMessage>();
     final packagesByCommit = SetMultimapBuilder<CommitMessage, PackageInfo>();
     for (final package in changedPackages) {
-      final walker = RevWalk(repo)..pushRange('$baseRef..$headRef');
-      for (final commit in walker.walk()) {
-        for (var i = 0; i < commit.parents.length; i++) {
-          final parent = commit.parent(i);
-          final commitDiff = diffTrees(parent.tree, commit.tree);
-          final commitPaths = commitDiff.deltas.expand(
-            (delta) => [delta.oldFile.path, delta.newFile.path],
+      await for (final (sha, commit) in git.revList(baseRef, headRef)) {
+        final parent = await git.commitFromRevision(commit.parents.first);
+        final commitPaths = await git.diffTrees(
+          parent.treeSha,
+          commit.treeSha,
+        );
+        final relativePath = p.relative(package.path, from: rootDir.path);
+        final changedPath = commitPaths.firstWhereOrNull(
+          (path) => path.contains('$relativePath/'),
+        );
+        if (changedPath != null) {
+          final commitMessage = CommitMessage.fromCommitRef((sha, commit));
+          logger.verbose(
+            'Package ${package.name} changed by $changedPath '
+            '(${commitMessage.summary})',
           );
-          final relativePath = p.relative(package.path, from: rootDir.path);
-          final changedPath = commitPaths.firstWhereOrNull(
-            (path) => path.contains('$relativePath/'),
-          );
-          if (changedPath != null) {
-            final commitMessage = CommitMessage.parse(
-              commit.oid.sha,
-              commit.summary,
-              body: commit.body,
-              commitTimeSecs: commit.time,
-            );
-            logger.verbose(
-              'Package ${package.name} changed by $changedPath '
-              '(${commitMessage.summary})',
-            );
-            commitsByPackage.add(package, commitMessage);
-            packagesByCommit.add(commitMessage, package);
-          }
+          commitsByPackage.add(package, commitMessage);
+          packagesByCommit.add(commitMessage, package);
         }
       }
     }
@@ -231,11 +212,11 @@ class Repo {
   final Map<PackageInfo, ChangelogUpdate> changelogUpdates = {};
 
   /// Bumps the version for all packages in the repo.
-  void bumpAllVersions(
+  Future<void> bumpAllVersions(
     Map<String, PackageInfo> packages, {
-    required GitChanges Function(PackageInfo) changesForPackage,
+    required FutureOr<GitChanges> Function(PackageInfo) changesForPackage,
     VersionBumpType? forcedBumpType,
-  }) {
+  }) async {
     final sortedPackages = List.of(publishablePackages(packages));
     sortPackagesTopologically(
       sortedPackages,
@@ -243,7 +224,7 @@ class Repo {
     );
     bool canBump(PackageInfo package) => packages.containsKey(package.name);
     for (final package in sortedPackages) {
-      final changes = changesForPackage(package);
+      final changes = await changesForPackage(package);
       final commits = (changes.commitsByPackage[package]?.toList() ?? const [])
         ..sort((a, b) => a.dateTime.compareTo(b.dateTime));
       for (final commit in commits) {
@@ -271,6 +252,35 @@ class Repo {
         }
       }
     }
+  }
+
+  /// Writes all changes made by, for example, [bumpAllVersions], to disk.
+  ///
+  /// If [packages] is passed, only changes for those packages are written.
+  /// Otherwise, all repo packages are affected.
+  ///
+  /// Returns the list of packages which both had changes and were written.
+  Future<List<PackageInfo>> writeChanges({
+    List<PackageInfo>? packages,
+  }) async {
+    final affectedPackages = <PackageInfo>[];
+    for (final package in packages ?? allPackages.values.toList()) {
+      final edits = package.pubspecInfo.pubspecYamlEditor.edits;
+      // Don't write changelog updates for packages with no corresponding
+      // pubspec update.
+      if (edits.isEmpty) {
+        continue;
+      }
+      affectedPackages.add(package);
+      await File(p.join(package.path, 'pubspec.yaml'))
+          .writeAsString(package.pubspecInfo.pubspecYamlEditor.toString());
+      final changelogUpdate = changelogUpdates[package];
+      if (changelogUpdate != null && changelogUpdate.hasUpdate) {
+        await File(p.join(package.path, 'CHANGELOG.md'))
+            .writeAsString(changelogUpdate.toString());
+      }
+    }
+    return affectedPackages;
   }
 
   /// Bumps the version and changelog in [package] and its component packages
@@ -467,15 +477,7 @@ class GitChanges {
   final BuiltSetMultimap<CommitMessage, PackageInfo> packagesByCommit;
 }
 
-class _DiffMarker with AWSEquatable<_DiffMarker> {
-  const _DiffMarker(this.baseTree, this.headTree);
-
-  final Tree baseTree;
-  final Tree headTree;
-
-  @override
-  List<Object?> get props => [baseTree, headTree];
-}
+typedef _DiffMarker = (String baseTree, String headTree);
 
 class VersionChanges {
   VersionChanges(this._repo);

@@ -1,3 +1,30 @@
+## 1.4.2
+
+- Minor bug fixes and improvements
+
+## 1.4.1
+
+- Minor bug fixes and improvements
+
+## 1.4.0
+
+### Fixes
+- fix(datastore): Use platform thread ([#3607](https://github.com/aws-amplify/amplify-flutter/pull/3607))
+
+## 1.3.4
+
+### Fixes
+- fix(datastore): Pin `Starscream`
+
+## 1.3.3
+
+- Minor bug fixes and improvements
+
+## 1.3.2
+
+### Fixes
+- fix(datastore): Custom list serde ([#3544](https://github.com/aws-amplify/amplify-flutter/pull/3544))
+
 ## 1.3.1
 
 ### Fixes

@@ -24,8 +24,8 @@ export 'attribute/cognito_user_attribute_key.dart';
 export 'attribute/confirm_user_attribute_options.dart';
 export 'attribute/confirm_user_attribute_result.dart';
 export 'attribute/fetch_user_attributes_options.dart';
-export 'attribute/resend_user_attribute_confirmation_code_options.dart';
-export 'attribute/resend_user_attribute_confirmation_code_result.dart';
+export 'attribute/send_user_attribute_verification_code_options.dart';
+export 'attribute/send_user_attribute_verification_code_result.dart';
 export 'attribute/update_user_attribute_options.dart';
 export 'attribute/update_user_attribute_result.dart';
 export 'attribute/update_user_attributes_options.dart';
@@ -37,6 +37,13 @@ export 'auth_next_step.dart';
 
 /// Hub
 export 'hub/auth_hub_event.dart';
+
+/// MFA
+export 'mfa/mfa_preference.dart';
+export 'mfa/totp_setup_details.dart';
+export 'mfa/totp_setup_options.dart';
+export 'mfa/user_mfa_preference.dart';
+export 'mfa/verify_totp_setup_options.dart';
 
 /// Password
 export 'password/auth_reset_password_step.dart';

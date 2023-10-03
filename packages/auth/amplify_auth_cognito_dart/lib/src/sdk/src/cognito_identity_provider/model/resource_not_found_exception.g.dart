@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'resource_not_found_exception.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.resource_not_found_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -55,7 +55,9 @@ class ResourceNotFoundExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  ResourceNotFoundExceptionBuilder();
+  ResourceNotFoundExceptionBuilder() {
+    ResourceNotFoundException._init(this);
+  }
 
   ResourceNotFoundExceptionBuilder get _$this {
     final $v = _$v;

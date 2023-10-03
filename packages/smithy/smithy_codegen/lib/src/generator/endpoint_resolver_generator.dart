@@ -13,7 +13,8 @@ import 'package:smithy_codegen/src/util/shape_ext.dart';
 /// Generates the `serializers` and `builderFactories` fields necessary for shared
 /// use by the operation protocols.
 class EndpointResolverGenerator extends ShapeGenerator<ServiceShape, Library?> {
-  EndpointResolverGenerator(super.shape, super.context);
+  EndpointResolverGenerator(ServiceShape shape, CodegenContext context)
+      : super(shape, context);
 
   late final resolvedService = shape.resolvedService!;
 
@@ -23,11 +24,9 @@ class EndpointResolverGenerator extends ShapeGenerator<ServiceShape, Library?> {
       return null;
     }
 
-    return Library(
-      (b) => b
-        ..name = context.endpointResolverLibrary.libraryName
-        ..body.addAll(_fields),
-    );
+    return Library((b) => b
+      ..name = context.endpointResolverLibrary.libraryName
+      ..body.addAll(_fields));
   }
 
   Expression _buildEndpointDefinition(EndpointDefinition definition) =>
@@ -37,12 +36,9 @@ class EndpointResolverGenerator extends ShapeGenerator<ServiceShape, Library?> {
         if (definition.protocols.isNotEmpty)
           'protocols': literalList(definition.protocols.map(literalString)),
         if (definition.signatureVersions.isNotEmpty)
-          'signatureVersions': literalList(
-            definition.signatureVersions.map(
+          'signatureVersions': literalList(definition.signatureVersions.map(
               (version) => DartTypes.smithyAws.awsSignatureVersion
-                  .property(version.name),
-            ),
-          ),
+                  .property(version.name))),
         if (definition.credentialScope != null)
           'credentialScope':
               DartTypes.smithyAws.credentialScope.constInstance([], {
@@ -58,8 +54,7 @@ class EndpointResolverGenerator extends ShapeGenerator<ServiceShape, Library?> {
       });
 
   Expression _buildEndpointDefinitionVariant(
-    EndpointDefinitionVariant variant,
-  ) =>
+          EndpointDefinitionVariant variant) =>
       DartTypes.smithyAws.endpointDefinitionVariant.constInstance([], {
         if (variant.dnsSuffix != null)
           'dnsSuffix': literalString(variant.dnsSuffix!),
@@ -98,10 +93,8 @@ class EndpointResolverGenerator extends ShapeGenerator<ServiceShape, Library?> {
         ..name = '_partitions'
         ..assignment = literalList([
           for (final partitionName in sortedPartitions)
-            _buildPartition(
-              awsPartitions[partitionName]!
-                  .toPartition(resolvedService.endpointPrefix),
-            ),
+            _buildPartition(awsPartitions[partitionName]!
+                .toPartition(resolvedService.endpointPrefix)),
         ]).code,
     );
 

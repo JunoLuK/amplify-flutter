@@ -1,13 +1,14 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 // ignore_for_file: unused_element
 library rest_json1_v1.rest_json_protocol.test.timestamp_format_headers_operation_test_test; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v1/src/rest_json_protocol/model/timestamp_format_headers_io.dart';
-import 'package:rest_json1_v1/src/rest_json_protocol/operation/timestamp_format_headers_operation.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:rest_json1_v1/src/rest_json_protocol/model/timestamp_format_headers_io.dart'
+    as _i5;
+import 'package:rest_json1_v1/src/rest_json_protocol/operation/timestamp_format_headers_operation.dart'
+    as _i3;
+import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
@@ -16,14 +17,14 @@ void main() {
     'RestJsonTimestampFormatHeaders (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: TimestampFormatHeadersOperation(
+        operation: _i3.TimestampFormatHeadersOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'RestJsonTimestampFormatHeaders',
           documentation: 'Tests how timestamp request headers are serialized',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -70,14 +71,14 @@ void main() {
     'RestJsonTimestampFormatHeaders (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: TimestampFormatHeadersOperation(
+        operation: _i3.TimestampFormatHeadersOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'RestJsonTimestampFormatHeaders',
           documentation: 'Tests how timestamp response headers are serialized',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -119,77 +120,95 @@ void main() {
 }
 
 class TimestampFormatHeadersIoRestJson1Serializer
-    extends _i3.StructuredSmithySerializer<TimestampFormatHeadersIo> {
+    extends _i4.StructuredSmithySerializer<_i5.TimestampFormatHeadersIo> {
   const TimestampFormatHeadersIoRestJson1Serializer()
       : super('TimestampFormatHeadersIo');
 
   @override
-  Iterable<Type> get types => const [TimestampFormatHeadersIo];
+  Iterable<Type> get types => const [_i5.TimestampFormatHeadersIo];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
       ];
   @override
-  TimestampFormatHeadersIo deserialize(
+  _i5.TimestampFormatHeadersIo deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = TimestampFormatHeadersIoBuilder();
+    final result = _i5.TimestampFormatHeadersIoBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
-        case 'memberEpochSeconds':
-          result.memberEpochSeconds =
-              _i3.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
-        case 'memberHttpDate':
-          result.memberHttpDate =
-              _i3.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
-        case 'memberDateTime':
-          result.memberDateTime =
-              _i3.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
         case 'defaultFormat':
-          result.defaultFormat =
-              _i3.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
-        case 'targetEpochSeconds':
-          result.targetEpochSeconds =
-              _i3.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
-        case 'targetHttpDate':
-          result.targetHttpDate =
-              _i3.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.defaultFormat =
+                _i4.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
+        case 'memberDateTime':
+          if (value != null) {
+            result.memberDateTime =
+                _i4.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
+        case 'memberEpochSeconds':
+          if (value != null) {
+            result.memberEpochSeconds =
+                _i4.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
+        case 'memberHttpDate':
+          if (value != null) {
+            result.memberHttpDate =
+                _i4.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'targetDateTime':
-          result.targetDateTime =
-              _i3.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.targetDateTime =
+                _i4.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
+        case 'targetEpochSeconds':
+          if (value != null) {
+            result.targetEpochSeconds =
+                _i4.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
+        case 'targetHttpDate':
+          if (value != null) {
+            result.targetHttpDate =
+                _i4.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
       }
     }
 
@@ -199,7 +218,7 @@ class TimestampFormatHeadersIoRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    TimestampFormatHeadersIo object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');

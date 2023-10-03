@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'archive_creation_output.dart';
+part of rest_json1_v1.glacier.model.archive_creation_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,17 +8,17 @@ part of 'archive_creation_output.dart';
 
 class _$ArchiveCreationOutput extends ArchiveCreationOutput {
   @override
-  final String? location;
+  final String? archiveId;
   @override
   final String? checksum;
   @override
-  final String? archiveId;
+  final String? location;
 
   factory _$ArchiveCreationOutput(
           [void Function(ArchiveCreationOutputBuilder)? updates]) =>
       (new ArchiveCreationOutputBuilder()..update(updates))._build();
 
-  _$ArchiveCreationOutput._({this.location, this.checksum, this.archiveId})
+  _$ArchiveCreationOutput._({this.archiveId, this.checksum, this.location})
       : super._();
 
   @override
@@ -34,17 +34,17 @@ class _$ArchiveCreationOutput extends ArchiveCreationOutput {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is ArchiveCreationOutput &&
-        location == other.location &&
+        archiveId == other.archiveId &&
         checksum == other.checksum &&
-        archiveId == other.archiveId;
+        location == other.location;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, location.hashCode);
-    _$hash = $jc(_$hash, checksum.hashCode);
     _$hash = $jc(_$hash, archiveId.hashCode);
+    _$hash = $jc(_$hash, checksum.hashCode);
+    _$hash = $jc(_$hash, location.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -54,26 +54,28 @@ class ArchiveCreationOutputBuilder
     implements Builder<ArchiveCreationOutput, ArchiveCreationOutputBuilder> {
   _$ArchiveCreationOutput? _$v;
 
-  String? _location;
-  String? get location => _$this._location;
-  set location(String? location) => _$this._location = location;
+  String? _archiveId;
+  String? get archiveId => _$this._archiveId;
+  set archiveId(String? archiveId) => _$this._archiveId = archiveId;
 
   String? _checksum;
   String? get checksum => _$this._checksum;
   set checksum(String? checksum) => _$this._checksum = checksum;
 
-  String? _archiveId;
-  String? get archiveId => _$this._archiveId;
-  set archiveId(String? archiveId) => _$this._archiveId = archiveId;
+  String? _location;
+  String? get location => _$this._location;
+  set location(String? location) => _$this._location = location;
 
-  ArchiveCreationOutputBuilder();
+  ArchiveCreationOutputBuilder() {
+    ArchiveCreationOutput._init(this);
+  }
 
   ArchiveCreationOutputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _location = $v.location;
-      _checksum = $v.checksum;
       _archiveId = $v.archiveId;
+      _checksum = $v.checksum;
+      _location = $v.location;
       _$v = null;
     }
     return this;
@@ -96,7 +98,7 @@ class ArchiveCreationOutputBuilder
   _$ArchiveCreationOutput _build() {
     final _$result = _$v ??
         new _$ArchiveCreationOutput._(
-            location: location, checksum: checksum, archiveId: archiveId);
+            archiveId: archiveId, checksum: checksum, location: location);
     replace(_$result);
     return _$result;
   }
@@ -136,7 +138,9 @@ class ArchiveCreationOutputPayloadBuilder
             ArchiveCreationOutputPayloadBuilder> {
   _$ArchiveCreationOutputPayload? _$v;
 
-  ArchiveCreationOutputPayloadBuilder();
+  ArchiveCreationOutputPayloadBuilder() {
+    ArchiveCreationOutputPayload._init(this);
+  }
 
   @override
   void replace(ArchiveCreationOutputPayload other) {

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'continuation_event.dart';
+part of amplify_storage_s3_dart.s3.model.continuation_event;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -37,7 +37,9 @@ class ContinuationEventBuilder
     implements Builder<ContinuationEvent, ContinuationEventBuilder> {
   _$ContinuationEvent? _$v;
 
-  ContinuationEventBuilder();
+  ContinuationEventBuilder() {
+    ContinuationEvent._init(this);
+  }
 
   @override
   void replace(ContinuationEvent other) {

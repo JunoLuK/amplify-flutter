@@ -1,24 +1,30 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 // ignore_for_file: unused_element
 library aws_json1_1_v1.json_protocol.test.kitchen_sink_operation_test_test; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'dart:typed_data' as _i5;
+import 'dart:typed_data' as _i7;
 
-import 'package:aws_json1_1_v1/src/json_protocol/model/empty_struct.dart';
-import 'package:aws_json1_1_v1/src/json_protocol/model/error_with_members.dart';
-import 'package:aws_json1_1_v1/src/json_protocol/model/error_without_members.dart';
-import 'package:aws_json1_1_v1/src/json_protocol/model/kitchen_sink.dart';
-import 'package:aws_json1_1_v1/src/json_protocol/model/simple_struct.dart';
-import 'package:aws_json1_1_v1/src/json_protocol/model/struct_with_json_name.dart';
-import 'package:aws_json1_1_v1/src/json_protocol/operation/kitchen_sink_operation.dart';
-import 'package:aws_signature_v4/aws_signature_v4.dart' as _i3;
-import 'package:built_collection/built_collection.dart' as _i7;
-import 'package:built_value/json_object.dart' as _i6;
+import 'package:aws_json1_1_v1/src/json_protocol/model/empty_struct.dart'
+    as _i8;
+import 'package:aws_json1_1_v1/src/json_protocol/model/error_with_members.dart'
+    as _i14;
+import 'package:aws_json1_1_v1/src/json_protocol/model/error_without_members.dart'
+    as _i15;
+import 'package:aws_json1_1_v1/src/json_protocol/model/kitchen_sink.dart'
+    as _i6;
+import 'package:aws_json1_1_v1/src/json_protocol/model/simple_struct.dart'
+    as _i11;
+import 'package:aws_json1_1_v1/src/json_protocol/model/struct_with_json_name.dart'
+    as _i13;
+import 'package:aws_json1_1_v1/src/json_protocol/operation/kitchen_sink_operation.dart'
+    as _i3;
+import 'package:aws_signature_v4/aws_signature_v4.dart' as _i4;
+import 'package:built_collection/built_collection.dart' as _i10;
+import 'package:built_value/json_object.dart' as _i9;
 import 'package:built_value/serializer.dart';
-import 'package:fixnum/fixnum.dart' as _i8;
-import 'package:smithy/smithy.dart' as _i4;
+import 'package:fixnum/fixnum.dart' as _i12;
+import 'package:smithy/smithy.dart' as _i5;
 import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
@@ -27,11 +33,11 @@ void main() {
     'serializes_string_shapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -39,7 +45,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_string_shapes',
           documentation: 'Serializes string shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -78,11 +84,11 @@ void main() {
     'serializes_string_shapes_with_jsonvalue_trait (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -90,7 +96,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_string_shapes_with_jsonvalue_trait',
           documentation: 'Serializes string shapes with jsonvalue trait',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -133,11 +139,11 @@ void main() {
     'serializes_integer_shapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -145,7 +151,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_integer_shapes',
           documentation: 'Serializes integer shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -184,11 +190,11 @@ void main() {
     'serializes_long_shapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -196,7 +202,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_long_shapes',
           documentation: 'Serializes long shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -235,11 +241,11 @@ void main() {
     'serializes_float_shapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -247,7 +253,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_float_shapes',
           documentation: 'Serializes float shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -286,11 +292,11 @@ void main() {
     'serializes_double_shapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -298,7 +304,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_double_shapes',
           documentation: 'Serializes double shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -337,11 +343,11 @@ void main() {
     'serializes_blob_shapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -349,7 +355,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_blob_shapes',
           documentation: 'Serializes blob shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -388,11 +394,11 @@ void main() {
     'serializes_boolean_shapes_true (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -400,7 +406,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_boolean_shapes_true',
           documentation: 'Serializes boolean shapes (true)',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -439,11 +445,11 @@ void main() {
     'serializes_boolean_shapes_false (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -451,7 +457,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_boolean_shapes_false',
           documentation: 'Serializes boolean shapes (false)',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -490,11 +496,11 @@ void main() {
     'serializes_timestamp_shapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -502,7 +508,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_timestamp_shapes',
           documentation: 'Serializes timestamp shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -541,11 +547,11 @@ void main() {
     'serializes_timestamp_shapes_with_iso8601_timestampformat (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -554,7 +560,7 @@ void main() {
           id: 'serializes_timestamp_shapes_with_iso8601_timestampformat',
           documentation:
               'Serializes timestamp shapes with iso8601 timestampFormat',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -593,11 +599,11 @@ void main() {
     'serializes_timestamp_shapes_with_httpdate_timestampformat (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -606,7 +612,7 @@ void main() {
           id: 'serializes_timestamp_shapes_with_httpdate_timestampformat',
           documentation:
               'Serializes timestamp shapes with httpdate timestampFormat',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -645,11 +651,11 @@ void main() {
     'serializes_timestamp_shapes_with_unixtimestamp_timestampformat (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -658,7 +664,7 @@ void main() {
           id: 'serializes_timestamp_shapes_with_unixtimestamp_timestampformat',
           documentation:
               'Serializes timestamp shapes with unixTimestamp timestampFormat',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -697,11 +703,11 @@ void main() {
     'serializes_list_shapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -709,7 +715,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_list_shapes',
           documentation: 'Serializes list shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -754,11 +760,11 @@ void main() {
     'serializes_empty_list_shapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -766,7 +772,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_empty_list_shapes',
           documentation: 'Serializes empty list shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -805,11 +811,11 @@ void main() {
     'serializes_list_of_map_shapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -817,7 +823,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_list_of_map_shapes',
           documentation: 'Serializes list of map shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -863,11 +869,11 @@ void main() {
     'serializes_list_of_structure_shapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -875,7 +881,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_list_of_structure_shapes',
           documentation: 'Serializes list of structure shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -921,11 +927,11 @@ void main() {
     'serializes_list_of_recursive_structure_shapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -933,7 +939,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_list_of_recursive_structure_shapes',
           documentation: 'Serializes list of recursive structure shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -985,11 +991,11 @@ void main() {
     'serializes_map_shapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -997,7 +1003,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_map_shapes',
           documentation: 'Serializes map shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -1041,11 +1047,11 @@ void main() {
     'serializes_empty_map_shapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -1053,7 +1059,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_empty_map_shapes',
           documentation: 'Serializes empty map shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -1092,11 +1098,11 @@ void main() {
     'serializes_map_of_list_shapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -1104,7 +1110,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_map_of_list_shapes',
           documentation: 'Serializes map of list shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -1155,11 +1161,11 @@ void main() {
     'serializes_map_of_structure_shapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -1167,7 +1173,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_map_of_structure_shapes',
           documentation: 'Serializes map of structure shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -1212,11 +1218,11 @@ void main() {
     'serializes_map_of_recursive_structure_shapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -1224,7 +1230,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_map_of_recursive_structure_shapes',
           documentation: 'Serializes map of recursive structure shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -1276,11 +1282,11 @@ void main() {
     'serializes_structure_shapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -1288,7 +1294,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_structure_shapes',
           documentation: 'Serializes structure shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -1329,11 +1335,11 @@ void main() {
     'serializes_structure_members_with_locationname_traits (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -1342,7 +1348,7 @@ void main() {
           id: 'serializes_structure_members_with_locationname_traits',
           documentation:
               'Serializes structure members with locationName traits',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -1383,11 +1389,11 @@ void main() {
     'serializes_empty_structure_shapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -1395,7 +1401,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_empty_structure_shapes',
           documentation: 'Serializes empty structure shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -1434,11 +1440,11 @@ void main() {
     'serializes_structure_which_have_no_members (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -1446,7 +1452,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_structure_which_have_no_members',
           documentation: 'Serializes structure which have no members',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -1485,11 +1491,11 @@ void main() {
     'serializes_recursive_structure_shapes (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -1497,7 +1503,7 @@ void main() {
         testCase: const _i2.HttpRequestTestCase(
           id: 'serializes_recursive_structure_shapes',
           documentation: 'Serializes recursive structure shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -1555,11 +1561,11 @@ void main() {
     'parses_operations_with_empty_json_bodies (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -1567,7 +1573,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_operations_with_empty_json_bodies',
           documentation: 'Parses operations with empty JSON bodies',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -1597,11 +1603,11 @@ void main() {
     'parses_string_shapes (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -1609,7 +1615,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_string_shapes',
           documentation: 'Parses string shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -1639,11 +1645,11 @@ void main() {
     'parses_integer_shapes (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -1651,7 +1657,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_integer_shapes',
           documentation: 'Parses integer shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -1681,11 +1687,11 @@ void main() {
     'parses_long_shapes (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -1693,7 +1699,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_long_shapes',
           documentation: 'Parses long shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -1724,11 +1730,11 @@ void main() {
     'parses_float_shapes (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -1736,7 +1742,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_float_shapes',
           documentation: 'Parses float shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -1766,11 +1772,11 @@ void main() {
     'parses_double_shapes (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -1778,7 +1784,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_double_shapes',
           documentation: 'Parses double shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -1808,11 +1814,11 @@ void main() {
     'parses_boolean_shapes_true (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -1820,7 +1826,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_boolean_shapes_true',
           documentation: 'Parses boolean shapes (true)',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -1850,11 +1856,11 @@ void main() {
     'parses_boolean_false (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -1862,7 +1868,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_boolean_false',
           documentation: 'Parses boolean (false)',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -1892,11 +1898,11 @@ void main() {
     'parses_blob_shapes (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -1904,7 +1910,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_blob_shapes',
           documentation: 'Parses blob shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -1934,11 +1940,11 @@ void main() {
     'parses_timestamp_shapes (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -1946,7 +1952,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_timestamp_shapes',
           documentation: 'Parses timestamp shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -1976,11 +1982,11 @@ void main() {
     'parses_iso8601_timestamps (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -1988,7 +1994,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_iso8601_timestamps',
           documentation: 'Parses iso8601 timestamps',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -2018,11 +2024,11 @@ void main() {
     'parses_httpdate_timestamps (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -2030,7 +2036,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_httpdate_timestamps',
           documentation: 'Parses httpdate timestamps',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -2060,11 +2066,11 @@ void main() {
     'parses_list_shapes (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -2072,7 +2078,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_list_shapes',
           documentation: 'Parses list shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -2108,11 +2114,11 @@ void main() {
     'parses_list_of_map_shapes (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -2120,7 +2126,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_list_of_map_shapes',
           documentation: 'Parses list of map shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -2155,11 +2161,11 @@ void main() {
     'parses_list_of_list_shapes (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -2167,7 +2173,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_list_of_list_shapes',
           documentation: 'Parses list of list shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -2210,11 +2216,11 @@ void main() {
     'parses_list_of_structure_shapes (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -2222,7 +2228,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_list_of_structure_shapes',
           documentation: 'Parses list of structure shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -2257,11 +2263,11 @@ void main() {
     'parses_list_of_recursive_structure_shapes (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -2269,7 +2275,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_list_of_recursive_structure_shapes',
           documentation: 'Parses list of recursive structure shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -2312,11 +2318,11 @@ void main() {
     'parses_map_shapes (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -2324,7 +2330,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_map_shapes',
           documentation: 'Parses map shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -2359,11 +2365,11 @@ void main() {
     'parses_map_of_list_shapes (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -2371,7 +2377,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_map_of_list_shapes',
           documentation: 'Parses map of list shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -2413,11 +2419,11 @@ void main() {
     'parses_map_of_map_shapes (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -2425,7 +2431,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_map_of_map_shapes',
           documentation: 'Parses map of map shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -2467,11 +2473,11 @@ void main() {
     'parses_map_of_structure_shapes (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -2479,7 +2485,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_map_of_structure_shapes',
           documentation: 'Parses map of structure shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -2515,11 +2521,11 @@ void main() {
     'parses_map_of_recursive_structure_shapes (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -2527,7 +2533,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_map_of_recursive_structure_shapes',
           documentation: 'Parses map of recursive structure shapes',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -2570,11 +2576,11 @@ void main() {
     'parses_the_request_id_from_the_response (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: KitchenSinkOperation(
+        operation: _i3.KitchenSinkOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
           credentialsProvider:
-              const _i3.AWSCredentialsProvider(_i3.AWSCredentials(
+              const _i4.AWSCredentialsProvider(_i4.AWSCredentials(
             'DUMMY-ACCESS-KEY-ID',
             'DUMMY-SECRET-ACCESS-KEY',
           )),
@@ -2582,7 +2588,7 @@ void main() {
         testCase: const _i2.HttpResponseTestCase(
           id: 'parses_the_request_id_from_the_response',
           documentation: 'Parses the request id from the response',
-          protocol: _i4.ShapeId(
+          protocol: _i5.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_1',
           ),
@@ -2614,231 +2620,306 @@ void main() {
 }
 
 class KitchenSinkAwsJson11Serializer
-    extends _i4.StructuredSmithySerializer<KitchenSink> {
+    extends _i5.StructuredSmithySerializer<_i6.KitchenSink> {
   const KitchenSinkAwsJson11Serializer() : super('KitchenSink');
 
   @override
-  Iterable<Type> get types => const [KitchenSink];
+  Iterable<Type> get types => const [_i6.KitchenSink];
   @override
-  Iterable<_i4.ShapeId> get supportedProtocols => const [
-        _i4.ShapeId(
+  Iterable<_i5.ShapeId> get supportedProtocols => const [
+        _i5.ShapeId(
           namespace: 'aws.protocols',
           shape: 'awsJson1_1',
         )
       ];
   @override
-  KitchenSink deserialize(
+  _i6.KitchenSink deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = KitchenSinkBuilder();
+    final result = _i6.KitchenSinkBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'Blob':
-          result.blob = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(_i5.Uint8List),
-          ) as _i5.Uint8List);
+          if (value != null) {
+            result.blob = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i7.Uint8List),
+            ) as _i7.Uint8List);
+          }
+          break;
         case 'Boolean':
-          result.boolean = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool);
+          if (value != null) {
+            result.boolean = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(bool),
+            ) as bool);
+          }
+          break;
         case 'Double':
-          result.double_ = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(double),
-          ) as double);
+          if (value != null) {
+            result.double_ = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(double),
+            ) as double);
+          }
+          break;
         case 'EmptyStruct':
-          result.emptyStruct.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(EmptyStruct),
-          ) as EmptyStruct));
+          if (value != null) {
+            result.emptyStruct.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i8.EmptyStruct),
+            ) as _i8.EmptyStruct));
+          }
+          break;
         case 'Float':
-          result.float = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(double),
-          ) as double);
+          if (value != null) {
+            result.float = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(double),
+            ) as double);
+          }
+          break;
         case 'HttpdateTimestamp':
-          result.httpdateTimestamp =
-              _i4.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.httpdateTimestamp =
+                _i5.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'Integer':
-          result.integer = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int);
+          if (value != null) {
+            result.integer = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(int),
+            ) as int);
+          }
+          break;
         case 'Iso8601Timestamp':
-          result.iso8601Timestamp =
-              _i4.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.iso8601Timestamp =
+                _i5.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'JsonValue':
-          result.jsonValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(_i6.JsonObject),
-          ) as _i6.JsonObject);
+          if (value != null) {
+            result.jsonValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i9.JsonObject),
+            ) as _i9.JsonObject);
+          }
+          break;
         case 'ListOfLists':
-          result.listOfLists.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i7.BuiltList,
-              [
-                FullType(
-                  _i7.BuiltList,
-                  [FullType(String)],
-                )
-              ],
-            ),
-          ) as _i7.BuiltList<_i7.BuiltList<String>>));
+          if (value != null) {
+            result.listOfLists.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i10.BuiltList,
+                [
+                  FullType(
+                    _i10.BuiltList,
+                    [FullType(String)],
+                  )
+                ],
+              ),
+            ) as _i10.BuiltList<_i10.BuiltList<String>>));
+          }
+          break;
         case 'ListOfMapsOfStrings':
-          result.listOfMapsOfStrings.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i7.BuiltList,
-              [
-                FullType(
-                  _i7.BuiltMap,
-                  [
-                    FullType(String),
-                    FullType(String),
-                  ],
-                )
-              ],
-            ),
-          ) as _i7.BuiltList<_i7.BuiltMap<String, String>>));
+          if (value != null) {
+            result.listOfMapsOfStrings.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i10.BuiltList,
+                [
+                  FullType(
+                    _i10.BuiltMap,
+                    [
+                      FullType(String),
+                      FullType(String),
+                    ],
+                  )
+                ],
+              ),
+            ) as _i10.BuiltList<_i10.BuiltMap<String, String>>));
+          }
+          break;
         case 'ListOfStrings':
-          result.listOfStrings.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i7.BuiltList,
-              [FullType(String)],
-            ),
-          ) as _i7.BuiltList<String>));
+          if (value != null) {
+            result.listOfStrings.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i10.BuiltList,
+                [FullType(String)],
+              ),
+            ) as _i10.BuiltList<String>));
+          }
+          break;
         case 'ListOfStructs':
-          result.listOfStructs.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i7.BuiltList,
-              [FullType(SimpleStruct)],
-            ),
-          ) as _i7.BuiltList<SimpleStruct>));
+          if (value != null) {
+            result.listOfStructs.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i10.BuiltList,
+                [FullType(_i11.SimpleStruct)],
+              ),
+            ) as _i10.BuiltList<_i11.SimpleStruct>));
+          }
+          break;
         case 'Long':
-          result.long = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(_i8.Int64),
-          ) as _i8.Int64);
+          if (value != null) {
+            result.long = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i12.Int64),
+            ) as _i12.Int64);
+          }
+          break;
         case 'MapOfListsOfStrings':
-          result.mapOfListsOfStrings.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i7.BuiltListMultimap,
-              [
-                FullType(String),
-                FullType(String),
-              ],
-            ),
-          ) as _i7.BuiltListMultimap<String, String>));
+          if (value != null) {
+            result.mapOfListsOfStrings.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i10.BuiltListMultimap,
+                [
+                  FullType(String),
+                  FullType(String),
+                ],
+              ),
+            ) as _i10.BuiltListMultimap<String, String>));
+          }
+          break;
         case 'MapOfMaps':
-          result.mapOfMaps.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i7.BuiltMap,
-              [
-                FullType(String),
-                FullType(
-                  _i7.BuiltMap,
-                  [
-                    FullType(String),
-                    FullType(String),
-                  ],
-                ),
-              ],
-            ),
-          ) as _i7.BuiltMap<String, _i7.BuiltMap<String, String>>));
+          if (value != null) {
+            result.mapOfMaps.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i10.BuiltMap,
+                [
+                  FullType(String),
+                  FullType(
+                    _i10.BuiltMap,
+                    [
+                      FullType(String),
+                      FullType(String),
+                    ],
+                  ),
+                ],
+              ),
+            ) as _i10.BuiltMap<String, _i10.BuiltMap<String, String>>));
+          }
+          break;
         case 'MapOfStrings':
-          result.mapOfStrings.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i7.BuiltMap,
-              [
-                FullType(String),
-                FullType(String),
-              ],
-            ),
-          ) as _i7.BuiltMap<String, String>));
+          if (value != null) {
+            result.mapOfStrings.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i10.BuiltMap,
+                [
+                  FullType(String),
+                  FullType(String),
+                ],
+              ),
+            ) as _i10.BuiltMap<String, String>));
+          }
+          break;
         case 'MapOfStructs':
-          result.mapOfStructs.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i7.BuiltMap,
-              [
-                FullType(String),
-                FullType(SimpleStruct),
-              ],
-            ),
-          ) as _i7.BuiltMap<String, SimpleStruct>));
+          if (value != null) {
+            result.mapOfStructs.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i10.BuiltMap,
+                [
+                  FullType(String),
+                  FullType(_i11.SimpleStruct),
+                ],
+              ),
+            ) as _i10.BuiltMap<String, _i11.SimpleStruct>));
+          }
+          break;
         case 'RecursiveList':
-          result.recursiveList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i7.BuiltList,
-              [FullType(KitchenSink)],
-            ),
-          ) as _i7.BuiltList<KitchenSink>));
+          if (value != null) {
+            result.recursiveList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i10.BuiltList,
+                [FullType(_i6.KitchenSink)],
+              ),
+            ) as _i10.BuiltList<_i6.KitchenSink>));
+          }
+          break;
         case 'RecursiveMap':
-          result.recursiveMap.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i7.BuiltMap,
-              [
-                FullType(String),
-                FullType(KitchenSink),
-              ],
-            ),
-          ) as _i7.BuiltMap<String, KitchenSink>));
+          if (value != null) {
+            result.recursiveMap.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i10.BuiltMap,
+                [
+                  FullType(String),
+                  FullType(_i6.KitchenSink),
+                ],
+              ),
+            ) as _i10.BuiltMap<String, _i6.KitchenSink>));
+          }
+          break;
         case 'RecursiveStruct':
-          result.recursiveStruct.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(KitchenSink),
-          ) as KitchenSink));
+          if (value != null) {
+            result.recursiveStruct.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i6.KitchenSink),
+            ) as _i6.KitchenSink));
+          }
+          break;
         case 'SimpleStruct':
-          result.simpleStruct.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(SimpleStruct),
-          ) as SimpleStruct));
+          if (value != null) {
+            result.simpleStruct.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i11.SimpleStruct),
+            ) as _i11.SimpleStruct));
+          }
+          break;
         case 'String':
-          result.string = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.string = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'StructWithJsonName':
-          result.structWithJsonName.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(StructWithJsonName),
-          ) as StructWithJsonName));
+          if (value != null) {
+            result.structWithJsonName.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i13.StructWithJsonName),
+            ) as _i13.StructWithJsonName));
+          }
+          break;
         case 'Timestamp':
-          result.timestamp = _i4.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.timestamp = _i5.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
         case 'UnixTimestamp':
-          result.unixTimestamp =
-              _i4.TimestampSerializer.epochSeconds.deserialize(
-            serializers,
-            value,
-          );
+          if (value != null) {
+            result.unixTimestamp =
+                _i5.TimestampSerializer.epochSeconds.deserialize(
+              serializers,
+              value,
+            );
+          }
+          break;
       }
     }
 
@@ -2848,7 +2929,7 @@ class KitchenSinkAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    KitchenSink object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
@@ -2856,31 +2937,31 @@ class KitchenSinkAwsJson11Serializer
 }
 
 class EmptyStructAwsJson11Serializer
-    extends _i4.StructuredSmithySerializer<EmptyStruct> {
+    extends _i5.StructuredSmithySerializer<_i8.EmptyStruct> {
   const EmptyStructAwsJson11Serializer() : super('EmptyStruct');
 
   @override
-  Iterable<Type> get types => const [EmptyStruct];
+  Iterable<Type> get types => const [_i8.EmptyStruct];
   @override
-  Iterable<_i4.ShapeId> get supportedProtocols => const [
-        _i4.ShapeId(
+  Iterable<_i5.ShapeId> get supportedProtocols => const [
+        _i5.ShapeId(
           namespace: 'aws.protocols',
           shape: 'awsJson1_1',
         )
       ];
   @override
-  EmptyStruct deserialize(
+  _i8.EmptyStruct deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return EmptyStructBuilder().build();
+    return _i8.EmptyStructBuilder().build();
   }
 
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    EmptyStruct object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
@@ -2888,39 +2969,39 @@ class EmptyStructAwsJson11Serializer
 }
 
 class SimpleStructAwsJson11Serializer
-    extends _i4.StructuredSmithySerializer<SimpleStruct> {
+    extends _i5.StructuredSmithySerializer<_i11.SimpleStruct> {
   const SimpleStructAwsJson11Serializer() : super('SimpleStruct');
 
   @override
-  Iterable<Type> get types => const [SimpleStruct];
+  Iterable<Type> get types => const [_i11.SimpleStruct];
   @override
-  Iterable<_i4.ShapeId> get supportedProtocols => const [
-        _i4.ShapeId(
+  Iterable<_i5.ShapeId> get supportedProtocols => const [
+        _i5.ShapeId(
           namespace: 'aws.protocols',
           shape: 'awsJson1_1',
         )
       ];
   @override
-  SimpleStruct deserialize(
+  _i11.SimpleStruct deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = SimpleStructBuilder();
+    final result = _i11.SimpleStructBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'Value':
-          result.value = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.value = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -2930,7 +3011,7 @@ class SimpleStructAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    SimpleStruct object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
@@ -2938,39 +3019,39 @@ class SimpleStructAwsJson11Serializer
 }
 
 class StructWithJsonNameAwsJson11Serializer
-    extends _i4.StructuredSmithySerializer<StructWithJsonName> {
+    extends _i5.StructuredSmithySerializer<_i13.StructWithJsonName> {
   const StructWithJsonNameAwsJson11Serializer() : super('StructWithJsonName');
 
   @override
-  Iterable<Type> get types => const [StructWithJsonName];
+  Iterable<Type> get types => const [_i13.StructWithJsonName];
   @override
-  Iterable<_i4.ShapeId> get supportedProtocols => const [
-        _i4.ShapeId(
+  Iterable<_i5.ShapeId> get supportedProtocols => const [
+        _i5.ShapeId(
           namespace: 'aws.protocols',
           shape: 'awsJson1_1',
         )
       ];
   @override
-  StructWithJsonName deserialize(
+  _i13.StructWithJsonName deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = StructWithJsonNameBuilder();
+    final result = _i13.StructWithJsonNameBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'Value':
-          result.value = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.value = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -2980,7 +3061,7 @@ class StructWithJsonNameAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    StructWithJsonName object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
@@ -2988,78 +3069,96 @@ class StructWithJsonNameAwsJson11Serializer
 }
 
 class ErrorWithMembersAwsJson11Serializer
-    extends _i4.StructuredSmithySerializer<ErrorWithMembers> {
+    extends _i5.StructuredSmithySerializer<_i14.ErrorWithMembers> {
   const ErrorWithMembersAwsJson11Serializer() : super('ErrorWithMembers');
 
   @override
-  Iterable<Type> get types => const [ErrorWithMembers];
+  Iterable<Type> get types => const [_i14.ErrorWithMembers];
   @override
-  Iterable<_i4.ShapeId> get supportedProtocols => const [
-        _i4.ShapeId(
+  Iterable<_i5.ShapeId> get supportedProtocols => const [
+        _i5.ShapeId(
           namespace: 'aws.protocols',
           shape: 'awsJson1_1',
         )
       ];
   @override
-  ErrorWithMembers deserialize(
+  _i14.ErrorWithMembers deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = ErrorWithMembersBuilder();
+    final result = _i14.ErrorWithMembersBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'Code':
-          result.code = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.code = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'ComplexData':
-          result.complexData.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(KitchenSink),
-          ) as KitchenSink));
+          if (value != null) {
+            result.complexData.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i6.KitchenSink),
+            ) as _i6.KitchenSink));
+          }
+          break;
         case 'IntegerField':
-          result.integerField = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int);
+          if (value != null) {
+            result.integerField = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(int),
+            ) as int);
+          }
+          break;
         case 'ListField':
-          result.listField.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i7.BuiltList,
-              [FullType(String)],
-            ),
-          ) as _i7.BuiltList<String>));
+          if (value != null) {
+            result.listField.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i10.BuiltList,
+                [FullType(String)],
+              ),
+            ) as _i10.BuiltList<String>));
+          }
+          break;
         case 'MapField':
-          result.mapField.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i7.BuiltMap,
-              [
-                FullType(String),
-                FullType(String),
-              ],
-            ),
-          ) as _i7.BuiltMap<String, String>));
+          if (value != null) {
+            result.mapField.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i10.BuiltMap,
+                [
+                  FullType(String),
+                  FullType(String),
+                ],
+              ),
+            ) as _i10.BuiltMap<String, String>));
+          }
+          break;
         case 'Message':
-          result.message = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.message = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'StringField':
-          result.stringField = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.stringField = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -3069,7 +3168,7 @@ class ErrorWithMembersAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    ErrorWithMembers object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
@@ -3077,31 +3176,31 @@ class ErrorWithMembersAwsJson11Serializer
 }
 
 class ErrorWithoutMembersAwsJson11Serializer
-    extends _i4.StructuredSmithySerializer<ErrorWithoutMembers> {
+    extends _i5.StructuredSmithySerializer<_i15.ErrorWithoutMembers> {
   const ErrorWithoutMembersAwsJson11Serializer() : super('ErrorWithoutMembers');
 
   @override
-  Iterable<Type> get types => const [ErrorWithoutMembers];
+  Iterable<Type> get types => const [_i15.ErrorWithoutMembers];
   @override
-  Iterable<_i4.ShapeId> get supportedProtocols => const [
-        _i4.ShapeId(
+  Iterable<_i5.ShapeId> get supportedProtocols => const [
+        _i5.ShapeId(
           namespace: 'aws.protocols',
           shape: 'awsJson1_1',
         )
       ];
   @override
-  ErrorWithoutMembers deserialize(
+  _i15.ErrorWithoutMembers deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return ErrorWithoutMembersBuilder().build();
+    return _i15.ErrorWithoutMembersBuilder().build();
   }
 
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    ErrorWithoutMembers object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');

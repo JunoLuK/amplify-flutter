@@ -10,6 +10,7 @@ import 'package:aft/src/changelog/printer.dart';
 import 'package:aft/src/options/git_ref_options.dart';
 import 'package:aft/src/options/glob_options.dart';
 import 'package:aft/src/repo.dart';
+import 'package:path/path.dart' as p;
 
 /// Command for bumping package versions across the repo.
 class VersionBumpCommand extends AmplifyCommand
@@ -17,25 +18,16 @@ class VersionBumpCommand extends AmplifyCommand
   VersionBumpCommand() {
     argParser
       ..addFlag(
-        'yes',
-        abbr: 'y',
-        help: 'Responds "yes" to all prompts',
+        'preview',
+        help: 'Preview version changes without applying',
         defaultsTo: false,
         negatable: false,
       )
       ..addFlag(
-        'force-breaking',
-        help: 'Forces a major version bump',
-        negatable: false,
-      )
-      ..addFlag(
-        'force-non-breaking',
-        help: 'Forces a minor version bump',
-        negatable: false,
-      )
-      ..addFlag(
-        'force-patch',
-        help: 'Forces a patch version bump',
+        'yes',
+        abbr: 'y',
+        help: 'Responds "yes" to all prompts',
+        defaultsTo: false,
         negatable: false,
       );
   }
@@ -49,18 +41,10 @@ class VersionBumpCommand extends AmplifyCommand
 
   late final bool yes = argResults!['yes'] as bool;
 
-  late final VersionBumpType? forcedBumpType = () {
-    final forceBreaking = argResults!['force-breaking'] as bool;
-    if (forceBreaking) return VersionBumpType.breaking;
-    final forceNonBreaking = argResults!['force-non-breaking'] as bool;
-    if (forceNonBreaking) return VersionBumpType.nonBreaking;
-    final forcePatch = argResults!['force-patch'] as bool;
-    if (forcePatch) return VersionBumpType.patch;
-    return null;
-  }();
+  late final bool preview = argResults!['preview'] as bool;
 
-  Future<GitChanges> _changesForPackage(PackageInfo package) async {
-    final baseRef = this.baseRef ?? await repo.latestBumpRef(package);
+  GitChanges _changesForPackage(PackageInfo package) {
+    final baseRef = this.baseRef ?? repo.latestBumpRef(package);
     if (baseRef == null) {
       exitError(
         'No previous version bumps for package (${package.name}). '
@@ -71,14 +55,42 @@ class VersionBumpCommand extends AmplifyCommand
   }
 
   Future<List<PackageInfo>> _updateVersions() async {
-    await repo.bumpAllVersions(
-      commandPackages,
+    repo.bumpAllVersions(
       changesForPackage: _changesForPackage,
-      forcedBumpType: forcedBumpType,
     );
-    return repo.writeChanges(
-      packages: repo.publishablePackages(),
-    );
+    final changelogUpdates = repo.changelogUpdates;
+
+    final bumpedPackages = <PackageInfo>[];
+    for (final package in commandPackages.values) {
+      final edits = package.pubspecInfo.pubspecYamlEditor.edits;
+      if (edits.isNotEmpty) {
+        bumpedPackages.add(package);
+        if (preview) {
+          logger.info('pubspec.yaml');
+          for (final edit in edits) {
+            final originalText = package.pubspecInfo.pubspecYaml
+                .substring(edit.offset, edit.offset + edit.length);
+            logger.info('$originalText --> ${edit.replacement}');
+          }
+        } else {
+          await File(p.join(package.path, 'pubspec.yaml'))
+              .writeAsString(package.pubspecInfo.pubspecYamlEditor.toString());
+        }
+      }
+      final changelogUpdate = changelogUpdates[package];
+      if (changelogUpdate != null && changelogUpdate.hasUpdate) {
+        if (preview) {
+          logger
+            ..info('CHANGELOG.md')
+            ..info(changelogUpdate.newText!);
+        } else {
+          await File(p.join(package.path, 'CHANGELOG.md'))
+              .writeAsString(changelogUpdate.toString());
+        }
+      }
+    }
+
+    return bumpedPackages;
   }
 
   @override
@@ -90,24 +102,26 @@ class VersionBumpCommand extends AmplifyCommand
 
     final bumpedPackages = await _updateVersions();
 
-    for (final package in bumpedPackages) {
-      // Run build_runner for packages which generate their version number.
-      final needsBuildRunner = package.pubspecInfo.pubspec.devDependencies
-          .containsKey('build_version');
-      if (!needsBuildRunner) {
-        continue;
+    if (!preview) {
+      for (final package in bumpedPackages) {
+        // Run build_runner for packages which generate their version number.
+        final needsBuildRunner = package.pubspecInfo.pubspec.devDependencies
+            .containsKey('build_version');
+        if (!needsBuildRunner) {
+          continue;
+        }
+        await runBuildRunner(
+          package,
+          logger: logger,
+          verbose: verbose,
+        );
       }
-      await runBuildRunner(
-        package,
-        logger: logger,
-        verbose: verbose,
-      );
     }
 
     logger.info('Version successfully bumped');
     // Stage changes
     final publishableBumpedPackages =
-        commandPackages.values.where((pkg) => pkg.isPublishable).toList();
+        bumpedPackages.where((pkg) => pkg.isPublishable).toList();
     final mergedChangelog = Changelog.empty().makeVersionEntry(
       commits: {
         for (final package in publishableBumpedPackages)

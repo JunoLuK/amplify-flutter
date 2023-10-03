@@ -39,8 +39,8 @@ class AuthenticatorWithOnboarding extends StatelessWidget {
         }
       },
       child: MaterialApp(
-        theme: ThemeData.light(useMaterial3: true),
-        darkTheme: ThemeData.dark(useMaterial3: true),
+        theme: ThemeData.light(),
+        darkTheme: ThemeData.dark(),
         themeMode: ThemeMode.system,
         debugShowCheckedModeBanner: false,
         builder: Authenticator.builder(),

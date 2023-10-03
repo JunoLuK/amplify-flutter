@@ -21,8 +21,6 @@ targets:
           compiler: dart2js
           dart2js_args:
             - --no-minify
-    dependencies:
-      - $default
   release:
     auto_apply_builders: false
     builders:
@@ -37,8 +35,6 @@ targets:
           dart2js_args:
             - -O2
             - --define=dart.vm.product=true
-    dependencies:
-      - $default
   workers:
     auto_apply_builders: false
     builders:

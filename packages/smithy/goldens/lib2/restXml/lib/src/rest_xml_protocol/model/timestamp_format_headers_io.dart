@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v2.rest_xml_protocol.model.timestamp_format_headers_io; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -20,22 +19,22 @@ abstract class TimestampFormatHeadersIo
         _i1.EmptyPayload,
         _i1.HasPayload<TimestampFormatHeadersIoPayload> {
   factory TimestampFormatHeadersIo({
+    DateTime? defaultFormat,
+    DateTime? memberDateTime,
     DateTime? memberEpochSeconds,
     DateTime? memberHttpDate,
-    DateTime? memberDateTime,
-    DateTime? defaultFormat,
+    DateTime? targetDateTime,
     DateTime? targetEpochSeconds,
     DateTime? targetHttpDate,
-    DateTime? targetDateTime,
   }) {
     return _$TimestampFormatHeadersIo._(
+      defaultFormat: defaultFormat,
+      memberDateTime: memberDateTime,
       memberEpochSeconds: memberEpochSeconds,
       memberHttpDate: memberHttpDate,
-      memberDateTime: memberDateTime,
-      defaultFormat: defaultFormat,
+      targetDateTime: targetDateTime,
       targetEpochSeconds: targetEpochSeconds,
       targetHttpDate: targetHttpDate,
-      targetDateTime: targetDateTime,
     );
   }
 
@@ -145,60 +144,63 @@ abstract class TimestampFormatHeadersIo
         }
       });
 
-  static const List<_i1.SmithySerializer<TimestampFormatHeadersIoPayload>>
-      serializers = [TimestampFormatHeadersIoRestXmlSerializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    TimestampFormatHeadersIoRestXmlSerializer()
+  ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(TimestampFormatHeadersIoBuilder b) {}
+  DateTime? get defaultFormat;
+  DateTime? get memberDateTime;
   DateTime? get memberEpochSeconds;
   DateTime? get memberHttpDate;
-  DateTime? get memberDateTime;
-  DateTime? get defaultFormat;
+  DateTime? get targetDateTime;
   DateTime? get targetEpochSeconds;
   DateTime? get targetHttpDate;
-  DateTime? get targetDateTime;
   @override
   TimestampFormatHeadersIoPayload getPayload() =>
       TimestampFormatHeadersIoPayload();
   @override
   List<Object?> get props => [
+        defaultFormat,
+        memberDateTime,
         memberEpochSeconds,
         memberHttpDate,
-        memberDateTime,
-        defaultFormat,
+        targetDateTime,
         targetEpochSeconds,
         targetHttpDate,
-        targetDateTime,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('TimestampFormatHeadersIo')
-      ..add(
-        'memberEpochSeconds',
-        memberEpochSeconds,
-      )
-      ..add(
-        'memberHttpDate',
-        memberHttpDate,
-      )
-      ..add(
-        'memberDateTime',
-        memberDateTime,
-      )
-      ..add(
-        'defaultFormat',
-        defaultFormat,
-      )
-      ..add(
-        'targetEpochSeconds',
-        targetEpochSeconds,
-      )
-      ..add(
-        'targetHttpDate',
-        targetHttpDate,
-      )
-      ..add(
-        'targetDateTime',
-        targetDateTime,
-      );
+    final helper = newBuiltValueToStringHelper('TimestampFormatHeadersIo');
+    helper.add(
+      'defaultFormat',
+      defaultFormat,
+    );
+    helper.add(
+      'memberDateTime',
+      memberDateTime,
+    );
+    helper.add(
+      'memberEpochSeconds',
+      memberEpochSeconds,
+    );
+    helper.add(
+      'memberHttpDate',
+      memberHttpDate,
+    );
+    helper.add(
+      'targetDateTime',
+      targetDateTime,
+    );
+    helper.add(
+      'targetEpochSeconds',
+      targetEpochSeconds,
+    );
+    helper.add(
+      'targetHttpDate',
+      targetHttpDate,
+    );
     return helper.toString();
   }
 }
@@ -217,6 +219,8 @@ abstract class TimestampFormatHeadersIoPayload
 
   const TimestampFormatHeadersIoPayload._();
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(TimestampFormatHeadersIoPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
   @override
@@ -258,13 +262,12 @@ class TimestampFormatHeadersIoRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    TimestampFormatHeadersIoPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final result = <Object?>[
       const _i1.XmlElementName('TimestampFormatHeadersIo')
     ];
-
-    return result$;
+    return result;
   }
 }

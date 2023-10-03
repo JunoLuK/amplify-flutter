@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'complete_multipart_upload_output.dart';
+part of amplify_storage_s3_dart.s3.model.complete_multipart_upload_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,15 +8,9 @@ part of 'complete_multipart_upload_output.dart';
 
 class _$CompleteMultipartUploadOutput extends CompleteMultipartUploadOutput {
   @override
-  final String? location;
-  @override
   final String? bucket;
   @override
-  final String? key;
-  @override
-  final String? expiration;
-  @override
-  final String? eTag;
+  final bool? bucketKeyEnabled;
   @override
   final String? checksumCrc32;
   @override
@@ -26,35 +20,41 @@ class _$CompleteMultipartUploadOutput extends CompleteMultipartUploadOutput {
   @override
   final String? checksumSha256;
   @override
-  final ServerSideEncryption? serverSideEncryption;
+  final String? eTag;
   @override
-  final String? versionId;
+  final String? expiration;
+  @override
+  final String? key;
+  @override
+  final String? location;
+  @override
+  final _i3.RequestCharged? requestCharged;
+  @override
+  final _i4.ServerSideEncryption? serverSideEncryption;
   @override
   final String? ssekmsKeyId;
   @override
-  final bool? bucketKeyEnabled;
-  @override
-  final RequestCharged? requestCharged;
+  final String? versionId;
 
   factory _$CompleteMultipartUploadOutput(
           [void Function(CompleteMultipartUploadOutputBuilder)? updates]) =>
       (new CompleteMultipartUploadOutputBuilder()..update(updates))._build();
 
   _$CompleteMultipartUploadOutput._(
-      {this.location,
-      this.bucket,
-      this.key,
-      this.expiration,
-      this.eTag,
+      {this.bucket,
+      this.bucketKeyEnabled,
       this.checksumCrc32,
       this.checksumCrc32C,
       this.checksumSha1,
       this.checksumSha256,
+      this.eTag,
+      this.expiration,
+      this.key,
+      this.location,
+      this.requestCharged,
       this.serverSideEncryption,
-      this.versionId,
       this.ssekmsKeyId,
-      this.bucketKeyEnabled,
-      this.requestCharged})
+      this.versionId})
       : super._();
 
   @override
@@ -70,39 +70,39 @@ class _$CompleteMultipartUploadOutput extends CompleteMultipartUploadOutput {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is CompleteMultipartUploadOutput &&
-        location == other.location &&
         bucket == other.bucket &&
-        key == other.key &&
-        expiration == other.expiration &&
-        eTag == other.eTag &&
+        bucketKeyEnabled == other.bucketKeyEnabled &&
         checksumCrc32 == other.checksumCrc32 &&
         checksumCrc32C == other.checksumCrc32C &&
         checksumSha1 == other.checksumSha1 &&
         checksumSha256 == other.checksumSha256 &&
+        eTag == other.eTag &&
+        expiration == other.expiration &&
+        key == other.key &&
+        location == other.location &&
+        requestCharged == other.requestCharged &&
         serverSideEncryption == other.serverSideEncryption &&
-        versionId == other.versionId &&
         ssekmsKeyId == other.ssekmsKeyId &&
-        bucketKeyEnabled == other.bucketKeyEnabled &&
-        requestCharged == other.requestCharged;
+        versionId == other.versionId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, location.hashCode);
     _$hash = $jc(_$hash, bucket.hashCode);
-    _$hash = $jc(_$hash, key.hashCode);
-    _$hash = $jc(_$hash, expiration.hashCode);
-    _$hash = $jc(_$hash, eTag.hashCode);
+    _$hash = $jc(_$hash, bucketKeyEnabled.hashCode);
     _$hash = $jc(_$hash, checksumCrc32.hashCode);
     _$hash = $jc(_$hash, checksumCrc32C.hashCode);
     _$hash = $jc(_$hash, checksumSha1.hashCode);
     _$hash = $jc(_$hash, checksumSha256.hashCode);
-    _$hash = $jc(_$hash, serverSideEncryption.hashCode);
-    _$hash = $jc(_$hash, versionId.hashCode);
-    _$hash = $jc(_$hash, ssekmsKeyId.hashCode);
-    _$hash = $jc(_$hash, bucketKeyEnabled.hashCode);
+    _$hash = $jc(_$hash, eTag.hashCode);
+    _$hash = $jc(_$hash, expiration.hashCode);
+    _$hash = $jc(_$hash, key.hashCode);
+    _$hash = $jc(_$hash, location.hashCode);
     _$hash = $jc(_$hash, requestCharged.hashCode);
+    _$hash = $jc(_$hash, serverSideEncryption.hashCode);
+    _$hash = $jc(_$hash, ssekmsKeyId.hashCode);
+    _$hash = $jc(_$hash, versionId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -114,25 +114,14 @@ class CompleteMultipartUploadOutputBuilder
             CompleteMultipartUploadOutputBuilder> {
   _$CompleteMultipartUploadOutput? _$v;
 
-  String? _location;
-  String? get location => _$this._location;
-  set location(String? location) => _$this._location = location;
-
   String? _bucket;
   String? get bucket => _$this._bucket;
   set bucket(String? bucket) => _$this._bucket = bucket;
 
-  String? _key;
-  String? get key => _$this._key;
-  set key(String? key) => _$this._key = key;
-
-  String? _expiration;
-  String? get expiration => _$this._expiration;
-  set expiration(String? expiration) => _$this._expiration = expiration;
-
-  String? _eTag;
-  String? get eTag => _$this._eTag;
-  set eTag(String? eTag) => _$this._eTag = eTag;
+  bool? _bucketKeyEnabled;
+  bool? get bucketKeyEnabled => _$this._bucketKeyEnabled;
+  set bucketKeyEnabled(bool? bucketKeyEnabled) =>
+      _$this._bucketKeyEnabled = bucketKeyEnabled;
 
   String? _checksumCrc32;
   String? get checksumCrc32 => _$this._checksumCrc32;
@@ -153,49 +142,62 @@ class CompleteMultipartUploadOutputBuilder
   set checksumSha256(String? checksumSha256) =>
       _$this._checksumSha256 = checksumSha256;
 
-  ServerSideEncryption? _serverSideEncryption;
-  ServerSideEncryption? get serverSideEncryption =>
-      _$this._serverSideEncryption;
-  set serverSideEncryption(ServerSideEncryption? serverSideEncryption) =>
-      _$this._serverSideEncryption = serverSideEncryption;
+  String? _eTag;
+  String? get eTag => _$this._eTag;
+  set eTag(String? eTag) => _$this._eTag = eTag;
 
-  String? _versionId;
-  String? get versionId => _$this._versionId;
-  set versionId(String? versionId) => _$this._versionId = versionId;
+  String? _expiration;
+  String? get expiration => _$this._expiration;
+  set expiration(String? expiration) => _$this._expiration = expiration;
+
+  String? _key;
+  String? get key => _$this._key;
+  set key(String? key) => _$this._key = key;
+
+  String? _location;
+  String? get location => _$this._location;
+  set location(String? location) => _$this._location = location;
+
+  _i3.RequestCharged? _requestCharged;
+  _i3.RequestCharged? get requestCharged => _$this._requestCharged;
+  set requestCharged(_i3.RequestCharged? requestCharged) =>
+      _$this._requestCharged = requestCharged;
+
+  _i4.ServerSideEncryption? _serverSideEncryption;
+  _i4.ServerSideEncryption? get serverSideEncryption =>
+      _$this._serverSideEncryption;
+  set serverSideEncryption(_i4.ServerSideEncryption? serverSideEncryption) =>
+      _$this._serverSideEncryption = serverSideEncryption;
 
   String? _ssekmsKeyId;
   String? get ssekmsKeyId => _$this._ssekmsKeyId;
   set ssekmsKeyId(String? ssekmsKeyId) => _$this._ssekmsKeyId = ssekmsKeyId;
 
-  bool? _bucketKeyEnabled;
-  bool? get bucketKeyEnabled => _$this._bucketKeyEnabled;
-  set bucketKeyEnabled(bool? bucketKeyEnabled) =>
-      _$this._bucketKeyEnabled = bucketKeyEnabled;
+  String? _versionId;
+  String? get versionId => _$this._versionId;
+  set versionId(String? versionId) => _$this._versionId = versionId;
 
-  RequestCharged? _requestCharged;
-  RequestCharged? get requestCharged => _$this._requestCharged;
-  set requestCharged(RequestCharged? requestCharged) =>
-      _$this._requestCharged = requestCharged;
-
-  CompleteMultipartUploadOutputBuilder();
+  CompleteMultipartUploadOutputBuilder() {
+    CompleteMultipartUploadOutput._init(this);
+  }
 
   CompleteMultipartUploadOutputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _location = $v.location;
       _bucket = $v.bucket;
-      _key = $v.key;
-      _expiration = $v.expiration;
-      _eTag = $v.eTag;
+      _bucketKeyEnabled = $v.bucketKeyEnabled;
       _checksumCrc32 = $v.checksumCrc32;
       _checksumCrc32C = $v.checksumCrc32C;
       _checksumSha1 = $v.checksumSha1;
       _checksumSha256 = $v.checksumSha256;
-      _serverSideEncryption = $v.serverSideEncryption;
-      _versionId = $v.versionId;
-      _ssekmsKeyId = $v.ssekmsKeyId;
-      _bucketKeyEnabled = $v.bucketKeyEnabled;
+      _eTag = $v.eTag;
+      _expiration = $v.expiration;
+      _key = $v.key;
+      _location = $v.location;
       _requestCharged = $v.requestCharged;
+      _serverSideEncryption = $v.serverSideEncryption;
+      _ssekmsKeyId = $v.ssekmsKeyId;
+      _versionId = $v.versionId;
       _$v = null;
     }
     return this;
@@ -218,20 +220,20 @@ class CompleteMultipartUploadOutputBuilder
   _$CompleteMultipartUploadOutput _build() {
     final _$result = _$v ??
         new _$CompleteMultipartUploadOutput._(
-            location: location,
             bucket: bucket,
-            key: key,
-            expiration: expiration,
-            eTag: eTag,
+            bucketKeyEnabled: bucketKeyEnabled,
             checksumCrc32: checksumCrc32,
             checksumCrc32C: checksumCrc32C,
             checksumSha1: checksumSha1,
             checksumSha256: checksumSha256,
+            eTag: eTag,
+            expiration: expiration,
+            key: key,
+            location: location,
+            requestCharged: requestCharged,
             serverSideEncryption: serverSideEncryption,
-            versionId: versionId,
             ssekmsKeyId: ssekmsKeyId,
-            bucketKeyEnabled: bucketKeyEnabled,
-            requestCharged: requestCharged);
+            versionId: versionId);
     replace(_$result);
     return _$result;
   }
@@ -353,7 +355,9 @@ class CompleteMultipartUploadOutputPayloadBuilder
   String? get location => _$this._location;
   set location(String? location) => _$this._location = location;
 
-  CompleteMultipartUploadOutputPayloadBuilder();
+  CompleteMultipartUploadOutputPayloadBuilder() {
+    CompleteMultipartUploadOutputPayload._init(this);
+  }
 
   CompleteMultipartUploadOutputPayloadBuilder get _$this {
     final $v = _$v;

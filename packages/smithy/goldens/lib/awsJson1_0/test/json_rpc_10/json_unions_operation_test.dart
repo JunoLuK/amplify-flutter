@@ -1,15 +1,17 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 // ignore_for_file: unused_element
 library aws_json1_0_v1.json_rpc_10.test.json_unions_operation_test_test; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:aws_json1_0_v1/src/json_rpc_10/model/json_unions_input.dart';
-import 'package:aws_json1_0_v1/src/json_rpc_10/model/json_unions_output.dart';
-import 'package:aws_json1_0_v1/src/json_rpc_10/model/my_union.dart';
-import 'package:aws_json1_0_v1/src/json_rpc_10/operation/json_unions_operation.dart';
+import 'package:aws_json1_0_v1/src/json_rpc_10/model/json_unions_input.dart'
+    as _i5;
+import 'package:aws_json1_0_v1/src/json_rpc_10/model/json_unions_output.dart'
+    as _i7;
+import 'package:aws_json1_0_v1/src/json_rpc_10/model/my_union.dart' as _i6;
+import 'package:aws_json1_0_v1/src/json_rpc_10/operation/json_unions_operation.dart'
+    as _i3;
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
@@ -18,14 +20,14 @@ void main() {
     'AwsJson10SerializeStringUnionValue (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: JsonUnionsOperation(
+        operation: _i3.JsonUnionsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'AwsJson10SerializeStringUnionValue',
           documentation: 'Serializes a string union value',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_0',
           ),
@@ -61,14 +63,14 @@ void main() {
     'AwsJson10SerializeBooleanUnionValue (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: JsonUnionsOperation(
+        operation: _i3.JsonUnionsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'AwsJson10SerializeBooleanUnionValue',
           documentation: 'Serializes a boolean union value',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_0',
           ),
@@ -104,14 +106,14 @@ void main() {
     'AwsJson10SerializeNumberUnionValue (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: JsonUnionsOperation(
+        operation: _i3.JsonUnionsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'AwsJson10SerializeNumberUnionValue',
           documentation: 'Serializes a number union value',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_0',
           ),
@@ -147,14 +149,14 @@ void main() {
     'AwsJson10SerializeBlobUnionValue (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: JsonUnionsOperation(
+        operation: _i3.JsonUnionsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'AwsJson10SerializeBlobUnionValue',
           documentation: 'Serializes a blob union value',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_0',
           ),
@@ -190,14 +192,14 @@ void main() {
     'AwsJson10SerializeTimestampUnionValue (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: JsonUnionsOperation(
+        operation: _i3.JsonUnionsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'AwsJson10SerializeTimestampUnionValue',
           documentation: 'Serializes a timestamp union value',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_0',
           ),
@@ -234,14 +236,14 @@ void main() {
     'AwsJson10SerializeEnumUnionValue (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: JsonUnionsOperation(
+        operation: _i3.JsonUnionsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'AwsJson10SerializeEnumUnionValue',
           documentation: 'Serializes an enum union value',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_0',
           ),
@@ -277,14 +279,14 @@ void main() {
     'AwsJson10SerializeIntEnumUnionValue (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: JsonUnionsOperation(
+        operation: _i3.JsonUnionsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'AwsJson10SerializeIntEnumUnionValue',
           documentation: 'Serializes an intEnum union value',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_0',
           ),
@@ -320,14 +322,14 @@ void main() {
     'AwsJson10SerializeListUnionValue (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: JsonUnionsOperation(
+        operation: _i3.JsonUnionsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'AwsJson10SerializeListUnionValue',
           documentation: 'Serializes a list union value',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_0',
           ),
@@ -369,14 +371,14 @@ void main() {
     'AwsJson10SerializeMapUnionValue (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: JsonUnionsOperation(
+        operation: _i3.JsonUnionsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'AwsJson10SerializeMapUnionValue',
           documentation: 'Serializes a map union value',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_0',
           ),
@@ -418,14 +420,14 @@ void main() {
     'AwsJson10SerializeStructureUnionValue (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: JsonUnionsOperation(
+        operation: _i3.JsonUnionsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'AwsJson10SerializeStructureUnionValue',
           documentation: 'Serializes a structure union value',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_0',
           ),
@@ -464,14 +466,14 @@ void main() {
     'AwsJson10DeserializeStringUnionValue (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: JsonUnionsOperation(
+        operation: _i3.JsonUnionsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'AwsJson10DeserializeStringUnionValue',
           documentation: 'Deserializes a string union value',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_0',
           ),
@@ -498,14 +500,14 @@ void main() {
     'AwsJson10DeserializeBooleanUnionValue (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: JsonUnionsOperation(
+        operation: _i3.JsonUnionsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'AwsJson10DeserializeBooleanUnionValue',
           documentation: 'Deserializes a boolean union value',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_0',
           ),
@@ -532,14 +534,14 @@ void main() {
     'AwsJson10DeserializeNumberUnionValue (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: JsonUnionsOperation(
+        operation: _i3.JsonUnionsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'AwsJson10DeserializeNumberUnionValue',
           documentation: 'Deserializes a number union value',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_0',
           ),
@@ -566,14 +568,14 @@ void main() {
     'AwsJson10DeserializeBlobUnionValue (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: JsonUnionsOperation(
+        operation: _i3.JsonUnionsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'AwsJson10DeserializeBlobUnionValue',
           documentation: 'Deserializes a blob union value',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_0',
           ),
@@ -600,14 +602,14 @@ void main() {
     'AwsJson10DeserializeTimestampUnionValue (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: JsonUnionsOperation(
+        operation: _i3.JsonUnionsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'AwsJson10DeserializeTimestampUnionValue',
           documentation: 'Deserializes a timestamp union value',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_0',
           ),
@@ -635,14 +637,14 @@ void main() {
     'AwsJson10DeserializeEnumUnionValue (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: JsonUnionsOperation(
+        operation: _i3.JsonUnionsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'AwsJson10DeserializeEnumUnionValue',
           documentation: 'Deserializes an enum union value',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_0',
           ),
@@ -669,14 +671,14 @@ void main() {
     'AwsJson10DeserializeIntEnumUnionValue (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: JsonUnionsOperation(
+        operation: _i3.JsonUnionsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'AwsJson10DeserializeIntEnumUnionValue',
           documentation: 'Deserializes an intEnum union value',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_0',
           ),
@@ -703,14 +705,14 @@ void main() {
     'AwsJson10DeserializeListUnionValue (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: JsonUnionsOperation(
+        operation: _i3.JsonUnionsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'AwsJson10DeserializeListUnionValue',
           documentation: 'Deserializes a list union value',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_0',
           ),
@@ -743,14 +745,14 @@ void main() {
     'AwsJson10DeserializeMapUnionValue (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: JsonUnionsOperation(
+        operation: _i3.JsonUnionsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'AwsJson10DeserializeMapUnionValue',
           documentation: 'Deserializes a map union value',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_0',
           ),
@@ -783,14 +785,14 @@ void main() {
     'AwsJson10DeserializeStructureUnionValue (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: JsonUnionsOperation(
+        operation: _i3.JsonUnionsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'AwsJson10DeserializeStructureUnionValue',
           documentation: 'Deserializes a structure union value',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'awsJson1_0',
           ),
@@ -819,39 +821,39 @@ void main() {
 }
 
 class JsonUnionsInputAwsJson10Serializer
-    extends _i3.StructuredSmithySerializer<JsonUnionsInput> {
+    extends _i4.StructuredSmithySerializer<_i5.JsonUnionsInput> {
   const JsonUnionsInputAwsJson10Serializer() : super('JsonUnionsInput');
 
   @override
-  Iterable<Type> get types => const [JsonUnionsInput];
+  Iterable<Type> get types => const [_i5.JsonUnionsInput];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'awsJson1_0',
         )
       ];
   @override
-  JsonUnionsInput deserialize(
+  _i5.JsonUnionsInput deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = JsonUnionsInputBuilder();
+    final result = _i5.JsonUnionsInputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'contents':
-          result.contents = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(MyUnion),
-          ) as MyUnion);
+          if (value != null) {
+            result.contents = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i6.MyUnion),
+            ) as _i6.MyUnion);
+          }
+          break;
       }
     }
 
@@ -861,7 +863,7 @@ class JsonUnionsInputAwsJson10Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    JsonUnionsInput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
@@ -869,39 +871,39 @@ class JsonUnionsInputAwsJson10Serializer
 }
 
 class JsonUnionsOutputAwsJson10Serializer
-    extends _i3.StructuredSmithySerializer<JsonUnionsOutput> {
+    extends _i4.StructuredSmithySerializer<_i7.JsonUnionsOutput> {
   const JsonUnionsOutputAwsJson10Serializer() : super('JsonUnionsOutput');
 
   @override
-  Iterable<Type> get types => const [JsonUnionsOutput];
+  Iterable<Type> get types => const [_i7.JsonUnionsOutput];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'awsJson1_0',
         )
       ];
   @override
-  JsonUnionsOutput deserialize(
+  _i7.JsonUnionsOutput deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = JsonUnionsOutputBuilder();
+    final result = _i7.JsonUnionsOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'contents':
-          result.contents = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(MyUnion),
-          ) as MyUnion);
+          if (value != null) {
+            result.contents = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i6.MyUnion),
+            ) as _i6.MyUnion);
+          }
+          break;
       }
     }
 
@@ -911,7 +913,7 @@ class JsonUnionsOutputAwsJson10Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    JsonUnionsOutput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');

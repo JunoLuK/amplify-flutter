@@ -5,5 +5,6 @@
 #define amplify_secure_storage_h
 
 #import "AmplifySecureStoragePlugin.h"
+#import "Messages.h"
 
 #endif /* amplify_secure_storage_h */

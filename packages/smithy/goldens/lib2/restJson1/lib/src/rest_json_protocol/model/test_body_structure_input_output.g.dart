@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'test_body_structure_input_output.dart';
+part of rest_json1_v2.rest_json_protocol.model.test_body_structure_input_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,15 +8,15 @@ part of 'test_body_structure_input_output.dart';
 
 class _$TestBodyStructureInputOutput extends TestBodyStructureInputOutput {
   @override
-  final String? testId;
+  final _i3.TestConfig? testConfig;
   @override
-  final TestConfig? testConfig;
+  final String? testId;
 
   factory _$TestBodyStructureInputOutput(
           [void Function(TestBodyStructureInputOutputBuilder)? updates]) =>
       (new TestBodyStructureInputOutputBuilder()..update(updates))._build();
 
-  _$TestBodyStructureInputOutput._({this.testId, this.testConfig}) : super._();
+  _$TestBodyStructureInputOutput._({this.testConfig, this.testId}) : super._();
 
   @override
   TestBodyStructureInputOutput rebuild(
@@ -31,15 +31,15 @@ class _$TestBodyStructureInputOutput extends TestBodyStructureInputOutput {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is TestBodyStructureInputOutput &&
-        testId == other.testId &&
-        testConfig == other.testConfig;
+        testConfig == other.testConfig &&
+        testId == other.testId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, testId.hashCode);
     _$hash = $jc(_$hash, testConfig.hashCode);
+    _$hash = $jc(_$hash, testId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -51,23 +51,25 @@ class TestBodyStructureInputOutputBuilder
             TestBodyStructureInputOutputBuilder> {
   _$TestBodyStructureInputOutput? _$v;
 
+  _i3.TestConfigBuilder? _testConfig;
+  _i3.TestConfigBuilder get testConfig =>
+      _$this._testConfig ??= new _i3.TestConfigBuilder();
+  set testConfig(_i3.TestConfigBuilder? testConfig) =>
+      _$this._testConfig = testConfig;
+
   String? _testId;
   String? get testId => _$this._testId;
   set testId(String? testId) => _$this._testId = testId;
 
-  TestConfigBuilder? _testConfig;
-  TestConfigBuilder get testConfig =>
-      _$this._testConfig ??= new TestConfigBuilder();
-  set testConfig(TestConfigBuilder? testConfig) =>
-      _$this._testConfig = testConfig;
-
-  TestBodyStructureInputOutputBuilder();
+  TestBodyStructureInputOutputBuilder() {
+    TestBodyStructureInputOutput._init(this);
+  }
 
   TestBodyStructureInputOutputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _testId = $v.testId;
       _testConfig = $v.testConfig?.toBuilder();
+      _testId = $v.testId;
       _$v = null;
     }
     return this;
@@ -92,7 +94,7 @@ class TestBodyStructureInputOutputBuilder
     try {
       _$result = _$v ??
           new _$TestBodyStructureInputOutput._(
-              testId: testId, testConfig: _testConfig?.build());
+              testConfig: _testConfig?.build(), testId: testId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -112,7 +114,7 @@ class TestBodyStructureInputOutputBuilder
 class _$TestBodyStructureInputOutputPayload
     extends TestBodyStructureInputOutputPayload {
   @override
-  final TestConfig? testConfig;
+  final _i3.TestConfig? testConfig;
 
   factory _$TestBodyStructureInputOutputPayload(
           [void Function(TestBodyStructureInputOutputPayloadBuilder)?
@@ -153,13 +155,15 @@ class TestBodyStructureInputOutputPayloadBuilder
             TestBodyStructureInputOutputPayloadBuilder> {
   _$TestBodyStructureInputOutputPayload? _$v;
 
-  TestConfigBuilder? _testConfig;
-  TestConfigBuilder get testConfig =>
-      _$this._testConfig ??= new TestConfigBuilder();
-  set testConfig(TestConfigBuilder? testConfig) =>
+  _i3.TestConfigBuilder? _testConfig;
+  _i3.TestConfigBuilder get testConfig =>
+      _$this._testConfig ??= new _i3.TestConfigBuilder();
+  set testConfig(_i3.TestConfigBuilder? testConfig) =>
       _$this._testConfig = testConfig;
 
-  TestBodyStructureInputOutputPayloadBuilder();
+  TestBodyStructureInputOutputPayloadBuilder() {
+    TestBodyStructureInputOutputPayload._init(this);
+  }
 
   TestBodyStructureInputOutputPayloadBuilder get _$this {
     final $v = _$v;

@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library aws_json1_1_v2.json_protocol.model.host_label_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -29,10 +28,12 @@ abstract class HostLabelInput
   }) =>
       payload;
 
-  static const List<_i1.SmithySerializer<HostLabelInput>> serializers = [
+  static const List<_i1.SmithySerializer> serializers = [
     HostLabelInputAwsJson11Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HostLabelInputBuilder b) {}
   String get label;
   @override
   String labelFor(String key) {
@@ -52,11 +53,11 @@ abstract class HostLabelInput
   List<Object?> get props => [label];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('HostLabelInput')
-      ..add(
-        'label',
-        label,
-      );
+    final helper = newBuiltValueToStringHelper('HostLabelInput');
+    helper.add(
+      'label',
+      label,
+    );
     return helper.toString();
   }
 }
@@ -89,15 +90,13 @@ class HostLabelInputAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'label':
           result.label = (serializers.deserialize(
-            value,
+            value!,
             specifiedType: const FullType(String),
           ) as String);
+          break;
       }
     }
 
@@ -107,18 +106,17 @@ class HostLabelInputAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    HostLabelInput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final HostLabelInput(:label) = object;
-    result$.addAll([
+    final payload = (object as HostLabelInput);
+    final result = <Object?>[
       'label',
       serializers.serialize(
-        label,
+        payload.label,
         specifiedType: const FullType(String),
       ),
-    ]);
-    return result$;
+    ];
+    return result;
   }
 }

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'malformed_string_input.dart';
+part of rest_json1_v1.rest_json_protocol.model.malformed_string_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -48,7 +48,9 @@ class MalformedStringInputBuilder
   _i3.JsonObject? get blob => _$this._blob;
   set blob(_i3.JsonObject? blob) => _$this._blob = blob;
 
-  MalformedStringInputBuilder();
+  MalformedStringInputBuilder() {
+    MalformedStringInput._init(this);
+  }
 
   MalformedStringInputBuilder get _$this {
     final $v = _$v;
@@ -114,7 +116,9 @@ class MalformedStringInputPayloadBuilder
             MalformedStringInputPayloadBuilder> {
   _$MalformedStringInputPayload? _$v;
 
-  MalformedStringInputPayloadBuilder();
+  MalformedStringInputPayloadBuilder() {
+    MalformedStringInputPayload._init(this);
+  }
 
   @override
   void replace(MalformedStringInputPayload other) {

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'method_not_allowed_exception.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.method_not_allowed_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -65,7 +65,9 @@ class MethodNotAllowedExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  MethodNotAllowedExceptionBuilder();
+  MethodNotAllowedExceptionBuilder() {
+    MethodNotAllowedException._init(this);
+  }
 
   MethodNotAllowedExceptionBuilder get _$this {
     final $v = _$v;

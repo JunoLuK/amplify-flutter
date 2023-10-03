@@ -1,7 +1,9 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-part of 'auth_state.dart';
+import 'package:amplify_auth_cognito_dart/src/sdk/cognito_identity_provider.dart';
+import 'package:amplify_auth_cognito_dart/src/state/state.dart';
+import 'package:amplify_core/amplify_core.dart';
 
 /// Discrete state types of the sign up flow.
 enum SignUpStateType {
@@ -25,7 +27,7 @@ enum SignUpStateType {
 }
 
 /// Discrete states of the sign up flow.
-sealed class SignUpState extends AuthState<SignUpStateType> {
+abstract class SignUpState extends AuthState<SignUpStateType> {
   const SignUpState._();
 
   /// {@macro amplify_auth_cognito.sign_up_not_started}
@@ -61,7 +63,7 @@ sealed class SignUpState extends AuthState<SignUpStateType> {
 /// {@template amplify_auth_cognito.sign_up_not_started}
 /// Sign up flow has not yet started.
 /// {@endtemplate}
-final class SignUpNotStarted extends SignUpState {
+class SignUpNotStarted extends SignUpState {
   /// {@macro amplify_auth_cognito.sign_up_not_started}
   const SignUpNotStarted() : super._();
 
@@ -75,7 +77,7 @@ final class SignUpNotStarted extends SignUpState {
 /// {@template amplify_auth_cognito.sign_up_initiating}
 /// Sign up flow is initiating.
 /// {@endtemplate}
-final class SignUpInitiating extends SignUpState {
+class SignUpInitiating extends SignUpState {
   /// {@macro amplify_auth_cognito.sign_up_initiating}
   const SignUpInitiating() : super._();
 
@@ -89,7 +91,7 @@ final class SignUpInitiating extends SignUpState {
 /// {@template amplify_auth_cognito.sign_up_needs_confirmation}
 /// The user is signed up but not yet confirmed.
 /// {@endtemplate}
-final class SignUpNeedsConfirmation extends SignUpState {
+class SignUpNeedsConfirmation extends SignUpState {
   /// {@macro amplify_auth_cognito.sign_up_needs_confirmation}
   const SignUpNeedsConfirmation({
     required this.userId,
@@ -112,7 +114,7 @@ final class SignUpNeedsConfirmation extends SignUpState {
 /// {@template amplify_auth_cognito.sign_up_confirming}
 /// The user is being confirmed.
 /// {@endtemplate}
-final class SignUpConfirming extends SignUpState {
+class SignUpConfirming extends SignUpState {
   /// {@macro amplify_auth_cognito.sign_up_confirming}
   const SignUpConfirming() : super._();
 
@@ -126,7 +128,7 @@ final class SignUpConfirming extends SignUpState {
 /// {@template amplify_auth_cognito.sign_up_success}
 /// The user successfully signed up.
 /// {@endtemplate}
-final class SignUpSuccess extends SignUpState with SuccessState {
+class SignUpSuccess extends SignUpState with SuccessState {
   /// {@macro amplify_auth_cognito.sign_up_success}
   const SignUpSuccess({
     this.userId,
@@ -145,7 +147,7 @@ final class SignUpSuccess extends SignUpState with SuccessState {
 /// {@template amplify_auth_cognito.sign_up_failure}
 /// The sign up did not succceed.
 /// {@endtemplate}
-final class SignUpFailure extends SignUpState with ErrorState {
+class SignUpFailure extends SignUpState with ErrorState {
   /// {@macro amplify_auth_cognito.sign_up_failure}
   const SignUpFailure(this.exception, this.stackTrace) : super._();
 

@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_protocol.model.malformed_blob_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -32,10 +31,12 @@ abstract class MalformedBlobInput
   }) =>
       payload;
 
-  static const List<_i1.SmithySerializer<MalformedBlobInput>> serializers = [
+  static const List<_i1.SmithySerializer> serializers = [
     MalformedBlobInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedBlobInputBuilder b) {}
   _i3.Uint8List? get blob;
   @override
   MalformedBlobInput getPayload() => this;
@@ -43,11 +44,11 @@ abstract class MalformedBlobInput
   List<Object?> get props => [blob];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('MalformedBlobInput')
-      ..add(
-        'blob',
-        blob,
-      );
+    final helper = newBuiltValueToStringHelper('MalformedBlobInput');
+    helper.add(
+      'blob',
+      blob,
+    );
     return helper.toString();
   }
 }
@@ -80,15 +81,15 @@ class MalformedBlobInputRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'blob':
-          result.blob = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(_i3.Uint8List),
-          ) as _i3.Uint8List);
+          if (value != null) {
+            result.blob = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i3.Uint8List),
+            ) as _i3.Uint8List);
+          }
+          break;
       }
     }
 
@@ -98,19 +99,19 @@ class MalformedBlobInputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    MalformedBlobInput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final MalformedBlobInput(:blob) = object;
-    if (blob != null) {
-      result$
+    final payload = (object as MalformedBlobInput);
+    final result = <Object?>[];
+    if (payload.blob != null) {
+      result
         ..add('blob')
         ..add(serializers.serialize(
-          blob,
+          payload.blob!,
           specifiedType: const FullType(_i3.Uint8List),
         ));
     }
-    return result$;
+    return result;
   }
 }

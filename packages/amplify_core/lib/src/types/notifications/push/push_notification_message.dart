@@ -20,77 +20,58 @@ class PushNotificationMessage
     this.data = const {},
   });
 
-  factory PushNotificationMessage.fromJson(Map<String, Object?> json) {
-    final data =
-        (json['data'] as Map<Object?, Object?>?)?.cast<String, Object?>() ??
-            const {};
-    switch (json) {
-      // `aps` dictionary references:
-      // - https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification
-      // - https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/CreatingtheNotificationPayload.html
-      case {'aps': final Map<Object?, Object?> aps}:
-        final title = switch (aps) {
-          {'alert': final String alert} => alert,
-          {'alert': {'title': final String title}} => title,
-          _ => null,
-        };
-        final body = switch (aps) {
-          {'alert': {'body': final String body}} => body,
-          _ => null,
-        };
-        final imageUrl = data['media-url'] as String?;
-        final deeplinkUrl = switch (data) {
-          {'pinpoint': {'deeplink': final String deeplink}} => deeplink,
-          _ => null,
-        };
-        final apnsOptions = ApnsPlatformOptions(
-          subtitle: switch (aps) {
-            {'alert': {'subtitle': final String subtitle}} => subtitle,
-            _ => null,
-          },
+  factory PushNotificationMessage.fromJson(Map<Object?, Object?> json) {
+    String? title;
+    String? body;
+    String? imageUrl;
+    String? deeplinkUrl;
+    String? goToUrl;
+    ApnsPlatformOptions? apnsOptions;
+    FcmPlatformOptions? fcmOptions;
+
+    final data = (json['data'] as Map<Object?, Object?>?) ?? {};
+    final aps = json['aps'] as Map<Object?, Object?>?;
+    if (aps != null) {
+      final alert = aps['alert'] as Map<Object?, Object?>?;
+      if (alert != null) {
+        title = alert['title'] as String?;
+        body = alert['body'] as String?;
+        imageUrl = data['media-url'] as String?;
+
+        if (data['pinpoint'] != null) {
+          final pinpointData = data['pinpoint'] as Map<Object?, Object?>;
+          deeplinkUrl = pinpointData['deeplink'] as String?;
+          goToUrl = deeplinkUrl;
+        }
+        apnsOptions = ApnsPlatformOptions(subtitle: aps['subtitle'] as String?);
+      }
+    } else {
+      final action = json['action'] as Map<Object?, Object?>?;
+      title = json['title'] as String?;
+      body = json['body'] as String?;
+      imageUrl = json['imageUrl'] as String?;
+      if (action != null) {
+        deeplinkUrl = action['deeplink'] as String?;
+        goToUrl = action['url'] as String?;
+      }
+      final fcmOptionsMap = json['fcmOptions'] as Map<Object?, Object?>?;
+      if (fcmOptionsMap != null) {
+        fcmOptions = FcmPlatformOptions(
+          channelId: fcmOptionsMap['channelId'] as String?,
+          messageId: fcmOptionsMap['messageId'] as String?,
         );
-        return PushNotificationMessage(
-          title: title,
-          body: body,
-          imageUrl: imageUrl,
-          deeplinkUrl: deeplinkUrl,
-          goToUrl: deeplinkUrl,
-          apnsOptions: apnsOptions,
-          data: data,
-        );
-      default:
-        final title = json['title'] as String?;
-        final body = json['body'] as String?;
-        final imageUrl = json['imageUrl'] as String?;
-        final (deeplinkUrl, goToUrl) = switch (json['action']) {
-          {'deeplink': final String deeplink, 'url': final String url} => (
-              deeplink,
-              url
-            ),
-          {'deeplink': final String deeplink} => (deeplink, null),
-          {'url': final String url} => (null, url),
-          _ => (null, null),
-        };
-        final fcmOptions = FcmPlatformOptions(
-          channelId: switch (json['fcmOptions']) {
-            {'channelId': final String channelId} => channelId,
-            _ => null,
-          },
-          messageId: switch (json['fcmOptions']) {
-            {'messageId': final String messageId} => messageId,
-            _ => null,
-          },
-        );
-        return PushNotificationMessage(
-          title: title,
-          body: body,
-          imageUrl: imageUrl,
-          deeplinkUrl: deeplinkUrl,
-          goToUrl: goToUrl,
-          fcmOptions: fcmOptions,
-          data: data,
-        );
+      }
     }
+    return PushNotificationMessage(
+      title: title,
+      body: body,
+      imageUrl: imageUrl,
+      deeplinkUrl: deeplinkUrl,
+      goToUrl: goToUrl,
+      apnsOptions: apnsOptions,
+      fcmOptions: fcmOptions,
+      data: data,
+    );
   }
 
   final String? title;
@@ -100,7 +81,7 @@ class PushNotificationMessage
   final String? goToUrl;
   final FcmPlatformOptions? fcmOptions;
   final ApnsPlatformOptions? apnsOptions;
-  final Map<String, Object?> data;
+  final Map<Object?, Object?> data;
 
   @override
   String get runtimeTypeName => 'PushNotificationMessage';

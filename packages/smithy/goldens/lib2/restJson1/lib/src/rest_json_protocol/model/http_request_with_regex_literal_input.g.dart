@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'http_request_with_regex_literal_input.dart';
+part of rest_json1_v2.rest_json_protocol.model.http_request_with_regex_literal_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -54,7 +54,9 @@ class HttpRequestWithRegexLiteralInputBuilder
   String? get str => _$this._str;
   set str(String? str) => _$this._str = str;
 
-  HttpRequestWithRegexLiteralInputBuilder();
+  HttpRequestWithRegexLiteralInputBuilder() {
+    HttpRequestWithRegexLiteralInput._init(this);
+  }
 
   HttpRequestWithRegexLiteralInputBuilder get _$this {
     final $v = _$v;
@@ -127,7 +129,9 @@ class HttpRequestWithRegexLiteralInputPayloadBuilder
             HttpRequestWithRegexLiteralInputPayloadBuilder> {
   _$HttpRequestWithRegexLiteralInputPayload? _$v;
 
-  HttpRequestWithRegexLiteralInputPayloadBuilder();
+  HttpRequestWithRegexLiteralInputPayloadBuilder() {
+    HttpRequestWithRegexLiteralInputPayload._init(this);
+  }
 
   @override
   void replace(HttpRequestWithRegexLiteralInputPayload other) {

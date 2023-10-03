@@ -1,29 +1,32 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library aws_json1_1_v1.json_protocol.operation.operation_with_optional_input_output_operation; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'dart:async' as _i5;
+import 'dart:async' as _i9;
 
-import 'package:aws_common/aws_common.dart' as _i4;
-import 'package:aws_json1_1_v1/src/json_protocol/common/endpoint_resolver.dart';
-import 'package:aws_json1_1_v1/src/json_protocol/common/serializers.dart';
-import 'package:aws_json1_1_v1/src/json_protocol/model/operation_with_optional_input_output_input.dart';
-import 'package:aws_json1_1_v1/src/json_protocol/model/operation_with_optional_input_output_output.dart';
-import 'package:aws_signature_v4/aws_signature_v4.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i7;
+import 'package:aws_json1_1_v1/src/json_protocol/common/endpoint_resolver.dart'
+    as _i8;
+import 'package:aws_json1_1_v1/src/json_protocol/common/serializers.dart'
+    as _i6;
+import 'package:aws_json1_1_v1/src/json_protocol/model/operation_with_optional_input_output_input.dart'
+    as _i2;
+import 'package:aws_json1_1_v1/src/json_protocol/model/operation_with_optional_input_output_output.dart'
+    as _i3;
+import 'package:aws_signature_v4/aws_signature_v4.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
-import 'package:smithy_aws/smithy_aws.dart' as _i3;
+import 'package:smithy_aws/smithy_aws.dart' as _i5;
 
 class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
-    OperationWithOptionalInputOutputInput,
-    OperationWithOptionalInputOutputInput,
-    OperationWithOptionalInputOutputOutput,
-    OperationWithOptionalInputOutputOutput> {
+    _i2.OperationWithOptionalInputOutputInput,
+    _i2.OperationWithOptionalInputOutputInput,
+    _i3.OperationWithOptionalInputOutputOutput,
+    _i3.OperationWithOptionalInputOutputOutput> {
   OperationWithOptionalInputOutputOperation({
     required String region,
     Uri? baseUri,
-    _i2.AWSCredentialsProvider credentialsProvider =
-        const _i2.AWSCredentialsProvider.defaultChain(),
+    _i4.AWSCredentialsProvider credentialsProvider =
+        const _i4.AWSCredentialsProvider.environment(),
     List<_i1.HttpRequestInterceptor> requestInterceptors = const [],
     List<_i1.HttpResponseInterceptor> responseInterceptors = const [],
   })  : _region = region,
@@ -35,13 +38,13 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
   @override
   late final List<
       _i1.HttpProtocol<
-          OperationWithOptionalInputOutputInput,
-          OperationWithOptionalInputOutputInput,
-          OperationWithOptionalInputOutputOutput,
-          OperationWithOptionalInputOutputOutput>> protocols = [
-    _i3.AwsJson1_1Protocol(
-      serializers: serializers,
-      builderFactories: builderFactories,
+          _i2.OperationWithOptionalInputOutputInput,
+          _i2.OperationWithOptionalInputOutputInput,
+          _i3.OperationWithOptionalInputOutputOutput,
+          _i3.OperationWithOptionalInputOutputOutput>> protocols = [
+    _i5.AwsJson1_1Protocol(
+      serializers: _i6.serializers,
+      builderFactories: _i6.builderFactories,
       requestInterceptors: <_i1.HttpRequestInterceptor>[
             const _i1.WithHost(),
             const _i1.WithContentLength(),
@@ -49,14 +52,14 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
               'X-Amz-Target',
               'JsonProtocol.OperationWithOptionalInputOutput',
             ),
-            _i3.WithSigV4(
+            _i5.WithSigV4(
               region: _region,
-              service: _i4.AWSService.iam,
+              service: _i7.AWSService.iam,
               credentialsProvider: _credentialsProvider,
             ),
             const _i1.WithUserAgent('aws-sdk-dart/0.3.1'),
-            const _i3.WithSdkInvocationId(),
-            const _i3.WithSdkRequest(),
+            const _i5.WithSdkInvocationId(),
+            const _i5.WithSdkRequest(),
           ] +
           _requestInterceptors,
       responseInterceptors:
@@ -64,8 +67,8 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
     )
   ];
 
-  late final _i3.AWSEndpoint _awsEndpoint = endpointResolver.resolve(
-    sdkId,
+  late final _i5.AWSEndpoint _awsEndpoint = _i8.endpointResolver.resolve(
+    _i8.sdkId,
     _region,
   );
 
@@ -73,26 +76,27 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
 
   final Uri? _baseUri;
 
-  final _i2.AWSCredentialsProvider _credentialsProvider;
+  final _i4.AWSCredentialsProvider _credentialsProvider;
 
   final List<_i1.HttpRequestInterceptor> _requestInterceptors;
 
   final List<_i1.HttpResponseInterceptor> _responseInterceptors;
 
   @override
-  _i1.HttpRequest buildRequest(OperationWithOptionalInputOutputInput input) =>
+  _i1.HttpRequest buildRequest(
+          _i2.OperationWithOptionalInputOutputInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = r'/';
       });
   @override
-  int successCode([OperationWithOptionalInputOutputOutput? output]) => 200;
+  int successCode([_i3.OperationWithOptionalInputOutputOutput? output]) => 200;
   @override
-  OperationWithOptionalInputOutputOutput buildOutput(
-    OperationWithOptionalInputOutputOutput payload,
-    _i4.AWSBaseHttpResponse response,
+  _i3.OperationWithOptionalInputOutputOutput buildOutput(
+    _i3.OperationWithOptionalInputOutputOutput payload,
+    _i7.AWSBaseHttpResponse response,
   ) =>
-      OperationWithOptionalInputOutputOutput.fromResponse(
+      _i3.OperationWithOptionalInputOutputOutput.fromResponse(
         payload,
         response,
       );
@@ -101,18 +105,18 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
   @override
   String get runtimeTypeName => 'OperationWithOptionalInputOutput';
   @override
-  _i3.AWSRetryer get retryer => _i3.AWSRetryer();
+  _i5.AWSRetryer get retryer => _i5.AWSRetryer();
   @override
   Uri get baseUri => _baseUri ?? endpoint.uri;
   @override
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;
   @override
-  _i1.SmithyOperation<OperationWithOptionalInputOutputOutput> run(
-    OperationWithOptionalInputOutputInput input, {
-    _i4.AWSHttpClient? client,
+  _i1.SmithyOperation<_i3.OperationWithOptionalInputOutputOutput> run(
+    _i2.OperationWithOptionalInputOutputInput input, {
+    _i7.AWSHttpClient? client,
     _i1.ShapeId? useProtocol,
   }) {
-    return _i5.runZoned(
+    return _i9.runZoned(
       () => super.run(
         input,
         client: client,
@@ -120,7 +124,7 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
       ),
       zoneValues: {
         ...?_awsEndpoint.credentialScope?.zoneValues,
-        ...{_i4.AWSHeaders.sdkInvocationId: _i4.uuid(secure: true)},
+        ...{_i7.AWSHeaders.sdkInvocationId: _i7.uuid(secure: true)}
       },
     );
   }

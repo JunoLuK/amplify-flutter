@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_validation_protocol.model.malformed_required_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -20,13 +19,13 @@ abstract class MalformedRequiredInput
         _i1.HasPayload<MalformedRequiredInputPayload> {
   factory MalformedRequiredInput({
     required String string,
-    required String stringInQuery,
     required String stringInHeader,
+    required String stringInQuery,
   }) {
     return _$MalformedRequiredInput._(
       string: string,
-      stringInQuery: stringInQuery,
       stringInHeader: stringInHeader,
+      stringInQuery: stringInQuery,
     );
   }
 
@@ -51,12 +50,15 @@ abstract class MalformedRequiredInput
         }
       });
 
-  static const List<_i1.SmithySerializer<MalformedRequiredInputPayload>>
-      serializers = [MalformedRequiredInputRestJson1Serializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    MalformedRequiredInputRestJson1Serializer()
+  ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedRequiredInputBuilder b) {}
   String get string;
-  String get stringInQuery;
   String get stringInHeader;
+  String get stringInQuery;
   @override
   MalformedRequiredInputPayload getPayload() =>
       MalformedRequiredInputPayload((b) {
@@ -65,24 +67,24 @@ abstract class MalformedRequiredInput
   @override
   List<Object?> get props => [
         string,
-        stringInQuery,
         stringInHeader,
+        stringInQuery,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('MalformedRequiredInput')
-      ..add(
-        'string',
-        string,
-      )
-      ..add(
-        'stringInQuery',
-        stringInQuery,
-      )
-      ..add(
-        'stringInHeader',
-        stringInHeader,
-      );
+    final helper = newBuiltValueToStringHelper('MalformedRequiredInput');
+    helper.add(
+      'string',
+      string,
+    );
+    helper.add(
+      'stringInHeader',
+      stringInHeader,
+    );
+    helper.add(
+      'stringInQuery',
+      stringInQuery,
+    );
     return helper.toString();
   }
 }
@@ -100,16 +102,18 @@ abstract class MalformedRequiredInputPayload
 
   const MalformedRequiredInputPayload._();
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedRequiredInputPayloadBuilder b) {}
   String get string;
   @override
   List<Object?> get props => [string];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('MalformedRequiredInputPayload')
-      ..add(
-        'string',
-        string,
-      );
+    final helper = newBuiltValueToStringHelper('MalformedRequiredInputPayload');
+    helper.add(
+      'string',
+      string,
+    );
     return helper.toString();
   }
 }
@@ -145,15 +149,13 @@ class MalformedRequiredInputRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'string':
           result.string = (serializers.deserialize(
-            value,
+            value!,
             specifiedType: const FullType(String),
           ) as String);
+          break;
       }
     }
 
@@ -163,18 +165,19 @@ class MalformedRequiredInputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    MalformedRequiredInputPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final MalformedRequiredInputPayload(:string) = object;
-    result$.addAll([
+    final payload = object is MalformedRequiredInput
+        ? object.getPayload()
+        : (object as MalformedRequiredInputPayload);
+    final result = <Object?>[
       'string',
       serializers.serialize(
-        string,
+        payload.string,
         specifiedType: const FullType(String),
       ),
-    ]);
-    return result$;
+    ];
+    return result;
   }
 }

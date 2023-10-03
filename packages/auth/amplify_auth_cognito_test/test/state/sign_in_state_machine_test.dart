@@ -136,15 +136,6 @@ void main() {
         ).ignore();
 
       final signInStateMachine = stateMachine.expect(SignInStateMachine.type);
-
-      final fetchAuthSessionStateMachine = stateMachine.getOrCreate(
-        FetchAuthSessionStateMachine.type,
-      );
-
-      fetchAuthSessionStateMachine.stream.listen(
-        (_) => fail('.signIn() should not fetch auth session.'),
-      );
-
       expect(
         signInStateMachine.stream,
         emitsInOrder([

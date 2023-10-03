@@ -5,13 +5,13 @@ import 'dart:convert';
 
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_auth_cognito_example/amplifyconfiguration.dart';
-import 'package:amplify_auth_integration_test/amplify_auth_integration_test.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_integration_test/amplify_integration_test.dart';
 import 'package:aws_signature_v4/aws_signature_v4.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'test_runner.dart';
+import 'utils/setup_utils.dart';
+import 'utils/test_utils.dart';
 
 class CognitoUserPoolsAuthorizer extends OIDCAuthProvider {
   const CognitoUserPoolsAuthorizer();
@@ -24,7 +24,7 @@ class CognitoUserPoolsAuthorizer extends OIDCAuthProvider {
 }
 
 void main() {
-  testRunner.setupTests();
+  initTests();
 
   group('Custom Authorizer', () {
     const customHeaders = {
@@ -36,12 +36,11 @@ void main() {
       'special-key': r'!@#$%^&*() _-+={}[]\/;',
     };
 
-    const userPoolEnv = 'custom-authorizer-user-pools';
     group(
       'User Pools',
-      skip: testRunner.shouldSkip(userPoolEnv),
+      skip: shouldSkip('custom-authorizer-user-pools'),
       () {
-        final configJson = amplifyEnvironments[userPoolEnv]!;
+        final configJson = amplifyEnvironments['custom-authorizer-user-pools']!;
         final config = AmplifyConfig.fromJson(
           jsonDecode(configJson) as Map<String, Object?>,
         );
@@ -50,17 +49,26 @@ void main() {
           group(supportedProtocols.name, () {
             late AWSHttpClient client;
 
+            Future<void> deleteAndSignOut() async {
+              try {
+                await Amplify.Auth.deleteUser();
+              } on Exception {
+                // no-op
+              }
+              await signOutUser();
+            }
+
             setUp(() async {
               client = AWSHttpClient()..supportedProtocols = supportedProtocols;
               addTearDown(client.close);
-              await testRunner.configure(
-                environmentName: userPoolEnv,
+              await configureAuth(
+                config: configJson,
                 apiAuthProviders: const [
                   CognitoUserPoolsAuthorizer(),
                 ],
                 baseClient: client,
               );
-              addTearDown(Amplify.Auth.deleteUser);
+              addTearDown(deleteAndSignOut);
             });
 
             asyncTest('can invoke with HTTP client', (_) async {
@@ -184,7 +192,7 @@ void main() {
       ]) {
         group(
           backend,
-          skip: testRunner.shouldSkip(backend),
+          skip: shouldSkip(backend),
           () {
             final configJson = amplifyEnvironments[backend];
             if (configJson == null) return;
@@ -200,10 +208,11 @@ void main() {
                   client = AWSHttpClient()
                     ..supportedProtocols = supportedProtocols;
                   addTearDown(client.close);
-                  await testRunner.configure(
-                    environmentName: backend,
+                  await configureAuth(
+                    config: configJson,
                     baseClient: client,
                   );
+                  addTearDown(signOutUser);
                 });
 
                 asyncTest('can invoke with HTTP client', (_) async {

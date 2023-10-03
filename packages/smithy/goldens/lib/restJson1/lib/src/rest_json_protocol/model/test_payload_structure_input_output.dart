@@ -1,31 +1,31 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.rest_json_protocol.model.test_payload_structure_input_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v1/src/rest_json_protocol/model/payload_config.dart';
+import 'package:rest_json1_v1/src/rest_json_protocol/model/payload_config.dart'
+    as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'test_payload_structure_input_output.g.dart';
 
 abstract class TestPayloadStructureInputOutput
     with
-        _i1.HttpInput<PayloadConfig>,
-        _i2.AWSEquatable<TestPayloadStructureInputOutput>
+        _i1.HttpInput<_i2.PayloadConfig>,
+        _i3.AWSEquatable<TestPayloadStructureInputOutput>
     implements
         Built<TestPayloadStructureInputOutput,
             TestPayloadStructureInputOutputBuilder>,
-        _i1.HasPayload<PayloadConfig> {
+        _i1.HasPayload<_i2.PayloadConfig> {
   factory TestPayloadStructureInputOutput({
+    _i2.PayloadConfig? payloadConfig,
     String? testId,
-    PayloadConfig? payloadConfig,
   }) {
     return _$TestPayloadStructureInputOutput._(
-      testId: testId,
       payloadConfig: payloadConfig,
+      testId: testId,
     );
   }
 
@@ -36,8 +36,8 @@ abstract class TestPayloadStructureInputOutput
   const TestPayloadStructureInputOutput._();
 
   factory TestPayloadStructureInputOutput.fromRequest(
-    PayloadConfig? payload,
-    _i2.AWSBaseHttpRequest request, {
+    _i2.PayloadConfig? payload,
+    _i3.AWSBaseHttpRequest request, {
     Map<String, String> labels = const {},
   }) =>
       TestPayloadStructureInputOutput.build((b) {
@@ -51,8 +51,8 @@ abstract class TestPayloadStructureInputOutput
 
   /// Constructs a [TestPayloadStructureInputOutput] from a [payload] and [response].
   factory TestPayloadStructureInputOutput.fromResponse(
-    PayloadConfig? payload,
-    _i2.AWSBaseHttpResponse response,
+    _i2.PayloadConfig? payload,
+    _i3.AWSBaseHttpResponse response,
   ) =>
       TestPayloadStructureInputOutput.build((b) {
         if (payload != null) {
@@ -63,37 +63,39 @@ abstract class TestPayloadStructureInputOutput
         }
       });
 
-  static const List<_i1.SmithySerializer<PayloadConfig?>> serializers = [
+  static const List<_i1.SmithySerializer> serializers = [
     TestPayloadStructureInputOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(TestPayloadStructureInputOutputBuilder b) {}
+  _i2.PayloadConfig? get payloadConfig;
   String? get testId;
-  PayloadConfig? get payloadConfig;
   @override
-  PayloadConfig? getPayload() => payloadConfig ?? PayloadConfig();
+  _i2.PayloadConfig? getPayload() => payloadConfig ?? _i2.PayloadConfig();
   @override
   List<Object?> get props => [
-        testId,
         payloadConfig,
+        testId,
       ];
   @override
   String toString() {
     final helper =
-        newBuiltValueToStringHelper('TestPayloadStructureInputOutput')
-          ..add(
-            'testId',
-            testId,
-          )
-          ..add(
-            'payloadConfig',
-            payloadConfig,
-          );
+        newBuiltValueToStringHelper('TestPayloadStructureInputOutput');
+    helper.add(
+      'payloadConfig',
+      payloadConfig,
+    );
+    helper.add(
+      'testId',
+      testId,
+    );
     return helper.toString();
   }
 }
 
 class TestPayloadStructureInputOutputRestJson1Serializer
-    extends _i1.PrimitiveSmithySerializer<PayloadConfig> {
+    extends _i1.PrimitiveSmithySerializer<_i2.PayloadConfig> {
   const TestPayloadStructureInputOutputRestJson1Serializer()
       : super('TestPayloadStructureInputOutput');
 
@@ -110,26 +112,29 @@ class TestPayloadStructureInputOutputRestJson1Serializer
         )
       ];
   @override
-  PayloadConfig deserialize(
+  _i2.PayloadConfig deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return (serializers.deserialize(
       serialized,
-      specifiedType: const FullType(PayloadConfig),
-    ) as PayloadConfig);
+      specifiedType: const FullType(_i2.PayloadConfig),
+    ) as _i2.PayloadConfig);
   }
 
   @override
   Object serialize(
     Serializers serializers,
-    PayloadConfig object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return serializers.serialize(
-      object,
-      specifiedType: const FullType(PayloadConfig),
-    )!;
+    final payload = object is TestPayloadStructureInputOutput
+        ? object.getPayload()
+        : (object as _i2.PayloadConfig?);
+    return (serializers.serialize(
+      payload!,
+      specifiedType: const FullType(_i2.PayloadConfig),
+    ) as Object);
   }
 }

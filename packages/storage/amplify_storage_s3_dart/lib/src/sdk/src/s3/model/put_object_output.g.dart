@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'put_object_output.dart';
+part of amplify_storage_s3_dart.s3.model.put_object_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,9 +8,7 @@ part of 'put_object_output.dart';
 
 class _$PutObjectOutput extends PutObjectOutput {
   @override
-  final String? expiration;
-  @override
-  final String? eTag;
+  final bool? bucketKeyEnabled;
   @override
   final String? checksumCrc32;
   @override
@@ -20,40 +18,42 @@ class _$PutObjectOutput extends PutObjectOutput {
   @override
   final String? checksumSha256;
   @override
-  final ServerSideEncryption? serverSideEncryption;
+  final String? eTag;
   @override
-  final String? versionId;
+  final String? expiration;
+  @override
+  final _i3.RequestCharged? requestCharged;
+  @override
+  final _i4.ServerSideEncryption? serverSideEncryption;
   @override
   final String? sseCustomerAlgorithm;
   @override
   final String? sseCustomerKeyMd5;
   @override
-  final String? ssekmsKeyId;
-  @override
   final String? ssekmsEncryptionContext;
   @override
-  final bool? bucketKeyEnabled;
+  final String? ssekmsKeyId;
   @override
-  final RequestCharged? requestCharged;
+  final String? versionId;
 
   factory _$PutObjectOutput([void Function(PutObjectOutputBuilder)? updates]) =>
       (new PutObjectOutputBuilder()..update(updates))._build();
 
   _$PutObjectOutput._(
-      {this.expiration,
-      this.eTag,
+      {this.bucketKeyEnabled,
       this.checksumCrc32,
       this.checksumCrc32C,
       this.checksumSha1,
       this.checksumSha256,
+      this.eTag,
+      this.expiration,
+      this.requestCharged,
       this.serverSideEncryption,
-      this.versionId,
       this.sseCustomerAlgorithm,
       this.sseCustomerKeyMd5,
-      this.ssekmsKeyId,
       this.ssekmsEncryptionContext,
-      this.bucketKeyEnabled,
-      this.requestCharged})
+      this.ssekmsKeyId,
+      this.versionId})
       : super._();
 
   @override
@@ -68,39 +68,39 @@ class _$PutObjectOutput extends PutObjectOutput {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is PutObjectOutput &&
-        expiration == other.expiration &&
-        eTag == other.eTag &&
+        bucketKeyEnabled == other.bucketKeyEnabled &&
         checksumCrc32 == other.checksumCrc32 &&
         checksumCrc32C == other.checksumCrc32C &&
         checksumSha1 == other.checksumSha1 &&
         checksumSha256 == other.checksumSha256 &&
+        eTag == other.eTag &&
+        expiration == other.expiration &&
+        requestCharged == other.requestCharged &&
         serverSideEncryption == other.serverSideEncryption &&
-        versionId == other.versionId &&
         sseCustomerAlgorithm == other.sseCustomerAlgorithm &&
         sseCustomerKeyMd5 == other.sseCustomerKeyMd5 &&
-        ssekmsKeyId == other.ssekmsKeyId &&
         ssekmsEncryptionContext == other.ssekmsEncryptionContext &&
-        bucketKeyEnabled == other.bucketKeyEnabled &&
-        requestCharged == other.requestCharged;
+        ssekmsKeyId == other.ssekmsKeyId &&
+        versionId == other.versionId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, expiration.hashCode);
-    _$hash = $jc(_$hash, eTag.hashCode);
+    _$hash = $jc(_$hash, bucketKeyEnabled.hashCode);
     _$hash = $jc(_$hash, checksumCrc32.hashCode);
     _$hash = $jc(_$hash, checksumCrc32C.hashCode);
     _$hash = $jc(_$hash, checksumSha1.hashCode);
     _$hash = $jc(_$hash, checksumSha256.hashCode);
+    _$hash = $jc(_$hash, eTag.hashCode);
+    _$hash = $jc(_$hash, expiration.hashCode);
+    _$hash = $jc(_$hash, requestCharged.hashCode);
     _$hash = $jc(_$hash, serverSideEncryption.hashCode);
-    _$hash = $jc(_$hash, versionId.hashCode);
     _$hash = $jc(_$hash, sseCustomerAlgorithm.hashCode);
     _$hash = $jc(_$hash, sseCustomerKeyMd5.hashCode);
-    _$hash = $jc(_$hash, ssekmsKeyId.hashCode);
     _$hash = $jc(_$hash, ssekmsEncryptionContext.hashCode);
-    _$hash = $jc(_$hash, bucketKeyEnabled.hashCode);
-    _$hash = $jc(_$hash, requestCharged.hashCode);
+    _$hash = $jc(_$hash, ssekmsKeyId.hashCode);
+    _$hash = $jc(_$hash, versionId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -110,13 +110,10 @@ class PutObjectOutputBuilder
     implements Builder<PutObjectOutput, PutObjectOutputBuilder> {
   _$PutObjectOutput? _$v;
 
-  String? _expiration;
-  String? get expiration => _$this._expiration;
-  set expiration(String? expiration) => _$this._expiration = expiration;
-
-  String? _eTag;
-  String? get eTag => _$this._eTag;
-  set eTag(String? eTag) => _$this._eTag = eTag;
+  bool? _bucketKeyEnabled;
+  bool? get bucketKeyEnabled => _$this._bucketKeyEnabled;
+  set bucketKeyEnabled(bool? bucketKeyEnabled) =>
+      _$this._bucketKeyEnabled = bucketKeyEnabled;
 
   String? _checksumCrc32;
   String? get checksumCrc32 => _$this._checksumCrc32;
@@ -137,15 +134,24 @@ class PutObjectOutputBuilder
   set checksumSha256(String? checksumSha256) =>
       _$this._checksumSha256 = checksumSha256;
 
-  ServerSideEncryption? _serverSideEncryption;
-  ServerSideEncryption? get serverSideEncryption =>
-      _$this._serverSideEncryption;
-  set serverSideEncryption(ServerSideEncryption? serverSideEncryption) =>
-      _$this._serverSideEncryption = serverSideEncryption;
+  String? _eTag;
+  String? get eTag => _$this._eTag;
+  set eTag(String? eTag) => _$this._eTag = eTag;
 
-  String? _versionId;
-  String? get versionId => _$this._versionId;
-  set versionId(String? versionId) => _$this._versionId = versionId;
+  String? _expiration;
+  String? get expiration => _$this._expiration;
+  set expiration(String? expiration) => _$this._expiration = expiration;
+
+  _i3.RequestCharged? _requestCharged;
+  _i3.RequestCharged? get requestCharged => _$this._requestCharged;
+  set requestCharged(_i3.RequestCharged? requestCharged) =>
+      _$this._requestCharged = requestCharged;
+
+  _i4.ServerSideEncryption? _serverSideEncryption;
+  _i4.ServerSideEncryption? get serverSideEncryption =>
+      _$this._serverSideEncryption;
+  set serverSideEncryption(_i4.ServerSideEncryption? serverSideEncryption) =>
+      _$this._serverSideEncryption = serverSideEncryption;
 
   String? _sseCustomerAlgorithm;
   String? get sseCustomerAlgorithm => _$this._sseCustomerAlgorithm;
@@ -157,44 +163,40 @@ class PutObjectOutputBuilder
   set sseCustomerKeyMd5(String? sseCustomerKeyMd5) =>
       _$this._sseCustomerKeyMd5 = sseCustomerKeyMd5;
 
-  String? _ssekmsKeyId;
-  String? get ssekmsKeyId => _$this._ssekmsKeyId;
-  set ssekmsKeyId(String? ssekmsKeyId) => _$this._ssekmsKeyId = ssekmsKeyId;
-
   String? _ssekmsEncryptionContext;
   String? get ssekmsEncryptionContext => _$this._ssekmsEncryptionContext;
   set ssekmsEncryptionContext(String? ssekmsEncryptionContext) =>
       _$this._ssekmsEncryptionContext = ssekmsEncryptionContext;
 
-  bool? _bucketKeyEnabled;
-  bool? get bucketKeyEnabled => _$this._bucketKeyEnabled;
-  set bucketKeyEnabled(bool? bucketKeyEnabled) =>
-      _$this._bucketKeyEnabled = bucketKeyEnabled;
+  String? _ssekmsKeyId;
+  String? get ssekmsKeyId => _$this._ssekmsKeyId;
+  set ssekmsKeyId(String? ssekmsKeyId) => _$this._ssekmsKeyId = ssekmsKeyId;
 
-  RequestCharged? _requestCharged;
-  RequestCharged? get requestCharged => _$this._requestCharged;
-  set requestCharged(RequestCharged? requestCharged) =>
-      _$this._requestCharged = requestCharged;
+  String? _versionId;
+  String? get versionId => _$this._versionId;
+  set versionId(String? versionId) => _$this._versionId = versionId;
 
-  PutObjectOutputBuilder();
+  PutObjectOutputBuilder() {
+    PutObjectOutput._init(this);
+  }
 
   PutObjectOutputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _expiration = $v.expiration;
-      _eTag = $v.eTag;
+      _bucketKeyEnabled = $v.bucketKeyEnabled;
       _checksumCrc32 = $v.checksumCrc32;
       _checksumCrc32C = $v.checksumCrc32C;
       _checksumSha1 = $v.checksumSha1;
       _checksumSha256 = $v.checksumSha256;
+      _eTag = $v.eTag;
+      _expiration = $v.expiration;
+      _requestCharged = $v.requestCharged;
       _serverSideEncryption = $v.serverSideEncryption;
-      _versionId = $v.versionId;
       _sseCustomerAlgorithm = $v.sseCustomerAlgorithm;
       _sseCustomerKeyMd5 = $v.sseCustomerKeyMd5;
-      _ssekmsKeyId = $v.ssekmsKeyId;
       _ssekmsEncryptionContext = $v.ssekmsEncryptionContext;
-      _bucketKeyEnabled = $v.bucketKeyEnabled;
-      _requestCharged = $v.requestCharged;
+      _ssekmsKeyId = $v.ssekmsKeyId;
+      _versionId = $v.versionId;
       _$v = null;
     }
     return this;
@@ -217,20 +219,20 @@ class PutObjectOutputBuilder
   _$PutObjectOutput _build() {
     final _$result = _$v ??
         new _$PutObjectOutput._(
-            expiration: expiration,
-            eTag: eTag,
+            bucketKeyEnabled: bucketKeyEnabled,
             checksumCrc32: checksumCrc32,
             checksumCrc32C: checksumCrc32C,
             checksumSha1: checksumSha1,
             checksumSha256: checksumSha256,
+            eTag: eTag,
+            expiration: expiration,
+            requestCharged: requestCharged,
             serverSideEncryption: serverSideEncryption,
-            versionId: versionId,
             sseCustomerAlgorithm: sseCustomerAlgorithm,
             sseCustomerKeyMd5: sseCustomerKeyMd5,
-            ssekmsKeyId: ssekmsKeyId,
             ssekmsEncryptionContext: ssekmsEncryptionContext,
-            bucketKeyEnabled: bucketKeyEnabled,
-            requestCharged: requestCharged);
+            ssekmsKeyId: ssekmsKeyId,
+            versionId: versionId);
     replace(_$result);
     return _$result;
   }
@@ -268,7 +270,9 @@ class PutObjectOutputPayloadBuilder
     implements Builder<PutObjectOutputPayload, PutObjectOutputPayloadBuilder> {
   _$PutObjectOutputPayload? _$v;
 
-  PutObjectOutputPayloadBuilder();
+  PutObjectOutputPayloadBuilder() {
+    PutObjectOutputPayload._init(this);
+  }
 
   @override
   void replace(PutObjectOutputPayload other) {

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'update_device_status_response.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.update_device_status_response;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -39,7 +39,9 @@ class UpdateDeviceStatusResponseBuilder
         Builder<UpdateDeviceStatusResponse, UpdateDeviceStatusResponseBuilder> {
   _$UpdateDeviceStatusResponse? _$v;
 
-  UpdateDeviceStatusResponseBuilder();
+  UpdateDeviceStatusResponseBuilder() {
+    UpdateDeviceStatusResponse._init(this);
+  }
 
   @override
   void replace(UpdateDeviceStatusResponse other) {

@@ -5,7 +5,6 @@ import 'package:amplify_core/amplify_core.dart';
 
 part 'auth_user_attribute.g.dart';
 
-/// {@category Auth}
 /// {@template amplify_core.auth.auth_user_attribute}
 /// The key and value for a user attribute.
 /// {@endtemplate}
@@ -31,7 +30,6 @@ class AuthUserAttribute
   @override
   List<Object> get props => [userAttributeKey, value];
 
-  /// @nodoc
   @Deprecated('Use toJson instead')
   Map<String, Object?> serializeAsMap() => toJson();
 

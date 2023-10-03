@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'malformed_map_input.dart';
+part of rest_json1_v1.rest_json_protocol.model.malformed_map_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -49,7 +49,9 @@ class MalformedMapInputBuilder
   set bodyMap(_i3.MapBuilder<String, String>? bodyMap) =>
       _$this._bodyMap = bodyMap;
 
-  MalformedMapInputBuilder();
+  MalformedMapInputBuilder() {
+    MalformedMapInput._init(this);
+  }
 
   MalformedMapInputBuilder get _$this {
     final $v = _$v;

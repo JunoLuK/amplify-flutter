@@ -5,23 +5,6 @@ import 'package:code_builder/code_builder.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 
-/// The strategy for prefixing library imports.
-enum PrefixStrategy {
-  /// Always prefix imports using standard `_i{index}` prefixes.
-  always,
-
-  /// Never prefix imports.
-  ///
-  /// **NOTE**: This may cause conflicts with runtime types.
-  never,
-
-  /// Only prefix runtime libraries.
-  ///
-  /// This is the default strategy as it protects the clients from
-  /// conflicting with the vended runtime types.
-  runtimeOnly,
-}
-
 /// Operates similar to [Allocator.simplePrefixing], prefixing symbols using
 /// a simple incrementor.
 ///
@@ -31,10 +14,10 @@ class SmithyAllocator implements Allocator {
   SmithyAllocator(
     this.library,
     this.smithyLibrary, {
-    required this.withPrefixing,
+    this.withPrefixing = true,
   });
 
-  final PrefixStrategy withPrefixing;
+  final bool withPrefixing;
 
   /// Prefixing core makes things messy, although it does require escaping all
   /// core names.
@@ -72,7 +55,7 @@ class SmithyAllocator implements Allocator {
   @override
   String allocate(Reference reference) {
     final symbol = reference.symbol;
-    final url = reference.url;
+    var url = reference.url;
     final thisLibrary = libraryUrl;
     if (url == null || url == thisLibrary) {
       return symbol!;
@@ -89,21 +72,14 @@ class SmithyAllocator implements Allocator {
       }
     }
 
-    if (shouldPrefix(url)) {
-      return '_i${_imports.putIfAbsent(url, _nextKey)}.$symbol';
+    if (!withPrefixing || _doNotPrefix.contains(url)) {
+      _imports[url] = -1;
+      return symbol!;
     }
-    _imports[url] = -1;
-    return symbol!;
-  }
-
-  bool shouldPrefix(String url) {
-    return !_doNotPrefix.contains(url) &&
-        switch (withPrefixing) {
-          PrefixStrategy.always => true,
-          PrefixStrategy.never => false,
-          PrefixStrategy.runtimeOnly =>
-            !url.startsWith('package:${smithyLibrary.packageName}'),
-        };
+    // if (url == 'dart:core') {
+    //   return '_i${_imports[url] = 0}.$symbol';
+    // }
+    return '_i${_imports.putIfAbsent(url, _nextKey)}.$symbol';
   }
 
   int _nextKey() => _keys++;
@@ -113,7 +89,9 @@ class SmithyAllocator implements Allocator {
       _imports.keys.where((key) => key != 'dart:core').map(
             (u) => Directive.import(
               u,
-              as: shouldPrefix(u) ? '_i${_imports[u]}' : null,
+              as: !withPrefixing || _doNotPrefix.contains(u)
+                  ? null
+                  : '_i${_imports[u]}',
             ),
           );
 }

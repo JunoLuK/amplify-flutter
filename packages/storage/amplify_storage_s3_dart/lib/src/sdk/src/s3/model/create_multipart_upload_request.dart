@@ -1,20 +1,26 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_storage_s3_dart.s3.model.create_multipart_upload_request; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/checksum_algorithm.dart';
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/object_canned_acl.dart';
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/object_lock_legal_hold_status.dart';
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/object_lock_mode.dart';
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/request_payer.dart';
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/server_side_encryption.dart';
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/storage_class.dart';
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/checksum_algorithm.dart'
+    as _i4;
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/object_canned_acl.dart'
+    as _i3;
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/object_lock_legal_hold_status.dart'
+    as _i5;
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/object_lock_mode.dart'
+    as _i6;
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/request_payer.dart'
+    as _i7;
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/server_side_encryption.dart'
+    as _i8;
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/storage_class.dart'
+    as _i9;
 import 'package:aws_common/aws_common.dart' as _i2;
-import 'package:built_collection/built_collection.dart' as _i3;
+import 'package:built_collection/built_collection.dart' as _i10;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i4;
+import 'package:meta/meta.dart' as _i11;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'create_multipart_upload_request.g.dart';
@@ -29,13 +35,16 @@ abstract class CreateMultipartUploadRequest
         _i1.EmptyPayload,
         _i1.HasPayload<CreateMultipartUploadRequestPayload> {
   factory CreateMultipartUploadRequest({
-    ObjectCannedAcl? acl,
+    _i3.ObjectCannedAcl? acl,
     required String bucket,
+    bool? bucketKeyEnabled,
     String? cacheControl,
+    _i4.ChecksumAlgorithm? checksumAlgorithm,
     String? contentDisposition,
     String? contentEncoding,
     String? contentLanguage,
     String? contentType,
+    String? expectedBucketOwner,
     DateTime? expires,
     String? grantFullControl,
     String? grantRead,
@@ -43,54 +52,51 @@ abstract class CreateMultipartUploadRequest
     String? grantWriteAcp,
     required String key,
     Map<String, String>? metadata,
-    ServerSideEncryption? serverSideEncryption,
-    StorageClass? storageClass,
-    String? websiteRedirectLocation,
+    _i5.ObjectLockLegalHoldStatus? objectLockLegalHoldStatus,
+    _i6.ObjectLockMode? objectLockMode,
+    DateTime? objectLockRetainUntilDate,
+    _i7.RequestPayer? requestPayer,
+    _i8.ServerSideEncryption? serverSideEncryption,
     String? sseCustomerAlgorithm,
     String? sseCustomerKey,
     String? sseCustomerKeyMd5,
-    String? ssekmsKeyId,
     String? ssekmsEncryptionContext,
-    bool? bucketKeyEnabled,
-    RequestPayer? requestPayer,
+    String? ssekmsKeyId,
+    _i9.StorageClass? storageClass,
     String? tagging,
-    ObjectLockMode? objectLockMode,
-    DateTime? objectLockRetainUntilDate,
-    ObjectLockLegalHoldStatus? objectLockLegalHoldStatus,
-    String? expectedBucketOwner,
-    ChecksumAlgorithm? checksumAlgorithm,
+    String? websiteRedirectLocation,
   }) {
     return _$CreateMultipartUploadRequest._(
       acl: acl,
       bucket: bucket,
+      bucketKeyEnabled: bucketKeyEnabled,
       cacheControl: cacheControl,
+      checksumAlgorithm: checksumAlgorithm,
       contentDisposition: contentDisposition,
       contentEncoding: contentEncoding,
       contentLanguage: contentLanguage,
       contentType: contentType,
+      expectedBucketOwner: expectedBucketOwner,
       expires: expires,
       grantFullControl: grantFullControl,
       grantRead: grantRead,
       grantReadAcp: grantReadAcp,
       grantWriteAcp: grantWriteAcp,
       key: key,
-      metadata: metadata == null ? null : _i3.BuiltMap(metadata),
+      metadata: metadata == null ? null : _i10.BuiltMap(metadata),
+      objectLockLegalHoldStatus: objectLockLegalHoldStatus,
+      objectLockMode: objectLockMode,
+      objectLockRetainUntilDate: objectLockRetainUntilDate,
+      requestPayer: requestPayer,
       serverSideEncryption: serverSideEncryption,
-      storageClass: storageClass,
-      websiteRedirectLocation: websiteRedirectLocation,
       sseCustomerAlgorithm: sseCustomerAlgorithm,
       sseCustomerKey: sseCustomerKey,
       sseCustomerKeyMd5: sseCustomerKeyMd5,
-      ssekmsKeyId: ssekmsKeyId,
       ssekmsEncryptionContext: ssekmsEncryptionContext,
-      bucketKeyEnabled: bucketKeyEnabled,
-      requestPayer: requestPayer,
+      ssekmsKeyId: ssekmsKeyId,
+      storageClass: storageClass,
       tagging: tagging,
-      objectLockMode: objectLockMode,
-      objectLockRetainUntilDate: objectLockRetainUntilDate,
-      objectLockLegalHoldStatus: objectLockLegalHoldStatus,
-      expectedBucketOwner: expectedBucketOwner,
-      checksumAlgorithm: checksumAlgorithm,
+      websiteRedirectLocation: websiteRedirectLocation,
     );
   }
 
@@ -107,7 +113,8 @@ abstract class CreateMultipartUploadRequest
   }) =>
       CreateMultipartUploadRequest.build((b) {
         if (request.headers['x-amz-acl'] != null) {
-          b.acl = ObjectCannedAcl.values.byValue(request.headers['x-amz-acl']!);
+          b.acl =
+              _i3.ObjectCannedAcl.values.byValue(request.headers['x-amz-acl']!);
         }
         if (request.headers['Cache-Control'] != null) {
           b.cacheControl = request.headers['Cache-Control']!;
@@ -143,11 +150,11 @@ abstract class CreateMultipartUploadRequest
           b.grantWriteAcp = request.headers['x-amz-grant-write-acp']!;
         }
         if (request.headers['x-amz-server-side-encryption'] != null) {
-          b.serverSideEncryption = ServerSideEncryption.values
+          b.serverSideEncryption = _i8.ServerSideEncryption.values
               .byValue(request.headers['x-amz-server-side-encryption']!);
         }
         if (request.headers['x-amz-storage-class'] != null) {
-          b.storageClass = StorageClass.values
+          b.storageClass = _i9.StorageClass.values
               .byValue(request.headers['x-amz-storage-class']!);
         }
         if (request.headers['x-amz-website-redirect-location'] != null) {
@@ -187,14 +194,14 @@ abstract class CreateMultipartUploadRequest
               'true';
         }
         if (request.headers['x-amz-request-payer'] != null) {
-          b.requestPayer = RequestPayer.values
+          b.requestPayer = _i7.RequestPayer.values
               .byValue(request.headers['x-amz-request-payer']!);
         }
         if (request.headers['x-amz-tagging'] != null) {
           b.tagging = request.headers['x-amz-tagging']!;
         }
         if (request.headers['x-amz-object-lock-mode'] != null) {
-          b.objectLockMode = ObjectLockMode.values
+          b.objectLockMode = _i6.ObjectLockMode.values
               .byValue(request.headers['x-amz-object-lock-mode']!);
         }
         if (request.headers['x-amz-object-lock-retain-until-date'] != null) {
@@ -204,7 +211,7 @@ abstract class CreateMultipartUploadRequest
           ).asDateTime;
         }
         if (request.headers['x-amz-object-lock-legal-hold'] != null) {
-          b.objectLockLegalHoldStatus = ObjectLockLegalHoldStatus.values
+          b.objectLockLegalHoldStatus = _i5.ObjectLockLegalHoldStatus.values
               .byValue(request.headers['x-amz-object-lock-legal-hold']!);
         }
         if (request.headers['x-amz-expected-bucket-owner'] != null) {
@@ -212,7 +219,7 @@ abstract class CreateMultipartUploadRequest
               request.headers['x-amz-expected-bucket-owner']!;
         }
         if (request.headers['x-amz-checksum-algorithm'] != null) {
-          b.checksumAlgorithm = ChecksumAlgorithm.values
+          b.checksumAlgorithm = _i4.ChecksumAlgorithm.values
               .byValue(request.headers['x-amz-checksum-algorithm']!);
         }
         b.metadata.addEntries(request.headers.entries
@@ -232,23 +239,35 @@ abstract class CreateMultipartUploadRequest
         }
       });
 
-  static const List<_i1.SmithySerializer<CreateMultipartUploadRequestPayload>>
-      serializers = [CreateMultipartUploadRequestRestXmlSerializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    CreateMultipartUploadRequestRestXmlSerializer()
+  ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(CreateMultipartUploadRequestBuilder b) {}
 
   /// The canned ACL to apply to the object.
   ///
   /// This action is not supported by Amazon S3 on Outposts.
-  ObjectCannedAcl? get acl;
+  _i3.ObjectCannedAcl? get acl;
 
   /// The name of the bucket to which to initiate the upload
   ///
   /// When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form _AccessPointName_-_AccountId_.s3-accesspoint._Region_.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see [Using access points](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html) in the _Amazon S3 User Guide_.
   ///
-  /// When you use this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form `_AccessPointName_-_AccountId_._outpostID_.s3-outposts._Region_.amazonaws.com`. When you use this action with S3 on Outposts through the Amazon Web Services SDKs, you provide the Outposts access point ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see [What is S3 on Outposts?](https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html) in the _Amazon S3 User Guide_.
+  /// When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form `_AccessPointName_-_AccountId_._outpostID_.s3-outposts._Region_.amazonaws.com`. When using this action with S3 on Outposts through the Amazon Web Services SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see [Using Amazon S3 on Outposts](https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html) in the _Amazon S3 User Guide_.
   String get bucket;
+
+  /// Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using AWS KMS (SSE-KMS). Setting this header to `true` causes Amazon S3 to use an S3 Bucket Key for object encryption with SSE-KMS.
+  ///
+  /// Specifying this header with an object action doesn’t affect bucket-level settings for S3 Bucket Key.
+  bool? get bucketKeyEnabled;
 
   /// Specifies caching behavior along the request/reply chain.
   String? get cacheControl;
+
+  /// Indicates the algorithm you want Amazon S3 to use to create the checksum for the object. For more information, see [Checking object integrity](https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html) in the _Amazon S3 User Guide_.
+  _i4.ChecksumAlgorithm? get checksumAlgorithm;
 
   /// Specifies presentational information for the object.
   String? get contentDisposition;
@@ -261,6 +280,9 @@ abstract class CreateMultipartUploadRequest
 
   /// A standard MIME type describing the format of the object data.
   String? get contentType;
+
+  /// The account ID of the expected bucket owner. If the bucket is owned by a different account, the request fails with the HTTP status code `403 Forbidden` (access denied).
+  String? get expectedBucketOwner;
 
   /// The date and time at which the object is no longer cacheable.
   DateTime? get expires;
@@ -289,16 +311,22 @@ abstract class CreateMultipartUploadRequest
   String get key;
 
   /// A map of metadata to store with the object in S3.
-  _i3.BuiltMap<String, String>? get metadata;
+  _i10.BuiltMap<String, String>? get metadata;
 
-  /// The server-side encryption algorithm used when storing this object in Amazon S3 (for example, `AES256`, `aws:kms`).
-  ServerSideEncryption? get serverSideEncryption;
+  /// Specifies whether you want to apply a legal hold to the uploaded object.
+  _i5.ObjectLockLegalHoldStatus? get objectLockLegalHoldStatus;
 
-  /// By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects. The STANDARD storage class provides high durability and high availability. Depending on performance needs, you can specify a different Storage Class. Amazon S3 on Outposts only uses the OUTPOSTS Storage Class. For more information, see [Storage Classes](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html) in the _Amazon S3 User Guide_.
-  StorageClass? get storageClass;
+  /// Specifies the Object Lock mode that you want to apply to the uploaded object.
+  _i6.ObjectLockMode? get objectLockMode;
 
-  /// If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata.
-  String? get websiteRedirectLocation;
+  /// Specifies the date and time when you want the Object Lock to expire.
+  DateTime? get objectLockRetainUntilDate;
+
+  /// Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from Requester Pays buckets, see [Downloading Objects in Requester Pays Buckets](https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html) in the _Amazon S3 User Guide_.
+  _i7.RequestPayer? get requestPayer;
+
+  /// The server-side encryption algorithm used when storing this object in Amazon S3 (for example, AES256, aws:kms).
+  _i8.ServerSideEncryption? get serverSideEncryption;
 
   /// Specifies the algorithm to use to when encrypting the object (for example, AES256).
   String? get sseCustomerAlgorithm;
@@ -309,37 +337,20 @@ abstract class CreateMultipartUploadRequest
   /// Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error.
   String? get sseCustomerKeyMd5;
 
-  /// Specifies the ID of the symmetric encryption customer managed key to use for object encryption. All GET and PUT requests for an object protected by KMS will fail if they're not made via SSL or using SigV4. For information about configuring any of the officially supported Amazon Web Services SDKs and Amazon Web Services CLI, see [Specifying the Signature Version in Request Authentication](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#specify-signature-version) in the _Amazon S3 User Guide_.
-  String? get ssekmsKeyId;
-
   /// Specifies the Amazon Web Services KMS Encryption Context to use for object encryption. The value of this header is a base64-encoded UTF-8 string holding JSON with the encryption context key-value pairs.
   String? get ssekmsEncryptionContext;
 
-  /// Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using Key Management Service (KMS) keys (SSE-KMS). Setting this header to `true` causes Amazon S3 to use an S3 Bucket Key for object encryption with SSE-KMS.
-  ///
-  /// Specifying this header with an object action doesn’t affect bucket-level settings for S3 Bucket Key.
-  bool? get bucketKeyEnabled;
+  /// Specifies the ID of the symmetric customer managed key to use for object encryption. All GET and PUT requests for an object protected by Amazon Web Services KMS will fail if not made via SSL or using SigV4. For information about configuring using any of the officially supported Amazon Web Services SDKs and Amazon Web Services CLI, see [Specifying the Signature Version in Request Authentication](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#specify-signature-version) in the _Amazon S3 User Guide_.
+  String? get ssekmsKeyId;
 
-  /// Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from Requester Pays buckets, see [Downloading Objects in Requester Pays Buckets](https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html) in the _Amazon S3 User Guide_.
-  RequestPayer? get requestPayer;
+  /// By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects. The STANDARD storage class provides high durability and high availability. Depending on performance needs, you can specify a different Storage Class. Amazon S3 on Outposts only uses the OUTPOSTS Storage Class. For more information, see [Storage Classes](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html) in the _Amazon S3 User Guide_.
+  _i9.StorageClass? get storageClass;
 
   /// The tag-set for the object. The tag-set must be encoded as URL Query parameters.
   String? get tagging;
 
-  /// Specifies the Object Lock mode that you want to apply to the uploaded object.
-  ObjectLockMode? get objectLockMode;
-
-  /// Specifies the date and time when you want the Object Lock to expire.
-  DateTime? get objectLockRetainUntilDate;
-
-  /// Specifies whether you want to apply a legal hold to the uploaded object.
-  ObjectLockLegalHoldStatus? get objectLockLegalHoldStatus;
-
-  /// The account ID of the expected bucket owner. If the bucket is owned by a different account, the request fails with the HTTP status code `403 Forbidden` (access denied).
-  String? get expectedBucketOwner;
-
-  /// Indicates the algorithm you want Amazon S3 to use to create the checksum for the object. For more information, see [Checking object integrity](https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html) in the _Amazon S3 User Guide_.
-  ChecksumAlgorithm? get checksumAlgorithm;
+  /// If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata.
+  String? get websiteRedirectLocation;
   @override
   String labelFor(String key) {
     switch (key) {
@@ -361,11 +372,14 @@ abstract class CreateMultipartUploadRequest
   List<Object?> get props => [
         acl,
         bucket,
+        bucketKeyEnabled,
         cacheControl,
+        checksumAlgorithm,
         contentDisposition,
         contentEncoding,
         contentLanguage,
         contentType,
+        expectedBucketOwner,
         expires,
         grantFullControl,
         grantRead,
@@ -373,151 +387,148 @@ abstract class CreateMultipartUploadRequest
         grantWriteAcp,
         key,
         metadata,
+        objectLockLegalHoldStatus,
+        objectLockMode,
+        objectLockRetainUntilDate,
+        requestPayer,
         serverSideEncryption,
-        storageClass,
-        websiteRedirectLocation,
         sseCustomerAlgorithm,
         sseCustomerKey,
         sseCustomerKeyMd5,
-        ssekmsKeyId,
         ssekmsEncryptionContext,
-        bucketKeyEnabled,
-        requestPayer,
+        ssekmsKeyId,
+        storageClass,
         tagging,
-        objectLockMode,
-        objectLockRetainUntilDate,
-        objectLockLegalHoldStatus,
-        expectedBucketOwner,
-        checksumAlgorithm,
+        websiteRedirectLocation,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('CreateMultipartUploadRequest')
-      ..add(
-        'acl',
-        acl,
-      )
-      ..add(
-        'bucket',
-        bucket,
-      )
-      ..add(
-        'cacheControl',
-        cacheControl,
-      )
-      ..add(
-        'contentDisposition',
-        contentDisposition,
-      )
-      ..add(
-        'contentEncoding',
-        contentEncoding,
-      )
-      ..add(
-        'contentLanguage',
-        contentLanguage,
-      )
-      ..add(
-        'contentType',
-        contentType,
-      )
-      ..add(
-        'expires',
-        expires,
-      )
-      ..add(
-        'grantFullControl',
-        grantFullControl,
-      )
-      ..add(
-        'grantRead',
-        grantRead,
-      )
-      ..add(
-        'grantReadAcp',
-        grantReadAcp,
-      )
-      ..add(
-        'grantWriteAcp',
-        grantWriteAcp,
-      )
-      ..add(
-        'key',
-        key,
-      )
-      ..add(
-        'metadata',
-        metadata,
-      )
-      ..add(
-        'serverSideEncryption',
-        serverSideEncryption,
-      )
-      ..add(
-        'storageClass',
-        storageClass,
-      )
-      ..add(
-        'websiteRedirectLocation',
-        websiteRedirectLocation,
-      )
-      ..add(
-        'sseCustomerAlgorithm',
-        sseCustomerAlgorithm,
-      )
-      ..add(
-        'sseCustomerKey',
-        '***SENSITIVE***',
-      )
-      ..add(
-        'sseCustomerKeyMd5',
-        sseCustomerKeyMd5,
-      )
-      ..add(
-        'ssekmsKeyId',
-        '***SENSITIVE***',
-      )
-      ..add(
-        'ssekmsEncryptionContext',
-        '***SENSITIVE***',
-      )
-      ..add(
-        'bucketKeyEnabled',
-        bucketKeyEnabled,
-      )
-      ..add(
-        'requestPayer',
-        requestPayer,
-      )
-      ..add(
-        'tagging',
-        tagging,
-      )
-      ..add(
-        'objectLockMode',
-        objectLockMode,
-      )
-      ..add(
-        'objectLockRetainUntilDate',
-        objectLockRetainUntilDate,
-      )
-      ..add(
-        'objectLockLegalHoldStatus',
-        objectLockLegalHoldStatus,
-      )
-      ..add(
-        'expectedBucketOwner',
-        expectedBucketOwner,
-      )
-      ..add(
-        'checksumAlgorithm',
-        checksumAlgorithm,
-      );
+    final helper = newBuiltValueToStringHelper('CreateMultipartUploadRequest');
+    helper.add(
+      'acl',
+      acl,
+    );
+    helper.add(
+      'bucket',
+      bucket,
+    );
+    helper.add(
+      'bucketKeyEnabled',
+      bucketKeyEnabled,
+    );
+    helper.add(
+      'cacheControl',
+      cacheControl,
+    );
+    helper.add(
+      'checksumAlgorithm',
+      checksumAlgorithm,
+    );
+    helper.add(
+      'contentDisposition',
+      contentDisposition,
+    );
+    helper.add(
+      'contentEncoding',
+      contentEncoding,
+    );
+    helper.add(
+      'contentLanguage',
+      contentLanguage,
+    );
+    helper.add(
+      'contentType',
+      contentType,
+    );
+    helper.add(
+      'expectedBucketOwner',
+      expectedBucketOwner,
+    );
+    helper.add(
+      'expires',
+      expires,
+    );
+    helper.add(
+      'grantFullControl',
+      grantFullControl,
+    );
+    helper.add(
+      'grantRead',
+      grantRead,
+    );
+    helper.add(
+      'grantReadAcp',
+      grantReadAcp,
+    );
+    helper.add(
+      'grantWriteAcp',
+      grantWriteAcp,
+    );
+    helper.add(
+      'key',
+      key,
+    );
+    helper.add(
+      'metadata',
+      metadata,
+    );
+    helper.add(
+      'objectLockLegalHoldStatus',
+      objectLockLegalHoldStatus,
+    );
+    helper.add(
+      'objectLockMode',
+      objectLockMode,
+    );
+    helper.add(
+      'objectLockRetainUntilDate',
+      objectLockRetainUntilDate,
+    );
+    helper.add(
+      'requestPayer',
+      requestPayer,
+    );
+    helper.add(
+      'serverSideEncryption',
+      serverSideEncryption,
+    );
+    helper.add(
+      'sseCustomerAlgorithm',
+      sseCustomerAlgorithm,
+    );
+    helper.add(
+      'sseCustomerKey',
+      '***SENSITIVE***',
+    );
+    helper.add(
+      'sseCustomerKeyMd5',
+      sseCustomerKeyMd5,
+    );
+    helper.add(
+      'ssekmsEncryptionContext',
+      '***SENSITIVE***',
+    );
+    helper.add(
+      'ssekmsKeyId',
+      '***SENSITIVE***',
+    );
+    helper.add(
+      'storageClass',
+      storageClass,
+    );
+    helper.add(
+      'tagging',
+      tagging,
+    );
+    helper.add(
+      'websiteRedirectLocation',
+      websiteRedirectLocation,
+    );
     return helper.toString();
   }
 }
 
-@_i4.internal
+@_i11.internal
 abstract class CreateMultipartUploadRequestPayload
     with
         _i2.AWSEquatable<CreateMultipartUploadRequestPayload>
@@ -531,6 +542,8 @@ abstract class CreateMultipartUploadRequestPayload
 
   const CreateMultipartUploadRequestPayload._();
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(CreateMultipartUploadRequestPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
   @override
@@ -572,16 +585,15 @@ class CreateMultipartUploadRequestRestXmlSerializer extends _i1
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    CreateMultipartUploadRequestPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final result = <Object?>[
       const _i1.XmlElementName(
         'CreateMultipartUploadRequest',
         _i1.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
       )
     ];
-
-    return result$;
+    return result;
   }
 }

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'update_user_attributes_response.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.update_user_attributes_response;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of 'update_user_attributes_response.dart';
 
 class _$UpdateUserAttributesResponse extends UpdateUserAttributesResponse {
   @override
-  final _i2.BuiltList<CodeDeliveryDetailsType>? codeDeliveryDetailsList;
+  final _i3.BuiltList<_i2.CodeDeliveryDetailsType>? codeDeliveryDetailsList;
 
   factory _$UpdateUserAttributesResponse(
           [void Function(UpdateUserAttributesResponseBuilder)? updates]) =>
@@ -47,15 +47,18 @@ class UpdateUserAttributesResponseBuilder
             UpdateUserAttributesResponseBuilder> {
   _$UpdateUserAttributesResponse? _$v;
 
-  _i2.ListBuilder<CodeDeliveryDetailsType>? _codeDeliveryDetailsList;
-  _i2.ListBuilder<CodeDeliveryDetailsType> get codeDeliveryDetailsList =>
+  _i3.ListBuilder<_i2.CodeDeliveryDetailsType>? _codeDeliveryDetailsList;
+  _i3.ListBuilder<_i2.CodeDeliveryDetailsType> get codeDeliveryDetailsList =>
       _$this._codeDeliveryDetailsList ??=
-          new _i2.ListBuilder<CodeDeliveryDetailsType>();
+          new _i3.ListBuilder<_i2.CodeDeliveryDetailsType>();
   set codeDeliveryDetailsList(
-          _i2.ListBuilder<CodeDeliveryDetailsType>? codeDeliveryDetailsList) =>
+          _i3.ListBuilder<_i2.CodeDeliveryDetailsType>?
+              codeDeliveryDetailsList) =>
       _$this._codeDeliveryDetailsList = codeDeliveryDetailsList;
 
-  UpdateUserAttributesResponseBuilder();
+  UpdateUserAttributesResponseBuilder() {
+    UpdateUserAttributesResponse._init(this);
+  }
 
   UpdateUserAttributesResponseBuilder get _$this {
     final $v = _$v;

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'forgot_password_response.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.forgot_password_response;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of 'forgot_password_response.dart';
 
 class _$ForgotPasswordResponse extends ForgotPasswordResponse {
   @override
-  final CodeDeliveryDetailsType? codeDeliveryDetails;
+  final _i2.CodeDeliveryDetailsType? codeDeliveryDetails;
 
   factory _$ForgotPasswordResponse(
           [void Function(ForgotPasswordResponseBuilder)? updates]) =>
@@ -45,14 +45,16 @@ class ForgotPasswordResponseBuilder
     implements Builder<ForgotPasswordResponse, ForgotPasswordResponseBuilder> {
   _$ForgotPasswordResponse? _$v;
 
-  CodeDeliveryDetailsTypeBuilder? _codeDeliveryDetails;
-  CodeDeliveryDetailsTypeBuilder get codeDeliveryDetails =>
-      _$this._codeDeliveryDetails ??= new CodeDeliveryDetailsTypeBuilder();
+  _i2.CodeDeliveryDetailsTypeBuilder? _codeDeliveryDetails;
+  _i2.CodeDeliveryDetailsTypeBuilder get codeDeliveryDetails =>
+      _$this._codeDeliveryDetails ??= new _i2.CodeDeliveryDetailsTypeBuilder();
   set codeDeliveryDetails(
-          CodeDeliveryDetailsTypeBuilder? codeDeliveryDetails) =>
+          _i2.CodeDeliveryDetailsTypeBuilder? codeDeliveryDetails) =>
       _$this._codeDeliveryDetails = codeDeliveryDetails;
 
-  ForgotPasswordResponseBuilder();
+  ForgotPasswordResponseBuilder() {
+    ForgotPasswordResponse._init(this);
+  }
 
   ForgotPasswordResponseBuilder get _$this {
     final $v = _$v;

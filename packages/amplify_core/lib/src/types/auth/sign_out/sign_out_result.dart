@@ -3,7 +3,6 @@
 
 import 'package:amplify_core/amplify_core.dart';
 
-/// {@category Auth}
 /// {@template amplify_core.auth.sign_out_result}
 /// The result of a call to `Amplify.Auth.signOut`.
 /// {@endtemplate}

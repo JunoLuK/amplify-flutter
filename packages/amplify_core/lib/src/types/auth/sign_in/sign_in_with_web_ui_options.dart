@@ -3,7 +3,6 @@
 
 import 'package:amplify_core/amplify_core.dart';
 
-/// {@category Auth}
 /// {@template amplify_core.auth.sign_in_with_web_ui_options}
 /// Options for `Amplify.Auth.signInWithWebUI`.
 /// {@endtemplate}
@@ -26,7 +25,6 @@ class SignInWithWebUIOptions
   @override
   String get runtimeTypeName => 'SignInWithWebUIOptions';
 
-  /// @nodoc
   @Deprecated('Use toJson instead')
   Map<String, Object?> serializeAsMap() => toJson();
 
@@ -36,7 +34,6 @@ class SignInWithWebUIOptions
       };
 }
 
-/// @nodoc
 /// {@template amplify_core.auth.sign_in_with_web_ui_plugin_options}
 /// Plugin-specific options for `Amplify.Auth.signInWithWebUI`.
 /// {@endtemplate}

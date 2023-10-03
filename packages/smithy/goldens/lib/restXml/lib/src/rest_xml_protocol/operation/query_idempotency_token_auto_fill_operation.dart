@@ -1,21 +1,23 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v1.rest_xml_protocol.operation.query_idempotency_token_auto_fill_operation; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'dart:async' as _i4;
+import 'dart:async' as _i7;
 
-import 'package:aws_common/aws_common.dart' as _i3;
-import 'package:rest_xml_v1/src/rest_xml_protocol/common/endpoint_resolver.dart';
-import 'package:rest_xml_v1/src/rest_xml_protocol/common/serializers.dart';
-import 'package:rest_xml_v1/src/rest_xml_protocol/model/query_idempotency_token_auto_fill_input.dart';
+import 'package:aws_common/aws_common.dart' as _i6;
+import 'package:rest_xml_v1/src/rest_xml_protocol/common/endpoint_resolver.dart'
+    as _i5;
+import 'package:rest_xml_v1/src/rest_xml_protocol/common/serializers.dart'
+    as _i4;
+import 'package:rest_xml_v1/src/rest_xml_protocol/model/query_idempotency_token_auto_fill_input.dart'
+    as _i2;
 import 'package:smithy/smithy.dart' as _i1;
-import 'package:smithy_aws/smithy_aws.dart' as _i2;
+import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 /// Automatically adds idempotency tokens.
 class QueryIdempotencyTokenAutoFillOperation extends _i1.HttpOperation<
-    QueryIdempotencyTokenAutoFillInputPayload,
-    QueryIdempotencyTokenAutoFillInput,
+    _i2.QueryIdempotencyTokenAutoFillInputPayload,
+    _i2.QueryIdempotencyTokenAutoFillInput,
     _i1.Unit,
     _i1.Unit> {
   /// Automatically adds idempotency tokens.
@@ -31,16 +33,19 @@ class QueryIdempotencyTokenAutoFillOperation extends _i1.HttpOperation<
 
   @override
   late final List<
-      _i1.HttpProtocol<QueryIdempotencyTokenAutoFillInputPayload,
-          QueryIdempotencyTokenAutoFillInput, _i1.Unit, _i1.Unit>> protocols = [
-    _i2.RestXmlProtocol(
-      serializers: serializers,
-      builderFactories: builderFactories,
+      _i1.HttpProtocol<
+          _i2.QueryIdempotencyTokenAutoFillInputPayload,
+          _i2.QueryIdempotencyTokenAutoFillInput,
+          _i1.Unit,
+          _i1.Unit>> protocols = [
+    _i3.RestXmlProtocol(
+      serializers: _i4.serializers,
+      builderFactories: _i4.builderFactories,
       requestInterceptors: <_i1.HttpRequestInterceptor>[
             const _i1.WithHost(),
             const _i1.WithUserAgent('aws-sdk-dart/0.3.1'),
-            const _i2.WithSdkInvocationId(),
-            const _i2.WithSdkRequest(),
+            const _i3.WithSdkInvocationId(),
+            const _i3.WithSdkRequest(),
           ] +
           _requestInterceptors,
       responseInterceptors:
@@ -49,8 +54,8 @@ class QueryIdempotencyTokenAutoFillOperation extends _i1.HttpOperation<
     )
   ];
 
-  late final _i2.AWSEndpoint _awsEndpoint = endpointResolver.resolve(
-    sdkId,
+  late final _i3.AWSEndpoint _awsEndpoint = _i5.endpointResolver.resolve(
+    _i5.sdkId,
     _region,
   );
 
@@ -63,7 +68,7 @@ class QueryIdempotencyTokenAutoFillOperation extends _i1.HttpOperation<
   final List<_i1.HttpResponseInterceptor> _responseInterceptors;
 
   @override
-  _i1.HttpRequest buildRequest(QueryIdempotencyTokenAutoFillInput input) =>
+  _i1.HttpRequest buildRequest(_i2.QueryIdempotencyTokenAutoFillInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = r'/QueryIdempotencyTokenAutoFill';
@@ -79,7 +84,7 @@ class QueryIdempotencyTokenAutoFillOperation extends _i1.HttpOperation<
   @override
   _i1.Unit buildOutput(
     _i1.Unit payload,
-    _i3.AWSBaseHttpResponse response,
+    _i6.AWSBaseHttpResponse response,
   ) =>
       payload;
   @override
@@ -87,18 +92,18 @@ class QueryIdempotencyTokenAutoFillOperation extends _i1.HttpOperation<
   @override
   String get runtimeTypeName => 'QueryIdempotencyTokenAutoFill';
   @override
-  _i2.AWSRetryer get retryer => _i2.AWSRetryer();
+  _i3.AWSRetryer get retryer => _i3.AWSRetryer();
   @override
   Uri get baseUri => _baseUri ?? endpoint.uri;
   @override
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;
   @override
   _i1.SmithyOperation<_i1.Unit> run(
-    QueryIdempotencyTokenAutoFillInput input, {
-    _i3.AWSHttpClient? client,
+    _i2.QueryIdempotencyTokenAutoFillInput input, {
+    _i6.AWSHttpClient? client,
     _i1.ShapeId? useProtocol,
   }) {
-    return _i4.runZoned(
+    return _i7.runZoned(
       () => super.run(
         input,
         client: client,
@@ -106,7 +111,7 @@ class QueryIdempotencyTokenAutoFillOperation extends _i1.HttpOperation<
       ),
       zoneValues: {
         ...?_awsEndpoint.credentialScope?.zoneValues,
-        ...{_i3.AWSHeaders.sdkInvocationId: _i3.uuid(secure: true)},
+        ...{_i6.AWSHeaders.sdkInvocationId: _i6.uuid(secure: true)}
       },
     );
   }

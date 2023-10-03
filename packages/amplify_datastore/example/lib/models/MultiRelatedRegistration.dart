@@ -1,35 +1,26 @@
-/*
-* Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-*
-* Licensed under the Apache License, Version 2.0 (the "License").
-* You may not use this file except in compliance with the License.
-* A copy of the License is located at
-*
-*  http://aws.amazon.com/apache2.0
-*
-* or in the "license" file accompanying this file. This file is distributed
-* on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
-* express or implied. See the License for the specific language governing
-* permissions and limitations under the License.
-*/
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: Apache-2.0
 
 // NOTE: This file is generated and may not follow lint rules defined in your app
 // Generated files can be excluded from analysis in analysis_options.yaml
 // For more info, see: https://dart.dev/guides/language/analysis-options#excluding-code-from-analysis
 
+import 'package:amplify_core/amplify_core.dart';
+import 'package:flutter/foundation.dart';
+
 // ignore_for_file: public_member_api_docs, annotate_overrides, dead_code, dead_codepublic_member_api_docs, depend_on_referenced_packages, file_names, library_private_types_in_public_api, no_leading_underscores_for_library_prefixes, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, null_check_on_nullable_type_parameter, prefer_adjacent_string_concatenation, prefer_const_constructors, prefer_if_null_operators, prefer_interpolation_to_compose_strings, slash_for_doc_comments, sort_child_properties_last, unnecessary_const, unnecessary_constructor_name, unnecessary_late, unnecessary_new, unnecessary_null_aware_assignments, unnecessary_nullable_for_final_variable_declarations, unnecessary_string_interpolations, use_build_context_synchronously
 
 import 'ModelProvider.dart';
-import 'package:amplify_core/amplify_core.dart' as amplify_core;
 
-/** This is an auto generated class representing the MultiRelatedRegistration type in your schema. */
-class MultiRelatedRegistration extends amplify_core.Model {
-  static const classType = const _MultiRelatedRegistrationModelType();
+/// This is an auto generated class representing the MultiRelatedRegistration type in your schema.
+@immutable
+class MultiRelatedRegistration extends Model {
+  static const classType = _MultiRelatedRegistrationModelType();
   final String id;
   final MultiRelatedMeeting? _meeting;
   final MultiRelatedAttendee? _attendee;
-  final amplify_core.TemporalDateTime? _createdAt;
-  final amplify_core.TemporalDateTime? _updatedAt;
+  final TemporalDateTime? _createdAt;
+  final TemporalDateTime? _updatedAt;
 
   @override
   getInstanceType() => classType;
@@ -47,10 +38,10 @@ class MultiRelatedRegistration extends amplify_core.Model {
     try {
       return _meeting!;
     } catch (e) {
-      throw amplify_core.AmplifyCodeGenModelException(
-          amplify_core.AmplifyExceptionMessages
+      throw AmplifyCodeGenModelException(
+          AmplifyExceptionMessages
               .codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion: amplify_core.AmplifyExceptionMessages
+          recoverySuggestion: AmplifyExceptionMessages
               .codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString());
     }
@@ -60,20 +51,20 @@ class MultiRelatedRegistration extends amplify_core.Model {
     try {
       return _attendee!;
     } catch (e) {
-      throw amplify_core.AmplifyCodeGenModelException(
-          amplify_core.AmplifyExceptionMessages
+      throw AmplifyCodeGenModelException(
+          AmplifyExceptionMessages
               .codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion: amplify_core.AmplifyExceptionMessages
+          recoverySuggestion: AmplifyExceptionMessages
               .codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString());
     }
   }
 
-  amplify_core.TemporalDateTime? get createdAt {
+  TemporalDateTime? get createdAt {
     return _createdAt;
   }
 
-  amplify_core.TemporalDateTime? get updatedAt {
+  TemporalDateTime? get updatedAt {
     return _updatedAt;
   }
 
@@ -93,7 +84,7 @@ class MultiRelatedRegistration extends amplify_core.Model {
       required MultiRelatedMeeting meeting,
       required MultiRelatedAttendee attendee}) {
     return MultiRelatedRegistration._internal(
-        id: id == null ? amplify_core.UUID.getUUID() : id,
+        id: id == null ? UUID.getUUID() : id,
         meeting: meeting,
         attendee: attendee);
   }
@@ -116,7 +107,7 @@ class MultiRelatedRegistration extends amplify_core.Model {
 
   @override
   String toString() {
-    var buffer = new StringBuffer();
+    var buffer = StringBuffer();
 
     buffer.write("MultiRelatedRegistration {");
     buffer.write("id=" + "$id" + ", ");
@@ -143,30 +134,21 @@ class MultiRelatedRegistration extends amplify_core.Model {
         attendee: attendee ?? this.attendee);
   }
 
-  MultiRelatedRegistration copyWithModelFieldValues(
-      {ModelFieldValue<MultiRelatedMeeting>? meeting,
-      ModelFieldValue<MultiRelatedAttendee>? attendee}) {
-    return MultiRelatedRegistration._internal(
-        id: id,
-        meeting: meeting == null ? this.meeting : meeting.value,
-        attendee: attendee == null ? this.attendee : attendee.value);
-  }
-
   MultiRelatedRegistration.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         _meeting = json['meeting']?['serializedData'] != null
-            ? MultiRelatedMeeting.fromJson(new Map<String, dynamic>.from(
-                json['meeting']['serializedData']))
+            ? MultiRelatedMeeting.fromJson(
+                Map<String, dynamic>.from(json['meeting']['serializedData']))
             : null,
         _attendee = json['attendee']?['serializedData'] != null
-            ? MultiRelatedAttendee.fromJson(new Map<String, dynamic>.from(
-                json['attendee']['serializedData']))
+            ? MultiRelatedAttendee.fromJson(
+                Map<String, dynamic>.from(json['attendee']['serializedData']))
             : null,
         _createdAt = json['createdAt'] != null
-            ? amplify_core.TemporalDateTime.fromString(json['createdAt'])
+            ? TemporalDateTime.fromString(json['createdAt'])
             : null,
         _updatedAt = json['updatedAt'] != null
-            ? amplify_core.TemporalDateTime.fromString(json['updatedAt'])
+            ? TemporalDateTime.fromString(json['updatedAt'])
             : null;
 
   Map<String, dynamic> toJson() => {
@@ -177,98 +159,75 @@ class MultiRelatedRegistration extends amplify_core.Model {
         'updatedAt': _updatedAt?.format()
       };
 
-  Map<String, Object?> toMap() => {
-        'id': id,
-        'meeting': _meeting,
-        'attendee': _attendee,
-        'createdAt': _createdAt,
-        'updatedAt': _updatedAt
-      };
-
-  static final amplify_core
-      .QueryModelIdentifier<MultiRelatedRegistrationModelIdentifier>
-      MODEL_IDENTIFIER = amplify_core.QueryModelIdentifier<
-          MultiRelatedRegistrationModelIdentifier>();
-  static final ID = amplify_core.QueryField(fieldName: "id");
-  static final MEETING = amplify_core.QueryField(
+  static final QueryModelIdentifier<MultiRelatedRegistrationModelIdentifier>
+      MODEL_IDENTIFIER =
+      QueryModelIdentifier<MultiRelatedRegistrationModelIdentifier>();
+  static final QueryField ID = QueryField(fieldName: "id");
+  static final QueryField MEETING = QueryField(
       fieldName: "meeting",
-      fieldType: amplify_core.ModelFieldType(
-          amplify_core.ModelFieldTypeEnum.model,
-          ofModelName: 'MultiRelatedMeeting'));
-  static final ATTENDEE = amplify_core.QueryField(
+      fieldType: ModelFieldType(ModelFieldTypeEnum.model,
+          ofModelName: (MultiRelatedMeeting).toString()));
+  static final QueryField ATTENDEE = QueryField(
       fieldName: "attendee",
-      fieldType: amplify_core.ModelFieldType(
-          amplify_core.ModelFieldTypeEnum.model,
-          ofModelName: 'MultiRelatedAttendee'));
-  static var schema = amplify_core.Model.defineSchema(
-      define: (amplify_core.ModelSchemaDefinition modelSchemaDefinition) {
+      fieldType: ModelFieldType(ModelFieldTypeEnum.model,
+          ofModelName: (MultiRelatedAttendee).toString()));
+  static var schema =
+      Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "MultiRelatedRegistration";
     modelSchemaDefinition.pluralName = "MultiRelatedRegistrations";
 
     modelSchemaDefinition.indexes = [
-      amplify_core.ModelIndex(fields: const ["id"], name: null),
-      amplify_core.ModelIndex(
-          fields: const ["meetingId", "attendeeId"], name: "byMeeting"),
-      amplify_core.ModelIndex(
-          fields: const ["attendeeId", "meetingId"], name: "byAttendee")
+      ModelIndex(fields: const ["id"], name: null),
+      ModelIndex(fields: const ["meetingId", "attendeeId"], name: "byMeeting"),
+      ModelIndex(fields: const ["attendeeId", "meetingId"], name: "byAttendee")
     ];
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.id());
+    modelSchemaDefinition.addField(ModelFieldDefinition.id());
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.belongsTo(
+    modelSchemaDefinition.addField(ModelFieldDefinition.belongsTo(
         key: MultiRelatedRegistration.MEETING,
         isRequired: true,
-        targetNames: ['meetingId'],
-        ofModelName: 'MultiRelatedMeeting'));
+        targetNames: ["meetingId"],
+        ofModelName: (MultiRelatedMeeting).toString()));
 
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.belongsTo(
+    modelSchemaDefinition.addField(ModelFieldDefinition.belongsTo(
         key: MultiRelatedRegistration.ATTENDEE,
         isRequired: true,
-        targetNames: ['attendeeId'],
-        ofModelName: 'MultiRelatedAttendee'));
+        targetNames: ["attendeeId"],
+        ofModelName: (MultiRelatedAttendee).toString()));
 
-    modelSchemaDefinition.addField(
-        amplify_core.ModelFieldDefinition.nonQueryField(
-            fieldName: 'createdAt',
-            isRequired: false,
-            isReadOnly: true,
-            ofType: amplify_core.ModelFieldType(
-                amplify_core.ModelFieldTypeEnum.dateTime)));
+    modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(
+        fieldName: 'createdAt',
+        isRequired: false,
+        isReadOnly: true,
+        ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)));
 
-    modelSchemaDefinition.addField(
-        amplify_core.ModelFieldDefinition.nonQueryField(
-            fieldName: 'updatedAt',
-            isRequired: false,
-            isReadOnly: true,
-            ofType: amplify_core.ModelFieldType(
-                amplify_core.ModelFieldTypeEnum.dateTime)));
+    modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(
+        fieldName: 'updatedAt',
+        isRequired: false,
+        isReadOnly: true,
+        ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)));
   });
 }
 
 class _MultiRelatedRegistrationModelType
-    extends amplify_core.ModelType<MultiRelatedRegistration> {
+    extends ModelType<MultiRelatedRegistration> {
   const _MultiRelatedRegistrationModelType();
 
   @override
   MultiRelatedRegistration fromJson(Map<String, dynamic> jsonData) {
     return MultiRelatedRegistration.fromJson(jsonData);
   }
-
-  @override
-  String modelName() {
-    return 'MultiRelatedRegistration';
-  }
 }
 
-/**
- * This is an auto generated class representing the model identifier
- * of [MultiRelatedRegistration] in your schema.
- */
+/// This is an auto generated class representing the model identifier
+/// of [MultiRelatedRegistration] in your schema.
+@immutable
 class MultiRelatedRegistrationModelIdentifier
-    implements amplify_core.ModelIdentifier<MultiRelatedRegistration> {
+    implements ModelIdentifier<MultiRelatedRegistration> {
   final String id;
 
-  /** Create an instance of MultiRelatedRegistrationModelIdentifier using [id] the primary key. */
+  /// Create an instance of MultiRelatedRegistrationModelIdentifier using [id] the primary key.
   const MultiRelatedRegistrationModelIdentifier({required this.id});
 
   @override

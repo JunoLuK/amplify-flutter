@@ -148,8 +148,17 @@ abstract class AWSBaseHttpClient extends AWSCustomHttpClient {
     unawaited(
       operation.responseProgress.forward(responseProgressController),
     );
-    completer.completeOperation(
-      operation.operation.then(transformResponse),
+    // TODO(dnys1): Use `completeOperation` when available
+    operation.operation.then(
+      (resp) async {
+        try {
+          resp = await transformResponse(resp);
+          completer.complete(resp);
+        } on Object catch (e, st) {
+          completer.completeError(e, st);
+        }
+      },
+      onError: completer.completeError,
     );
     return operation;
   }
@@ -168,8 +177,11 @@ abstract class AWSBaseHttpClient extends AWSCustomHttpClient {
     final responseProgressController =
         StreamController<int>.broadcast(sync: true);
 
+    // TODO(dnys1): Use `completeOperation` when available
+    AWSHttpOperation? underlyingOperation;
     final completer = CancelableCompleter<AWSBaseHttpResponse>(
       onCancel: () {
+        underlyingOperation?.cancel();
         requestProgressController.close();
         responseProgressController.close();
         return onCancel?.call();
@@ -180,7 +192,7 @@ abstract class AWSBaseHttpClient extends AWSCustomHttpClient {
       completer,
       requestProgressController: requestProgressController,
       responseProgressController: responseProgressController,
-    );
+    ).then((op) => underlyingOperation = op);
     return AWSHttpOperation(
       completer.operation,
       requestProgress: requestProgressController.stream,

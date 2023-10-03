@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'simple_scalar_properties_input_output.dart';
+part of rest_xml_with_namespace_v1.rest_xml_protocol_namespace.model.simple_scalar_properties_input_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -9,27 +9,27 @@ part of 'simple_scalar_properties_input_output.dart';
 class _$SimpleScalarPropertiesInputOutput
     extends SimpleScalarPropertiesInputOutput {
   @override
-  final String? foo;
+  final int? byteValue;
   @override
-  final String? stringValue;
-  @override
-  final bool? trueBooleanValue;
+  final double? doubleValue;
   @override
   final bool? falseBooleanValue;
   @override
-  final int? byteValue;
+  final double? floatValue;
   @override
-  final int? shortValue;
+  final String? foo;
   @override
   final int? integerValue;
   @override
   final _i3.Int64? longValue;
   @override
-  final double? floatValue;
+  final _i4.NestedWithNamespace? nested;
   @override
-  final NestedWithNamespace? nested;
+  final int? shortValue;
   @override
-  final double? doubleValue;
+  final String? stringValue;
+  @override
+  final bool? trueBooleanValue;
 
   factory _$SimpleScalarPropertiesInputOutput(
           [void Function(SimpleScalarPropertiesInputOutputBuilder)? updates]) =>
@@ -37,17 +37,17 @@ class _$SimpleScalarPropertiesInputOutput
           ._build();
 
   _$SimpleScalarPropertiesInputOutput._(
-      {this.foo,
-      this.stringValue,
-      this.trueBooleanValue,
+      {this.byteValue,
+      this.doubleValue,
       this.falseBooleanValue,
-      this.byteValue,
-      this.shortValue,
+      this.floatValue,
+      this.foo,
       this.integerValue,
       this.longValue,
-      this.floatValue,
       this.nested,
-      this.doubleValue})
+      this.shortValue,
+      this.stringValue,
+      this.trueBooleanValue})
       : super._();
 
   @override
@@ -63,33 +63,33 @@ class _$SimpleScalarPropertiesInputOutput
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is SimpleScalarPropertiesInputOutput &&
-        foo == other.foo &&
-        stringValue == other.stringValue &&
-        trueBooleanValue == other.trueBooleanValue &&
-        falseBooleanValue == other.falseBooleanValue &&
         byteValue == other.byteValue &&
-        shortValue == other.shortValue &&
+        doubleValue == other.doubleValue &&
+        falseBooleanValue == other.falseBooleanValue &&
+        floatValue == other.floatValue &&
+        foo == other.foo &&
         integerValue == other.integerValue &&
         longValue == other.longValue &&
-        floatValue == other.floatValue &&
         nested == other.nested &&
-        doubleValue == other.doubleValue;
+        shortValue == other.shortValue &&
+        stringValue == other.stringValue &&
+        trueBooleanValue == other.trueBooleanValue;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, foo.hashCode);
-    _$hash = $jc(_$hash, stringValue.hashCode);
-    _$hash = $jc(_$hash, trueBooleanValue.hashCode);
-    _$hash = $jc(_$hash, falseBooleanValue.hashCode);
     _$hash = $jc(_$hash, byteValue.hashCode);
-    _$hash = $jc(_$hash, shortValue.hashCode);
+    _$hash = $jc(_$hash, doubleValue.hashCode);
+    _$hash = $jc(_$hash, falseBooleanValue.hashCode);
+    _$hash = $jc(_$hash, floatValue.hashCode);
+    _$hash = $jc(_$hash, foo.hashCode);
     _$hash = $jc(_$hash, integerValue.hashCode);
     _$hash = $jc(_$hash, longValue.hashCode);
-    _$hash = $jc(_$hash, floatValue.hashCode);
     _$hash = $jc(_$hash, nested.hashCode);
-    _$hash = $jc(_$hash, doubleValue.hashCode);
+    _$hash = $jc(_$hash, shortValue.hashCode);
+    _$hash = $jc(_$hash, stringValue.hashCode);
+    _$hash = $jc(_$hash, trueBooleanValue.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -101,9 +101,43 @@ class SimpleScalarPropertiesInputOutputBuilder
             SimpleScalarPropertiesInputOutputBuilder> {
   _$SimpleScalarPropertiesInputOutput? _$v;
 
+  int? _byteValue;
+  int? get byteValue => _$this._byteValue;
+  set byteValue(int? byteValue) => _$this._byteValue = byteValue;
+
+  double? _doubleValue;
+  double? get doubleValue => _$this._doubleValue;
+  set doubleValue(double? doubleValue) => _$this._doubleValue = doubleValue;
+
+  bool? _falseBooleanValue;
+  bool? get falseBooleanValue => _$this._falseBooleanValue;
+  set falseBooleanValue(bool? falseBooleanValue) =>
+      _$this._falseBooleanValue = falseBooleanValue;
+
+  double? _floatValue;
+  double? get floatValue => _$this._floatValue;
+  set floatValue(double? floatValue) => _$this._floatValue = floatValue;
+
   String? _foo;
   String? get foo => _$this._foo;
   set foo(String? foo) => _$this._foo = foo;
+
+  int? _integerValue;
+  int? get integerValue => _$this._integerValue;
+  set integerValue(int? integerValue) => _$this._integerValue = integerValue;
+
+  _i3.Int64? _longValue;
+  _i3.Int64? get longValue => _$this._longValue;
+  set longValue(_i3.Int64? longValue) => _$this._longValue = longValue;
+
+  _i4.NestedWithNamespaceBuilder? _nested;
+  _i4.NestedWithNamespaceBuilder get nested =>
+      _$this._nested ??= new _i4.NestedWithNamespaceBuilder();
+  set nested(_i4.NestedWithNamespaceBuilder? nested) => _$this._nested = nested;
+
+  int? _shortValue;
+  int? get shortValue => _$this._shortValue;
+  set shortValue(int? shortValue) => _$this._shortValue = shortValue;
 
   String? _stringValue;
   String? get stringValue => _$this._stringValue;
@@ -114,56 +148,24 @@ class SimpleScalarPropertiesInputOutputBuilder
   set trueBooleanValue(bool? trueBooleanValue) =>
       _$this._trueBooleanValue = trueBooleanValue;
 
-  bool? _falseBooleanValue;
-  bool? get falseBooleanValue => _$this._falseBooleanValue;
-  set falseBooleanValue(bool? falseBooleanValue) =>
-      _$this._falseBooleanValue = falseBooleanValue;
-
-  int? _byteValue;
-  int? get byteValue => _$this._byteValue;
-  set byteValue(int? byteValue) => _$this._byteValue = byteValue;
-
-  int? _shortValue;
-  int? get shortValue => _$this._shortValue;
-  set shortValue(int? shortValue) => _$this._shortValue = shortValue;
-
-  int? _integerValue;
-  int? get integerValue => _$this._integerValue;
-  set integerValue(int? integerValue) => _$this._integerValue = integerValue;
-
-  _i3.Int64? _longValue;
-  _i3.Int64? get longValue => _$this._longValue;
-  set longValue(_i3.Int64? longValue) => _$this._longValue = longValue;
-
-  double? _floatValue;
-  double? get floatValue => _$this._floatValue;
-  set floatValue(double? floatValue) => _$this._floatValue = floatValue;
-
-  NestedWithNamespaceBuilder? _nested;
-  NestedWithNamespaceBuilder get nested =>
-      _$this._nested ??= new NestedWithNamespaceBuilder();
-  set nested(NestedWithNamespaceBuilder? nested) => _$this._nested = nested;
-
-  double? _doubleValue;
-  double? get doubleValue => _$this._doubleValue;
-  set doubleValue(double? doubleValue) => _$this._doubleValue = doubleValue;
-
-  SimpleScalarPropertiesInputOutputBuilder();
+  SimpleScalarPropertiesInputOutputBuilder() {
+    SimpleScalarPropertiesInputOutput._init(this);
+  }
 
   SimpleScalarPropertiesInputOutputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _foo = $v.foo;
-      _stringValue = $v.stringValue;
-      _trueBooleanValue = $v.trueBooleanValue;
-      _falseBooleanValue = $v.falseBooleanValue;
       _byteValue = $v.byteValue;
-      _shortValue = $v.shortValue;
+      _doubleValue = $v.doubleValue;
+      _falseBooleanValue = $v.falseBooleanValue;
+      _floatValue = $v.floatValue;
+      _foo = $v.foo;
       _integerValue = $v.integerValue;
       _longValue = $v.longValue;
-      _floatValue = $v.floatValue;
       _nested = $v.nested?.toBuilder();
-      _doubleValue = $v.doubleValue;
+      _shortValue = $v.shortValue;
+      _stringValue = $v.stringValue;
+      _trueBooleanValue = $v.trueBooleanValue;
       _$v = null;
     }
     return this;
@@ -189,17 +191,17 @@ class SimpleScalarPropertiesInputOutputBuilder
     try {
       _$result = _$v ??
           new _$SimpleScalarPropertiesInputOutput._(
-              foo: foo,
-              stringValue: stringValue,
-              trueBooleanValue: trueBooleanValue,
-              falseBooleanValue: falseBooleanValue,
               byteValue: byteValue,
-              shortValue: shortValue,
+              doubleValue: doubleValue,
+              falseBooleanValue: falseBooleanValue,
+              floatValue: floatValue,
+              foo: foo,
               integerValue: integerValue,
               longValue: longValue,
-              floatValue: floatValue,
               nested: _nested?.build(),
-              doubleValue: doubleValue);
+              shortValue: shortValue,
+              stringValue: stringValue,
+              trueBooleanValue: trueBooleanValue);
     } catch (_) {
       late String _$failedField;
       try {
@@ -231,7 +233,7 @@ class _$SimpleScalarPropertiesInputOutputPayload
   @override
   final _i3.Int64? longValue;
   @override
-  final NestedWithNamespace? nested;
+  final _i4.NestedWithNamespace? nested;
   @override
   final int? shortValue;
   @override
@@ -333,10 +335,10 @@ class SimpleScalarPropertiesInputOutputPayloadBuilder
   _i3.Int64? get longValue => _$this._longValue;
   set longValue(_i3.Int64? longValue) => _$this._longValue = longValue;
 
-  NestedWithNamespaceBuilder? _nested;
-  NestedWithNamespaceBuilder get nested =>
-      _$this._nested ??= new NestedWithNamespaceBuilder();
-  set nested(NestedWithNamespaceBuilder? nested) => _$this._nested = nested;
+  _i4.NestedWithNamespaceBuilder? _nested;
+  _i4.NestedWithNamespaceBuilder get nested =>
+      _$this._nested ??= new _i4.NestedWithNamespaceBuilder();
+  set nested(_i4.NestedWithNamespaceBuilder? nested) => _$this._nested = nested;
 
   int? _shortValue;
   int? get shortValue => _$this._shortValue;
@@ -351,7 +353,9 @@ class SimpleScalarPropertiesInputOutputPayloadBuilder
   set trueBooleanValue(bool? trueBooleanValue) =>
       _$this._trueBooleanValue = trueBooleanValue;
 
-  SimpleScalarPropertiesInputOutputPayloadBuilder();
+  SimpleScalarPropertiesInputOutputPayloadBuilder() {
+    SimpleScalarPropertiesInputOutputPayload._init(this);
+  }
 
   SimpleScalarPropertiesInputOutputPayloadBuilder get _$this {
     final $v = _$v;

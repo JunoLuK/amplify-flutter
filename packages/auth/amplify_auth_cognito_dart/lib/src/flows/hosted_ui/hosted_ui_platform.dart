@@ -99,6 +99,7 @@ abstract class HostedUiPlatform implements Closeable {
   }) async {
     final state = generateState();
     final codeVerifier = createCodeVerifier();
+    final nonce = generateState();
 
     await Future.wait<void>(
       [
@@ -109,6 +110,10 @@ abstract class HostedUiPlatform implements Closeable {
         _secureStorage.write(
           key: _keys[HostedUiKey.codeVerifier],
           value: codeVerifier,
+        ),
+        _secureStorage.write(
+          key: _keys[HostedUiKey.nonce],
+          value: nonce,
         ),
       ].map(Future.value),
     );
@@ -128,6 +133,7 @@ abstract class HostedUiPlatform implements Closeable {
     return uri.replace(
       queryParameters: <String, String>{
         ...uri.queryParameters,
+        'nonce': nonce,
       },
     );
   }
@@ -229,7 +235,9 @@ abstract class HostedUiPlatform implements Closeable {
         accessToken: JsonWebToken.parse(oAuthCredentials.accessToken),
         refreshToken: oAuthCredentials.refreshToken!,
         idToken: JsonWebToken.parse(oAuthCredentials.idToken!),
-      )..validate();
+      )..validate(
+          nonce: await _secureStorage.read(key: _keys[HostedUiKey.nonce]),
+        );
 
       return tokens;
 
@@ -261,7 +269,6 @@ abstract class HostedUiPlatform implements Closeable {
       [
         _secureStorage.delete(key: _keys[HostedUiKey.state]),
         _secureStorage.delete(key: _keys[HostedUiKey.codeVerifier]),
-        // ignore: deprecated_member_use_from_same_package
         _secureStorage.delete(key: _keys[HostedUiKey.nonce]),
         _secureStorage.delete(key: _keys[HostedUiKey.options]),
       ].map(Future.value),

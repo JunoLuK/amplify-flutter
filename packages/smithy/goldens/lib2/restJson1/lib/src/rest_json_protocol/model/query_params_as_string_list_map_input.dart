@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_protocol.model.query_params_as_string_list_map_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -22,12 +21,12 @@ abstract class QueryParamsAsStringListMapInput
         _i1.EmptyPayload,
         _i1.HasPayload<QueryParamsAsStringListMapInputPayload> {
   factory QueryParamsAsStringListMapInput({
-    String? qux,
     Map<String, List<String>>? foo,
+    String? qux,
   }) {
     return _$QueryParamsAsStringListMapInput._(
-      qux: qux,
       foo: foo == null ? null : _i3.BuiltListMultimap(foo),
+      qux: qux,
     );
   }
 
@@ -48,32 +47,34 @@ abstract class QueryParamsAsStringListMapInput
         }
       });
 
-  static const List<
-          _i1.SmithySerializer<QueryParamsAsStringListMapInputPayload>>
-      serializers = [QueryParamsAsStringListMapInputRestJson1Serializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    QueryParamsAsStringListMapInputRestJson1Serializer()
+  ];
 
-  String? get qux;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(QueryParamsAsStringListMapInputBuilder b) {}
   _i3.BuiltListMultimap<String, String>? get foo;
+  String? get qux;
   @override
   QueryParamsAsStringListMapInputPayload getPayload() =>
       QueryParamsAsStringListMapInputPayload();
   @override
   List<Object?> get props => [
-        qux,
         foo,
+        qux,
       ];
   @override
   String toString() {
     final helper =
-        newBuiltValueToStringHelper('QueryParamsAsStringListMapInput')
-          ..add(
-            'qux',
-            qux,
-          )
-          ..add(
-            'foo',
-            foo,
-          );
+        newBuiltValueToStringHelper('QueryParamsAsStringListMapInput');
+    helper.add(
+      'foo',
+      foo,
+    );
+    helper.add(
+      'qux',
+      qux,
+    );
     return helper.toString();
   }
 }
@@ -92,6 +93,8 @@ abstract class QueryParamsAsStringListMapInputPayload
 
   const QueryParamsAsStringListMapInputPayload._();
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(QueryParamsAsStringListMapInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
   @override
@@ -133,7 +136,7 @@ class QueryParamsAsStringListMapInputRestJson1Serializer extends _i1
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    QueryParamsAsStringListMapInputPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) =>
       const <Object?>[];

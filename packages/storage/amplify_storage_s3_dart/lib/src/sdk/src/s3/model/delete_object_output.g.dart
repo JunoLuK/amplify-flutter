@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'delete_object_output.dart';
+part of amplify_storage_s3_dart.s3.model.delete_object_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -10,16 +10,16 @@ class _$DeleteObjectOutput extends DeleteObjectOutput {
   @override
   final bool? deleteMarker;
   @override
-  final String? versionId;
+  final _i3.RequestCharged? requestCharged;
   @override
-  final RequestCharged? requestCharged;
+  final String? versionId;
 
   factory _$DeleteObjectOutput(
           [void Function(DeleteObjectOutputBuilder)? updates]) =>
       (new DeleteObjectOutputBuilder()..update(updates))._build();
 
   _$DeleteObjectOutput._(
-      {this.deleteMarker, this.versionId, this.requestCharged})
+      {this.deleteMarker, this.requestCharged, this.versionId})
       : super._();
 
   @override
@@ -36,16 +36,16 @@ class _$DeleteObjectOutput extends DeleteObjectOutput {
     if (identical(other, this)) return true;
     return other is DeleteObjectOutput &&
         deleteMarker == other.deleteMarker &&
-        versionId == other.versionId &&
-        requestCharged == other.requestCharged;
+        requestCharged == other.requestCharged &&
+        versionId == other.versionId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, deleteMarker.hashCode);
-    _$hash = $jc(_$hash, versionId.hashCode);
     _$hash = $jc(_$hash, requestCharged.hashCode);
+    _$hash = $jc(_$hash, versionId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -59,23 +59,25 @@ class DeleteObjectOutputBuilder
   bool? get deleteMarker => _$this._deleteMarker;
   set deleteMarker(bool? deleteMarker) => _$this._deleteMarker = deleteMarker;
 
+  _i3.RequestCharged? _requestCharged;
+  _i3.RequestCharged? get requestCharged => _$this._requestCharged;
+  set requestCharged(_i3.RequestCharged? requestCharged) =>
+      _$this._requestCharged = requestCharged;
+
   String? _versionId;
   String? get versionId => _$this._versionId;
   set versionId(String? versionId) => _$this._versionId = versionId;
 
-  RequestCharged? _requestCharged;
-  RequestCharged? get requestCharged => _$this._requestCharged;
-  set requestCharged(RequestCharged? requestCharged) =>
-      _$this._requestCharged = requestCharged;
-
-  DeleteObjectOutputBuilder();
+  DeleteObjectOutputBuilder() {
+    DeleteObjectOutput._init(this);
+  }
 
   DeleteObjectOutputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _deleteMarker = $v.deleteMarker;
-      _versionId = $v.versionId;
       _requestCharged = $v.requestCharged;
+      _versionId = $v.versionId;
       _$v = null;
     }
     return this;
@@ -99,8 +101,8 @@ class DeleteObjectOutputBuilder
     final _$result = _$v ??
         new _$DeleteObjectOutput._(
             deleteMarker: deleteMarker,
-            versionId: versionId,
-            requestCharged: requestCharged);
+            requestCharged: requestCharged,
+            versionId: versionId);
     replace(_$result);
     return _$result;
   }
@@ -139,7 +141,9 @@ class DeleteObjectOutputPayloadBuilder
         Builder<DeleteObjectOutputPayload, DeleteObjectOutputPayloadBuilder> {
   _$DeleteObjectOutputPayload? _$v;
 
-  DeleteObjectOutputPayloadBuilder();
+  DeleteObjectOutputPayloadBuilder() {
+    DeleteObjectOutputPayload._init(this);
+  }
 
   @override
   void replace(DeleteObjectOutputPayload other) {

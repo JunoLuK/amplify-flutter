@@ -1,16 +1,19 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 // ignore_for_file: unused_element
 library rest_json1_v1.rest_json_protocol.test.json_lists_operation_test_test; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:built_collection/built_collection.dart' as _i4;
+import 'package:built_collection/built_collection.dart' as _i6;
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1_v1/src/rest_json_protocol/model/foo_enum.dart';
-import 'package:rest_json1_v1/src/rest_json_protocol/model/json_lists_input_output.dart';
-import 'package:rest_json1_v1/src/rest_json_protocol/model/structure_list_member.dart';
-import 'package:rest_json1_v1/src/rest_json_protocol/operation/json_lists_operation.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:rest_json1_v1/src/rest_json_protocol/model/foo_enum.dart'
+    as _i7;
+import 'package:rest_json1_v1/src/rest_json_protocol/model/json_lists_input_output.dart'
+    as _i5;
+import 'package:rest_json1_v1/src/rest_json_protocol/model/structure_list_member.dart'
+    as _i8;
+import 'package:rest_json1_v1/src/rest_json_protocol/operation/json_lists_operation.dart'
+    as _i3;
+import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
@@ -19,14 +22,14 @@ void main() {
     'RestJsonLists (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: JsonListsOperation(
+        operation: _i3.JsonListsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'RestJsonLists',
           documentation: 'Serializes JSON lists',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -110,14 +113,14 @@ void main() {
     'RestJsonListsEmpty (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: JsonListsOperation(
+        operation: _i3.JsonListsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'RestJsonListsEmpty',
           documentation: 'Serializes empty JSON lists',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -151,14 +154,14 @@ void main() {
     'RestJsonListsSerializeNull (request)',
     () async {
       await _i2.httpRequestTest(
-        operation: JsonListsOperation(
+        operation: _i3.JsonListsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpRequestTestCase(
           id: 'RestJsonListsSerializeNull',
           documentation: 'Serializes null values in lists',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -198,14 +201,14 @@ void main() {
     'RestJsonLists (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: JsonListsOperation(
+        operation: _i3.JsonListsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'RestJsonLists',
           documentation: 'Serializes JSON lists',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -283,14 +286,14 @@ void main() {
     'RestJsonListsEmpty (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: JsonListsOperation(
+        operation: _i3.JsonListsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'RestJsonListsEmpty',
           documentation: 'Serializes empty JSON lists',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -318,14 +321,14 @@ void main() {
     'RestJsonListsSerializeNull (response)',
     () async {
       await _i2.httpResponseTest(
-        operation: JsonListsOperation(
+        operation: _i3.JsonListsOperation(
           region: 'us-east-1',
           baseUri: Uri.parse('https://example.com'),
         ),
         testCase: const _i2.HttpResponseTestCase(
           id: 'RestJsonListsSerializeNull',
           documentation: 'Serializes null values in sparse lists',
-          protocol: _i3.ShapeId(
+          protocol: _i4.ShapeId(
             namespace: 'aws.protocols',
             shape: 'restJson1',
           ),
@@ -358,120 +361,147 @@ void main() {
 }
 
 class JsonListsInputOutputRestJson1Serializer
-    extends _i3.StructuredSmithySerializer<JsonListsInputOutput> {
+    extends _i4.StructuredSmithySerializer<_i5.JsonListsInputOutput> {
   const JsonListsInputOutputRestJson1Serializer()
       : super('JsonListsInputOutput');
 
   @override
-  Iterable<Type> get types => const [JsonListsInputOutput];
+  Iterable<Type> get types => const [_i5.JsonListsInputOutput];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
       ];
   @override
-  JsonListsInputOutput deserialize(
+  _i5.JsonListsInputOutput deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = JsonListsInputOutputBuilder();
+    final result = _i5.JsonListsInputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
-        case 'stringList':
-          result.stringList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i4.BuiltList,
-              [FullType(String)],
-            ),
-          ) as _i4.BuiltList<String>));
-        case 'sparseStringList':
-          result.sparseStringList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i4.BuiltList,
-              [FullType.nullable(String)],
-            ),
-          ) as _i4.BuiltList<String?>));
-        case 'stringSet':
-          result.stringSet.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i4.BuiltSet,
-              [FullType(String)],
-            ),
-          ) as _i4.BuiltSet<String>));
-        case 'integerList':
-          result.integerList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i4.BuiltList,
-              [FullType(int)],
-            ),
-          ) as _i4.BuiltList<int>));
         case 'booleanList':
-          result.booleanList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i4.BuiltList,
-              [FullType(bool)],
-            ),
-          ) as _i4.BuiltList<bool>));
-        case 'timestampList':
-          result.timestampList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i4.BuiltList,
-              [FullType(DateTime)],
-            ),
-          ) as _i4.BuiltList<DateTime>));
+          if (value != null) {
+            result.booleanList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltList,
+                [FullType(bool)],
+              ),
+            ) as _i6.BuiltList<bool>));
+          }
+          break;
         case 'enumList':
-          result.enumList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i4.BuiltList,
-              [FullType(FooEnum)],
-            ),
-          ) as _i4.BuiltList<FooEnum>));
+          if (value != null) {
+            result.enumList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltList,
+                [FullType(_i7.FooEnum)],
+              ),
+            ) as _i6.BuiltList<_i7.FooEnum>));
+          }
+          break;
         case 'intEnumList':
-          result.intEnumList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i4.BuiltList,
-              [FullType(int)],
-            ),
-          ) as _i4.BuiltList<int>));
+          if (value != null) {
+            result.intEnumList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltList,
+                [FullType(int)],
+              ),
+            ) as _i6.BuiltList<int>));
+          }
+          break;
+        case 'integerList':
+          if (value != null) {
+            result.integerList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltList,
+                [FullType(int)],
+              ),
+            ) as _i6.BuiltList<int>));
+          }
+          break;
         case 'nestedStringList':
-          result.nestedStringList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i4.BuiltList,
-              [
-                FullType(
-                  _i4.BuiltList,
-                  [FullType(String)],
-                )
-              ],
-            ),
-          ) as _i4.BuiltList<_i4.BuiltList<String>>));
+          if (value != null) {
+            result.nestedStringList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltList,
+                [
+                  FullType(
+                    _i6.BuiltList,
+                    [FullType(String)],
+                  )
+                ],
+              ),
+            ) as _i6.BuiltList<_i6.BuiltList<String>>));
+          }
+          break;
+        case 'sparseStringList':
+          if (value != null) {
+            result.sparseStringList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltList,
+                [FullType.nullable(String)],
+              ),
+            ) as _i6.BuiltList<String?>));
+          }
+          break;
+        case 'stringList':
+          if (value != null) {
+            result.stringList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltList,
+                [FullType(String)],
+              ),
+            ) as _i6.BuiltList<String>));
+          }
+          break;
+        case 'stringSet':
+          if (value != null) {
+            result.stringSet.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltSet,
+                [FullType(String)],
+              ),
+            ) as _i6.BuiltSet<String>));
+          }
+          break;
         case 'structureList':
-          result.structureList.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i4.BuiltList,
-              [FullType(StructureListMember)],
-            ),
-          ) as _i4.BuiltList<StructureListMember>));
+          if (value != null) {
+            result.structureList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltList,
+                [FullType(_i8.StructureListMember)],
+              ),
+            ) as _i6.BuiltList<_i8.StructureListMember>));
+          }
+          break;
+        case 'timestampList':
+          if (value != null) {
+            result.timestampList.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i6.BuiltList,
+                [FullType(DateTime)],
+              ),
+            ) as _i6.BuiltList<DateTime>));
+          }
+          break;
       }
     }
 
@@ -481,7 +511,7 @@ class JsonListsInputOutputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    JsonListsInputOutput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');
@@ -489,44 +519,47 @@ class JsonListsInputOutputRestJson1Serializer
 }
 
 class StructureListMemberRestJson1Serializer
-    extends _i3.StructuredSmithySerializer<StructureListMember> {
+    extends _i4.StructuredSmithySerializer<_i8.StructureListMember> {
   const StructureListMemberRestJson1Serializer() : super('StructureListMember');
 
   @override
-  Iterable<Type> get types => const [StructureListMember];
+  Iterable<Type> get types => const [_i8.StructureListMember];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols => const [
-        _i3.ShapeId(
+  Iterable<_i4.ShapeId> get supportedProtocols => const [
+        _i4.ShapeId(
           namespace: 'aws.protocols',
           shape: 'restJson1',
         )
       ];
   @override
-  StructureListMember deserialize(
+  _i8.StructureListMember deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = StructureListMemberBuilder();
+    final result = _i8.StructureListMemberBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'a':
-          result.a = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.a = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'b':
-          result.b = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.b = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -536,7 +569,7 @@ class StructureListMemberRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    StructureListMember object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     throw StateError('Not supported for tests');

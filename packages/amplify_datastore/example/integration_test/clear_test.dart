@@ -22,7 +22,7 @@ void main() {
       await Amplify.DataStore.save(blog);
       var resultOne = await Amplify.DataStore.query(Blog.classType);
       expect(resultOne, isNotEmpty);
-      await clearDataStore();
+      await Amplify.DataStore.clear();
       var resultTwo = await Amplify.DataStore.query(Blog.classType);
       expect(resultTwo, isEmpty);
     });

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'copy_object_output.dart';
+part of amplify_storage_s3_dart.s3.model.copy_object_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,44 +8,44 @@ part of 'copy_object_output.dart';
 
 class _$CopyObjectOutput extends CopyObjectOutput {
   @override
-  final CopyObjectResult? copyObjectResult;
+  final bool? bucketKeyEnabled;
   @override
-  final String? expiration;
+  final _i3.CopyObjectResult? copyObjectResult;
   @override
   final String? copySourceVersionId;
   @override
-  final String? versionId;
+  final String? expiration;
   @override
-  final ServerSideEncryption? serverSideEncryption;
+  final _i4.RequestCharged? requestCharged;
+  @override
+  final _i5.ServerSideEncryption? serverSideEncryption;
   @override
   final String? sseCustomerAlgorithm;
   @override
   final String? sseCustomerKeyMd5;
   @override
-  final String? ssekmsKeyId;
-  @override
   final String? ssekmsEncryptionContext;
   @override
-  final bool? bucketKeyEnabled;
+  final String? ssekmsKeyId;
   @override
-  final RequestCharged? requestCharged;
+  final String? versionId;
 
   factory _$CopyObjectOutput(
           [void Function(CopyObjectOutputBuilder)? updates]) =>
       (new CopyObjectOutputBuilder()..update(updates))._build();
 
   _$CopyObjectOutput._(
-      {this.copyObjectResult,
-      this.expiration,
+      {this.bucketKeyEnabled,
+      this.copyObjectResult,
       this.copySourceVersionId,
-      this.versionId,
+      this.expiration,
+      this.requestCharged,
       this.serverSideEncryption,
       this.sseCustomerAlgorithm,
       this.sseCustomerKeyMd5,
-      this.ssekmsKeyId,
       this.ssekmsEncryptionContext,
-      this.bucketKeyEnabled,
-      this.requestCharged})
+      this.ssekmsKeyId,
+      this.versionId})
       : super._();
 
   @override
@@ -60,33 +60,33 @@ class _$CopyObjectOutput extends CopyObjectOutput {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is CopyObjectOutput &&
+        bucketKeyEnabled == other.bucketKeyEnabled &&
         copyObjectResult == other.copyObjectResult &&
-        expiration == other.expiration &&
         copySourceVersionId == other.copySourceVersionId &&
-        versionId == other.versionId &&
+        expiration == other.expiration &&
+        requestCharged == other.requestCharged &&
         serverSideEncryption == other.serverSideEncryption &&
         sseCustomerAlgorithm == other.sseCustomerAlgorithm &&
         sseCustomerKeyMd5 == other.sseCustomerKeyMd5 &&
-        ssekmsKeyId == other.ssekmsKeyId &&
         ssekmsEncryptionContext == other.ssekmsEncryptionContext &&
-        bucketKeyEnabled == other.bucketKeyEnabled &&
-        requestCharged == other.requestCharged;
+        ssekmsKeyId == other.ssekmsKeyId &&
+        versionId == other.versionId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, bucketKeyEnabled.hashCode);
     _$hash = $jc(_$hash, copyObjectResult.hashCode);
-    _$hash = $jc(_$hash, expiration.hashCode);
     _$hash = $jc(_$hash, copySourceVersionId.hashCode);
-    _$hash = $jc(_$hash, versionId.hashCode);
+    _$hash = $jc(_$hash, expiration.hashCode);
+    _$hash = $jc(_$hash, requestCharged.hashCode);
     _$hash = $jc(_$hash, serverSideEncryption.hashCode);
     _$hash = $jc(_$hash, sseCustomerAlgorithm.hashCode);
     _$hash = $jc(_$hash, sseCustomerKeyMd5.hashCode);
-    _$hash = $jc(_$hash, ssekmsKeyId.hashCode);
     _$hash = $jc(_$hash, ssekmsEncryptionContext.hashCode);
-    _$hash = $jc(_$hash, bucketKeyEnabled.hashCode);
-    _$hash = $jc(_$hash, requestCharged.hashCode);
+    _$hash = $jc(_$hash, ssekmsKeyId.hashCode);
+    _$hash = $jc(_$hash, versionId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -96,29 +96,35 @@ class CopyObjectOutputBuilder
     implements Builder<CopyObjectOutput, CopyObjectOutputBuilder> {
   _$CopyObjectOutput? _$v;
 
-  CopyObjectResultBuilder? _copyObjectResult;
-  CopyObjectResultBuilder get copyObjectResult =>
-      _$this._copyObjectResult ??= new CopyObjectResultBuilder();
-  set copyObjectResult(CopyObjectResultBuilder? copyObjectResult) =>
-      _$this._copyObjectResult = copyObjectResult;
+  bool? _bucketKeyEnabled;
+  bool? get bucketKeyEnabled => _$this._bucketKeyEnabled;
+  set bucketKeyEnabled(bool? bucketKeyEnabled) =>
+      _$this._bucketKeyEnabled = bucketKeyEnabled;
 
-  String? _expiration;
-  String? get expiration => _$this._expiration;
-  set expiration(String? expiration) => _$this._expiration = expiration;
+  _i3.CopyObjectResultBuilder? _copyObjectResult;
+  _i3.CopyObjectResultBuilder get copyObjectResult =>
+      _$this._copyObjectResult ??= new _i3.CopyObjectResultBuilder();
+  set copyObjectResult(_i3.CopyObjectResultBuilder? copyObjectResult) =>
+      _$this._copyObjectResult = copyObjectResult;
 
   String? _copySourceVersionId;
   String? get copySourceVersionId => _$this._copySourceVersionId;
   set copySourceVersionId(String? copySourceVersionId) =>
       _$this._copySourceVersionId = copySourceVersionId;
 
-  String? _versionId;
-  String? get versionId => _$this._versionId;
-  set versionId(String? versionId) => _$this._versionId = versionId;
+  String? _expiration;
+  String? get expiration => _$this._expiration;
+  set expiration(String? expiration) => _$this._expiration = expiration;
 
-  ServerSideEncryption? _serverSideEncryption;
-  ServerSideEncryption? get serverSideEncryption =>
+  _i4.RequestCharged? _requestCharged;
+  _i4.RequestCharged? get requestCharged => _$this._requestCharged;
+  set requestCharged(_i4.RequestCharged? requestCharged) =>
+      _$this._requestCharged = requestCharged;
+
+  _i5.ServerSideEncryption? _serverSideEncryption;
+  _i5.ServerSideEncryption? get serverSideEncryption =>
       _$this._serverSideEncryption;
-  set serverSideEncryption(ServerSideEncryption? serverSideEncryption) =>
+  set serverSideEncryption(_i5.ServerSideEncryption? serverSideEncryption) =>
       _$this._serverSideEncryption = serverSideEncryption;
 
   String? _sseCustomerAlgorithm;
@@ -131,41 +137,37 @@ class CopyObjectOutputBuilder
   set sseCustomerKeyMd5(String? sseCustomerKeyMd5) =>
       _$this._sseCustomerKeyMd5 = sseCustomerKeyMd5;
 
-  String? _ssekmsKeyId;
-  String? get ssekmsKeyId => _$this._ssekmsKeyId;
-  set ssekmsKeyId(String? ssekmsKeyId) => _$this._ssekmsKeyId = ssekmsKeyId;
-
   String? _ssekmsEncryptionContext;
   String? get ssekmsEncryptionContext => _$this._ssekmsEncryptionContext;
   set ssekmsEncryptionContext(String? ssekmsEncryptionContext) =>
       _$this._ssekmsEncryptionContext = ssekmsEncryptionContext;
 
-  bool? _bucketKeyEnabled;
-  bool? get bucketKeyEnabled => _$this._bucketKeyEnabled;
-  set bucketKeyEnabled(bool? bucketKeyEnabled) =>
-      _$this._bucketKeyEnabled = bucketKeyEnabled;
+  String? _ssekmsKeyId;
+  String? get ssekmsKeyId => _$this._ssekmsKeyId;
+  set ssekmsKeyId(String? ssekmsKeyId) => _$this._ssekmsKeyId = ssekmsKeyId;
 
-  RequestCharged? _requestCharged;
-  RequestCharged? get requestCharged => _$this._requestCharged;
-  set requestCharged(RequestCharged? requestCharged) =>
-      _$this._requestCharged = requestCharged;
+  String? _versionId;
+  String? get versionId => _$this._versionId;
+  set versionId(String? versionId) => _$this._versionId = versionId;
 
-  CopyObjectOutputBuilder();
+  CopyObjectOutputBuilder() {
+    CopyObjectOutput._init(this);
+  }
 
   CopyObjectOutputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _bucketKeyEnabled = $v.bucketKeyEnabled;
       _copyObjectResult = $v.copyObjectResult?.toBuilder();
-      _expiration = $v.expiration;
       _copySourceVersionId = $v.copySourceVersionId;
-      _versionId = $v.versionId;
+      _expiration = $v.expiration;
+      _requestCharged = $v.requestCharged;
       _serverSideEncryption = $v.serverSideEncryption;
       _sseCustomerAlgorithm = $v.sseCustomerAlgorithm;
       _sseCustomerKeyMd5 = $v.sseCustomerKeyMd5;
-      _ssekmsKeyId = $v.ssekmsKeyId;
       _ssekmsEncryptionContext = $v.ssekmsEncryptionContext;
-      _bucketKeyEnabled = $v.bucketKeyEnabled;
-      _requestCharged = $v.requestCharged;
+      _ssekmsKeyId = $v.ssekmsKeyId;
+      _versionId = $v.versionId;
       _$v = null;
     }
     return this;
@@ -190,17 +192,17 @@ class CopyObjectOutputBuilder
     try {
       _$result = _$v ??
           new _$CopyObjectOutput._(
+              bucketKeyEnabled: bucketKeyEnabled,
               copyObjectResult: _copyObjectResult?.build(),
-              expiration: expiration,
               copySourceVersionId: copySourceVersionId,
-              versionId: versionId,
+              expiration: expiration,
+              requestCharged: requestCharged,
               serverSideEncryption: serverSideEncryption,
               sseCustomerAlgorithm: sseCustomerAlgorithm,
               sseCustomerKeyMd5: sseCustomerKeyMd5,
-              ssekmsKeyId: ssekmsKeyId,
               ssekmsEncryptionContext: ssekmsEncryptionContext,
-              bucketKeyEnabled: bucketKeyEnabled,
-              requestCharged: requestCharged);
+              ssekmsKeyId: ssekmsKeyId,
+              versionId: versionId);
     } catch (_) {
       late String _$failedField;
       try {

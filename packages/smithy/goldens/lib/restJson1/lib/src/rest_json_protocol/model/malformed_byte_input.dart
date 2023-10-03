@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v1.rest_json_protocol.model.malformed_byte_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -20,15 +19,16 @@ abstract class MalformedByteInput
         _i1.HasPayload<MalformedByteInputPayload> {
   factory MalformedByteInput({
     int? byteInBody,
-    required int byteInPath,
-    int? byteInQuery,
     int? byteInHeader,
+    int? byteInPath,
+    int? byteInQuery,
   }) {
+    byteInPath ??= 0;
     return _$MalformedByteInput._(
       byteInBody: byteInBody,
+      byteInHeader: byteInHeader,
       byteInPath: byteInPath,
       byteInQuery: byteInQuery,
-      byteInHeader: byteInHeader,
     );
   }
 
@@ -56,13 +56,19 @@ abstract class MalformedByteInput
         }
       });
 
-  static const List<_i1.SmithySerializer<MalformedByteInputPayload>>
-      serializers = [MalformedByteInputRestJson1Serializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    MalformedByteInputRestJson1Serializer()
+  ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedByteInputBuilder b) {
+    b.byteInPath = 0;
+  }
 
   int? get byteInBody;
+  int? get byteInHeader;
   int get byteInPath;
   int? get byteInQuery;
-  int? get byteInHeader;
   @override
   String labelFor(String key) {
     switch (key) {
@@ -82,29 +88,29 @@ abstract class MalformedByteInput
   @override
   List<Object?> get props => [
         byteInBody,
+        byteInHeader,
         byteInPath,
         byteInQuery,
-        byteInHeader,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('MalformedByteInput')
-      ..add(
-        'byteInBody',
-        byteInBody,
-      )
-      ..add(
-        'byteInPath',
-        byteInPath,
-      )
-      ..add(
-        'byteInQuery',
-        byteInQuery,
-      )
-      ..add(
-        'byteInHeader',
-        byteInHeader,
-      );
+    final helper = newBuiltValueToStringHelper('MalformedByteInput');
+    helper.add(
+      'byteInBody',
+      byteInBody,
+    );
+    helper.add(
+      'byteInHeader',
+      byteInHeader,
+    );
+    helper.add(
+      'byteInPath',
+      byteInPath,
+    );
+    helper.add(
+      'byteInQuery',
+      byteInQuery,
+    );
     return helper.toString();
   }
 }
@@ -120,16 +126,18 @@ abstract class MalformedByteInputPayload
 
   const MalformedByteInputPayload._();
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedByteInputPayloadBuilder b) {}
   int? get byteInBody;
   @override
   List<Object?> get props => [byteInBody];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('MalformedByteInputPayload')
-      ..add(
-        'byteInBody',
-        byteInBody,
-      );
+    final helper = newBuiltValueToStringHelper('MalformedByteInputPayload');
+    helper.add(
+      'byteInBody',
+      byteInBody,
+    );
     return helper.toString();
   }
 }
@@ -164,15 +172,15 @@ class MalformedByteInputRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'byteInBody':
-          result.byteInBody = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int);
+          if (value != null) {
+            result.byteInBody = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(int),
+            ) as int);
+          }
+          break;
       }
     }
 
@@ -182,19 +190,21 @@ class MalformedByteInputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    MalformedByteInputPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final MalformedByteInputPayload(:byteInBody) = object;
-    if (byteInBody != null) {
-      result$
+    final payload = object is MalformedByteInput
+        ? object.getPayload()
+        : (object as MalformedByteInputPayload);
+    final result = <Object?>[];
+    if (payload.byteInBody != null) {
+      result
         ..add('byteInBody')
         ..add(serializers.serialize(
-          byteInBody,
+          payload.byteInBody!,
           specifiedType: const FullType(int),
         ));
     }
-    return result$;
+    return result;
   }
 }

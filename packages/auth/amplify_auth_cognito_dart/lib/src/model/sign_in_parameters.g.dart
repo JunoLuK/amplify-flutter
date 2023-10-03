@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'sign_in_parameters.dart';
+part of amplify_auth_cognito.model.sign_in_parameters;
 
 // **************************************************************************
 // BuiltValueGenerator

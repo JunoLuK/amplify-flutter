@@ -16,14 +16,11 @@ TestSuite _$TestSuiteFromJson(Map json) => $checkedCreate(
         );
         final val = TestSuite(
           given: $checkedConvert(
-              'given',
-              (v) =>
-                  TestSuiteGiven.fromJson(Map<String, Object?>.from(v as Map))),
+              'given', (v) => TestSuiteGiven.fromJson(v as Map)),
           responses: $checkedConvert(
               'responses',
               (v) => (v as List<dynamic>)
-                  .map((e) =>
-                      TestCase.fromJson(Map<String, Object?>.from(e as Map)))
+                  .map((e) => TestCase.fromJson(e as Map))
                   .toList()),
         );
         return val;
@@ -75,13 +72,9 @@ TestCase _$TestCaseFromJson(Map json) => $checkedCreate(
         );
         final val = TestCase(
           response: $checkedConvert(
-              'response',
-              (v) => TestCaseResponse.fromJson(
-                  Map<String, Object?>.from(v as Map))),
+              'response', (v) => TestCaseResponse.fromJson(v as Map)),
           expected: $checkedConvert(
-              'expected',
-              (v) => TestCaseExpected.fromJson(
-                  Map<String, Object?>.from(v as Map))),
+              'expected', (v) => TestCaseExpected.fromJson(v as Map)),
         );
         return val;
       },

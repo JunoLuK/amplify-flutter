@@ -4,7 +4,7 @@
 import 'package:aws_common/aws_common.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:smithy/src/ast/traits/waiters/matcher.dart';
+import 'matcher.dart';
 
 part 'acceptor_definition.g.dart';
 

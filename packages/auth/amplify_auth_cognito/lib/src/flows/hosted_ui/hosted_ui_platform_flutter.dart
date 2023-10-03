@@ -13,10 +13,9 @@ import 'package:amplify_auth_cognito_dart/src/flows/hosted_ui/hosted_ui_platform
     as io;
 // ignore: implementation_imports
 import 'package:amplify_auth_cognito_dart/src/model/hosted_ui/oauth_parameters.dart';
-// ignore: implementation_imports, invalid_use_of_internal_member
-import 'package:amplify_auth_cognito_dart/src/state/state.dart';
+// ignore: implementation_imports
+import 'package:amplify_auth_cognito_dart/src/state/event/hosted_ui_event.dart';
 import 'package:amplify_core/amplify_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 /// {@template amplify_auth_cognito.hosted_ui_platform_flutter}
@@ -28,17 +27,7 @@ class HostedUiPlatformImpl extends io.HostedUiPlatformImpl {
   /// {@macro amplify_auth_cognito.hosted_ui_platform_flutter}
   HostedUiPlatformImpl(super.dependencyManager);
 
-  static bool get _isMobile {
-    if (Platform.isAndroid || Platform.isIOS) {
-      return true;
-    }
-    // Allow overrides for tests
-    if (zAssertsEnabled) {
-      return debugDefaultTargetPlatformOverride == TargetPlatform.android ||
-          debugDefaultTargetPlatformOverride == TargetPlatform.iOS;
-    }
-    return false;
-  }
+  static final bool _isMobile = Platform.isAndroid || Platform.isIOS;
 
   NativeAuthBridge get _nativeAuthBridge => dependencyManager.expect();
 
@@ -91,37 +80,39 @@ class HostedUiPlatformImpl extends io.HostedUiPlatformImpl {
         options.isPreferPrivateSession,
         options.browserPackageName,
       );
-      dispatcher
-          .dispatch(
-            HostedUiEvent.exchange(
-              OAuthParameters.fromJson(queryParameters.cast()),
-            ),
-          )
-          .ignore();
+      unawaited(
+        dispatcher.dispatchAndComplete(
+          HostedUiEvent.exchange(
+            OAuthParameters.fromJson(queryParameters.cast()),
+          ),
+        ),
+      );
     } on Exception catch (e) {
-      switch (e) {
-        case PlatformException(code: 'CANCELLED'):
+      unawaited(
+        dispatcher.dispatchAndComplete(const HostedUiEvent.cancelSignIn()),
+      );
+      if (e is PlatformException) {
+        if (e.code == 'CANCELLED') {
           throw const UserCancelledException(
             'The user cancelled the sign-in flow',
           );
-        case PlatformException(:final code, :var message):
-          // Generated Android message is `CLASS_NAME: message`
-          if (message != null && message.contains(': ')) {
-            message = message.split(': ')[1];
-          }
-          String? recoverySuggestion;
-          if (code == 'NOBROWSER') {
-            recoverySuggestion =
-                "Ensure you've added the <queries> tag to your "
-                'AndroidManifest.xml as outlined in the docs';
-          }
-          throw UrlLauncherException(
-            message ?? 'An unknown error occurred',
-            recoverySuggestion: recoverySuggestion,
-          );
-        default:
-          rethrow;
+        }
+        // Generated Android message is `CLASS_NAME: message`
+        var message = e.message;
+        if (message != null && message.contains(': ')) {
+          message = message.split(': ')[1];
+        }
+        String? recoverySuggestion;
+        if (e.code == 'NOBROWSER') {
+          recoverySuggestion = "Ensure you've added the <queries> tag to your "
+              'AndroidManifest.xml as outlined in the docs';
+        }
+        throw UrlLauncherException(
+          message ?? 'An unknown error occurred',
+          recoverySuggestion: recoverySuggestion,
+        );
       }
+      rethrow;
     }
   }
 
@@ -132,9 +123,6 @@ class HostedUiPlatformImpl extends io.HostedUiPlatformImpl {
     if (!_isMobile) {
       return super.signOut(options: options);
     }
-    // Launching the sign out url is not needed on iOS if isPreferPrivateSession
-    // is true.
-    if (Platform.isIOS && options.isPreferPrivateSession) return;
     final signOutUri = getSignOutUri();
     await _nativeAuthBridge.signOutWithUrl(
       signOutUri.toString(),

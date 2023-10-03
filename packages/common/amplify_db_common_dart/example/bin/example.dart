@@ -31,8 +31,10 @@ Future<void> main() async {
   switch (inputMode) {
     case InputMode.query:
       await _query();
+      break;
     case InputMode.insert:
       await _insert();
+      break;
   }
 }
 

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'limit_exceeded_exception.dart';
+part of aws_json1_1_v1.machine_learning.model.limit_exceeded_exception;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,9 +8,9 @@ part of 'limit_exceeded_exception.dart';
 
 class _$LimitExceededException extends LimitExceededException {
   @override
-  final String? message;
-  @override
   final int? code;
+  @override
+  final String? message;
   @override
   final Map<String, String>? headers;
 
@@ -18,7 +18,7 @@ class _$LimitExceededException extends LimitExceededException {
           [void Function(LimitExceededExceptionBuilder)? updates]) =>
       (new LimitExceededExceptionBuilder()..update(updates))._build();
 
-  _$LimitExceededException._({this.message, this.code, this.headers})
+  _$LimitExceededException._({this.code, this.message, this.headers})
       : super._();
 
   @override
@@ -34,15 +34,15 @@ class _$LimitExceededException extends LimitExceededException {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is LimitExceededException &&
-        message == other.message &&
-        code == other.code;
+        code == other.code &&
+        message == other.message;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, message.hashCode);
     _$hash = $jc(_$hash, code.hashCode);
+    _$hash = $jc(_$hash, message.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -52,25 +52,27 @@ class LimitExceededExceptionBuilder
     implements Builder<LimitExceededException, LimitExceededExceptionBuilder> {
   _$LimitExceededException? _$v;
 
-  String? _message;
-  String? get message => _$this._message;
-  set message(String? message) => _$this._message = message;
-
   int? _code;
   int? get code => _$this._code;
   set code(int? code) => _$this._code = code;
+
+  String? _message;
+  String? get message => _$this._message;
+  set message(String? message) => _$this._message = message;
 
   Map<String, String>? _headers;
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  LimitExceededExceptionBuilder();
+  LimitExceededExceptionBuilder() {
+    LimitExceededException._init(this);
+  }
 
   LimitExceededExceptionBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _message = $v.message;
       _code = $v.code;
+      _message = $v.message;
       _headers = $v.headers;
       _$v = null;
     }
@@ -94,7 +96,7 @@ class LimitExceededExceptionBuilder
   _$LimitExceededException _build() {
     final _$result = _$v ??
         new _$LimitExceededException._(
-            message: message, code: code, headers: headers);
+            code: code, message: message, headers: headers);
     replace(_$result);
     return _$result;
   }

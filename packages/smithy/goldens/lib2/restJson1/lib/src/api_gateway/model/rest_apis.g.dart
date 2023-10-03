@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'rest_apis.dart';
+part of rest_json1_v2.api_gateway.model.rest_apis;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of 'rest_apis.dart';
 
 class _$RestApis extends RestApis {
   @override
-  final _i2.BuiltList<RestApi>? items;
+  final _i3.BuiltList<_i2.RestApi>? items;
   @override
   final String? position;
 
@@ -45,16 +45,18 @@ class _$RestApis extends RestApis {
 class RestApisBuilder implements Builder<RestApis, RestApisBuilder> {
   _$RestApis? _$v;
 
-  _i2.ListBuilder<RestApi>? _items;
-  _i2.ListBuilder<RestApi> get items =>
-      _$this._items ??= new _i2.ListBuilder<RestApi>();
-  set items(_i2.ListBuilder<RestApi>? items) => _$this._items = items;
+  _i3.ListBuilder<_i2.RestApi>? _items;
+  _i3.ListBuilder<_i2.RestApi> get items =>
+      _$this._items ??= new _i3.ListBuilder<_i2.RestApi>();
+  set items(_i3.ListBuilder<_i2.RestApi>? items) => _$this._items = items;
 
   String? _position;
   String? get position => _$this._position;
   set position(String? position) => _$this._position = position;
 
-  RestApisBuilder();
+  RestApisBuilder() {
+    RestApis._init(this);
+  }
 
   RestApisBuilder get _$this {
     final $v = _$v;

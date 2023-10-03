@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'null_and_empty_headers_io.dart';
+part of rest_json1_v1.rest_json_protocol.model.null_and_empty_headers_io;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -65,7 +65,9 @@ class NullAndEmptyHeadersIoBuilder
   _i3.ListBuilder<String> get c => _$this._c ??= new _i3.ListBuilder<String>();
   set c(_i3.ListBuilder<String>? c) => _$this._c = c;
 
-  NullAndEmptyHeadersIoBuilder();
+  NullAndEmptyHeadersIoBuilder() {
+    NullAndEmptyHeadersIo._init(this);
+  }
 
   NullAndEmptyHeadersIoBuilder get _$this {
     final $v = _$v;
@@ -147,7 +149,9 @@ class NullAndEmptyHeadersIoPayloadBuilder
             NullAndEmptyHeadersIoPayloadBuilder> {
   _$NullAndEmptyHeadersIoPayload? _$v;
 
-  NullAndEmptyHeadersIoPayloadBuilder();
+  NullAndEmptyHeadersIoPayloadBuilder() {
+    NullAndEmptyHeadersIoPayload._init(this);
+  }
 
   @override
   void replace(NullAndEmptyHeadersIoPayload other) {

@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_protocol.model.malformed_short_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -20,15 +19,16 @@ abstract class MalformedShortInput
         _i1.HasPayload<MalformedShortInputPayload> {
   factory MalformedShortInput({
     int? shortInBody,
-    required int shortInPath,
-    int? shortInQuery,
     int? shortInHeader,
+    int? shortInPath,
+    int? shortInQuery,
   }) {
+    shortInPath ??= 0;
     return _$MalformedShortInput._(
       shortInBody: shortInBody,
+      shortInHeader: shortInHeader,
       shortInPath: shortInPath,
       shortInQuery: shortInQuery,
-      shortInHeader: shortInHeader,
     );
   }
 
@@ -56,13 +56,19 @@ abstract class MalformedShortInput
         }
       });
 
-  static const List<_i1.SmithySerializer<MalformedShortInputPayload>>
-      serializers = [MalformedShortInputRestJson1Serializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    MalformedShortInputRestJson1Serializer()
+  ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedShortInputBuilder b) {
+    b.shortInPath = 0;
+  }
 
   int? get shortInBody;
+  int? get shortInHeader;
   int get shortInPath;
   int? get shortInQuery;
-  int? get shortInHeader;
   @override
   String labelFor(String key) {
     switch (key) {
@@ -82,29 +88,29 @@ abstract class MalformedShortInput
   @override
   List<Object?> get props => [
         shortInBody,
+        shortInHeader,
         shortInPath,
         shortInQuery,
-        shortInHeader,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('MalformedShortInput')
-      ..add(
-        'shortInBody',
-        shortInBody,
-      )
-      ..add(
-        'shortInPath',
-        shortInPath,
-      )
-      ..add(
-        'shortInQuery',
-        shortInQuery,
-      )
-      ..add(
-        'shortInHeader',
-        shortInHeader,
-      );
+    final helper = newBuiltValueToStringHelper('MalformedShortInput');
+    helper.add(
+      'shortInBody',
+      shortInBody,
+    );
+    helper.add(
+      'shortInHeader',
+      shortInHeader,
+    );
+    helper.add(
+      'shortInPath',
+      shortInPath,
+    );
+    helper.add(
+      'shortInQuery',
+      shortInQuery,
+    );
     return helper.toString();
   }
 }
@@ -120,16 +126,18 @@ abstract class MalformedShortInputPayload
 
   const MalformedShortInputPayload._();
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedShortInputPayloadBuilder b) {}
   int? get shortInBody;
   @override
   List<Object?> get props => [shortInBody];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('MalformedShortInputPayload')
-      ..add(
-        'shortInBody',
-        shortInBody,
-      );
+    final helper = newBuiltValueToStringHelper('MalformedShortInputPayload');
+    helper.add(
+      'shortInBody',
+      shortInBody,
+    );
     return helper.toString();
   }
 }
@@ -164,15 +172,15 @@ class MalformedShortInputRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'shortInBody':
-          result.shortInBody = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int);
+          if (value != null) {
+            result.shortInBody = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(int),
+            ) as int);
+          }
+          break;
       }
     }
 
@@ -182,19 +190,21 @@ class MalformedShortInputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    MalformedShortInputPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final MalformedShortInputPayload(:shortInBody) = object;
-    if (shortInBody != null) {
-      result$
+    final payload = object is MalformedShortInput
+        ? object.getPayload()
+        : (object as MalformedShortInputPayload);
+    final result = <Object?>[];
+    if (payload.shortInBody != null) {
+      result
         ..add('shortInBody')
         ..add(serializers.serialize(
-          shortInBody,
+          payload.shortInBody!,
           specifiedType: const FullType(int),
         ));
     }
-    return result$;
+    return result;
   }
 }

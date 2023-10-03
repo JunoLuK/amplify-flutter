@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_json1_v2.rest_json_protocol.model.document_type_input_output; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -17,13 +16,13 @@ abstract class DocumentTypeInputOutput
         _i2.AWSEquatable<DocumentTypeInputOutput>
     implements Built<DocumentTypeInputOutput, DocumentTypeInputOutputBuilder> {
   factory DocumentTypeInputOutput({
-    String? stringValue,
     Object? documentValue,
+    String? stringValue,
   }) {
     return _$DocumentTypeInputOutput._(
-      stringValue: stringValue,
       documentValue:
           documentValue == null ? null : _i3.JsonObject(documentValue),
+      stringValue: stringValue,
     );
   }
 
@@ -47,29 +46,32 @@ abstract class DocumentTypeInputOutput
   ) =>
       payload;
 
-  static const List<_i1.SmithySerializer<DocumentTypeInputOutput>> serializers =
-      [DocumentTypeInputOutputRestJson1Serializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    DocumentTypeInputOutputRestJson1Serializer()
+  ];
 
-  String? get stringValue;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(DocumentTypeInputOutputBuilder b) {}
   _i3.JsonObject? get documentValue;
+  String? get stringValue;
   @override
   DocumentTypeInputOutput getPayload() => this;
   @override
   List<Object?> get props => [
-        stringValue,
         documentValue,
+        stringValue,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('DocumentTypeInputOutput')
-      ..add(
-        'stringValue',
-        stringValue,
-      )
-      ..add(
-        'documentValue',
-        documentValue,
-      );
+    final helper = newBuiltValueToStringHelper('DocumentTypeInputOutput');
+    helper.add(
+      'documentValue',
+      documentValue,
+    );
+    helper.add(
+      'stringValue',
+      stringValue,
+    );
     return helper.toString();
   }
 }
@@ -103,20 +105,23 @@ class DocumentTypeInputOutputRestJson1Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'documentValue':
-          result.documentValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(_i3.JsonObject),
-          ) as _i3.JsonObject);
+          if (value != null) {
+            result.documentValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i3.JsonObject),
+            ) as _i3.JsonObject);
+          }
+          break;
         case 'stringValue':
-          result.stringValue = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.stringValue = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
       }
     }
 
@@ -126,27 +131,27 @@ class DocumentTypeInputOutputRestJson1Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    DocumentTypeInputOutput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final DocumentTypeInputOutput(:documentValue, :stringValue) = object;
-    if (documentValue != null) {
-      result$
+    final payload = (object as DocumentTypeInputOutput);
+    final result = <Object?>[];
+    if (payload.documentValue != null) {
+      result
         ..add('documentValue')
         ..add(serializers.serialize(
-          documentValue,
+          payload.documentValue!,
           specifiedType: const FullType(_i3.JsonObject),
         ));
     }
-    if (stringValue != null) {
-      result$
+    if (payload.stringValue != null) {
+      result
         ..add('stringValue')
         ..add(serializers.serialize(
-          stringValue,
+          payload.stringValue!,
           specifiedType: const FullType(String),
         ));
     }
-    return result$;
+    return result;
   }
 }

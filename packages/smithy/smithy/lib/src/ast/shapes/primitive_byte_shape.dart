@@ -11,18 +11,17 @@ abstract class PrimitiveByteShape
     implements
         SimpleShape,
         Built<PrimitiveByteShape, PrimitiveByteShapeBuilder> {
-  factory PrimitiveByteShape([
-    void Function(PrimitiveByteShapeBuilder) updates,
-  ]) = _$PrimitiveByteShape;
+  factory PrimitiveByteShape(
+          [void Function(PrimitiveByteShapeBuilder) updates]) =
+      _$PrimitiveByteShape;
   PrimitiveByteShape._();
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(PrimitiveByteShapeBuilder b) {
-    b
-      ..shapeId = id
-      ..traits = TraitMap.fromTraits(const [
-        DefaultTrait(0),
-      ]);
+    b.shapeId = id;
+    b.traits = TraitMap.fromTraits(const [
+      DefaultTrait(0),
+    ]);
   }
 
   static const id = ShapeId.core('PrimitiveByte');

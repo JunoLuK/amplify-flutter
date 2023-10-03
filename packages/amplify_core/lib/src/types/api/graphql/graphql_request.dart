@@ -4,7 +4,7 @@
 import 'package:amplify_core/amplify_core.dart';
 
 /// A GraphQL request with a few extra properties used to decode the response or use the correct API if the backend has multiple.
-class GraphQLRequest<T> with AWSSerializable<Map<String, Object?>> {
+class GraphQLRequest<T> {
   GraphQLRequest({
     required this.document,
     this.apiName,
@@ -59,19 +59,11 @@ class GraphQLRequest<T> with AWSSerializable<Map<String, Object?>> {
   /// See https://docs.amplify.aws/lib/graphqlapi/advanced-workflows/q/platform/flutter/.
   final ModelType? modelType;
 
-  @Deprecated('Use toJson instead')
-  Map<String, dynamic> serializeAsMap() => toJson();
-
-  @override
-  Map<String, Object?> toJson() => {
-        'id': id,
+  Map<String, dynamic> serializeAsMap() => <String, dynamic>{
         'document': document,
         'variables': variables,
         'headers': headers,
         'cancelToken': id,
         if (apiName != null) 'apiName': apiName,
-        if (authorizationMode != null)
-          'authorizationMode': authorizationMode!.name,
-        if (decodePath != null) 'decodePath': decodePath,
       };
 }

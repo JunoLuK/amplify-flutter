@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'body_with_xml_name_input_output.dart';
+part of rest_xml_v2.rest_xml_protocol.model.body_with_xml_name_input_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of 'body_with_xml_name_input_output.dart';
 
 class _$BodyWithXmlNameInputOutput extends BodyWithXmlNameInputOutput {
   @override
-  final PayloadWithXmlName? nested;
+  final _i3.PayloadWithXmlName? nested;
 
   factory _$BodyWithXmlNameInputOutput(
           [void Function(BodyWithXmlNameInputOutputBuilder)? updates]) =>
@@ -45,12 +45,14 @@ class BodyWithXmlNameInputOutputBuilder
         Builder<BodyWithXmlNameInputOutput, BodyWithXmlNameInputOutputBuilder> {
   _$BodyWithXmlNameInputOutput? _$v;
 
-  PayloadWithXmlNameBuilder? _nested;
-  PayloadWithXmlNameBuilder get nested =>
-      _$this._nested ??= new PayloadWithXmlNameBuilder();
-  set nested(PayloadWithXmlNameBuilder? nested) => _$this._nested = nested;
+  _i3.PayloadWithXmlNameBuilder? _nested;
+  _i3.PayloadWithXmlNameBuilder get nested =>
+      _$this._nested ??= new _i3.PayloadWithXmlNameBuilder();
+  set nested(_i3.PayloadWithXmlNameBuilder? nested) => _$this._nested = nested;
 
-  BodyWithXmlNameInputOutputBuilder();
+  BodyWithXmlNameInputOutputBuilder() {
+    BodyWithXmlNameInputOutput._init(this);
+  }
 
   BodyWithXmlNameInputOutputBuilder get _$this {
     final $v = _$v;

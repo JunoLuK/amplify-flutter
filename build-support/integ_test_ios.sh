@@ -52,33 +52,45 @@ if [ ! -e $TARGET ]; then
     exit
 fi
 
-if [ -n ${CI:-} ]; then
-    flutter pub upgrade
+if [ -n $CI ]; then
+    flutter pub get
 fi
 
-testsList+=("$TARGET")
-# Run tests with retry.
-n=0
-until [ "$n" -gt $retries ]
-do
-    if flutter test \
-        --no-pub \
-        -d $deviceId \
-        $TARGET;
-    then
-        resultsList+=(0)
-        break
-    else
-        n=$((n+1))
-        echo "Integration test failed on attempt: $n"
-        if [ "$n" -gt $retries ]
+# Use xcodebuild if 'RunnerTests' scheme exists, else `flutter test`
+if xcodebuild -workspace ios/Runner.xcworkspace -list -json | jq -e '.workspace.schemes | index("RunnerTests")' >/dev/null; then
+    # Build app for testing
+    flutter build ios --no-pub --config-only --simulator --target=$TARGET
+
+    xcodebuild \
+        -workspace ios/Runner.xcworkspace \
+        -scheme RunnerTests \
+        -destination "platform=iOS Simulator,name=iPhone 14 Pro Max" \
+        test
+else
+    testsList+=("$TARGET")
+    # Run tests with retry.
+    n=0
+    until [ "$n" -gt $retries ]
+    do
+        if flutter test \
+            --no-pub \
+            -d $deviceId \
+            $TARGET;
         then
-            resultsList+=(1)
+            resultsList+=(0)
+            break
         else
-            echo "Retrying..."
+            n=$((n+1))
+            echo "Integration test failed on attempt: $n"
+            if [ "$n" -gt $retries ]
+            then
+                resultsList+=(1)
+            else
+                echo "Retrying..."
+            fi
         fi
-    fi
-done
+    done
+fi
 
 TEST_ENTRIES="integration_test/separate_integration_tests/*.dart"
 # For small option (summarized) just test basic cloud operation.

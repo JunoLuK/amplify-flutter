@@ -1,16 +1,7 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-/// Erase types on maps to mimic how maps come back from the platform.
-Map<Object?, Object?> _eraseTypes(Map<Object?, Object?> map) => {
-      for (final MapEntry(:key, :value) in map.entries)
-        key: switch (value) {
-          final Map<Object?, Object?> map => _eraseTypes(map),
-          _ => value,
-        },
-    };
-
-final standardAndroidPushMessage = _eraseTypes({
+const standardAndroidPushMessage = {
   'title': 'TITTLE',
   'body': 'BODY',
   'imageUrl': null,
@@ -23,11 +14,11 @@ final standardAndroidPushMessage = _eraseTypes({
     'pinpoint.notification.title': 'TITTLE',
     'pinpoint.notification.body': 'BODY',
     'pinpoint.campaign.campaign_id': '_DIRECT',
-    'pinpoint.notification.silentPush': 0,
-  },
-});
+    'pinpoint.notification.silentPush': 0
+  }
+};
 
-final urlsAndroidMessage = _eraseTypes({
+const urlsAndroidMessage = {
   'title': 'TITTLE',
   'body': 'BODY',
   'imageUrl': null,
@@ -40,11 +31,11 @@ final urlsAndroidMessage = _eraseTypes({
     'pinpoint.notification.title': 'TITTLE',
     'pinpoint.notification.body': 'BODY',
     'pinpoint.campaign.campaign_id': '_DIRECT',
-    'pinpoint.notification.silentPush': 0,
-  },
-});
+    'pinpoint.notification.silentPush': 0
+  }
+};
 
-final imageUrlAndroidPushMessage = _eraseTypes({
+const imageUrlAndroidPushMessage = {
   'title': 'TITTLE',
   'body': 'BODY',
   'imageUrl': 'TEST_URL',
@@ -57,25 +48,19 @@ final imageUrlAndroidPushMessage = _eraseTypes({
     'pinpoint.notification.title': 'TITTLE',
     'pinpoint.notification.body': 'BODY',
     'pinpoint.campaign.campaign_id': '_DIRECT',
-    'pinpoint.notification.silentPush': 0,
-  },
-});
+    'pinpoint.notification.silentPush': 0
+  }
+};
 
-final standardiOSMessage = _eraseTypes({
+const standardiOSMessage = {
   'aps': {
     'alert': {'title': 'TITTLE', 'body': 'BODY'},
     'mutable-content': 0,
     'content-available': 1,
-  },
-});
+  }
+};
 
-final simpleAlertiOSMessage = _eraseTypes({
-  'aps': {
-    'alert': 'Hello, world',
-  },
-});
-
-final imageUrliOSMessage = _eraseTypes({
+const imageUrliOSMessage = {
   'data': {
     'media-url': 'TEST_URL',
   },
@@ -83,16 +68,16 @@ final imageUrliOSMessage = _eraseTypes({
     'alert': {'title': 'TITTLE', 'body': 'BODY'},
     'mutable-content': 0,
     'content-available': 1,
-  },
-});
+  }
+};
 
-final urlsiOSMessage = _eraseTypes({
+const urlsiOSMessage = {
   'data': {
-    'pinpoint': {'deeplink': 'URL'},
+    'pinpoint': {'deeplink': 'URL'}
   },
   'aps': {
     'alert': {'title': 'TITTLE', 'body': 'BODY'},
     'mutable-content': 0,
-    'content-available': 1,
-  },
-});
+    'content-available': 1
+  }
+};

@@ -27,7 +27,7 @@ FRONTEND="{\
 AWSCLOUDFORMATIONCONFIG="{\
 \"configLevel\":\"project\",\
 \"useProfile\":true,\
-\"profileName\":\"${AWS_PROFILE:-default}\",\
+\"profileName\":\"default\",\
 \"region\":\"us-west-2\"\
 }"
 PROVIDERS="{\

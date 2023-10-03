@@ -1,15 +1,15 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import 'package:amplify_auth_integration_test/amplify_auth_integration_test.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_integration_test/amplify_integration_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'test_runner.dart';
+import 'utils/setup_utils.dart';
+import 'utils/test_utils.dart';
 
 void main() {
-  testRunner.setupTests();
+  initTests();
 
   group('Auth Hub', () {
     final authEventStream =
@@ -18,8 +18,8 @@ void main() {
     final username = generateUsername();
     final password = generatePassword();
 
-    setUp(() async {
-      await testRunner.configure();
+    setUpAll(() async {
+      await configureAuth();
 
       await adminCreateUser(
         username,
@@ -30,6 +30,8 @@ void main() {
 
       await signOutUser();
     });
+
+    tearDownAll(Amplify.reset);
 
     Matcher hasEventName(String name) =>
         isA<AuthHubEvent>().having((e) => e.eventName, 'eventName', name);

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'endpoint_request.dart';
+part of amplify_analytics_pinpoint_dart.pinpoint.model.endpoint_request;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -10,25 +10,25 @@ class _$EndpointRequest extends EndpointRequest {
   @override
   final String? address;
   @override
-  final _i2.BuiltListMultimap<String, String>? attributes;
+  final _i6.BuiltListMultimap<String, String>? attributes;
   @override
-  final ChannelType? channelType;
+  final _i2.ChannelType? channelType;
   @override
-  final EndpointDemographic? demographic;
+  final _i3.EndpointDemographic? demographic;
   @override
   final String? effectiveDate;
   @override
   final String? endpointStatus;
   @override
-  final EndpointLocation? location;
+  final _i4.EndpointLocation? location;
   @override
-  final _i2.BuiltMap<String, double>? metrics;
+  final _i6.BuiltMap<String, double>? metrics;
   @override
   final String? optOut;
   @override
   final String? requestId;
   @override
-  final EndpointUser? user;
+  final _i5.EndpointUser? user;
 
   factory _$EndpointRequest([void Function(EndpointRequestBuilder)? updates]) =>
       (new EndpointRequestBuilder()..update(updates))._build();
@@ -99,21 +99,21 @@ class EndpointRequestBuilder
   String? get address => _$this._address;
   set address(String? address) => _$this._address = address;
 
-  _i2.ListMultimapBuilder<String, String>? _attributes;
-  _i2.ListMultimapBuilder<String, String> get attributes =>
-      _$this._attributes ??= new _i2.ListMultimapBuilder<String, String>();
-  set attributes(_i2.ListMultimapBuilder<String, String>? attributes) =>
+  _i6.ListMultimapBuilder<String, String>? _attributes;
+  _i6.ListMultimapBuilder<String, String> get attributes =>
+      _$this._attributes ??= new _i6.ListMultimapBuilder<String, String>();
+  set attributes(_i6.ListMultimapBuilder<String, String>? attributes) =>
       _$this._attributes = attributes;
 
-  ChannelType? _channelType;
-  ChannelType? get channelType => _$this._channelType;
-  set channelType(ChannelType? channelType) =>
+  _i2.ChannelType? _channelType;
+  _i2.ChannelType? get channelType => _$this._channelType;
+  set channelType(_i2.ChannelType? channelType) =>
       _$this._channelType = channelType;
 
-  EndpointDemographicBuilder? _demographic;
-  EndpointDemographicBuilder get demographic =>
-      _$this._demographic ??= new EndpointDemographicBuilder();
-  set demographic(EndpointDemographicBuilder? demographic) =>
+  _i3.EndpointDemographicBuilder? _demographic;
+  _i3.EndpointDemographicBuilder get demographic =>
+      _$this._demographic ??= new _i3.EndpointDemographicBuilder();
+  set demographic(_i3.EndpointDemographicBuilder? demographic) =>
       _$this._demographic = demographic;
 
   String? _effectiveDate;
@@ -126,16 +126,16 @@ class EndpointRequestBuilder
   set endpointStatus(String? endpointStatus) =>
       _$this._endpointStatus = endpointStatus;
 
-  EndpointLocationBuilder? _location;
-  EndpointLocationBuilder get location =>
-      _$this._location ??= new EndpointLocationBuilder();
-  set location(EndpointLocationBuilder? location) =>
+  _i4.EndpointLocationBuilder? _location;
+  _i4.EndpointLocationBuilder get location =>
+      _$this._location ??= new _i4.EndpointLocationBuilder();
+  set location(_i4.EndpointLocationBuilder? location) =>
       _$this._location = location;
 
-  _i2.MapBuilder<String, double>? _metrics;
-  _i2.MapBuilder<String, double> get metrics =>
-      _$this._metrics ??= new _i2.MapBuilder<String, double>();
-  set metrics(_i2.MapBuilder<String, double>? metrics) =>
+  _i6.MapBuilder<String, double>? _metrics;
+  _i6.MapBuilder<String, double> get metrics =>
+      _$this._metrics ??= new _i6.MapBuilder<String, double>();
+  set metrics(_i6.MapBuilder<String, double>? metrics) =>
       _$this._metrics = metrics;
 
   String? _optOut;
@@ -146,11 +146,14 @@ class EndpointRequestBuilder
   String? get requestId => _$this._requestId;
   set requestId(String? requestId) => _$this._requestId = requestId;
 
-  EndpointUserBuilder? _user;
-  EndpointUserBuilder get user => _$this._user ??= new EndpointUserBuilder();
-  set user(EndpointUserBuilder? user) => _$this._user = user;
+  _i5.EndpointUserBuilder? _user;
+  _i5.EndpointUserBuilder get user =>
+      _$this._user ??= new _i5.EndpointUserBuilder();
+  set user(_i5.EndpointUserBuilder? user) => _$this._user = user;
 
-  EndpointRequestBuilder();
+  EndpointRequestBuilder() {
+    EndpointRequest._init(this);
+  }
 
   EndpointRequestBuilder get _$this {
     final $v = _$v;

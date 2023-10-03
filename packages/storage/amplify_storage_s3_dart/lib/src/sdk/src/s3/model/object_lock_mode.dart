@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_storage_s3_dart.s3.model.object_lock_mode; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -7,12 +6,16 @@ import 'package:smithy/smithy.dart' as _i1;
 
 class ObjectLockMode extends _i1.SmithyEnum<ObjectLockMode> {
   const ObjectLockMode._(
-    super.index,
-    super.name,
-    super.value,
-  );
+    int index,
+    String name,
+    String value,
+  ) : super(
+          index,
+          name,
+          value,
+        );
 
-  const ObjectLockMode._sdkUnknown(super.value) : super.sdkUnknown();
+  const ObjectLockMode._sdkUnknown(String value) : super.sdkUnknown(value);
 
   static const compliance = ObjectLockMode._(
     0,

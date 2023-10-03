@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_auth_cognito_dart.cognito_identity.model.get_id_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -41,9 +40,12 @@ abstract class GetIdInput
   }) =>
       payload;
 
-  static const List<_i1.SmithySerializer<GetIdInput>> serializers = [
+  static const List<_i1.SmithySerializer> serializers = [
     GetIdInputAwsJson11Serializer()
   ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(GetIdInputBuilder b) {}
 
   /// A standard AWS account ID (9+ digits).
   String? get accountId;
@@ -75,19 +77,19 @@ abstract class GetIdInput
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('GetIdInput')
-      ..add(
-        'accountId',
-        accountId,
-      )
-      ..add(
-        'identityPoolId',
-        identityPoolId,
-      )
-      ..add(
-        'logins',
-        logins,
-      );
+    final helper = newBuiltValueToStringHelper('GetIdInput');
+    helper.add(
+      'accountId',
+      accountId,
+    );
+    helper.add(
+      'identityPoolId',
+      identityPoolId,
+    );
+    helper.add(
+      'logins',
+      logins,
+    );
     return helper.toString();
   }
 }
@@ -120,31 +122,35 @@ class GetIdInputAwsJson11Serializer
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
       switch (key) {
         case 'AccountId':
-          result.accountId = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String);
+          if (value != null) {
+            result.accountId = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(String),
+            ) as String);
+          }
+          break;
         case 'IdentityPoolId':
           result.identityPoolId = (serializers.deserialize(
-            value,
+            value!,
             specifiedType: const FullType(String),
           ) as String);
+          break;
         case 'Logins':
-          result.logins.replace((serializers.deserialize(
-            value,
-            specifiedType: const FullType(
-              _i3.BuiltMap,
-              [
-                FullType(String),
-                FullType(String),
-              ],
-            ),
-          ) as _i3.BuiltMap<String, String>));
+          if (value != null) {
+            result.logins.replace((serializers.deserialize(
+              value,
+              specifiedType: const FullType(
+                _i3.BuiltMap,
+                [
+                  FullType(String),
+                  FullType(String),
+                ],
+              ),
+            ) as _i3.BuiltMap<String, String>));
+          }
+          break;
       }
     }
 
@@ -154,31 +160,30 @@ class GetIdInputAwsJson11Serializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    GetIdInput object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[];
-    final GetIdInput(:accountId, :identityPoolId, :logins) = object;
-    result$.addAll([
+    final payload = (object as GetIdInput);
+    final result = <Object?>[
       'IdentityPoolId',
       serializers.serialize(
-        identityPoolId,
+        payload.identityPoolId,
         specifiedType: const FullType(String),
       ),
-    ]);
-    if (accountId != null) {
-      result$
+    ];
+    if (payload.accountId != null) {
+      result
         ..add('AccountId')
         ..add(serializers.serialize(
-          accountId,
+          payload.accountId!,
           specifiedType: const FullType(String),
         ));
     }
-    if (logins != null) {
-      result$
+    if (payload.logins != null) {
+      result
         ..add('Logins')
         ..add(serializers.serialize(
-          logins,
+          payload.logins!,
           specifiedType: const FullType(
             _i3.BuiltMap,
             [
@@ -188,6 +193,6 @@ class GetIdInputAwsJson11Serializer
           ),
         ));
     }
-    return result$;
+    return result;
   }
 }

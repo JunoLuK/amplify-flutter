@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'streaming_traits_require_length_input.dart';
+part of rest_json1_v2.rest_json_protocol.model.streaming_traits_require_length_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -9,20 +9,16 @@ part of 'streaming_traits_require_length_input.dart';
 class _$StreamingTraitsRequireLengthInput
     extends StreamingTraitsRequireLengthInput {
   @override
-  final String? foo;
+  final _i2.Stream<List<int>>? blob;
   @override
-  final _i2.Stream<List<int>> blob;
+  final String? foo;
 
   factory _$StreamingTraitsRequireLengthInput(
           [void Function(StreamingTraitsRequireLengthInputBuilder)? updates]) =>
       (new StreamingTraitsRequireLengthInputBuilder()..update(updates))
           ._build();
 
-  _$StreamingTraitsRequireLengthInput._({this.foo, required this.blob})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        blob, r'StreamingTraitsRequireLengthInput', 'blob');
-  }
+  _$StreamingTraitsRequireLengthInput._({this.blob, this.foo}) : super._();
 
   @override
   StreamingTraitsRequireLengthInput rebuild(
@@ -37,15 +33,15 @@ class _$StreamingTraitsRequireLengthInput
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is StreamingTraitsRequireLengthInput &&
-        foo == other.foo &&
-        blob == other.blob;
+        blob == other.blob &&
+        foo == other.foo;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, foo.hashCode);
     _$hash = $jc(_$hash, blob.hashCode);
+    _$hash = $jc(_$hash, foo.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -57,13 +53,13 @@ class StreamingTraitsRequireLengthInputBuilder
             StreamingTraitsRequireLengthInputBuilder> {
   _$StreamingTraitsRequireLengthInput? _$v;
 
-  String? _foo;
-  String? get foo => _$this._foo;
-  set foo(String? foo) => _$this._foo = foo;
-
   _i2.Stream<List<int>>? _blob;
   _i2.Stream<List<int>>? get blob => _$this._blob;
   set blob(_i2.Stream<List<int>>? blob) => _$this._blob = blob;
+
+  String? _foo;
+  String? get foo => _$this._foo;
+  set foo(String? foo) => _$this._foo = foo;
 
   StreamingTraitsRequireLengthInputBuilder() {
     StreamingTraitsRequireLengthInput._init(this);
@@ -72,8 +68,8 @@ class StreamingTraitsRequireLengthInputBuilder
   StreamingTraitsRequireLengthInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _foo = $v.foo;
       _blob = $v.blob;
+      _foo = $v.foo;
       _$v = null;
     }
     return this;
@@ -95,11 +91,8 @@ class StreamingTraitsRequireLengthInputBuilder
   StreamingTraitsRequireLengthInput build() => _build();
 
   _$StreamingTraitsRequireLengthInput _build() {
-    final _$result = _$v ??
-        new _$StreamingTraitsRequireLengthInput._(
-            foo: foo,
-            blob: BuiltValueNullFieldError.checkNotNull(
-                blob, r'StreamingTraitsRequireLengthInput', 'blob'));
+    final _$result =
+        _$v ?? new _$StreamingTraitsRequireLengthInput._(blob: blob, foo: foo);
     replace(_$result);
     return _$result;
   }

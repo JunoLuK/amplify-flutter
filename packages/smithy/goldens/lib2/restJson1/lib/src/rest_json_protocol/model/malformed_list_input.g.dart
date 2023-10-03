@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'malformed_list_input.dart';
+part of rest_json1_v2.rest_json_protocol.model.malformed_list_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -50,7 +50,9 @@ class MalformedListInputBuilder
   set bodyList(_i3.ListBuilder<String>? bodyList) =>
       _$this._bodyList = bodyList;
 
-  MalformedListInputBuilder();
+  MalformedListInputBuilder() {
+    MalformedListInput._init(this);
+  }
 
   MalformedListInputBuilder get _$this {
     final $v = _$v;

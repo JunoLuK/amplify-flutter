@@ -19,11 +19,6 @@ mixin GlobOptions on AmplifyCommand {
       );
   }
 
-  /// The base package selector to use when [include] is not specified.
-  ///
-  /// Defaults to [PackageSelector.all].
-  PackageSelector get basePackageSelector => const PackageSelector.all();
-
   /// List of packages or components which should be included.
   late final include = argResults?['include'] as List<String>;
 
@@ -32,9 +27,7 @@ mixin GlobOptions on AmplifyCommand {
 
   /// The package selector passed via command line flags.
   late final commandPackageSelector = PackageSelector(
-    include: include.isEmpty
-        ? basePackageSelector
-        : PackageSelector.fromJson(include),
+    include: include.isEmpty ? null : PackageSelector.fromJson(include),
     exclude: exclude.isEmpty ? null : PackageSelector.fromJson(exclude),
   );
 

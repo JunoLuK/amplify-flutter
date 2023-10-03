@@ -3,7 +3,7 @@
 
 import 'dart:html';
 
-import 'package:example_common/src/components/component.dart';
+import 'component.dart';
 
 /// {@template example_common.text_component}
 /// a component that displays text

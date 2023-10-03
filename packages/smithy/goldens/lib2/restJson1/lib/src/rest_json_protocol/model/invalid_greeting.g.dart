@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'invalid_greeting.dart';
+part of rest_json1_v2.rest_json_protocol.model.invalid_greeting;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -52,7 +52,9 @@ class InvalidGreetingBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  InvalidGreetingBuilder();
+  InvalidGreetingBuilder() {
+    InvalidGreeting._init(this);
+  }
 
   InvalidGreetingBuilder get _$this {
     final $v = _$v;

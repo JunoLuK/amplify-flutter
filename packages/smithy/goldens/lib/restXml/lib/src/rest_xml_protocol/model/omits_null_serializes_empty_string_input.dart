@@ -1,5 +1,4 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library rest_xml_v1.rest_xml_protocol.model.omits_null_serializes_empty_string_input; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
@@ -21,12 +20,12 @@ abstract class OmitsNullSerializesEmptyStringInput
         _i1.EmptyPayload,
         _i1.HasPayload<OmitsNullSerializesEmptyStringInputPayload> {
   factory OmitsNullSerializesEmptyStringInput({
-    String? nullValue,
     String? emptyString,
+    String? nullValue,
   }) {
     return _$OmitsNullSerializesEmptyStringInput._(
-      nullValue: nullValue,
       emptyString: emptyString,
+      nullValue: nullValue,
     );
   }
 
@@ -50,32 +49,34 @@ abstract class OmitsNullSerializesEmptyStringInput
         }
       });
 
-  static const List<
-          _i1.SmithySerializer<OmitsNullSerializesEmptyStringInputPayload>>
-      serializers = [OmitsNullSerializesEmptyStringInputRestXmlSerializer()];
+  static const List<_i1.SmithySerializer> serializers = [
+    OmitsNullSerializesEmptyStringInputRestXmlSerializer()
+  ];
 
-  String? get nullValue;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(OmitsNullSerializesEmptyStringInputBuilder b) {}
   String? get emptyString;
+  String? get nullValue;
   @override
   OmitsNullSerializesEmptyStringInputPayload getPayload() =>
       OmitsNullSerializesEmptyStringInputPayload();
   @override
   List<Object?> get props => [
-        nullValue,
         emptyString,
+        nullValue,
       ];
   @override
   String toString() {
     final helper =
-        newBuiltValueToStringHelper('OmitsNullSerializesEmptyStringInput')
-          ..add(
-            'nullValue',
-            nullValue,
-          )
-          ..add(
-            'emptyString',
-            emptyString,
-          );
+        newBuiltValueToStringHelper('OmitsNullSerializesEmptyStringInput');
+    helper.add(
+      'emptyString',
+      emptyString,
+    );
+    helper.add(
+      'nullValue',
+      nullValue,
+    );
     return helper.toString();
   }
 }
@@ -94,6 +95,8 @@ abstract class OmitsNullSerializesEmptyStringInputPayload
 
   const OmitsNullSerializesEmptyStringInputPayload._();
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(OmitsNullSerializesEmptyStringInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
   @override
@@ -135,13 +138,12 @@ class OmitsNullSerializesEmptyStringInputRestXmlSerializer extends _i1
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    OmitsNullSerializesEmptyStringInputPayload object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final result = <Object?>[
       const _i1.XmlElementName('OmitsNullSerializesEmptyStringInput')
     ];
-
-    return result$;
+    return result;
   }
 }

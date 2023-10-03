@@ -1,7 +1,10 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-part of 'auth_event.dart';
+import 'package:amplify_auth_cognito_dart/amplify_auth_cognito_dart.dart';
+import 'package:amplify_auth_cognito_dart/src/model/hosted_ui/oauth_parameters.dart';
+import 'package:amplify_auth_cognito_dart/src/state/state.dart';
+import 'package:amplify_core/amplify_core.dart';
 
 /// Discrete event types of the hosted UI state machine.
 enum HostedUiEventType {
@@ -28,7 +31,7 @@ enum HostedUiEventType {
 }
 
 /// Discrete events of the hosted UI state machine.
-sealed class HostedUiEvent
+abstract class HostedUiEvent
     extends AuthEvent<HostedUiEventType, HostedUiStateType> {
   const HostedUiEvent._();
 
@@ -49,10 +52,7 @@ sealed class HostedUiEvent
   }) = HostedUiSignIn;
 
   /// {@macro amplify_auth_cognito.hosted_ui_cancel_sign_in}
-  const factory HostedUiEvent.cancelSignIn([
-    Object? error,
-    StackTrace? stackTrace,
-  ]) = HostedUiCancelSignIn;
+  const factory HostedUiEvent.cancelSignIn() = HostedUiCancelSignIn;
 
   /// {@macro amplify_auth_cognito.hosted_ui_exchange}
   const factory HostedUiEvent.exchange(OAuthParameters parameters) =
@@ -73,7 +73,7 @@ sealed class HostedUiEvent
 /// {@template amplify_auth_cognito.hosted_ui_configure}
 /// Configure the hosted UI flow for use.
 /// {@endtemplate}
-final class HostedUiConfigure extends HostedUiEvent {
+class HostedUiConfigure extends HostedUiEvent {
   /// {@macro amplify_auth_cognito.hosted_ui_configure}
   const HostedUiConfigure() : super._();
 
@@ -87,7 +87,7 @@ final class HostedUiConfigure extends HostedUiEvent {
 /// {@template amplify_auth_cognito.hosted_ui_found_state}
 /// The hosted UI flow was found to be in a partially complete state.
 /// {@endtemplate}
-final class HostedUiFoundState extends HostedUiEvent {
+class HostedUiFoundState extends HostedUiEvent {
   /// {@macro amplify_auth_cognito.hosted_ui_found_state}
   const HostedUiFoundState({
     required this.state,
@@ -110,7 +110,7 @@ final class HostedUiFoundState extends HostedUiEvent {
 /// {@template amplify_auth_cognito.hosted_ui_sign_in}
 /// Sign in via the hosted UI flow.
 /// {@endtemplate}
-final class HostedUiSignIn extends HostedUiEvent {
+class HostedUiSignIn extends HostedUiEvent {
   /// {@macro amplify_auth_cognito.hosted_ui_sign_in}
   const HostedUiSignIn({
     this.options = const CognitoSignInWithWebUIPluginOptions(),
@@ -144,25 +144,12 @@ final class HostedUiSignIn extends HostedUiEvent {
 /// {@template amplify_auth_cognito.hosted_ui_cancel_sign_in}
 /// Cancels the hosted UI flow.
 /// {@endtemplate}
-final class HostedUiCancelSignIn extends HostedUiEvent {
+class HostedUiCancelSignIn extends HostedUiEvent {
   /// {@macro amplify_auth_cognito.hosted_ui_cancel_sign_in}
-  const HostedUiCancelSignIn([
-    Object? error,
-    this.stackTrace,
-  ])  : error = error ??
-            const UserCancelledException(
-              'The user canceled the sign-in flow',
-            ),
-        super._();
-
-  /// The cause of the cancellation.
-  final Object error;
-
-  /// The stack trace associated with [error].
-  final StackTrace? stackTrace;
+  const HostedUiCancelSignIn() : super._();
 
   @override
-  List<Object?> get props => [type, error, stackTrace];
+  List<Object?> get props => [type];
 
   @override
   HostedUiEventType get type => HostedUiEventType.cancelSignIn;
@@ -182,7 +169,7 @@ final class HostedUiCancelSignIn extends HostedUiEvent {
 /// {@template amplify_auth_cognito.hosted_ui_exchange}
 /// Perform the `exchange` portion of the hosted UI flow.
 /// {@endtemplate}
-final class HostedUiExchange extends HostedUiEvent {
+class HostedUiExchange extends HostedUiEvent {
   /// {@macro amplify_auth_cognito.hosted_ui_exchange}
   const HostedUiExchange(this.parameters) : super._();
 
@@ -199,7 +186,7 @@ final class HostedUiExchange extends HostedUiEvent {
 /// {@template amplify_auth_cognito.hosted_ui_sign_out}
 /// Signs out a user who signed in with the Hosted UI flow.
 /// {@endtemplate}
-final class HostedUiSignOut extends HostedUiEvent {
+class HostedUiSignOut extends HostedUiEvent {
   /// {@macro amplify_auth_cognito.hosted_ui_sign_out}
   const HostedUiSignOut() : super._();
 
@@ -237,7 +224,7 @@ final class HostedUiSignOut extends HostedUiEvent {
 /// {@template amplify_auth_cognito.hosted_ui_succeeded}
 /// The user successfully logged in via the hosted UI flow.
 /// {@endtemplate}
-final class HostedUiSucceeded extends HostedUiEvent {
+class HostedUiSucceeded extends HostedUiEvent {
   /// {@macro amplify_auth_cognito.hosted_ui_succeeded}
   const HostedUiSucceeded(this.tokens) : super._();
 

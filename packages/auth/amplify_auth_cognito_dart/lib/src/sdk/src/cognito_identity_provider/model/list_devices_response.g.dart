@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'list_devices_response.dart';
+part of amplify_auth_cognito_dart.cognito_identity_provider.model.list_devices_response;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of 'list_devices_response.dart';
 
 class _$ListDevicesResponse extends ListDevicesResponse {
   @override
-  final _i2.BuiltList<DeviceType>? devices;
+  final _i3.BuiltList<_i2.DeviceType>? devices;
   @override
   final String? paginationToken;
 
@@ -49,10 +49,10 @@ class ListDevicesResponseBuilder
     implements Builder<ListDevicesResponse, ListDevicesResponseBuilder> {
   _$ListDevicesResponse? _$v;
 
-  _i2.ListBuilder<DeviceType>? _devices;
-  _i2.ListBuilder<DeviceType> get devices =>
-      _$this._devices ??= new _i2.ListBuilder<DeviceType>();
-  set devices(_i2.ListBuilder<DeviceType>? devices) =>
+  _i3.ListBuilder<_i2.DeviceType>? _devices;
+  _i3.ListBuilder<_i2.DeviceType> get devices =>
+      _$this._devices ??= new _i3.ListBuilder<_i2.DeviceType>();
+  set devices(_i3.ListBuilder<_i2.DeviceType>? devices) =>
       _$this._devices = devices;
 
   String? _paginationToken;
@@ -60,7 +60,9 @@ class ListDevicesResponseBuilder
   set paginationToken(String? paginationToken) =>
       _$this._paginationToken = paginationToken;
 
-  ListDevicesResponseBuilder();
+  ListDevicesResponseBuilder() {
+    ListDevicesResponse._init(this);
+  }
 
   ListDevicesResponseBuilder get _$this {
     final $v = _$v;

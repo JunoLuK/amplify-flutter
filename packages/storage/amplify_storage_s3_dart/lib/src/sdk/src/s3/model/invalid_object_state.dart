@@ -1,10 +1,11 @@
 // Generated with smithy-dart 0.3.1. DO NOT MODIFY.
-// ignore_for_file: avoid_unused_constructor_parameters,deprecated_member_use_from_same_package,non_constant_identifier_names,require_trailing_commas
 
 library amplify_storage_s3_dart.s3.model.invalid_object_state; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/intelligent_tiering_access_tier.dart';
-import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/storage_class.dart';
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/intelligent_tiering_access_tier.dart'
+    as _i3;
+import 'package:amplify_storage_s3_dart/src/sdk/src/s3/model/storage_class.dart'
+    as _i4;
 import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -20,12 +21,12 @@ abstract class InvalidObjectState
         _i2.SmithyHttpException {
   /// Object is archived and inaccessible until restored.
   factory InvalidObjectState({
-    StorageClass? storageClass,
-    IntelligentTieringAccessTier? accessTier,
+    _i3.IntelligentTieringAccessTier? accessTier,
+    _i4.StorageClass? storageClass,
   }) {
     return _$InvalidObjectState._(
-      storageClass: storageClass,
       accessTier: accessTier,
+      storageClass: storageClass,
     );
   }
 
@@ -46,12 +47,14 @@ abstract class InvalidObjectState
         b.headers = response.headers;
       });
 
-  static const List<_i2.SmithySerializer<InvalidObjectState>> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     InvalidObjectStateRestXmlSerializer()
   ];
 
-  StorageClass? get storageClass;
-  IntelligentTieringAccessTier? get accessTier;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(InvalidObjectStateBuilder b) {}
+  _i3.IntelligentTieringAccessTier? get accessTier;
+  _i4.StorageClass? get storageClass;
   @override
   _i2.ShapeId get shapeId => const _i2.ShapeId(
         namespace: 'com.amazonaws.s3',
@@ -71,20 +74,20 @@ abstract class InvalidObjectState
   Exception? get underlyingException => null;
   @override
   List<Object?> get props => [
-        storageClass,
         accessTier,
+        storageClass,
       ];
   @override
   String toString() {
-    final helper = newBuiltValueToStringHelper('InvalidObjectState')
-      ..add(
-        'storageClass',
-        storageClass,
-      )
-      ..add(
-        'accessTier',
-        accessTier,
-      );
+    final helper = newBuiltValueToStringHelper('InvalidObjectState');
+    helper.add(
+      'accessTier',
+      accessTier,
+    );
+    helper.add(
+      'storageClass',
+      storageClass,
+    );
     return helper.toString();
   }
 }
@@ -114,23 +117,26 @@ class InvalidObjectStateRestXmlSerializer
     final result = InvalidObjectStateBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current;
       iterator.moveNext();
       final value = iterator.current;
-      if (value == null) {
-        continue;
-      }
-      switch (key) {
+      switch (key as String) {
         case 'AccessTier':
-          result.accessTier = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(IntelligentTieringAccessTier),
-          ) as IntelligentTieringAccessTier);
+          if (value != null) {
+            result.accessTier = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i3.IntelligentTieringAccessTier),
+            ) as _i3.IntelligentTieringAccessTier);
+          }
+          break;
         case 'StorageClass':
-          result.storageClass = (serializers.deserialize(
-            value,
-            specifiedType: const FullType(StorageClass),
-          ) as StorageClass);
+          if (value != null) {
+            result.storageClass = (serializers.deserialize(
+              value,
+              specifiedType: const FullType(_i4.StorageClass),
+            ) as _i4.StorageClass);
+          }
+          break;
       }
     }
 
@@ -140,32 +146,33 @@ class InvalidObjectStateRestXmlSerializer
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    InvalidObjectState object, {
+    Object? object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result$ = <Object?>[
+    final payload = (object as InvalidObjectState);
+    final result = <Object?>[
       const _i2.XmlElementName(
         'InvalidObjectState',
         _i2.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'),
       )
     ];
-    final InvalidObjectState(:accessTier, :storageClass) = object;
-    if (accessTier != null) {
-      result$
+    if (payload.accessTier != null) {
+      result
         ..add(const _i2.XmlElementName('AccessTier'))
         ..add(serializers.serialize(
-          accessTier,
-          specifiedType: const FullType(IntelligentTieringAccessTier),
+          payload.accessTier!,
+          specifiedType:
+              const FullType.nullable(_i3.IntelligentTieringAccessTier),
         ));
     }
-    if (storageClass != null) {
-      result$
+    if (payload.storageClass != null) {
+      result
         ..add(const _i2.XmlElementName('StorageClass'))
         ..add(serializers.serialize(
-          storageClass,
-          specifiedType: const FullType(StorageClass),
+          payload.storageClass!,
+          specifiedType: const FullType.nullable(_i4.StorageClass),
         ));
     }
-    return result$;
+    return result;
   }
 }

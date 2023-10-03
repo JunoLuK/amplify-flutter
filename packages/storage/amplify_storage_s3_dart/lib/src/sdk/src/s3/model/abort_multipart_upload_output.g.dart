@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'abort_multipart_upload_output.dart';
+part of amplify_storage_s3_dart.s3.model.abort_multipart_upload_output;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -8,7 +8,7 @@ part of 'abort_multipart_upload_output.dart';
 
 class _$AbortMultipartUploadOutput extends AbortMultipartUploadOutput {
   @override
-  final RequestCharged? requestCharged;
+  final _i3.RequestCharged? requestCharged;
 
   factory _$AbortMultipartUploadOutput(
           [void Function(AbortMultipartUploadOutputBuilder)? updates]) =>
@@ -46,12 +46,14 @@ class AbortMultipartUploadOutputBuilder
         Builder<AbortMultipartUploadOutput, AbortMultipartUploadOutputBuilder> {
   _$AbortMultipartUploadOutput? _$v;
 
-  RequestCharged? _requestCharged;
-  RequestCharged? get requestCharged => _$this._requestCharged;
-  set requestCharged(RequestCharged? requestCharged) =>
+  _i3.RequestCharged? _requestCharged;
+  _i3.RequestCharged? get requestCharged => _$this._requestCharged;
+  set requestCharged(_i3.RequestCharged? requestCharged) =>
       _$this._requestCharged = requestCharged;
 
-  AbortMultipartUploadOutputBuilder();
+  AbortMultipartUploadOutputBuilder() {
+    AbortMultipartUploadOutput._init(this);
+  }
 
   AbortMultipartUploadOutputBuilder get _$this {
     final $v = _$v;
@@ -120,7 +122,9 @@ class AbortMultipartUploadOutputPayloadBuilder
             AbortMultipartUploadOutputPayloadBuilder> {
   _$AbortMultipartUploadOutputPayload? _$v;
 
-  AbortMultipartUploadOutputPayloadBuilder();
+  AbortMultipartUploadOutputPayloadBuilder() {
+    AbortMultipartUploadOutputPayload._init(this);
+  }
 
   @override
   void replace(AbortMultipartUploadOutputPayload other) {

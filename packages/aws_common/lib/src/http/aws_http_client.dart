@@ -29,16 +29,16 @@ abstract class AWSHttpClient implements Closeable {
   @internal
   AWSHttpClient.protected();
 
-  ///Add custom client to replace create for constructor class.
+  ///Add custom client to replace create for constructor class.w
   ///Use for add interceptor or certificate.
 
-  Future<SecurityContext> Function() globalSecurityContext = () async {
+  Future<SecurityContext> globalSecurityContext() async {
     return SecurityContext();
-  };
+  }
 
-  Future<HttpClient> Function() customHttpClient = () async {
+  Future<HttpClient> customHttpClient() async {
     return HttpClient();
-  };
+  }
 
   /// Callback for VM clients when an SSL exception occurs due to an untrusted
   /// or unverifiable certificate.
